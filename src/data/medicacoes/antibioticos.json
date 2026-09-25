@@ -1,0 +1,820 @@
+[
+ {
+  "id": "amoxicilina",
+  "nome": "Amoxicilina",
+  "classe": "Penicilina",
+  "subclasse": "Aminopenicilina",
+  "mecanismo": "Betalactâmico: inibe a síntese da parede celular bacteriana.",
+  "apresentacoes": [
+   "Cápsula 500 mg",
+   "Comprimido 500 mg",
+   "Suspensão oral 50 mg/mL (250 mg/5 mL)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "IVAS, pele, trato geniturinário (leve/moderada): 500 mg 12/12h ou 250 mg 8/8h.",
+   "Grave ou trato respiratório inferior: 875 mg 12/12h ou 500 mg 8/8h."
+  ],
+  "pediatria": [
+   "≥3 meses e <40 kg, leve/moderada: 25 mg/kg/dia ÷ 12/12h ou 20 mg/kg/dia ÷ 8/8h.",
+   "≥3 meses e <40 kg, grave ou trato respiratório inferior: 45 mg/kg/dia ÷ 12/12h ou 40 mg/kg/dia ÷ 8/8h.",
+   "Otite média aguda: 80–90 mg/kg/dia ÷ 12/12h (AAP 2013).",
+   "≤12 semanas: máx. 30 mg/kg/dia ÷ 12/12h.",
+   "≥40 kg: dose de adulto."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Leve/moderada (25 mg/kg/dia)",
+    "mgkg": 12.5,
+    "intervalo": "12/12h",
+    "via": "VO"
+   },
+   {
+    "rotulo": "Grave/respiratória (45 mg/kg/dia)",
+    "mgkg": 22.5,
+    "intervalo": "12/12h",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [],
+  "renal": "TFG <30: não usar 875 mg. TFG 10–30: 250–500 mg 12/12h. TFG <10: 250–500 mg 24/24h. Hemodiálise: 250–500 mg 24/24h + dose extra durante e ao fim da diálise.",
+  "hepatica": "",
+  "gestacao": "Usar se claramente necessário (bula FDA, antiga categoria B).",
+  "lactacao": "Excretada no leite; pode sensibilizar o lactente (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade grave (anafilaxia, Stevens-Johnson) a amoxicilina ou outros betalactâmicos."
+  ],
+  "alertas": [
+   "Alergia a penicilina: reação não anafilática não verificada permite cefalosporina sem teste; se anafilaxia, usar cefalosporina não reativa cruzada, ex. cefazolina (AAAAI/ACAAI 2022)."
+  ],
+  "fontes": [
+   "FDA label Amoxicillin capsules (DailyMed)",
+   "RENAME 2024",
+   "Drug allergy: 2022 practice parameter update (AAAAI/ACAAI)",
+   "Lieberthal AS et al. AAP — The diagnosis and management of acute otitis media. Pediatrics 2013;131:e964."
+  ]
+ },
+ {
+  "id": "amoxicilina-clavulanato",
+  "nome": "Amoxicilina + clavulanato",
+  "classe": "Penicilina",
+  "subclasse": "Aminopenicilina + inibidor de betalactamase",
+  "mecanismo": "Amoxicilina inibe a parede celular; clavulanato inibe betalactamases.",
+  "apresentacoes": [
+   "Comprimido 500 mg + 125 mg",
+   "Comprimido 875 mg + 125 mg (BD)",
+   "Suspensão 250 mg + 62,5 mg/5 mL",
+   "Suspensão BD 200 mg + 28,5 mg/5 mL e 400 mg + 57 mg/5 mL"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Leve/moderada: 500 mg 12/12h ou 250 mg 8/8h.",
+   "Grave ou trato respiratório: 875 mg 12/12h ou 500 mg 8/8h."
+  ],
+  "pediatria": [
+   "≥12 semanas e <40 kg: 25 mg/kg/dia ÷ 12/12h ou 20 mg/kg/dia ÷ 8/8h (leve); 45 mg/kg/dia ÷ 12/12h ou 40 mg/kg/dia ÷ 8/8h (grave) — dose pela amoxicilina.",
+   "<12 semanas: 30 mg/kg/dia ÷ 12/12h (bula FDA).",
+   "Clavulin BD: dose alta 45–70 mg/kg/dia ÷ 12/12h; sem dados >45 mg/kg/dia em <2 anos; não recomendado <2 meses."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Leve (25 mg/kg/dia, amoxicilina)",
+    "mgkg": 12.5,
+    "intervalo": "12/12h",
+    "via": "VO"
+   },
+   {
+    "rotulo": "Grave (45 mg/kg/dia, amoxicilina)",
+    "mgkg": 22.5,
+    "intervalo": "12/12h",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [],
+  "renal": "TFG <30: não usar 875 mg nem formulação BD (bula Clavulin BD). TFG 10–30: 250–500 mg 12/12h. TFG <10: 250–500 mg 24/24h (bula FDA).",
+  "hepatica": "Monitorar função hepática em hepatopatas (bula FDA).",
+  "gestacao": "Evitar no 1º trimestre salvo necessidade (bula Clavulin BD).",
+  "lactacao": "Compatível; pequenas quantidades no leite (bula Clavulin BD).",
+  "contraindicacoes": [
+   "Hipersensibilidade a betalactâmicos.",
+   "Icterícia colestática/disfunção hepática prévia associada a amoxicilina-clavulanato."
+  ],
+  "alertas": [
+   "Alergia a penicilina: reação não anafilática não verificada permite cefalosporina sem teste; se anafilaxia, preferir cefalosporina não reativa cruzada, ex. cefazolina (AAAAI/ACAAI 2022)."
+  ],
+  "fontes": [
+   "FDA label Amoxicillin/clavulanate tablets (DailyMed)",
+   "Bula Clavulin BD suspensão — GSK Brasil (profissional)",
+   "RENAME 2024",
+   "Drug allergy: 2022 practice parameter update (AAAAI/ACAAI)"
+  ]
+ },
+ {
+  "id": "penicilina-g-benzatina",
+  "nome": "Penicilina G benzatina",
+  "classe": "Penicilina",
+  "subclasse": "Penicilina natural de depósito",
+  "mecanismo": "Betalactâmico de liberação lenta IM: inibe a síntese da parede celular.",
+  "apresentacoes": [
+   "Pó/suspensão injetável 600.000 UI",
+   "Pó/suspensão injetável 1.200.000 UI"
+  ],
+  "rename": true,
+  "vias": [
+   "IM"
+  ],
+  "adulto": [
+   "Sífilis recente (primária, secundária, latente ≤1 ano): 2,4 milhões UI IM dose única (1,2 milhão UI em cada glúteo).",
+   "Sífilis tardia (latente >1 ano ou duração ignorada, terciária): 2,4 milhões UI IM semanal por 3 semanas (total 7,2 milhões UI).",
+   "Faringite estreptocócica: 1,2 milhão UI IM dose única.",
+   "Profilaxia secundária de febre reumática: ≥20 kg 1,2 milhão UI IM a cada 21 dias (Diretrizes Brasileiras de Febre Reumática, SBC 2009); bula FDA: mensal."
+  ],
+  "pediatria": [
+   "Sífilis congênita <2 anos: 50.000 UI/kg (bula FDA).",
+   "Faringite: <27 kg: 300.000–600.000 UI; crianças maiores: 900.000 UI IM dose única (bula FDA).",
+   "Profilaxia secundária de febre reumática: <20 kg 600.000 UI; ≥20 kg 1,2 milhão UI IM a cada 21 dias (Diretrizes Brasileiras de Febre Reumática, SBC 2009)."
+  ],
+  "diluicao": [
+   "Exclusivamente IM profunda: adultos no quadrante superior externo do glúteo (dorsoglúteo) ou ventroglúteo; em neonatos, lactentes e crianças pequenas a face médio-lateral da coxa pode ser preferível (bula FDA; bula Benzetacil).",
+   "Benzetacil 1.200.000 UI: frasco de 4 mL (300.000 UI/mL); agitar vigorosamente antes de aspirar. 2,4 milhões UI = 2 frascos, 1,2 milhão UI em cada glúteo (bula Benzetacil; PCDT IST)."
+  ],
+  "renal": "Excreção renal, retardada na insuficiência renal (bula FDA).",
+  "hepatica": "",
+  "gestacao": "Tratamento de escolha da sífilis na gestação (PCDT IST).",
+  "lactacao": "Penicilina excretada no leite; usar com cautela (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade prévia a penicilinas."
+  ],
+  "alertas": [
+   "Nunca EV nem misturar a soluções EV: parada cardiorrespiratória e óbito relatados (tarja FDA).",
+   "Alergia a penicilina: avaliar história; reação não anafilática não verificada permite cefalosporina sem teste (AAAAI/ACAAI 2022)."
+  ],
+  "fontes": [
+   "FDA label Bicillin L-A (DailyMed)",
+   "Ministério da Saúde — PCDT Atenção Integral às Pessoas com IST, 2022 (via TelessaúdeRS-UFRGS)",
+   "RENAME 2024",
+   "Drug allergy: 2022 practice parameter update (AAAAI/ACAAI)",
+   "Bula Benzetacil — Eurofarma",
+   "Diretrizes Brasileiras para o Diagnóstico, Tratamento e Prevenção da Febre Reumática — SBC, Arq Bras Cardiol 2009"
+  ]
+ },
+ {
+  "id": "cefalexina",
+  "nome": "Cefalexina",
+  "classe": "Cefalosporina",
+  "subclasse": "1ª geração",
+  "mecanismo": "Betalactâmico: inibe a síntese da parede celular.",
+  "apresentacoes": [
+   "Cápsula 500 mg",
+   "Comprimido 500 mg",
+   "Suspensão oral 50 mg/mL (250 mg/5 mL)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Usual: 250 mg 6/6h ou 500 mg 12/12h, por 7–14 dias.",
+   "Infecções graves: até 4 g/dia em 2–4 tomadas (máx. 4 g/dia)."
+  ],
+  "pediatria": [
+   "25–50 mg/kg/dia em doses divididas, 7–14 dias.",
+   "Graves: 50–100 mg/kg/dia divididos. Otite média: 75–100 mg/kg/dia divididos.",
+   "Estreptococo: tratar no mínimo 10 dias."
+  ],
+  "diluicao": [],
+  "renal": "ClCr ≥60: sem ajuste. 30–59: sem ajuste, máx. 1 g/dia. 15–29: 250 mg 8/8h a 12/12h. 5–14: 250 mg 24/24h. 1–4: 250 mg a cada 48–60h.",
+  "hepatica": "",
+  "gestacao": "Usar se claramente necessário (bula FDA, antiga categoria B).",
+  "lactacao": "Excretada no leite; cautela (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a cefalexina ou outras cefalosporinas."
+  ],
+  "alertas": [
+   "Alergia a penicilina não anafilática não verificada: pode receber cefalosporina sem teste; se anafilaxia, preferir cefalosporina não reativa cruzada, ex. cefazolina (AAAAI/ACAAI 2022)."
+  ],
+  "fontes": [
+   "FDA label Keflex (DailyMed)",
+   "RENAME 2024",
+   "Drug allergy: 2022 practice parameter update (AAAAI/ACAAI)"
+  ]
+ },
+ {
+  "id": "ceftriaxona",
+  "nome": "Ceftriaxona",
+  "classe": "Cefalosporina",
+  "subclasse": "3ª geração",
+  "mecanismo": "Betalactâmico: inibe a síntese da parede celular.",
+  "apresentacoes": [
+   "Pó para solução injetável 250 mg, 500 mg e 1 g (EV)",
+   "IM: 500 mg + lidocaína 1% 2 mL; 1 g + lidocaína 1% 3,5 mL"
+  ],
+  "rename": true,
+  "vias": [
+   "EV",
+   "IM"
+  ],
+  "adulto": [
+   "Usual: 1–2 g/dia 1x/dia (ou dividido 12/12h). Máx. 4 g/dia.",
+   "Meningite bacteriana: 2 g EV 12/12h (4 g/dia) (IDSA 2004; bula FDA)."
+  ],
+  "pediatria": [
+   "Pele/partes moles: 50–75 mg/kg/dia 1x/dia (ou ÷ 12/12h), máx. 2 g/dia.",
+   "Meningite: 100 mg/kg/dia (1x/dia ou ÷ 12/12h), máx. 4 g/dia.",
+   "Otite média aguda: 50 mg/kg IM dose única, máx. 1 g."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Pele/partes moles",
+    "mgkg": 75,
+    "max_mg": 2000,
+    "intervalo": "24/24h",
+    "via": "EV/IM"
+   },
+   {
+    "rotulo": "Meningite",
+    "mgkg": 100,
+    "max_mg": 4000,
+    "intervalo": "24/24h",
+    "via": "EV"
+   },
+   {
+    "rotulo": "OMA (dose única)",
+    "mgkg": 50,
+    "max_mg": 1000,
+    "intervalo": "dose única",
+    "via": "IM"
+   }
+  ],
+  "diluicao": [
+   "EV intermitente: infundir em 30 min (60 min em neonatos) (bula FDA).",
+   "Diluição usual — conferir protocolo da unidade: reconstituir 1 g em 10 mL de AD; até 1 g pode ser EV direto em 3–5 min; para infusão, diluir em 40–100 mL de SF 0,9% ou SG 5% (Guia Farmacêutico HSL; Manual de Diluição SMS Joinville).",
+   "IM: reconstituir com a lidocaína 1% do kit (500 mg/2 mL; 1 g/3,5 mL); excluir contraindicações à lidocaína; a solução com lidocaína nunca pode ser EV (bula ceftriaxona IM Eurofarma).",
+   "Não reconstituir nem coadministrar com soluções contendo cálcio (HSL)."
+  ],
+  "renal": "Sem ajuste nas doses usuais (bula FDA).",
+  "hepatica": "",
+  "gestacao": "Sem teratogenicidade em animais; usar se claramente necessário (bula FDA).",
+  "lactacao": "Baixas concentrações no leite; cautela (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a ceftriaxona/cefalosporinas.",
+   "Neonatos hiperbilirrubinêmicos (bula FDA); prematuros com idade pós-menstrual ≤41 semanas (bula BR).",
+   "Neonatos ≤28 dias que recebem ou vão receber soluções EV com cálcio (precipitação)."
+  ],
+  "alertas": [
+   "Ceftriaxona + cálcio EV em neonatos: precipitados pulmonares/renais fatais (bula FDA).",
+   "Alergia a penicilina não anafilática não verificada: pode receber cefalosporina sem teste (AAAAI/ACAAI 2022)."
+  ],
+  "fontes": [
+   "FDA label Ceftriaxone for injection (DailyMed)",
+   "Bula ceftriaxona sódica IM — Eurofarma",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Ceftriaxona",
+   "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018",
+   "RENAME 2024",
+   "Drug allergy: 2022 practice parameter update (AAAAI/ACAAI)",
+   "IDSA — Practice Guidelines for the Management of Bacterial Meningitis, 2004"
+  ]
+ },
+ {
+  "id": "azitromicina",
+  "nome": "Azitromicina",
+  "classe": "Macrolídeo",
+  "subclasse": "Azalídeo",
+  "mecanismo": "Liga-se à subunidade 50S ribossomal e inibe a síntese proteica.",
+  "apresentacoes": [
+   "Comprimido 250 mg e 500 mg",
+   "Pó para suspensão 40 mg/mL (200 mg/5 mL; frascos 600, 900 e 1.500 mg)",
+   "Frasco-ampola 500 mg (EV)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "EV"
+  ],
+  "adulto": [
+   "PAC, faringite, pele: 500 mg no D1, depois 250 mg/dia D2–D5.",
+   "Sinusite: 500 mg/dia por 3 dias.",
+   "Uretrite/cervicite não gonocócica: 1 g VO dose única.",
+   "PAC EV: 500 mg/dia EV por ≥2 dias, depois VO."
+  ],
+  "pediatria": [
+   "OMA (≥6 meses): 30 mg/kg dose única, ou 10 mg/kg/dia por 3 dias, ou 10 mg/kg D1 + 5 mg/kg D2–D5.",
+   "PAC (≥6 meses): 10 mg/kg D1, depois 5 mg/kg D2–D5.",
+   "Faringite (≥2 anos): 12 mg/kg/dia por 5 dias.",
+   "Bula BR: dose diária máx. 500 mg e dose total máx. 1.500 mg por tratamento; o esquema de 30 mg/kg em dose única (OMA) é da bula FDA (máx. 1.500 mg)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "PAC/OMA D1",
+    "mgkg": 10,
+    "max_mg": 500,
+    "intervalo": "24/24h",
+    "via": "VO"
+   },
+   {
+    "rotulo": "PAC/OMA D2–D5",
+    "mgkg": 5,
+    "intervalo": "24/24h",
+    "via": "VO"
+   },
+   {
+    "rotulo": "Faringite (5 dias)",
+    "mgkg": 12,
+    "max_mg": 500,
+    "intervalo": "24/24h",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [
+   "EV: reconstituir 500 mg com 4,8 mL de AD (100 mg/mL); diluir para 1 mg/mL e infundir em 3h, ou 2 mg/mL em 1h (bula FDA).",
+   "Não administrar em bolus nem IM."
+  ],
+  "renal": "Sem ajuste em TFG 10–80. TFG <10: Cmáx ↑61% e AUC ↑35% — usar com cautela (bula FDA).",
+  "hepatica": "",
+  "gestacao": "Dados disponíveis sem aumento de malformações ou desfechos adversos (bula FDA).",
+  "lactacao": "Presente no leite; observar diarreia, vômitos ou rash no lactente (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a azitromicina, eritromicina, macrolídeos ou cetolídeos.",
+   "Icterícia colestática/disfunção hepática prévia com azitromicina."
+  ],
+  "alertas": [
+   "Prolonga QT/torsades: evitar em QT longo, história de torsades, hipocalemia/hipomagnesemia, bradicardia, uso de antiarrítmicos IA/III ou outros que prolongam QT (FDA).",
+   "Estenose hipertrófica de piloro em neonatos expostos (até 42 dias de vida)."
+  ],
+  "fontes": [
+   "FDA label Zithromax oral e IV (DailyMed)",
+   "Bula azitromicina pó para suspensão (BR, profissional)",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "claritromicina",
+  "nome": "Claritromicina",
+  "classe": "Macrolídeo",
+  "subclasse": "Macrolídeo de 14 átomos",
+  "mecanismo": "Liga-se à subunidade 50S ribossomal e inibe a síntese proteica; inibidor potente do CYP3A4.",
+  "apresentacoes": [
+   "Comprimido 250 mg e 500 mg",
+   "Granulado para suspensão 50 mg/mL"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Usual (faringite, sinusite, PAC, pele): 250–500 mg 12/12h por 7–14 dias.",
+   "H. pylori: 500 mg 8/8h ou 12/12h por 10–14 dias, em esquema combinado."
+  ],
+  "pediatria": [
+   "15 mg/kg/dia ÷ 12/12h por 10 dias (até dose de adulto)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Dose usual (15 mg/kg/dia)",
+    "mgkg": 7.5,
+    "intervalo": "12/12h",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [],
+  "renal": "ClCr <30: reduzir a dose em 50%.",
+  "hepatica": "",
+  "gestacao": "Não recomendada, exceto sem alternativa (toxicidade embriofetal em animais) (bula FDA).",
+  "lactacao": "<2% da dose materna no leite (bula FDA).",
+  "contraindicacoes": [
+   "História de prolongamento do QT ou arritmia ventricular.",
+   "Uso com cisaprida, pimozida, ergotamina/di-hidroergotamina, lovastatina ou sinvastatina.",
+   "Colchicina em pacientes com IR ou insuficiência hepática.",
+   "Icterícia colestática/disfunção hepática prévia com claritromicina."
+  ],
+  "alertas": [
+   "Múltiplas interações via CYP3A4 (estatinas, colchicina, ergóticos): conferir lista de medicamentos."
+  ],
+  "fontes": [
+   "FDA label Clarithromycin tablets (DailyMed)",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "ciprofloxacino",
+  "nome": "Ciprofloxacino",
+  "classe": "Fluoroquinolona",
+  "subclasse": "2ª geração",
+  "mecanismo": "Inibe DNA girase e topoisomerase IV bacterianas.",
+  "apresentacoes": [
+   "Comprimido 250 mg e 500 mg",
+   "Solução para infusão 2 mg/mL"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "EV"
+  ],
+  "adulto": [
+   "Cistite não complicada: 250 mg 12/12h por 3 dias (só se sem alternativa).",
+   "ITU: 250–500 mg 12/12h por 7–14 dias.",
+   "Pele, respiratório: 500–750 mg 12/12h por 7–14 dias.",
+   "Diarreia infecciosa: 500 mg 12/12h por 5–7 dias.",
+   "EV: 400 mg 8/8h a 12/12h."
+  ],
+  "pediatria": [
+   "ITU complicada/pielonefrite (1–17 anos): VO 10–20 mg/kg 12/12h (máx. 750 mg/dose); EV 6–10 mg/kg 8/8h (máx. 400 mg/dose), 10–21 dias."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "ITU complicada VO",
+    "mgkg": 20,
+    "max_mg": 750,
+    "intervalo": "12/12h",
+    "via": "VO"
+   },
+   {
+    "rotulo": "ITU complicada EV",
+    "mgkg": 10,
+    "max_mg": 400,
+    "intervalo": "8/8h",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "EV: solução pronta (2 mg/mL); infundir em 60 min (bula FDA)."
+  ],
+  "renal": "VO: ClCr 30–50: 250–500 mg 12/12h; 5–29: 250–500 mg 18/18h; diálise: 250–500 mg 24/24h após a sessão. EV: ClCr 5–29: 200–400 mg 18/18h a 24/24h.",
+  "hepatica": "",
+  "gestacao": "",
+  "lactacao": "Não amamentar durante o uso e por 2 dias após a última dose (ordenhar e descartar) (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a quinolonas.",
+   "Uso concomitante de tizanidina."
+  ],
+  "alertas": [
+   "Tarja FDA: tendinite/ruptura de tendão, neuropatia periférica e efeitos no SNC, incapacitantes e potencialmente irreversíveis; piora de miastenia gravis. Reservar para cistite não complicada, sinusite e exacerbação de bronquite só sem alternativa.",
+   "Aneurisma/dissecção de aorta, disglicemia e prolongamento do QT (FDA).",
+   "Tomar 2h antes ou 6h depois de antiácidos, cálcio, ferro ou zinco.",
+   "Teofilina: risco de toxicidade grave; monitorar níveis.",
+   "Pediatria: mais eventos adversos articulares/musculoesqueléticos que o comparador; não é primeira escolha (bula FDA)."
+  ],
+  "fontes": [
+   "FDA label Cipro tablets (DailyMed)",
+   "FDA label Ciprofloxacin injection (DailyMed)",
+   "Bula ciprofloxacino solução injetável 2 mg/mL — Fresenius Kabi Brasil",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "levofloxacino",
+  "nome": "Levofloxacino",
+  "classe": "Fluoroquinolona",
+  "subclasse": "3ª geração (respiratória)",
+  "mecanismo": "Inibe DNA girase e topoisomerase IV bacterianas.",
+  "apresentacoes": [
+   "Comprimido 250 mg e 500 mg",
+   "Solução para infusão 5 mg/mL (bolsa 100 mL)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "EV"
+  ],
+  "adulto": [
+   "PAC: 750 mg/dia por 5 dias ou 500 mg/dia por 7–14 dias.",
+   "Pielonefrite/ITU complicada: 750 mg/dia por 5 dias.",
+   "Cistite não complicada: 250 mg/dia por 3 dias (só se sem alternativa).",
+   "Sinusite bacteriana: 750 mg/dia por 5 dias."
+  ],
+  "pediatria": [
+   "Uso pediátrico aprovado só para antraz inalatório (pós-exposição) e peste: comprimidos — 30 a <50 kg 250 mg 12/12h; ≥50 kg 500 mg 24/24h (bula FDA)."
+  ],
+  "diluicao": [
+   "EV: solução pronta 5 mg/mL; 250–500 mg em 60 min, 750 mg em 90 min. Bolus ou infusão rápida causa hipotensão. Não misturar com outros fármacos na mesma linha (bula FDA)."
+  ],
+  "renal": "ClCr 20–49: 750 mg 48/48h | 500 mg ataque e 250 mg 24/24h | 250 mg sem ajuste. ClCr 10–19: 750 mg ataque e 500 mg 48/48h | 500 mg ataque e 250 mg 48/48h | 250 mg 48/48h. Hemodiálise/DPAC: como ClCr 10–19 (esquemas 750 e 500).",
+  "hepatica": "",
+  "gestacao": "Dados observacionais não identificaram aumento de malformações, abortamento ou desfechos adversos (bula FDA).",
+  "lactacao": "Amamentação não recomendada; pode ordenhar e descartar durante o uso e por 2 dias após a última dose (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a quinolonas."
+  ],
+  "alertas": [
+   "Tarja FDA: tendinite/ruptura de tendão, neuropatia periférica, efeitos no SNC, piora de miastenia gravis. Reservar para cistite não complicada, sinusite e exacerbação de bronquite só sem alternativa.",
+   "Aneurisma/dissecção de aorta (sobretudo idosos), disglicemia com antidiabéticos e QT longo: evitar em QT prolongado ou hipocalemia (FDA)."
+  ],
+  "fontes": [
+   "FDA label Levofloxacin tablets (DailyMed)",
+   "FDA label Levofloxacin injection (DailyMed)",
+   "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "sulfametoxazol-trimetoprima",
+  "nome": "Sulfametoxazol + trimetoprima",
+  "classe": "Sulfonamida",
+  "subclasse": "Sulfonamida + inibidor da di-hidrofolato redutase",
+  "mecanismo": "Bloqueio sequencial da síntese de folato bacteriano.",
+  "apresentacoes": [
+   "Comprimido 400 mg + 80 mg",
+   "Comprimido 800 mg + 160 mg (F)",
+   "Suspensão 200 mg + 40 mg/5 mL"
+  ],
+  "rename": null,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "ITU: 800/160 mg 12/12h por 10–14 dias.",
+   "Pneumocistose (tratamento): SMX 75–100 mg/kg/dia + TMP 15–20 mg/kg/dia ÷ 6/6h por 14–21 dias."
+  ],
+  "pediatria": [
+   "ITU/OMA/shigelose (≥2 meses): SMX 40 mg/kg/dia + TMP 8 mg/kg/dia ÷ 12/12h (bula FDA).",
+   "Bula BR: contraindicado em prematuros e nas primeiras 6 semanas de vida."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "ITU/OMA (dose de TMP, 8 mg/kg/dia)",
+    "mgkg": 4,
+    "intervalo": "12/12h",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [],
+  "renal": "ClCr >30: dose usual. 15–30: metade da dose. <15: não recomendado.",
+  "hepatica": "Contraindicado em lesão hepática acentuada.",
+  "gestacao": "Evitar no final da gestação (risco de kernicterus); gestantes em uso devem receber ácido fólico 5 mg/dia (bula Bactrim BR).",
+  "lactacao": "Excretado no leite; cautela em lactente ictérico ou prematuro (kernicterus) (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a sulfonamidas ou trimetoprima.",
+   "Anemia megaloblástica por deficiência de folato.",
+   "Lesão hepática acentuada; IR grave sem possibilidade de monitorização.",
+   "<2 meses (FDA) / prematuros e <6 semanas (bula BR).",
+   "Uso com dofetilida."
+  ],
+  "alertas": [
+   "Hipercalemia (sobretudo em doses altas e IR): monitorar potássio.",
+   "Final da gestação e neonatos: risco de kernicterus."
+  ],
+  "fontes": [
+   "FDA label Bactrim/Bactrim DS (DailyMed)",
+   "Bula Bactrim suspensão (BR, profissional)"
+  ]
+ },
+ {
+  "id": "nitrofurantoina",
+  "nome": "Nitrofurantoína",
+  "classe": "Nitrofurano",
+  "subclasse": "Antisséptico urinário (macrocristais)",
+  "mecanismo": "Metabólitos reativos lesam DNA, ribossomos e enzimas bacterianas; age só no trato urinário.",
+  "apresentacoes": [
+   "Cápsula 100 mg (macrocristais)",
+   "Suspensão oral 5 mg/mL"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Cistite: 100 mg 6/6h por 7–10 dias (bula Macrodantina); FDA: 50–100 mg 4x/dia (dose menor na ITU não complicada).",
+   "Supressão prolongada: 100 mg à noite.",
+   "Tomar com alimento."
+  ],
+  "pediatria": [
+   "≥1 mês: 5–7 mg/kg/dia ÷ 6/6h (bula FDA). Contraindicado <1 mês."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "ITU (7 mg/kg/dia)",
+    "mgkg": 1.75,
+    "intervalo": "6/6h",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [],
+  "renal": "Bula (FDA e BR): contraindicado se anúria, oligúria ou ClCr <60. AGS Beers 2023: em idosos, evitar se ClCr <30 ou para supressão prolongada.",
+  "hepatica": "Hepatotoxicidade rara e grave: monitorar função hepática; suspender se alterada.",
+  "gestacao": "Contraindicado a termo (38–42 semanas), no trabalho de parto e parto.",
+  "lactacao": "Traços no leite; evitar se lactente <1 mês (hemólise) (bula FDA).",
+  "contraindicacoes": [
+   "Anúria, oligúria ou ClCr <60 (bula).",
+   "Gestação a termo (38–42 semanas), trabalho de parto e parto.",
+   "Neonatos <1 mês.",
+   "Icterícia colestática/disfunção hepática prévia com nitrofurantoína."
+  ],
+  "alertas": [
+   "Reações pulmonares agudas e crônicas (pneumonite intersticial/fibrose, sobretudo uso ≥6 meses).",
+   "Neuropatia periférica, possivelmente grave/irreversível.",
+   "Anemia hemolítica na deficiência de G6PD."
+  ],
+  "fontes": [
+   "FDA label Nitrofurantoin macrocrystals (DailyMed)",
+   "Bula Macrodantina (BR, profissional)",
+   "AGS Beers Criteria 2023 (J Am Geriatr Soc)",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "fosfomicina-trometamol",
+  "nome": "Fosfomicina trometamol",
+  "classe": "Fosfonato",
+  "subclasse": "Derivado do ácido fosfônico (dose única urinária)",
+  "mecanismo": "Inibe a MurA, primeira etapa da síntese do peptidoglicano.",
+  "apresentacoes": [
+   "Envelope granulado 5,631 g de fosfomicina trometamol (= 3 g de fosfomicina)"
+  ],
+  "rename": null,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Cistite não complicada: 3 g VO dose única.",
+   "Bula BR: Pseudomonas, Proteus e Enterobacter — 2 envelopes com 24h de intervalo."
+  ],
+  "pediatria": [
+   "Eficácia e segurança não estabelecidas em ≤12 anos."
+  ],
+  "diluicao": [
+   "Dissolver o envelope em 50–75 mL de água fria (bula BR; FDA: 90–120 mL, não usar água quente) e tomar logo, em jejum, de preferência à noite após esvaziar a bexiga."
+  ],
+  "renal": "ClCr <10 ou hemodiálise: contraindicado (bula Monuril).",
+  "hepatica": "",
+  "gestacao": "Pode ser usada sob orientação médica (bula BR); atravessa a placenta (FDA).",
+  "lactacao": "Níveis baixos no leite; dose única permitida se necessário (bula BR).",
+  "contraindicacoes": [
+   "Hipersensibilidade à fosfomicina.",
+   "ClCr <10 mL/min ou hemodiálise (bula BR)."
+  ],
+  "alertas": [],
+  "fontes": [
+   "Bula Monuril — Zambon Brasil (profissional)",
+   "FDA label Fosfomycin tromethamine (DailyMed)"
+  ]
+ },
+ {
+  "id": "metronidazol",
+  "nome": "Metronidazol",
+  "classe": "Nitroimidazol",
+  "subclasse": "5-nitroimidazol (anaeróbios e protozoários)",
+  "mecanismo": "Reduzido no interior do microrganismo a radicais que lesam o DNA.",
+  "apresentacoes": [
+   "Comprimido 250 mg e 400 mg",
+   "Solução injetável 5 mg/mL (bolsa 100 mL)",
+   "Gel vaginal 100 mg/g"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "EV"
+  ],
+  "adulto": [
+   "Tricomoníase: 2 g VO dose única (ou dividida em 2 tomadas no mesmo dia), ou 250 mg 8/8h por 7 dias.",
+   "Amebíase: 500–750 mg VO 8/8h por 5–10 dias.",
+   "Anaeróbios: 7,5 mg/kg (≈500 mg) 6/6h; EV ataque 15 mg/kg (≈1 g). Máx. 4 g/24h."
+  ],
+  "pediatria": [
+   "Amebíase: 35–50 mg/kg/dia ÷ 8/8h por 10 dias (bula FDA)."
+  ],
+  "diluicao": [
+   "EV: solução pronta, não diluir nem adicionar fármacos; infundir em 1h (bula FDA).",
+   "Não usar agulhas/equipamentos com alumínio."
+  ],
+  "renal": "Sem ajuste em IR leve a moderada. Hemodiálise: removido na diálise — considerar dose suplementar após a sessão (bula FDA).",
+  "hepatica": "Child-Pugh C: reduzir dose em 50%.",
+  "gestacao": "Contraindicado no 1º trimestre para tricomoníase (bula FDA).",
+  "lactacao": "Concentração no leite semelhante à sérica; pode ordenhar e descartar por 24h após o término (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a nitroimidazóis.",
+   "Dissulfiram nas últimas 2 semanas.",
+   "Álcool ou propilenoglicol durante e até 3 dias após o uso.",
+   "Síndrome de Cockayne (hepatotoxicidade fatal)."
+  ],
+  "alertas": [
+   "Tarja FDA: carcinogênico em roedores; evitar uso desnecessário.",
+   "Neurotoxicidade (encefalopatia, neuropatia periférica, convulsões) e reações cutâneas graves."
+  ],
+  "fontes": [
+   "FDA label Metronidazole tablets (DailyMed)",
+   "FDA label Metronidazole injection (DailyMed)",
+   "FDA label Flagyl (DailyMed)",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Metronidazol",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "clindamicina",
+  "nome": "Clindamicina",
+  "classe": "Lincosamida",
+  "subclasse": "Lincosamida semissintética",
+  "mecanismo": "Liga-se à subunidade 50S ribossomal e inibe a síntese proteica.",
+  "apresentacoes": [
+   "Cápsula 150 mg e 300 mg",
+   "Solução injetável 150 mg/mL (ampola 4 mL)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "EV",
+   "IM"
+  ],
+  "adulto": [
+   "VO: 150–300 mg 6/6h; graves 300–450 mg 6/6h.",
+   "EV/IM: 600–1.200 mg/dia em 2–4 doses; graves 1.200–2.700 mg/dia; até 4.800 mg/dia EV em risco de vida."
+  ],
+  "pediatria": [
+   "VO: 8–16 mg/kg/dia (graves 16–20 mg/kg/dia) em 3–4 doses.",
+   "EV/IM (1 mês–16 anos): 20–40 mg/kg/dia em 3–4 doses.",
+   "Dose pelo peso total, mesmo em obesos."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "VO grave (20 mg/kg/dia)",
+    "mgkg": 5,
+    "intervalo": "6/6h",
+    "via": "VO"
+   },
+   {
+    "rotulo": "EV (40 mg/kg/dia)",
+    "mgkg": 10,
+    "intervalo": "6/6h",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "EV: concentração máx. 18 mg/mL e velocidade máx. 30 mg/min; nunca em bolus sem diluir.",
+   "Exemplos (bula FDA): 300 mg/50 mL em 10 min; 600 mg/50 mL em 20 min; 900 mg/50–100 mL em 30 min; 1.200 mg/100 mL em 40 min. Não exceder 1.200 mg em infusão única de 1h.",
+   "IM: máx. 600 mg por injeção."
+  ],
+  "renal": "Sem ajuste.",
+  "hepatica": "Leve aumento da meia-vida em hepatopatia grave; acúmulo raro.",
+  "gestacao": "No 2º e 3º trimestres, sem aumento de anomalias congênitas; usar na gestação só se claramente necessário (bula FDA).",
+  "lactacao": "Presente no leite; pode amamentar observando efeitos GI no lactente (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a clindamicina ou lincomicina."
+  ],
+  "alertas": [
+   "Tarja FDA: colite por C. difficile, de diarreia leve a colite fatal; reservar para situações apropriadas.",
+   "VO: tomar com copo cheio de água e não deitar por 30 min (esofagite).",
+   "Injetável contém álcool benzílico: cautela em neonatos."
+  ],
+  "fontes": [
+   "FDA label Cleocin HCl capsules (DailyMed)",
+   "FDA label Cleocin Phosphate injection (DailyMed)",
+   "Bula fosfato de clindamicina — União Química",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "doxiciclina",
+  "nome": "Doxiciclina",
+  "classe": "Tetraciclina",
+  "subclasse": "Tetraciclina de 2ª geração",
+  "mecanismo": "Liga-se à subunidade 30S ribossomal e inibe a síntese proteica.",
+  "apresentacoes": [
+   "Comprimido 100 mg"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "200 mg no D1 (100 mg 12/12h), depois 100 mg/dia.",
+   "Infecções graves e riquetsioses: 100 mg 12/12h."
+  ],
+  "pediatria": [
+   "<45 kg: 4,4 mg/kg no D1 em 2 doses, depois 2,2 mg/kg/dia (bula FDA); ≥45 kg: dose de adulto.",
+   "Riquetsioses (todas as idades): 2,2 mg/kg 12/12h (CDC)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Riquetsiose (CDC)",
+    "mgkg": 2.2,
+    "max_mg": 100,
+    "intervalo": "12/12h",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [],
+  "renal": "Sem acúmulo excessivo em doses usuais na IR (bula FDA).",
+  "hepatica": "",
+  "gestacao": "Dados limitados sugerem baixo risco teratogênico; uso na segunda metade da gestação pode manchar dentes do feto (bula FDA).",
+  "lactacao": "Passa ao leite; pesar benefício/risco (bula FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a tetraciclinas."
+  ],
+  "alertas": [
+   "<8 anos: risco de descoloração dentária permanente (bula FDA); porém pode ser usada por ≤21 dias em qualquer idade (AAP, Red Book) e é a droga de escolha para riquetsioses em todas as idades (CDC/AAP).",
+   "Tomar com bastante líquido (esofagite/úlcera esofágica).",
+   "Fotossensibilidade: suspender ao primeiro eritema."
+  ],
+  "fontes": [
+   "FDA label Doxycycline hyclate (DailyMed)",
+   "CDC — Clinical Care of Rocky Mountain Spotted Fever",
+   "RENAME 2024",
+   "AAP — Red Book, Committee on Infectious Diseases (doxiciclina ≤21 dias em qualquer idade)"
+  ]
+ }
+]

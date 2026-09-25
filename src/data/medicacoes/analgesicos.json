@@ -1,0 +1,591 @@
+[
+ {
+  "id": "dipirona",
+  "nome": "Dipirona (metamizol)",
+  "classe": "Analgésico e antitérmico",
+  "subclasse": "Derivado pirazolônico",
+  "mecanismo": "Analgésico e antitérmico não opioide, derivado da pirazolona, com fraca ação anti-inflamatória.",
+  "apresentacoes": [
+   "Comprimido 500 mg",
+   "Solução oral (gotas) 500 mg/mL",
+   "Solução oral 50 mg/mL",
+   "Ampola 500 mg/mL (2 mL)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "VO (≥ 15 anos): 500–1.000 mg até 4x/dia (6/6–8/8h); máx. 4 g/dia (EMA).",
+   "IM ou EV (≥ 15 anos): 2–5 mL (1–2,5 g) em dose única; máx. 10 mL (5 g)/dia (bula Novalgina injetável)."
+  ],
+  "pediatria": [
+   "Dose única 8–16 mg/kg; para febre, 10 mg/kg costuma bastar; até 4x/dia (EMA).",
+   "Solução oral 50 mg/mL por peso (bula): 5–8 kg 1,25–2,5 mL; 9–15 kg 2,5–5 mL; 16–23 kg 3,75–7,5 mL; 24–30 kg 5–10 mL; até 4x/dia.",
+   "Contraindicada < 3 meses ou < 5 kg; EV não indicada em 3–11 meses ou < 9 kg (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Febre (EMA)",
+    "mgkg": 10,
+    "max_mg": 1000,
+    "intervalo": "6/6h (até 4x/dia)",
+    "via": "VO/IM/EV"
+   }
+  ],
+  "diluicao": [
+   "EV: lento, no máx. 1 mL (500 mg)/min, paciente deitado, para evitar hipotensão (bula).",
+   "Pode ser diluída em SG 5%, SF 0,9% ou Ringer lactato; usar logo após o preparo (bula).",
+   "Diluição usual em PS: 10–20 mL de AD ou SF para reduzir dor da injeção — conferir protocolo da unidade (Manual de Diluição SMS Joinville, 2018).",
+   "IM: sem diluição, injeção profunda (bula)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Contraindicada no 1º e 3º trimestres; 2º trimestre só após avaliar risco-benefício (bula Novalgina). EMA: contraindicada no 3º trimestre.",
+  "lactacao": "Evitar amamentar durante o uso e por 48h após a dose (bula; EMA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a pirazolonas ou agranulocitose prévia com essas drogas.",
+   "Função da medula óssea prejudicada ou doenças hematopoéticas.",
+   "Porfiria hepática aguda intermitente e deficiência de G6PD.",
+   "Crianças < 3 meses ou < 5 kg."
+  ],
+  "alertas": [
+   "Agranulocitose (rara, potencialmente fatal): suspender se febre, dor de garganta ou lesões orais (bula).",
+   "Hipotensão e anafilaxia, sobretudo EV rápida: administrar lentamente com paciente deitado (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Novalgina solução injetável (Sanofi)",
+   "Bula ANVISA — Novalgina solução oral 50 mg/mL (Sanofi)",
+   "EMA — Metamizole Article 31 referral, Annex III (2024)",
+   "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018",
+   "RENAME 2024 (componente básico)"
+  ]
+ },
+ {
+  "id": "paracetamol",
+  "nome": "Paracetamol",
+  "classe": "Analgésico e antitérmico",
+  "subclasse": "Paraminofenol",
+  "mecanismo": "Analgésico e antitérmico de ação central, com mínima ação anti-inflamatória.",
+  "apresentacoes": [
+   "Comprimido 500 mg e 750 mg",
+   "Solução oral (gotas) 200 mg/mL"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "≥ 12 anos: 500–1.000 mg VO de 4/4 a 6/6h; máx. 1.000 mg/dose e 4.000 mg/dia (bula Tylenol)."
+  ],
+  "pediatria": [
+   "< 12 anos: 10–15 mg/kg/dose de 4/4 a 6/6h, máx. 5 doses/dia (bula Tylenol).",
+   "Gotas 200 mg/mL (1 gota ≈ 13,3 mg): 1 gota/kg/dose, máx. 35 gotas/dose, até 5x/dia (bula Tylenol gotas).",
+   "< 11 kg ou < 2 anos: bula orienta avaliação médica antes do uso."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Dose VO (bula)",
+    "mgkg": 15,
+    "intervalo": "4/4–6/6h (máx. 5 doses/dia)",
+    "via": "VO",
+    "max_mg": 1000
+   }
+  ],
+  "diluicao": [],
+  "renal": "",
+  "hepatica": "Risco de insuficiência hepática aguda acima de 4 g/24h, com outros produtos com paracetamol ou uso de álcool (≥ 3 doses/dia) (bula).",
+  "gestacao": "Usar apenas com orientação médica (bula Tylenol).",
+  "lactacao": "Uso criterioso, conforme avaliação médica (bula Tylenol).",
+  "contraindicacoes": [
+   "Hipersensibilidade ao paracetamol."
+  ],
+  "alertas": [
+   "Somar todas as fontes de paracetamol (associações, p.ex. com codeína) para não ultrapassar 4 g/dia (bula).",
+   "Hepatotoxicidade dose-dependente; risco maior com etilismo (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Tylenol gotas 200 mg/mL (Janssen)",
+   "RENAME 2024 (componente básico)"
+  ]
+ },
+ {
+  "id": "ibuprofeno",
+  "nome": "Ibuprofeno",
+  "classe": "Anti-inflamatório (AINE)",
+  "subclasse": "Derivado do ácido propiônico",
+  "mecanismo": "Inibidor não seletivo da COX-1 e COX-2; analgésico, antitérmico e anti-inflamatório.",
+  "apresentacoes": [
+   "Comprimido 200 mg, 300 mg, 400 mg e 600 mg",
+   "Suspensão oral (gotas) 50 mg/mL e 100 mg/mL"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "200–800 mg VO de 6/6 a 8/8h; máx. 3.200 mg/dia (bula Alivium)."
+  ],
+  "pediatria": [
+   "≥ 6 meses: febre 5 mg/kg (T < 39,2 °C) ou 10 mg/kg (T ≥ 39,2 °C); dor 10 mg/kg; de 6/6 a 8/8h; máx. 40 mg/kg/dia (FDA).",
+   "Gotas 50 mg/mL: 1–2 gotas/kg de 6/6 a 8/8h; < 12 anos máx. 40 gotas (200 mg)/dose e 160 gotas (800 mg)/dia (bula Alivium).",
+   "Contraindicado < 6 meses (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Dor/febre alta (FDA; máx. 40 mg/kg/dia; < 12 anos máx. 200 mg/dose pela bula Alivium)",
+    "mgkg": 10,
+    "intervalo": "6/6–8/8h",
+    "via": "VO",
+    "max_mg": 200
+   }
+  ],
+  "diluicao": [],
+  "renal": "Pode causar lesão renal; evitar na doença renal avançada e na hipovolemia (bula; FDA).",
+  "hepatica": "",
+  "gestacao": "Evitar a partir de ~20 semanas (disfunção renal fetal/oligoidrâmnio) e após ~30 semanas (fechamento do ducto arterioso) (FDA 2020); bula: não usar na gestação sem orientação médica.",
+  "lactacao": "",
+  "contraindicacoes": [
+   "Úlcera péptica ativa ou sangramento gastrointestinal.",
+   "Hipersensibilidade a AINE/AAS (asma, urticária).",
+   "3º trimestre de gestação (≥ 30 semanas, FDA); crianças < 6 meses (bula).",
+   "Suspeita de dengue (Ministério da Saúde — Dengue: diagnóstico e manejo clínico)."
+  ],
+  "alertas": [
+   "AINE: risco de eventos cardiovasculares trombóticos e sangramento GI (FDA boxed warning).",
+   "Evitar AINE em suspeita de dengue (Ministério da Saúde)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Alivium gotas 50 mg/mL (Mantecorp)",
+   "FDA label — Ibuprofen oral suspension 100 mg/5 mL (DailyMed)",
+   "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020",
+   "RENAME 2024 (componente básico)",
+   "Ministério da Saúde — Dengue: diagnóstico e manejo clínico (adulto e criança)"
+  ]
+ },
+ {
+  "id": "cetoprofeno",
+  "nome": "Cetoprofeno",
+  "classe": "Anti-inflamatório (AINE)",
+  "subclasse": "Derivado do ácido propiônico",
+  "mecanismo": "Inibidor não seletivo da COX; analgésico, antitérmico e anti-inflamatório.",
+  "apresentacoes": [
+   "Cápsula 50 mg",
+   "Comprimido entérico 100 mg",
+   "Comprimido retard 200 mg",
+   "Solução oral (gotas) 20 mg/mL",
+   "Ampola IM 100 mg/2 mL",
+   "Frasco-ampola EV 100 mg (pó liófilo)"
+  ],
+  "rename": null,
+  "vias": [
+   "VO",
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "VO: 50 mg 3x/dia ou 100 mg 2x/dia; retard 200 mg 1x/dia; máx. 300 mg/dia (bula Profenid).",
+   "IM: 100 mg 2 a 3x/dia; máx. 300 mg/dia (bula).",
+   "EV: 100–300 mg/dia; na cólica renal, no máx. 48h (bula Profenid IV)."
+  ],
+  "pediatria": [
+   "Gotas (1 gota = 1 mg): 1–6 anos 1 gota/kg de 6/6 a 8/8h; 7–11 anos 25 gotas de 6/6 a 8/8h (bula Profenid).",
+   "Formas injetáveis: segurança não estabelecida em crianças (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Gotas 1–6 anos (7–11 anos: 25 mg)",
+    "mgkg": 1,
+    "max_mg": 25,
+    "intervalo": "6/6–8/8h",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [
+   "EV: reconstituir e diluir 100 mg em 100–150 mL de SF 0,9% ou SG 5%; infusão lenta em ~20 min; usar logo após preparo (bula Profenid IV).",
+   "Não misturar com outros medicamentos no mesmo frasco/seringa (bula).",
+   "IM: injeção lenta e profunda no quadrante superior externo do glúteo; não misturar na mesma seringa (bula)."
+  ],
+  "renal": "Idosos e insuficiência renal: reduzir dose inicial e manter a menor dose eficaz (bula).",
+  "hepatica": "Insuficiência hepática: monitorar e usar a menor dose eficaz (bula).",
+  "gestacao": "Contraindicado no 3º trimestre (bula); evitar a partir de ~20 semanas (FDA, classe AINE).",
+  "lactacao": "Não recomendado (sem dados em humanos) (bula).",
+  "contraindicacoes": [
+   "Sangramento ativo (GI, cerebrovascular ou outro).",
+   "Úlcera péptica ativa; hipersensibilidade a AINE/AAS.",
+   "Anticoagulação em curso: contraindica a via IM (bula).",
+   "3º trimestre de gestação."
+  ],
+  "alertas": [
+   "AINE: risco cardiovascular, renal e de sangramento GI.",
+   "Profenid IV: administrar separado de outros fármacos (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Profenid (cápsula, entérico, retard, gotas) (Sanofi)",
+   "Bula ANVISA — Profenid IM solução injetável 100 mg/2 mL (Sanofi)",
+   "Bula ANVISA — Profenid IV pó liófilo 100 mg (Sanofi)",
+   "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020"
+  ]
+ },
+ {
+  "id": "diclofenaco",
+  "nome": "Diclofenaco",
+  "classe": "Anti-inflamatório (AINE)",
+  "subclasse": "Derivado do ácido fenilacético",
+  "mecanismo": "Inibidor não seletivo da COX; analgésico e anti-inflamatório.",
+  "apresentacoes": [
+   "Drágea 50 mg (potássico ou sódico)",
+   "Ampola 75 mg/3 mL (sódico)"
+  ],
+  "rename": null,
+  "vias": [
+   "VO",
+   "IM"
+  ],
+  "adulto": [
+   "VO: 100–150 mg/dia divididos em 2–3 tomadas (casos leves 75–100 mg/dia); máx. 150 mg/dia (bula Cataflam).",
+   "IM: 75 mg 1x/dia; casos graves (p.ex. cólica): 75 mg 2x/dia com intervalo de algumas horas, um em cada glúteo; máx. 150 mg/dia somando todas as formas; injetável no máx. 2 dias (bula Voltaren)."
+  ],
+  "pediatria": [
+   "Injetável não indicado < 18 anos (bula Voltaren).",
+   "VO: não indicado < 14 anos, exceto artrite idiopática juvenil (bula Cataflam)."
+  ],
+  "diluicao": [
+   "IM: sem diluição, injeção profunda no quadrante superior externo do glúteo, aspirar antes e injetar lentamente (bula).",
+   "A bula brasileira do injetável não traz esquema de diluição EV."
+  ],
+  "renal": "Contraindicado na insuficiência renal grave (bula).",
+  "hepatica": "Contraindicado na insuficiência hepática grave (bula).",
+  "gestacao": "Contraindicado no 3º trimestre (bula); evitar a partir de ~20 semanas (FDA, classe AINE).",
+  "lactacao": "Não amamentar durante o uso (bula Voltaren).",
+  "contraindicacoes": [
+   "Úlcera, sangramento ou perfuração GI.",
+   "Insuficiência hepática, renal ou cardíaca grave.",
+   "Hipersensibilidade ao diclofenaco ou ao metabissulfito de sódio (injetável).",
+   "3º trimestre de gestação."
+  ],
+  "alertas": [
+   "Não recomendado em doença cardiovascular estabelecida; usar menor dose pelo menor tempo (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Voltaren solução injetável 75 mg/3 mL (Novartis)",
+   "Bula ANVISA — Cataflam drágeas 50 mg (Novartis)",
+   "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018",
+   "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020"
+  ]
+ },
+ {
+  "id": "cetorolaco",
+  "nome": "Cetorolaco (trometamol)",
+  "classe": "Anti-inflamatório (AINE)",
+  "subclasse": "Derivado do ácido pirrolizínico",
+  "mecanismo": "Inibidor não seletivo da COX com potente ação analgésica.",
+  "apresentacoes": [
+   "Comprimido sublingual 10 mg",
+   "Ampola 30 mg/mL (1 mL)"
+  ],
+  "rename": null,
+  "vias": [
+   "SL",
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "Dose única < 65 anos: 10–60 mg IM ou 10–30 mg EV (bula Toragesic injetável).",
+   "Doses múltiplas < 65 anos: 10–30 mg IM de 4/4–6/6h ou 10–30 mg EV em bolus; máx. 90 mg/dia (bula).",
+   "≥ 65 anos: 10–15 mg IM de 4/4–6/6h ou EV de 6/6h; máx. 60 mg/dia; insuficiência renal: máx. 45 mg/dia (bula).",
+   "Parenteral no máx. 2 dias (bula).",
+   "SL: 10–20 mg dose única ou 10 mg de 6/6–8/8h; máx. 60 mg/dia (40 mg/dia se > 65 anos, < 50 kg ou IR); máx. 5 dias (bula)."
+  ],
+  "pediatria": [
+   "Contraindicado < 16 anos (bula).",
+   "≥ 16 anos (bula): 1 mg/kg IM ou 0,5–1 mg/kg EV, depois 0,5 mg/kg EV de 6/6h; máx. 90 mg/dia (60 mg/dia se IR ou < 50 kg); não ultrapassar as doses de adulto (máx. 60 mg IM ou 30 mg EV por dose)."
+  ],
+  "diluicao": [
+   "EV em bolus em no mínimo 15 segundos (bula).",
+   "IM: sem diluição, injeção lenta e profunda (bula)."
+  ],
+  "renal": "Insuficiência renal: máx. 45 mg/dia parenteral (bula); contraindicado na IR moderada a grave (bula SL).",
+  "hepatica": "",
+  "gestacao": "Contraindicado na gestação, sobretudo no 3º trimestre (bula); evitar a partir de ~20 semanas (FDA, classe AINE).",
+  "lactacao": "Excretado no leite; contraindicado na amamentação (bula).",
+  "contraindicacoes": [
+   "Úlcera péptica, sangramento GI, distúrbios hemorrágicos ou uso de anticoagulantes.",
+   "Insuficiência renal moderada a grave; insuficiência cardíaca.",
+   "Gestação e lactação; < 16 anos."
+  ],
+  "alertas": [
+   "Tempo total curto: máx. 2 dias parenteral e 5 dias SL (bula).",
+   "Reduzir dose em idosos, < 50 kg e IR (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Toragesic solução injetável 30 mg/mL (EMS)",
+   "Bula ANVISA — Toragesic comprimido sublingual 10 mg (EMS)",
+   "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020"
+  ]
+ },
+ {
+  "id": "tenoxicam",
+  "nome": "Tenoxicam",
+  "classe": "Anti-inflamatório (AINE)",
+  "subclasse": "Oxicam",
+  "mecanismo": "Inibidor não seletivo da COX de meia-vida longa (dose única diária).",
+  "apresentacoes": [
+   "Comprimido 20 mg",
+   "Frasco-ampola 20 mg e 40 mg (pó liofilizado) + diluente 2 mL de água para injetáveis"
+  ],
+  "rename": null,
+  "vias": [
+   "VO",
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "20 mg 1x/dia VO, IM ou EV (bula).",
+   "Dor pós-operatória: 40 mg 1x/dia por 5 dias (bula).",
+   "Gota aguda: 40 mg 1x/dia por 2 dias, depois 20 mg/dia por 5 dias (bula).",
+   "Parenteral por 1–2 dias, depois seguir VO (bula)."
+  ],
+  "pediatria": [
+   "Posologia não estabelecida em crianças (bula); não usar < 18 anos."
+  ],
+  "diluicao": [
+   "Reconstituir com todo o diluente (2 mL de água para injetáveis); usar imediatamente (bula).",
+   "Administrar EV direto ou IM; não recomendado por infusão (bula)."
+  ],
+  "renal": "Posologia usual com monitorização da função renal (bula); evitar na insuficiência renal grave (contraindicação da classe).",
+  "hepatica": "",
+  "gestacao": "Contraindicado na gestação (bula Eurofarma, categoria D); classe AINE: evitar a partir de ~20 semanas (FDA 2020).",
+  "lactacao": "Contraindicado na amamentação (bula).",
+  "contraindicacoes": [
+   "Úlcera péptica ou doença gastroduodenal grave; sangramento GI prévio.",
+   "Asma, rinite ou urticária induzidas por AAS/AINE.",
+   "Insuficiência cardíaca, hepática ou renal grave; gestação e lactação; crianças (posologia não estabelecida)."
+  ],
+  "alertas": [
+   "Meia-vida longa: não usar doses > 20 mg/dia em tratamentos prolongados (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Tenoxicam pó liofilizado injetável 20/40 mg (Eurofarma), bula do profissional",
+   "Bula ANVISA — Tilatil comprimidos 20 mg",
+   "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020"
+  ]
+ },
+ {
+  "id": "escopolamina",
+  "nome": "Butilbrometo de escopolamina (hioscina)",
+  "classe": "Antiespasmódico",
+  "subclasse": "Antimuscarínico quaternário",
+  "mecanismo": "Antagonista muscarínico com ação espasmolítica na musculatura lisa GI, biliar e geniturinária.",
+  "apresentacoes": [
+   "Drágea 10 mg",
+   "Solução oral (gotas) 10 mg/mL",
+   "Ampola 20 mg/mL (1 mL)",
+   "Associação: ampola 5 mL com 20 mg de escopolamina + 2.500 mg de dipirona (Buscopan Composto)"
+  ],
+  "rename": null,
+  "vias": [
+   "VO",
+   "IM",
+   "EV",
+   "SC"
+  ],
+  "adulto": [
+   "IM/EV/SC: 20–40 mg, podendo repetir várias vezes ao dia; máx. 100 mg/dia (bula Buscopan injetável).",
+   "VO (adultos e > 6 anos): 10–20 mg 3 a 5x/dia (bula Buscopan).",
+   "Associação com dipirona (Buscopan Composto): 1 ampola 5 mL IM ou EV, 2–3x/dia com intervalo de 6–8h; máx. 3 ampolas/dia (bula)."
+  ],
+  "pediatria": [
+   "Injetável (lactentes e < 12 anos): 0,3–0,6 mg/kg/dose várias vezes ao dia; máx. 1,5 mg/kg/dia (bula).",
+   "Gotas: 1–6 anos 10–20 gotas (5–10 mg) 3x/dia; lactentes 10 gotas (5 mg) 3x/dia (bula).",
+   "Buscopan Composto: uso adulto (bula)."
+  ],
+  "diluicao": [
+   "EV: injeção lenta (bula).",
+   "Diluição usual: 1 mL + 19 mL de AD (20 mL) ou em SF/SG/RL — conferir protocolo da unidade (Manual de Diluição SMS Joinville, 2018).",
+   "Buscopan Composto EV: lento, no máx. 1 mL/min (≥ 5 min), paciente deitado, monitorar PA, FC e FR; pode diluir em SG 5%, SF 0,9% ou RL e usar logo (bula).",
+   "IM: profunda (glútea) (bula)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Não usar sem orientação médica (bula Buscopan). Associação com dipirona: contraindicada a partir do 6º mês (3º trimestre); 2º trimestre só se benefício claro (bula Buscopan Composto).",
+  "lactacao": "Evitar por precaução (bula). Com dipirona: evitar amamentar durante o uso e por 48h após a última dose (bula Buscopan Composto).",
+  "contraindicacoes": [
+   "Glaucoma não tratado; hipertrofia prostática com retenção urinária.",
+   "Taquicardia/taquiarritmias; miastenia gravis; megacólon; obstrução intestinal.",
+   "Associação com dipirona: também as contraindicações da dipirona (p.ex. < 3 meses, discrasias, pirazolonas)."
+  ],
+  "alertas": [
+   "Risco de anafilaxia com o injetável: observar o paciente após a aplicação (bula).",
+   "Buscopan Composto: somar a dipirona (2,5 g/ampola) na dose diária de dipirona; EV rápida causa hipotensão (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Buscopan solução injetável 20 mg/mL (Boehringer Ingelheim)",
+   "Bula ANVISA — Buscopan drágeas e gotas (Boehringer Ingelheim)",
+   "Bula ANVISA — Buscopan Composto solução injetável (Boehringer Ingelheim)",
+   "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018"
+  ]
+ },
+ {
+  "id": "tramadol",
+  "nome": "Tramadol",
+  "classe": "Opioide",
+  "subclasse": "Opioide fraco (agonista µ + inibição da recaptação de serotonina e noradrenalina)",
+  "mecanismo": "Agonista µ-opioide fraco que também inibe a recaptação de serotonina e noradrenalina.",
+  "apresentacoes": [
+   "Cápsula 50 mg",
+   "Solução oral (gotas) 100 mg/mL",
+   "Ampola 50 mg/mL (1 mL e 2 mL)"
+  ],
+  "rename": null,
+  "vias": [
+   "VO",
+   "IM",
+   "EV",
+   "SC"
+  ],
+  "adulto": [
+   "50–100 mg VO, IM, EV ou SC; máx. 400 mg/dia (bula Tramal).",
+   "Gotas 100 mg/mL: 20–40 gotas (50–100 mg) por dose (bula)."
+  ],
+  "pediatria": [
+   "Bula brasileira (gotas e injetável ≥ 1 ano): 1–2 mg/kg/dose; máx. 8 mg/kg/dia ou 400 mg/dia; cápsulas só ≥ 12 anos.",
+   "FDA (2017): contraindicado < 12 anos e < 18 anos após tonsilectomia/adenoidectomia; evitar 12–18 anos com obesidade, AOS ou pneumopatia grave."
+  ],
+  "diluicao": [
+   "EV direta: lenta, 1 mL/min (bula).",
+   "Infusão: pode diluir em SF 0,9% ou SG 5% (bula); diluição usual em no mínimo 50 mL, infundir em 30–60 min — conferir protocolo da unidade (Manual de Diluição SMS Joinville, 2018).",
+   "IM: glútea, sem diluição (bula)."
+  ],
+  "renal": "ClCr < 30 mL/min: intervalo de 12/12h, máx. 200 mg/dia (FDA Ultram).",
+  "hepatica": "Cirrose: 50 mg de 12/12h (FDA Ultram); bula: aumentar intervalo entre doses.",
+  "gestacao": "Não usar na gestação (bula Tramal); uso prolongado pode causar síndrome de abstinência neonatal (FDA).",
+  "lactacao": "Não recomendado na amamentação (bula; FDA 2017).",
+  "contraindicacoes": [
+   "Uso de IMAO (ou nos últimos 14 dias).",
+   "Epilepsia não controlada.",
+   "Intoxicação aguda por álcool, hipnóticos, analgésicos centrais ou psicotrópicos.",
+   "< 12 anos (FDA)."
+  ],
+  "alertas": [
+   "Síndrome serotoninérgica com ISRS, IRSN, tricíclicos, triptanos e IMAO (bula).",
+   "Convulsões; risco maior acima de 400 mg/dia ou com fármacos que reduzem o limiar (bula).",
+   "Opioide: medicamento potencialmente perigoso (ISMP Brasil); risco de depressão respiratória com benzodiazepínicos e outros depressores do SNC."
+  ],
+  "fontes": [
+   "Bula ANVISA — Tramal cápsulas, gotas e solução injetável (Grünenthal)",
+   "FDA label — Ultram (tramadol HCl) (DailyMed)",
+   "FDA Drug Safety Communication — codeína e tramadol em crianças e lactação, abr/2017",
+   "ISMP Brasil — Medicamentos potencialmente perigosos de uso hospitalar",
+   "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018"
+  ]
+ },
+ {
+  "id": "codeina",
+  "nome": "Codeína (e paracetamol + codeína)",
+  "classe": "Opioide",
+  "subclasse": "Opioide fraco (pró-fármaco, CYP2D6 → morfina)",
+  "mecanismo": "Agonista µ-opioide fraco; parte do efeito depende da conversão em morfina pela CYP2D6.",
+  "apresentacoes": [
+   "Comprimido 30 mg e 60 mg (fosfato de codeína)",
+   "Solução oral 3 mg/mL",
+   "Comprimido paracetamol 500 mg + codeína 7,5 mg ou 30 mg (Tylex)"
+  ],
+  "rename": null,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Codeína isolada: 30 mg (15–60 mg) VO de 4/4 a 6/6h; máx. 360 mg/dia (bula Codein).",
+   "Paracetamol + codeína: 1 comprimido de 4/4h; dor intensa 2 comprimidos de 6/6h; máx. 8 comprimidos/dia (máx. 4 g de paracetamol e 240 mg de codeína em 24h) (bula Tylex)."
+  ],
+  "pediatria": [
+   "Contraindicada < 12 anos e < 18 anos após tonsilectomia/adenoidectomia (bula; FDA 2017).",
+   "≥ 12 anos: 0,5–1 mg/kg de 4/4 a 6/6h, máx. 60 mg/dia (bula Codein)."
+  ],
+  "diluicao": [],
+  "renal": "Contraindicada na insuficiência renal grave (bula Codein); nas demais, iniciar com a menor dose eficaz e titular com cautela.",
+  "hepatica": "Contraindicada na insuficiência hepática grave (bula Codein); nas demais, menor dose eficaz; no Tylex, considerar também o paracetamol.",
+  "gestacao": "Usar apenas se o benefício superar o risco (bula Tylex).",
+  "lactacao": "Paracetamol + codeína contraindicado na amamentação (bula Tylex); risco de toxicidade no lactente de mãe metabolizadora ultrarrápida (FDA 2017).",
+  "contraindicacoes": [
+   "Metabolizadores ultrarrápidos da CYP2D6 (bula Tylex).",
+   "< 12 anos; < 18 anos após tonsilectomia/adenoidectomia.",
+   "Depressão respiratória; hipertensão intracraniana.",
+   "Diarreia infecciosa ou colite pseudomembranosa (bula Codein).",
+   "Insuficiência renal ou hepática grave; íleo paralítico (bula Codein)."
+  ],
+  "alertas": [
+   "Resposta variável pela CYP2D6: ineficaz em metabolizadores lentos, tóxica nos ultrarrápidos (bula).",
+   "No Tylex, somar o paracetamol de outras fontes (máx. 4 g/dia).",
+   "Opioide: medicamento potencialmente perigoso (ISMP Brasil); cuidado com benzodiazepínicos e álcool."
+  ],
+  "fontes": [
+   "Bula ANVISA — Codein (fosfato de codeína) (Cristália)",
+   "Bula ANVISA — Tylex (paracetamol + codeína) (Janssen)",
+   "FDA Drug Safety Communication — codeína e tramadol em crianças e lactação, abr/2017",
+   "ISMP Brasil — Medicamentos potencialmente perigosos de uso hospitalar"
+  ]
+ },
+ {
+  "id": "morfina",
+  "nome": "Morfina",
+  "classe": "Opioide",
+  "subclasse": "Opioide forte (agonista µ)",
+  "mecanismo": "Agonista puro dos receptores µ-opioides; analgesia potente.",
+  "apresentacoes": [
+   "Ampola 10 mg/mL (1 mL)",
+   "Ampola 1 mg/mL (2 mL)",
+   "Ampola 0,2 mg/mL (1 mL)",
+   "Comprimido 10 mg e 30 mg",
+   "Solução oral 10 mg/mL"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IM",
+   "SC",
+   "VO"
+  ],
+  "adulto": [
+   "Dor aguda: 2,5–5 mg EV a cada 3–4h, titulando (Guia Farmacêutico HSL).",
+   "EV (bula): dose inicial 2–10 mg/70 kg; máx. 60–90 mg/dia.",
+   "IM (bula): dose inicial 5–20 mg/70 kg; máx. 120 mg/dia."
+  ],
+  "pediatria": [
+   "EV (criança monitorizada): 0,05–0,1 mg/kg, titulado lentamente em 5–15 min (bula DBL Morphine, Pfizer). IM/SC: 0,1–0,2 mg/kg a cada 3–4h (Guia Farmacêutico HSL).",
+   "Algumas bulas de morfina 10 mg/mL trazem 'contraindicado < 18 anos': conferir apresentação e protocolo da unidade."
+  ],
+  "diluicao": [
+   "EV: injeção lenta, de preferência diluída (bula).",
+   "Diluição usual EV direta: concentração final de 1–2 mg/mL em AD ou SF 0,9% (p.ex. 10 mg + 9 mL = 1 mg/mL); infusão em SF, SG 5% ou SG 10% a 0,1–1 mg/mL — conferir protocolo da unidade (Guia Farmacêutico HSL).",
+   "EV direta: lenta, em 4–5 min (bula DBL Morphine, Pfizer; Guia Farmacêutico São Camilo).",
+   "Infusão 0,1–1 mg/mL: estável por 36 h a 22 °C, protegida da luz (Guia Farmacêutico São Camilo)."
+  ],
+  "renal": "Eliminação essencialmente renal (85%): usar doses menores e maior intervalo, titulando com cautela (bula Dimorf).",
+  "hepatica": "Metabolismo hepático (glicuronidação): cautela, meia-vida pode prolongar (bula).",
+  "gestacao": "Não usar sem orientação médica (bula); uso prolongado pode causar síndrome de abstinência neonatal.",
+  "lactacao": "Excretada no leite; pode causar depressão respiratória, sedação e abstinência no lactente (bula).",
+  "contraindicacoes": [
+   "Depressão respiratória; asma aguda grave sem monitorização.",
+   "Íleo paralítico ou obstrução intestinal.",
+   "Hipersensibilidade à morfina."
+  ],
+  "alertas": [
+   "Medicamento potencialmente perigoso/alta vigilância (ISMP Brasil; Guia HSL): dupla checagem de dose e concentração.",
+   "Antídoto: naloxona (bula).",
+   "Monitorizar FR, SpO2, sedação e PA; cautela em idosos e debilitados (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Sulfato de morfina solução injetável 10 mg/mL (Hipolabor)",
+   "Bula ANVISA — Dimorf (Cristália)",
+   "FDA label — Morphine sulfate injection (DailyMed)",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Morfina injetável",
+   "ISMP Brasil — Medicamentos potencialmente perigosos de uso hospitalar",
+   "Bula DBL Morphine Sulfate injection (Pfizer)",
+   "Guia Farmacêutico Hospital São Camilo — Morfina"
+  ]
+ }
+]

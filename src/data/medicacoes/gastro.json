@@ -1,0 +1,483 @@
+[
+ {
+  "id": "ondansetrona",
+  "nome": "Ondansetrona",
+  "classe": "Antiemético",
+  "subclasse": "Antagonista 5-HT3",
+  "mecanismo": "Bloqueia receptores 5-HT3 centrais (zona de gatilho) e vagais periféricos.",
+  "apresentacoes": [
+   "Comprimido 4 mg e 8 mg",
+   "Comprimido orodispersível 4 mg e 8 mg",
+   "Ampola 2 mg/mL (2 mL e 4 mL)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "Náuseas e vômitos (PONV): 4 mg IM ou EV, dose única (FDA).",
+   "Vômitos persistentes na desidratação (plano B, MS): 8 mg.",
+   "Quimioterapia: 8 mg VO 1–2 h antes ou 8 mg IM/EV imediatamente antes.",
+   "Máximo: 16 mg por dose EV; 24 mg/dia (guia HSL)."
+  ],
+  "pediatria": [
+   "Vômitos na diarreia aguda (MS, plano B): 6 meses–2 anos: 2 mg (0,2–0,4 mg/kg); > 2–10 anos (até 30 kg): 4 mg; > 10 anos (> 30 kg): 8 mg.",
+   "PONV (FDA), 1 mês–12 anos: ≤ 40 kg: 0,1 mg/kg EV; > 40 kg: 4 mg EV.",
+   "Quimioterapia (≥ 6 meses): 0,15 mg/kg EV, máx. 8 mg/dose (guia HSL)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "PONV EV (FDA, ≤ 40 kg)",
+    "mgkg": 0.1,
+    "max_mg": 4,
+    "intervalo": "dose única",
+    "via": "EV"
+   },
+   {
+    "rotulo": "Quimioterapia EV (HSL)",
+    "mgkg": 0.15,
+    "max_mg": 8,
+    "intervalo": "conforme protocolo",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "EV direto: até 8 mg em 2–5 min (mín. 30 s; FDA/guia HSL).",
+   "EV infusão: doses > 8 mg diluir em 50–100 mL de SF 0,9% ou SG 5% e infundir em 15 min (diluição usual — conferir protocolo da unidade; guia HSL/FDA).",
+   "IM: sem diluição (4 mg)."
+  ],
+  "renal": "Sem ajuste.",
+  "hepatica": "Insuficiência hepática moderada/grave: máx. 8 mg/dia.",
+  "gestacao": "Evitar no 1º trimestre: risco de fendas orofaciais (alerta ANVISA 2019; bula).",
+  "lactacao": "Cautela (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade",
+   "Uso com apomorfina (hipotensão profunda e perda de consciência)"
+  ],
+  "alertas": [
+   "Prolonga o QT: evitar em QT longo congênito; cautela com distúrbios eletrolíticos e outros fármacos que prolongam QT (bula/FDA).",
+   "FDA (2012): dose única EV de 32 mg retirada por risco de arritmia; não exceder 16 mg por dose EV.",
+   "Síndrome serotoninérgica com outros serotoninérgicos (FDA)."
+  ],
+  "fontes": [
+   "Bula ANVISA — ondansetrona orodispersível (Ranbaxy)",
+   "FDA label ondansetron injection (Pfizer), dosage and administration",
+   "FDA Drug Safety Communication 2012 — ondansetrona 32 mg EV",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Ondansetrona",
+   "Ministério da Saúde — Manejo do paciente com diarreia",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "metoclopramida",
+  "nome": "Metoclopramida",
+  "classe": "Antiemético e procinético",
+  "subclasse": "Antagonista dopaminérgico D2",
+  "mecanismo": "Bloqueia D2 central (zona de gatilho) e aumenta o esvaziamento gástrico.",
+  "apresentacoes": [
+   "Comprimido 10 mg",
+   "Solução oral (gotas) 4 mg/mL",
+   "Ampola 5 mg/mL (2 mL = 10 mg)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "Náuseas e vômitos (incl. enxaqueca): 10 mg VO, IM ou EV até 3x/dia (8/8h).",
+   "Máximo: 0,5 mg/kg/dia (≈ 30 mg/dia) por no máximo 5 dias (EMA 2013).",
+   "Intervalo mínimo de 6 h entre doses (guia HSL)."
+  ],
+  "pediatria": [
+   "Contraindicada < 1 ano (EMA; bula).",
+   "Injetável: não recomendada de 1 a 18 anos (bula Plasil BR).",
+   "EMA: 1–18 anos só como 2ª linha (PONV, vômitos tardios de quimioterapia): 0,1–0,15 mg/kg até 3x/dia, máx. 0,5 mg/kg/dia, até 5 dias."
+  ],
+  "diluicao": [
+   "EV direto: 10 mg sem diluição, lento, em no mínimo 3 min (bula/EMA).",
+   "EV infusão: doses > 10 mg diluir em 50 mL (SF 0,9%, SG 5%, Ringer ou Ringer lactato) e infundir em ≥ 15 min (FDA).",
+   "IM: aplicar lentamente; não misturar com outros fármacos na seringa."
+  ],
+  "renal": "ClCr < 40 mL/min: iniciar com ~metade da dose (bula BR). FDA: ClCr ≤ 60 mL/min: metade; doença renal terminal: 1/4 da dose.",
+  "hepatica": "Child-Pugh C em doses repetidas: metade da dose (FDA).",
+  "gestacao": "Categoria B; dados de > 1.000 gestantes no 1º trimestre sem risco aumentado (bula). Uso no fim da gestação: risco de extrapiramidalismo e metemoglobinemia neonatal (FDA).",
+  "lactacao": "Excretada no leite; bula BR orienta escolher entre suspender a amamentação ou o tratamento.",
+  "contraindicacoes": [
+   "< 1 ano",
+   "Hemorragia, obstrução mecânica ou perfuração GI",
+   "Epilepsia",
+   "Feocromocitoma",
+   "História de discinesia tardia ou reação distônica",
+   "Uso com levodopa ou neurolépticos"
+  ],
+  "alertas": [
+   "Tarja preta FDA: discinesia tardia, potencialmente irreversível; risco aumenta com duração e dose cumulativa.",
+   "Reações extrapiramidais agudas, mais frequentes em crianças e adultos jovens.",
+   "Síndrome neuroléptica maligna (bula).",
+   "Injeção EV rápida aumenta efeitos adversos: fazer em ≥ 3 min."
+  ],
+  "fontes": [
+   "Bula ANVISA — Plasil injetável (Sanofi)",
+   "EMA 2013 — restrições de uso da metoclopramida",
+   "FDA label metoclopramide injection (Drugs.com)",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Metoclopramida",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "bromoprida",
+  "nome": "Bromoprida",
+  "classe": "Antiemético e procinético",
+  "subclasse": "Antagonista dopaminérgico D2 (benzamida)",
+  "mecanismo": "Bloqueia D2 e aumenta a motilidade gastrointestinal alta.",
+  "apresentacoes": [
+   "Cápsula 10 mg",
+   "Solução oral (gotas) 4 mg/mL",
+   "Solução oral 1 mg/mL",
+   "Ampola 5 mg/mL (2 mL = 10 mg)"
+  ],
+  "rename": false,
+  "vias": [
+   "VO",
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "VO: 10 mg de 8/8h ou 12/12h.",
+   "IM/EV: 10–20 mg/dia (1–2 ampolas).",
+   "Máximo: 60 mg/dia (guia HSL)."
+  ],
+  "pediatria": [
+   "Contraindicada < 1 ano (bula).",
+   "0,5–1 mg/kg/dia VO, IM ou EV, dividido em 3 tomadas (bula; guia HSL).",
+   "Gotas 4 mg/mL (24 gotas/mL; 1 gota ≈ 0,17 mg): 1–2 gotas/kg 3x/dia (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Dose por tomada (0,5–1 mg/kg/dia ÷ 3)",
+    "mgkg": 0.33,
+    "max_mg": 10,
+    "intervalo": "8/8h",
+    "via": "VO/IM/EV"
+   }
+  ],
+  "diluicao": [
+   "EV: diluir em SF 0,9% ou SG 5% e injetar lentamente em > 3 min (bula).",
+   "Padrão HSL: 20 mL em 5 min ou 50 mL em 15 min (diluição usual — conferir protocolo da unidade).",
+   "IM: profunda, no deltoide ou glúteo."
+  ],
+  "renal": "ClCr < 40 mL/min: iniciar com metade da dose.",
+  "hepatica": "",
+  "gestacao": "Categoria C; evitar, salvo se benefício superar o risco (bula).",
+  "lactacao": "Evitar, salvo se benefício superar o risco (bula).",
+  "contraindicacoes": [
+   "< 1 ano",
+   "Hemorragia, obstrução mecânica ou perfuração GI",
+   "Epilepsia ou uso de fármacos que causam reações extrapiramidais",
+   "Feocromocitoma",
+   "Hipersensibilidade"
+  ],
+  "alertas": [
+   "Reações extrapiramidais, mais frequentes em crianças e adultos jovens.",
+   "Discinesia tardia em idosos com uso prolongado.",
+   "Eleva prolactina; diabéticos podem precisar de ajuste de insulina.",
+   "Algumas formulações orais contêm tartrazina e açúcar."
+  ],
+  "fontes": [
+   "Bula ANVISA — bromoprida injetável (Fresenius Kabi)",
+   "Bula ANVISA — bromoprida solução oral",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Bromoprida",
+   "RENAME 2024 (não consta)"
+  ]
+ },
+ {
+  "id": "dimenidrinato",
+  "nome": "Dimenidrinato (± piridoxina)",
+  "classe": "Antiemético",
+  "subclasse": "Anti-histamínico H1",
+  "mecanismo": "Antagonista H1 com ação anticolinérgica central e sobre o labirinto.",
+  "apresentacoes": [
+   "Dimenidrinato 50 mg + piridoxina 10 mg, comprimido (Dramin B6)",
+   "Dimenidrinato 25 mg/mL + piridoxina 5 mg/mL, gotas (Dramin B6)",
+   "Dimenidrinato 100 mg, comprimido (Dramin)",
+   "EV: ampola 10 mL com dimenidrinato 30 mg + piridoxina 50 mg + glicose 1 g + frutose 1 g (Dramin B6 DL)",
+   "IM: ampola 1 mL com dimenidrinato 50 mg + piridoxina 50 mg (Dramin B6 IM)"
+  ],
+  "rename": false,
+  "vias": [
+   "VO",
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "VO (≥ 12 anos): Dramin B6 1–2 comprimidos de 4/4h; Dramin 100 mg: 50–100 mg de 4/4h a 6/6h.",
+   "EV (Dramin B6 DL): 1 ampola (30 mg) de 4/4h a 6/6h, se necessário.",
+   "IM (Dramin B6 IM): 1 mL (50 mg), intervalo mínimo de 4 h.",
+   "Máximo: 400 mg/dia de dimenidrinato."
+  ],
+  "pediatria": [
+   "Gotas (≥ 2 anos): 1 gota/kg (1,25 mg/kg) de 6/6h a 8/8h; máx. 75 mg/dia (2–6 anos) e 150 mg/dia (6–12 anos).",
+   "EV Dramin B6 DL (2–12 anos): 1,25 mg/kg de 6/6h, máx. 300 mg/dia.",
+   "Comprimido: contraindicado < 12 anos; gotas e EV: contraindicados < 2 anos."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Dose VO gotas ou EV (DL)",
+    "mgkg": 1.25,
+    "intervalo": "6/6h",
+    "via": "VO/EV"
+   }
+  ],
+  "diluicao": [
+   "EV (Dramin B6 DL): uso exclusivo EV; diluir em 10 mL de SF 0,9% e injetar lentamente em no mínimo 2 min, ou diluir em solução EV compatível para infusão (bula).",
+   "IM: apresentação própria (Dramin B6 IM), sem diluição."
+  ],
+  "renal": "Usar com precaução (bula).",
+  "hepatica": "Considerar redução da dose na insuficiência hepática aguda; frutose gera lactato: cautela em hepatopatia ou acidose (bula).",
+  "gestacao": "Categoria B; indicado também para náuseas da gestação, sob orientação médica (bula).",
+  "lactacao": "Considerado seguro; excretado no leite (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade",
+   "Porfiria",
+   "Comprimido < 12 anos; gotas e EV < 2 anos",
+   "Formulação EV (frutose): intolerância hereditária à frutose"
+  ],
+  "alertas": [
+   "Sonolência e depressão do SNC; evitar álcool, sedativos e tranquilizantes.",
+   "Cautela em asma, glaucoma, DPOC e retenção urinária.",
+   "Pode mascarar ototoxicidade de outros fármacos.",
+   "Formulação EV contém glicose e frutose: cautela em diabéticos."
+  ],
+  "fontes": [
+   "Bula ANVISA — Dramin B6 comprimido e gotas (Takeda)",
+   "Bula ANVISA — Dramin B6 DL injetável (Cosmed)",
+   "Bulário Bibliomed — Dramin B6 IM",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Dimenidrinato",
+   "RENAME 2024 (não consta)"
+  ]
+ },
+ {
+  "id": "omeprazol",
+  "nome": "Omeprazol",
+  "classe": "Inibidor da bomba de prótons",
+  "subclasse": "Benzimidazol",
+  "mecanismo": "Inibe irreversivelmente a H+/K+-ATPase da célula parietal.",
+  "apresentacoes": [
+   "Cápsula 10 mg e 20 mg",
+   "Frasco-ampola 40 mg (pó liofilizado) + diluente 10 mL"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "EV"
+  ],
+  "adulto": [
+   "Úlcera péptica, esofagite: 20 mg VO 1x/dia ou 40 mg EV 1x/dia.",
+   "Hemorragia digestiva ativa: 40 mg EV de 12/12h (guia HSL).",
+   "Profilaxia de úlcera de estresse: 40 mg/dia VO ou EV.",
+   "Zollinger-Ellison: iniciar 60 mg 1x/dia."
+  ],
+  "pediatria": [
+   "VO (1–16 anos): 5–10 kg: 5 mg/dia; 10–20 kg: 10 mg/dia; > 20 kg: 20 mg/dia (guia HSL).",
+   "EV: não recomendado em crianças (bula)."
+  ],
+  "diluicao": [
+   "Reconstituir somente com o diluente próprio (10 mL).",
+   "EV direto: lento, 2,5–4 mL/min (≈ 2,5–4 min para 10 mL); usar em até 4 h (bula).",
+   "EV infusão: diluir em 100 mL de SF 0,9% ou SG 5% e infundir em 20–30 min; estável 12 h em SF e 6 h em SG 5% (diluição usual — conferir protocolo da unidade; guia HSL)."
+  ],
+  "renal": "Sem ajuste; não removido por hemodiálise.",
+  "hepatica": "Insuficiência hepática: 10–20 mg/dia (guia HSL).",
+  "gestacao": "Categoria B; usar se benefício superar o risco (bula).",
+  "lactacao": "",
+  "contraindicacoes": [
+   "Hipersensibilidade ao omeprazol ou aos componentes"
+  ],
+  "alertas": [
+   "Evitar uso com clopidogrel (reduz ativação).",
+   "Pode aumentar níveis de varfarina e fenitoína.",
+   "Uso prolongado: hipomagnesemia, hipocalemia e deficiência de vitamina B12."
+  ],
+  "fontes": [
+   "Bula ANVISA — omeprazol sódico injetável (Cristália)",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Omeprazol",
+   "RENAME 2024 (cápsulas 10 e 20 mg)"
+  ]
+ },
+ {
+  "id": "simeticona",
+  "nome": "Simeticona",
+  "classe": "Antiflatulento",
+  "subclasse": "Surfactante antiespumante",
+  "mecanismo": "Reduz a tensão superficial das bolhas de gás, facilitando sua eliminação.",
+  "apresentacoes": [
+   "Comprimido 40 mg",
+   "Gotas 75 mg/mL (25 gotas = 1 mL; 3 mg/gota)",
+   "Cápsula 125 mg"
+  ],
+  "rename": null,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Gotas: 13 gotas VO 3x/dia; comprimido 40 mg 3x/dia às refeições.",
+   "Máximo: 500 mg/dia (12 comprimidos ou 166 gotas)."
+  ],
+  "pediatria": [
+   "Lactentes: 3–5 gotas VO 3x/dia.",
+   "Até 12 anos: 5–10 gotas VO 3x/dia.",
+   "> 12 anos: dose de adulto."
+  ],
+  "diluicao": [],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Categoria C; usar só com orientação médica (bula).",
+  "lactacao": "",
+  "contraindicacoes": [
+   "Hipersensibilidade",
+   "Perfuração ou obstrução intestinal suspeita ou confirmada"
+  ],
+  "alertas": [
+   "Agitar as gotas antes de usar; podem ser diluídas em água ou alimento."
+  ],
+  "fontes": [
+   "Bula ANVISA — Luftal gotas e comprimidos (BMS)",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Simeticona"
+  ]
+ },
+ {
+  "id": "loperamida",
+  "nome": "Loperamida",
+  "classe": "Antidiarreico",
+  "subclasse": "Agonista opioide µ periférico",
+  "mecanismo": "Reduz a motilidade e a secreção intestinais via receptores opioides entéricos.",
+  "apresentacoes": [
+   "Comprimido 2 mg"
+  ],
+  "rename": false,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Diarreia aguda: 4 mg VO inicial, depois 2 mg após cada evacuação líquida.",
+   "Máximo: 16 mg/dia."
+  ],
+  "pediatria": [
+   "Uso exclusivo em adultos (bula Imosec BR)."
+  ],
+  "diluicao": [],
+  "renal": "Sem ajuste.",
+  "hepatica": "Usar com precaução (menor metabolismo de primeira passagem).",
+  "gestacao": "Evitar, principalmente no 1º trimestre (bula).",
+  "lactacao": "Passa em pequenas quantidades para o leite; não recomendado (bula).",
+  "contraindicacoes": [
+   "Crianças",
+   "Disenteria aguda (sangue nas fezes e febre alta)",
+   "Colite ulcerativa aguda",
+   "Enterocolite bacteriana por agentes invasivos",
+   "Colite pseudomembranosa associada a antibióticos",
+   "Hipersensibilidade"
+  ],
+  "alertas": [
+   "Superdose: prolongamento de QT e QRS, arritmias ventriculares e torsades de pointes (bula).",
+   "MS: antidiarreicos não devem ser usados no manejo da diarreia aguda; priorizar SRO."
+  ],
+  "fontes": [
+   "Bula ANVISA — Imosec (Janssen)",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Loperamida",
+   "Ministério da Saúde — Manejo do paciente com diarreia",
+   "RENAME 2024 (não consta)"
+  ]
+ },
+ {
+  "id": "lactulose",
+  "nome": "Lactulose",
+  "classe": "Laxativo",
+  "subclasse": "Laxativo osmótico",
+  "mecanismo": "Dissacarídeo não absorvido; fermentado no cólon, retém água e acidifica o lúmen (reduz absorção de amônia).",
+  "apresentacoes": [
+   "Xarope 667 mg/mL (frasco 120 mL; sachê 15 mL)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Constipação: 15–30 mL/dia; ajustar para 2–3 evacuações/dia.",
+   "Encefalopatia hepática: iniciar 60 mL/dia; casos graves até 150 mL/dia."
+  ],
+  "pediatria": [
+   "Constipação: lactentes 5 mL/dia; 1–5 anos 5–10 mL/dia; 6–12 anos 10–15 mL/dia; > 12 anos dose de adulto."
+  ],
+  "diluicao": [],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Categoria C; não avaliada em gestantes (bula).",
+  "lactacao": "Avaliação médica (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade",
+   "Intolerância a lactose, galactose ou frutose",
+   "Apendicite",
+   "Hemorragia retal não diagnosticada",
+   "Obstrução intestinal"
+  ],
+  "alertas": [
+   "Contém galactose e lactose: pode elevar glicemia em diabéticos.",
+   "Idosos: monitorar eletrólitos; em crianças, risco de hiponatremia e desidratação."
+  ],
+  "fontes": [
+   "Bula ANVISA — Lactulona (Daiichi Sankyo)",
+   "Guia Farmacêutico Hospital Sírio-Libanês — Lactulose",
+   "RENAME 2024"
+  ]
+ },
+ {
+  "id": "sais-de-reidratacao-oral",
+  "nome": "Sais de reidratação oral (SRO)",
+  "classe": "Reidratação oral",
+  "subclasse": "Solução de osmolaridade reduzida (OMS)",
+  "mecanismo": "Cotransporte sódio-glicose no enterócito promove absorção de água e eletrólitos.",
+  "apresentacoes": [
+   "Pó para solução oral, envelope (SUS); composição OMS por litro: Na 75, Cl 65, K 20, citrato 10, glicose 75 mmol/L — 245 mOsm/L"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Plano B (desidratação): 50–100 mL/kg (média 75 mL/kg) em 4–6 h, até desaparecerem os sinais de desidratação (MS).",
+   "Plano A (sem desidratação): volume que o paciente aceitar após cada evacuação (MS)."
+  ],
+  "pediatria": [
+   "Plano A, após cada evacuação: < 1 ano 50–100 mL; 1–10 anos 100–200 mL; > 10 anos o que aceitar (MS).",
+   "Plano B: 50–100 mL/kg (média 75 mL/kg) em 4–6 h (MS).",
+   "Zinco associado (< 5 anos, 10–14 dias): < 6 meses 10 mg/dia; 6 meses–5 anos 20 mg/dia (MS)."
+  ],
+  "diluicao": [
+   "Preparar conforme embalagem, somente em água; usar em até 24 h após o preparo (bula)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "",
+  "lactacao": "",
+  "contraindicacoes": [
+   "Íleo paralítico",
+   "Obstrução ou perfuração intestinal",
+   "Vômitos incoercíveis"
+  ],
+  "alertas": [
+   "Vômitos persistentes no plano B: ondansetrona para permitir a TRO (MS).",
+   "Antidiarreicos não devem ser usados (MS)."
+  ],
+  "fontes": [
+   "Ministério da Saúde — Manejo do paciente com diarreia",
+   "OMS/UNICEF — SRO de osmolaridade reduzida (via GPnotebook)",
+   "Bula ANVISA — Reidratante (Catarinense Pharma)",
+   "RENAME 2024"
+  ]
+ }
+]

@@ -1,0 +1,342 @@
+<title>Meu Plantão</title>
+<meta name="description" content="Prescrições revisadas, montador de evolução, atestado e calculadora por peso para plantões.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/*__CSS__*/
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1><span class="rx" aria-hidden="true">℞</span>Meu Plantão</h1>
+      <span class="sync" id="sync" data-s="local"><i></i><span id="syncTxt">Carregando…</span></span>
+      <button class="btn sm themebtn" id="themeBtn" title="Alternar tema claro/escuro" aria-label="Alternar tema claro/escuro">◐</button>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="prescricoes" aria-selected="true">Prescrições</button>
+      <button role="tab" data-tab="medicacoes" aria-selected="false">Medicações</button>
+      <button role="tab" data-tab="pediatria" aria-selected="false">Pediatria</button>
+      <button role="tab" data-tab="feridas" aria-selected="false">Feridas</button>
+      <button role="tab" data-tab="evolucao" aria-selected="false">Evolução</button>
+      <button role="tab" data-tab="atestado" aria-selected="false">Atestado</button>
+      <button role="tab" data-tab="escores" aria-selected="false">Escores</button>
+      <button role="tab" data-tab="calculadora" aria-selected="false">Calculadora</button>
+      <button role="tab" data-tab="modelos" aria-selected="false">Meus modelos</button>
+      <button role="tab" data-tab="backup" aria-selected="false">Backup</button>
+    </nav>
+  </header>
+
+  <!-- PRESCRIÇÕES -->
+  <section id="tab-prescricoes" class="grid">
+    <aside class="panel listpane">
+      <div class="search">
+        <input id="q" type="search" placeholder="Buscar: dor de garganta, ITU, J03…" autocomplete="off" aria-label="Buscar prescrição">
+        <div class="chips" id="cats"></div>
+      </div>
+      <div class="count" id="count"></div>
+      <div class="list" id="list" role="list"></div>
+      <button class="newbtn" id="newBtn">+ Nova prescrição</button>
+    </aside>
+    <article class="panel detail" id="detail"></article>
+  </section>
+
+  <!-- MEDICAÇÕES -->
+  <section id="tab-medicacoes" class="grid" hidden>
+    <aside class="panel listpane">
+      <div class="search">
+        <input id="mq" type="search" placeholder="Buscar: ondansetrona, AINE, IM, gestação…" autocomplete="off" aria-label="Buscar medicação">
+        <div class="chips" id="mgrupos"></div>
+        <div class="chips" id="mvias"></div>
+      </div>
+      <div class="count" id="mcount"></div>
+      <div class="list" id="mlist" role="list"></div>
+    </aside>
+    <article class="panel detail" id="mdetail"></article>
+  </section>
+
+
+  <!-- EVOLUÇÃO -->
+  <section id="tab-evolucao" hidden>
+    <div class="two">
+      <div class="panel card">
+        <h2>Montador de evolução</h2>
+        <label class="f">Condição (HD)
+          <select class="inp" id="evCond"></select>
+        </label>
+        <label class="f">QP + HMA
+          <textarea class="inp" id="evHma" rows="4" placeholder="Paciente refere…"></textarea>
+        </label>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="evNega" checked> "Nega outros sintomas. Nega febre."</label>
+        </div>
+        <div class="row">
+          <label class="f">Alergias<textarea class="inp" id="evAlergia" rows="2" placeholder="Nega"></textarea></label>
+          <label class="f">AP (comorbidades)<textarea class="inp" id="evAp" rows="3" placeholder="Nega (Enter para nova linha)"></textarea></label>
+          <label class="f">MUC (uso contínuo)<textarea class="inp" id="evMuc" rows="3" placeholder="Nega (Enter para nova linha)"></textarea></label>
+        </div>
+        <label class="f">Modelo de exame físico
+          <select class="inp" id="evExame"></select>
+        </label>
+        <div class="row">
+          <label class="f">PA<input class="inp" id="svPa" placeholder="120x80"></label>
+          <label class="f">FC<input class="inp" id="svFc" inputmode="numeric"></label>
+          <label class="f">FR<input class="inp" id="svFr" inputmode="numeric"></label>
+          <label class="f">SatO2 %<input class="inp" id="svSat" inputmode="numeric"></label>
+          <label class="f">Tax °C<input class="inp" id="svTax" inputmode="decimal"></label>
+          <label class="f">HGT<input class="inp" id="svHgt" inputmode="numeric"></label>
+        </div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="evCasa" checked> Incluir prescrição domiciliar</label>
+          <label class="check"><input type="checkbox" id="evUnid"> Incluir conduta na unidade</label>
+          <label class="check"><input type="checkbox" id="evOri" checked> Incluir orientações</label>
+          <label class="check"><input type="checkbox" id="evAlta" checked> "Paciente liberado com orientações"</label>
+        </div>
+        <p class="note">Modelos de exame físico e conduta: aba Meus modelos.</p>
+      </div>
+      <div class="panel card out">
+        <div class="brand"><h2>Texto para o prontuário</h2><button class="btn primary" id="evCopy">Copiar evolução</button></div>
+        <textarea class="out-edit" id="evOut" spellcheck="false" aria-label="Texto da evolução"></textarea>
+        <p class="warnline" id="evManualNote" hidden>Você editou o texto; mudanças nos campos não o sobrescrevem. <button class="btn sm" id="evRegen">Regerar a partir dos campos</button></p>
+        <button class="btn" id="evClear">Limpar campos do paciente</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATESTADO -->
+  <!-- FERIDAS -->
+  <section id="tab-feridas" hidden>
+    <div class="two">
+      <div class="panel card">
+        <h2>Ferimento e mordedura</h2>
+        <div class="row">
+          <label class="f">Peso (kg)<input class="inp" id="frPeso" type="number" inputmode="decimal" min="1" max="250" placeholder="ex.: 70"></label>
+          <label class="f">Idade (anos)<input class="inp" id="frIdade" type="number" inputmode="numeric" min="0" max="120" placeholder="ex.: 35"></label>
+        </div>
+        <div class="fq"><span class="fql">Animal envolvido</span><div class="opts" data-g="animal"></div></div>
+        <div class="fq" id="frObsW"><span class="fql">O cão ou gato pode ser observado por 10 dias?</span><div class="opts" data-g="obs"></div></div>
+        <div class="fq" id="frExpW"><span class="fql">Tipo de exposição</span><div class="opts" data-g="exp"></div><p class="note" id="frExpHint"></p></div>
+        <label class="check" id="frReW"><input type="checkbox" id="frRe"> Já fez profilaxia antirrábica antes (reexposição)</label>
+        <div class="fq" id="frReTipoW" hidden><span class="fql">Profilaxia anterior</span><div class="opts" data-g="retipo"></div></div>
+        <div class="fq"><span class="fql">Vacinação antitetânica</span><div class="opts" data-g="vac"></div></div>
+        <div class="fq"><span class="fql">Risco do ferimento para tétano</span><div class="opts" data-g="risco"></div><p class="note">Alto risco: profundo ou superficial sujo, com corpo estranho ou tecido desvitalizado, queimadura, ferida puntiforme (mordeduras costumam se enquadrar).</p></div>
+        <label class="check"><input type="checkbox" id="frEsp"> Situação especial: imunodeprimido, desnutrido grave, idoso ou cuidados posteriores com a ferida inadequados</label>
+        <details class="fbox" id="frAbW"><summary>Mordedura: critérios para antibiótico preemptivo</summary>
+          <div class="abl" id="frAb"></div>
+        </details>
+      </div>
+      <div class="panel card">
+        <h2>Conduta</h2>
+        <div class="fres" id="frRaiva" style="--c:var(--red)"></div>
+        <div class="fres" id="frTet" style="--c:var(--amber)"></div>
+        <div class="fres" id="frAbRes" style="--c:var(--teal)"></div>
+        <div class="fres" style="--c:var(--sky)"><h3>Cuidados com a ferida</h3><ul>
+          <li>Lavar abundantemente com água e sabão; irrigar com 50–100 mL por cm de ferida (água potável ou SF 0,9%). Desbridar tecido desvitalizado.</li>
+          <li>Fechamento primário: ferida limpa, não infectada, em até 18 h; na cabeça, até 24 h.</li>
+          <li>Mordedura: não fechar primariamente, exceto na face (com irrigação copiosa, desbridamento cuidadoso e antibiótico preemptivo).</li>
+        </ul></div>
+        <label class="f">Texto para evolução e prescrição<textarea class="inp" id="frOut" rows="8"></textarea></label>
+        <div class="actions"><button class="btn primary" id="frCopy">Copiar</button><button class="btn" id="frClear">Limpar</button></div>
+        <details class="fontes"><summary>Fontes</summary><ul id="frFontes"></ul></details>
+      </div>
+    </div>
+    <div class="two" style="margin-top:16px">
+      <div class="panel card">
+        <h2>Anestésico local — dose máxima</h2>
+        <div class="row">
+          <label class="f">Peso (kg)<input class="inp" id="anPeso" type="number" inputmode="decimal" min="1" max="250" placeholder="ex.: 70"></label>
+          <label class="f">Anestésico<select class="inp" id="anDroga"></select></label>
+        </div>
+        <div class="scres" id="anRes"></div>
+        <ul class="flist">
+          <li>Idosos, debilitados ou com doença aguda: usar doses menores (bula).</li>
+          <li>Vasoconstritor em dedos: seguro até epinefrina 1:100.000 (revisão sistemática com mais de 10.000 procedimentos sem necrose).</li>
+          <li>Aspirar antes de injetar e aplicar devagar.</li>
+          <li>Toxicidade (LAST): parestesia perioral, gosto metálico, zumbido, agitação, convulsão, arritmia. Parar a injeção, chamar ajuda, garantir via aérea, benzodiazepínico se convulsão. Emulsão lipídica 20%: ≥ 70 kg, bolus de ~100 mL em 2–3 min e depois ~250 mL em 15–20 min; &lt; 70 kg, bolus de 1,5 mL/kg em 2–3 min e depois 0,25 mL/kg/min. Se instável, repetir o bolus e dobrar a infusão (máximo 12 mL/kg). Na PCR, adrenalina em doses menores (&lt; 1 mcg/kg); evitar vasopressina, betabloqueador, bloqueador de canal de cálcio e mais anestésico local. Fonte: ASRA 2020 (checklist de LAST).</li>
+        </ul>
+      </div>
+      <div class="panel card">
+        <h2>Sutura — fio e retirada dos pontos</h2>
+        <div class="tblw"><table class="ftbl">
+          <thead><tr><th>Região</th><th>Fio (náilon)</th><th>Retirada</th></tr></thead>
+          <tbody>
+            <tr><td>Face</td><td>5-0 ou 6-0</td><td>3–5 dias</td></tr>
+            <tr><td>Couro cabeludo</td><td>3-0 ou 4-0</td><td>7–10 dias</td></tr>
+            <tr><td>Braços</td><td>4-0</td><td>7–10 dias</td></tr>
+            <tr><td>Tronco</td><td>4-0</td><td>10–14 dias</td></tr>
+            <tr><td>Pernas</td><td>4-0</td><td>10–14 dias</td></tr>
+            <tr><td>Mãos e pés</td><td>4-0 ou 5-0</td><td>10–14 dias</td></tr>
+            <tr><td>Palmas e plantas</td><td>3-0</td><td>14–21 dias</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">Fonte: Forsch RT, Little SH, Williams C. Laceration Repair: A Practical Approach. Am Fam Physician 2017;95(10):628-636.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-atestado" hidden>
+    <div class="two">
+      <div class="panel card">
+        <h2>Atestado</h2>
+        <div class="actions">
+          <div class="seg" role="group" aria-label="Tipo">
+            <button data-tipo="atestado" aria-pressed="true">Atestado</button>
+            <button data-tipo="comparecimento" aria-pressed="false">Comparecimento</button>
+          </div>
+          <div class="seg" role="group" aria-label="Sexo">
+            <button data-sexo="M" aria-pressed="true">Masculino</button>
+            <button data-sexo="F" aria-pressed="false">Feminino</button>
+          </div>
+        </div>
+        <div class="row">
+          <label class="f">Data<input class="inp" id="atData" type="date"></label>
+          <label class="f" id="atDiasW">Dias de afastamento<input class="inp" id="atDias" type="number" min="1" value="1" inputmode="numeric"></label>
+          <label class="f" id="atHoraW" hidden>Horário (ex.: 14h às 16h)<input class="inp" id="atHora" placeholder="14h às 16h"></label>
+        </div>
+        <label class="f">CID (opcional)
+          <input class="inp" id="atCid" list="cidList" placeholder="Ex.: J03.9">
+          <datalist id="cidList"></datalist>
+        </label>
+        <label class="check"><input type="checkbox" id="atAut" checked> Paciente autoriza divulgar o CID</label>
+      </div>
+      <div class="panel card out">
+        <div class="brand"><h2>Texto</h2><button class="btn primary" id="atCopy">Copiar atestado</button></div>
+        <textarea class="out-edit" id="atOut" spellcheck="false" aria-label="Texto do atestado"></textarea>
+        <p class="warnline" id="atManualNote" hidden>Você editou o texto. <button class="btn sm" id="atRegen">Regerar</button></p>
+        <p class="note">O texto vem do seu modelo (aba Meus modelos).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEDIATRIA -->
+  <section id="tab-pediatria" hidden>
+    <div class="two" id="pdTwo">
+      <div class="panel card">
+        <div class="brand"><h2>Pediatria</h2>
+          <div class="seg" role="group" aria-label="Modo"><button data-pmode="rx" aria-pressed="true">Prescrições</button><button data-pmode="em" aria-pressed="false">Emergência</button></div></div>
+        <div class="calc-top">
+          <div class="peso"><input id="pdPeso" type="number" min="1" max="120" step="0.1" value="15" inputmode="decimal" aria-label="Peso em kg"><span>kg</span></div>
+          <label class="f">Idade (anos)<input class="inp" id="pdAnos" type="number" min="0" max="17" value="3" inputmode="numeric" style="width:90px"></label>
+          <label class="f">+ meses<input class="inp" id="pdMeses" type="number" min="0" max="11" value="0" inputmode="numeric" style="width:90px"></label>
+        </div>
+        <div class="chips" id="pdConds"></div>
+        <p class="note">Doses calculadas pelo peso, com teto de dose adulta. Para PCR, convulsão, anafilaxia, sepse, CAD e via aérea, use o modo Emergência (botão acima).</p>
+      </div>
+      <div class="panel card out">
+        <div class="brand"><h2 id="pdTitulo">Prescrição</h2><button class="btn primary" id="pdCopy">Copiar</button></div>
+        <p class="warnline" id="pdAviso" hidden></p>
+        <textarea class="out-edit" id="pdOut" spellcheck="false" aria-label="Prescrição pediátrica"></textarea>
+        <p class="warnline" id="pdManualNote" hidden>Você editou o texto. <button class="btn sm" id="pdRegen">Regerar</button></p>
+        <div class="sec fontes"><div class="sec-h"><h3>Fontes</h3></div><ol id="pdFontes"></ol></div>
+      </div>
+    </div>
+    <div id="pdEm" hidden style="margin-top:16px">
+      <p class="disc">Emergência pediátrica calculada pelo peso e idade informados acima. Confira concentrações e diluições do seu serviço.</p>
+      <div class="emgrid" id="pdEmGrid"></div>
+    </div>
+  </section>
+
+  <!-- MODELOS -->
+  <section id="tab-modelos" hidden>
+    <div class="two">
+      <div class="panel card">
+        <h2>Exame físico</h2>
+        <div class="row">
+          <label class="f">Modelo<select class="inp" id="mdExSel"></select></label>
+          <label class="f">Nome do modelo<input class="inp" id="mdExNome"></label>
+        </div>
+        <textarea class="inp" id="mdExTxt" rows="10" aria-label="Texto do exame físico"></textarea>
+        <div class="actions">
+          <button class="btn primary" id="mdExSave">Salvar</button>
+          <button class="btn" id="mdExDefault">Usar como padrão</button>
+          <button class="btn" id="mdExNew">Novo modelo</button>
+          <button class="btn" id="mdExReset">Voltar ao original</button>
+          <button class="btn danger" id="mdExDel">Excluir</button>
+        </div>
+        <div id="mdExConfirm"></div>
+        <h2>Conduta padrão</h2>
+        <textarea class="inp" id="mdConduta" rows="4" aria-label="Conduta padrão"></textarea>
+        <div class="actions"><button class="btn primary" id="mdCondSave">Salvar conduta</button></div>
+        <h2>Preferências da receita</h2>
+        <div class="actions"><span class="note">Dipirona comprimido:</span>
+          <div class="seg" role="group" aria-label="Dipirona">
+            <button data-dip="500" aria-pressed="true">500 mg (2 cp)</button>
+            <button data-dip="1g" aria-pressed="false">1 g (1 cp)</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel card">
+        <h2>Atestado</h2>
+        <p class="note">Campos automáticos: {data}, {dias} (ex.: "03 (três) dias"), {horario}, {cid}, {do_da}.</p>
+        <label class="f">Atestado — masculino<textarea class="inp" id="mdAt_atestado_M" rows="4"></textarea></label>
+        <label class="f">Atestado — feminino<textarea class="inp" id="mdAt_atestado_F" rows="4"></textarea></label>
+        <label class="f">Comparecimento — masculino<textarea class="inp" id="mdAt_comp_M" rows="3"></textarea></label>
+        <label class="f">Comparecimento — feminino<textarea class="inp" id="mdAt_comp_F" rows="3"></textarea></label>
+        <label class="f">Bloco do CID (entra quando há CID e autorização)<textarea class="inp" id="mdAt_cid" rows="4"></textarea></label>
+        <div class="actions"><button class="btn primary" id="mdAtSave">Salvar atestados</button><button class="btn" id="mdAtReset">Voltar ao original</button></div>
+      </div>
+    </div>
+  <div class="panel card orgcard" id="orgCard">
+    <div class="orghead"><h2>Categorias e ordem da lista</h2>
+      <div class="actions"><button class="btn sm" id="orgNew">+ Nova categoria</button><button class="btn sm" id="orgReset">Voltar à organização original</button></div></div>
+    <p class="note">Renomeie, troque a cor e use ↑ ↓ para mudar a ordem. Abra uma categoria para reordenar os diagnósticos ou movê-los para outra. Tudo é salvo na hora, neste aparelho e na nuvem.</p>
+    <div id="orgList"></div>
+    <div id="orgConfirm"></div>
+  </div>
+  </section>
+
+  <!-- ESCORES -->
+  <section id="tab-escores" hidden>
+    <div class="scgrid">
+      <div class="panel card"><h2>Escores</h2><div class="sclist" id="scList"></div></div>
+      <div class="panel card">
+        <h2 id="scNome"></h2>
+        <div class="scf" id="scForm"></div>
+        <div class="scres" id="scRes"></div>
+        <div class="actions"><button class="btn primary" id="scCopy">Copiar resultado</button><button class="btn" id="scEv">Adicionar à evolução</button><button class="btn" id="scClear">Limpar</button></div>
+        <p class="note" id="scSrc"></p>
+        <p class="note">Escores apoiam, não substituem, o julgamento clínico.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA -->
+  <section id="tab-calculadora" hidden>
+    <div class="panel card">
+      <div class="calc-top">
+        <div class="peso"><input id="peso" type="number" min="1" max="250" step="0.5" value="70" inputmode="decimal" aria-label="Peso em kg"><span>kg</span></div>
+        <div class="peso"><input id="scq" type="number" min="0" max="100" step="1" value="20" inputmode="decimal" aria-label="Superfície corporal queimada em %" style="width:96px;font-size:22px"><span>% SCQ<br><small style="font-weight:400">(queimaduras)</small></span></div>
+        <div class="seg" role="group" aria-label="Faixa">
+          <button data-modo="adulto" aria-pressed="true">Adulto</button>
+          <button data-modo="ped" aria-pressed="false">Pediatria</button>
+        </div>
+      </div>
+      <p class="disc">Volumes arredondados para 0,1 mL. Confira a concentração da ampola/frasco do seu serviço antes de administrar.</p>
+      <div class="cgroups" id="cgroups"></div>
+    </div>
+  </section>
+
+  <!-- BACKUP -->
+  <section id="tab-backup" hidden>
+    <div class="panel card" style="max-width:760px">
+      <h2>Backup das suas edições</h2>
+      <p class="note">Suas edições e prescrições novas ficam salvas na nuvem deste painel e também neste aparelho. Para ter uma cópia extra, copie o backup e guarde (Notion, e-mail para si mesmo). Para restaurar, cole o texto e importe.</p>
+      <div class="actions"><button class="btn primary" id="bkCopy">Copiar backup</button></div>
+      <label class="f">Importar backup<textarea class="inp" id="bkIn" rows="6" placeholder="Cole aqui o texto do backup"></textarea></label>
+      <div class="actions"><button class="btn" id="bkImport">Importar</button></div>
+      <p class="note" id="bkMsg"></p>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/*__DATA__*/
+</script>
+<script>
+(function(){
+"use strict";
+/*__JS__*/
+})();
+</script>

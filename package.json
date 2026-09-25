@@ -1,0 +1,22 @@
+{
+  "name": "meu-plantao",
+  "version": "1.1.0",
+  "description": "Meu Plantão — apoio à prescrição e condutas em plantão (UPA/PS), com fontes citadas.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "lint:conteudo": "node scripts/lint-content.mjs",
+    "verificar": "npm run lint:conteudo && npm run build && playwright test",
+    "test": "npm run build && playwright test",
+    "serve": "npm run build && node scripts/serve.mjs"
+  },
+  "author": "Evandro Delmondez Oliveira",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}

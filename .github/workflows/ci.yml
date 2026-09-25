@@ -1,0 +1,31 @@
+name: Verificação
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Conteúdo (fontes, CAPS, campos)
+        run: npm run lint:conteudo
+      - name: Build
+        run: npm run build
+      - name: Testes (computador e celular)
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: relatorio-testes
+          path: playwright-report/
+          retention-days: 14

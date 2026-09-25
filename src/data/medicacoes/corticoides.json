@@ -1,0 +1,515 @@
+[
+ {
+  "id": "dexametasona",
+  "nome": "Dexametasona",
+  "classe": "Corticoide sistêmico",
+  "subclasse": "Glicocorticoide de ação longa (36–72h)",
+  "mecanismo": "Glicocorticoide sintético potente, sem efeito mineralocorticoide relevante; ação anti-inflamatória e imunossupressora.",
+  "apresentacoes": [
+   "Comprimido 0,5 mg, 0,75 mg e 4 mg",
+   "Elixir 0,1 mg/mL",
+   "Ampola 2 mg/mL (1 mL)",
+   "Frasco-ampola 4 mg/mL (2,5 mL)"
+  ],
+  "rename": true,
+  "vias": [
+   "VO",
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "Dose inicial usual: 0,5–20 mg/dia EV/IM, conforme a doença (bula).",
+   "Alergia aguda autolimitada: 1º dia 4–8 mg IM; dias 2–3: 1 mg VO 12/12h; dias 4–5: 0,5 mg VO 12/12h; dias 6–7: 0,5 mg VO 1x/dia (bula Decadron).",
+   "Edema cerebral: 10 mg EV, seguido de 4 mg IM de 6/6h (bula).",
+   "Equivalência: dexametasona 0,75 mg = prednisona 5 mg = hidrocortisona 20 mg (VO/EV; Manual Einstein)."
+  ],
+  "pediatria": [
+   "Crupe: dose única de 0,15–0,6 mg/kg VO (máx. 12 mg) — TREKK 2023; CPS (Canadá) recomenda 0,6 mg/kg VO dose única, IM se VO impossível."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Crupe — dose alta",
+    "mgkg": 0.6,
+    "max_mg": 12,
+    "intervalo": "dose única",
+    "via": "VO/IM"
+   },
+   {
+    "rotulo": "Crupe — dose baixa",
+    "mgkg": 0.15,
+    "max_mg": 12,
+    "intervalo": "dose única",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [
+   "EV direto: sem diluição, em ≥1 min; ou diluir em SF 0,9% ou SG 5% e infundir em 5–30 min (Guia Farmacêutico São Camilo).",
+   "Pode ser adicionada a SF ou SG; usar a solução em até 24h (bula).",
+   "IM: sem diluição, profunda."
+  ],
+  "renal": "Sem ajuste (Guia Farmacêutico São Camilo).",
+  "hepatica": "Sem ajuste (Guia Farmacêutico São Camilo).",
+  "gestacao": "Categoria C; não usar sem orientação médica (bula Decadron).",
+  "lactacao": "Em doses farmacológicas, evitar amamentar (bula Decadron).",
+  "contraindicacoes": [
+   "Infecção fúngica sistêmica",
+   "Hipersensibilidade a sulfitos ou aos componentes"
+  ],
+  "alertas": [
+   "Hiperglicemia: ajustar insulina/hipoglicemiantes em diabéticos (bula).",
+   "Idosos: corticoide sistêmico pode induzir/piorar delirium — menor dose e menor tempo possíveis (AGS Beers 2023).",
+   "Anafilaxia: não substitui adrenalina IM; benefício dos corticoides na fase aguda é incerto (WAO 2020)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Decadron injetável (Aché)",
+   "Guia Farmacêutico Hospital São Camilo — Dexametasona, 2022",
+   "RENAME 2024",
+   "TREKK — Bottom Line Recommendations: Croup, v4.0, 2023",
+   "Canadian Paediatric Society — Acute management of croup in the ED, 2017",
+   "Manual Farmacêutico Einstein — tabela de equivalência de corticosteroides",
+   "AGS Beers Criteria 2023",
+   "WAO Anaphylaxis Guidance 2020"
+  ]
+ },
+ {
+  "id": "hidrocortisona",
+  "nome": "Hidrocortisona (succinato sódico)",
+  "classe": "Corticoide sistêmico",
+  "subclasse": "Glicocorticoide de ação curta (8–12h), com atividade mineralocorticoide",
+  "mecanismo": "Glicocorticoide idêntico ao cortisol endógeno; efeito anti-inflamatório e mineralocorticoide.",
+  "apresentacoes": [
+   "Frasco-ampola pó 100 mg",
+   "Frasco-ampola pó 500 mg"
+  ],
+  "rename": true,
+  "vias": [
+   "EV",
+   "IM"
+  ],
+  "adulto": [
+   "100–500 mg EV (preferencial) ou IM, podendo repetir a cada 2, 4 ou 6h conforme resposta (bula).",
+   "Crise adrenal: 100 mg EV imediato + reposição volêmica, seguido de 200 mg/24h (infusão contínua ou 50 mg 6/6h) (Endocrine Society 2016).",
+   "Equivalência: hidrocortisona 20 mg = prednisona 5 mg = metilprednisolona 4 mg = dexametasona 0,75 mg (Manual Einstein)."
+  ],
+  "pediatria": [
+   "Crise adrenal: 50 mg/m² EV imediato, depois 50–100 mg/m²/dia divididos 6/6h (Endocrine Society 2016).",
+   "Outras indicações: 0,666–4 mg/kg (ou 20–120 mg/m²) a cada 12–24h (bula).",
+   "Insuficiência adrenocortical — reposição, não crise: 186–280 mcg/kg/dia (10–12 mg/m²/dia) em doses divididas (bula)."
+  ],
+  "diluicao": [
+   "Reconstituir 100 mg em 2 mL e 500 mg em 4 mL de água para injetáveis (manual Joinville).",
+   "EV direto: 30 s (100 mg) a 10 min (≥500 mg) (bula).",
+   "Infusão: diluir em 100 mL de SF, SG 5% ou SGF e infundir em 30–60 min — diluição usual, conferir protocolo da unidade (Manual de Diluição SMS Joinville, 2018).",
+   "Reconstituído: 24h em temperatura ambiente; diluído: uso imediato (manual Joinville)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Atravessa a placenta; avaliar risco-benefício; não usar sem orientação médica (bula).",
+  "lactacao": "Excretado no leite; a bula não recomenda corticoide durante a amamentação.",
+  "contraindicacoes": [
+   "Infecção fúngica sistêmica",
+   "Hipersensibilidade aos componentes"
+  ],
+  "alertas": [
+   "Hiperglicemia: monitorar glicemia e ajustar hipoglicemiantes em diabéticos (bula).",
+   "Idosos: pode induzir/piorar delirium (AGS Beers 2023).",
+   "Anafilaxia: não substitui adrenalina IM; benefício na fase aguda é incerto (WAO 2020)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Succinato sódico de hidrocortisona (Blau)",
+   "RENAME 2024",
+   "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018",
+   "Manual Farmacêutico Einstein — tabela de equivalência de corticosteroides",
+   "AGS Beers Criteria 2023",
+   "WAO Anaphylaxis Guidance 2020",
+   "Endocrine Society — Diagnosis and Treatment of Primary Adrenal Insufficiency, JCEM 2016"
+  ]
+ },
+ {
+  "id": "metilprednisolona",
+  "nome": "Metilprednisolona (succinato sódico)",
+  "classe": "Corticoide sistêmico",
+  "subclasse": "Glicocorticoide de ação intermediária (12–36h)",
+  "mecanismo": "Glicocorticoide sintético com mínima atividade mineralocorticoide; anti-inflamatório e imunossupressor.",
+  "apresentacoes": [
+   "Frasco-ampola pó 40 mg, 125 mg, 500 mg e 1 g (com diluente)"
+  ],
+  "rename": true,
+  "vias": [
+   "EV",
+   "IM"
+  ],
+  "adulto": [
+   "Terapia adjuvante: dose inicial de 10–500 mg EV conforme a condição clínica (bula).",
+   "Condições graves com risco de vida (alta dose): 30 mg/kg EV em ≥30 min, pode repetir a cada 4–6h por até 48h (bula).",
+   "Equivalência: metilprednisolona 4 mg = prednisona 5 mg = hidrocortisona 20 mg (Manual Einstein)."
+  ],
+  "pediatria": [
+   "Dose pediátrica não deve ser inferior a 0,5 mg/kg a cada 24h (bula)."
+  ],
+  "diluicao": [
+   "Reconstituir com o diluente próprio.",
+   "EV: doses ≤250 mg em no mínimo 5 min; doses maiores em ≥30 min; pode ser diluída em SG 5% ou SF 0,9% (bula).",
+   "IM: permitida (bula)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Categoria C (bula Solu-Medrol).",
+  "lactacao": "Excretada no leite; pode suprimir crescimento do lactente (bula).",
+  "contraindicacoes": [
+   "Infecção fúngica sistêmica",
+   "Hipersensibilidade aos componentes"
+  ],
+  "alertas": [
+   "EV rápida de doses maciças (>0,5 g em <10 min): arritmia, colapso circulatório e parada cardíaca (bula).",
+   "Hiperglicemia: monitorar glicemia em diabéticos (bula).",
+   "Idosos: pode induzir/piorar delirium (AGS Beers 2023).",
+   "Anafilaxia: não substitui adrenalina IM (WAO 2020)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Solu-Medrol (Pfizer), 2020",
+   "RENAME 2024 (500 mg)",
+   "Manual Farmacêutico Einstein — tabela de equivalência de corticosteroides",
+   "AGS Beers Criteria 2023",
+   "WAO Anaphylaxis Guidance 2020"
+  ]
+ },
+ {
+  "id": "prednisona",
+  "nome": "Prednisona",
+  "classe": "Corticoide sistêmico",
+  "subclasse": "Glicocorticoide oral de ação intermediária (pró-fármaco da prednisolona)",
+  "mecanismo": "Convertida no fígado em prednisolona; ação anti-inflamatória e imunossupressora.",
+  "apresentacoes": [
+   "Comprimido 5 mg e 20 mg"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Dose inicial: 5–60 mg/dia, individualizada (bula).",
+   "Crise de asma: prednisolona 1 mg/kg/dia ou equivalente (máx. 50 mg/dia) por 5–7 dias, sem necessidade de desmame (GINA 2024).",
+   "Equivalência: prednisona 5 mg = prednisolona 5 mg = hidrocortisona 20 mg (Manual Einstein)."
+  ],
+  "pediatria": [
+   "0,14–2 mg/kg/dia ou 4–60 mg/m²/dia (bula)."
+  ],
+  "diluicao": [],
+  "renal": "",
+  "hepatica": "Na doença hepática, os níveis séricos de prednisolona após prednisona oral foram significativamente menores (bula).",
+  "gestacao": "Atravessa a placenta; avaliar benefício versus risco para mãe e feto; não usar sem orientação médica (bula Meticorten).",
+  "lactacao": "Passa ao leite; uso criterioso com avaliação médica (bula).",
+  "contraindicacoes": [
+   "Infecção fúngica sistêmica",
+   "Hipersensibilidade a prednisona/corticoides"
+  ],
+  "alertas": [
+   "Hiperglicemia: monitorar glicemia em diabéticos.",
+   "Idosos: pode induzir/piorar delirium (AGS Beers 2023)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Meticorten (Organon), 2023",
+   "RENAME 2024",
+   "GINA 2024 Strategy Report",
+   "Manual Farmacêutico Einstein — tabela de equivalência de corticosteroides",
+   "AGS Beers Criteria 2023"
+  ]
+ },
+ {
+  "id": "prednisolona",
+  "nome": "Prednisolona (fosfato sódico)",
+  "classe": "Corticoide sistêmico",
+  "subclasse": "Glicocorticoide oral de ação intermediária",
+  "mecanismo": "Forma ativa (não depende de conversão hepática); anti-inflamatória e imunossupressora.",
+  "apresentacoes": [
+   "Solução oral 1 mg/mL",
+   "Solução oral 3 mg/mL"
+  ],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Dose inicial: 5–60 mg/dia conforme a doença (bula).",
+   "Crise de asma: 1 mg/kg/dia (máx. 50 mg/dia) por 5–7 dias (GINA 2024)."
+  ],
+  "pediatria": [
+   "Dose inicial: 0,14–2 mg/kg/dia ou 4–60 mg/m²/dia (bula).",
+   "Crise de asma 6–11 anos: 1–2 mg/kg/dia (máx. 40 mg/dia) por 3–5 dias (GINA 2024)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Asma 6–11 anos (1 mg/kg)",
+    "mgkg": 1,
+    "max_mg": 40,
+    "intervalo": "1x/dia, 3–5 dias",
+    "via": "VO"
+   },
+   {
+    "rotulo": "Asma 6–11 anos (2 mg/kg)",
+    "mgkg": 2,
+    "max_mg": 40,
+    "intervalo": "1x/dia, 3–5 dias",
+    "via": "VO"
+   }
+  ],
+  "diluicao": [],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Categoria C; não usar sem orientação médica (bula).",
+  "lactacao": "Excretada no leite em baixos níveis (<1% da dose); usar com cautela (bula).",
+  "contraindicacoes": [
+   "Infecção fúngica sistêmica ou infecção não controlada",
+   "Hipersensibilidade aos componentes"
+  ],
+  "alertas": [
+   "Hiperglicemia: monitorar glicemia em diabéticos.",
+   "Idosos: pode induzir/piorar delirium (AGS Beers 2023)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Fosfato sódico de prednisolona solução oral (Eurofarma)",
+   "RENAME 2024",
+   "GINA 2024 Strategy Report",
+   "AGS Beers Criteria 2023"
+  ]
+ },
+ {
+  "id": "betametasona",
+  "nome": "Betametasona (dipropionato + fosfato dissódico) IM",
+  "classe": "Corticoide sistêmico",
+  "subclasse": "Glicocorticoide de depósito (ação rápida + prolongada)",
+  "mecanismo": "Fosfato (solúvel, início rápido) + dipropionato/acetato (depósito, ação prolongada).",
+  "apresentacoes": [
+   "Suspensão injetável dipropionato 5 mg + fosfato 2 mg/mL (1 mL)",
+   "Suspensão injetável acetato 3 mg + fosfato 3 mg/mL (RENAME)"
+  ],
+  "rename": true,
+  "vias": [
+   "IM"
+  ],
+  "adulto": [
+   "Uso sistêmico: 1–2 mL IM na maioria das condições, repetir conforme resposta (bula Diprospan)."
+  ],
+  "pediatria": [
+   "Contraindicado em menores de 15 anos (bula Diprospan)."
+  ],
+  "diluicao": [
+   "Somente IM profunda na região glútea; não usar EV nem SC (bula Diprospan)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Avaliar risco-benefício; monitorar hipoadrenalismo no recém-nascido exposto (bula).",
+  "lactacao": "Decidir entre suspender a amamentação ou o fármaco (bula).",
+  "contraindicacoes": [
+   "Infecção fúngica sistêmica",
+   "Púrpura trombocitopênica idiopática (via IM)",
+   "Menores de 15 anos",
+   "Hipersensibilidade aos componentes"
+  ],
+  "alertas": [
+   "Hiperglicemia: monitorar glicemia em diabéticos.",
+   "Idosos: pode induzir/piorar delirium (AGS Beers 2023).",
+   "Equivalência: betametasona 0,75 mg = prednisona 5 mg (VO/EV; Manual Einstein) — não se aplica à forma de depósito IM."
+  ],
+  "fontes": [
+   "Bula ANVISA — Diprospan",
+   "RENAME 2024",
+   "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018",
+   "Manual Farmacêutico Einstein — tabela de equivalência de corticosteroides",
+   "AGS Beers Criteria 2023"
+  ]
+ },
+ {
+  "id": "prometazina",
+  "nome": "Prometazina",
+  "classe": "Anti-histamínico H1 (1ª geração)",
+  "subclasse": "Fenotiazínico",
+  "mecanismo": "Antagonista H1 com ação sedativa, anticolinérgica e antiemética.",
+  "apresentacoes": [
+   "Comprimido 25 mg",
+   "Ampola 25 mg/mL (2 mL)"
+  ],
+  "rename": null,
+  "vias": [
+   "VO",
+   "IM"
+  ],
+  "adulto": [
+   "Quadro alérgico agudo: 25–50 mg IM profunda; máx. 100 mg/dia (bula Fenergan).",
+   "VO: 50–150 mg/dia (2–6 comp. de 25 mg) divididos em 2–4 tomadas, maior fração à noite (bula)."
+  ],
+  "pediatria": [
+   "Contraindicada em menores de 2 anos (depressão respiratória fatal).",
+   "≥2 anos: não exceder metade da dose adulta (FDA)."
+  ],
+  "diluicao": [
+   "IM profunda: via preferencial, sem diluição (bula; FDA 2023).",
+   "EV não recomendada pela bula brasileira. Se inevitável (FDA 2023): diluir só em SF 0,9%, concentração ≤1 mg/mL, cateter em veia calibrosa (preferir central), nunca em mão/punho, infundir em 20–40 min; pediatria (≥2 anos) velocidade máx. 1,25 mL/min."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Não usar nos 3 primeiros meses de gravidez (bula Fenergan).",
+  "lactacao": "Uso desaconselhado na amamentação (bula).",
+  "contraindicacoes": [
+   "Menores de 2 anos",
+   "Hipersensibilidade a fenotiazínicos",
+   "Discrasias sanguíneas",
+   "Glaucoma de ângulo fechado",
+   "Uso com álcool ou sultoprida",
+   "Injeção intra-arterial, SC ou EV com concentração >1 mg/mL (FDA)",
+   "Coma (FDA)"
+  ],
+  "alertas": [
+   "Advertência em tarja (FDA): lesão tecidual grave, incluindo gangrena, por qualquer via; dor na injeção sugere extravasamento ou injeção intra-arterial — interromper.",
+   "Prometazina injetável é medicamento potencialmente perigoso (ISMP Brasil); ISMP EUA recomenda retirá-la dos hospitais.",
+   "Idosos: evitar — altamente anticolinérgica (AGS Beers 2023).",
+   "Sedação aditiva com álcool e outros depressores do SNC."
+  ],
+  "fontes": [
+   "Bula ANVISA — Fenergan (Sanofi)",
+   "FDA label — Promethazine HCl injection, dez/2023 (DailyMed)",
+   "FDA — Updates to labeling for promethazine injection, 27/12/2023",
+   "ISMP Brasil — Boletim Medicamentos Potencialmente Perigosos, fev/2019",
+   "AGS Beers Criteria 2023"
+  ]
+ },
+ {
+  "id": "dexclorfeniramina",
+  "nome": "Dexclorfeniramina",
+  "classe": "Anti-histamínico H1 (1ª geração)",
+  "subclasse": "Alquilamina",
+  "mecanismo": "Antagonista H1 com efeito sedativo e anticolinérgico.",
+  "apresentacoes": [
+   "Comprimido 2 mg",
+   "Solução oral 0,4 mg/mL"
+  ],
+  "rename": null,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Adultos e >12 anos: 2 mg (5 mL) VO 3–4x/dia; máx. 12 mg/dia (bula Polaramine)."
+  ],
+  "pediatria": [
+   "6–12 anos: 1 mg (2,5 mL) VO 8/8h; máx. 6 mg/dia (bula).",
+   "2–6 anos: 0,5 mg (1,25 mL) VO 8/8h; máx. 3 mg/dia (bula).",
+   "Contraindicada em menores de 2 anos."
+  ],
+  "diluicao": [],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Segurança não estabelecida; 1º/2º trimestres só se claramente necessário; não usar no 3º trimestre (bula Polaramine).",
+  "lactacao": "Excreção no leite não comprovada (bula).",
+  "contraindicacoes": [
+   "Menores de 2 anos, prematuros e recém-nascidos",
+   "Uso com IMAO",
+   "Hipersensibilidade"
+  ],
+  "alertas": [
+   "Sedação: sonolência leve a moderada; prejudica dirigir (bula).",
+   "Idosos (>60 anos): mais sonolência, vertigem e hipotensão (bula). Anti-histamínicos de 1ª geração são fortemente anticolinérgicos — evitar em idosos (AGS Beers 2023; a dexclorfeniramina saiu da tabela 2023 por baixo uso nos EUA, não por ser segura).",
+   "Solução oral contém açúcar: cautela em diabéticos (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Polaramine solução oral",
+   "AGS Beers Criteria 2023"
+  ]
+ },
+ {
+  "id": "loratadina",
+  "nome": "Loratadina",
+  "classe": "Anti-histamínico H1 (2ª geração)",
+  "subclasse": "Não sedativo",
+  "mecanismo": "Antagonista H1 periférico seletivo de longa ação.",
+  "apresentacoes": [
+   "Comprimido 10 mg",
+   "Xarope 1 mg/mL"
+  ],
+  "rename": null,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Adultos e >12 anos: 10 mg VO 1x/dia (bula Claritin)."
+  ],
+  "pediatria": [
+   "2–12 anos, <30 kg: 5 mg (5 mL) VO 1x/dia (bula).",
+   "2–12 anos, ≥30 kg: 10 mg (10 mL) VO 1x/dia (bula).",
+   "Xarope indicado acima de 2 anos."
+  ],
+  "diluicao": [],
+  "renal": "Insuficiência renal: dose inicial em dias alternados — 10 mg (>30 kg) ou 5 mg (<30 kg) (bula Claritin).",
+  "hepatica": "Doença hepática: dose inicial em dias alternados — 10 mg (>30 kg) ou 5 mg (<30 kg) (bula Claritin).",
+  "gestacao": "Segurança na gestação não estabelecida; não usar sem orientação médica (bula).",
+  "lactacao": "Excretada no leite; decidir entre suspender amamentação ou fármaco (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade aos componentes"
+  ],
+  "alertas": [
+   "Sem sedação clinicamente significativa nas doses usuais (bula).",
+   "Suspender 48h antes de teste cutâneo de alergia (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Claritin (Bayer)"
+  ]
+ },
+ {
+  "id": "adrenalina",
+  "nome": "Adrenalina (epinefrina) — anafilaxia",
+  "classe": "Simpaticomimético",
+  "subclasse": "Agonista alfa e beta-adrenérgico",
+  "mecanismo": "Alfa-1: vasoconstrição e redução do edema; beta-1: inotropismo; beta-2: broncodilatação e inibição da liberação de mediadores.",
+  "apresentacoes": [
+   "Ampola 1 mg/mL (1 mL)"
+  ],
+  "rename": true,
+  "vias": [
+   "IM",
+   "EV"
+  ],
+  "adulto": [
+   "Anafilaxia (1ª linha): 0,01 mg/kg IM da solução 1 mg/mL, máx. 0,5 mg (0,5 mL) em adolescentes e adultos (WAO 2020).",
+   "Local: vasto lateral (face anterolateral da coxa); repetir a cada 5–15 min se sintomas refratários (WAO 2020)."
+  ],
+  "pediatria": [
+   "0,01 mg/kg IM (= 0,01 mL/kg da solução 1 mg/mL), coxa anterolateral; repetir a cada 5–15 min se necessário (WAO 2020).",
+   "Doses de referência WAO 2020 (tabela 6): <10 kg 0,01 mg/kg; 1–5 anos 0,15 mg; 6–12 anos 0,3 mg; adolescentes 0,5 mg."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Anafilaxia IM, criança (1 mg/mL → mL = mg)",
+    "mgkg": 0.01,
+    "max_mg": 0.3,
+    "intervalo": "repetir a cada 5–15 min se refratário",
+    "via": "IM"
+   }
+  ],
+  "diluicao": [
+   "IM: sem diluição (1 mg/mL).",
+   "Infusão EV contínua (anafilaxia refratária, com monitorização): 1 mg em 250 mL SF ou SG (4 mcg/mL) — diluição usual, conferir protocolo da unidade (Manual de Diluição SMS Joinville, 2018).",
+   "Não misturar com outros medicamentos na mesma seringa (manual Joinville)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Na anafilaxia não há contraindicação absoluta à adrenalina IM (WAO 2020).",
+  "lactacao": "",
+  "contraindicacoes": [
+   "Na anafilaxia: nenhuma contraindicação absoluta à via IM (WAO 2020)."
+  ],
+  "alertas": [
+   "Nunca fazer bolus EV da ampola 1 mg/mL fora da parada cardíaca: risco de arritmia fatal e sobredose; bolus EV não é recomendado no tratamento inicial (WAO 2020; ISMP Canadá 2014).",
+   "Agonista adrenérgico EV é medicamento potencialmente perigoso (ISMP Brasil).",
+   "Betabloqueador potencializa efeitos pressores/arrítmicos; IMAO e tricíclicos: crise hipertensiva (bula). Anafilaxia refratária em usuário de betabloqueador: considerar glucagon (WAO 2020).",
+   "Anti-histamínicos H1 têm papel limitado (alívio de sintomas cutâneos) e não devem atrasar nova dose de adrenalina IM (WAO 2020)."
+  ],
+  "fontes": [
+   "WAO Anaphylaxis Guidance 2020 (World Allergy Organ J)",
+   "Bula ANVISA — Efrinalin (hemitartarato de epinefrina, Blau)",
+   "RENAME 2024",
+   "ISMP Canada Safety Bulletin 2014 — Wrong route incidents with epinephrine",
+   "ISMP Brasil — Boletim Medicamentos Potencialmente Perigosos, fev/2019",
+   "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018"
+  ]
+ }
+]

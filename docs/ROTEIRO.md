@@ -17,6 +17,10 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
+## Pendências combinadas
+- **Acesso restrito para colegas:** repositório privado no GitHub + Cloudflare Pages + Cloudflare Access (gratuito até 50 pessoas; cada colega entra com o próprio e-mail e código de acesso; remover o e-mail corta o acesso). Tirar do ar o site aberto do GitHub Pages quando o novo estiver pronto. Aprovado em 2026-09-26, adiado para economizar tokens.
+- **Conteúdo, só com aprovação antes de mudar qualquer conduta:** fichas da sala vermelha (em rascunho); condições frequentes que faltam (odontalgia, olho vermelho e corpo estranho, paralisia facial, síncope, hiponatremia, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e por opioide, chikungunya e zika, varicela, COVID-19, pneumotórax, pericardite, fraturas e imobilização, cervicalgia, tendinite e bursite); classes de remédios que faltam nas fichas; revisão geral das prescrições; conferência das doses de soro antiofídico e antiescorpiônico (PCDT 2025).
+
 ## Ideias em espera
 - **Clínica:**
   - fluxos por queixa com sinais de alarme;

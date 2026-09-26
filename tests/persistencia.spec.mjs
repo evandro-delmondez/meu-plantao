@@ -3,7 +3,7 @@ import { abrir, aba } from "./util.mjs";
 
 test("edição, favorito, organização, tema e preferências sobrevivem ao recarregar", async ({ page, context }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-  const erros = await abrir(page);
+  const erros = await abrir(page); await aba(page, "prescricoes");
   await page.fill("#q", "amigdalite"); await page.click("#list .item >> nth=0");
   const id = await page.$eval("#list .item", (e) => e.dataset.id);
   await page.fill('textarea.rx-edit[data-f="casa"]', "TEXTO DE TESTE PERSISTE");
@@ -26,7 +26,7 @@ test("edição, favorito, organização, tema e preferências sobrevivem ao reca
   await aba(page, "backup"); await page.click("#bkCopy");
   const bk = await page.evaluate(() => navigator.clipboard.readText());
   const j = JSON.parse(bk);
-  expect(j.overrides[id]).toBeTruthy(); expect(j.uso.favs).toContain(id); expect(j.model.org.cats.length).toBeGreaterThan(5);
+  expect(j.overrides[id]).toBeTruthy(); expect(j.uso.favs).toContain(id); expect(j.uso.rec).toContain("c:" + id); expect(j.model.org.cats.length).toBeGreaterThan(5);
   const limpo = await (await context.browser().newContext()).newPage();
   await abrir(limpo);
   await aba(limpo, "backup"); await limpo.fill("#bkIn", bk); await limpo.click("#bkImport");
@@ -37,7 +37,7 @@ test("edição, favorito, organização, tema e preferências sobrevivem ao reca
 });
 
 test("organização: mover diagnóstico e reordenar categorias", async ({ page }) => {
-  await abrir(page);
+  await abrir(page); await aba(page, "prescricoes");
   await page.click("[data-org]");
   await page.click('[data-cu="1"]');
   expect(await page.$$eval(".orgcat", (x) => x.slice(0, 2).map((e) => e.dataset.k))).toEqual(["resp", "emerg"]);

@@ -7,8 +7,9 @@ const MALIAS={ /* termos que identificam a medicação dentro do texto das condu
   "dimenidrinato":["dimenidrinato","dramin"],"adrenalina":["adrenalina","epinefrina"],"dipirona":["dipirona","metamizol"],
   "paracetamol":["paracetamol"],"codeina":["codeina"],"dexclorfeniramina":["dexclorfeniramina"],"loratadina":["loratadina"]
 };
-const mui=Object.assign({grupo:null,via:null,sel:MEDS[0]&&MEDS[0].id,peso:""},lsGet("rxp_med_v1",{}));
-const saveMui=()=>lsSet("rxp_med_v1",{grupo:mui.grupo,via:mui.via,sel:mui.sel,peso:mui.peso});
+// o peso da criança fica só na memória (regra 5); versões antigas o salvavam em rxp_med_v1
+const mui=Object.assign({grupo:null,via:null,sel:MEDS[0]&&MEDS[0].id},lsGet("rxp_med_v1",{}),{peso:""});
+const saveMui=()=>lsSet("rxp_med_v1",{grupo:mui.grupo,via:mui.via,sel:mui.sel});
 const medById=Object.fromEntries(MEDS.map(m=>[m.id,m]));
 const medTerms=m=>(MALIAS[m.id]||[norm(m.nome.split(/[ (+]/)[0])]).map(norm);
 function medHay(m){return norm([m.nome,m.classe,m.subclasse,m.mecanismo,(m.vias||[]).join(" "),(m.apresentacoes||[]).join(" "),(m.alertas||[]).join(" "),m.gestacao,(MALIAS[m.id]||[]).join(" "),MGRUPOS[m.grupo]?.nome].join(" "))}
@@ -37,7 +38,7 @@ function renderMedList(){
   $("#mlist").innerHTML=items.length?html:`<div class="empty">Nenhuma medicação encontrada.</div>`;
   $$("#mlist [data-mid]").forEach(b=>b.onclick=()=>selectMed(b.dataset.mid));
 }
-function selectMed(id){mui.sel=id;saveMui();renderMedList();renderMedDetail();$("#tab-medicacoes").classList.add("show-detail");if(matchMedia("(max-width:860px)").matches)window.scrollTo({top:0})}
+function selectMed(id){mui.sel=id;saveMui();usoRecente("m:"+id);renderMedList();renderMedDetail();$("#tab-medicacoes").classList.add("show-detail");if(matchMedia("(max-width:860px)").matches)window.scrollTo({top:0})}
 function openMed(id){setTab("medicacoes");selectMed(id)}
 const medAltaVig=m=>(m.alertas||[]).some(a=>/ismp|potencialmente perigos|alta vigil/i.test(a));
 function medCalcRows(m){

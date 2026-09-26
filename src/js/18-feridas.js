@@ -18,9 +18,10 @@ const FR_EXP={indireto:"Tocar ou alimentar o animal, lambedura em pele íntegra,
  leve:"Ferimento superficial no tronco ou nos membros (exceto mãos e pés); lambedura de lesão superficial.",
  grave:"Ferimento em mucosa, no segmento cefálico, nas mãos ou nos pés; ferimentos múltiplos ou extensos."};
 const FR_AB=[["imuno","Imunocomprometido"],["asplenia","Asplênico"],["hepato","Hepatopatia avançada"],["edema","Edema prévio ou resultante na área"],["mod","Lesão moderada a grave, sobretudo em mão ou face"],["perio","Pode ter atingido periósteo ou cápsula articular"],["gato","Mordedura de gato"]];
-let fr=Object.assign({animal:"nao",obs:"sim",exp:"leve",retipo:"pep90",vac:"incerta",risco:"baixo"},lsGet("rxp_fr_v1",{}));
+// respostas sobre o ferimento são do paciente: só na memória (regra 5). Versões antigas salvavam em rxp_fr_v1.
+let fr={animal:"nao",obs:"sim",exp:"leve",retipo:"pep90",vac:"incerta",risco:"baixo"};
+try{localStorage.removeItem("rxp_fr_v1")}catch(e){}
 let frManual=false;
-function frSave(){lsSet("rxp_fr_v1",{animal:fr.animal,obs:fr.obs,exp:fr.exp,retipo:fr.retipo,vac:fr.vac,risco:fr.risco})}
 const fmtUI=n=>Math.round(n).toLocaleString("pt-BR");
 function frPeso(){const v=parseFloat(($("#frPeso").value||"").replace(",","."));return v>0&&v<300?v:null}
 function frIdade(){const v=parseFloat($("#frIdade").value);return v>=0&&v<130?v:null}
@@ -101,7 +102,7 @@ function renderFer(){
   for(const g in FR_OPTS){
     const box=document.querySelector(`#tab-feridas .opts[data-g="${g}"]`); if(!box) continue;
     box.innerHTML=FR_OPTS[g].map(([v,l])=>`<button class="opt" data-v="${v}" aria-pressed="${fr[g]===v}">${esc(l)}</button>`).join("");
-    box.querySelectorAll("button").forEach(b=>b.onclick=()=>{fr[g]=b.dataset.v;frSave();frManual=false;renderFer()});
+    box.querySelectorAll("button").forEach(b=>b.onclick=()=>{fr[g]=b.dataset.v;frManual=false;renderFer()});
   }
   const a=fr.animal;
   $("#frObsW").hidden=a!=="caogato";
@@ -156,4 +157,4 @@ $("#frEsp").addEventListener("change",()=>{frManual=false;renderFer()});
 $("#frRe").addEventListener("change",()=>{frManual=false;renderFer()});
 $("#frOut").addEventListener("input",()=>{frManual=true;grow($("#frOut"))});
 $("#frCopy").onclick=e=>copy($("#frOut").value,e.currentTarget);
-$("#frClear").onclick=()=>{fr={animal:"nao",obs:"sim",exp:"leve",retipo:"pep90",vac:"incerta",risco:"baixo"};frSave();$("#frPeso").value="";$("#frIdade").value="";$("#frEsp").checked=false;$("#frRe").checked=false;$("#frAb").querySelectorAll("input").forEach(i=>i.checked=false);frManual=false;renderFer();toast("Limpo")};
+$("#frClear").onclick=()=>{fr={animal:"nao",obs:"sim",exp:"leve",retipo:"pep90",vac:"incerta",risco:"baixo"};$("#frPeso").value="";$("#frIdade").value="";$("#frEsp").checked=false;$("#frRe").checked=false;$("#frAb").querySelectorAll("input").forEach(i=>i.checked=false);frManual=false;renderFer();toast("Limpo")};

@@ -289,13 +289,15 @@ const BASE = [
   "unidade": "1. Indicações: insuficiência respiratória, Glasgow ≤ 8, proteção de via aérea, falha de outros métodos.\n\n2. Material (checar e testar): laringoscópio, lâminas, tubos (7,0–8,0 adulto), fio-guia, seringa 10 mL, AMBU com reservatório, aspirador, capnógrafo, bougie, dispositivo supraglótico de resgate.\n\n3. Técnica\n1) Pré-oxigenação: 3 min com FiO2 100% (máscara com reservatório ou VNI).\n2) Posicionamento: coxim occipital + extensão da cabeça (orelha alinhada ao esterno — \"sniff\").\n3) Pré-tratamento (opcional): Fentanil 1–3 mcg/kg EV lento.\n4) Indução:\n   • Etomidato 0,3 mg/kg (preferir se instabilidade hemodinâmica)\n   • Cetamina 1–2 mg/kg (instabilidade ou broncoespasmo)\n   • Propofol 1–2 mg/kg (evitar se hipotensão)\n   • Midazolam 0,1–0,3 mg/kg (início lento; hipotensão)\n5) Bloqueio neuromuscular:\n   • Succinilcolina 1,5 mg/kg — contraindicada em hipercalemia, história de hipertermia maligna, doença neuromuscular, queimadura/esmagamento/denervação após 24–72h.\n   • Rocurônio 1,2 mg/kg.\n6) Aguardar 45–60 s. Laringoscopia com a mão esquerda, lâmina pela direita afastando a língua, ponta na valécula, tração para frente e para cima.\n7) Confirmar: capnografia (padrão-ouro) + expansão torácica + ausculta (epigástrio, bases, ápices).\n8) Pós-IOT: fixar tubo, RX de tórax, proteção ocular, sedoanalgesia contínua, ventilação protetora (6 mL/kg de peso predito).\n\nResumo de diluições (adulto ~70 kg)\n• Fentanil 50 mcg/mL: 2 mcg/kg → ~3 mL\n• Midazolam 5 mg/mL: 0,2 mg/kg → ~3 mL | 1 mg/mL: ~14 mL\n• Etomidato 2 mg/mL: 0,3 mg/kg → ~10 mL\n• Cetamina 50 mg/mL: 1,5 mg/kg → ~2 mL\n• Propofol 10 mg/mL: 1,5 mg/kg → ~10 mL\n• Succinilcolina 100mg + 10 mL AD (10 mg/mL): 1,5 mg/kg → ~10 mL\n• Rocurônio 10 mg/mL: 1,2 mg/kg → ~8,5 mL",
   "orient": "- Use a aba Calculadora para o volume exato pelo peso.",
   "rev": [
+   "Atualizado: fontes de via aérea para DAS 2025 e diretriz de sequência rápida da SCCM 2023.",
    "Corrigido: succinilcolina 1,5–2 mg/kg no resumo → 1,5 mg/kg (padronizado com a técnica).",
    "Corrigido: posição olfativa é extensão da cabeça sobre o pescoço, não hiperextensão cervical.",
    "Adicionado: capnografia como padrão-ouro de confirmação e cuidados pós-IOT.",
    "Ajustado: contraindicação da succinilcolina (queimadura/lesão após 24–72h, não 48h fixas)."
   ],
   "fontes": [
-   "Frerk C et al. Difficult Airway Society 2015 guidelines (Br J Anaesth 2015).",
+   "Ahmad I et al. Difficult Airway Society 2025 guidelines for unanticipated difficult intubation in adults (Br J Anaesth 2026;136:283).",
+   "Acquisto NM et al. SCCM Clinical Practice Guidelines for Rapid Sequence Intubation in the Critically Ill Adult Patient (Crit Care Med 2023;51:1411).",
    "Doses de indução e bloqueio: bulas e Walls RM. Manual of Emergency Airway Management."
   ]
  },

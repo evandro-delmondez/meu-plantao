@@ -1,12 +1,15 @@
 /* ---------- evolução ---------- */
 const evIds=["evHma","evAlergia","evAp","evMuc","svPa","svFc","svFr","svSat","svTax","svHgt"];
 let evManual=false;
+let evChk=null; // linhas do checklist da conduta ({id,hma,ex}); só na memória
 function buildEv(){
   const it=getItem($("#evCond").value);
   const v=id=>$("#"+id).value.trim();
   const L=[];
   L.push("QP + HMA:");
   if(v("evHma")) L.push(v("evHma"));
+  const ck=evChk&&it&&evChk.id===it.id?evChk:null;
+  if(ck) ck.hma.forEach(x=>L.push(x));
   if($("#evNega").checked) L.push("Nega outros sintomas. Nega febre.");
   L.push("");
   L.push("Alergias: "+(v("evAlergia")||"nega"));
@@ -16,6 +19,7 @@ function buildEv(){
   const sv=[["PA",v("svPa"),"mmHg"],["FC",v("svFc"),"bpm"],["FR",v("svFr"),"irpm"],["SatO2",v("svSat"),"%"],["Tax",v("svTax"),"°C"],["HGT",v("svHgt"),"mg/dL"]].filter(x=>x[1]);
   if(sv.length){L.push("SSVV: "+sv.map(x=>`${x[0]} ${x[1]}${x[2]==="%"?"%":" "+x[2]}`).join(" | "));L.push("")}
   L.push(exameAtual($("#evExame").value));
+  if(ck&&ck.ex.length){L.push("");ck.ex.forEach(x=>L.push(x))}
   if(evScores.length){L.push("");L.push("Escores:");evScores.forEach(x=>L.push("- "+x))}
   L.push("");
   L.push("HD: "+(it?(it.nome+(it.cid?" (CID "+it.cid+")":"")):""));
@@ -39,4 +43,4 @@ function renderEv(force){
 $("#evOut").addEventListener("input",()=>{evManual=true;grow($("#evOut"));$("#evManualNote").hidden=false});
 $("#evRegen").onclick=()=>renderEv(true);
 $("#evCopy").onclick=e=>copy($("#evOut").value,e.currentTarget);
-$("#evClear").onclick=()=>{evScores=[];evIds.forEach(id=>$("#"+id).value="");renderEv(true);toast("Campos limpos")};
+$("#evClear").onclick=()=>{evScores=[];evChk=null;evIds.forEach(id=>$("#"+id).value="");renderEv(true);toast("Campos limpos")};

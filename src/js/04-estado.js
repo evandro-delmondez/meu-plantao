@@ -1,6 +1,9 @@
 /* ---------- UI state ---------- */
-const ui=Object.assign({tab:"prescricoes",sel:"amigdalite",cat:null,modo:"adulto",peso:70,sexo:"M",tipo:"atestado",perfil:[],ped:"febre",pdPeso:"15",pdAnos:"3",pdMeses:"0"},lsGet(LS.ui,{}));
-const saveUI=()=>lsSet(LS.ui,{sel:ui.sel,cat:ui.cat,modo:ui.modo,peso:ui.peso,sexo:ui.sexo,perfil:ui.perfil,ped:ui.ped,pdPeso:ui.pdPeso,pdAnos:ui.pdAnos,pdMeses:ui.pdMeses,pmode:ui.pmode,score:ui.score});
+// Regra 5: dados do paciente (peso, idade, sexo, perfis como gestante ou alergia) ficam só na memória da aba.
+// Versões antigas salvavam esses campos em rxp_ui_v1; eles são ignorados ao carregar e apagados no próximo saveUI.
+const ui=Object.assign({tab:"inicio",sel:"amigdalite",cat:null,modo:"adulto",tipo:"atestado",ped:"febre"},lsGet(LS.ui,{}));
+Object.assign(ui,{peso:ui.modo==="ped"?20:70,sexo:"M",perfil:[],pdPeso:"15",pdAnos:"3",pdMeses:"0"});
+const saveUI=()=>lsSet(LS.ui,{sel:ui.sel,cat:ui.cat,modo:ui.modo,ped:ui.ped,pmode:ui.pmode,score:ui.score});
 let editing=false, confirmDel=false, newTmp=null;
 
 function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>el.hidden=true,1600)}

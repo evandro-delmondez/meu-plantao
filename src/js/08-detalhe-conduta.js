@@ -20,7 +20,7 @@ function perfisAtivos(){const s=new Set(ui.perfil||[]);if(parseFloat(pac.idade)>
 function renalAjustes(it){const c=clcr();if(c==null)return null;const txt=cur(it,"casa")+"\n"+cur(it,"unidade");const out=[];for(const r of RENAL){if(!r.re.test(txt))continue;const f=r.f.find(([mx])=>c<mx);out.push({nome:r.nome,msg:f?f[1]:"Sem ajuste nesta faixa de ClCr.",src:r.src})}return {c,out}}
 function renderPac(it){
   const c=clcr();
-  return `<details class="sec pac" ${pac.idade||pac.cr||pac.gest||pac.pnc?"open":""}><summary class="sec-h" style="cursor:pointer"><h3>Dados do paciente (ajuste de dose e alertas)</h3></summary>
+  return `<details class="sec pac" ${pac.idade||pac.cr||pac.gest||pac.pnc?"open":""}><summary class="sec-h" style="cursor:pointer"><h3>Dados do paciente</h3><span class="alsum">idade, peso e creatinina para ajuste de dose</span></summary>
   <div class="pacgrid">
     <label class="f">Idade<input class="inp" id="pcIdade" inputmode="numeric" value="${esc(pac.idade)}"></label>
     <label class="f">Sexo<select class="inp" id="pcSexo"><option value="M" ${pac.sexo==="M"?"selected":""}>Masculino</option><option value="F" ${pac.sexo==="F"?"selected":""}>Feminino</option></select></label>
@@ -32,6 +32,7 @@ function renderPac(it){
   <p class="note">Esses dados ficam só nesta aba e somem ao fechar a página.</p></div></details>`;
 }
 const PERFIS=[["gest","Gestante"],["idoso","Idoso"],["renal","Insuficiência renal"],["pnc","Alergia a penicilina"]];
+const PERFIL_CURTO={gest:"Gestante",idoso:"Idoso",renal:"Rim",pnc:"Alergia à penicilina"};
 function alertasDe(it){
   const txt=cur(it,"casa")+"\n"+cur(it,"unidade");
   const out={gest:[],idoso:[],renal:[],pnc:[]}; const usadas=new Set();
@@ -43,17 +44,70 @@ function alertasDe(it){
 }
 function renderAlertas(it){
   const {out,usadas}=alertasDe(it);
-  const perfS=perfisAtivos(); const perf=[...perfS];
+  const perf=[...perfisAtivos()];
   const ra=renalAjustes(it);
-  const box=PERFIS.map(([g,n])=>{
-    const on=perf.includes(g);
-    const items=out[g];
-    return `<div class="al ${on?"on":""} ${items.length?"has":""}"><h4>${n}</h4>${items.length?`<ul>${items.map(a=>`<li><b>${esc(a.nome)}:</b> ${esc(a.msg)}</li>`).join("")}</ul>`:`<p>Sem alerta específico para os medicamentos desta conduta. Confira a bula.</p>`}</div>`}).join("");
-  return `<div class="sec alertas"><div class="sec-h"><h3>Alertas por perfil do paciente</h3></div>
-  <div class="perfis">${PERFIS.map(([g,n])=>`<button class="chip" style="--c:var(--warn)" data-perfil="${g}" aria-pressed="${perf.includes(g)}">${n}</button>`).join("")}</div>
+  const box=([g,n],on)=>{const items=out[g];return `<div class="al ${on?"on":""} ${items.length?"has":""}"><h4>${n}</h4>${items.length?`<ul>${items.map(a=>`<li><b>${esc(a.nome)}:</b> ${esc(a.msg)}</li>`).join("")}</ul>`:`<p>Sem alerta específico para os medicamentos desta conduta. Confira a bula.</p>`}</div>`};
+  const ativos=PERFIS.filter(([g])=>perf.includes(g));
+  const fontes=[...new Set([...usadas,...(ra?ra.out.map(a=>a.src):[])])];
+  // no topo: perfis como botões; só os perfis ligados mostram os alertas abertos
+  return `<div class="sec alertas ${ativos.length||ra?"hot":""}">
+  <div class="perfis"><span class="lbl">Alertas:</span>${PERFIS.map(([g,n])=>`<button class="chip ${out[g].length?"has":""}" style="--c:var(--warn)" data-perfil="${g}" aria-pressed="${perf.includes(g)}" title="${out[g].length?"Esta conduta tem alerta para este perfil":"Sem alerta cadastrado para este perfil"}">${PERFIL_CURTO[g]}${out[g].length?` <span aria-label="tem alerta">⚠</span>`:""}</button>`).join("")}</div>
   ${ra?`<div class="renal-adj"><b>Dose para ClCr ${Math.round(ra.c)} mL/min:</b>${ra.out.length?`<ul>${ra.out.map(a=>`<li><b>${esc(a.nome)}:</b> ${esc(a.msg)}</li>`).join("")}</ul>`:" nenhum medicamento desta conduta tem ajuste renal cadastrado."}</div>`:""}
-  <div class="algrid">${box}</div>
-  ${(usadas.length||ra)?`<details class="alsrc"><summary>Fontes dos alertas</summary><ol>${[...new Set([...usadas,...(ra?ra.out.map(a=>a.src):[])])].map(k=>`<li>${linkify(SRC[k]||k)}</li>`).join("")}${ra?"<li>Cockcroft DW, Gault MH. Nephron 1976 (fórmula do ClCr).</li>":""}</ol></details>`:""}</div>`;
+  ${ativos.length?`<div class="algrid">${ativos.map(x=>box(x,true)).join("")}</div>`:""}
+  <details class="alsrc"><summary>Ver alertas de todos os perfis${fontes.length||ra?" e fontes":""}</summary><div class="algrid" style="padding-inline:0">${PERFIS.map(x=>box(x,perf.includes(x[0]))).join("")}</div>
+  ${(fontes.length||ra)?`<ol>${fontes.map(k=>`<li>${linkify(SRC[k]||k)}</li>`).join("")}${ra?"<li>Cockcroft DW, Gault MH. Nephron 1976 (fórmula do ClCr).</li>":""}</ol>`:""}</details></div>`;
+}
+/* checklist "não esquecer": marcações só na memória da aba (nenhum dado de paciente é salvo) */
+const chk={}; // id da conduta -> {"hist0":"+", "ex2":"-", …}
+const CHK_GRUPOS=[["hist","Anamnese"],["ant","Antecedentes"],["ex","Exame físico dirigido"],["alarme","Sinais de alarme"]];
+const semParenteses=t=>t.replace(/\s*\([^)]*\)/g,"").trim();
+function chkLinhas(it){
+  const c=CHECK[it.id], st=chk[it.id]||{};
+  if(!c) return {hma:[],ex:[],n:0};
+  const sel=(g,v)=>(c[g]||[]).filter((t,i)=>st[g+i]===v).map(semParenteses);
+  const hma=[], ex=[]; const j=a=>a.join("; ")+".";
+  const hp=sel("hist","+"), hn=sel("hist","-"), ap=sel("ant","+"), an=sel("ant","-"), ep=sel("ex","+"), en=sel("ex","-"), sp=sel("alarme","+"), sn=sel("alarme","-");
+  if(hp.length) hma.push("Refere: "+j(hp));
+  if(hn.length) hma.push("Nega: "+j(hn));
+  if(ap.length) hma.push("Antecedentes: "+j(ap));
+  if(an.length) hma.push("Sem antecedente de: "+j(an));
+  if(ep.length||en.length) ex.push("Exame dirigido: "+j([...ep.map(t=>t+": presente"),...en.map(t=>t+": ausente")]));
+  if(sp.length) ex.push("Sinais de alarme presentes: "+j(sp));
+  if(sn.length) ex.push("Sem sinais de alarme: "+j(sn));
+  return {hma,ex,n:Object.keys(st).length};
+}
+function renderChecklist(it){
+  const c=CHECK[it.id]; if(!c) return "";
+  const st=chk[it.id]||{};
+  const grupos=CHK_GRUPOS.map(([g,nome])=>`<div class="ckg ckg-${g}"><h4>${nome}</h4><ul>${(c[g]||[]).map((t,i)=>{const k=g+i,v=st[k]||"";return `<li class="ck" data-v="${v==="+"?"pos":v==="-"?"neg":""}"><span class="ckt">${esc(t)}</span><span class="ckb"><button data-ck="${k}" data-val="+" aria-pressed="${v==="+"}" aria-label="${esc(t)}: presente" title="Presente">+</button><button data-ck="${k}" data-val="-" aria-pressed="${v==="-"}" aria-label="${esc(t)}: ausente" title="Ausente">−</button></span></li>`}).join("")}</ul></div>`).join("");
+  return `<div class="sec chk"><div class="sec-h"><h3>Não esquecer</h3><span class="alsum">+ presente · − ausente</span></div>
+  <div class="ckgrid">${grupos}</div>
+  <div class="actions ckact"><button class="btn sm primary" id="ckEv">Levar para a evolução</button><button class="btn sm" id="ckCopy">Copiar</button><button class="btn sm" id="ckClear">Limpar marcações</button></div>
+  <details class="alsrc"><summary>Fontes do checklist</summary><ol>${c.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></div>`;
+}
+function bindChecklist(it){
+  if(!CHECK[it.id]) return;
+  $$("#detail [data-ck]").forEach(b=>b.onclick=()=>{
+    const st=chk[it.id]=chk[it.id]||{}; const k=b.dataset.ck;
+    if(st[k]===b.dataset.val) delete st[k]; else st[k]=b.dataset.val;
+    const li=b.closest(".ck"); li.dataset.v=st[k]==="+"?"pos":st[k]==="-"?"neg":"";
+    li.querySelectorAll("[data-ck]").forEach(x=>x.setAttribute("aria-pressed",st[k]===x.dataset.val));
+  });
+  $("#ckCopy").onclick=e=>{const l=chkLinhas(it);const t=[...l.hma,...l.ex].join("\n");if(!t){toast("Marque algum item com + ou −");return}copy(t,e.currentTarget)};
+  $("#ckClear").onclick=()=>{delete chk[it.id];renderDetail();toast("Marcações limpas")};
+  $("#ckEv").onclick=()=>{
+    const l=chkLinhas(it);
+    if(!l.n){toast("Marque algum item com + ou −");return}
+    evChk={id:it.id,hma:l.hma,ex:l.ex};
+    // o checklist já documenta os negativos; o "Nega outros sintomas. Nega febre." fixo poderia contradizer
+    $("#evNega").checked=false;
+    $("#evCond").value=it.id; evManual=false; setTab("evolucao"); window.scrollTo({top:0});
+    toast("Checklist levado para a evolução");
+  };
+}
+function renderFichas(it){
+  const ms=medsNaConduta(it); if(!ms.length) return "";
+  return `<div class="sec fichas"><div class="sec-h"><h3>Fichas dos remédios desta conduta</h3></div><div class="medlinks">${ms.map(m=>`<button class="chip" data-med="${m.id}" style="--c:var(--${(MGRUPOS[m.grupo]||{cor:"slate"}).cor})">${esc(m.nome.replace(/ \(.*\)$/,""))}</button>`).join("")}</div></div>`;
 }
 function renderDilu(it){
   const t=cur(it,"unidade"); if(!t.trim()) return "";
@@ -69,31 +123,31 @@ function renderDetail(){
   const changed=!!sess[it.id];
   el.innerHTML=`
   <div class="dh">
-    <button class="btn sm back" id="backBtn">← Lista</button>
-    <span class="cat" style="--c:var(--${c.cor})"><span class="dot"></span>${c.nome}</span>
+    <div class="dtop"><button class="btn sm back" id="backBtn">← Lista</button><span class="cat" style="--c:var(--${c.cor})"><span class="dot"></span>${esc(c.nome)}</span></div>
     <h2>${esc(it.nome)}</h2>
     <div class="meta">${it.cid?`<span class="cid">CID ${esc(it.cid)}</span>`:""}
       ${it.custom?`<span class="badge mine">Criada por você</span>`:it.edited?`<span class="badge mine">Editada por você</span>`:""}
       ${isNew(it)?`<span class="badge new">Novo</span>`:(!it.custom&&it.rev&&it.rev.length?`<span class="badge">${it.rev.length} ajuste(s) na revisão</span>`:"")}
       ${it.evid?`<span class="badge">Evidência limitada</span>`:""}</div>
-    <div class="actions">
+    <div class="abar">
       <button class="btn primary" id="cpAll">Copiar tudo</button>
-      <button class="btn" id="toEv">Montar evolução</button>
-      ${it.cid?`<button class="btn" id="toAt">Atestado com este CID</button>`:""}
-      <button class="btn" id="edBtn">Editar nome, CID e fontes</button>
-      <button class="favbtn" id="favBtn" aria-pressed="${uso.favs.includes(it.id)}" title="Fixar no topo da lista">${uso.favs.includes(it.id)?"★":"☆"}</button>
+      <button class="btn" id="toEv">Evolução</button>
+      ${it.cid?`<button class="btn" id="toAt">Atestado</button>`:""}
+      <button class="favbtn" id="favBtn" aria-pressed="${uso.favs.includes(it.id)}" title="Fixar no topo da lista e no Início" aria-label="Favorito">${uso.favs.includes(it.id)?"★":"☆"}</button>
+      <button class="btn edbtn" id="edBtn" title="Editar nome, CID e fontes" aria-label="Editar nome, CID e fontes">✎<span> Editar</span></button>
     </div>
-    ${(()=>{const ms=medsNaConduta(it);return ms.length?`<div class="medlinks"><span class="lbl">Fichas:</span>${ms.map(m=>`<button class="chip" data-med="${m.id}" style="--c:var(--${(MGRUPOS[m.grupo]||{cor:"slate"}).cor})">${esc(m.nome.replace(/ \(.*\)$/,""))}</button>`).join("")}</div>`:""})()}
-    <p class="note">Os textos abaixo são editáveis: ajuste para este paciente e copie. ${changed?"":"Nada é salvo como padrão sem você pedir."}</p>
+    <p class="note dnote">Os textos são editáveis para este paciente. ${changed?"":"Nada vira padrão sem você pedir."}</p>
     <div id="sessBar" class="sessbar" ${changed?"":"hidden"}><span>Você alterou o texto desta prescrição.</span><button class="btn sm primary" id="sessSave">Salvar como meu padrão</button><button class="btn sm" id="sessUndo">Descartar alterações</button></div>
   </div>
   ${renderPac(it)}
+  ${renderAlertas(it)}
   ${it.id==="dengue"?renderDengueCalc():""}
   ${section(it,"casa","Receita — uso domiciliar","casa","Copiar receita")}
   ${section(it,"unidade","Na unidade","unidade","Copiar")}
   ${renderDilu(it)}
   ${section(it,"orient","Orientações","orient","Copiar")}
-  ${renderAlertas(it)}
+  ${renderChecklist(it)}
+  ${renderFichas(it)}
   ${renderAlta(it)}
   ${it.evid?`<div class="sec evid"><div class="sec-h"><h3>Nível de evidência</h3></div><p>${esc(it.evid)}</p></div>`:""}
   ${(it.fontes&&it.fontes.length)?`<div class="sec fontes"><div class="sec-h"><h3>Fontes</h3></div><ol>${it.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></div>`:""}
@@ -107,6 +161,7 @@ function renderDetail(){
   ["pcIdade","pcPeso","pcCr"].forEach(id=>$("#"+id).addEventListener("change",pcUp));
   ["pcSexo","pcGest","pcPnc"].forEach(id=>$("#"+id).addEventListener("change",pcUp));
   if(it.id==="dengue") bindDengueCalc(it);
+  bindChecklist(it);
   growAll();
   $("#toEv").onclick=()=>{$("#evCond").value=it.id;evManual=false;setTab("evolucao")};
   $$("#detail [data-med]").forEach(b=>b.onclick=()=>openMed(b.dataset.med));

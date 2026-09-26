@@ -24,6 +24,9 @@ const data = [
   stripModule(r("src/data/regras.js")),
   stripModule(r("src/data/pediatria.js")),
   stripModule(r("src/data/extras.js")),
+  stripModule(r("src/data/checklists.js")),
+  stripModule(r("src/data/calculadora.js")),
+  stripModule(r("src/data/infusao.js")),
   "const MEDS=" + JSON.stringify(meds) + ";",
   `const APP_VERSION=${JSON.stringify(pkg.version)};`,
 ].join("\n");
@@ -39,6 +42,14 @@ let page = r("src/index.html")
 const icon = r("public/icon.svg").trim();
 const logo = icon.replace("<svg ", '<svg class="logo" aria-hidden="true" ').replace('id="g"', 'id="lg"').replace("url(#g)", "url(#lg)");
 page = page.replace('<span class="rx" aria-hidden="true">℞</span>', logo);
+
+// ---------- sintaxe: um erro aqui derruba o painel inteiro, então o build falha logo ----------
+for (const [, code] of page.matchAll(/<script>([\s\S]*?)<\/script>/g)) {
+  try { new Function(code); } catch (e) {
+    const tmp = join(root, "dist-erro.tmp.js"); writeFileSync(tmp, code);
+    throw new Error(`Erro de sintaxe no JavaScript montado: ${e.message}. Rode: node --check ${tmp}`);
+  }
+}
 
 // ---------- versão com nuvem (painel no Claude) ----------
 const CLOUD = 'try{ db=window.claude&&window.claude.use?await window.claude.use("db"):null }catch(e){db=null}';

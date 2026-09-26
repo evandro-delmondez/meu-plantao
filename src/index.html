@@ -7,26 +7,69 @@
 /*__CSS__*/
 </style>
 
+<nav class="secnav" id="secnav" aria-label="Seções">
+  <button data-sec="inicio" style="--c:var(--accent)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span>Início</span></button>
+  <button data-sec="condutas" style="--c:var(--sky)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg><span>Condutas</span></button>
+  <button data-sec="remedios" style="--c:var(--pink)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="m8.5 8.5 7 7"/></svg><span>Remédios</span></button>
+  <button data-sec="sala" style="--c:var(--red)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Sala vermelha</span></button>
+  <button data-sec="documentos" style="--c:var(--teal)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Documentos</span></button>
+  <button data-sec="calculos" style="--c:var(--violet)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg><span>Cálculos</span></button>
+</nav>
 <div class="wrap">
   <header class="top">
     <div class="brand">
       <h1><span class="rx" aria-hidden="true">℞</span>Meu Plantão</h1>
-      <span class="sync" id="sync" data-s="local"><i></i><span id="syncTxt">Carregando…</span></span>
-      <button class="btn sm themebtn" id="themeBtn" title="Alternar tema claro/escuro" aria-label="Alternar tema claro/escuro">◐</button>
+      <div class="brand-r">
+        <span class="sync" id="sync" data-s="local"><i></i><span id="syncTxt">Carregando…</span></span>
+        <button class="btn sm themebtn" id="themeBtn" title="Alternar tema claro/escuro" aria-label="Alternar tema claro/escuro">◐</button>
+      </div>
     </div>
-    <nav class="tabs" role="tablist">
-      <button role="tab" data-tab="prescricoes" aria-selected="true">Prescrições</button>
-      <button role="tab" data-tab="medicacoes" aria-selected="false">Medicações</button>
-      <button role="tab" data-tab="pediatria" aria-selected="false">Pediatria</button>
-      <button role="tab" data-tab="feridas" aria-selected="false">Feridas</button>
-      <button role="tab" data-tab="evolucao" aria-selected="false">Evolução</button>
-      <button role="tab" data-tab="atestado" aria-selected="false">Atestado</button>
-      <button role="tab" data-tab="escores" aria-selected="false">Escores</button>
-      <button role="tab" data-tab="calculadora" aria-selected="false">Calculadora</button>
-      <button role="tab" data-tab="modelos" aria-selected="false">Meus modelos</button>
-      <button role="tab" data-tab="backup" aria-selected="false">Backup</button>
+    <nav class="tabs" role="tablist" aria-label="Páginas da seção">
+      <button role="tab" data-tab="inicio" data-sec="inicio" aria-selected="true">Início</button>
+      <button role="tab" data-tab="prescricoes" data-sec="condutas" aria-selected="false">Prescrições</button>
+      <button role="tab" data-tab="feridas" data-sec="condutas" aria-selected="false">Feridas e mordeduras</button>
+      <button role="tab" data-tab="medicacoes" data-sec="remedios" aria-selected="false">Fichas</button>
+      <button role="tab" data-tab="pediatria" data-sec="remedios" aria-selected="false">Pediatria por peso</button>
+      <button role="tab" data-tab="sala" data-sec="sala" aria-selected="false">Visão geral</button>
+      <button role="tab" data-tab="bic" data-sec="sala" aria-selected="false">Bomba de infusão</button>
+      <button role="tab" data-tab="iot" data-sec="sala" aria-selected="false">Intubação e ventilação</button>
+      <button role="tab" data-tab="evolucao" data-sec="documentos" aria-selected="false">Evolução</button>
+      <button role="tab" data-tab="atestado" data-sec="documentos" aria-selected="false">Atestado</button>
+      <button role="tab" data-tab="modelos" data-sec="documentos" aria-selected="false">Meus modelos</button>
+      <button role="tab" data-tab="escores" data-sec="calculos" aria-selected="false">Escores</button>
+      <button role="tab" data-tab="calculadora" data-sec="calculos" aria-selected="false">Doses por peso</button>
+      <button role="tab" data-tab="contas" data-sec="calculos" aria-selected="false">Laboratório e ECG</button>
+      <button role="tab" data-tab="backup" data-sec="documentos" aria-selected="false">Backup</button>
     </nav>
   </header>
+
+  <!-- INÍCIO -->
+  <section id="tab-inicio" class="home" hidden>
+    <div class="hsearch panel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input id="gq" type="search" placeholder="Buscar em tudo: amigdalite, dipirona, CURB-65, raiva…" autocomplete="off" aria-label="Buscar em todo o painel">
+      <kbd class="kbd" aria-hidden="true">/</kbd>
+    </div>
+    <div id="gres" class="gres" hidden></div>
+    <div id="hbody">
+      <button class="hred" id="hRed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span><b>Sala vermelha</b><small>Condutas de emergência, doses por peso e emergência pediátrica</small></span><i aria-hidden="true">→</i></button>
+      <div class="hcols">
+        <div class="panel hbox"><h2>★ Favoritos</h2><div class="hchips" id="hFav"></div></div>
+        <div class="panel hbox"><h2>Abertos recentemente</h2><div class="hchips" id="hRec"></div></div>
+      </div>
+      <div class="hsecs" id="hSecs"></div>
+    </div>
+  </section>
+
+  <!-- SALA VERMELHA -->
+  <section id="tab-sala" hidden>
+    <p class="disc">Apoio à decisão. Confira concentrações, diluições e protocolos do seu serviço antes de administrar.</p>
+    <div class="salagrid" id="salaAtalhos"></div>
+    <div class="panel card">
+      <h2>Condutas de emergência</h2>
+      <div class="salaconds" id="salaConds"></div>
+    </div>
+  </section>
 
   <!-- PRESCRIÇÕES -->
   <section id="tab-prescricoes" class="grid">
@@ -56,6 +99,60 @@
     <article class="panel detail" id="mdetail"></article>
   </section>
 
+
+  <!-- BOMBA DE INFUSÃO -->
+  <section id="tab-bic" hidden>
+    <p class="disc">Apoio ao cálculo. Confira a apresentação, a diluição padrão e o protocolo do seu serviço antes de programar a bomba.</p>
+    <div class="two">
+      <div class="panel card">
+        <h2>Bomba de infusão</h2>
+        <div class="chips" id="bicDrogas"></div>
+        <div class="row">
+          <label class="f" id="bicPesoW">Peso (kg)<input class="inp" id="bicPeso" type="number" inputmode="decimal" min="1" max="300" placeholder="ex.: 70"></label>
+          <label class="f">Diluição<select class="inp" id="bicDil"></select></label>
+        </div>
+        <div class="row" id="bicCustom" hidden>
+          <label class="f">Quantidade no frasco (<span id="bicBaseUn"></span>)<input class="inp" id="bicQtd" type="number" inputmode="decimal" min="0"></label>
+          <label class="f">Volume final (mL)<input class="inp" id="bicVol" type="number" inputmode="decimal" min="1"></label>
+        </div>
+        <p class="note" id="bicConc"></p>
+        <div class="row">
+          <label class="f">Dose (<span id="bicUn"></span>)<input class="inp" id="bicDose" type="number" inputmode="decimal" min="0" step="any"></label>
+          <label class="f">Vazão (mL/h)<input class="inp" id="bicMlh" type="number" inputmode="decimal" min="0" step="any"></label>
+        </div>
+        <div class="scres" id="bicRes"></div>
+      </div>
+      <div class="panel card">
+        <h2 id="bicNome"></h2>
+        <p class="note" id="bicApres"></p>
+        <div class="msec" style="--c:var(--red)" id="bicFaixaW"><h3>Faixa de dose</h3><p id="bicFaixa"></p></div>
+        <div id="bicTab"></div>
+        <div class="msec warnsec" style="--c:var(--warn)"><h3>Atenção</h3><ul id="bicObs"></ul></div>
+        <details class="fontes"><summary>Fontes</summary><ul id="bicFontes"></ul></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTUBAÇÃO -->
+  <section id="tab-iot" hidden>
+    <div class="two">
+      <div class="panel card">
+        <h2>Checklist de intubação</h2>
+        <div id="iotCheck"></div>
+        <div class="actions"><button class="btn" id="iotLimpar">Limpar checklist</button><button class="btn" id="iotDoses">Doses da sequência rápida por peso</button></div>
+      </div>
+      <div class="panel card">
+        <h2>Ventilação inicial</h2>
+        <div class="row">
+          <label class="f">Altura (cm)<input class="inp" id="vmAlt" type="number" inputmode="numeric" min="100" max="230" placeholder="ex.: 170"></label>
+          <label class="f">Sexo<select class="inp" id="vmSexo"><option value="M">Masculino</option><option value="F">Feminino</option></select></label>
+        </div>
+        <div class="scres" id="vmRes"></div>
+        <ul class="flist" id="vmLista"></ul>
+        <details class="fontes"><summary>Fontes</summary><ul id="iotFontes"></ul></details>
+      </div>
+    </div>
+  </section>
 
   <!-- EVOLUÇÃO -->
   <section id="tab-evolucao" hidden>
@@ -315,6 +412,12 @@
       <p class="disc">Volumes arredondados para 0,1 mL. Confira a concentração da ampola/frasco do seu serviço antes de administrar.</p>
       <div class="cgroups" id="cgroups"></div>
     </div>
+  </section>
+
+  <!-- CONTAS: LABORATÓRIO E ECG -->
+  <section id="tab-contas" hidden>
+    <p class="disc">Os valores digitados ficam só nesta aba. Confira as unidades: sódio, cloro e bicarbonato em mEq/L; glicose, ureia e creatinina em mg/dL; albumina em g/dL.</p>
+    <div class="contas" id="contas"></div>
   </section>
 
   <!-- BACKUP -->

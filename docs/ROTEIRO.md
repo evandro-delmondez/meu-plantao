@@ -5,19 +5,17 @@ Regra: nenhuma informação clínica sem fonte; conteúdo de alto risco com conf
 ## Entregue
 - [x] v1.0.0: aba Feridas (raiva, tétano, mordedura, anestésico local, sutura).
 - [x] v1.1.0: aba Medicações, parte 1 (45 fichas); projeto profissional (módulos, testes, CI, GitHub Pages).
+- [x] v1.2.0: navegação em 5 seções, tela inicial com busca única, sala vermelha, conduta reorganizada e checklist em 20 condutas.
+- [x] v1.3.0: bomba de infusão; intubação e ventilação inicial; laboratório e ECG (ânion gap, gasometria, Na corrigido, osmolaridade, Ca corrigido, QTc, ClCr); fontes e conferência das doses por peso; exame físico sem siglas.
 
 ## Próximas entregas (em ordem)
-1. **Bomba de infusão contínua:** drogas vasoativas e sedação, conversão mcg/kg/min ↔ mL/h, diluições padrão.
-2. **Intubação em sequência rápida:** doses por peso, checklist, parâmetros iniciais do ventilador.
-3. **Perfil por unidade:** remédios disponíveis, diluições locais e telefones (regulação, CIATox).
-4. **Calculadoras:**
-   - eletrólitos (reposição de K, Mg e P);
-   - gasometria;
-   - ânion gap, Na corrigido e osmolaridade;
-   - QTc e alerta de QT longo na receita.
-5. **Medicações, parte 2:** sala vermelha (vasoativas, sedativos, bloqueadores neuromusculares, anticonvulsivantes, antiarrítmicos, anticoagulantes, insulina, eletrólitos EV).
-6. **Protocolos em fluxo:** IAM com supra, AVC, hipercalemia, CAD, crise hipertensiva, anafilaxia.
-7. **Consulta rápida:** intoxicações e antídotos; equivalência de opioides e de corticoides.
+Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS adulto, público e particular; pediatria, obstetrícia e sala vermelha aparecem às vezes. Cada entrega traz um pedaço do visual novo e um bloco clínico.
+
+1. **v1.4 — rede pública e particular:** seletor "onde estou hoje"; na UPA pública a receita prioriza a RENAME, na particular mostra a alternativa de farmácia. Checklists das demais 78 condutas.
+2. **v1.5 — medicações, parte 2, e eletrólitos:** fichas da sala vermelha (vasoativas, sedativos, bloqueadores neuromusculares, anticonvulsivantes, antiarrítmicos, anticoagulantes, insulina, eletrólitos EV); reposição de K, Mg e P; alerta de QT longo na receita.
+3. **v1.6 — protocolos em fluxo e obstetrícia:** IAM com supra, AVC, hipercalemia, CAD, crise hipertensiva, anafilaxia; pré-eclâmpsia e sulfato de magnésio.
+
+Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Ideias em espera
 - **Clínica:**
@@ -37,7 +35,5 @@ Regra: nenhuma informação clínica sem fonte; conteúdo de alto risco com conf
   - diário de procedimentos para o currículo da residência;
   - modo estudo (flashcards).
 - **Uso do painel:**
-  - modo sala vermelha;
-  - busca única;
   - data de revisão por item e página de novidades;
   - sincronização entre aparelhos no site (Supabase ou Firebase, com login).

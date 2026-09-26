@@ -5,7 +5,7 @@ function scTexto(sc){const t=scTotal(sc);const st=scState[sc.id]||{};const falta
 function renderScores(){
   const selId=ui.score||SC[0].id; const sc=SC.find(x=>x.id===selId)||SC[0]; ui.score=sc.id;
   $("#scList").innerHTML=SC.map(x=>`<button data-sc="${x.id}" aria-current="${x.id===sc.id}">${esc(x.nome)}</button>`).join("");
-  $$("#scList [data-sc]").forEach(b=>b.onclick=()=>{ui.score=b.dataset.sc;saveUI();renderScores()});
+  $$("#scList [data-sc]").forEach(b=>b.onclick=()=>{ui.score=b.dataset.sc;saveUI();usoRecente("s:"+b.dataset.sc);renderScores()});
   const st=scState[sc.id]=scState[sc.id]||{};
   $("#scNome").textContent=sc.nome;
   let h="";

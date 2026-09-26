@@ -13,10 +13,10 @@ const err = (m) => erros.push(m), warn = (m) => avisos.push(m);
 // carrega os arquivos de dados num contexto isolado
 const ctx = {};
 vm.createContext(ctx);
-const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js"]
+const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js", "checklists.js", "calculadora.js", "infusao.js"]
   .map((f) => readFileSync(join(root, "src/data", f), "utf8").replace(/^if \(typeof module.*$/gm, "")).join("\n");
-vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC};", ctx);
-const { BASE, CATS, SC } = ctx.__dados;
+vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,INFUSAO,IOT_FONTES};", ctx);
+const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES } = ctx.__dados;
 
 const CAPS = /[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{12,}/;          // trecho longo em maiúsculas
 const RUIM = /\bundefined\b|\bNaN\b|\[object Object\]/;
@@ -36,6 +36,62 @@ for (const it of BASE || []) {
   if (CAPS.test(t)) err(`${onde}: trecho em CAPS LOCK → "${t.match(CAPS)[0]}"`);
   if (RUIM.test(t)) err(`${onde}: contém "${t.match(RUIM)[0]}"`);
 }
+
+// ---------- checklists ----------
+const GRUPOS_CHK = ["hist", "ant", "ex", "alarme"];
+for (const [id, c] of Object.entries(CHECK || {})) {
+  const onde = `checklist "${id}"`;
+  if (!ids.has(id)) err(`${onde}: não existe conduta com esse id`);
+  if (!Array.isArray(c.fontes) || !c.fontes.length) err(`${onde}: sem fontes`);
+  for (const k of Object.keys(c)) if (k !== "fontes" && !GRUPOS_CHK.includes(k)) err(`${onde}: grupo desconhecido "${k}"`);
+  for (const g of GRUPOS_CHK) {
+    if (!Array.isArray(c[g]) || !c[g].length) { err(`${onde}: grupo "${g}" vazio`); continue; }
+    const vistos = new Set();
+    for (const t of c[g]) {
+      if (typeof t !== "string" || !t.trim()) err(`${onde}: item vazio em "${g}"`);
+      else if (vistos.has(t)) err(`${onde}: item repetido em "${g}": ${t}`);
+      vistos.add(t);
+    }
+  }
+  const t = textoDe(c);
+  if (CAPS.test(t)) err(`${onde}: trecho em CAPS LOCK → "${t.match(CAPS)[0]}"`);
+  if (RUIM.test(t)) err(`${onde}: contém "${t.match(RUIM)[0]}"`);
+}
+
+// ---------- doses por peso ----------
+let nDoses = 0;
+for (const [modo, grupos] of Object.entries(CALC || {})) for (const g of grupos) {
+  const onde = `doses por peso (${modo}) "${g.t}"`;
+  if (!Array.isArray(g.src) || !g.src.length) err(`${onde}: sem fontes (src)`);
+  for (const d of g.d || []) {
+    nDoses++;
+    if (!d.nome || !d.regra) err(`${onde}: item sem nome ou regra`);
+    if (typeof d.perkg !== "function" && !(Array.isArray(d.perkg) && d.perkg.length === 2)) err(`${onde} → ${d.nome}: perkg inválido`);
+    if (!(d.conc > 0)) err(`${onde} → ${d.nome}: concentração inválida`);
+  }
+  const t = textoDe(g);
+  if (CAPS.test(t)) err(`${onde}: trecho em CAPS LOCK → "${t.match(CAPS)[0]}"`);
+}
+if (nDoses < 40) err(`doses por peso: só ${nDoses} itens carregados`);
+
+// ---------- bomba de infusão ----------
+const infIds = new Set();
+for (const d of INFUSAO || []) {
+  const onde = `bomba de infusão "${d.id}"`;
+  if (infIds.has(d.id)) err(`${onde}: id repetido`); infIds.add(d.id);
+  for (const k of ["nome", "grupo", "apres", "base", "un"]) if (!d[k]) err(`${onde}: falta "${k}"`);
+  if (!Array.isArray(d.src) || !d.src.length) err(`${onde}: sem fontes`);
+  if (!["mcg", "mg", "U"].includes(d.base) || !String(d.un).startsWith(d.base + "/")) err(`${onde}: unidade da dose (${d.un}) não bate com a base (${d.base})`);
+  if (String(d.un).includes("/kg/") !== !!d.porKg) err(`${onde}: porKg não bate com a unidade ${d.un}`);
+  if (String(d.un).endsWith("/min") !== !!d.porMin) err(`${onde}: porMin não bate com a unidade ${d.un}`);
+  if (!Array.isArray(d.dil) || !d.dil.length) err(`${onde}: sem diluição`);
+  for (const x of d.dil || []) if (!(x.qtd > 0 && x.vol > 0) || !x.rot) err(`${onde}: diluição inválida`);
+  if (d.faixa && (!d.faixaTxt || !(d.faixa[0] > 0) || d.faixa[1] < d.faixa[0])) err(`${onde}: faixa inválida ou sem texto`);
+  const t = textoDe(d);
+  if (CAPS.test(t)) err(`${onde}: trecho em CAPS LOCK → "${t.match(CAPS)[0]}"`);
+  if (RUIM.test(t)) err(`${onde}: contém "${t.match(RUIM)[0]}"`);
+}
+if (!Array.isArray(IOT_FONTES) || !IOT_FONTES.length) err("intubação: sem fontes");
 
 // ---------- escores ----------
 for (const s of SC || []) {
@@ -84,4 +140,4 @@ if (erros.length) {
   console.error(`\n${erros.length} erro(s) de conteúdo.`);
   process.exit(1);
 }
-console.log(`conteúdo ok — ${BASE.length} condutas, ${medIds.size} medicações, ${(SC || []).length} escores${avisos.length ? `, ${avisos.length} aviso(s)` : ""}`);
+console.log(`conteúdo ok — ${BASE.length} condutas, ${Object.keys(CHECK || {}).length} checklists, ${medIds.size} medicações, ${(SC || []).length} escores${avisos.length ? `, ${avisos.length} aviso(s)` : ""}`);

@@ -106,7 +106,9 @@ function bindChecklist(it){
     toast("Checklist levado para a evolução");
   };
 }
-function qtDe(it){const t=norm(cur(it,"casa")+"\n"+cur(it,"unidade"));return QT_RISCO.filter(q=>(q.termos||[]).some(x=>t.includes(norm(x))))}
+// palavra inteira: "citalopram" não pode disparar em "escitalopram", nem "omeprazol" em "esomeprazol"
+const qtRe=QT_RISCO.map(q=>({q,re:new RegExp("(^|[^a-z0-9])("+(q.termos||[]).map(x=>norm(x).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")(?![a-z0-9])")}));
+function qtDe(it){const t=norm(cur(it,"casa")+"\n"+cur(it,"unidade"));return qtRe.filter(x=>x.q.termos&&x.q.termos.length&&x.re.test(t)).map(x=>x.q)}
 function renderQt(it){
   const q=qtDe(it); if(!q.length) return "";
   const rot={conhecido:"risco conhecido",possivel:"risco possível",possível:"risco possível",condicional:"risco condicional"};

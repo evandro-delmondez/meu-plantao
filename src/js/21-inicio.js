@@ -97,6 +97,7 @@ renderRede();
 $("#sync").onclick=()=>toast($("#syncTxt").textContent);
 
 /* ---------- sala vermelha ---------- */
+const SALA_IDS=["pcr","iot","sepse","anafilaxia","alergia-grave","sca","avc","convulsao","eap","fa","taquicardia","bradicardia","has","tep","tce","intoxicacao","cad","hipercalemia"];
 function renderSala(){
   const lista=a=>a.length>1?a.slice(0,-1).join(", ")+" e "+a[a.length-1]:a.join("");
   const gAd=CALC.adulto.filter(g=>g.t!=="Outros");
@@ -107,7 +108,7 @@ function renderSala(){
   ];
   $("#salaAtalhos").innerHTML=at.map(([t,d,c],i)=>`<button class="hsec panel" data-sa="${i}" style="--c:var(--${c})"><b>${t}</b><small>${d}</small></button>`).join("");
   $$("#salaAtalhos [data-sa]").forEach(b=>b.onclick=()=>at[+b.dataset.sa][3]());
-  const em=sortOrg(allItems().filter(i=>i.cat==="emerg"));
+  const em=allItems().filter(i=>SALA_IDS.includes(i.id)).sort((a,b)=>SALA_IDS.indexOf(a.id)-SALA_IDS.indexOf(b.id));
   $("#salaConds").innerHTML=em.length?em.map(i=>`<button class="item" data-sc2="${i.id}" style="--c:var(--red)"><span class="dot"></span><span class="n">${esc(i.nome)}</span><span class="m">${esc(i.cid||"")}</span></button>`).join(""):`<p class="note">Nenhuma conduta na categoria de emergência.</p>`;
   $$("#salaConds [data-sc2]").forEach(b=>b.onclick=()=>abrirConduta(b.dataset.sc2));
 }

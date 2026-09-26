@@ -1,39 +1,51 @@
 const CATS = {
  "emerg": {
-  "nome": "Emergência",
+  "nome": "Emergência / Sala vermelha",
   "cor": "red"
+ },
+ "cardio": {
+  "nome": "Cardio / Vascular",
+  "cor": "rose"
+ },
+ "dor": {
+  "nome": "Dor / Neuro / Ortop",
+  "cor": "amber"
  },
  "resp": {
   "nome": "Respiratório",
   "cor": "sky"
  },
  "orl": {
-  "nome": "Otorrino e olhos",
+  "nome": "Otorrino / Oftalmo",
   "cor": "indigo"
  },
  "gi": {
   "nome": "Gastro",
   "cor": "green"
  },
- "dor": {
-  "nome": "Dor e neuro",
-  "cor": "amber"
- },
  "pele": {
-  "nome": "Pele",
+  "nome": "Dermato",
   "cor": "teal"
  },
  "gu": {
-  "nome": "Gineco, uro e IST",
+  "nome": "Gineco / Obstetrícia / IST",
   "cor": "pink"
  },
+ "uro": {
+  "nome": "Uro / Nefro",
+  "cor": "cyan"
+ },
  "endo": {
-  "nome": "Endócrino",
+  "nome": "Endócrino / Metabólico",
   "cor": "orange"
  },
  "psi": {
   "nome": "Psiquiatria",
   "cor": "violet"
+ },
+ "toxinf": {
+  "nome": "Toxico / Infecto",
+  "cor": "lime"
  },
  "outros": {
   "nome": "Outros",
@@ -204,7 +216,7 @@ const BASE = [
  {
   "id": "colica",
   "nome": "Cólica renal / biliar",
-  "cat": "gi",
+  "cat": "uro",
   "cid": "N23",
   "sin": "litiase calculo rim vesicula colelitiase nefrolitiase",
   "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n2) Escopolamina + Dipirona 10/250mg (Buscopan Composto) --- 20 cp\nTomar 1 cp VO de 6/6h se dor abdominal ou febre.\n3) Tramadol 50mg ----------------------------- 10 cp\nTomar 1 cp VO de 8/8h se dor intensa que não melhora com os anteriores.\n4) Ondansetrona 8mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h se náuseas ou vômitos.\n\n# Cólica renal com cálculo ureteral distal > 5 mm (e ≤ 10 mm):\n5) Tansulosina 0,4mg ------------------------- 30 cp\nTomar 1 cp VO à noite por até 4 semanas.",
@@ -261,7 +273,7 @@ const BASE = [
  {
   "id": "convulsao",
   "nome": "Crise convulsiva / Estado de mal epiléptico",
-  "cat": "emerg",
+  "cat": "dor",
   "cid": "G41.9",
   "sin": "convulsao epilepsia crise tonico clonica status",
   "casa": "",
@@ -304,7 +316,7 @@ const BASE = [
  {
   "id": "has",
   "nome": "Crise hipertensiva (urgência / emergência)",
-  "cat": "emerg",
+  "cat": "cardio",
   "cid": "I10",
   "sin": "pressao alta pa elevada has hipertensao urgencia emergencia",
   "casa": "Uso oral\n1) Manter os anti-hipertensivos de uso contínuo, nas doses corretas.\n2) Furosemida 40mg --------------------------- 5 cp\nTomar 1 cp VO pela manhã, somente se edema ou congestão (conforme avaliação).",
@@ -327,7 +339,7 @@ const BASE = [
  {
   "id": "dengue",
   "nome": "Dengue (grupos A, B, C e D)",
-  "cat": "outros",
+  "cat": "toxinf",
   "cid": "A90",
   "sin": "arbovirose febre chikungunya zika",
   "casa": "# Grupos A e B (após hemograma normal no grupo B)\nUso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n2) Paracetamol 500mg ------------------------- 20 cp\nTomar 1 a 2 cp VO de 6/6h se febre persistir (intercalar com a dipirona; máx. 3 g/dia).\n3) Ondansetrona 8mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h se náuseas ou vômitos.\n4) Sais de reidratação oral ------------------ 10 envelopes\nDiluir 1 envelope em 1 L de água filtrada e beber ao longo do dia.\n\nHidratação oral:\n- Adulto: 60 mL/kg/dia, 1/3 com SRO; oferecer 1/3 do volume nas primeiras 4–6h.\n- Criança < 13 anos: até 10 kg 130 mL/kg/dia | 10–20 kg 100 mL/kg/dia | > 20 kg 80 mL/kg/dia.",
@@ -788,7 +800,7 @@ const BASE = [
  {
   "id": "hpb",
   "nome": "Hiperplasia prostática benigna (HPB)",
-  "cat": "gu",
+  "cat": "uro",
   "cid": "N40",
   "sin": "prostata jato fraco retencao urinaria",
   "casa": "Uso oral\n1) Tansulosina 0,4mg ------------------------- 30 cp\nTomar 1 cp VO à noite, uso contínuo.\n2) Finasterida 5mg --------------------------- 30 cp\nTomar 1 cp VO 1x ao dia, uso contínuo (se próstata aumentada > 30–40 g; efeito após 3–6 meses).",
@@ -856,7 +868,7 @@ const BASE = [
  {
   "id": "ivc",
   "nome": "Insuficiência venosa crônica",
-  "cat": "outros",
+  "cat": "cardio",
   "cid": "I87.2",
   "sin": "varizes meia elastica edema pernas",
   "casa": "Uso externo\n1) Meia de compressão elástica — média compressão (20–30 mmHg), 3/4.\n- Calçar pela manhã, antes de levantar da cama.\n- Usar durante todo o dia.\n- Se precisar retirar, elevar as pernas por 15 min antes de calçar de novo.",
@@ -891,7 +903,7 @@ const BASE = [
  {
   "id": "itu",
   "nome": "ITU / Cistite / Pielonefrite",
-  "cat": "gu",
+  "cat": "uro",
   "cid": "N39.0",
   "sin": "infeccao urinaria disuria ardor urinar cistite pielonefrite",
   "casa": "# Cistite não complicada (mulher, não gestante):\nUso oral\n1) Nitrofurantoína 100mg --------------------- 20 cp\nTomar 1 cp VO de 6/6h por 5 dias.\nOu\n1) Fosfomicina 3g (Monuril) ------------------ 1 envelope\nDissolver em 1 copo de água e tomar à noite, com a bexiga vazia, dose única.\n2) Fenazopiridina 200mg ---------------------- 6 cp\nTomar 1 cp VO de 8/8h por 2 dias (urina fica alaranjada).\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h por 3 dias.\n\n# Gestante: Cefalexina 500mg 1 cp VO de 6/6h por 7 dias (ou fosfomicina).\n\n# Pielonefrite ambulatorial:\n1) Ciprofloxacino 500mg ---------------------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.",
@@ -1034,7 +1046,7 @@ const BASE = [
  {
   "id": "pep",
   "nome": "PEP — Profilaxia pós-exposição ao HIV",
-  "cat": "outros",
+  "cat": "toxinf",
   "cid": "Z20.6",
   "sin": "pep acidente perfurocortante violencia sexual exposicao",
   "casa": "Uso oral (por 28 dias)\n1) Tenofovir 300mg + Lamivudina 300mg -------- 30 cp\nTomar 1 cp VO 1x ao dia por 28 dias.\n2) Dolutegravir 50mg ------------------------- 30 cp\nTomar 1 cp VO 1x ao dia por 28 dias.",
@@ -1127,7 +1139,7 @@ const BASE = [
  {
   "id": "prostatite",
   "nome": "Prostatite bacteriana aguda",
-  "cat": "gu",
+  "cat": "uro",
   "cid": "N41.0",
   "sin": "prostata dor perineal",
   "casa": "Uso oral\n1) Ciprofloxacino 500mg ---------------------- 56 cp\nTomar 1 cp VO de 12/12h por 28 dias.\nOu\n1) Sulfametoxazol + Trimetoprima 800/160mg --- 56 cp\nTomar 1 cp VO de 12/12h por 28 dias.\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
@@ -1352,7 +1364,7 @@ const BASE = [
  {
   "id": "tetano",
   "nome": "Tétano / Conduta em feridas e mordeduras",
-  "cat": "outros",
+  "cat": "toxinf",
   "cid": "T14.1",
   "sin": "ferimento vacina dt antitetanica mordida cachorro",
   "casa": "# Mordedura com critério para antibiótico preemptivo (critérios na aba Feridas):\nUso oral\n1) Amoxicilina + Clavulanato 875/125mg ------- 10 cp\nTomar 1 cp VO de 12/12h por 3 a 5 dias.",
@@ -1372,7 +1384,7 @@ const BASE = [
  {
   "id": "sca",
   "nome": "Dor torácica / Síndrome coronariana aguda",
-  "cat": "emerg",
+  "cat": "cardio",
   "cid": "R07.4",
   "sin": "infarto iam sca angina dor no peito iamcsst supra",
   "casa": "",
@@ -1390,7 +1402,7 @@ const BASE = [
  {
   "id": "avc",
   "nome": "AVC isquêmico agudo",
-  "cat": "emerg",
+  "cat": "dor",
   "cid": "I63.9",
   "sin": "avc derrame deficit neurologico trombolise stroke",
   "casa": "",
@@ -1442,7 +1454,7 @@ const BASE = [
  {
   "id": "bradicardia",
   "nome": "Bradicardia sintomática",
-  "cat": "emerg",
+  "cat": "cardio",
   "cid": "R00.1",
   "sin": "bradiarritmia bloqueio av bav marcapasso",
   "casa": "",
@@ -1458,7 +1470,7 @@ const BASE = [
  {
   "id": "taquicardia",
   "nome": "Taquicardia com pulso (TSV / TV)",
-  "cat": "emerg",
+  "cat": "cardio",
   "cid": "I47.1",
   "sin": "tsv taquicardia supraventricular tv arritmia adenosina",
   "casa": "",
@@ -1475,7 +1487,7 @@ const BASE = [
  {
   "id": "fa",
   "nome": "Fibrilação atrial de alta resposta",
-  "cat": "emerg",
+  "cat": "cardio",
   "cid": "I48.9",
   "sin": "fa flutter arritmia fibrilacao atrial rvr",
   "casa": "",
@@ -1492,7 +1504,7 @@ const BASE = [
  {
   "id": "eap",
   "nome": "Insuficiência cardíaca descompensada / Edema agudo de pulmão",
-  "cat": "emerg",
+  "cat": "cardio",
   "cid": "I50.1",
   "sin": "eap edema agudo pulmao icc congestao dispneia",
   "casa": "",
@@ -1509,7 +1521,7 @@ const BASE = [
  {
   "id": "tep",
   "nome": "TEP / TVP",
-  "cat": "emerg",
+  "cat": "cardio",
   "cid": "I26.9",
   "sin": "embolia pulmonar trombose venosa profunda tev anticoagulacao",
   "casa": "# TVP ou TEP de baixo risco com alta (Hestia negativo / sPESI 0):\nUso oral\n1) Rivaroxabana 15 mg ------------------------ 42 cp\nTomar 1 cp VO de 12/12h por 21 dias, com alimento. Depois, 20 mg 1x ao dia.\nOu\n1) Apixabana 5 mg ---------------------------- (conforme duração)\nTomar 2 cp (10 mg) VO de 12/12h por 7 dias. Depois, 1 cp (5 mg) de 12/12h.",
@@ -1593,7 +1605,7 @@ const BASE = [
  {
   "id": "tce",
   "nome": "TCE leve",
-  "cat": "emerg",
+  "cat": "dor",
   "cid": "S06.0",
   "sin": "traumatismo cranioencefalico concussao batida cabeca queda",
   "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor de cabeça.",
@@ -1627,7 +1639,7 @@ const BASE = [
  {
   "id": "escorpiao",
   "nome": "Acidente escorpiônico",
-  "cat": "outros",
+  "cat": "toxinf",
   "cid": "T63.2",
   "sin": "escorpiao picada escorpionismo",
   "casa": "Uso oral (casos leves, após observação)\n1) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor.",
@@ -1644,7 +1656,7 @@ const BASE = [
  {
   "id": "ofidico",
   "nome": "Acidente ofídico",
-  "cat": "outros",
+  "cat": "toxinf",
   "cid": "T63.0",
   "sin": "cobra serpente picada jararaca cascavel coral surucucu",
   "casa": "",
@@ -1660,7 +1672,7 @@ const BASE = [
  {
   "id": "intoxicacao",
   "nome": "Intoxicação exógena — abordagem inicial",
-  "cat": "emerg",
+  "cat": "toxinf",
   "cid": "T65.9",
   "sin": "envenenamento overdose tentativa ingestao medicamento carvao",
   "casa": "",

@@ -88,12 +88,12 @@ const ELETROLITOS=[
  alertas:["Doença renal: reduzir a dose em 50% se ClCr < 30 mL/min/1,73 m² [HC]; Harrison reduz a infusão em 50–75% se a TFG estiver baixa [H22 cap. 421]. A bula contraindica na insuficiência renal: pesar risco e dosar Mg.",
   "Hipocalemia e hipocalcemia não corrigem sem repor o magnésio. [H22 cap. 56 e 421; HC cap. 83]",
   "Magnésio EV isolado na hipomagnesemia grave com hipocalcemia e hipofosfatemia pode piorar o fósforo; repor cálcio e magnésio juntos. [H22 cap. 421]",
-  "Intoxicação por magnésio: suspender a infusão; antagonista é o gluconato de cálcio EV (na hipermagnesemia, 15–30 mL a 10%). [UKKA 2023, cita dose em hipermagnesemia; bula Anvisa do gluconato de cálcio Fresenius]",
+  "Intoxicação por magnésio: suspender a infusão; antagonista é o gluconato de cálcio 10% 1–2 g (10–20 mL) EV, até 5 mL/min. [bula Anvisa do gluconato de cálcio Fresenius; H22 cap. 56: 100–200 mg de cálcio elementar em 1–2 h]",
   "Sulfato de magnésio injetável é medicamento potencialmente perigoso. [ISMP Brasil 2019]"],
  fontes:["Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP. Manole, 2024. Tabela de reposição de eletrólitos (hipomagnesemia) e cap. 83 (Hipocalemia: reposição de magnésio).",
   "Harrison's Principles of Internal Medicine, 22ª ed. Cap. 421 (Bone and Mineral Metabolism in Health and Disease), hipomagnesemia: tratamento.",
   "Bula profissional Anvisa: sulfato de magnésio 10% e 50% (VMG/Vasconcelos, aprovada em 05/09/2024; Isofarma/Halex Istar).",
-  "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, out/2023 (dose de gluconato de cálcio na hipermagnesemia).",
+  "Bula profissional Anvisa: gluconato de cálcio 10% (Fresenius) — antagonista na intoxicação por magnésio.",
   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar: lista atualizada 2019. Boletim ISMP Brasil 2019;8(1)."]},
 
 {id:"hipofosfatemia",nome:"Hipofosfatemia (P < 2,5 mg/dL)",
@@ -199,7 +199,7 @@ const ELETROLITOS=[
     "Glicemia pré-tratamento < 126 mg/dL (7,0 mmol/L): após a insulina-glicose, SG 10% a 50 mL/h por 5 h. [UKKA 2023, 16.3.3] Glicemia ≥ 200–250 mg/dL: insulina sem glicose, com glicemia próxima. [H22 cap. 56]",
     "Associar salbutamol nebulizado 10–20 mg (em cerca de 4 mL de SF, em 10 min): início em 30 min, pico em 90 min; nunca como terapia única. [UKKA 2023, 16.4.1 e 16.4.3; H22 cap. 56]",
     "Bicarbonato de sódio não de rotina; considerar só com acidose metabólica (HC: 50–100 mEq em 1–2 h). [UKKA 2023, 16.5; HC cap. 84]",
-    "Passo 3, remover o K: ciclossilicato de zircônio sódico 10 g VO 3 vezes ao dia (bula Anvisa: até 48 h; UKKA: até 72 h). [UKKA 2023, 16.6.1a; bula Anvisa do Lokelma]",
+    "Passo 3, remover o K: ciclossilicato de zircônio sódico 10 g VO 3 vezes ao dia (bula Anvisa: até 48 h, com mais 24 h — até 72 h — se o K continuar > 5,0; UKKA: até 72 h; cada sachê de 5 g tem cerca de 400 mg de sódio). [UKKA 2023, 16.6.1a; bula Anvisa do Lokelma]",
     "Furosemida 40 mg EV se a função renal permitir e o paciente não estiver hipovolêmico; não usar como terapia única. [HC cap. 84]",
     "Diálise se refratária, oligúria, doença renal avançada ou paciente em hemodiálise (em quem é o tratamento de escolha). [UKKA 2023, 18.1 e 19.6; HC cap. 84]",
     "Passo 4, monitorar (ver abaixo). Passo 5, prevenir a recorrência: revisar medicações antes de reintroduzir. [UKKA 2023, 21.1–21.4]"]}
@@ -250,6 +250,8 @@ const QT_RISCO=[
 {nome:"Claritromicina",termos:["claritromicina","klaricid"],risco:"conhecido",nota:"Também inibe CYP3A4 e eleva o nível de outros fármacos que prolongam o QT."},
 {nome:"Eritromicina",termos:["eritromicina"],risco:"conhecido",nota:"Inibe CYP3A4."},
 {nome:"Levofloxacino",termos:["levofloxacino","levaquin","tavanic"],risco:"conhecido",nota:"Fluoroquinolona."},
+{nome:"Terlipressina",termos:["terlipressina","glypressin"],risco:"conhecido",nota:"Usada na hemorragia digestiva varicosa."},
+{nome:"Procainamida",termos:["procainamida"],risco:"conhecido",nota:"Antiarrítmico."},
 {nome:"Ciprofloxacino",termos:["ciprofloxacino"],risco:"conhecido",nota:"Fluoroquinolona."},
 {nome:"Moxifloxacino",termos:["moxifloxacino","avalox"],risco:"conhecido",nota:"Fluoroquinolona."},
 {nome:"Ondansetrona",termos:["ondansetrona","zofran","vonau","nausedron"],risco:"conhecido",nota:"Efeito dependente da dose; a FDA retirou a dose única EV de 32 mg (2012)."},
@@ -258,7 +260,7 @@ const QT_RISCO=[
 {nome:"Droperidol",termos:["droperidol"],risco:"conhecido",nota:"Antiemético e sedativo; ECG antes quando possível."},
 {nome:"Clorpromazina",termos:["clorpromazina","amplictil","longactil"],risco:"conhecido",nota:"Fenotiazínico."},
 {nome:"Levomepromazina",termos:["levomepromazina","neozine"],risco:"conhecido",nota:"Fenotiazínico."},
-{nome:"Sulpirida e levossulpirida",termos:["sulpirida","equilid"],risco:"conhecido",nota:"Ambas na categoria de risco conhecido."},
+{nome:"Sulpirida e levossulpirida",termos:["sulpirida","levossulpirida","equilid"],risco:"conhecido",nota:"Ambas na categoria de risco conhecido."},
 {nome:"Metadona",termos:["metadona","mytedom"],risco:"conhecido",nota:"Risco maior em dose alta; ECG no início e nos ajustes."},
 {nome:"Amiodarona",termos:["amiodarona","ancoron","atlansil"],risco:"conhecido",nota:"Prolonga o QT, mas TdP é menos comum que com outros antiarrítmicos; evitar associar com outros desta lista."},
 {nome:"Sotalol",termos:["sotalol","sotacor"],risco:"conhecido",nota:"Antiarrítmico; ajustar à função renal."},
@@ -286,11 +288,10 @@ const QT_RISCO=[
 {nome:"Venlafaxina",termos:["venlafaxina","efexor"],risco:"possível",nota:"Categoria de risco possível."},
 {nome:"Nortriptilina",termos:["nortriptilina","pamelor"],risco:"possível",nota:"Categoria de risco possível."},
 {nome:"Imipramina",termos:["imipramina","tofranil"],risco:"possível",nota:"Categoria de risco possível."},
-{nome:"Levetiracetam",termos:["levetiracetam","keppra"],risco:"possível",nota:"Categoria de risco possível."},
 {nome:"Tizanidina",termos:["tizanidina","sirdalud"],risco:"possível",nota:"Categoria de risco possível."},
 {nome:"Granisetrona",termos:["granisetrona"],risco:"possível",nota:"Categoria de risco possível."},
 {nome:"Norfloxacino",termos:["norfloxacino"],risco:"possível",nota:"Categoria de risco possível."},
-{nome:"Ofloxacino",termos:["ofloxacino"],risco:"possível",nota:"Categoria de risco possível."},
+{nome:"Ofloxacino",termos:["ofloxacino"],risco:"conhecido",nota:"Fluoroquinolona."},
 {nome:"Ocitocina",termos:["ocitocina","syntocinon"],risco:"possível",nota:"Categoria de risco possível."},
 {nome:"Primaquina",termos:["primaquina"],risco:"possível",nota:"Categoria de risco possível."},
 {nome:"Artemeter + lumefantrina",termos:["artemeter","lumefantrina","coartem"],risco:"possível",nota:"Categoria de risco possível."},
@@ -348,4 +349,4 @@ const QT_FONTES=[
 ];
 if (typeof module!=="undefined") module.exports={ELETROLITOS,QT_RISCO,QT_FONTES};
 
-if (typeof module!=="undefined") module.exports={ELETROLITOS,QT_RISCO,QT_FONTES};
+

@@ -139,7 +139,7 @@ const PROTOCOLOS=[
    "Sem imagem avançada: não trombolisar; avaliar trombectomia até 24 h."],
    decisao:{pergunta:"Elegível para trombólise pela imagem avançada?",opcoes:[{rot:"Sim",ir:"a5"},{rot:"Não",ir:"a8"}]}},
   {id:"a9",t:"AVC leve não incapacitante",itens:[
-   "NIHSS ≤ 5 não incapacitante ou AIT de alto risco, de causa aterosclerótica presumida, em até 24–72 h: dupla antiagregação após a imagem excluir hemorragia.",
+   "NIHSS ≤ 5 não incapacitante ou AIT de alto risco, de causa aterosclerótica presumida: dupla antiagregação em até 24 h (AHA/ASA 2026; até 72 h no estudo INSPIRES) após a imagem excluir hemorragia.",
    "Clopidogrel 300–600 mg VO + AAS 160–325 mg VO de ataque; depois clopidogrel 75 mg/dia + AAS 75–100 mg/dia por 21 dias; depois um antiagregante só.",
    "Avaliar trombectomia se houver oclusão de grande vaso com piora."],
    decisao:{pergunta:"Plano definido.",opcoes:[{rot:"Ver cuidados gerais",ir:"afim"}]}},
@@ -238,14 +238,14 @@ const PROTOCOLOS=[
   {id:"h2",t:"Proteger o coração: cálcio EV",tempo:"age em até 3 min",itens:[
    "Gluconato de cálcio 10% 30 mL EV em 10 min (6,8 mmol de cálcio), com monitor.",
    "Na parada ou peri-parada: cloreto de cálcio 10% 10 mL EV em 5 min (cerca de 3 vezes mais cálcio por mL que o gluconato; de preferência acesso central, risco de necrose se extravasar).",
-   "Não passar de 5 mL/min de gluconato 10% (bula). Teto diário do gluconato de cálcio no adulto: 15 g (150 mL a 10%).",
+   "Infundir o gluconato de cálcio 10% devagar, com monitorização cardíaca (a bula americana limita a 200 mg/min, isto é, 2 mL/min; o esquema da UKKA é 30 mL em 10 min).",
    "Em uso de digoxina: cálcio com extrema cautela; se necessário, 10 mL de gluconato 10% em 100 mL de SG 5% em 20–30 min.",
    "Não correr na mesma via do bicarbonato (precipita).",
    "O cálcio não baixa o K e dura só 30–60 min: seguir logo para a redistribuição.",
    "Repetir o ECG 5–10 min após o cálcio."],
    decisao:{pergunta:"O ECG melhorou?",opcoes:[{rot:"Sim",ir:"h3"},{rot:"Não, ou voltou a piorar",ir:"h2b"}]}},
   {id:"h2b",t:"ECG ainda alterado",itens:[
-   "Repetir o gluconato de cálcio 10% 30 mL EV em 10 min (ou o cloreto de cálcio 10% 10 mL), respeitando o teto de 15 g/dia de gluconato.",
+   "Repetir o gluconato de cálcio 10% 30 mL EV em 10 min (ou o cloreto de cálcio 10% 10 mL).",
    "Iniciar em paralelo a insulina-glicose (próximo passo) e chamar nefrologia ou UTI.",
    "Bradicardia com insuficiência renal, bloqueador do nó AV e choque: pensar em síndrome BRASH (tratar o conjunto, não só o K)."],
    decisao:{pergunta:"Cálcio repetido.",opcoes:[{rot:"Deslocar o K para dentro da célula",ir:"h3"}]}},
@@ -290,7 +290,7 @@ const PROTOCOLOS=[
  fontes:[
   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, out/2023 (classificação, cálcio 30 mL de gluconato 10% ou 10 mL de cloreto 10%, insulina 10 UI + 25 g de glicose, SG 10% 50 mL/h por 5 h se glicemia < 7 mmol/L, salbutamol 10–20 mg, monitorização de K e glicemia, diálise, parada cardíaca). https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults",
   "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of CKD (Kidney Int 2024;105(4S):S117) — ponto de prática 3.6.3 (manter IECA/BRA).",
-  "Bula profissional Anvisa do gliconato de cálcio 100 mg/mL (Fresenius Kabi) — velocidade máxima 5 mL/min, limite diário 15 g; bula Anvisa do Lokelma (ciclossilicato de zircônio sódico).",
+  "Bula FDA do gluconato de cálcio injetável (velocidade máxima 200 mg/min); bula Anvisa do Lokelma (ciclossilicato de zircônio sódico).",
   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 84, Hipercalemia (ECG, furosemida, bicarbonato só com acidose, poliestirenossulfonato).",
   "Loscalzo J et al. (eds.) Harrison's Principles of Internal Medicine, 22ª ed. McGraw Hill — cap. 56, Fluid and Electrolyte Disturbances (hipercalemia: digoxina, insulina sem glicose na hiperglicemia, salbutamol).",
   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar, 2019."
@@ -488,7 +488,7 @@ const PROTOCOLOS=[
  passos:[
   {id:"e1",t:"Reconhecer e classificar",tempo:"0–15 min",itens:[
    "Gestante ≥ 20 semanas ou puérpera (principalmente na 1ª semana) com PA ≥ 140/90 mmHg: pensar em pré-eclâmpsia. Eclâmpsia pode ser a primeira manifestação.",
-   "Pré-eclâmpsia: hipertensão após 20 semanas + proteinúria (≥ 300 mg/24 h, relação proteína/creatinina ≥ 0,3 ou fita ≥ 1+) ou, mesmo sem proteinúria, disfunção de órgão (plaquetopenia, disfunção hepática ou renal, edema pulmonar, iminência de eclâmpsia) ou comprometimento placentário.",
+   "Pré-eclâmpsia: hipertensão após 20 semanas + proteinúria (≥ 300 mg/24 h, relação proteína/creatinina ≥ 0,3 ou fita ≥ 2+ — RBEHG 2023; o MS 2022 aceita 1+) ou, mesmo sem proteinúria, disfunção de órgão (plaquetopenia, disfunção hepática ou renal, edema pulmonar, iminência de eclâmpsia) ou comprometimento placentário.",
    "Sinais de gravidade: PA ≥ 160 e/ou 110 mmHg persistente por 15 min; iminência de eclâmpsia (cefaleia, fotofobia, escotomas, turvação visual, dor epigástrica ou em hipocôndrio direito, náuseas e vômitos, hiper-reflexia); eclâmpsia; HELLP; oligúria (< 500 mL/24 h); creatinina ≥ 1,0 mg/dL (RBEHG; MS: ≥ 1,2); edema pulmonar; dor torácica.",
    "Emergência hipertensiva (crise com sintomas): não esperar os 15 min; sulfato de magnésio antes do anti-hipertensivo.",
    "Decúbito lateral esquerdo, acesso venoso, sonda vesical para medir diurese, exames: hemograma com plaquetas, AST/ALT, LDH, bilirrubinas, creatinina, esfregaço (esquizócitos).",
@@ -515,7 +515,7 @@ const PROTOCOLOS=[
    "Meta: reduzir 15–25%, com PAS entre 140 e 150 e PAD entre 90 e 100 mmHg. Evitar queda brusca (AVC materno, sofrimento fetal). Hipotensão: elevar os membros inferiores e hidratar com cautela.",
    "Hidralazina EV: diluir 1 ampola (20 mg/mL) em 19 mL de água destilada = 1 mg/mL; 5 mg EV e repetir 5 mg a cada 20 min; teto 30 mg (RBEHG 2023, MS 2022). A DBHA 2025 usa 5 mg a cada 20–30 min até 15 mg; a ACOG, 5–10 mg até 20 mg antes de trocar de fármaco.",
    "Ou nifedipino de liberação imediata 10 mg VO, repetir 10 mg a cada 20–30 min; teto 30 mg (RBEHG, MS). Não mastigar, não usar sublingual; o retard não serve para a crise. Boa opção sem acesso venoso.",
-   "Labetalol EV (primeira linha da ACOG, pouco disponível no Brasil): 20 mg EV em 2 min; se a PA seguir grave após 10 min, 40 mg; depois 80 mg; teto 300 mg em 24 h. Evitar na asma, bradicardia e insuficiência cardíaca.",
+   "Labetalol EV (primeira linha da ACOG, pouco disponível no Brasil): 20 mg EV em 2 min; se a PA seguir grave após 10 min, 40 mg; depois 80 mg; dose cumulativa máxima de 300 mg. Evitar na asma, bradicardia e insuficiência cardíaca.",
    "Edema agudo de pulmão ou hipertensão refratária: nitroglicerina EV ou nitroprussiato (50 mg + 248 mL de SG 5% = 200 mcg/mL; 0,5–10 mcg/kg/min, teto de 10 mcg/kg/min por no máximo 10 min), nitroprussiato por no máximo 4 h (cianeto fetal). Furosemida no edema pulmonar.",
    "IECA, BRA e atenolol são contraindicados na gestação."],
    decisao:{pergunta:"A PA ficou abaixo de 160/110 mmHg?",opcoes:[{rot:"Sim",ir:"e5"},{rot:"Não, após as doses máximas",ir:"e4b"}]}},
@@ -566,7 +566,7 @@ const PROTOCOLOS=[
   "Peraçoli JC et al. Pré-eclâmpsia – Protocolo 03, 2023. Rede Brasileira de Estudos sobre Hipertensão na Gravidez (RBEHG) — critérios de gravidade, meta de PA, hidralazina 5 mg a cada 20 min até 30 mg, nifedipino 10 mg a cada 20–30 min até 30 mg, hidralazina em infusão, nitroprussiato, esquemas de Zuspan e Pritchard com diluições, monitoração, gluconato de cálcio, dose com creatinina ≥ 1,0, recorrência, momento e via de parto, corticoide. https://rbehg.com.br/wp-content/uploads/2023/08/PROTOCOLO-2023-FINAL.pdf",
   "Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco. Brasília, 2022 — cap. 11 (pré-eclâmpsia com sinais de gravidade, quadros 2 e 3, HELLP e quadro 4, eclâmpsia: os dez passos, quadros 7 e 8 do sulfato de magnésio, puerpério).",
   "Sociedade Brasileira de Cardiologia. Diretriz Brasileira de Hipertensão Arterial – 2025, cap. 10 (Arq Bras Cardiol 2025;122(9)) — labetalol indisponível no Brasil, hidralazina 5 mg a cada 20–30 min até 15 mg, nifedipino sublingual proscrito, nitroprussiato por até 4 h. https://www.scielo.br/j/abc/a/BXT7Vk4B9VKQnJFsJhgJ4Hn/?lang=pt",
-  "ACOG Committee Opinion 767. Emergent Therapy for Acute-Onset, Severe Hypertension During Pregnancy and the Postpartum Period (Obstet Gynecol 2019;133:e174) — tratar em 30–60 min; labetalol 20–40–80 mg a cada 10 min (máx. 300 mg/24 h); hidralazina 5–10 mg.",
+  "ACOG Committee Opinion 767. Emergent Therapy for Acute-Onset, Severe Hypertension During Pregnancy and the Postpartum Period (Obstet Gynecol 2019;133:e174) — tratar em 30–60 min; labetalol 20–40–80 mg a cada 10 min (dose cumulativa máxima de 300 mg); hidralazina 5–10 mg.",
   "ACOG Practice Bulletin 222. Gestational Hypertension and Preeclampsia (Obstet Gynecol 2020;135:e237) — critérios diagnósticos e de gravidade.",
   "Bula profissional Anvisa do sulfato de magnésio 50% — dose diária máxima, velocidade de infusão, contraindicação na miastenia grave; bula Anvisa do gluconato de cálcio 10%.",
   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 35, Emergências hipertensivas (hiper-reflexia na gestante e puérpera; pré-eclâmpsia como emergência hipertensiva assintomática)."

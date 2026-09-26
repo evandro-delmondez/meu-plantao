@@ -1,5 +1,23 @@
 # Histórico de versões
 
+## 1.4.0 — 2026-09-26
+- **PCR guiada** (Sala vermelha → PCR, AHA 2025):
+  - cronômetro geral e ciclos de 2 min com aviso para checar o ritmo;
+  - tempo desde a última adrenalina (amarelo aos 3 min, vermelho aos 5);
+  - contagem de choques e sugestão do próximo passo;
+  - metrônomo de 110/min, 5H e 5T;
+  - registro com horário para a evolução.
+- **8 protocolos em fluxo, com decisões:** IAM com supra, AVC, cetoacidose, hipercalemia, anafilaxia, crise hipertensiva, pré-eclâmpsia e hemorragia pós-parto.
+- **Eletrólitos:** reposição de K, Mg, P e Ca, e hipercalemia aguda.
+- **Alerta de QT na receita:** 88 remédios da lista CredibleMeds, com busca por palavra inteira.
+- **Checklist "Não esquecer" nas 98 condutas.**
+- **"Onde estou hoje: UPA pública / Particular":** selo RENAME nos remédios da conduta e filtro "Só RENAME" nas fichas.
+- **13 categorias por especialidade** (ex.: Cardio / Vascular, Dor / Neuro / Ortop, Otorrino / Oftalmo, Toxico / Infecto). A organização que você personalizou é mantida.
+- **Condutas atualizadas:**
+  - anafilaxia (RCUK 2021, WAO 2020, AAAAI 2023): corticoide deixa de ser rotina e a observação passa a depender do caso;
+  - pré-eclâmpsia (RBEHG 2023, MS 2022).
+- **Conferência independente:** protocolos, eletrólitos, QT e PCR foram conferidos, e as correções apontadas foram aplicadas antes da publicação.
+
 ## 1.3.0 — 2026-09-26
 - **Sala vermelha, parte 1:**
   - bomba de infusão: 12 drogas (vasoativas, vasodilatadores, amiodarona, sedação e analgesia), dose ↔ mL/h nos dois sentidos, diluições prontas ou próprias, tabela de doses e alerta fora da faixa;

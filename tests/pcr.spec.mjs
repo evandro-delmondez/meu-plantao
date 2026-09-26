@@ -39,3 +39,17 @@ test("PCR: cronômetro, ciclos de 2 min, adrenalina, choques, antiarrítmico e r
   expect(await page.evaluate(() => Object.values(localStorage).join(" "))).not.toContain("Choque 3");
   expect(erros).toEqual([]);
 });
+
+test("PCR: amiodarona e lidocaína têm contagem própria; adrenalina repetida a cada 3–5 min no não chocável", async ({ page, context }) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.goto(PAINEL); await aba(page, "pcr");
+  await page.click('[data-pcr="iniciar"]'); await page.click('[data-pcr="naochoc"]');
+  await expect(page.locator("#pcrMsg")).toContainText("o quanto antes");
+  await page.click('[data-pcr="adr"]');
+  await expect(page.locator("#pcrMsg")).toContainText("a cada 3–5 min");
+  await page.click('[data-pcr="lido"]'); await page.click('[data-pcr="amio"]'); await page.click('[data-pcr="amio"]'); await page.click('[data-pcr="amio"]');
+  await page.click("#pcrCopiar");
+  const txt = await page.evaluate(() => navigator.clipboard.readText());
+  expect(txt).toContain("Amiodarona 300 mg"); expect(txt).toContain("Amiodarona 150 mg");
+  expect(txt.match(/Amiodarona/g).length).toBe(2);
+});

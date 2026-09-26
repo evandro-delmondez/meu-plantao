@@ -110,7 +110,7 @@ function renderProtocolo(){
 // tudo só na memória da aba; os tempos usam o relógio real para não atrasar com a tela em segundo plano
 const PCR_FONTES=["AHA. 2025 Guidelines for CPR and ECC — Part 9: Adult Advanced Life Support. https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-advanced-life-support","AHA 2025 Adult Cardiac Arrest Algorithm. https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Algorithms/Algorithm-ACLS-CA-250527.pdf"];
 const PCR_HT=["Hipovolemia","Hipóxia","H+ (acidose)","Hipo/hipercalemia","Hipotermia","Pneumotórax hipertensivo","Tamponamento cardíaco","Toxinas","Trombose pulmonar","Trombose coronária"];
-const pcr={ini:null,cicloIni:null,adr:null,nAdr:0,nChq:0,nAntiarr:0,ritmo:null,va:false,fim:null,log:[],ht:new Set(),metro:false,timer:null,lock:null,audio:null,beep:0,avisou:false};
+const pcr={ini:null,cicloIni:null,adr:null,nAdr:0,nChq:0,nAmio:0,nLido:0,ritmo:null,va:false,fim:null,log:[],ht:new Set(),metro:false,timer:null,lock:null,audio:null,beep:0,avisou:false};
 const mmss=ms=>{const s=Math.max(0,Math.floor(ms/1000));return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")};
 const hora=d=>d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
 function pcrReg(t){const agora=Date.now();pcr.log.push({h:hora(new Date(agora)),rel:pcr.ini?mmss(agora-pcr.ini):"00:00",t});renderPcrLog()}
@@ -124,10 +124,10 @@ function pcrProxima(){
   else if(pcr.ritmo==="choc"){
     partes.push("Ritmo chocável: choque e reinicie a RCP imediatamente.");
     if(pcr.nChq>=2&&!pcr.nAdr) partes.push("Após o 2º choque: adrenalina 1 mg EV/IO.");
-    if(pcr.nChq>=3&&pcr.nAntiarr===0) partes.push("Após o 3º choque: amiodarona 300 mg (ou lidocaína 1–1,5 mg/kg).");
-    else if(pcr.nChq>=5&&pcr.nAntiarr===1) partes.push("FV/TV persistente: 2ª dose de amiodarona 150 mg (ou lidocaína 0,5–0,75 mg/kg).");
+    if(pcr.nChq>=3&&!pcr.nAmio&&!pcr.nLido) partes.push("Após o 3º choque: amiodarona 300 mg (ou lidocaína 1–1,5 mg/kg).");
+    else if(pcr.nChq>=5&&pcr.nAmio+pcr.nLido===1) partes.push("FV/TV persistente: 2ª dose de amiodarona 150 mg (ou lidocaína 0,5–0,75 mg/kg).");
   } else {
-    partes.push("Ritmo não chocável: RCP e adrenalina 1 mg o quanto antes.");
+    partes.push(pcr.nAdr?"Ritmo não chocável: RCP e adrenalina 1 mg a cada 3–5 min.":"Ritmo não chocável: RCP e adrenalina 1 mg o quanto antes.");
   }
   partes.push(pcr.va?"Via aérea avançada: 1 ventilação a cada 6 s, compressões contínuas; use a capnografia.":"Sem via aérea avançada: 30 compressões : 2 ventilações.");
   return partes.join(" ");
@@ -150,8 +150,8 @@ function pcrAcao(a){
   if(a==="choc"||a==="naochoc"){pcr.ritmo=a==="choc"?"choc":"nao";pcr.cicloIni=agora;pcr.avisou=false;pcrReg(a==="choc"?"Ritmo chocável (FV/TV sem pulso).":"Ritmo não chocável (AESP/assistolia).")}
   if(a==="choque"){pcr.nChq++;pcr.cicloIni=agora;pcr.avisou=false;pcrReg(`Choque ${pcr.nChq} (bifásico: energia do fabricante, 120–200 J; monofásico 360 J). RCP reiniciada.`)}
   if(a==="adr"){pcr.nAdr++;pcr.adr=agora;pcrReg(`Adrenalina 1 mg EV/IO (dose ${pcr.nAdr}).`)}
-  if(a==="amio"){pcr.nAntiarr++;pcrReg(pcr.nAntiarr===1?"Amiodarona 300 mg EV/IO.":"Amiodarona 150 mg EV/IO.")}
-  if(a==="lido"){pcr.nAntiarr++;pcrReg(pcr.nAntiarr===1?"Lidocaína 1–1,5 mg/kg EV/IO.":"Lidocaína 0,5–0,75 mg/kg EV/IO.")}
+  if(a==="amio"){if(pcr.nAmio>=2){toast("Amiodarona: já foram as 2 doses do algoritmo");return}pcr.nAmio++;pcrReg(pcr.nAmio===1?"Amiodarona 300 mg EV/IO.":"Amiodarona 150 mg EV/IO.")}
+  if(a==="lido"){if(pcr.nLido>=2){toast("Lidocaína: já foram as 2 doses do algoritmo");return}pcr.nLido++;pcrReg(pcr.nLido===1?"Lidocaína 1–1,5 mg/kg EV/IO.":"Lidocaína 0,5–0,75 mg/kg EV/IO.")}
   if(a==="va"){pcr.va=true;pcrReg("Via aérea avançada instalada; capnografia.")}
   if(a==="rce"){pcr.fim="Retorno da circulação espontânea: cuidados pós-PCR (oxigenação, PAM, ECG de 12 derivações, controle de temperatura).";pcrReg("Retorno da circulação espontânea (RCE).");pcrParar()}
   if(a==="encerrar"){pcr.fim="Esforços de reanimação encerrados.";pcrReg("Esforços de reanimação encerrados.");pcrParar()}
@@ -177,4 +177,4 @@ function renderPcr(){
 function pcrTexto(){const ht=[...pcr.ht].map(i=>PCR_HT[i]);return "PCR — registro:\n"+pcr.log.map(e=>`${e.h} (${e.rel}) ${e.t}`).join("\n")+(ht.length?"\nCausas reversíveis avaliadas: "+ht.join(", ")+".":"")+`\nTotal: ${pcr.nChq} choque(s), ${pcr.nAdr} dose(s) de adrenalina.`}
 $("#pcrMetro").onclick=()=>{pcr.metro=!pcr.metro;if(pcr.metro)pcrSom(1200,.04);renderPcr()};
 $("#pcrCopiar").onclick=e=>{if(!pcr.log.length){toast("Nada registrado ainda");return}copy(pcrTexto(),e.currentTarget)};
-$("#pcrZerar").onclick=()=>{if(pcr.ini&&!confirm("Zerar o cronômetro e o registro desta PCR?"))return;pcrParar();Object.assign(pcr,{ini:null,cicloIni:null,adr:null,nAdr:0,nChq:0,nAntiarr:0,ritmo:null,va:false,fim:null,log:[],ht:new Set(),avisou:false});$("#pcrTotal").textContent="00:00";$("#pcrCiclo").textContent="2:00";$("#pcrBarra").style.width="0";$("#pcrAdr").className="";renderPcr()};
+$("#pcrZerar").onclick=()=>{if(pcr.ini&&!confirm("Zerar o cronômetro e o registro desta PCR?"))return;pcrParar();Object.assign(pcr,{ini:null,cicloIni:null,adr:null,nAdr:0,nChq:0,nAmio:0,nLido:0,ritmo:null,va:false,fim:null,log:[],ht:new Set(),avisou:false});$("#pcrTotal").textContent="00:00";$("#pcrCiclo").textContent="2:00";$("#pcrBarra").style.width="0";$("#pcrAdr").className="";renderPcr()};

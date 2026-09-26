@@ -113,7 +113,7 @@
         <div class="pcrt"><small>Adrenalina</small><b id="pcrAdr">—</b></div>
         <div class="pcrt"><small>Choques</small><b id="pcrChq">0</b></div>
       </div>
-      <p class="pcrmsg" id="pcrMsg">Toque em Iniciar PCR quando começar as compressões.</p>
+      <div class="pcrmsg" id="pcrMsg"></div>
       <div class="pcrbtns" id="pcrBtns"></div>
       <div class="actions"><button class="btn" id="pcrMetro" aria-pressed="false">♪ Metrônomo 110/min</button><button class="btn" id="pcrCopiar">Copiar registro</button><button class="btn danger" id="pcrZerar">Zerar</button></div>
       <details class="fbox"><summary>5H e 5T — causas reversíveis</summary><div class="hts" id="pcrHT"></div></details>
@@ -252,6 +252,8 @@
         <div class="fq" id="frReTipoW" hidden><span class="fql">Profilaxia anterior</span><div class="opts" data-g="retipo"></div></div>
         <div class="fq"><span class="fql">Vacinação antitetânica</span><div class="opts" data-g="vac"></div></div>
         <div class="fq"><span class="fql">Risco do ferimento para tétano</span><div class="opts" data-g="risco"></div><p class="note">Alto risco: profundo ou superficial sujo, com corpo estranho ou tecido desvitalizado, queimadura, ferida puntiforme (mordeduras costumam se enquadrar).</p></div>
+        <div class="fq"><span class="fql">Precisa de sutura?</span><div class="opts" data-g="sutura"></div>
+          <label class="f" id="frRegW" hidden>Região<select class="inp" id="frRegiao"></select></label></div>
         <label class="check"><input type="checkbox" id="frEsp"> Situação especial: imunodeprimido, desnutrido grave, idoso ou cuidados posteriores com a ferida inadequados</label>
         <details class="fbox" id="frAbW"><summary>Mordedura: critérios para antibiótico preemptivo</summary>
           <div class="abl" id="frAb"></div>
@@ -437,7 +439,6 @@
     <div class="panel card">
       <div class="calc-top">
         <div class="peso"><input id="peso" type="number" min="1" max="250" step="0.5" value="70" inputmode="decimal" aria-label="Peso em kg"><span>kg</span></div>
-        <div class="peso"><input id="scq" type="number" min="0" max="100" step="1" value="20" inputmode="decimal" aria-label="Superfície corporal queimada em %" style="width:96px;font-size:22px"><span>% SCQ<br><small style="font-weight:400">(queimaduras)</small></span></div>
         <div class="seg" role="group" aria-label="Faixa">
           <button data-modo="adulto" aria-pressed="true">Adulto</button>
           <button data-modo="ped" aria-pressed="false">Pediatria</button>

@@ -59,3 +59,12 @@ test("anestésico: respeita mg/kg e teto da bula", async ({ page }) => {
   await page.selectOption("#anDroga", "l2"); await expect(page.locator("#anRes")).toContainText("90 mg = 4,5 mL");
   expect(await semRolagemLateral(page)).toBe(true);
 });
+
+test("sutura entra no texto da evolução com fio e retirada da região", async ({ page }) => {
+  await page.click('[data-g="sutura"] [data-v="primaria"]');
+  await page.selectOption("#frRegiao", "face");
+  await expect(page.locator("#frOut")).toHaveValue(/Sutura primária \(face\): náilon 5-0 ou 6-0; retirada dos pontos em 3–5 dias\./);
+  await page.click('[data-g="sutura"] [data-v="nao"]');
+  await expect(page.locator("#frRegW")).toBeHidden();
+  await expect(page.locator("#frOut")).toHaveValue(/Sem indicação de sutura: curativo\./);
+});

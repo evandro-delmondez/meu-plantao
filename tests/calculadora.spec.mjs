@@ -29,10 +29,19 @@ test("correções da conferência: ivermectina pela bula, Parkland 2–4 e tempo
   for (const [p, cp] of [[23, "0,5 cp"], [30, "1 cp"], [36, "1,5 cp"], [52, "2 cp"], [70, "2,5 cp"], [90, "3 cp"]]) { await peso(p); await expect(iver.locator(".ml"), `${p} kg`).toHaveText(cp); }
   await peso(12); await expect(iver.locator(".ml")).toHaveText("Não indicado");
   await page.click('[data-modo="ped"]'); await peso(20);
-  await page.fill("#scq", "10"); await page.dispatchEvent("#scq", "input");
+  await page.locator(".drug", { hasText: "Parkland pediátrico" }).locator("[data-scq]").fill("10");
   await expect(page.locator(".drug", { hasText: "Parkland pediátrico" }).locator(".ml")).toHaveText("400–800 mL/24h");
   // fenitoína 20 mg/kg × 20 kg = 400 mg a 1 mg/kg/min (20 mg/min) → ≥ 20 min
   await expect(page.locator(".drug", { hasText: "Fenitoína" })).toContainText("Infundir em ≥ 20 min");
   await expect(page.locator(".drug", { hasText: "Paracetamol" }).locator(".mg")).not.toContainText("gotas");
   expect(erros).toEqual([]);
+});
+
+test("superfície queimada só aparece no Parkland e começa vazia", async ({ page }) => {
+  await abrir(page); await aba(page, "calculadora");
+  await expect(page.locator("#scq")).toHaveCount(0);
+  const park = page.locator(".drug", { hasText: "Parkland" });
+  await expect(park.locator("[data-scq]")).toHaveValue("");
+  await park.locator("[data-scq]").fill("10"); 
+  await expect(page.locator(".drug", { hasText: "Parkland" }).locator(".ml")).toContainText("mL/24h");
 });

@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.4.1 — 2026-09-26
+- PCR:
+  - metrônomo corrigido: toca mesmo antes de iniciar e o botão pulsa no ritmo;
+  - próximos passos em lista numerada, com aviso nos últimos 15 s do ciclo.
+- Doses por peso: a % de superfície queimada aparece só no Parkland e começa vazia.
+- Feridas e mordeduras: "Precisa de sutura?" com região; o fio e o prazo de retirada entram no texto da evolução.
+
 ## 1.4.0 — 2026-09-26
 - **PCR guiada** (Sala vermelha → PCR, AHA 2025):
   - cronômetro geral e ciclos de 2 min com aviso para checar o ritmo;

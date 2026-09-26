@@ -7,6 +7,7 @@ const FR_FONTES=[
  "Forsch RT, Little SH, Williams C. Laceration Repair: A Practical Approach. Am Fam Physician 2017;95(10):628-636 (irrigação, janela de fechamento, mordedura de gato)."
 ];
 const FR_OPTS={
+ sutura:[["nao","Não (curativo)"],["primaria","Sutura primária"],["retardada","Fechamento retardado"]],
  animal:[["nao","Nenhum"],["caogato","Cão ou gato"],["morcego","Morcego ou silvestre (inclui capivara)"],["herb","Herbívoro de produção"],["roedor","Roedor urbano ou coelho"]],
  obs:[["sim","Sim, sem sinais de raiva"],["nao","Não: morto, desaparecido ou com sinais"]],
  exp:[["indireto","Contato indireto"],["leve","Leve"],["grave","Grave"]],
@@ -19,7 +20,9 @@ const FR_EXP={indireto:"Tocar ou alimentar o animal, lambedura em pele íntegra,
  grave:"Ferimento em mucosa, no segmento cefálico, nas mãos ou nos pés; ferimentos múltiplos ou extensos."};
 const FR_AB=[["imuno","Imunocomprometido"],["asplenia","Asplênico"],["hepato","Hepatopatia avançada"],["edema","Edema prévio ou resultante na área"],["mod","Lesão moderada a grave, sobretudo em mão ou face"],["perio","Pode ter atingido periósteo ou cápsula articular"],["gato","Mordedura de gato"]];
 // respostas sobre o ferimento são do paciente: só na memória (regra 5). Versões antigas salvavam em rxp_fr_v1.
-let fr={animal:"nao",obs:"sim",exp:"leve",retipo:"pep90",vac:"incerta",risco:"baixo"};
+let fr={animal:"nao",obs:"sim",exp:"leve",retipo:"pep90",vac:"incerta",risco:"baixo",sutura:null};
+// fio e retirada por região: mesma tabela da tela (Forsch RT et al. Am Fam Physician 2017;95:628)
+const FR_SUTURA={face:["Face","5-0 ou 6-0","3–5 dias"],couro:["Couro cabeludo","3-0 ou 4-0","7–10 dias"],bracos:["Braços","4-0","7–10 dias"],tronco:["Tronco","4-0","10–14 dias"],pernas:["Pernas","4-0","10–14 dias"],maos:["Mãos e pés","4-0 ou 5-0","10–14 dias"],palmas:["Palmas e plantas","3-0","14–21 dias"]};
 try{localStorage.removeItem("rxp_fr_v1")}catch(e){}
 let frManual=false;
 const fmtUI=n=>Math.round(n).toLocaleString("pt-BR");
@@ -96,6 +99,8 @@ function frTexto(R,T,A){
   if(R) L.push("- Profilaxia antirrábica: "+R.t+(R.itens.length?(/[.:]$/.test(R.t)?" ":": ")+R.itens.join(" "):""));
   L.push("- Profilaxia antitetânica: "+T.texto);
   if(A) L.push("- Antibiótico: "+A.t+(A.alerta?" — "+A.itens.slice(1).join(" "):"."));
+  if(fr.sutura==="nao") L.push("- Sem indicação de sutura: curativo.");
+  else if(fr.sutura){const r=FR_SUTURA[$("#frRegiao").value]||FR_SUTURA.face;L.push(`- ${fr.sutura==="primaria"?"Sutura primária":"Fechamento primário retardado"} (${r[0].toLowerCase()}): náilon ${r[1]}; retirada dos pontos em ${r[2]}.`)}
   return L.join("\n");
 }
 function renderFer(){
@@ -110,6 +115,8 @@ function renderFer(){
   $("#frReW").hidden=a==="nao"||a==="roedor";
   $("#frReTipoW").hidden=$("#frReW").hidden||!$("#frRe").checked;
   $("#frExpHint").textContent=FR_EXP[fr.exp]||"";
+  $("#frRegW").hidden=!fr.sutura||fr.sutura==="nao";
+  if(!$("#frRegiao").children.length){$("#frRegiao").innerHTML=Object.entries(FR_SUTURA).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join("");$("#frRegiao").onchange=()=>{frManual=false;renderFer()}}
   if(!$("#frAb").children.length){
     $("#frAb").innerHTML=FR_AB.map(([k,l])=>`<label class="check"><input type="checkbox" value="${k}"> ${esc(l)}</label>`).join("");
     $("#frAb").querySelectorAll("input").forEach(i=>i.onchange=()=>{frManual=false;renderFer()});
@@ -157,4 +164,4 @@ $("#frEsp").addEventListener("change",()=>{frManual=false;renderFer()});
 $("#frRe").addEventListener("change",()=>{frManual=false;renderFer()});
 $("#frOut").addEventListener("input",()=>{frManual=true;grow($("#frOut"))});
 $("#frCopy").onclick=e=>copy($("#frOut").value,e.currentTarget);
-$("#frClear").onclick=()=>{fr={animal:"nao",obs:"sim",exp:"leve",retipo:"pep90",vac:"incerta",risco:"baixo"};$("#frPeso").value="";$("#frIdade").value="";$("#frEsp").checked=false;$("#frRe").checked=false;$("#frAb").querySelectorAll("input").forEach(i=>i.checked=false);frManual=false;renderFer();toast("Limpo")};
+$("#frClear").onclick=()=>{fr={animal:"nao",obs:"sim",exp:"leve",retipo:"pep90",vac:"incerta",risco:"baixo",sutura:null};$("#frPeso").value="";$("#frIdade").value="";$("#frEsp").checked=false;$("#frRe").checked=false;$("#frAb").querySelectorAll("input").forEach(i=>i.checked=false);frManual=false;renderFer();toast("Limpo")};

@@ -7,7 +7,7 @@ function calcRow(x,p){
   if(x.max){if(hi>x.max){capped=true} lo=Math.min(lo,x.max);hi=Math.min(hi,x.max)}
   let big,small="",obs=x.obs||"";
   const rng=(a,b,f=fmt)=>Math.abs(a-b)<1e-9?f(a):f(a)+"–"+f(b);
-  if(x.parkland){const scq=parseFloat(String($("#scq").value).replace(",","."))||0;const a=x.parkland[0]*p*scq,b=x.parkland[1]*p*scq;return `<div class="drug"><b>${esc(x.nome)}</b><span class="rule">${esc(x.regra)} (SCQ ${fmt(scq)}%)</span><span class="res"><span class="ml">${rng(a,b)} mL/24h</span><span class="mg">1ª 8h: ${rng(a/2,b/2)} mL</span></span></div>`}
+  if(x.parkland){const scq=parseFloat(String(calcScq).replace(",","."));if(!(scq>0))return `<div class="drug"><b>${esc(x.nome)}</b><span class="rule">${esc(x.regra)}</span><label class="scqi">% SCQ <input class="inp" type="number" inputmode="decimal" min="1" max="100" data-scq placeholder="queimadura"></label></div>`;const a=x.parkland[0]*p*scq,b=x.parkland[1]*p*scq;return `<div class="drug"><b>${esc(x.nome)}</b><span class="rule">${esc(x.regra)} (SCQ ${fmt(scq)}%)</span><label class="scqi">% SCQ <input class="inp" type="number" inputmode="decimal" min="1" max="100" data-scq value="${esc(String(calcScq))}"></label><span class="res"><span class="ml">${rng(a,b)} mL/24h</span><span class="mg">1ª 8h: ${rng(a/2,b/2)} mL</span></span></div>`}
   if(x.jatos){big=lo+" jatos"}
   else if(x.fixedtxt){big=x.fixedtxt}
   else if(x.ui){big=rng(lo/x.conc,hi/x.conc)+" mL";small=rng(lo,hi)+" UI"}
@@ -39,5 +39,7 @@ function renderCalc(){
 }
 $("#peso").value=ui.peso;
 $("#peso").addEventListener("input",()=>{ui.peso=$("#peso").value;saveUI();renderCalc()});
-$("#scq").addEventListener("input",renderCalc);
+// % de superfície queimada: só nas linhas de Parkland, vazio por padrão (só na memória)
+let calcScq="";
+$("#cgroups").addEventListener("input",e=>{if(e.target.matches("[data-scq]")){calcScq=e.target.value;renderCalc();const i=$("#cgroups [data-scq]");if(i){i.focus()}}});
 $$("[data-modo]").forEach(b=>b.onclick=()=>{ui.modo=b.dataset.modo;if(ui.modo==="ped"&&parseFloat($("#peso").value)>=50){$("#peso").value=20;ui.peso=20}if(ui.modo==="adulto"&&parseFloat($("#peso").value)<40){$("#peso").value=70;ui.peso=70}saveUI();renderCalc()});

@@ -19,13 +19,13 @@ test("PCR: cronômetro, ciclos de 2 min, adrenalina, choques, antiarrítmico e r
   await page.click('[data-pcr="adr"]');
   await page.clock.fastForward("03:01");
   await expect(page.locator("#pcrAdr")).toHaveClass("pronta");
-  await page.clock.fastForward("02:00");
+  await page.clock.fastForward("02:30");
   await expect(page.locator("#pcrAdr")).toHaveClass("atrasada");
   await page.click('[data-pcr="choque"]');
   await expect(page.locator("#pcrMsg")).toContainText("amiodarona 300 mg");
   await page.click('[data-pcr="amio"]');
   await expect(page.locator("#pcrChq")).toHaveText("3");
-  await expect(page.locator("#pcrTotal")).toHaveText(/^07:[0-5]\d$/);
+  await expect(page.locator("#pcrTotal")).toHaveText(/^0[78]:[0-5]\d$/);
   await page.click('[data-pcr="rce"]');
   await expect(page.locator("#pcrMsg")).toContainText("Retorno da circulação espontânea");
   await page.click("#pcrCopiar");

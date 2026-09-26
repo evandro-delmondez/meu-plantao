@@ -395,15 +395,20 @@ const BASE = [
   "cat": "emerg",
   "cid": "T78.2",
   "sin": "choque anafilatico adrenalina edema glote",
-  "casa": "Uso oral (alta após observação)\n1) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.\n2) Loratadina 10mg --------------------------- 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias.",
-  "unidade": "1) Adrenalina 1 mg/mL: 0,01 mg/kg IM (máx. 0,5mg = 0,5 mL no adulto) no vasto lateral da coxa.\n   Repetir a cada 5–15 min se necessário.\n2) Decúbito dorsal com MMII elevados (sentado se desconforto respiratório).\n3) O2 em máscara com reservatório 10–15 L/min.\n4) SF 0,9% 1–2 L EV rápido (20 mL/kg) se hipotensão.\n5) Broncoespasmo persistente: Salbutamol 4–8 jatos ou nebulização.\n6) Adjuvantes (não substituem a adrenalina):\n   Prometazina 50 mg somente IM profunda\n   Metilprednisolona 125mg EV ou Hidrocortisona 200mg EV.\n7) Refratária: adrenalina em infusão contínua (0,05–0,5 mcg/kg/min) e UTI.",
-  "orient": "- Observação mínima de 6–12h.\n- Orientar evitar o agente e procurar alergista.",
+  "casa": "Uso oral (alta após observação)\n1) Loratadina 10mg --------------------------- 5 cp\nTomar 1 cp VO 1x ao dia, se coceira ou urticária.",
+  "unidade": "1) Adrenalina 1 mg/mL: 0,01 mg/kg IM no vasto lateral da coxa (máx. 0,5 mg = 0,5 mL no adulto; 0,3 mg na criança).\n   Repetir a cada 5 min se não houver melhora.\n2) Deitado com as pernas elevadas (sentado se a falta de ar piorar deitado; gestante em decúbito lateral esquerdo). Não levantar bruscamente.\n3) O2 em máscara com reservatório 10–15 L/min.\n4) SF 0,9% 20 mL/kg EV rápido se hipotensão.\n5) Broncoespasmo persistente: Salbutamol 4–8 jatos ou nebulização.\n6) Refratária (sem melhora após 2 doses IM): adrenalina em infusão — 1 mg em 100 mL de SF 0,9% (10 mcg/mL) a 0,5–1 mL/kg/h, em via exclusiva (pode ser periférica), e UTI. Manter a adrenalina IM a cada 5 min até a infusão começar.\n7) Em uso de betabloqueador e sem resposta: glucagon 1 mg EV, repetir a cada 5 min se preciso.\n8) Depois de estabilizado (não substituem a adrenalina):\n   - Anti-histamínico só para sintomas de pele: loratadina 10 mg VO; sem via oral, prometazina 25–50 mg IM profunda (máx. 100 mg/dia).\n   - Corticoide não é rotina: considerar se asma, broncoespasmo persistente ou reação refratária — hidrocortisona 200 mg EV ou metilprednisolona 1–2 mg/kg EV (máx. 125 mg).",
+  "orient": "- Observação após a melhora: 2 h se boa resposta a uma dose de adrenalina e sintomas resolvidos; 6 h se precisou de 2 doses ou já teve reação bifásica; 12 h se reação grave, asma grave, chegada tardia ou alta à noite.\n- Antes da alta: levantar e checar tontura ou queda da PA ao ficar em pé.\n- Evitar o agente causador; encaminhar ao alergista; adrenalina autoinjetável, se disponível.\n- Retorno imediato se falta de ar, rouquidão, inchaço na boca ou garganta, tontura ou desmaio.",
   "rev": [
+   "Atualizado (RCUK 2021, WAO 2020, AAAAI 2023): corticoide deixa de ser rotina; observação estratificada em 2, 6 ou 12 h; infusão periférica de adrenalina na refratária; glucagon no betabloqueado; prednisona na alta retirada; prometazina 25–50 mg (máx. 100 mg/dia).",
    "Adicionado: expansão volêmica, posicionamento, broncodilatador e infusão de adrenalina na refratária.",
    "Simplificado: corticoide em dose única EV em vez da diluição para 6/6h.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
+   "Resuscitation Council UK. Emergency treatment of anaphylaxis: guidelines for healthcare providers, 2021. https://www.resus.org.uk/library/additional-guidance/guidance-anaphylaxis",
+   "Golden DBK et al. Anaphylaxis: a 2023 practice parameter update (Ann Allergy Asthma Immunol 2024;132:124).",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 11 — Anafilaxia.",
+   "Bula do Fenergan (prometazina) injetável registrada na Anvisa: 25–50 mg IM profunda, máx. 100 mg/dia.",
    "Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020 (World Allergy Organ J 2020).",
    "Shaker MS et al. Anaphylaxis — a 2020 practice parameter update (J Allergy Clin Immunol 2020)."
   ]
@@ -1709,12 +1714,17 @@ const BASE = [
   "cid": "O14.1",
   "sin": "gestante pressao alta eclampsia sulfato de magnesio hellp",
   "casa": "",
-  "unidade": "Sinais de gravidade: PA ≥ 160/110 mmHg persistente por 15 min, iminência de eclâmpsia, eclâmpsia, HELLP (plaquetas < 100.000), oligúria, creatinina ≥ 1,0, EAP, dor torácica.\n\nSulfato de magnésio (prevenção e tratamento da convulsão):\n- Zuspan: ataque 4 g EV lento; manutenção 1 g/h EV em bomba.\n- Pritchard: ataque 4 g EV lento + 10 g IM (5 g em cada nádega); manutenção 5 g IM profundo a cada 4h.\n  (4 g EV = 8 mL de MgSO4 50% + 12 mL de água destilada.)\n- Manter por 24h após o parto ou a última convulsão.\n- Monitorar: reflexo patelar presente, FR ≥ 16, diurese ≥ 25 mL/h.\n- Intoxicação: gluconato de cálcio 10% 10 mL (1 g) EV lento.\n\nCrise hipertensiva na gestação (PA ≥ 160/110):\n- Hidralazina 5 mg EV a cada 20 min (máx. 30 mg)\n- Ou Nifedipino 10 mg VO a cada 20 min (máx. 30 mg); não mastigar, não usar sublingual.\n- Meta: reduzir 15–25%, PAS 140–150 e PAD 90–100 mmHg.",
-  "orient": "- Encaminhar para maternidade de referência; decisão sobre o parto com a obstetrícia.",
+  "unidade": "Sinais de gravidade: PA ≥ 160 e/ou 110 mmHg persistente por 15 min, iminência de eclâmpsia (cefaleia, alterações visuais, dor epigástrica, hiper-reflexia), eclâmpsia, HELLP, oligúria (< 500 mL/24 h), creatinina ≥ 1,0 mg/dL, edema pulmonar, dor torácica.\nDecúbito lateral esquerdo, acesso venoso, sonda vesical; hemograma com plaquetas, AST/ALT, LDH, bilirrubinas, creatinina.\n\nSulfato de magnésio (prevenção e tratamento da convulsão):\n- Ataque (Zuspan e Pritchard): 4 g EV = 8 mL de MgSO4 50% + 12 mL de água destilada, EV lento em 15–20 min (RBEHG 2023; o MS 2022 aceita 5–10 min).\n- Zuspan: manutenção 1 g/h EV em bomba.\n- Pritchard: além dos 4 g EV, 10 g IM no ataque (10 mL de MgSO4 50% IM profundo em cada nádega); depois 5 g (10 mL a 50%) IM profundo a cada 4 h. Útil para transporte ou sem bomba; evitar IM na HELLP com plaquetopenia.\n- Creatinina ≥ 1,0 mg/dL (RBEHG; MS: > 1,3): metade da dose de manutenção e dosar o magnésio.\n- Manter por 24 h após o parto ou a última convulsão.\n- Monitorar: reflexo patelar presente, FR ≥ 16, diurese ≥ 25 mL/h.\n- Nova convulsão durante o MgSO4: mais 2 g EV em bolus e manutenção a 2 g/h; sem controle, UTI e neuroimagem.\n- Intoxicação (depressão respiratória, arreflexia): parar o MgSO4; gluconato de cálcio 10% 10 mL (1 g) EV lento em cerca de 3 min; O2 e suporte ventilatório.\n\nCrise hipertensiva na gestação (PA ≥ 160/110, tratar em até 30–60 min):\n- Hidralazina 20 mg/mL: 1 amp + 19 mL de água destilada = 1 mg/mL; 5 mg EV a cada 20 min (máx. 30 mg).\n- Ou Nifedipino de liberação imediata 10 mg VO a cada 20–30 min (máx. 30 mg); não mastigar, não usar sublingual.\n- Meta: reduzir 15–25%, PAS 140–150 e PAD 90–100 mmHg.\n- Edema pulmonar ou refratária: nitroglicerina ou nitroprussiato EV (nitroprussiato por no máximo 4 h).",
+  "orient": "- Encaminhar para maternidade de referência; decisão sobre o parto com a obstetrícia.\n- Transferência: fazer pelo menos o ataque do sulfato de magnésio (4 g EV + 10 g IM cobre cerca de 4 h).\n- Parto em qualquer idade gestacional se eclâmpsia, HELLP, descolamento de placenta, edema pulmonar, hipertensão refratária a 3 fármacos, piora laboratorial ou alteração da vitalidade fetal; sem sinais de gravidade, parto com 37 semanas.\n- Puerpério: a PA pode piorar entre o 3º e o 6º dia; cerca de 30% das eclâmpsias ocorrem após o parto.",
   "fontes": [
+   "Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022 — cap. 11.",
+   "Sociedade Brasileira de Cardiologia. Diretriz Brasileira de Hipertensão Arterial 2025, cap. 10 (Arq Bras Cardiol 2025;122(9)).",
+   "ACOG Committee Opinion 767. Emergent therapy for acute-onset, severe hypertension during pregnancy and the postpartum period (Obstet Gynecol 2019;133:e174).",
+   "Bula profissional Anvisa do sulfato de magnésio 50% e do gluconato de cálcio 10%.",
    "Rede Brasileira de Estudos sobre Hipertensão na Gravidez (RBEHG). Protocolo 03 – Pré-eclâmpsia, 2023. https://rbehg.com.br/wp-content/uploads/2023/08/PROTOCOLO-2023-FINAL.pdf"
   ],
   "rev": [
+   "Atualizado (RBEHG 2023, MS 2022): tempo do ataque de sulfato de magnésio, diluição do Pritchard IM, ajuste pela creatinina, conduta na nova convulsão, diluição da hidralazina, momento do parto e cuidados no puerpério.",
    "Item novo."
   ]
  },

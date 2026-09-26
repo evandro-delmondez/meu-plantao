@@ -31,6 +31,7 @@
       <button role="tab" data-tab="medicacoes" data-sec="remedios" aria-selected="false">Fichas</button>
       <button role="tab" data-tab="pediatria" data-sec="remedios" aria-selected="false">Pediatria por peso</button>
       <button role="tab" data-tab="sala" data-sec="sala" aria-selected="false">Visão geral</button>
+      <button role="tab" data-tab="pcr" data-sec="sala" aria-selected="false">PCR</button>
       <button role="tab" data-tab="bic" data-sec="sala" aria-selected="false">Bomba de infusão</button>
       <button role="tab" data-tab="iot" data-sec="sala" aria-selected="false">Intubação e ventilação</button>
       <button role="tab" data-tab="protocolos" data-sec="sala" aria-selected="false">Protocolos</button>
@@ -102,6 +103,25 @@
     <article class="panel detail" id="mdetail"></article>
   </section>
 
+
+  <!-- PCR: CONDUÇÃO -->
+  <section id="tab-pcr" hidden>
+    <div class="pcr panel card">
+      <div class="pcrtop">
+        <div class="pcrt"><small>Tempo de PCR</small><b id="pcrTotal">00:00</b></div>
+        <div class="pcrt ciclo" id="pcrCicloW"><small>Ciclo de 2 min</small><b id="pcrCiclo">2:00</b><i id="pcrBarra"></i></div>
+        <div class="pcrt"><small>Adrenalina</small><b id="pcrAdr">—</b></div>
+        <div class="pcrt"><small>Choques</small><b id="pcrChq">0</b></div>
+      </div>
+      <p class="pcrmsg" id="pcrMsg">Toque em Iniciar PCR quando começar as compressões.</p>
+      <div class="pcrbtns" id="pcrBtns"></div>
+      <div class="actions"><button class="btn" id="pcrMetro" aria-pressed="false">♪ Metrônomo 110/min</button><button class="btn" id="pcrCopiar">Copiar registro</button><button class="btn danger" id="pcrZerar">Zerar</button></div>
+      <details class="fbox"><summary>5H e 5T — causas reversíveis</summary><div class="hts" id="pcrHT"></div></details>
+      <h3 class="pcrh3">Registro</h3>
+      <ol class="pcrlog" id="pcrLog"></ol>
+      <details class="fontes"><summary>Fontes e condutas</summary><ul id="pcrFontes"></ul></details>
+    </div>
+  </section>
 
   <!-- BOMBA DE INFUSÃO -->
   <section id="tab-bic" hidden>

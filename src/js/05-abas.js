@@ -1,7 +1,7 @@
 /* ---------- seções e abas ---------- */
-const TABS=["inicio","prescricoes","feridas","medicacoes","pediatria","sala","bic","iot","protocolos","evolucao","atestado","modelos","backup","escores","calculadora","contas","eletrolitos"];
+const TABS=["inicio","prescricoes","feridas","medicacoes","pediatria","sala","pcr","bic","iot","protocolos","evolucao","atestado","modelos","backup","escores","calculadora","contas","eletrolitos"];
 // cada aba pertence a uma seção da barra de navegação
-const SECOES={inicio:["inicio"],condutas:["prescricoes","feridas"],remedios:["medicacoes","pediatria"],sala:["sala","bic","iot","protocolos"],documentos:["evolucao","atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
+const SECOES={inicio:["inicio"],condutas:["prescricoes","feridas"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],documentos:["evolucao","atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
 const secDe=t=>Object.keys(SECOES).find(s=>SECOES[s].includes(t))||"inicio";
 const ultimaAba={}; // última aba aberta em cada seção (só nesta sessão)
 function setTab(t){
@@ -12,7 +12,7 @@ function setTab(t){
   $$("#secnav [data-sec]").forEach(b=>{if(b.dataset.sec===sec)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
   document.body.dataset.sec=sec;
   TABS.forEach(x=>$("#tab-"+x).hidden=x!==t);
-  if(t==="inicio") renderInicio(); if(t==="sala") renderSala(); if(t==="bic") renderBic(); if(t==="protocolos") renderProtocolo(); if(t==="contas") renderContas(); if(t==="eletrolitos") renderEletrolitos(); if(t==="iot") renderIot();
+  if(t==="inicio") renderInicio(); if(t==="sala") renderSala(); if(t==="bic") renderBic(); if(t==="pcr") renderPcr(); if(t==="protocolos") renderProtocolo(); if(t==="contas") renderContas(); if(t==="eletrolitos") renderEletrolitos(); if(t==="iot") renderIot();
   if(t==="evolucao") renderEv(); if(t==="atestado") renderAt(); if(t==="calculadora") renderCalc(); if(t==="pediatria") setPMode(ui.pmode||"rx"); if(t==="modelos"){renderModelos();renderOrg()} if(t==="feridas") renderFer(); if(t==="medicacoes") renderMedTab();
   if(t==="escores") renderScores(); if(t==="backup") renderHidden(); growAll();
   try{history.replaceState(null,"","#"+t)}catch(e){}

@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## 1.4.2 — 2026-09-26
+- **Acidente ofídico atualizado ao PCDT 2025 (Portaria SECTICS/MS nº 83)**, após conferência independente:
+  - antibotrópico 3/6/12 frascos (antes 2–4/4–8/12);
+  - antielapídico sem soro no leve, 5 no moderado e 10 no grave (antes 10 em todos);
+  - incluídos via, diluição, velocidade, observação, ausência de pré-medicação e contraindicação de AINE.
+- **Acidente escorpiônico conferido com o PCDT 2025 (Portaria nº 59):** doses mantidas; incluídos diluição, via intraóssea, ECG e suporte.
+- **Doses por peso reorganizadas por especialidade** (IOT; choque, sepse e anafilaxia; Cardio / Vascular; Neuro; Endócrino / Metabólico; hidratação, dengue e queimaduras; Toxico / Infecto; e os blocos pediátricos), sem mudar nenhuma dose.
+
 ## 1.4.1 — 2026-09-26
 - PCR:
   - metrônomo corrigido: toca mesmo antes de iniciar e o botão pulsa no ritmo;

@@ -11,6 +11,7 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 5. Atualizar a data acima para daqui a 3 meses.
 
 ## Histórico
+- 2026-09-26 (v1.4.2) — condutas de acidente ofídico e escorpiônico conferidas por agente independente contra os PCDT de 2025; ofídico corrigido.
 - 2026-09-26 (v1.4.0) — protocolos em fluxo, PCR guiada, eletrólitos, lista de QT e condutas de anafilaxia e pré-eclâmpsia conferidos por agente independente; correções obrigatórias aplicadas antes de publicar.
 - 2026-09-26 — doses por peso e bomba de infusão conferidas por agente independente (correções listadas no CHANGELOG 1.3.0); calculadoras de laboratório conferidas no Harrison 22ª ed.; plano C conferido no cartaz vigente do MS (menores de 1 ano / a partir de 1 ano).
 - 2026-09-24 — revisão completa inicial; medicações parte 1 (45 fichas) com dupla conferência; aba Feridas conferida.

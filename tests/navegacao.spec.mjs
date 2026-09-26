@@ -5,7 +5,7 @@ test("abre no Início e cada seção mostra só as suas páginas", async ({ page
   const erros = await abrir(page);
   await expect(page.locator("#tab-inicio")).toBeVisible();
   await expect(page.locator("#secnav")).toBeVisible();
-  const secoes = { condutas: ["prescricoes", "feridas"], remedios: ["medicacoes", "pediatria"], sala: ["sala", "bic", "iot"], documentos: ["evolucao", "atestado", "modelos", "backup"], calculos: ["escores", "calculadora", "contas"] };
+  const secoes = { condutas: ["prescricoes", "feridas"], remedios: ["medicacoes", "pediatria"], sala: ["sala", "bic", "iot", "protocolos"], documentos: ["evolucao", "atestado", "modelos", "backup"], calculos: ["escores", "calculadora", "contas", "eletrolitos"] };
   for (const [sec, abas] of Object.entries(secoes)) {
     await page.click(`#secnav [data-sec="${sec}"]`);
     await expect(page.locator(`#secnav [data-sec="${sec}"]`)).toHaveAttribute("aria-current", "page");

@@ -33,12 +33,14 @@
       <button role="tab" data-tab="sala" data-sec="sala" aria-selected="false">Visão geral</button>
       <button role="tab" data-tab="bic" data-sec="sala" aria-selected="false">Bomba de infusão</button>
       <button role="tab" data-tab="iot" data-sec="sala" aria-selected="false">Intubação e ventilação</button>
+      <button role="tab" data-tab="protocolos" data-sec="sala" aria-selected="false">Protocolos</button>
       <button role="tab" data-tab="evolucao" data-sec="documentos" aria-selected="false">Evolução</button>
       <button role="tab" data-tab="atestado" data-sec="documentos" aria-selected="false">Atestado</button>
       <button role="tab" data-tab="modelos" data-sec="documentos" aria-selected="false">Meus modelos</button>
       <button role="tab" data-tab="escores" data-sec="calculos" aria-selected="false">Escores</button>
       <button role="tab" data-tab="calculadora" data-sec="calculos" aria-selected="false">Doses por peso</button>
       <button role="tab" data-tab="contas" data-sec="calculos" aria-selected="false">Laboratório e ECG</button>
+      <button role="tab" data-tab="eletrolitos" data-sec="calculos" aria-selected="false">Eletrólitos</button>
       <button role="tab" data-tab="backup" data-sec="documentos" aria-selected="false">Backup</button>
     </nav>
   </header>
@@ -52,6 +54,7 @@
     </div>
     <div id="gres" class="gres" hidden></div>
     <div id="hbody">
+      <div class="panel hrede"><span class="lbl">Onde estou hoje:</span><div class="seg" role="group" aria-label="Rede de atendimento"><button data-rede="publica" aria-pressed="false">UPA pública (SUS)</button><button data-rede="particular" aria-pressed="false">Particular</button></div><span class="note" id="hRedeNota"></span></div>
       <button class="hred" id="hRed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span><b>Sala vermelha</b><small>Condutas de emergência, doses por peso e emergência pediátrica</small></span><i aria-hidden="true">→</i></button>
       <div class="hcols">
         <div class="panel hbox"><h2>★ Favoritos</h2><div class="hchips" id="hFav"></div></div>
@@ -130,6 +133,17 @@
         <div class="msec warnsec" style="--c:var(--warn)"><h3>Atenção</h3><ul id="bicObs"></ul></div>
         <details class="fontes"><summary>Fontes</summary><ul id="bicFontes"></ul></details>
       </div>
+    </div>
+  </section>
+
+  <!-- PROTOCOLOS EM FLUXO -->
+  <section id="tab-protocolos" hidden>
+    <p class="disc">Protocolos passo a passo. Apoio à decisão: adapte ao paciente e ao protocolo do seu serviço.</p>
+    <div class="chips" id="prLista"></div>
+    <div class="panel card" id="prCard">
+      <div class="brand"><h2 id="prTitulo"></h2><div class="actions"><button class="btn sm" id="prConduta">Abrir a conduta</button><button class="btn sm" id="prReinicio">Recomeçar</button></div></div>
+      <ol class="prpassos" id="prPassos"></ol>
+      <details class="fontes"><summary>Fontes</summary><ul id="prFontes"></ul></details>
     </div>
   </section>
 
@@ -418,6 +432,13 @@
   <section id="tab-contas" hidden>
     <p class="disc">Os valores digitados ficam só nesta aba. Confira as unidades: sódio, cloro e bicarbonato em mEq/L; glicose, ureia e creatinina em mg/dL; albumina em g/dL.</p>
     <div class="contas" id="contas"></div>
+  </section>
+
+  <!-- ELETRÓLITOS -->
+  <section id="tab-eletrolitos" hidden>
+    <p class="disc">Reposição de eletrólitos no adulto. Confira a apresentação, a concentração máxima e o protocolo do seu serviço; potássio e magnésio EV são medicamentos de alta vigilância.</p>
+    <div class="chips" id="elLista"></div>
+    <div class="contas" id="elCorpo"></div>
   </section>
 
   <!-- BACKUP -->

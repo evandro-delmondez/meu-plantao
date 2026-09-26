@@ -72,3 +72,36 @@ function renderVm(){
 ["vmAlt","vmSexo"].forEach(id=>{$("#"+id).addEventListener("input",renderVm);$("#"+id).addEventListener("change",renderVm)});
 $("#iotLimpar").onclick=()=>{iotMarcas.clear();renderIot();toast("Checklist limpo")};
 $("#iotDoses").onclick=()=>abrirCalc("adulto");
+
+/* ---------- protocolos em fluxo ---------- */
+// caminho percorrido só na memória; cada passo pode ter uma decisão que leva a outro passo
+const prEstado={id:null,caminho:[]};
+function prAtual(){return PROTOCOLOS.find(p=>p.id===prEstado.id)||PROTOCOLOS[0]}
+function prIniciar(id){const p=PROTOCOLOS.find(x=>x.id===id)||PROTOCOLOS[0];prEstado.id=p.id;prEstado.caminho=[p.passos[0].id]}
+function prProximo(p,passo){const i=p.passos.findIndex(x=>x.id===passo.id);return p.passos[i+1]||null}
+function renderProtocolo(){
+  if(!PROTOCOLOS.length){$("#prCard").hidden=true;return}
+  if(!prEstado.id) prIniciar(PROTOCOLOS[0].id);
+  const p=prAtual();
+  $("#prLista").innerHTML=PROTOCOLOS.map(x=>`<button class="chip" data-pr="${x.id}" aria-pressed="${x.id===p.id}" style="--c:var(--${x.cor||"red"})">${esc(x.titulo)}</button>`).join("");
+  $$("#prLista [data-pr]").forEach(b=>b.onclick=()=>{prIniciar(b.dataset.pr);renderProtocolo()});
+  $("#prTitulo").textContent=p.titulo;
+  $("#prConduta").hidden=!(p.conduta&&getItem(p.conduta));
+  $("#prConduta").onclick=()=>abrirConduta(p.conduta);
+  $("#prReinicio").onclick=()=>{prIniciar(p.id);renderProtocolo()};
+  const passos=prEstado.caminho.map(id=>p.passos.find(x=>x.id===id)).filter(Boolean);
+  $("#prPassos").innerHTML=passos.map((x,i)=>{
+    const ultimo=i===passos.length-1;
+    const escolhido=!ultimo&&x.decisao?(x.decisao.opcoes.find(o=>o.ir===passos[i+1].id)||{}).rot:null;
+    let acao="";
+    if(ultimo){
+      if(x.decisao) acao=`<div class="prdec"><b>${esc(x.decisao.pergunta)}</b><div class="actions">${x.decisao.opcoes.map((o,j)=>`<button class="btn ${j?"":"primary"}" data-ir="${esc(o.ir)}">${esc(o.rot)}</button>`).join("")}</div></div>`;
+      else if(prProximo(p,x)) acao=`<div class="actions"><button class="btn primary" data-ir="${esc(prProximo(p,x).id)}">Próximo passo →</button></div>`;
+      else acao=`<p class="note">Fim do protocolo.</p>`;
+    }
+    return `<li class="prp ${ultimo?"atual":"feito"}" style="--c:var(--${p.cor||"red"})"><div class="prh"><b>${esc(x.t)}</b>${x.tempo?`<span class="badge">${esc(x.tempo)}</span>`:""}</div>
+      <ul>${(x.itens||[]).map(t=>`<li>${esc(t)}</li>`).join("")}</ul>${escolhido?`<p class="note">→ ${esc(x.decisao.pergunta)} <b>${esc(escolhido)}</b></p>`:""}${acao}</li>`;
+  }).join("");
+  $$("#prPassos [data-ir]").forEach(b=>b.onclick=()=>{const alvo=b.dataset.ir;if(p.passos.some(x=>x.id===alvo)){prEstado.caminho.push(alvo);renderProtocolo();const l=$("#prPassos .prp.atual");l&&l.scrollIntoView({block:"nearest"})}});
+  $("#prFontes").innerHTML=p.fontes.map(s=>`<li>${linkify(s)}</li>`).join("");
+}

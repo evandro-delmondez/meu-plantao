@@ -1,11 +1,11 @@
 import { test, expect } from "@playwright/test";
 import { abrir, aba, RUIM } from "./util.mjs";
 
-const COM_CHECKLIST = ["amigdalite", "faringite", "gripe", "sinusite", "oma", "itu", "lombalgia", "cefaleia", "enxaqueca", "vertigem", "geca", "dispepsia", "colica", "dor-abdominal", "has", "sca", "asma", "pac", "dengue", "ansiedade"];
-
-test("as 20 condutas mais comuns têm checklist completo, com fontes", async ({ page }) => {
+test("todas as condutas têm checklist completo, com fontes", async ({ page }) => {
   const erros = await abrir(page); await aba(page, "prescricoes");
-  for (const id of COM_CHECKLIST) {
+  const ids = await page.$$eval("#list .item", (x) => [...new Set(x.map((e) => e.dataset.id))]);
+  expect(ids.length).toBeGreaterThan(90);
+  for (const id of ids) {
     await page.click(`#list .item[data-id="${id}"] >> nth=0`);
     const sec = page.locator("#detail .sec.chk");
     await expect(sec, id).toBeVisible();
@@ -13,9 +13,6 @@ test("as 20 condutas mais comuns têm checklist completo, com fontes", async ({ 
     expect(await sec.locator(".alsrc li").count(), id).toBeGreaterThan(0);
     expect(await sec.innerText(), id).not.toMatch(RUIM);
   }
-  // conduta sem checklist não mostra a seção
-  await page.click('#list .item[data-id="cerume"] >> nth=0');
-  await expect(page.locator("#detail .sec.chk")).toHaveCount(0);
   expect(erros).toEqual([]);
 });
 

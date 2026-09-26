@@ -53,3 +53,17 @@ function renderContas(){
   CONTAS.forEach(c=>contaRes(c.id));
 }
 function contaRes(id){const c=CONTAS.find(x=>x.id===id);const r=c.calc(contasVal[id]||{});$("#ct-"+id).innerHTML=r?r.join("<br>"):`<span class="note">Preencha os campos.</span>`}
+
+/* ---------- eletrólitos ---------- */
+let elSel=null;
+function renderEletrolitos(){
+  if(!ELETROLITOS.length){$("#elCorpo").innerHTML=`<p class="note">Conteúdo em preparação.</p>`;return}
+  const e=ELETROLITOS.find(x=>x.id===elSel)||ELETROLITOS[0]; elSel=e.id;
+  $("#elLista").innerHTML=ELETROLITOS.map(x=>`<button class="chip" data-el="${esc(x.id)}" aria-pressed="${x.id===e.id}" style="--c:var(--teal)">${esc(x.nome)}</button>`).join("");
+  $$("#elLista [data-el]").forEach(b=>b.onclick=()=>{elSel=b.dataset.el;renderEletrolitos()});
+  const lista=(t,a,cor)=>a&&a.length?`<div class="msec" style="--c:var(--${cor})"><h3>${t}</h3><ul>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:"";
+  $("#elCorpo").innerHTML=`<div class="panel card"><h2>${esc(e.nome)}</h2>
+    ${(e.faixas||[]).map(f=>`<div class="msec" style="--c:var(--indigo)"><h3>${esc(f.rot)}</h3>${f.condicao?`<p>${esc(f.condicao)}</p>`:""}<ul>${(f.conduta||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}
+  </div><div class="panel card">${lista("Via oral",e.via_oral,"green")}${lista("Via endovenosa",e.via_ev,"red")}${lista("Monitorar",e.monitorar,"sky")}${lista("Atenção",e.alertas,"warn")}
+    <details class="fontes"><summary>Fontes</summary><ul>${(e.fontes||[]).map(s=>`<li>${linkify(s)}</li>`).join("")}</ul></details></div>`;
+}

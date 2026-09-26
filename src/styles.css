@@ -232,7 +232,15 @@ textarea.out-edit{width:100%;border:1px solid var(--line);border-radius:12px;pad
 .ck[data-v="neg"] .ckt{color:var(--muted)}
 .ckg:not(.ckg-alarme) .ckb [data-val="+"][aria-pressed="true"]{background:var(--indigo);border-color:var(--indigo)}
 .ckact{padding:8px 14px 10px}
-.sec.fichas{--c:var(--pink)} .sec.fichas .medlinks{padding:12px 14px}
+.sec.fichas{--c:var(--pink)}
+.rn{font-size:10.5px;font-weight:800;padding:0 6px;border-radius:999px;margin-left:4px;vertical-align:1px}
+.rn.ok{background:color-mix(in srgb,var(--green) 20%,var(--surface));color:var(--green)}
+.rn.fora{background:color-mix(in srgb,var(--warn) 20%,var(--surface));color:var(--warn)}
+.rn.nc{background:var(--surface-2);color:var(--muted);font-weight:600}
+.chip.rnwarn{border-style:dashed}
+.rnnota{padding:0 14px 12px;margin:0}
+.hrede{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 14px}
+.hrede .note{flex-basis:100%;margin:0} .sec.fichas .medlinks{padding:12px 14px}
 .dtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .abar{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .abar .btn{padding:8px 13px}
@@ -340,6 +348,15 @@ details.model summary{cursor:pointer;font-weight:700;color:var(--accent);font-si
 .contas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px;align-items:start}
 .conta{border-top:4px solid var(--c)}
 .conta h2{font-size:18px!important;color:var(--c)}
+.qtal{margin:0 12px 10px;padding:8px 12px;border-radius:10px;border:1px solid color-mix(in srgb,var(--bad) 40%,var(--line));background:color-mix(in srgb,var(--bad) 8%,var(--surface));font-size:13.5px}
+.qtal .alsrc{padding:4px 0 0}
+.prpassos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.prp{--c:var(--red);border:1.5px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:10px 14px}
+.prp.feito{opacity:.72}
+.prp.atual{border-color:color-mix(in srgb,var(--c) 55%,var(--line));background:color-mix(in srgb,var(--c) 5%,var(--surface))}
+.prh{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.prp ul{margin:6px 0 4px;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.prdec{margin-top:8px;display:flex;flex-direction:column;gap:6px}
 .bicg{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}
 #bicDrogas{display:flex;flex-direction:column}
 .iotl{gap:4px!important}

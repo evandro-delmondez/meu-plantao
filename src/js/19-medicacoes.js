@@ -8,8 +8,8 @@ const MALIAS={ /* termos que identificam a medicação dentro do texto das condu
   "paracetamol":["paracetamol"],"codeina":["codeina"],"dexclorfeniramina":["dexclorfeniramina"],"loratadina":["loratadina"]
 };
 // o peso da criança fica só na memória (regra 5); versões antigas o salvavam em rxp_med_v1
-const mui=Object.assign({grupo:null,via:null,sel:MEDS[0]&&MEDS[0].id},lsGet("rxp_med_v1",{}),{peso:""});
-const saveMui=()=>lsSet("rxp_med_v1",{grupo:mui.grupo,via:mui.via,sel:mui.sel});
+const mui=Object.assign({grupo:null,via:null,sel:MEDS[0]&&MEDS[0].id,rename:false},lsGet("rxp_med_v1",{}),{peso:""});
+const saveMui=()=>lsSet("rxp_med_v1",{grupo:mui.grupo,via:mui.via,sel:mui.sel,rename:!!mui.rename});
 const medById=Object.fromEntries(MEDS.map(m=>[m.id,m]));
 const medTerms=m=>(MALIAS[m.id]||[norm(m.nome.split(/[ (+]/)[0])]).map(norm);
 function medHay(m){return norm([m.nome,m.classe,m.subclasse,m.mecanismo,(m.vias||[]).join(" "),(m.apresentacoes||[]).join(" "),(m.alertas||[]).join(" "),m.gestacao,(MALIAS[m.id]||[]).join(" "),MGRUPOS[m.grupo]?.nome].join(" "))}
@@ -20,13 +20,14 @@ function medsNaConduta(it){
 function renderMedFilters(){
   $("#mgrupos").innerHTML=`<button class="chip" data-mg="" aria-pressed="${!mui.grupo}" style="--c:var(--ink)">Todas</button>`+
     Object.entries(MGRUPOS).map(([k,v])=>`<button class="chip" data-mg="${k}" aria-pressed="${mui.grupo===k}" style="--c:var(--${v.cor})">${esc(v.nome)}</button>`).join("");
-  $("#mvias").innerHTML=`<span class="lbl">Via:</span>`+["EV","IM","VO"].map(v=>`<button class="chip" data-mv2="${v}" aria-pressed="${mui.via===v}" style="--c:var(--slate)">${v}</button>`).join("");
+  $("#mvias").innerHTML=`<span class="lbl">Via:</span>`+["EV","IM","VO"].map(v=>`<button class="chip" data-mv2="${v}" aria-pressed="${mui.via===v}" style="--c:var(--slate)">${v}</button>`).join("")+`<button class="chip" id="mRename" aria-pressed="${!!mui.rename}" style="--c:var(--green)">Só RENAME</button>`;
+  $("#mRename").onclick=()=>{mui.rename=!mui.rename;saveMui();renderMedFilters();renderMedList()};
   $$("#mgrupos [data-mg]").forEach(b=>b.onclick=()=>{mui.grupo=b.dataset.mg||null;saveMui();renderMedFilters();renderMedList()});
   $$("#mvias [data-mv2]").forEach(b=>b.onclick=()=>{mui.via=mui.via===b.dataset.mv2?null:b.dataset.mv2;saveMui();renderMedFilters();renderMedList()});
 }
 function renderMedList(){
   const q=norm($("#mq").value.trim()); const words=q.split(/\s+/).filter(Boolean);
-  let items=MEDS.filter(m=>(!mui.grupo||m.grupo===mui.grupo)&&(!mui.via||(m.vias||[]).includes(mui.via)));
+  let items=MEDS.filter(m=>(!mui.grupo||m.grupo===mui.grupo)&&(!mui.via||(m.vias||[]).includes(mui.via))&&(!mui.rename||m.rename===true));
   if(words.length){items=items.map(m=>{const h=medHay(m);if(!words.every(w=>h.includes(w)))return null;return [m,words.reduce((s,w)=>s+(norm(m.nome).includes(w)?3:1),0)]}).filter(Boolean).sort((a,b)=>b[1]-a[1]).map(x=>x[0])}
   $("#mcount").textContent=items.length+" medicaç"+(items.length===1?"ão":"ões");
   let html="",last=null;

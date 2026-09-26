@@ -53,6 +53,7 @@ function renderAlertas(it){
   return `<div class="sec alertas ${ativos.length||ra?"hot":""}">
   <div class="perfis"><span class="lbl">Alertas:</span>${PERFIS.map(([g,n])=>`<button class="chip ${out[g].length?"has":""}" style="--c:var(--warn)" data-perfil="${g}" aria-pressed="${perf.includes(g)}" title="${out[g].length?"Esta conduta tem alerta para este perfil":"Sem alerta cadastrado para este perfil"}">${PERFIL_CURTO[g]}${out[g].length?` <span aria-label="tem alerta">⚠</span>`:""}</button>`).join("")}</div>
   ${ra?`<div class="renal-adj"><b>Dose para ClCr ${Math.round(ra.c)} mL/min:</b>${ra.out.length?`<ul>${ra.out.map(a=>`<li><b>${esc(a.nome)}:</b> ${esc(a.msg)}</li>`).join("")}</ul>`:" nenhum medicamento desta conduta tem ajuste renal cadastrado."}</div>`:""}
+  ${renderQt(it)}
   ${ativos.length?`<div class="algrid">${ativos.map(x=>box(x,true)).join("")}</div>`:""}
   <details class="alsrc"><summary>Ver alertas de todos os perfis${fontes.length||ra?" e fontes":""}</summary><div class="algrid" style="padding-inline:0">${PERFIS.map(x=>box(x,perf.includes(x[0]))).join("")}</div>
   ${(fontes.length||ra)?`<ol>${fontes.map(k=>`<li>${linkify(SRC[k]||k)}</li>`).join("")}${ra?"<li>Cockcroft DW, Gault MH. Nephron 1976 (fórmula do ClCr).</li>":""}</ol>`:""}</details></div>`;
@@ -105,9 +106,18 @@ function bindChecklist(it){
     toast("Checklist levado para a evolução");
   };
 }
+function qtDe(it){const t=norm(cur(it,"casa")+"\n"+cur(it,"unidade"));return QT_RISCO.filter(q=>(q.termos||[]).some(x=>t.includes(norm(x))))}
+function renderQt(it){
+  const q=qtDe(it); if(!q.length) return "";
+  const rot={conhecido:"risco conhecido",possivel:"risco possível",possível:"risco possível",condicional:"risco condicional"};
+  return `<div class="qtal"><b>⚠ Prolongam o QT:</b> ${q.map(x=>`${esc(x.nome)} <span class="note">(${esc(rot[x.risco]||x.risco)})</span>`).join(", ")}. Cuidado ao associar entre si e em QT longo conhecido.<details class="alsrc"><summary>Fontes</summary><ol>${QT_FONTES.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></div>`;
+}
 function renderFichas(it){
   const ms=medsNaConduta(it); if(!ms.length) return "";
-  return `<div class="sec fichas"><div class="sec-h"><h3>Fichas dos remédios desta conduta</h3></div><div class="medlinks">${ms.map(m=>`<button class="chip" data-med="${m.id}" style="--c:var(--${(MGRUPOS[m.grupo]||{cor:"slate"}).cor})">${esc(m.nome.replace(/ \(.*\)$/,""))}</button>`).join("")}</div></div>`;
+  const pub=ui.rede==="publica";
+  const selo=m=>m.rename===true?`<span class="rn ok">RENAME</span>`:m.rename===false?`<span class="rn fora">fora da RENAME</span>`:`<span class="rn nc">RENAME não conferida</span>`;
+  const nota=pub?`<p class="note rnnota">UPA pública: prefira os itens com selo RENAME (lista do SUS) e confirme o estoque da farmácia da unidade. Fonte: ${esc(RENAME_FONTE)}</p>`:ui.rede==="particular"?`<p class="note rnnota">Particular: o selo RENAME indica só que o remédio também existe no SUS.</p>`:"";
+  return `<div class="sec fichas ${pub?"pub":""}"><div class="sec-h"><h3>Remédios desta conduta</h3></div><div class="medlinks">${ms.map(m=>`<button class="chip ${pub&&m.rename!==true?"rnwarn":""}" data-med="${m.id}" style="--c:var(--${(MGRUPOS[m.grupo]||{cor:"slate"}).cor})">${esc(m.nome.replace(/ \(.*\)$/,""))} ${selo(m)}</button>`).join("")}</div>${nota}</div>`;
 }
 function renderDilu(it){
   const t=cur(it,"unidade"); if(!t.trim()) return "";

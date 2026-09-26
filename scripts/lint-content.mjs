@@ -13,10 +13,10 @@ const err = (m) => erros.push(m), warn = (m) => avisos.push(m);
 // carrega os arquivos de dados num contexto isolado
 const ctx = {};
 vm.createContext(ctx);
-const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js", "checklists.js", "calculadora.js", "infusao.js"]
+const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js", "checklists.js", "calculadora.js", "infusao.js", "protocolos.js", "eletrolitos.js"]
   .map((f) => readFileSync(join(root, "src/data", f), "utf8").replace(/^if \(typeof module.*$/gm, "")).join("\n");
-vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,INFUSAO,IOT_FONTES};", ctx);
-const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES } = ctx.__dados;
+vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,INFUSAO,IOT_FONTES,PROTOCOLOS,ELETROLITOS,QT_RISCO,QT_FONTES};", ctx);
+const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES, PROTOCOLOS, ELETROLITOS, QT_RISCO, QT_FONTES } = ctx.__dados;
 
 const CAPS = /[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{12,}/;          // trecho longo em maiúsculas
 const RUIM = /\bundefined\b|\bNaN\b|\[object Object\]/;
@@ -92,6 +92,30 @@ for (const d of INFUSAO || []) {
   if (RUIM.test(t)) err(`${onde}: contém "${t.match(RUIM)[0]}"`);
 }
 if (!Array.isArray(IOT_FONTES) || !IOT_FONTES.length) err("intubação: sem fontes");
+
+// ---------- protocolos em fluxo ----------
+const verTexto = (onde, o) => { const t = textoDe(o); if (CAPS.test(t)) err(`${onde}: trecho em CAPS LOCK → "${t.match(CAPS)[0]}"`); if (RUIM.test(t)) err(`${onde}: contém "${t.match(RUIM)[0]}"`); };
+for (const p of PROTOCOLOS || []) {
+  const onde = `protocolo "${p.id}"`;
+  if (!p.titulo || !Array.isArray(p.passos) || !p.passos.length) err(`${onde}: sem título ou passos`);
+  if (!Array.isArray(p.fontes) || !p.fontes.length) err(`${onde}: sem fontes`);
+  if (p.conduta && !ids.has(p.conduta)) err(`${onde}: conduta "${p.conduta}" não existe`);
+  const pids = new Set((p.passos || []).map((x) => x.id));
+  if (pids.size !== (p.passos || []).length) err(`${onde}: id de passo repetido`);
+  for (const x of p.passos || []) {
+    if (!x.id || !x.t) err(`${onde}: passo sem id ou título`);
+    for (const o of (x.decisao && x.decisao.opcoes) || []) if (!pids.has(o.ir)) err(`${onde} → ${x.id}: decisão aponta para passo inexistente "${o.ir}"`);
+  }
+  verTexto(onde, p);
+}
+// ---------- eletrólitos e QT ----------
+for (const e of ELETROLITOS || []) {
+  const onde = `eletrólito "${e.id}"`;
+  if (!e.nome || !Array.isArray(e.fontes) || !e.fontes.length) err(`${onde}: sem nome ou fontes`);
+  verTexto(onde, e);
+}
+if ((QT_RISCO || []).length && !(QT_FONTES || []).length) err("QT: lista sem fontes");
+for (const q of QT_RISCO || []) { if (!q.nome || !Array.isArray(q.termos) || !q.termos.length || !q.risco) err(`QT "${q.nome}": campos incompletos`); verTexto(`QT "${q.nome}"`, q); }
 
 // ---------- escores ----------
 for (const s of SC || []) {

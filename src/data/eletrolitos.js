@@ -109,8 +109,7 @@ const ELETROLITOS=[
     "Passar para via oral quando P > 1,5 mg/dL. [HC, tabela de reposição]"]}
  ],
  via_oral:["Harrison: 750–2.000 mg/dia de fósforo elementar em doses divididas; doses maiores causam distensão e diarreia. [H22 cap. 421]",
-  "Não dar cálcio e fosfato por via oral no mesmo horário (precipitam antes de absorver). [H22 cap. 421]",
-  "No Brasil, fosfato oral costuma ser manipulado; confirme a disponibilidade e o teor de fósforo elementar na farmácia."],
+  "Não dar cálcio e fosfato por via oral no mesmo horário (precipitam antes de absorver). [H22 cap. 421]"],
  via_ev:["Apresentação no Brasil: fosfato de potássio 2 mEq/mL (ampola 10 mL): cada mL tem 1,1 mmol de fósforo e 2 mEq de potássio; logo, 10 mmol de fósforo ≈ 9 mL ≈ 18 mEq de K. [bula Anvisa do fosfato de potássio Farmace e Isofarma]",
   "Diluir sempre; na veia periférica, em solução isotônica ou hipotônica. A bula Isofarma sugere, na hipofosfatemia grave do adulto, 9 mmol em NaCl 0,45% em 12 h, repetindo a cada 12 h. [bula Anvisa]",
   "A carga de potássio limita a velocidade: respeitar os limites do KCl (até 80 mEq/L na periférica; 10–20 mEq/h). Exemplo: 8 mmol/h de fósforo com essa apresentação ≈ 14,5 mEq/h de K. [bulas Anvisa do fosfato e do KCl; HC cap. 83]",

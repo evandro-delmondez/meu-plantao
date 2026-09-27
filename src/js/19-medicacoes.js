@@ -1,5 +1,5 @@
 /* ---------- medicações ---------- */
-const MGRUPOS={analgesicos:{nome:"Analgésicos e anti-inflamatórios",cor:"red"},gastro:{nome:"Antieméticos e gastro",cor:"green"},antibioticos:{nome:"Antibióticos",cor:"indigo"},corticoides:{nome:"Corticoides e antialérgicos",cor:"amber"},"sala-vermelha-a":{nome:"Sala vermelha: vasoativos, sedação e anticonvulsivantes",cor:"red"}};
+const MGRUPOS={analgesicos:{nome:"Analgésicos",cor:"red"},gastro:{nome:"Gastro",cor:"green"},antibioticos:{nome:"Antibióticos",cor:"indigo"},corticoides:{nome:"Corticoides e antialérgicos",cor:"amber"},vasoativos:{nome:"Vasoativos",cor:"rose"},sedacao:{nome:"Sedação e intubação",cor:"violet"},anticonvulsivantes:{nome:"Anticonvulsivantes",cor:"orange"}};
 const MALIAS={ /* termos que identificam a medicação dentro do texto das condutas */
   "amoxicilina":["amoxicilina"],"amoxicilina-clavulanato":["clavulanato"],"penicilina-g-benzatina":["benzatina","benzetacil"],
   "sulfametoxazol-trimetoprima":["sulfametoxazol","smx-tmp","bactrim"],"fosfomicina-trometamol":["fosfomicina"],

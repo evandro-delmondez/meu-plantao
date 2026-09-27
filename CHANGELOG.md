@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.5.1 — 2026-09-27
+- Fichas: grupos com nomes curtos (Analgésicos, Gastro, Antibióticos, Corticoides e antialérgicos) e a sala vermelha separada em Vasoativos, Sedação e intubação e Anticonvulsivantes.
+
 ## 1.5.0 — 2026-09-27
 - **17 fichas da sala vermelha** (vasoativos, sedação, bloqueadores neuromusculares, anticonvulsivantes), com nomes comerciais; conferidas por agente independente.
 - **Escetamina no lugar da cetamina racêmica** na IOT (calculadora, conduta e emergência pediátrica): 0,5–1 mg/kg na indução (bula Ketanest S; cerca de 2 vezes mais potente).

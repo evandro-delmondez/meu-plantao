@@ -1,0 +1,336 @@
+[
+ {
+  "id": "diazepam",
+  "nome": "Diazepam",
+  "classe": "Anticonvulsivante e sedativo",
+  "subclasse": "Benzodiazepínico de ação longa",
+  "mecanismo": "Potencializa o GABA no receptor GABA-A; ação anticonvulsivante rápida, porém curta por redistribuição; metabólito ativo (desmetildiazepam) de meia-vida longa.",
+  "apresentacoes": [
+   "Ampola 2 mL com 10 mg (5 mg/mL) (Compaz, Santiazepam, Uni-Diazepax, genéricos)",
+   "Comprimido 5 mg e 10 mg (Compaz, Relapax, Santiazepam, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IM",
+   "retal",
+   "VO"
+  ],
+  "adulto": [
+   "Estado de mal epiléptico (1ª linha): 0,15–0,2 mg/kg EV (máx. 10 mg por dose), pode repetir 1 vez após 5 min (AES 2016); até 5 mg/min (Neurocritical Care Society 2012). Bula: 0,15–0,25 mg/kg EV, repetir em 10–15 min se preciso; máx. 3 mg/kg em 24 h.",
+   "Excitação, ansiedade aguda, agitação e delirium tremens: 0,1–0,2 mg/kg EV, repetir a cada 8 h até controle e passar para VO (bula).",
+   "Sedação para procedimento: 5 mg (0,1 mg/kg) EV e 2,5 mg a cada 30 s até ptose palpebral; usual 10–30 mg (bula).",
+   "Idosos e debilitados: menor dose possível (bula)."
+  ],
+  "pediatria": [
+   "Estado de mal: 0,15–0,2 mg/kg EV (máx. 10 mg por dose), pode repetir 1 vez (AES 2016).",
+   "Retal (sem acesso venoso): 0,2–0,5 mg/kg (máx. 20 mg) em dose única (AES 2016); por idade: 2–5 anos 0,5 mg/kg, 6–11 anos 0,3 mg/kg, ≥ 12 anos 0,2 mg/kg (Neurocritical Care Society 2012).",
+   "Bula (estado de mal em crianças): 0,2–0,3 mg/kg.",
+   "Recém-nascidos e prematuros metabolizam o diazepam lentamente (meia-vida prolongada) (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Estado de mal — EV",
+    "mgkg": 0.2,
+    "max_mg": 10,
+    "intervalo": "pode repetir 1 vez em 5 min",
+    "via": "EV"
+   },
+   {
+    "rotulo": "Estado de mal — retal (2–5 anos)",
+    "mgkg": 0.5,
+    "max_mg": 20,
+    "intervalo": "dose única",
+    "via": "retal"
+   }
+  ],
+  "diluicao": [
+   "EV direto, sem diluir, lento: 0,5–1 mL/min (2,5–5 mg/min); rápido causa apneia (bula; Neurocritical Care Society 2012).",
+   "Não misturar com outros medicamentos na seringa ou no soro: precipita (bula).",
+   "Infusão (se necessária): no máximo 4 mL (20 mg) em no mínimo 250 mL de SG 5%, SG 10% ou SF 0,9%, misturando rapidamente e usando logo (bula).",
+   "Usar veia calibrosa: flebite e trombose com injeção rápida ou em veia fina (bula).",
+   "IM: absorção lenta e errática (níveis só após 60–90 min): não usar IM no estado de mal (bula)."
+  ],
+  "renal": "Sem ajuste específico (farmacocinética semelhante na insuficiência renal crônica) (bula).",
+  "hepatica": "Contraindicado na insuficiência hepática grave (encefalopatia); na leve a moderada, menor dose possível (bula).",
+  "gestacao": "Categoria C; evitar, sobretudo no 1º trimestre, se houver alternativa; uso no fim da gestação causa hipotonia, hipotermia, depressão respiratória e abstinência no recém-nascido (bula). No estado de mal, tratar a gestante.",
+  "lactacao": "Excretado no leite: a bula contraindica o uso durante a amamentação.",
+  "contraindicacoes": [
+   "Hipersensibilidade a benzodiazepínicos ou aos excipientes (bula).",
+   "Glaucoma de ângulo fechado, insuficiência respiratória grave, insuficiência hepática grave, apneia do sono e miastenia gravis (bula).",
+   "Dependência de outras drogas, inclusive álcool, exceto para tratar a abstinência aguda (bula)."
+  ],
+  "alertas": [
+   "Depressão respiratória e hipotensão, somadas com opioides, álcool e outros depressores: ter material de via aérea (bula).",
+   "Injeção contém propilenoglicol, álcool benzílico e etanol (dor e flebite) (bula).",
+   "Efeito anticonvulsivante curto (redistribuição): planejar a droga de 2ª linha logo após o benzodiazepínico (Neurocritical Care Society 2012).",
+   "Idosos: evitar benzodiazepínicos pelo risco de delírio, quedas e fraturas (critérios de Beers, conforme src/data/regras.js).",
+   "Antídoto: flumazenil (cuidado em usuário crônico e no estado de mal)."
+  ],
+  "fontes": [
+   "Bula ANVISA — diazepam solução injetável 5 mg/mL (União Química)",
+   "Bula ANVISA — Compaz comprimidos (diazepam), Cristália",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Compaz, Santiazepam, Uni-Diazepax, Relapax)",
+   "Glauser T et al. Treatment of Convulsive Status Epilepticus — AES (Epilepsy Curr 2016;16:48)",
+   "Brophy GM et al. Status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3)",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023)"
+  ]
+ },
+ {
+  "id": "fenitoina",
+  "nome": "Fenitoína",
+  "classe": "Anticonvulsivante",
+  "subclasse": "Hidantoína (bloqueador de canal de sódio)",
+  "mecanismo": "Estabiliza a membrana neuronal bloqueando canais de sódio voltagem-dependentes; cinética não linear (saturável) e alta ligação à albumina.",
+  "apresentacoes": [
+   "Ampola 5 mL com 250 mg (50 mg/mL de fenitoína sódica) (Fenital, genéricos)",
+   "Comprimido 100 mg (Fenital oral, Dantalin, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "VO"
+  ],
+  "adulto": [
+   "Estado de mal (2ª linha): 20 mg/kg EV em SF 0,9%, até 50 mg/min; pode-se dar mais 5–10 mg/kg 10 min após o ataque (Neurocritical Care Society 2012; calculadora do painel). ESETT 2019: fosfenitoína, levetiracetam e valproato tiveram eficácia semelhante.",
+   "A bula (brasileira e americana) traz ataque de 10–15 mg/kg a até 50 mg/min, seguido de 100 mg VO ou EV a cada 6–8 h; o painel segue a dose de 20 mg/kg das diretrizes.",
+   "Obesos: calcular o ataque pelo peso ideal + 1,33 × (peso real − peso ideal) (bula).",
+   "Idosos: depuração menor; manutenção inicial de 3 mg/kg/dia, ajustando pelo nível sérico (bula).",
+   "Faixa terapêutica usual: 10–20 mcg/mL de fenitoína total (1–2 mcg/mL livre) (FDA)."
+  ],
+  "pediatria": [
+   "Estado de mal: 20 mg/kg EV (máx. 1.500 mg), até 1 mg/kg/min e no máximo 50 mg/min (Neurocritical Care Society 2012; painel).",
+   "FDA: ataque de 15–20 mg/kg a 1–3 mg/kg/min ou 50 mg/min, o que for mais lento.",
+   "Via IM não recomendada em crianças (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Estado de mal — ataque EV",
+    "mgkg": 20,
+    "max_mg": 1500,
+    "intervalo": "dose única, até 1 mg/kg/min (máx. 50 mg/min)",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "Diluir só em SF 0,9% (em soro glicosado precipita); infusão curta com filtro de 0,22 micra (bula).",
+   "Lavar a veia com SF antes e depois de cada dose, pela alcalinidade da solução (bula).",
+   "Adulto: no máximo 50 mg/min (cerca de 20 min para 1 g), com monitor de ECG e PA durante e após (bula; FDA).",
+   "Não usar IM no estado de mal: absorção errática, pico em até 24 h (FDA)."
+  ],
+  "renal": "Na insuficiência renal e na hipoalbuminemia a fração livre aumenta: preferir dosar fenitoína livre; corrigir o nível total pela albumina (bula).",
+  "hepatica": "Metabolização hepática: cautela e possível dose menor; dosar fenitoína livre (bula).",
+  "gestacao": "Categoria D: teratogênica (síndrome da hidantoína fetal); risco de hemorragia no recém-nascido, prevenível com vitamina K à mãe antes do parto e ao recém-nascido. No estado de mal, o benefício supera o risco (bula).",
+  "lactacao": "Excretada no leite; risco baixo se os níveis maternos estiverem na faixa terapêutica (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade a hidantoínas (bula).",
+   "Bradicardia sinusal, bloqueio sinoatrial, bloqueio AV de 2º e 3º graus e síndrome de Adams-Stokes (bula)."
+  ],
+  "alertas": [
+   "Infusão rápida causa hipotensão grave e arritmias (alerta em destaque da bula americana): respeitar a velocidade e monitorizar.",
+   "Síndrome da luva roxa e necrose local, mesmo sem extravasamento (bula).",
+   "Reações cutâneas graves (Stevens-Johnson, NET, DRESS) e hepatotoxicidade: suspender ao primeiro sinal de rash (bula).",
+   "Muitas interações por indução enzimática (CYP2C9, CYP3A etc.) e deslocamento da albumina: revisar anticoagulantes, antirretrovirais, contraceptivos e valproato (bula).",
+   "Na pré-eclâmpsia, o sulfato de magnésio é a droga de escolha (painel)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Fenital (fenitoína sódica 50 mg/mL), Cristália",
+   "FDA label Phenytoin Sodium Injection, DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (marca registrada: Fenital; genéricos)",
+   "Glauser T et al. Treatment of Convulsive Status Epilepticus — AES (Epilepsy Curr 2016;16:48)",
+   "Brophy GM et al. Status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3)",
+   "Kapur J et al. ESETT (N Engl J Med 2019;381:2103)"
+  ]
+ },
+ {
+  "id": "levetiracetam",
+  "nome": "Levetiracetam",
+  "classe": "Anticonvulsivante",
+  "subclasse": "Ligante da proteína SV2A (derivado pirrolidínico)",
+  "mecanismo": "Liga-se à proteína SV2A das vesículas sinápticas, modulando a liberação de neurotransmissores; eliminação renal, sem metabolismo hepático relevante e com poucas interações.",
+  "apresentacoes": [
+   "Frasco-ampola 5 mL com 500 mg (100 mg/mL) para diluição (Antara IV, Etira injetável)",
+   "Comprimido 250 mg, 500 mg, 750 mg e 1.000 mg e solução oral 100 mg/mL (Keppra, Antara, Etira, Spark, Tam, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "VO"
+  ],
+  "adulto": [
+   "Estado de mal (2ª linha): 60 mg/kg EV (máx. 4.500 mg) em 15 min, dose única (AES 2016; ESETT 2019; calculadora do painel). Neurocritical Care Society 2012: 1.000–3.000 mg EV a 2–5 mg/kg/min.",
+   "Manutenção (bula): 500–1.500 mg de 12/12h, EV ou VO na mesma dose (troca direta entre as vias).",
+   "ESETT 2019: eficácia semelhante à da fosfenitoína e do valproato no estado de mal refratário a benzodiazepínico."
+  ],
+  "pediatria": [
+   "Estado de mal: 60 mg/kg EV (máx. 4.500 mg) em 15 min (AES 2016; ESETT incluiu crianças ≥ 2 anos); Neurocritical Care Society 2012: 20–60 mg/kg EV.",
+   "Manutenção (bula, ≥ 6 anos e < 50 kg): 10 mg/kg de 12/12h, até 30 mg/kg de 12/12h; ≥ 50 kg, dose de adulto. A forma EV está registrada a partir de 6 anos."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Estado de mal — ataque EV",
+    "mgkg": 60,
+    "max_mg": 4500,
+    "intervalo": "dose única, em 15 min",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "Diluir em 100 mL de SF 0,9%, SG 5% ou Ringer lactato e infundir em 15 min (bula; FDA).",
+   "Volumes menores (crianças): concentração máxima de 15 mg/mL (bula).",
+   "Estabilidade da solução diluída: até 28 h em temperatura ambiente (bula Antara IV); a bula americana limita a 4 h — seguir a da apresentação usada."
+  ],
+  "renal": "Manutenção por ClCr (mL/min/1,73 m²): ≥ 80, 500–1.500 mg 12/12h; 50–79, 500–1.000 mg 12/12h; 30–49, 250–750 mg 12/12h; < 30, 250–500 mg 12/12h; diálise, 500–1.000 mg 1x/dia (ataque de 750 mg no 1º dia) e suplemento de 250–500 mg após a diálise (bula).",
+  "hepatica": "Leve a moderada: sem ajuste. Grave com ClCr < 60 mL/min/1,73 m²: reduzir a manutenção em 50% (bula).",
+  "gestacao": "Categoria C: usar se clinicamente necessário; registros com mais de 1.000 gestantes no 1º trimestre não sugerem aumento importante de malformações. Os níveis caem até 60% no 3º trimestre: monitorar (bula).",
+  "lactacao": "Excretado no leite: a bula não recomenda amamentar; se o tratamento for necessário, pesar risco e benefício.",
+  "contraindicacoes": [
+   "Hipersensibilidade ao levetiracetam ou a outros derivados da pirrolidona (bula)."
+  ],
+  "alertas": [
+   "Alterações de comportamento (agressividade, irritabilidade, depressão) e ideação suicida: orientar paciente e família (bula).",
+   "Suspender gradualmente para evitar crises de rebote (bula).",
+   "Ajustar a manutenção pela função renal; a dose de ataque do estado de mal segue as diretrizes."
+  ],
+  "fontes": [
+   "Bula ANVISA — Antara IV (levetiracetam 100 mg/mL solução injetável)",
+   "FDA label Keppra injection, DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Antara IV, Etira injetável; orais Keppra, Antara, Etira, Spark, Tam)",
+   "Glauser T et al. Treatment of Convulsive Status Epilepticus — AES (Epilepsy Curr 2016;16:48)",
+   "Kapur J et al. ESETT (N Engl J Med 2019;381:2103)",
+   "Brophy GM et al. Status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3)"
+  ]
+ },
+ {
+  "id": "acido-valproico",
+  "nome": "Ácido valproico (valproato de sódio)",
+  "classe": "Anticonvulsivante",
+  "subclasse": "Ácido graxo de cadeia ramificada (amplo espectro)",
+  "mecanismo": "Aumenta a disponibilidade de GABA e bloqueia canais de sódio e de cálcio tipo T; metabolização hepática e alta ligação proteica.",
+  "apresentacoes": [
+   "Frasco-ampola 5 mL com 500 mg (100 mg/mL de ácido valproico) (Depacon) — não consta da lista CMED de set/2026: conferir disponibilidade na unidade",
+   "Comprimido 300 mg e 500 mg e xarope 50 mg/mL de valproato de sódio (Depakene, Epilenil, genéricos)",
+   "Divalproato de sódio: comprimido 250 mg e 500 mg, de liberação retardada ou prolongada, e cápsula 125 mg (Depakote, Divalcon, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "VO"
+  ],
+  "adulto": [
+   "Estado de mal (2ª linha): 40 mg/kg EV (máx. 3.000 mg) em 10 min, dose única (AES 2016; ESETT 2019; calculadora do painel). Neurocritical Care Society 2012: 20–40 mg/kg a 3–6 mg/kg/min, podendo repetir 20 mg/kg.",
+   "Atenção: a bula do Depacon não trata do estado de mal e orienta infusão em 60 min, no máximo 20 mg/min; as velocidades maiores vêm das diretrizes e do ESETT.",
+   "Manutenção (bula): iniciar 10–15 mg/kg/dia, até no máximo 60 mg/kg/dia, em doses fracionadas; nível sérico terapêutico 50–100 mcg/mL. Trocar para VO assim que possível (EV não estudado por mais de 14 dias)."
+  ],
+  "pediatria": [
+   "Estado de mal: 40 mg/kg EV (máx. 3.000 mg) em 10 min (AES 2016; ESETT incluiu crianças ≥ 2 anos); Neurocritical Care Society 2012: 1,5–3 mg/kg/min em crianças.",
+   "A bula do Depacon contraindica a forma EV abaixo de 10 anos; o risco de hepatotoxicidade fatal é bem maior abaixo de 2 anos, sobretudo com politerapia ou doença metabólica (bula).",
+   "Evitar se houver suspeita de doença mitocondrial (POLG) ou erro inato do ciclo da ureia (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Estado de mal — ataque EV (AES/ESETT)",
+    "mgkg": 40,
+    "max_mg": 3000,
+    "intervalo": "dose única, em 10 min",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "Diluir em 50 mL de SG 5%, SF 0,9% ou Ringer lactato (bula Depacon).",
+   "Bula: infundir em 60 min (até 20 mg/min); no estado de mal, as diretrizes usam 10 min (AES 2016; ESETT 2019) — conferir protocolo da unidade."
+  ],
+  "renal": "Sem ajuste de dose; a fração livre aumenta na insuficiência renal, o que pode tornar enganoso o nível sérico total (bula).",
+  "hepatica": "Contraindicado na doença ou disfunção hepática significativa; hepatotoxicidade fatal descrita: dosar enzimas hepáticas antes e durante (bula).",
+  "gestacao": "Evitar: cerca de 10,7% de malformações congênitas em monoterapia (tubo neural, fenda labiopalatina, cardíacas) e redução do QI da criança, dose-dependentes (bula). No estado de mal na gestante, preferir outra opção de 2ª linha.",
+  "lactacao": "Passa para o leite (1–10% do nível sérico materno); decidir pesando o benefício da amamentação (bula).",
+  "contraindicacoes": [
+   "Doença ou disfunção hepática significativa (bula).",
+   "Doença mitocondrial por mutação POLG (síndrome de Alpers-Huttenlocher) e suspeita dela em menores de 2 anos (bula).",
+   "Distúrbio do ciclo da ureia (bula).",
+   "Porfiria (bula).",
+   "Depacon: menores de 10 anos (bula).",
+   "Hipersensibilidade ao valproato (bula)."
+  ],
+  "alertas": [
+   "Hepatotoxicidade grave e pancreatite com risco de morte: suspender diante de dor abdominal, vômitos ou icterícia (bula).",
+   "Trombocitopenia e alteração da coagulação, dose-dependentes: plaquetas e coagulograma antes e durante (bula).",
+   "Encefalopatia hiperamonêmica, inclusive com enzimas hepáticas normais: dosar amônia se sonolência ou vômitos (bula).",
+   "Carbapenêmicos (meropenem, imipenem, ertapenem) derrubam o nível do valproato: perda de controle das crises (bula).",
+   "Cautela no traumatismo craniano (Neurocritical Care Society 2012)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Depacon (valproato de sódio 100 mg/mL solução injetável), Abbott",
+   "Lista de preços CMED/Anvisa, set/2026 (apresentações orais: Depakene, Epilenil, Depakote, Divalcon; Depacon ausente)",
+   "Glauser T et al. Treatment of Convulsive Status Epilepticus — AES (Epilepsy Curr 2016;16:48)",
+   "Kapur J et al. ESETT (N Engl J Med 2019;381:2103)",
+   "Brophy GM et al. Status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3)"
+  ]
+ },
+ {
+  "id": "fenobarbital",
+  "nome": "Fenobarbital",
+  "classe": "Anticonvulsivante",
+  "subclasse": "Barbitúrico de ação longa",
+  "mecanismo": "Prolonga a abertura do canal de cloreto do receptor GABA-A; anticonvulsivante e sedativo, com meia-vida longa e forte indução enzimática.",
+  "apresentacoes": [
+   "Ampola 2 mL com 200 mg (100 mg/mL) (Fenocris)",
+   "Ampola 1 mL com 200 mg (200 mg/mL) (Carbital) — concentração diferente: conferir antes de calcular o volume",
+   "Comprimido 50 mg e 100 mg e solução oral 40 mg/mL (Gardenal, Fenocris, Carbital, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IM",
+   "VO"
+  ],
+  "adulto": [
+   "Estado de mal (se não houver as opções de 1ª ou 2ª linha): 15 mg/kg EV em dose única (AES 2016); Neurocritical Care Society 2012: 20 mg/kg EV, podendo dar mais 5–10 mg/kg 10 min após. Calculadora do painel: 15–20 mg/kg, até 50 mg/min.",
+   "Velocidade: a bula do Fenocris orienta menos de 60 mg/min; a Neurocritical Care Society 2012 cita 50–100 mg/min. O efeito cerebral máximo pode levar 15 min ou mais.",
+   "Bula (esquema antigo): crises agudas 30–120 mg IM ou EV, até 400 mg/24 h; estado de mal 200–320 mg EV, repetidos a cada 6 h se preciso."
+  ],
+  "pediatria": [
+   "Estado de mal: 15–20 mg/kg EV em 10–15 min (bula Fenocris); 20 mg/kg (Neurocritical Care Society 2012); 15 mg/kg (AES 2016).",
+   "Crises agudas: 3–5 mg/kg/dia IM ou EV (bula).",
+   "A bula brasileira contraindica em recém-nascidos e em crianças do sexo feminino (até a menarca); no estado de mal, pesar risco e benefício."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Estado de mal — ataque EV",
+    "mgkg": 20,
+    "intervalo": "dose única, em 10–15 min",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "EV lento, abaixo de 60 mg/min, com monitor de PA, respiração e ECG e material de ventilação pronto (bula).",
+   "Solução muito alcalina: evitar extravasamento e injeção intra-arterial (necrose e gangrena) (bula).",
+   "IM: em grande massa muscular, menos de 5 mL por local (bula)."
+  ],
+  "renal": "Bula: contraindicado na insuficiência renal grave; doses altas contraindicadas na síndrome nefrótica.",
+  "hepatica": "Bula: contraindicado na insuficiência hepática grave; em hepatopatia, dose inicial reduzida; não usar se sinais de coma hepático.",
+  "gestacao": "Categoria X na bula brasileira (contraindicado na gestação e em mulheres em idade fértil): malformações maiores em 6,5–7,1% dos expostos, restrição de crescimento, prejuízo do neurodesenvolvimento, abstinência e sangramento neonatal (vitamina K). No estado de mal materno, a decisão é de risco e benefício.",
+  "lactacao": "Contraindicado na lactação (bula): sonolência e sucção fraca no lactente.",
+  "contraindicacoes": [
+   "Hipersensibilidade a barbitúricos; porfiria (bula).",
+   "Insuficiência respiratória grave, insuficiência hepática ou renal graves (bula).",
+   "Recém-nascidos, gestação, mulheres em idade fértil, crianças do sexo feminino e lactação (bula brasileira).",
+   "Uso com saquinavir e vários antivirais de hepatite C; com álcool e contraceptivos hormonais (bula).",
+   "Dependência prévia de sedativo-hipnóticos (bula)."
+  ],
+  "alertas": [
+   "Infusão rápida: vasodilatação, hipotensão, depressão respiratória, apneia e laringoespasmo; ter equipamento de ressuscitação e ventilação à mão (bula).",
+   "Forte indutor enzimático: reduz o efeito de anticoagulantes, contraceptivos, antirretrovirais e outros (bula).",
+   "Reações cutâneas graves (SSJ, NET, DRESS): suspender ao primeiro sinal (bula).",
+   "Idosos e debilitados: excitação paradoxal e confusão (bula).",
+   "Contém propilenoglicol (bula; Neurocritical Care Society 2012).",
+   "Retirada gradual; suspensão brusca precipita crises (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Fenocris (fenobarbital sódico 100 mg/mL solução injetável), Cristália",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Fenocris, Carbital 200 mg/mL, Gardenal)",
+   "Glauser T et al. Treatment of Convulsive Status Epilepticus — AES (Epilepsy Curr 2016;16:48)",
+   "Brophy GM et al. Status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3)"
+  ]
+ }
+]

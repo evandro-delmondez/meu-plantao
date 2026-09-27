@@ -1,0 +1,501 @@
+[
+ {
+  "id": "midazolam",
+  "nome": "Midazolam",
+  "classe": "Sedativo e anticonvulsivante",
+  "subclasse": "Benzodiazepínico de ação curta",
+  "mecanismo": "Potencializa a ação do GABA no receptor GABA-A: sedação, ansiólise, amnésia e ação anticonvulsivante.",
+  "apresentacoes": [
+   "Ampola 5 mg/mL: 3 mL (15 mg) e 10 mL (50 mg) (Dormonid, Dormire, Dormium, Hypozam, genéricos)",
+   "Ampola 1 mg/mL, 5 mL (Dormire, Dormium, genéricos)",
+   "Comprimido 7,5 mg e 15 mg (Dormonid, Dormire)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IM",
+   "IN",
+   "retal",
+   "VO"
+  ],
+  "adulto": [
+   "Estado de mal epiléptico (1ª linha, sem acesso venoso): 10 mg IM se > 40 kg; 5 mg IM se 13–40 kg, dose única (AES 2016; RAMPART).",
+   "Estado de mal refratário (em ventilação mecânica): 0,2 mg/kg EV a 2 mg/min e infusão de 0,05–2 mg/kg/h guiada por EEG (Neurocritical Care Society 2012).",
+   "IOT (indução): 0,2 mg/kg EV (0,1–0,3) (calculadora do painel); bula: 0,2 mg/kg, ou 0,2–0,35 mg/kg sem pré-medicação; > 60 anos ou debilitados 0,05–0,15 mg/kg.",
+   "Sedação para procedimento: 2–2,5 mg EV lento (1 mg em 30 s), repetir 1 mg se preciso; total usual 3,5–7,5 mg. > 60 anos: 0,5–1 mg, total geralmente ≤ 3,5 mg (bula).",
+   "Sedação contínua em ventilação mecânica: 0,02–0,1 mg/kg/h (Barr 2013; bomba do painel); bula: ataque 0,03–0,3 mg/kg em incrementos de 1–2,5 mg (total geralmente ≤ 15 mg) e manutenção 0,03–0,2 mg/kg/h. Preferir propofol ou dexmedetomidina a benzodiazepínico (PADIS 2018)."
+  ],
+  "pediatria": [
+   "Estado de mal epiléptico: 0,2 mg/kg IM ou intranasal (máx. 10 mg); ou 10 mg IM se > 40 kg e 5 mg se 13–40 kg; bucal 0,5 mg/kg (Neurocritical Care Society 2012; AES 2016).",
+   "Sedação EV para procedimento (bula): 6 meses a 5 anos, 0,05–0,1 mg/kg (total até 0,6 mg/kg, máx. 6 mg); 6–12 anos, 0,025–0,05 mg/kg (total até 0,4 mg/kg, máx. 10 mg); 13–16 anos como adulto.",
+   "Sedação IM (1–15 anos): 0,05–0,15 mg/kg (geralmente ≤ 10 mg); retal (> 6 meses): 0,3–0,5 mg/kg em dose única (bula).",
+   "Sedação contínua em intubado (> 6 meses): ataque 0,05–0,2 mg/kg em 2–3 min e infusão 0,06–0,12 mg/kg/h (bula).",
+   "< 6 meses: sedação não recomendada, salvo se benefício superar o risco; não indicado para indução anestésica em crianças (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Estado de mal — IM ou intranasal",
+    "mgkg": 0.2,
+    "max_mg": 10,
+    "intervalo": "dose única",
+    "via": "IM/intranasal"
+   }
+  ],
+  "diluicao": [
+   "Bomba do painel: 3 ampolas (150 mg) + 120 mL de SF 0,9% = 150 mL (1 mg/mL); ou puro (5 mg/mL).",
+   "Compatível com SF 0,9%, SG 5% e 10%, Ringer e Ringer lactato; estável 24 h em temperatura ambiente (bula).",
+   "Não misturar com soluções alcalinas: precipita com bicarbonato (bula).",
+   "Criança < 15 kg: não usar concentração > 1 mg/mL; diluir para 1 mg/mL (bula).",
+   "IM no estado de mal: sem diluição, em grande massa muscular."
+  ],
+  "renal": "Insuficiência renal grave: sedação mais intensa e prolongada (acúmulo do metabólito ativo); titular com cuidado (bula).",
+  "hepatica": "Depuração reduzida e efeito prolongado: reduzir a dose e monitorar (bula).",
+  "gestacao": "Categoria C; evitar no 1º trimestre se houver alternativa; no 3º trimestre ou em altas doses no parto pode causar hipotonia, hipotermia e depressão respiratória no recém-nascido (bula). No estado de mal, tratar a gestante normalmente.",
+  "lactacao": "Interromper a amamentação por 24 h após a dose injetável (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade a benzodiazepínicos.",
+   "Comprimidos: insuficiência respiratória grave, insuficiência hepática grave, apneia do sono, miastenia gravis e uso com inibidores potentes do CYP3A (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: sedativos EV de ação moderada).",
+   "Depressão respiratória, apneia e parada cardíaca, sobretudo em > 60 anos, crianças e injeção rápida: usar só com material de via aérea e monitorização (bula).",
+   "Somar o efeito com opioides: dar o analgésico antes e titular o midazolam (bula).",
+   "Inibidores do CYP3A4 (cetoconazol, itraconazol, claritromicina, inibidores de protease) aumentam muito o efeito; indutores (rifampicina) reduzem (bula).",
+   "Uso prolongado: tolerância e abstinência (inclusive convulsões) na retirada abrupta (bula).",
+   "Antídoto: flumazenil (cuidado em usuário crônico de benzodiazepínico e no estado de mal)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Dormonid (midazolam), Roche",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Dormonid, Dormire, Dormium, Hypozam)",
+   "Glauser T et al. Treatment of Convulsive Status Epilepticus — AES (Epilepsy Curr 2016;16:48)",
+   "Silbergleit R et al. RAMPART (N Engl J Med 2012;366:591)",
+   "Brophy GM et al. Guidelines for the evaluation and management of status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3)",
+   "Barr J et al. PAD guidelines (Crit Care Med 2013;41:263)",
+   "Devlin JW et al. PADIS Guideline (Crit Care Med 2018;46:e825)",
+   "Acquisto NM et al. SCCM Guidelines for Rapid Sequence Intubation (Crit Care Med 2023;51:1411)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ },
+ {
+  "id": "fentanil",
+  "nome": "Fentanil (fentanila)",
+  "classe": "Analgésico opioide",
+  "subclasse": "Opioide forte sintético (agonista µ)",
+  "mecanismo": "Agonista µ-opioide potente, lipossolúvel, de início rápido e curta duração após dose única; acumula em infusão prolongada.",
+  "apresentacoes": [
+   "Ampola 50 mcg/mL: 2 mL, 5 mL e 10 mL (Fentanest, Unifental, Anesfent, genéricos)",
+   "Frasco-ampola 50 mcg/mL, 10 mL (Fentanest)",
+   "Bolsa pronta 20 mcg/mL, 250 mL (Fentanest bolsa)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IM"
+  ],
+  "adulto": [
+   "IOT (pré-tratamento/analgesia): 2 mcg/kg EV lento (1–3) (calculadora do painel; SCCM 2023).",
+   "Analgesia no paciente intubado (analgesia primeiro): ataque 1–2 mcg/kg; bolus 0,35–0,5 mcg/kg a cada 0,5–1 h; infusão 0,7–10 mcg/kg/h (Barr 2013; bomba do painel).",
+   "Dor pós-operatória (bula): 50–100 mcg IM, repetir após 1–2 h se necessário.",
+   "Idosos (> 65 anos) e debilitados: reduzir a dose inicial; obesos: calcular pelo peso magro (bula)."
+  ],
+  "pediatria": [
+   "2 a 12 anos, indução e manutenção anestésica: 20–30 mcg a cada 10–12 kg (bula).",
+   "Segurança abaixo de 2 anos não estabelecida pela bula; uso em lactentes conforme protocolo de UTI pediátrica e anestesia."
+  ],
+  "diluicao": [
+   "Bomba do painel: puro (50 mcg/mL) ou 2 ampolas de 10 mL (1.000 mcg) + 80 mL de SF 0,9% = 100 mL (10 mcg/mL).",
+   "Pode ser diluído em SF 0,9% (10–20 mcg/mL) ou SG 5% (10–40 mcg/mL); usar em até 24 h (bula).",
+   "Bolus EV lento: injeção rápida aumenta a rigidez torácica (bula).",
+   "Incompatível na mesma solução com fenitoína, pantoprazol, azitromicina, sulfametoxazol-trimetoprima, entre outros (bula).",
+   "A bula também prevê uso epidural e intratecal (anestesia), fora do escopo do PS."
+  ],
+  "renal": "Considerar dose reduzida e vigiar toxicidade na insuficiência renal (bula).",
+  "hepatica": "Metabolizado no fígado (CYP3A4): titular com cuidado na insuficiência hepática (bula).",
+  "gestacao": "Categoria C; atravessa a placenta. Uso crônico causa abstinência neonatal; no parto pode deprimir a respiração do recém-nascido — ter naloxona e ventilação disponíveis (bula).",
+  "lactacao": "Excretado no leite: não amamentar nem usar o leite por 24 h após a dose (bula).",
+  "contraindicacoes": [
+   "Intolerância ao fentanil, a componentes da fórmula ou a outros opioides (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: opioides EV).",
+   "Depressão respiratória dose-dependente: usar com monitorização e suporte ventilatório; antídoto naloxona.",
+   "Rigidez torácica (\"tórax de pedra\"), sobretudo em doses altas e injeção rápida: injetar lentamente; se ocorrer, ventilar e usar bloqueador neuromuscular (bula).",
+   "Bradicardia e broncoconstrição podem ocorrer (bula).",
+   "Síndrome serotoninérgica com ISRS, IRSN e IMAO; suspender IMAO 2 semanas antes de procedimentos (bula).",
+   "Inibidores do CYP3A4 (ritonavir, cetoconazol, fluconazol, voriconazol) prolongam o efeito (bula).",
+   "Associação com benzodiazepínicos soma depressão respiratória."
+  ],
+  "fontes": [
+   "Bula ANVISA — Fentanest (citrato de fentanila), Cristália",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Fentanest, Unifental, Anesfent)",
+   "Barr J et al. PAD guidelines (Crit Care Med 2013;41:263) — tabela de doses",
+   "Devlin JW et al. PADIS Guideline (Crit Care Med 2018;46:e825)",
+   "Acquisto NM et al. SCCM Guidelines for Rapid Sequence Intubation (Crit Care Med 2023;51:1411)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ },
+ {
+  "id": "propofol",
+  "nome": "Propofol",
+  "classe": "Sedativo e anestésico geral",
+  "subclasse": "Hipnótico EV (alquilfenol)",
+  "mecanismo": "Potencializa o GABA-A; hipnose de início rápido e curta duração, sem ação analgésica; vasodilatação e depressão miocárdica.",
+  "apresentacoes": [
+   "Emulsão 1% (10 mg/mL): ampola 20 mL e frasco-ampola 20, 50 e 100 mL (Diprivan, Provive, Lipuro, Propovan, Profolen, genéricos)",
+   "Emulsão 2% (20 mg/mL): frasco-ampola 50 mL (Diprivan, Lipuro, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "IOT (indução): 1,5 mg/kg EV (1–2); evitar se hipotensão (calculadora do painel). Bula: < 55 anos, 1,5–2,5 mg/kg, cerca de 40 mg a cada 10 s; idosos e ASA 3–4, doses menores e mais lentas.",
+   "Sedação contínua em ventilação mecânica: 0,3–3 mg/kg/h (5–50 mcg/kg/min) (Barr 2013; bomba do painel); bula: 0,3–4 mg/kg/h, sem exceder 4 mg/kg/h salvo benefício claro.",
+   "Sedação para procedimento: 0,5–1 mg/kg em 1–5 min; manutenção 1,5–4,5 mg/kg/h, bolus de 10–20 mg se preciso (bula).",
+   "Estado de mal refratário (intubado): ataque 1–2 mg/kg e infusão de 30–200 mcg/kg/min, com EEG; cautela acima de 80 mcg/kg/min por mais de 48 h (Neurocritical Care Society 2012).",
+   "PADIS 2018: preferir propofol ou dexmedetomidina a benzodiazepínico na sedação em ventilação mecânica; a atualização de 2025 sugere dexmedetomidina em vez de propofol (recomendação condicional)."
+  ],
+  "pediatria": [
+   "Contraindicado abaixo de 3 anos (bula brasileira).",
+   "Indução anestésica: > 8 anos, cerca de 2,5 mg/kg; de 3 a 8 anos, a necessidade pode ser maior; administrar lentamente (bula).",
+   "Não recomendado para sedação consciente nem para sedação em UTI em crianças (bula)."
+  ],
+  "diluicao": [
+   "Usar puro (10 mg/mL) em seringa ou frasco; bomba do painel: puro, 1%.",
+   "Propofol 1% pode ser diluído só em SG 5%, até 1:5 (mínimo 2 mg/mL), com uso em até 6 h; o 2% não pode ser diluído (bula).",
+   "Sem conservante: técnica asséptica; não diluído, trocar frasco e equipo a cada 12 h (bula).",
+   "Dor à injeção: pode-se misturar lidocaína 0,5–1% imediatamente antes, conforme a tabela da bula."
+  ],
+  "renal": "Sem ajuste específico; cautela em insuficiência renal (bula).",
+  "hepatica": "Sem ajuste específico; cautela em insuficiência hepática (bula).",
+  "gestacao": "Atravessa a placenta e pode causar depressão neonatal; a bula brasileira orienta não usar na gravidez (exceto indicação precisa).",
+  "lactacao": "Segurança para o lactente não estabelecida (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade ao propofol ou aos excipientes (contém óleo de soja e lecitina de ovo) (bula).",
+   "Menores de 3 anos (bula brasileira).",
+   "Sedação em UTI de crianças com difteria ou epiglotite, ou menores de 3 anos com infecção respiratória grave (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: anestésicos gerais EV).",
+   "Hipotensão e apneia são comuns, sobretudo em bolus, idosos, hipovolêmicos e no choque: evitar no choque sem vasopressor.",
+   "Síndrome de infusão do propofol (acidose metabólica, rabdomiólise, hipercalemia, arritmia, insuficiência cardíaca): risco com doses altas (> 4 mg/kg/h), sepse, lesão neurológica grave, vasopressores e corticoides; monitorar triglicerídeos, CK e lactato (bula; Kam 2007).",
+   "Não tem ação analgésica: associar analgesia.",
+   "Emulsão lipídica (1,1 kcal/mL): considerar no aporte calórico."
+  ],
+  "fontes": [
+   "Bula ANVISA — propofol 1% e 2% (Fresenius Kabi)",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Diprivan, Provive, Lipuro, Propovan, Profolen)",
+   "Barr J et al. PAD guidelines (Crit Care Med 2013;41:263) — tabela de doses",
+   "Devlin JW et al. PADIS Guideline (Crit Care Med 2018;46:e825)",
+   "Lewis K et al. Focused update to the PADIS guidelines (Crit Care Med 2025;53:e711)",
+   "Brophy GM et al. Status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3)",
+   "Acquisto NM et al. SCCM Guidelines for Rapid Sequence Intubation (Crit Care Med 2023;51:1411)",
+   "Kam PC, Cardone D. Propofol infusion syndrome (Anaesthesia 2007;62:690)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ },
+ {
+  "id": "cetamina",
+  "nome": "Cetamina (racêmica) e escetamina",
+  "classe": "Sedativo e anestésico geral",
+  "subclasse": "Anestésico dissociativo (antagonista NMDA)",
+  "mecanismo": "Antagonista do receptor NMDA: anestesia dissociativa e analgesia, com preservação relativa dos reflexos de via aérea e do tônus simpático. A escetamina é o isômero S(+), cerca de 2 vezes mais potente que a racêmica.",
+  "apresentacoes": [
+   "Escetamina 50 mg/mL: frasco-ampola 10 mL e ampola 2 mL (Ketamin, Ketamin NP, Ketah, genéricos) — é a forma predominante no Brasil",
+   "Cetamina racêmica 50 mg/mL, frasco-ampola 10 mL (genérico, Instituto BioChimico; não consta da lista CMED de set/2026: conferir disponibilidade)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IM"
+  ],
+  "adulto": [
+   "O painel usa a escetamina (forma predominante no Brasil): 0,5–1 mg/kg EV na indução (bula Ketanest S).",
+   "Confira qual produto está na mão: a escetamina (Ketamin) é cerca de 2 vezes mais potente que a racêmica, e a dose deve ser titulada levando isso em conta (bula Ketamin).",
+   "Cetamina racêmica — IOT (indução), bula: 1–4,5 mg/kg EV em 60 s (média 2 mg/kg), ou 1–2 mg/kg a 0,5 mg/kg/min; IM 6,5–13 mg/kg.",
+   "Escetamina — indução: 0,5–1 mg/kg EV ou 2–4 mg/kg IM; manutenção com metade da dose inicial a cada 10–15 min, ou 0,5–3 mg/kg/h (Ketanest S). IOT no broncoespasmo grave: 0,5–1 mg/kg EV, até 2,5 mg/kg (Ketanest S).",
+   "Escetamina — analgesia na emergência: 0,25–0,5 mg/kg IM ou 0,125–0,25 mg/kg EV lento; analgesia no intubado: bolus 0,25 mg/kg e infusão de 0,2–0,5 (até 1,5) mg/kg/h com benzodiazepínico (Ketanest S).",
+   "Atenção: a bula brasileira do Ketamin repete as faixas da racêmica (1–4,5 mg/kg EV), mas afirma potência 2 vezes maior; a bula europeia da escetamina (Ketanest S) usa metade da dose. Prefira iniciar pelo limite inferior e titular."
+  ],
+  "pediatria": [
+   "Racêmica (bula): IM 9–13 mg/kg produz anestesia cirúrgica em 3–4 min; a bula americana não estabelece segurança abaixo de 16 anos.",
+   "Painel (IOT pediátrica): escetamina 0,5–1 mg/kg EV (bula Ketanest S; diretriz pediátrica S2k 2022: 1 mg/kg).",
+   "Uso por mais de 3 h em crianças ≤ 3 anos: possível neurotoxicidade (FDA)."
+  ],
+  "diluicao": [
+   "Bolus EV: injetar em 60 s; mais rápido causa apneia e hipertensão (bula).",
+   "Infusão: 1 frasco (500 mg) em 490 mL de SF 0,9% ou SG 5% = 1 mg/mL, ou em 240 mL = 2 mg/mL; estável 24 h (bula Ketamin; bula cetamina BioChimico).",
+   "Não misturar na mesma seringa com barbitúricos (precipita) nem com diazepam (bula)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Segurança não estabelecida; uso não recomendado fora do parto (bula racêmica). Escetamina: categoria C, a bula orienta não usar na gestação. FDA: evitar na gestação e no parto.",
+  "lactacao": "Escetamina: contraindicada na amamentação segundo a bula brasileira (pode passar para o leite).",
+  "contraindicacoes": [
+   "Pacientes em que a elevação da pressão arterial seria perigosa (bula).",
+   "Hipersensibilidade à cetamina (bula).",
+   "Escetamina: porfiria (absoluta); hipertensão arterial, AVC prévio e insuficiência cardíaca grave (relativas) (bula Ketamin)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: anestésicos gerais EV, ex.: cetamina).",
+   "Hipertensão e taquicardia são frequentes; pode haver hipotensão no paciente com catecolaminas esgotadas (FDA).",
+   "Reações de emergência (alucinações, delírio): menores com benzodiazepínico associado e com a escetamina (bula).",
+   "Elevação da pressão do líquor: cautela se hipertensão intracraniana (bula).",
+   "Hipersalivação e laringoespasmo: os reflexos de via aérea não protegem totalmente contra aspiração (bula).",
+   "Uso abusivo e dependência (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Ketamin (cloridrato de escetamina 50 mg/mL), Cristália",
+   "Bula ANVISA — cloridrato de cetamina 50 mg/mL (Instituto BioChimico)",
+   "Fachinformation Ketanest S (esketamine), Pfizer — Alemanha",
+   "FDA label Ketamine Hydrochloride Injection, DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas de escetamina: Ketamin, Ketah)",
+   "Acquisto NM et al. SCCM Guidelines for Rapid Sequence Intubation (Crit Care Med 2023;51:1411)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ },
+ {
+  "id": "etomidato",
+  "nome": "Etomidato",
+  "classe": "Sedativo e anestésico geral",
+  "subclasse": "Hipnótico EV não barbitúrico (derivado imidazólico)",
+  "mecanismo": "Hipnótico de ação ultracurta via receptor GABA-A, com pouca repercussão hemodinâmica; inibe de forma reversível a 11-beta-hidroxilase suprarrenal.",
+  "apresentacoes": [
+   "Ampola 10 mL com 20 mg (2 mg/mL) (Hypnomidate, Eptomydex, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "IOT (indução): 0,3 mg/kg EV (calculadora do painel); bula: 0,2–0,3 mg/kg EV lento, hipnose em cerca de 10 s por 4–5 min; dose total máxima de 3 ampolas (60 mg).",
+   "Idosos: 0,15–0,2 mg/kg em dose única, ajustando pela resposta; reduzir também na cirrose e após opioides, neurolépticos ou sedativos (bula).",
+   "SCCM 2023: sem diferença de mortalidade, hipotensão ou uso de vasopressor entre etomidato e outros indutores; escolher pelo estado hemodinâmico.",
+   "Sem ação analgésica: a bula recomenda fentanil 1–2 mL (50–100 mcg) EV 1–2 min antes."
+  ],
+  "pediatria": [
+   "Painel (IOT pediátrica): etomidato 0,3 mg/kg.",
+   "Bula brasileira: abaixo de 15 anos, pode ser necessária dose até 30% maior que a do adulto.",
+   "Bula americana (Amidate): dados insuficientes para recomendar dose abaixo de 10 anos."
+  ],
+  "diluicao": [
+   "Solução pronta: sem diluir, EV lenta (bula).",
+   "Preferir veia calibrosa para reduzir a dor à injeção (bula)."
+  ],
+  "renal": "",
+  "hepatica": "Cirrose: meia-vida prolongada; reduzir a dose (bula).",
+  "gestacao": "Categoria B: usar se o benefício justificar o risco; pode reduzir transitoriamente o cortisol do recém-nascido (cerca de 6 h) (bula).",
+  "lactacao": "Excretado no leite: suspender a amamentação por cerca de 24 h após a dose (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade ao etomidato ou aos excipientes (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: anestésicos gerais EV).",
+   "Supressão suprarrenal (cortisol e aldosterona) após dose única; evitar infusão contínua ou doses repetidas (bula).",
+   "SCCM 2023 sugere não dar corticoide de rotina após IOT com etomidato, salvo outra indicação (insuficiência suprarrenal, choque séptico refratário).",
+   "Mioclonias e dor venosa, sobretudo sem pré-medicação e em veias finas (bula).",
+   "Pode causar hipotensão, apesar do perfil hemodinâmico favorável (SCCM 2023)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Hypnomidate (etomidato 2 mg/mL)",
+   "FDA label Amidate (etomidate), DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Hypnomidate, Eptomydex)",
+   "Acquisto NM et al. SCCM Guidelines for Rapid Sequence Intubation (Crit Care Med 2023;51:1411)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ },
+ {
+  "id": "dexmedetomidina",
+  "nome": "Dexmedetomidina",
+  "classe": "Sedativo",
+  "subclasse": "Agonista alfa-2 adrenérgico central",
+  "mecanismo": "Agonista alfa-2 seletivo: sedação cooperativa (paciente despertável), ansiólise e leve analgesia, sem depressão respiratória significativa.",
+  "apresentacoes": [
+   "Frasco-ampola ou ampola 2 mL com 200 mcg (100 mcg/mL) (Precedex, Dex, Extodin, Simbilex, Slipdex, genéricos)",
+   "Bolsa pronta 4 mcg/mL (Dex bolsa)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Sedação em UTI (com ou sem ventilação mecânica): manutenção 0,2–0,7 mcg/kg/h, titulada; ataque opcional de 1 mcg/kg em 10 min (bula Precedex). Diretriz: até 1,5 mcg/kg/h (Barr 2013; bomba do painel).",
+   "Não administrar em bolus rápido: aumenta bradicardia e parada sinusal (bula).",
+   "PADIS 2018: preferir dexmedetomidina ou propofol a benzodiazepínico; atualização 2025 sugere dexmedetomidina em vez de propofol para sedação (recomendação condicional).",
+   "Não é necessário suspender antes da extubação (bula).",
+   "Idosos > 65 anos: frequentemente precisam de doses menores (bula)."
+  ],
+  "pediatria": [
+   "Bula brasileira: eficácia e segurança não estudadas abaixo de 18 anos; não deve ser utilizado nessa população."
+  ],
+  "diluicao": [
+   "Bomba do painel e bula: 1 ampola (200 mcg, 2 mL) + 48 mL de SF 0,9% = 50 mL (4 mcg/mL).",
+   "Compatível com SF 0,9%, SG 5%, Ringer lactato e manitol 20%; usar logo e descartar após 24 h (bula).",
+   "Incompatível com anfotericina B e diazepam; não correr na mesma via com sangue ou plasma (bula).",
+   "Sempre em bomba de infusão (bula)."
+  ],
+  "renal": "Sem ajuste de dose (bula).",
+  "hepatica": "Depuração reduzida conforme a gravidade (Child-Pugh A, B, C): considerar redução de dose (bula).",
+  "gestacao": "Dados insuficientes; atravessa a placenta. Usar só se necessário (bula).",
+  "lactacao": "Excretada no leite: considerar suspender a amamentação e descartar o leite por 24 h após a dose (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade à dexmedetomidina ou aos excipientes (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: sedativos EV de ação moderada).",
+   "Bradicardia, parada sinusal e hipotensão, sobretudo em idosos, hipovolêmicos, diabéticos, hipertensos crônicos e com bloqueio cardíaco; hipertensão transitória durante o ataque (bula).",
+   "Não produz sedação profunda: não serve para o paciente em bloqueio neuromuscular (painel).",
+   "Sem ação anticonvulsivante (bula).",
+   "Uso > 24 h associado a maior mortalidade em adultos de UTI com 63,7 anos ou menos em comparação com o cuidado habitual (bula).",
+   "Suspensão abrupta após uso prolongado: abstinência semelhante à da clonidina (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Precedex (cloridrato de dexmedetomidina 100 mcg/mL), 2023",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Precedex, Dex, Extodin, Simbilex, Slipdex)",
+   "Barr J et al. PAD guidelines (Crit Care Med 2013;41:263)",
+   "Devlin JW et al. PADIS Guideline (Crit Care Med 2018;46:e825)",
+   "Lewis K et al. Focused update to the PADIS guidelines (Crit Care Med 2025;53:e711)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ },
+ {
+  "id": "succinilcolina",
+  "nome": "Succinilcolina (suxametônio)",
+  "classe": "Bloqueador neuromuscular",
+  "subclasse": "Despolarizante",
+  "mecanismo": "Agonista do receptor nicotínico da placa motora: despolarização persistente (fasciculações) seguida de paralisia de início rápido e curta duração; hidrolisada pela colinesterase plasmática.",
+  "apresentacoes": [
+   "Frasco-ampola com pó de 100 mg e 500 mg para reconstituição (Succitrat, Succinil Colin)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IM"
+  ],
+  "adulto": [
+   "IOT em sequência rápida: 1,5 mg/kg EV (calculadora do painel; Walls).",
+   "Bula (intubação em cirurgia eletiva): média 0,6 mg/kg EV (0,3–1,1 mg/kg); bloqueio em cerca de 1 min, recuperação em 4–6 min.",
+   "SCCM 2023: rocurônio ou succinilcolina na sequência rápida quando não há contraindicação à succinilcolina.",
+   "IM, se não houver acesso venoso: até 3–4 mg/kg, no máximo 150 mg; início em 2–3 min (bula)."
+  ],
+  "pediatria": [
+   "Só para intubação de emergência ou garantia imediata da via aérea (bula).",
+   "EV: 2 mg/kg em lactentes e crianças pequenas; 1 mg/kg em crianças maiores e adolescentes (bula).",
+   "IM: até 3–4 mg/kg, no máximo 150 mg (bula).",
+   "Bolus EV pode causar bradicardia profunda ou assistolia, sobretudo na 2ª dose; infusão contínua não é segura em neonatos e crianças (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "EV lactente e criança pequena (bula)",
+    "mgkg": 2,
+    "intervalo": "dose única",
+    "via": "EV"
+   },
+   {
+    "rotulo": "EV criança maior e adolescente (bula)",
+    "mgkg": 1,
+    "intervalo": "dose única",
+    "via": "EV"
+   },
+   {
+    "rotulo": "IM sem acesso venoso (bula)",
+    "mgkg": 4,
+    "max_mg": 150,
+    "intervalo": "dose única",
+    "via": "IM"
+   }
+  ],
+  "diluicao": [
+   "Reconstituir 100 mg em 10 mL (10 mg/mL) ou em 2 mL (50 mg/mL); 500 mg em 10 mL = 50 mg/mL (bula). Painel: 100 mg + 10 mL de AD = 10 mg/mL.",
+   "Para infusão: 1–2 mg/mL em SG 5% ou SF 0,9%; usar em até 24 h (bula).",
+   "Não misturar com soluções alcalinas (pH > 8,5, p. ex. barbitúricos) (bula).",
+   "Após o preparo, manter refrigerado (2–8 °C) por até 24 h (bula Succitrat)."
+  ],
+  "renal": "Insuficiência renal grave pode reduzir a colinesterase plasmática e prolongar o bloqueio (bula). Cuidado com a hipercalemia.",
+  "hepatica": "Doença hepática grave reduz a colinesterase plasmática: bloqueio prolongado (bula).",
+  "gestacao": "Categoria C. A colinesterase plasmática cai cerca de 24% na gestação e no pós-parto: maior chance de apneia prolongada; a pequena passagem placentária após 1 mg/kg não deve prejudicar o feto (bula).",
+  "lactacao": "Excreção no leite desconhecida; usar com cautela (bula).",
+  "contraindicacoes": [
+   "História pessoal ou familiar de hipertermia maligna (bula).",
+   "Miopatias esqueléticas, doença neuromuscular degenerativa ou distrófica (bula).",
+   "Queimaduras graves, paraplegia, lesão medular ou politrauma: risco de hipercalemia grave com parada cardíaca, que aumenta com o tempo e atinge o pico em 7–10 dias (bula).",
+   "Hipersensibilidade aos componentes (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: bloqueadores neuromusculares). Só usar com via aérea e ventilação garantidas; não tem efeito sedativo nem analgésico.",
+   "Hipercalemia: evitar em hipercalemia conhecida, desequilíbrio eletrolítico, intoxicação digitálica, infecção abdominal crônica, hemorragia subaracnoide e doenças degenerativas do sistema nervoso (bula).",
+   "Crianças (sobretudo meninos ≤ 8 anos): parada cardíaca por rabdomiólise com hipercalemia em miopatia não diagnosticada (bula).",
+   "Hipertermia maligna: espasmo de masseter, rigidez, hipercapnia e acidose; tratamento com dantroleno (bula).",
+   "Colinesterase plasmática reduzida (genética, gestação, hepatopatia, organofosforados): paralisia prolongada (bula).",
+   "Eleva a pressão intraocular e intragástrica (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Succitrat (cloreto de suxametônio), Blau Farmacêutica",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Succitrat, Succinil Colin)",
+   "Acquisto NM et al. SCCM Guidelines for Rapid Sequence Intubation (Crit Care Med 2023;51:1411)",
+   "Walls RM. Manual of Emergency Airway Management (dose de 1,5 mg/kg na sequência rápida), conforme citado em src/data/calculadora.js",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ },
+ {
+  "id": "rocuronio",
+  "nome": "Rocurônio",
+  "classe": "Bloqueador neuromuscular",
+  "subclasse": "Adespolarizante aminoesteroide",
+  "mecanismo": "Antagonista competitivo do receptor nicotínico da placa motora; início rápido em dose alta e duração intermediária; revertido por sugamadex.",
+  "apresentacoes": [
+   "Frasco-ampola 5 mL com 50 mg (10 mg/mL) (Esmeron, Rocuron, Bloqueron, Unirez, Misck, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "IOT em sequência rápida: 1,2 mg/kg EV (calculadora do painel); bula: 1,0 mg/kg na sequência rápida (condições de intubação em 60 s), doses de até 2 mg/kg já usadas; 0,6 mg/kg na intubação de rotina.",
+   "SCCM 2023: rocurônio ou succinilcolina na sequência rápida, se não houver contraindicação à succinilcolina.",
+   "Idosos, hepatopatas, doença biliar ou insuficiência renal: considerar 0,6 mg/kg (ação prolongada); obesos (> 30% acima do peso ideal): dose pelo peso ideal (bula).",
+   "Manutenção em UTI: 0,6 mg/kg e infusão inicial de 0,3–0,6 mg/kg/h, guiada por TOF (1–2 respostas) (bula).",
+   "Cesariana: apenas 0,6 mg/kg (bula)."
+  ],
+  "pediatria": [
+   "Intubação de rotina e manutenção: doses semelhantes às do adulto (0,6 mg/kg), do recém-nascido ao adolescente (bula).",
+   "Bula: experiência limitada com sequência rápida em crianças; não recomendado para esse fim pela bula.",
+   "Painel (IOT pediátrica): rocurônio 1,2 mg/kg."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Intubação de rotina (bula)",
+    "mgkg": 0.6,
+    "intervalo": "dose única",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "Bolus: sem diluir (10 mg/mL).",
+   "Infusão: 0,5–2 mg/mL em SF 0,9%, SG 5%, SG 5% + SF, água para injeção ou Ringer lactato; iniciar logo e completar em 24 h (bula).",
+   "Incompatível na mesma solução com dexametasona, hidrocortisona, metilprednisolona, furosemida, diazepam, tiopental, vancomicina, cefazolina, amoxicilina, insulina e intralipídeo, entre outros (bula).",
+   "Conservar em geladeira (2–8 °C); fora dela, até 30 °C por no máximo 12 semanas (bula)."
+  ],
+  "renal": "Insuficiência renal: ação prolongada; intubação com 0,6 mg/kg e manutenção reduzida (0,075–0,1 mg/kg; 0,3–0,4 mg/kg/h) (bula).",
+  "hepatica": "Doença hepática ou biliar: ação prolongada; mesmas reduções da insuficiência renal (bula).",
+  "gestacao": "Sem dados em gestantes; usar com cautela. Na cesariana, 0,6 mg/kg mostrou-se seguro. Sulfato de magnésio (pré-eclâmpsia) potencializa o bloqueio: reduzir a dose e monitorar (bula).",
+  "lactacao": "Excreção no leite desconhecida (níveis insignificantes em animais); usar se o benefício superar o risco (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade ao rocurônio, ao brometo ou aos componentes (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: bloqueadores neuromusculares). Só com via aérea e ventilação garantidas; não seda nem analgesia: manter sedação e analgesia adequadas.",
+   "Duração longa após 1,2 mg/kg: se não intuba e não ventila, a reversão imediata exige sugamadex 16 mg/kg (bula Bridion).",
+   "Sulfato de magnésio, aminoglicosídeos e anestésicos inalatórios potencializam o bloqueio (bula).",
+   "Anafilaxia é possível (bula).",
+   "Armazenar separado de outros frascos para evitar troca de medicamento (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Esmeron (brometo de rocurônio 10 mg/mL)",
+   "Bula ANVISA — Bridion (sugamadex)",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Esmeron, Rocuron, Bloqueron, Unirez, Misck)",
+   "Acquisto NM et al. SCCM Guidelines for Rapid Sequence Intubation (Crit Care Med 2023;51:1411)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ }
+]

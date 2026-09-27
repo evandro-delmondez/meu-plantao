@@ -1,0 +1,221 @@
+[
+ {
+  "id": "noradrenalina",
+  "nome": "Noradrenalina (norepinefrina)",
+  "classe": "Vasoativo",
+  "subclasse": "Vasopressor (agonista alfa-1 e beta-1 adrenérgico)",
+  "mecanismo": "Catecolamina com potente ação alfa-1 (vasoconstrição) e ação beta-1 moderada; eleva a pressão arterial.",
+  "apresentacoes": [
+   "Ampola 4 mL com hemitartarato 2 mg/mL = 1 mg/mL de norepinefrina base, 4 mg por ampola (Noradrem, Hyponor, Epikabi, Unianora, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Choque séptico: vasopressor de primeira escolha; alvo inicial de PAM ≥ 65 mmHg (SSC 2021 e 2026).",
+   "Bula (em norepinefrina base): iniciar 8–12 mcg/min e titular pela PA; manutenção usual 2–4 mcg/min; há grande variação individual e doses maiores podem ser necessárias.",
+   "Se a noradrenalina estiver em dose crescente (em geral 0,25–0,5 mcg/kg/min), associar vasopressina em vez de só aumentar a noradrenalina (SSC 2021).",
+   "Anafilaxia refratária (segundo vasopressor): 0,05–0,5 mcg/kg/min EV (RCUK 2021).",
+   "Retirada gradual, sem suspensão abrupta (bula)."
+  ],
+  "pediatria": [
+   "Segurança e eficácia em crianças não estabelecidas pela bula; uso no choque pediátrico conforme protocolo da UTI pediátrica."
+  ],
+  "diluicao": [
+   "Diluir sempre em SG 5% (ou SG 5% + SF): a glicose protege contra a oxidação; não é recomendado diluir só em SF 0,9% (bula).",
+   "Bula: 1 ampola (4 mg de base) em 1.000 mL de SG 5% = 4 mcg/mL; concentrações maiores quando há restrição de volume.",
+   "Diluições da bomba do painel: 4 ampolas (16 mg) + 234 mL de SG 5% = 250 mL (64 mcg/mL); ou 1 ampola + 246 mL = 250 mL (16 mcg/mL).",
+   "Solução diluída estável por 24 h em temperatura ambiente, protegida da luz (equipo âmbar ou papel alumínio) (bula).",
+   "Infusão em veia calibrosa com bomba; no choque séptico, pode ser iniciada por veia periférica sem esperar o acesso central (SSC 2021)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Categoria C: usar somente se absolutamente necessário (bula). No choque, a prioridade é a perfusão materna.",
+  "lactacao": "Excreção no leite desconhecida; cautela (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade aos componentes (contém bissulfito de sódio).",
+   "Hipotensão por hipovolemia não corrigida, exceto como medida de emergência até a reposição de volume (bula).",
+   "Trombose mesentérica ou periférica, salvo como medida salvadora (bula).",
+   "Anestesia com ciclopropano ou halotano (risco de TV/FV) (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: agonistas adrenérgicos EV).",
+   "Confira se o protocolo do serviço expressa a dose em norepinefrina base ou em hemitartarato: o hemitartarato dobra o número (2 mg de sal = 1 mg de base).",
+   "Extravasamento causa necrose: infiltrar o local o quanto antes (até 12 h) com 5–10 mg de fentolamina em 10–15 mL de SF (bula).",
+   "IMAO e antidepressivos tricíclicos: hipertensão grave e prolongada (bula).",
+   "Arritmias com hipóxia profunda ou hipercapnia; idosos mais sensíveis (bula).",
+   "Contém sulfito: risco de reação alérgica, sobretudo em asmáticos (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — hemitartarato de norepinefrina monoidratada 2 mg/mL (Hipolabor)",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Noradrem, Hyponor, Epikabi, Unianora)",
+   "FDA label Levophed (norepinephrine bitartrate), DailyMed",
+   "Evans L et al. Surviving Sepsis Campaign 2021 (Crit Care Med 2021;49:e1063)",
+   "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026",
+   "Resuscitation Council UK. Emergency treatment of anaphylaxis, 2021",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "vasopressina",
+  "nome": "Vasopressina",
+  "classe": "Vasoativo",
+  "subclasse": "Vasopressor não adrenérgico (agonista V1 e V2)",
+  "mecanismo": "Hormônio antidiurético sintético; vasoconstrição via receptor V1 e retenção de água via receptor V2.",
+  "apresentacoes": [
+   "Ampola 1 mL com 20 U/mL (Encrise)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IM",
+   "SC"
+  ],
+  "adulto": [
+   "Choque séptico: associar à noradrenalina quando esta estiver em dose crescente (em geral 0,25–0,5 mcg/kg/min); dose até 0,03 U/min, fixa, sem titular (SSC 2021; bomba do painel).",
+   "Faixa da bula no choque séptico: 0,01–0,04 U/min em infusão contínua, mantida por 24–96 h (bula Encrise).",
+   "Anafilaxia refratária: bolus EV de 2 U, repetir se preciso, e considerar infusão (RCUK 2021).",
+   "A bula cita 40 U EV em dose única na PCR, mas a vasopressina não consta do algoritmo de PCR do adulto da AHA 2025 (adrenalina é o vasopressor da PCR)."
+  ],
+  "pediatria": [
+   "Bula: cautela em crianças muito pequenas pelo risco de hiper-hidratação e hiponatremia; doses pediátricas da bula referem-se a diabetes insípido e hemorragia digestiva, não a choque. Uso no choque pediátrico conforme protocolo da UTI pediátrica."
+  ],
+  "diluicao": [
+   "Bomba do painel: 1 ampola (20 U) + 99 mL de SF 0,9% = 100 mL (0,2 U/mL); 0,03 U/min = 9 mL/h.",
+   "Diluir em SF 0,9% ou SG 5% (0,1 ou 1 U/mL); descartar a solução diluída após 18 h em temperatura ambiente ou 24 h refrigerada (FDA Vasostrict).",
+   "Preferir veia central ou periférica profunda: risco de necrose por extravasamento (bula Encrise)."
+  ],
+  "renal": "Contraindicada na nefrite crônica com retenção de nitrogênio até que a ureia atinja níveis aceitáveis (bula Encrise).",
+  "hepatica": "",
+  "gestacao": "Categoria C: usar só se absolutamente necessário (bula). Pode provocar contrações uterinas; a depuração aumenta no 2º e 3º trimestres (até 4–5 vezes no termo) e a dose pode precisar ser maior (FDA Vasostrict).",
+  "lactacao": "Usar com cautela (bula Encrise).",
+  "contraindicacoes": [
+   "Hipersensibilidade aos componentes.",
+   "Nefrite crônica com retenção de nitrogênio (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: vasopressina EV e intraóssea).",
+   "Doença coronariana: pode precipitar angina ou infarto; isquemia mesentérica e digital (gangrena) (bula).",
+   "Intoxicação hídrica e hiponatremia: vigiar sódio, diurese e ECG periódicos (bula).",
+   "Ao suspender, pode surgir diabetes insípido reversível (poliúria e hipernatremia): monitorar eletrólitos e diurese (FDA Vasostrict).",
+   "Carbamazepina, clorpropamida, fludrocortisona e tricíclicos potencializam o efeito antidiurético (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Encrise (vasopressina 20 U/mL), Biolab Sanus",
+   "FDA label Vasostrict (vasopressin injection), DailyMed",
+   "Evans L et al. Surviving Sepsis Campaign 2021 (Crit Care Med 2021;49:e1063)",
+   "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026",
+   "Russell JA et al. VASST (N Engl J Med 2008;358:877)",
+   "Resuscitation Council UK. Emergency treatment of anaphylaxis, 2021",
+   "AHA. 2025 Guidelines for CPR and ECC — Adult Advanced Life Support",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ },
+ {
+  "id": "dobutamina",
+  "nome": "Dobutamina",
+  "classe": "Vasoativo",
+  "subclasse": "Inotrópico (agonista beta-1 adrenérgico)",
+  "mecanismo": "Catecolamina sintética de ação predominante beta-1: aumenta a contratilidade e o débito cardíaco, com vasodilatação leve.",
+  "apresentacoes": [
+   "Ampola 20 mL com 250 mg (12,5 mg/mL) (Dobutrex, Dobutariston, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Disfunção cardíaca com hipoperfusão persistente apesar de volume e vasopressor: acrescentar à noradrenalina (SSC 2021 e 2026).",
+   "2,5–10 mcg/kg/min (habitual), titulando pela resposta; frequentemente até 20 mcg/kg/min (bula; bomba do painel).",
+   "FDA: faixa usual de 2,5–15 mcg/kg/min; raramente até 40 mcg/kg/min."
+  ],
+  "pediatria": [
+   "Segurança e eficácia em crianças não estudadas na bula americana; uso conforme protocolo da UTI pediátrica."
+  ],
+  "diluicao": [
+   "Bomba do painel: 1 ampola (250 mg) + 230 mL de SG 5% = 250 mL (1.000 mcg/mL).",
+   "Diluir para no mínimo 50 mL em SG 5%, SF 0,9%, SG 5% + SF ou Ringer lactato; usar em até 24 h (FDA).",
+   "Não misturar com bicarbonato de sódio nem soluções alcalinas; não misturar com outros fármacos na mesma solução (FDA)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Sem estudos adequados em gestantes; usar só se claramente necessário (FDA).",
+  "lactacao": "Excreção no leite desconhecida; a bula americana orienta suspender a amamentação durante o tratamento (FDA).",
+  "contraindicacoes": [
+   "Estenose subaórtica hipertrófica idiopática (cardiomiopatia hipertrófica obstrutiva) (FDA).",
+   "Hipersensibilidade prévia à dobutamina (FDA)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: agonistas adrenérgicos e inotrópicos EV).",
+   "Taquicardia e elevação da PA sistólica; arritmias ventriculares: monitorar ECG e PA continuamente (FDA).",
+   "Corrigir a hipovolemia antes de iniciar; pode causar hipotensão por vasodilatação (FDA).",
+   "Pouco efeito se houver obstrução mecânica importante (estenose aórtica grave) (FDA).",
+   "Pode reduzir o potássio sérico (FDA).",
+   "Pode ser ineficaz após betabloqueador recente (FDA).",
+   "Contém metabissulfito: reações alérgicas em sensíveis a sulfito (FDA)."
+  ],
+  "fontes": [
+   "Bula ANVISA — cloridrato de dobutamina 12,5 mg/mL (faixa 2,5–10, até 20 mcg/kg/min), conforme já citada em src/data/infusao.js",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Dobutrex, Dobutariston)",
+   "FDA label Dobutamine Injection USP 12,5 mg/mL, DailyMed",
+   "Evans L et al. Surviving Sepsis Campaign 2021 (Crit Care Med 2021;49:e1063)",
+   "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ },
+ {
+  "id": "dopamina",
+  "nome": "Dopamina",
+  "classe": "Vasoativo",
+  "subclasse": "Catecolamina (efeitos dopaminérgico, beta-1 e alfa dependentes da dose)",
+  "mecanismo": "Precursor da noradrenalina; em doses crescentes estimula receptores dopaminérgicos, beta-1 (inotropismo e cronotropismo) e alfa (vasoconstrição).",
+  "apresentacoes": [
+   "Ampola 10 mL com 50 mg (5 mg/mL) (Dopacris, Dopabane, genéricos)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Bradicardia sintomática sem resposta à atropina: 5–20 mcg/kg/min, titulada pela resposta, enquanto se prepara o marca-passo (AHA 2025; bomba do painel).",
+   "Bula: iniciar 1–5 mcg/kg/min e aumentar a cada 5–10 min; usual 5–10 mcg/kg/min, em alguns casos até 20–50 mcg/kg/min.",
+   "Choque séptico: a noradrenalina é preferida (menos arritmia) (SSC 2021 e 2026).",
+   "Retirar gradualmente para evitar hipotensão aguda (bula)."
+  ],
+  "pediatria": [
+   "Segurança, eficácia e dose não estabelecidas para crianças na bula; usar só se o benefício superar o risco, conforme protocolo da UTI pediátrica."
+  ],
+  "diluicao": [
+   "Bomba do painel: 5 ampolas (250 mg) + 200 mL de SG 5% = 250 mL (1.000 mcg/mL).",
+   "Bula: 1 ampola (50 mg) em 250 mL de SF 0,9% ou SG 5% = 200 mcg/mL.",
+   "Fotossensível: proteger o frasco da luz; nunca diluir em soluções alcalinas (bicarbonato), que inativam a dopamina (bula).",
+   "Só infusão EV em bomba, em veia de grande calibre (bula)."
+  ],
+  "renal": "Dopamina em dose baixa (\"dose renal\") não deve ser usada para prevenir ou tratar lesão renal aguda (KDIGO 2012).",
+  "hepatica": "",
+  "gestacao": "Categoria C: usar só se o benefício justificar o risco (bula).",
+  "lactacao": "Excreção no leite desconhecida; cautela (bula).",
+  "contraindicacoes": [
+   "Feocromocitoma (bula).",
+   "Hipertireoidismo (bula).",
+   "Taquiarritmias não tratadas ou fibrilação ventricular (bula).",
+   "Hipersensibilidade aos componentes (contém metabissulfito)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: agonistas adrenérgicos EV).",
+   "Extravasamento causa necrose: infiltrar fentolamina o quanto antes (bula).",
+   "IMAO: usar no máximo um décimo da dose usual (bula); tricíclicos potencializam o efeito.",
+   "Fenitoína EV durante a dopamina pode causar hipotensão (bula).",
+   "Cautela na anestesia com halotano ou ciclopropano (arritmias) (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — cloridrato de dopamina 5 mg/mL (União Química)",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Dopacris, Dopabane)",
+   "AHA. 2025 Guidelines for CPR and ECC — Adult Advanced Life Support: bradicardia (dopamina 5–20 mcg/kg/min)",
+   "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026 (noradrenalina preferida)",
+   "KDIGO Clinical Practice Guideline for Acute Kidney Injury (Kidney Int Suppl 2012;2:1)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
+  ]
+ }
+]

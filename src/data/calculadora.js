@@ -3,10 +3,10 @@
 function D(nome,regra,unit,perkg,conc,o={}){return {nome,regra,unit,perkg,conc,...o}}
 const CALC={
 adulto:[
- {t:"IOT — sequência rápida",c:"red",src:["Acquisto NM et al. SCCM Clinical Practice Guidelines for Rapid Sequence Intubation in the Critically Ill Adult Patient (Crit Care Med 2023;51:1411).", "Doses de indução e bloqueio: bulas registradas na Anvisa e Walls RM. Manual of Emergency Airway Management."],d:[
+ {t:"IOT — sequência rápida",c:"red",src:["Bula da escetamina: Ketanest S (União Europeia) — indução 0,5–1 mg/kg EV; Ketamin (Cristália), bula Anvisa — potência cerca de 2 vezes a da cetamina racêmica.", "Acquisto NM et al. SCCM Clinical Practice Guidelines for Rapid Sequence Intubation in the Critically Ill Adult Patient (Crit Care Med 2023;51:1411).", "Doses de indução e bloqueio: bulas registradas na Anvisa e Walls RM. Manual of Emergency Airway Management."],d:[
   D("Fentanil 50 mcg/mL","2 mcg/kg (1–3)","mcg",[2,2],50),
   D("Etomidato 2 mg/mL","0,3 mg/kg","mg",[0.3,0.3],2),
-  D("Cetamina 50 mg/mL","1,5 mg/kg (1–2)","mg",[1.5,1.5],50,{obs:"Confira se é cetamina racêmica ou escetamina (Ketamin): as doses diferem; siga a bula da apresentação disponível."}),
+  D("Escetamina 50 mg/mL (Ketamin)","0,5–1 mg/kg (indução)","mg",[0.5,1],50,{obs:"Escetamina é a disponível no Brasil: cerca de 2 vezes mais potente que a cetamina racêmica."}),
   D("Propofol 10 mg/mL","1,5 mg/kg (1–2)","mg",[1.5,1.5],10,{obs:"Evitar se hipotensão."}),
   D("Midazolam 5 mg/mL","0,2 mg/kg (0,1–0,3)","mg",[0.2,0.2],5),
   D("Succinilcolina 100 mg + 10 mL AD","1,5 mg/kg → 10 mg/mL","mg",[1.5,1.5],10),
@@ -27,7 +27,7 @@ adulto:[
   D("Fenitoína 50 mg/mL","20 mg/kg em SF 0,9%, até 50 mg/min","mg",[20,20],50,{rate:50}),
   D("Levetiracetam 100 mg/mL","60 mg/kg (máx. 4.500 mg) em 15 min","mg",[60,60],100,{max:4500}),
   D("Ácido valproico 100 mg/mL","40 mg/kg (máx. 3.000 mg) em 10 min","mg",[40,40],100,{max:3000}),
-  D("Fenobarbital 100 mg/mL","15–20 mg/kg EV; até 50 mg/min","mg",[15,20],100,{rate:50,obs:"Bula: infundir a menos de 60 mg/min."}),
+  D("Fenobarbital 100 mg/mL","15–20 mg/kg EV; até 50 mg/min","mg",[15,20],100,{rate:50,obs:"Bula: infundir a menos de 60 mg/min. Volume calculado para 100 mg/mL (existe também 200 mg/mL). Bula: contraindicado na gestação e lactação, em recém-nascidos e em mulheres em idade fértil."}),
   D("Tenecteplase — AVC isquêmico","0,25 mg/kg em bolus (máx. 25 mg)","mg",[0.25,0.25],5,{max:25}),
   D("Alteplase — AVC isquêmico (1 mg/mL)","0,9 mg/kg (máx. 90 mg): 10% em bolus, resto em 60 min","mg",[0.9,0.9],1,{max:90,alteplase:true})]},
  {t:"Endócrino / Metabólico",c:"orange",src:["Joglar JA et al. 2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation (Circulation 2024;149:e1).", "AHA. 2025 Guidelines for CPR and ECC — Adult Advanced Life Support (lidocaína).", "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257).", "Ministério da Saúde. Cartilha para tratamento de emergência das queimaduras, 2012."],d:[

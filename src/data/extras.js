@@ -143,7 +143,7 @@ function pedEmerg(p,m){
    `Estridor em repouso: adrenalina 1 mg/mL nebulizada ${f(c(0.5*p,5))} mL (0,5 mL/kg; máx. 5 mL).`]},
   {t:"Via aérea e referências",c:"slate",src:["pals20"],l:[
    tuboC?`Tubo traqueal com cuff: ${f(Math.round(tuboC*2)/2)} (idade/4 + 3,5); sem cuff: ${f(Math.round(tuboS*2)/2)}. Profundidade ≈ ${f(Math.round(tuboC*3*2)/2)} cm (3 × diâmetro).`:`Lactente < 1 ano: tubo 3,0–3,5 com cuff (conforme peso e idade).`,
-   `Cetamina 1–2 mg/kg = ${f(p)}–${f(2*p)} mg; Etomidato 0,3 mg/kg = ${f(0.3*p)} mg; Rocurônio 1,2 mg/kg = ${f(1.2*p)} mg.`,
+   `Escetamina (Ketamin) 0,5–1 mg/kg = ${f(0.5*p)}–${f(p)} mg; Etomidato 0,3 mg/kg = ${f(0.3*p)} mg; Rocurônio 1,2 mg/kg = ${f(1.2*p)} mg (uso fora da bula em crianças; conferir o protocolo do serviço).`,
    `Hipotensão: PAS < ${m<1?"60":(m<12?"70":(idadeA<=10?Math.round(70+2*idadeA):"90"))} mmHg para a idade.`,
    `FC normal acordado: ${m<1?"100–205":(m<12?"100–180":(m<36?"98–140":(m<72?"80–120":(m<144?"75–118":"60–100"))))} bpm.`]}
   ];

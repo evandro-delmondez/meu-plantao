@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.5.0 — 2026-09-27
+- **17 fichas da sala vermelha** (vasoativos, sedação, bloqueadores neuromusculares, anticonvulsivantes), com nomes comerciais; conferidas por agente independente.
+- **Escetamina no lugar da cetamina racêmica** na IOT (calculadora, conduta e emergência pediátrica): 0,5–1 mg/kg na indução (bula Ketanest S; cerca de 2 vezes mais potente).
+- **Fenobarbital:** até 50 mg/min (bula: < 60 mg/min), ampolas de 100 e 200 mg/mL e contraindicações da bula.
+- **Rocurônio pediátrico:** 1 mg/kg (diretriz pediátrica S2k 2022), com nota de uso fora da bula.
+- **Estado de mal:** fonte da Neurocritical Care Society 2012 incluída; cetamina sem dose com fonte retirada.
+
 ## 1.4.3 — 2026-09-26
 - **Eletrólitos: hiponatremia e hipernatremia.** Inclui salina 3% (bolus, metas, limites de correção e preparo a partir do NaCl 20%), correção excessiva (SG 5% + desmopressina), SIADH, déficit de água livre e velocidade de correção. Conferido por agente independente; ajustes de citação aplicados.
 

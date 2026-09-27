@@ -6,7 +6,7 @@ adulto:[
  {t:"IOT — sequência rápida",c:"red",src:["Bula da escetamina: Ketanest S (União Europeia) — indução 0,5–1 mg/kg EV; Ketamin (Cristália), bula Anvisa — potência cerca de 2 vezes a da cetamina racêmica.", "Acquisto NM et al. SCCM Clinical Practice Guidelines for Rapid Sequence Intubation in the Critically Ill Adult Patient (Crit Care Med 2023;51:1411).", "Doses de indução e bloqueio: bulas registradas na Anvisa e Walls RM. Manual of Emergency Airway Management."],d:[
   D("Fentanil 50 mcg/mL","2 mcg/kg (1–3)","mcg",[2,2],50),
   D("Etomidato 2 mg/mL","0,3 mg/kg","mg",[0.3,0.3],2),
-  D("Escetamina 50 mg/mL (Ketamin)","0,5–1 mg/kg (indução)","mg",[0.5,1],50,{obs:"Escetamina é a disponível no Brasil: cerca de 2 vezes mais potente que a cetamina racêmica."}),
+  D("Escetamina 50 mg/mL (Ketamin)","0,5–1 mg/kg (indução)","mg",[0.5,1],50,{obs:"Escetamina é a forma predominante no Brasil (confira a apresentação): cerca de 2 vezes mais potente que a cetamina racêmica."}),
   D("Propofol 10 mg/mL","1,5 mg/kg (1–2)","mg",[1.5,1.5],10,{obs:"Evitar se hipotensão."}),
   D("Midazolam 5 mg/mL","0,2 mg/kg (0,1–0,3)","mg",[0.2,0.2],5),
   D("Succinilcolina 100 mg + 10 mL AD","1,5 mg/kg → 10 mg/mL","mg",[1.5,1.5],10),

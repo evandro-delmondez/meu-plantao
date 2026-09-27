@@ -11,6 +11,7 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 5. Atualizar a data acima para daqui a 3 meses.
 
 ## Histórico
+- 2026-09-27 (v1.5.0) — 17 fichas da sala vermelha, escetamina, fenobarbital e rocurônio pediátrico conferidos por agente independente; 7 correções obrigatórias aplicadas.
 - 2026-09-26 (v1.4.3) — hiponatremia e hipernatremia conferidas por agente independente; números corretos, citações ajustadas.
 - 2026-09-26 (v1.4.2) — condutas de acidente ofídico e escorpiônico conferidas por agente independente contra os PCDT de 2025; ofídico corrigido.
 - 2026-09-26 (v1.4.0) — protocolos em fluxo, PCR guiada, eletrólitos, lista de QT e condutas de anafilaxia e pré-eclâmpsia conferidos por agente independente; correções obrigatórias aplicadas antes de publicar.

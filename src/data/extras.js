@@ -82,6 +82,9 @@ function dengueCalc(p,grupo,crianca){
 
 /* ===== Emergência pediátrica (por peso) ===== */
 const PE_SRC={
+ketanest:"Bula Ketanest S (escetamina): indução 0,5–1 mg/kg EV.",
+s2k:"Kaufmann J et al. S2k-Leitlinie Pädiatrische Notfallmedizin (Anästh Intensivmed 2022;63:34): escetamina 1 mg/kg e rocurônio 1 mg/kg na indução.",
+brophy:"Brophy GM et al. Neurocritical Care Society (Neurocrit Care 2012;17:3): fenobarbital 20 mg/kg.",
 pals:"AHA 2025 — algoritmos de PCR e bradicardia pediátricas. https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/algorithms",
 pals20:"Topjian AA et al. Pediatric Basic and Advanced Life Support — AHA 2020 (Circulation 2020): taquicardia (adenosina, cardioversão), tubo traqueal e sinais vitais por idade.",
 aes:"Glauser T et al. AES 2016: estado de mal epiléptico (Epilepsy Curr 2016); ESETT (N Engl J Med 2019).",
@@ -110,7 +113,7 @@ function pedEmerg(p,m){
   {t:"Taquicardia (TSV)",c:"orange",src:["pals20"],l:[
    `Adenosina 0,1 mg/kg = ${f(c(0.1*p,6))} mg em bolus rápido (máx. 6 mg); 2ª dose 0,2 mg/kg = ${f(c(0.2*p,12))} mg (máx. 12 mg).`,
    `Instável: cardioversão sincronizada ${f(0.5*p)}–${f(p)} J (0,5–1 J/kg), depois ${f(2*p)} J (2 J/kg).`]},
-  {t:"Convulsão / estado de mal",c:"amber",src:["aes"],l:[
+  {t:"Convulsão / estado de mal",c:"amber",src:["aes","brophy"],l:[
    `Midazolam IM ${p>40?"10 mg":(p>=13?"5 mg":f(c(0.2*p,10))+" mg (0,2 mg/kg)")} (5 mg/mL = ${f((p>40?10:(p>=13?5:c(0.2*p,10)))/5)} mL).`,
    `ou Diazepam EV 0,15–0,2 mg/kg = ${f(c(0.15*p,10))}–${f(c(0.2*p,10))} mg (máx. 10 mg), sem diluir, lento; retal 0,5 mg/kg = ${f(c(0.5*p,20))} mg.`,
    `Persistindo após 2 doses de benzodiazepínico — escolher um:`,
@@ -141,9 +144,9 @@ function pedEmerg(p,m){
   {t:"Crupe",c:"green",src:["cochrane"],l:[
    `Dexametasona 0,6 mg/kg = ${f(c(0.6*p,10))} mg IM/VO (4 mg/mL = ${f(c(0.6*p,10)/4)} mL).`,
    `Estridor em repouso: adrenalina 1 mg/mL nebulizada ${f(c(0.5*p,5))} mL (0,5 mL/kg; máx. 5 mL).`]},
-  {t:"Via aérea e referências",c:"slate",src:["pals20"],l:[
+  {t:"Via aérea e referências",c:"slate",src:["pals20","ketanest","s2k"],l:[
    tuboC?`Tubo traqueal com cuff: ${f(Math.round(tuboC*2)/2)} (idade/4 + 3,5); sem cuff: ${f(Math.round(tuboS*2)/2)}. Profundidade ≈ ${f(Math.round(tuboC*3*2)/2)} cm (3 × diâmetro).`:`Lactente < 1 ano: tubo 3,0–3,5 com cuff (conforme peso e idade).`,
-   `Escetamina (Ketamin) 0,5–1 mg/kg = ${f(0.5*p)}–${f(p)} mg; Etomidato 0,3 mg/kg = ${f(0.3*p)} mg; Rocurônio 1,2 mg/kg = ${f(1.2*p)} mg (uso fora da bula em crianças; conferir o protocolo do serviço).`,
+   `Escetamina (Ketamin) 0,5–1 mg/kg = ${f(0.5*p)}–${f(p)} mg; Etomidato 0,3 mg/kg = ${f(0.3*p)} mg; Rocurônio 1 mg/kg = ${f(p)} mg (uso fora da bula em crianças; conferir o protocolo do serviço).`,
    `Hipotensão: PAS < ${m<1?"60":(m<12?"70":(idadeA<=10?Math.round(70+2*idadeA):"90"))} mmHg para a idade.`,
    `FC normal acordado: ${m<1?"100–205":(m<12?"100–180":(m<36?"98–140":(m<72?"80–120":(m<144?"75–118":"60–100"))))} bpm.`]}
   ];

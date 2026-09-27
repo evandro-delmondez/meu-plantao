@@ -429,15 +429,16 @@
    "IM"
   ],
   "adulto": [
+   "O painel usa a escetamina (forma predominante no Brasil): 0,5–1 mg/kg EV na indução (bula Ketanest S).",
    "Confira qual produto está na mão: a escetamina (Ketamin) é cerca de 2 vezes mais potente que a racêmica, e a dose deve ser titulada levando isso em conta (bula Ketamin).",
-   "Cetamina racêmica — IOT (indução): 1,5 mg/kg EV (1–2) (calculadora do painel). Bula: 1–4,5 mg/kg EV em 60 s (média 2 mg/kg), ou 1–2 mg/kg a 0,5 mg/kg/min; IM 6,5–13 mg/kg.",
+   "Cetamina racêmica — IOT (indução), bula: 1–4,5 mg/kg EV em 60 s (média 2 mg/kg), ou 1–2 mg/kg a 0,5 mg/kg/min; IM 6,5–13 mg/kg.",
    "Escetamina — indução: 0,5–1 mg/kg EV ou 2–4 mg/kg IM; manutenção com metade da dose inicial a cada 10–15 min, ou 0,5–3 mg/kg/h (Ketanest S). IOT no broncoespasmo grave: 0,5–1 mg/kg EV, até 2,5 mg/kg (Ketanest S).",
    "Escetamina — analgesia na emergência: 0,25–0,5 mg/kg IM ou 0,125–0,25 mg/kg EV lento; analgesia no intubado: bolus 0,25 mg/kg e infusão de 0,2–0,5 (até 1,5) mg/kg/h com benzodiazepínico (Ketanest S).",
    "Atenção: a bula brasileira do Ketamin repete as faixas da racêmica (1–4,5 mg/kg EV), mas afirma potência 2 vezes maior; a bula europeia da escetamina (Ketanest S) usa metade da dose. Prefira iniciar pelo limite inferior e titular."
   ],
   "pediatria": [
    "Racêmica (bula): IM 9–13 mg/kg produz anestesia cirúrgica em 3–4 min; a bula americana não estabelece segurança abaixo de 16 anos.",
-   "Painel (IOT pediátrica): cetamina 1–2 mg/kg — dose de cetamina racêmica; com escetamina, considerar a potência dobrada.",
+   "Painel (IOT pediátrica): escetamina 0,5–1 mg/kg EV (bula Ketanest S; diretriz pediátrica S2k 2022: 1 mg/kg).",
    "Uso por mais de 3 h em crianças ≤ 3 anos: possível neurotoxicidade (FDA)."
   ],
   "diluicao": [
@@ -742,7 +743,7 @@
   "pediatria": [
    "Estado de mal: 0,15–0,2 mg/kg EV (máx. 10 mg por dose), pode repetir 1 vez (AES 2016).",
    "Retal (sem acesso venoso): 0,2–0,5 mg/kg (máx. 20 mg) em dose única (AES 2016); por idade: 2–5 anos 0,5 mg/kg, 6–11 anos 0,3 mg/kg, ≥ 12 anos 0,2 mg/kg (Neurocritical Care Society 2012).",
-   "Bula (estado de mal em crianças): 0,2–0,3 mg/kg, sem exceder 1 mg/kg/min.",
+   "Bula (estado de mal em crianças): 0,2–0,3 mg/kg.",
    "Recém-nascidos e prematuros metabolizam o diazepam lentamente (meia-vida prolongada) (bula)."
   ],
   "ped_calc": [

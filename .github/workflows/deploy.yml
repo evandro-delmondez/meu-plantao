@@ -32,6 +32,17 @@ jobs:
       - run: npm run lint:conteudo
       - run: npm run build
       - run: npx playwright test
+      # Cloudflare Pages (acesso restrito pelo Cloudflare Access). Só roda depois que os segredos
+      # CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID forem cadastrados no repositório.
+      - name: Publicar no Cloudflare Pages
+        if: env.CF_TOKEN != ''
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx --yes wrangler@3 pages project create meu-plantao --production-branch=main || true
+          npx --yes wrangler@3 pages deploy dist/site --project-name=meu-plantao --branch=main --commit-dirty=true
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

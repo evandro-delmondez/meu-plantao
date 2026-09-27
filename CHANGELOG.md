@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.4.3 — 2026-09-26
+- **Eletrólitos: hiponatremia e hipernatremia.** Inclui salina 3% (bolus, metas, limites de correção e preparo a partir do NaCl 20%), correção excessiva (SG 5% + desmopressina), SIADH, déficit de água livre e velocidade de correção. Conferido por agente independente; ajustes de citação aplicados.
+
 ## 1.4.2 — 2026-09-26
 - **Acidente ofídico atualizado ao PCDT 2025 (Portaria SECTICS/MS nº 83)**, após conferência independente:
   - antibotrópico 3/6/12 frascos (antes 2–4/4–8/12);

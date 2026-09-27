@@ -18,6 +18,7 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
+- **Endereço mais prático:** domínio próprio (ex.: meuplantao.com.br no registro.br, cerca de R$ 40/ano, apontando para o GitHub Pages) ou meu-plantao.pages.dev (Cloudflare, sem login; exige token novo). Adiado em 2026-09-27.
 - **Acesso restrito para colegas:** testado com Cloudflare Access em 2026-09-27 e descartado pelo usuário (pouco prático). O site segue no GitHub Pages.
 - **Eletrólitos:** acrescentar sódio (hiponatremia e hipernatremia, com limite de correção), com fonte e conferência independente.
 - **Fichas:** acrescentar nomes comerciais às medicações, com fonte (bulário da Anvisa).

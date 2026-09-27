@@ -11,6 +11,20 @@ const MALIAS={ /* termos que identificam a medicação dentro do texto das condu
 const mui=Object.assign({grupo:null,via:null,sel:MEDS[0]&&MEDS[0].id,rename:false},lsGet("rxp_med_v1",{}),{peso:""});
 const saveMui=()=>lsSet("rxp_med_v1",{grupo:mui.grupo,via:mui.via,sel:mui.sel,rename:!!mui.rename});
 const medById=Object.fromEntries(MEDS.map(m=>[m.id,m]));
+// nomes comerciais: campo "marcas" da ficha ou, na falta dele, os nomes com inicial maiúscula entre parênteses nas apresentações
+const MARCA_FORA=new Set(["RENAME","SUS","EV","IM","VO","SC","F","ou"]);
+function medMarcas(m){
+  if(Array.isArray(m.marcas)) return m.marcas;
+  const out=[];
+  for(const p of (m.apresentacoes||[]).join(" ").match(/\(([^)]*)\)/g)||[])
+    for(let t of p.slice(1,-1).split(/[,;]/)){
+      const w=t.trim().split(/\s+/); const nome=[];
+      for(const x of w){ if(/^[A-ZÀ-Ú][A-Za-zÀ-ú0-9-]*$/.test(x)||(nome.length&&/^[A-Z0-9]{1,3}$/.test(x))) nome.push(x); else break; }
+      const n=nome.join(" ");
+      if(n&&!MARCA_FORA.has(n)&&!/^[A-Z0-9]{1,3}$/.test(n)&&!/\d\s*(mg|mL|g|%)/i.test(t.split(n)[0])&&!out.includes(n)) out.push(n);
+    }
+  return out;
+}
 const medTerms=m=>(MALIAS[m.id]||[norm(m.nome.split(/[ (+]/)[0])]).map(norm);
 function medHay(m){return norm([m.nome,m.classe,m.subclasse,m.mecanismo,(m.vias||[]).join(" "),(m.apresentacoes||[]).join(" "),(m.alertas||[]).join(" "),m.gestacao,(MALIAS[m.id]||[]).join(" "),MGRUPOS[m.grupo]?.nome].join(" "))}
 function medsNaConduta(it){
@@ -34,7 +48,7 @@ function renderMedList(){
   for(const m of items){
     const g=MGRUPOS[m.grupo]||{nome:"Outras",cor:"slate"};
     if(!words.length&&m.grupo!==last){last=m.grupo;html+=`<div class="lh cath" style="--c:var(--${g.cor})">${esc(g.nome)}</div>`}
-    html+=`<button class="item" role="listitem" data-mid="${m.id}" aria-current="${m.id===mui.sel}" style="--c:var(--${g.cor})"><span class="dot"></span><span class="n">${esc(m.nome)}<small class="mcl">${esc(m.classe||"")}</small></span><span class="m">${(m.vias||[]).join(" · ")}</span></button>`;
+    html+=`<button class="item" role="listitem" data-mid="${m.id}" aria-current="${m.id===mui.sel}" style="--c:var(--${g.cor})"><span class="dot"></span><span class="n">${esc(m.nome)}${medMarcas(m).length?`<small class="mmarca">${esc(medMarcas(m).slice(0,3).join(", "))}${medMarcas(m).length>3?"…":""}</small>`:""}<small class="mcl">${esc(m.classe||"")}</small></span><span class="m">${(m.vias||[]).join(" · ")}</span></button>`;
   }
   $("#mlist").innerHTML=items.length?html:`<div class="empty">Nenhuma medicação encontrada.</div>`;
   $$("#mlist [data-mid]").forEach(b=>b.onclick=()=>selectMed(b.dataset.mid));
@@ -73,7 +87,7 @@ function renderMedDetail(){
   el.innerHTML=`<div class="dh">
     <button class="btn sm back" id="mBack">← Lista</button>
     <span class="cat" style="--c:var(--${g.cor})"><span class="dot"></span>${esc(g.nome)}</span>
-    <h2>${esc(m.nome)}</h2>
+    <h2>${esc(m.nome)}</h2>${medMarcas(m).length?`<p class="mmarcas">${esc(medMarcas(m).join(", "))}</p>`:""}
     <div class="meta"><span class="badge cl" style="--c:var(--${g.cor})">${esc(m.classe||"")}${m.subclasse?" · "+esc(m.subclasse):""}</span>
       ${(m.vias||[]).map(v=>`<span class="cid">${esc(v)}</span>`).join("")}
       ${m.rename===true?`<span class="badge ok">RENAME</span>`:""}

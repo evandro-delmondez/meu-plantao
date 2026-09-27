@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.5.2 — 2026-09-27
+- Fichas: nome comercial em letra pequena logo abaixo do princípio ativo, na lista e no título.
+
 ## 1.5.1 — 2026-09-27
 - Fichas: grupos com nomes curtos (Analgésicos, Gastro, Antibióticos, Corticoides e antialérgicos) e a sala vermelha separada em Vasoativos, Sedação e intubação e Anticonvulsivantes.
 

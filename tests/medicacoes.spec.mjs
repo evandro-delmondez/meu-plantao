@@ -34,3 +34,11 @@ test("busca e filtros por grupo e via", async ({ page }) => {
   await page.fill("#mq", "qt"); const qt = await page.$$eval("#mlist [data-mid]", (x) => x.map((e) => e.dataset.mid));
   expect(qt).toContain("ondansetrona");
 });
+
+test("nome comercial aparece abaixo do princípio ativo", async ({ page }) => {
+  await abrir(page); await aba(page, "medicacoes");
+  await expect(page.locator('#mlist [data-mid="midazolam"] .mmarca')).toContainText("Dormonid");
+  await expect(page.locator('#mlist [data-mid="amoxicilina-clavulanato"] .mmarca')).toHaveCount(0);
+  await page.click('#mlist [data-mid="midazolam"]');
+  await expect(page.locator("#mdetail .mmarcas")).toContainText("Dormonid");
+});

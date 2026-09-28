@@ -13,7 +13,7 @@ const pkg = JSON.parse(r("package.json"));
 
 // ---------- dados ----------
 const stripModule = (t) => t.replace(/^if \(typeof module.*$/gm, "");
-const MED_ORDER = ["analgesicos", "gastro", "antibioticos", "corticoides", "vasoativos", "sedacao", "anticonvulsivantes"];
+const MED_ORDER = ["analgesicos", "gastro", "antibioticos", "corticoides", "vasoativos", "sedacao", "anticonvulsivantes", "antiarritmicos", "anticoagulantes", "eletrolitos-ev"];
 const medDir = join(root, "src/data/medicacoes");
 const grpIdx = (f) => { const i = MED_ORDER.indexOf(f.replace(".json", "")); return i < 0 ? 99 : i; };
 const medFiles = readdirSync(medDir).filter((f) => f.endsWith(".json")).sort((a, b) => grpIdx(a) - grpIdx(b) || a.localeCompare(b));

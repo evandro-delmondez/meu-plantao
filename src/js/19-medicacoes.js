@@ -1,5 +1,5 @@
 /* ---------- medicações ---------- */
-const MGRUPOS={analgesicos:{nome:"Analgésicos",cor:"red"},gastro:{nome:"Gastro",cor:"green"},antibioticos:{nome:"Antibióticos",cor:"indigo"},corticoides:{nome:"Corticoides e antialérgicos",cor:"amber"},vasoativos:{nome:"Vasoativos",cor:"rose"},sedacao:{nome:"Sedação e intubação",cor:"violet"},anticonvulsivantes:{nome:"Anticonvulsivantes",cor:"orange"}};
+const MGRUPOS={analgesicos:{nome:"Analgésicos",cor:"red"},gastro:{nome:"Gastro",cor:"green"},antibioticos:{nome:"Antibióticos",cor:"indigo"},corticoides:{nome:"Corticoides e antialérgicos",cor:"amber"},vasoativos:{nome:"Vasoativos",cor:"rose"},sedacao:{nome:"Sedação e intubação",cor:"violet"},anticonvulsivantes:{nome:"Anticonvulsivantes",cor:"orange"},antiarritmicos:{nome:"Antiarrítmicos",cor:"pink"},anticoagulantes:{nome:"Anticoagulantes e trombolíticos",cor:"sky"},"eletrolitos-ev":{nome:"Glicose e eletrólitos EV",cor:"teal"}};
 const MALIAS={ /* termos que identificam a medicação dentro do texto das condutas */
   "amoxicilina":["amoxicilina"],"amoxicilina-clavulanato":["clavulanato"],"penicilina-g-benzatina":["benzatina","benzetacil"],
   "sulfametoxazol-trimetoprima":["sulfametoxazol","smx-tmp","bactrim"],"fosfomicina-trometamol":["fosfomicina"],

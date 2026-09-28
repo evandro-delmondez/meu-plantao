@@ -1,0 +1,221 @@
+[
+ {
+  "id": "heparina",
+  "nome": "Heparina não fracionada",
+  "classe": "Anticoagulante",
+  "subclasse": "Heparina não fracionada (sódica)",
+  "mecanismo": "Potencializa a antitrombina, inativando a trombina (IIa) e o fator Xa; efeito imediato EV, reversível com protamina.",
+  "apresentacoes": [
+   "Frasco-ampola 5 mL com 5.000 UI/mL (25.000 UI) — uso EV ou SC (Hemofol, Hepamax-S, Parinex, Heptar)",
+   "Frasco-ampola 10 mL com 5.000 UI/mL (Hepamax-S)",
+   "Ampola 0,25 mL com 5.000 UI (20.000 UI/mL) — uso SC (Hemofol, Parinex)",
+   "Bolsa pronta 250 mL com 100 UI/mL (25.000 UI) (Heptar)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "SC"
+  ],
+  "adulto": [
+   "SCA (sem supra ou com fibrinólise): 60 UI/kg EV em bolus (máx. 4.000 UI) + 12 UI/kg/h (máx. 1.000 UI/h), TTPa 1,5–2 vezes o controle, por 24–48 h (ESC 2023; ACC/AHA 2025). Na angioplastia primária, a dose (70–100 UI/kg) é dada na hemodinâmica.",
+   "TEV (TVP/TEP) quando indicada em vez da HBPM (instabilidade, candidato a reperfusão, ClCr < 30): 80 UI/kg EV em bolus + 18 UI/kg/h, ajustando pelo TTPa (ACCP 2012).",
+   "Esquema fixo da bula: 5.000 UI EV e depois 20.000–40.000 UI/24 h em infusão contínua; ajustar para TTPa 1,5–2 vezes o normal (FDA).",
+   "Profilaxia de TEV: 5.000 UI SC a cada 8–12 h (FDA)."
+  ],
+  "pediatria": [
+   "Bula americana (experiência clínica): bolus de 75–100 UI/kg EV em 10 min; manutenção de 25–30 UI/kg/h em lactentes (< 2 meses, média de 28 UI/kg/h) e 18–20 UI/kg/h acima de 1 ano; TTPa alvo 60–85 s (anti-Xa 0,35–0,70) (FDA).",
+   "Neonatos e lactentes: usar só apresentação sem álcool benzílico (FDA)."
+  ],
+  "diluicao": [
+   "Infusão a 100 UI/mL: bolsa pronta de 25.000 UI/250 mL, ou 5 mL do frasco de 5.000 UI/mL (25.000 UI) + 245 mL de SF 0,9% = 250 mL (conta própria — diluição usual, conferir protocolo da unidade). Ex.: 70 kg × 12 UI/kg/h = 840 UI/h = 8,4 mL/h.",
+   "Após acrescentar a heparina à bolsa, inverter várias vezes para misturar (evita concentração desigual) (FDA).",
+   "SC: injeção profunda no tecido adiposo (abdome, acima da crista ilíaca), trocando o local; não usar IM (FDA)."
+  ],
+  "renal": "Sem ajuste de dose; é a heparina preferida quando ClCr < 30 mL/min. Risco maior de hipercalemia na DRC, diabetes e acidose (FDA).",
+  "hepatica": "",
+  "gestacao": "Sem dados de risco de malformação; estudos publicados sem aumento de desfechos adversos; preferir apresentação sem conservante (FDA).",
+  "lactacao": "Sem dados de passagem ao leite; preferir apresentação sem álcool benzílico (FDA).",
+  "contraindicacoes": [
+   "História de trombocitopenia induzida por heparina (TIH), com ou sem trombose (FDA).",
+   "Hipersensibilidade à heparina ou a produtos suínos (FDA).",
+   "Plaquetopenia grave (FDA).",
+   "Sangramento ativo não controlado, salvo coagulação intravascular disseminada (FDA).",
+   "Dose plena sem possibilidade de monitorar a coagulação (TTPa) (FDA)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: anticoagulantes).",
+   "Confira a concentração: há 5.000 UI/mL (frasco) e 20.000 UI/mL (ampola SC de 5.000 UI/0,25 mL); a troca já causou mortes (FDA). Heparina de flush (lock) de cateter não serve para anticoagular.",
+   "TIH: plaquetas antes e durante o uso; queda abaixo de 100.000 ou nova trombose: suspender e investigar; pode surgir até semanas depois (FDA).",
+   "Reversão: protamina 1 mg neutraliza cerca de 100 UI de heparina; EV muito lenta, no máximo 50 mg em 10 min; risco de reação anafilactoide (FDA).",
+   "Hipercalemia por supressão da aldosterona; sangramento maior em mulheres acima de 60 anos (FDA)."
+  ],
+  "fontes": [
+   "FDA label Heparin Sodium Injection, USP (Pfizer), DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Hemofol, Cristália; Hepamax-S, Blau; Parinex, Hipolabor; Heptar, Eurofarma)",
+   "Byrne RA et al. 2023 ESC Guidelines for the management of acute coronary syndromes (Eur Heart J 2023;44:3720)",
+   "ACC/AHA/ACEP/NAEMSP/SCAI. Guideline for the Management of Patients With Acute Coronary Syndromes, 2025 (Circulation)",
+   "Garcia DA et al. Parenteral anticoagulants: Antithrombotic Therapy and Prevention of Thrombosis, 9th ed — ACCP (Chest 2012;141:e24S)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "enoxaparina",
+  "nome": "Enoxaparina",
+  "classe": "Anticoagulante",
+  "subclasse": "Heparina de baixo peso molecular",
+  "mecanismo": "Potencializa a antitrombina com ação predominante sobre o fator Xa; dose por peso, sem necessidade rotineira de TTPa.",
+  "apresentacoes": [
+   "Seringas preenchidas a 100 mg/mL: 20 mg/0,2 mL, 40 mg/0,4 mL, 60 mg/0,6 mL, 80 mg/0,8 mL e 100 mg/1 mL (Clexane, Cutenox, Endocris, Enoksa)"
+  ],
+  "rename": null,
+  "vias": [
+   "SC",
+   "EV"
+  ],
+  "adulto": [
+   "TVP/TEP (tratamento): 1 mg/kg SC de 12/12 h; internado, alternativa 1,5 mg/kg SC 1x/dia (FDA).",
+   "SCA sem supra: 1 mg/kg SC de 12/12 h, com AAS, por pelo menos 2 dias (FDA).",
+   "IAM com supra e fibrinólise: < 75 anos, 30 mg EV em bolus e, 15 min depois, 1 mg/kg SC de 12/12 h (máx. 100 mg nas 2 primeiras doses SC); ≥ 75 anos, sem bolus, 0,75 mg/kg SC de 12/12 h (máx. 75 mg nas 2 primeiras doses); manter até a revascularização ou por até 8 dias (ESC 2023; FDA).",
+   "Profilaxia de TEV no paciente clínico internado: 40 mg SC 1x/dia (FDA)."
+  ],
+  "pediatria": [
+   "Segurança e eficácia não estabelecidas em crianças; não aprovada para neonatos e lactentes (FDA)."
+  ],
+  "diluicao": [
+   "SC: sem diluir, no tecido subcutâneo do abdome, alternando os lados; não retirar a bolha de ar da seringa preenchida (perde dose) (FDA).",
+   "Nunca IM (FDA).",
+   "Bolus EV (IAM com supra): pela linha venosa, sem misturar com outros fármacos, lavando o acesso com SF ou SG antes e depois (FDA).",
+   "Arredondar a dose para a graduação da seringa: 1 mg = 0,01 mL."
+  ],
+  "renal": "ClCr < 30 mL/min: tratamento (TEV e SCA) 1 mg/kg SC 1x/dia; IAM com supra < 75 anos, 30 mg EV + 1 mg/kg SC e depois 1 mg/kg SC 1x/dia; ≥ 75 anos, 1 mg/kg SC 1x/dia sem bolus; profilaxia 30 mg SC 1x/dia (FDA).",
+  "hepatica": "",
+  "gestacao": "Coorte de 693 nascidos vivos sem aumento de malformações; preferir sem conservante; perto do parto, considerar anticoagulante de ação mais curta. Gestante com prótese valvar mecânica: risco de trombose da prótese (FDA).",
+  "lactacao": "Passagem ao leite desconhecida; em ratas, muito limitada (FDA).",
+  "contraindicacoes": [
+   "Sangramento maior ativo (FDA).",
+   "TIH imune nos últimos 100 dias ou com anticorpos circulantes (FDA).",
+   "Hipersensibilidade à enoxaparina, à heparina ou a produtos suínos; ao álcool benzílico (só no frasco multidose) (FDA)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: anticoagulantes).",
+   "Hematoma espinhal ou epidural com anestesia neuraxial ou punção lombar: aguardar ≥ 12 h após dose profilática e ≥ 24 h após dose plena para punção ou manipulação de cateter (FDA).",
+   "Plaquetas: suspender se caírem abaixo de 100.000/mm³ (FDA).",
+   "Reversão parcial: protamina 1 mg para cada 1 mg de enoxaparina dada nas últimas 8 h; 0,5 mg por mg se mais de 8 h; o anti-Xa nunca é neutralizado por completo (FDA).",
+   "Baixo peso (mulher < 45 kg, homem < 57 kg): maior exposição com dose profilática fixa; vigiar sangramento (FDA)."
+  ],
+  "fontes": [
+   "FDA label Lovenox (enoxaparin sodium injection), DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Clexane, Sanofi; Cutenox, Viatris; Endocris, Cristália; Enoksa, Farma Vision)",
+   "Byrne RA et al. 2023 ESC Guidelines for the management of acute coronary syndromes (Eur Heart J 2023;44:3720)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "alteplase",
+  "nome": "Alteplase",
+  "classe": "Trombolítico",
+  "subclasse": "Ativador do plasminogênio tecidual recombinante (rt-PA)",
+  "mecanismo": "Converte o plasminogênio ligado à fibrina em plasmina, dissolvendo o trombo.",
+  "apresentacoes": [
+   "Frasco-ampola com pó liofilizado 10 mg, 20 mg ou 50 mg + diluente (água para injetáveis) de 10, 20 ou 50 mL; reconstituído a 1 mg/mL (Actilyse)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "AVC isquêmico (até 4,5 h do último momento visto bem, critérios do protocolo): 0,9 mg/kg (máx. 90 mg): 10% em bolus em 1 min e o restante em 60 min (FDA; AHA/ASA 2026).",
+   "IAM com supra, esquema acelerado (sem tenecteplase disponível): 15 mg EV em bolus + 0,75 mg/kg em 30 min (máx. 50 mg) + 0,5 mg/kg em 60 min (máx. 35 mg); teto total 100 mg; com AAS e anticoagulante (FDA; ESC 2023).",
+   "TEP maciço (instabilidade hemodinâmica): 100 mg EV em 2 h (FDA)."
+  ],
+  "pediatria": [
+   "Segurança e eficácia não estabelecidas em crianças (FDA)."
+  ],
+  "diluicao": [
+   "Reconstituir só com o diluente que acompanha (água estéril sem conservante), dirigindo o jato para o pó e girando suavemente, sem agitar: 1 mg/mL (FDA).",
+   "Pode ser usado a 1 mg/mL ou diluído em volume igual de SF 0,9% ou SG 5% (0,5 mg/mL), logo antes do uso (FDA).",
+   "Não acrescentar outros medicamentos à infusão; usar em até 8 h após reconstituir (FDA).",
+   "AVC, ex.: 70 kg → 63 mg: 6,3 mg em bolus em 1 min e 56,7 mg em bomba em 60 min. Ao terminar, correr SF no equipo para não perder a dose residual (prática usual — conferir protocolo da unidade)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Dados insuficientes em gestantes; embriocida em coelhos. Decisão individual na emergência (FDA).",
+  "lactacao": "Sem dados sobre passagem ao leite (FDA).",
+  "contraindicacoes": [
+   "Sangramento interno ativo; diátese hemorrágica; hipertensão grave não controlada (FDA).",
+   "Cirurgia intracraniana ou intraespinhal ou TCE grave nos últimos 3 meses; lesão intracraniana com risco de sangramento (neoplasia, MAV, aneurisma) (FDA).",
+   "AVC: hemorragia intracraniana ou subaracnóidea atual (FDA). Checar a lista completa do protocolo de AVC (AHA/ASA 2026).",
+   "IAM ou TEP: AVC recente (FDA)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: trombolíticos).",
+   "AVC: PA < 185/110 mmHg antes de iniciar e ≤ 180/105 mmHg nas 24 h seguintes; exame neurológico e PA a cada 15 min por 2 h, a cada 30 min por 6 h e de hora em hora até 24 h (AHA/ASA 2026).",
+   "Piora neurológica, cefaleia intensa, vômitos ou hipertensão aguda: parar a infusão e fazer TC de crânio urgente (AHA/ASA 2026).",
+   "Angioedema durante e até 2 h após a infusão, mais comum com IECA: parar a infusão e tratar (FDA).",
+   "AVC: INR > 1,7 ou TTPa elevado no pré-tratamento — suspender; sem uso recente de anticoagulante, pode começar antes do coagulograma (FDA).",
+   "Evitar punções não compressíveis, sondas e cateteres logo após; vigiar sangramentos (FDA)."
+  ],
+  "fontes": [
+   "FDA label Activase (alteplase), DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Actilyse 10, 20 e 50 mg, Boehringer Ingelheim)",
+   "Prabhakaran S et al. 2026 AHA/ASA Guideline for the Early Management of Acute Ischemic Stroke (Stroke 2026)",
+   "Byrne RA et al. 2023 ESC Guidelines for the management of acute coronary syndromes (Eur Heart J 2023;44:3720)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "tenecteplase",
+  "nome": "Tenecteplase",
+  "classe": "Trombolítico",
+  "subclasse": "Ativador do plasminogênio tecidual modificado (TNK-tPA), fibrinoespecífico",
+  "mecanismo": "Converte o plasminogênio ligado à fibrina em plasmina; meia-vida maior que a da alteplase, o que permite bolus único.",
+  "apresentacoes": [
+   "Frasco-ampola 40 mg + seringa com 8 mL de diluente e 50 mg + seringa com 10 mL de diluente: 5 mg/mL após reconstituir (Metalyse)",
+   "Frasco-ampola 25 mg (Metalyse 25 mg, usado no AVC)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "IAM com supra (fibrinólise quando a angioplastia não é possível no tempo): bolus único EV em 5–10 s por peso: < 60 kg 30 mg (6 mL) | 60–69 kg 35 mg (7 mL) | 70–79 kg 40 mg (8 mL) | 80–89 kg 45 mg (9 mL) | ≥ 90 kg 50 mg (10 mL); teto 50 mg (bula Metalyse; FDA).",
+   "IAM com supra, idade ≥ 75 anos: metade da dose da faixa de peso (ESC 2023; STREAM-2).",
+   "AVC isquêmico (critérios do protocolo): 0,25 mg/kg em bolus único (máx. 25 mg) (AHA/ASA 2026). Tabela da bula americana: < 60 kg 15 mg | 60–69 kg 17,5 mg | 70–79 kg 20 mg | 80–89 kg 22,5 mg | ≥ 90 kg 25 mg (FDA)."
+  ],
+  "pediatria": [
+   "Segurança e eficácia não estabelecidas em crianças (FDA)."
+  ],
+  "diluicao": [
+   "Reconstituir só com o diluente que acompanha, jato dirigido ao pó, girando suavemente sem agitar (leve espuma é normal): 5 mg/mL (FDA; bula Metalyse).",
+   "Bolus único EV em 5–10 s; aspirar só o volume da dose e desprezar o restante (FDA).",
+   "Incompatível com soluções glicosadas (precipita): lavar o acesso com SF 0,9% antes e depois (FDA; bula Metalyse).",
+   "Sem conservante: reconstituir na hora; se não usar logo, refrigerar e usar em até 8 h (FDA)."
+  ],
+  "renal": "",
+  "hepatica": "",
+  "gestacao": "Dados limitados; IAM com supra e AVC são emergências fatais: não negar o tratamento que salva a gestante só pelo risco fetal teórico (FDA).",
+  "lactacao": "Sem dados sobre passagem ao leite (FDA).",
+  "contraindicacoes": [
+   "Sangramento interno ativo; diátese hemorrágica; hipertensão grave não controlada (FDA).",
+   "Cirurgia ou trauma intracraniano ou intraespinhal nos últimos 2 meses; lesão intracraniana com risco de sangramento (neoplasia, MAV, aneurisma) (FDA).",
+   "AVC: hemorragia intracraniana ativa (FDA). Checar a lista completa do protocolo de AVC (AHA/ASA 2026).",
+   "IAM com supra: hemorragia intracraniana prévia ou AVC isquêmico nos últimos 3 meses (FDA)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: trombolíticos).",
+   "Doses diferentes no IAM (30–50 mg) e no AVC (até 25 mg): confira a indicação antes de aspirar.",
+   "Evitar injeções IM e punções não compressíveis; vigiar sangramento (FDA).",
+   "Arritmias de reperfusão: ter antiarrítmico e material para bradicardia disponíveis (FDA).",
+   "IAM com supra: escolher fibrinólise ou angioplastia primária como estratégia; angioplastia de resgate se não reperfundir (FDA).",
+   "AVC: INR > 1,7 ou TTPa elevado no pré-tratamento — suspender; controlar a PA durante e após (FDA)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Metalyse (tenecteplase), Boehringer Ingelheim (faixas de peso, bolus único, incompatibilidade com glicose)",
+   "FDA label TNKase (tenecteplase), DailyMed (IAM com supra e AVC isquêmico)",
+   "Lista de preços CMED/Anvisa, set/2026 (Metalyse 25, 40 e 50 mg)",
+   "Byrne RA et al. 2023 ESC Guidelines for the management of acute coronary syndromes (Eur Heart J 2023;44:3720)",
+   "Prabhakaran S et al. 2026 AHA/ASA Guideline for the Early Management of Acute Ischemic Stroke (Stroke 2026)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ }
+]

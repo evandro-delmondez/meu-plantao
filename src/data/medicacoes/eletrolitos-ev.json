@@ -1,0 +1,417 @@
+[
+ {
+  "id": "insulina-regular",
+  "nome": "Insulina regular (humana)",
+  "classe": "Hormônio / antidiabético",
+  "subclasse": "Insulina humana de ação rápida (regular)",
+  "mecanismo": "Estimula a captação de glicose e de potássio pelas células e inibe a lipólise e a cetogênese; EV age em minutos e tem meia-vida curta.",
+  "apresentacoes": [
+   "Frasco-ampola 10 mL com 100 UI/mL (Humulin R, Novolin R, Insunorm R, Insuliv R, Funed Insulina R, Bahiafarma Insulina Humana R)",
+   "Refil/carpule 3 mL e caneta com 100 UI/mL (Humulin R, Novolin R, Funed Insulina R)"
+  ],
+  "rename": true,
+  "vias": [
+   "EV",
+   "SC",
+   "IM"
+  ],
+  "adulto": [
+   "CAD moderada ou grave (ou EHH com cetose): 0,1 U/kg/h EV em bomba, dose fixa; se a bomba demorar, 0,1 U/kg EV ou IM em bolus. Não iniciar com K < 3,5 mEq/L: repor antes (ADA/EASD 2024).",
+   "CAD: com glicemia < 250 mg/dL, acrescentar SG 5–10% e reduzir para 0,05 U/kg/h; não suspender enquanto houver cetose; manter a EV por 1–2 h após a primeira dose SC (ADA/EASD 2024).",
+   "EHH sem cetose importante: 0,05 U/kg/h EV (ADA/EASD 2024).",
+   "Hipercalemia: 10 UI EV em bolus + 25 g de glicose (50 mL de SG 50% ou 250 mL de SG 10%) em 15 min; se glicemia prévia < 126 mg/dL, SG 10% 50 mL/h por 5 h; glicemia seriada até 6 h (UKKA 2023).",
+   "Hiperglicemia sem crise, correção SC pela glicemia capilar: 2 UI (180–200 mg/dL) a 12 UI (> 400 mg/dL), conforme a escala da conduta do painel; glicemia > 250 com vômitos, dor abdominal, taquipneia ou rebaixamento: investigar CAD/EHH."
+  ],
+  "pediatria": [
+   "CAD: 0,05–0,1 U/kg/h EV, iniciando 1–2 h após o início dos fluidos; adiar se K < 3,0 mEq/L (BSPED 2021).",
+   "Hipercalemia e outras indicações: conforme protocolo pediátrico da unidade."
+  ],
+  "diluicao": [
+   "EV: concentração entre 0,1 e 1 U/mL, em SF 0,9% (FDA). Ex.: 50 U em 250 mL de SF 0,9% = 0,2 U/mL; desprezar os primeiros 50 mL pelo equipo (adsorção ao plástico); 70 kg × 0,1 U/kg/h = 7 U/h = 35 mL/h (HC-FMUSP).",
+   "Bolsa preparada estável por 48 h na geladeira e mais 48 h em temperatura ambiente (FDA).",
+   "Bolus EV (hipercalemia): 10 UI EV direto, seguido da glicose."
+  ],
+  "renal": "Risco maior de hipoglicemia; monitorar mais e reduzir a dose se preciso (FDA). Na hipercalemia de paciente em diálise ou com DRC avançada, a hipoglicemia tardia é mais comum (UKKA 2023).",
+  "hepatica": "Risco maior de hipoglicemia: monitorar e ajustar (FDA).",
+  "gestacao": "Décadas de uso sem associação com malformações; é a insulina de referência na gestação (FDA).",
+  "lactacao": "Passa ao leite, sem efeitos adversos relatados no lactente (FDA).",
+  "contraindicacoes": [
+   "Hipoglicemia (FDA).",
+   "Hipersensibilidade à insulina humana ou aos excipientes (FDA)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: insulina SC e EV em todas as apresentações): dupla checagem de UI, tipo de insulina e via.",
+   "Hipocalemia potencialmente fatal: dosar K antes e a cada 2–4 h na infusão (FDA; ADA/EASD 2024).",
+   "Hipoglicemia: glicemia capilar de hora em hora na infusão EV.",
+   "Nunca compartilhar canetas ou refis entre pacientes, mesmo trocando a agulha (FDA)."
+  ],
+  "fontes": [
+   "FDA label Humulin R (insulin human) injection U-100, DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Humulin R, Eli Lilly; Novolin R, Novo Nordisk; Insunorm R, Biocon; Insuliv R, EMS; Funed; Bahiafarma)",
+   "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report — ADA/EASD/JBDS/AACE/DTS (Diabetes Care 2024;47:1257)",
+   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 89, Hiperglicemias (preparo 50 U/250 mL)",
+   "BSPED. Guideline for the Management of Children and Young People under the age of 18 years with Diabetic Ketoacidosis, 2021",
+   "Brasil. Ministério da Saúde. Relação Nacional de Medicamentos Essenciais (RENAME) 2024",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "glicose-50",
+  "nome": "Glicose 50% (hipertônica)",
+  "classe": "Solução hipertônica / antídoto",
+  "subclasse": "Carboidrato (dextrose) hipertônico",
+  "mecanismo": "Fornece glicose de absorção imediata; cada 10 mL de solução a 50% contém 5 g de glicose.",
+  "apresentacoes": [
+   "Ampola 10 mL (5 g) e 20 mL (10 g) a 50% (500 mg/mL) (Isofarma, Farmace-Glicose, Equiplex, Samtec)",
+   "Frasco/bolsa 500 mL e 1.000 mL a 50% para preparo (Fresenius Kabi, Baxter)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Hipoglicemia grave (rebaixado ou sem via oral): 40–50 mL EV (20–25 g) em veia calibrosa, ou glicose 10% 150–250 mL; glicemia de novo em 15 min e manter SG 10% se preciso (ADA 2025; conduta do painel). Bula americana: 20–50 mL (10–25 g) costumam bastar, podendo repetir (FDA).",
+   "Hipercalemia: 50 mL (25 g) junto com insulina regular 10 UI EV em 15 min (UKKA 2023). Nunca glicose hipertônica sem insulina na hipercalemia (piora o K pelo efeito osmótico) (Harrison 22ª ed.).",
+   "Colher glicemia antes de administrar (FDA)."
+  ],
+  "pediatria": [
+   "Hipoglicemia grave: preferir glicose 10%, 2 mL/kg (0,2 g/kg) EV (ISPAD 2022); se necessário, até 0,5–1 g/kg (5–10 mL/kg de glicose 10%) (PALS). Glicose 10% a partir da 50%: 1 parte de G50% + 4 partes de AD (conta própria)."
+  ],
+  "diluicao": [
+   "Veia periférica: EV lenta, de preferência com agulha fina em veia calibrosa, para reduzir irritação (FDA); pode diluir em AD.",
+   "Veia central: só após diluição adequada (FDA).",
+   "Velocidade máxima sem glicosúria: 0,5 g/kg/h (FDA).",
+   "Nunca SC ou IM (FDA)."
+  ],
+  "renal": "Na uremia crônica, maior risco de síndrome hiperosmolar com infusão rápida (FDA).",
+  "hepatica": "",
+  "gestacao": "Categoria C (FDA); na hipoglicemia grave, o benefício prevalece.",
+  "lactacao": "",
+  "contraindicacoes": [
+   "Hemorragia intracraniana ou intraespinhal (FDA).",
+   "Delirium tremens com desidratação (FDA)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: glicose hipertônica ≥ 20%).",
+   "Solução hipertônica: flebite e trombose no local; infusão rápida pode causar hiperglicemia e síndrome hiperosmolar (FDA).",
+   "Etilista ou desnutrido: tiamina 100 mg EV antes da glicose (risco de Wernicke) (EFNS 2010; conduta do painel).",
+   "Ao suspender infusão concentrada, seguir com SG 5–10% para evitar hipoglicemia de rebote; vigiar K e fósforo (FDA)."
+  ],
+  "fontes": [
+   "FDA label 50% Dextrose Injection, USP, DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Isofarma, Halex Istar; Farmace-Glicose; Equiplex; Samtec; Fresenius Kabi; Baxter)",
+   "American Diabetes Association. Standards of Care in Diabetes—2025, seção 6 (Glycemic Goals and Hypoglycemia)",
+   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023",
+   "Harrison's Principles of Internal Medicine, 22ª ed., cap. 56 (hipercalemia)",
+   "Abraham MB et al. ISPAD Clinical Practice Consensus Guidelines 2022: hypoglycemia (Pediatr Diabetes 2022;23:1322)",
+   "AHA — Pediatric Advanced Life Support (glicose 0,5–1 g/kg)",
+   "Galvin R et al. EFNS guidelines for diagnosis, therapy and prevention of Wernicke encephalopathy (Eur J Neurol 2010;17:1408)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "cloreto-de-potassio",
+  "nome": "Cloreto de potássio 19,1% (injetável)",
+  "classe": "Eletrólito",
+  "subclasse": "Repositor de potássio (solução concentrada para diluição)",
+  "mecanismo": "Repõe o potássio, principal cátion intracelular, essencial à condução cardíaca e à contração muscular.",
+  "apresentacoes": [
+   "Ampola 10 mL a 19,1% (191 mg/mL = 2,56 mEq/mL; 25,6 mEq por ampola) (Farmarin, Farmace, Equiplex, Santisa, Samtec)",
+   "Ampola 10 mL a 10% (100 mg/mL; 13,4 mEq por ampola) e a 15% — confira a concentração (Santisa, Farmace, Equiplex, Samtec)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Hipocalemia moderada (K 2,5–2,9 mEq/L): via oral se possível; associar EV 20–40 mEq diluídos em SF 0,9% (HC-FMUSP).",
+   "Hipocalemia grave (K < 2,5 mEq/L) ou sintomática: 40–80 mEq EV em SF 0,9%, em bomba, com monitor; velocidade habitual 10–20 mEq/h; até 40 mEq/h só com risco de vida (HC-FMUSP; bula Farmace). Repor magnésio junto.",
+   "CAD: K < 3,5 mEq/L, repor antes da insulina (10 mEq/h: 1 ampola em 500 mL de SF a 200 mL/h); K 3,5–5,0, 20–30 mEq por litro de soro; K > 5,0, sem potássio (ADA/EASD 2024; HC-FMUSP).",
+   "Dose diária máxima: 200 mEq/dia com K > 2,5 mEq/L e 400 mEq/dia com K < 2,0 mEq/L (bula Farmace)."
+  ],
+  "pediatria": [
+   "Intermitente: 0,5–1 mEq/kg/dose, infundidos a 0,3–0,5 mEq/kg/h; máx. 1 mEq/kg/h e 30 mEq por dose; máx. 3 mEq/kg/dia (bula Farmace).",
+   "Sempre diluído em solução de infusão; segurança não completamente estabelecida em crianças (bula Farmarin)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Reposição intermitente — resultado em mEq de K, não em mg (0,5–1 mEq/kg)",
+    "mgkg": 0.5,
+    "max_mg": 30,
+    "intervalo": "infundir a 0,3–0,5 mEq/kg/h",
+    "via": "EV diluído"
+   }
+  ],
+  "diluicao": [
+   "Nunca EV direto nem sem diluir: KCl concentrado injetado direto pode causar morte instantânea (bulas Farmace e Farmarin; ISMP Brasil 2019).",
+   "Diluir em SF 0,9%, não em soro glicosado (piora a hipocalemia); misturar bem a bolsa (H22 cap. 56; bula Farmace).",
+   "Veia periférica: usual 40 mEq/L, máximo desejável 80 mEq/L (bula Farmace; HC-FMUSP). Veia central: até 120 mEq/L; em UTI com monitor, 20 mEq em 100 mL de SF a 20 mEq/h (HC-FMUSP).",
+   "Exemplo periférico: 1 ampola a 19,1% (25,6 mEq) em 500 mL de SF 0,9% ≈ 50 mEq/L; 200 mL/h ≈ 10 mEq/h, em bomba (conduta de eletrólitos do painel).",
+   "Acima de 10 mEq/h: monitor contínuo e considerar acesso central; a bula Farmarin recomenda, como regra, não passar de 15 mEq/h."
+  ],
+  "renal": "Reduzir a dose EV em pelo menos 50% e dosar K mais vezes (HC-FMUSP). Contraindicado na insuficiência renal grave ou oligoanúrica com risco de hipercalemia (bula Farmarin); suspender se surgir insuficiência renal (bula Farmace).",
+  "hepatica": "",
+  "gestacao": "Categoria C: sem efeito teratogênico conhecido; usar se necessário (bula Farmarin). Na hipocalemia grave, o benefício prevalece.",
+  "lactacao": "Sem dados de passagem ao leite; a bula prefere evitar amamentar durante o tratamento (bula Farmarin).",
+  "contraindicacoes": [
+   "Hipercalemia ou situações que a provocam: insuficiência renal grave, insuficiência adrenal aguda, acidose metabólica descompensada (bula Farmarin)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: cloreto de potássio concentrado injetável): ampolas fora do estoque das enfermarias, com etiqueta de alerta e dupla checagem.",
+   "Existem ampolas de 10%, 15% e 19,1% com o mesmo volume: prescrever em mEq e conferir a concentração.",
+   "Risco de hipercalemia grave com espironolactona, amilorida, eplerenona, IECA, BRA e outros sais de potássio, sobretudo na doença renal (bula Farmarin).",
+   "Hipocalemia por redistribuição (paralisia periódica, beta-2, insulina): repor só com complicação grave, pelo risco de rebote (HC-FMUSP; H22 cap. 56).",
+   "Dor ou flebite no local: reduzir primeiro a concentração, depois a velocidade (HC-FMUSP)."
+  ],
+  "fontes": [
+   "Bula ANVISA — cloreto de potássio 19,1% solução injetável (Farmarin, 2021) e cloreto de potássio 10%, 15% e 19,1% (Farmace)",
+   "Lista de preços CMED/Anvisa, set/2026 (Farmarin, Farmace, Equiplex, Santisa, Samtec)",
+   "Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP. Manole, 2024. Cap. 83 (Hipocalemia) e tabela de reposição de eletrólitos",
+   "Harrison's Principles of Internal Medicine, 22ª ed. Cap. 56 (Fluid and Electrolyte Disturbances)",
+   "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "sulfato-de-magnesio",
+  "nome": "Sulfato de magnésio (50% e 10%)",
+  "classe": "Eletrólito",
+  "subclasse": "Repositor de magnésio; anticonvulsivante na eclâmpsia",
+  "mecanismo": "Repõe o magnésio; bloqueia canais de cálcio e a transmissão neuromuscular, estabiliza a membrana miocárdica e relaxa o músculo liso brônquico.",
+  "apresentacoes": [
+   "Ampola 10 mL a 50% (500 mg/mL = 5 g ≈ 40,5 mEq) (Isofarma, VMG, Samtec)",
+   "Ampola 10 mL a 10% (100 mg/mL = 1 g ≈ 8,1 mEq) (Isofarma, VMG, Samtec)",
+   "Existe também a 20% (10 mL = 2 g): confira a concentração"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IM"
+  ],
+  "adulto": [
+   "Pré-eclâmpsia grave e eclâmpsia — ataque: 4 g EV lento em 15–20 min (8 mL a 50% + 12 mL de AD ou SF = 20 mL; ou 8 mL em 100 mL de SF a 300 mL/h). Manutenção Zuspan: 1 g/h EV em bomba (até 2 g/h); ou Pritchard: 10 g IM no ataque (5 g em cada nádega) e 5 g IM a cada 4 h. Manter 24 h após o parto ou a última convulsão (RBEHG 2023; MS 2022).",
+   "Nova convulsão durante o MgSO4: mais 2 g EV em bolus e manutenção a 2 g/h (RBEHG 2023).",
+   "Asma grave ou refratária: 2 g EV em 20 min (4 mL a 50% em 100 mL de SF 0,9%) (GINA 2024).",
+   "Torsades de pointes: 2 g EV em bolus, mesmo com magnésio normal (AHA/ACCF 2010).",
+   "Hipomagnesemia: leve 1–2 g EV em 1–2 h; moderada 2–4 g em 4–12 h; grave 4–8 g em 12–24 h; com arritmia ou instabilidade, 1–2 g em 2–5 min com monitor e depois manutenção (HC-FMUSP).",
+   "Fibrilação atrial: opção adjuvante para controle de frequência (ACC/AHA/ACCP/HRS 2023)."
+  ],
+  "pediatria": [
+   "Crise de asma grave (≥ 6 anos) sem resposta ao broncodilatador: 40–50 mg/kg EV em 20 min (máx. 2 g) (GINA 2025).",
+   "Anticonvulsivante (bula): 20–40 mg/kg IM, com a solução diluída a 20% (0,1–0,2 mL/kg da solução a 20%) (bulas VMG e Isofarma).",
+   "Para uso EV ou IM em crianças, diluir a no máximo 20% (bula Isofarma)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Asma grave (≥ 6 anos) — 40 mg/kg; faixa 40–50 mg/kg",
+    "mgkg": 40,
+    "max_mg": 2000,
+    "intervalo": "dose única em 20 min",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "EV: diluir a no máximo 20% antes de infundir, em SG 5% ou SF 0,9% (bula Isofarma).",
+   "Velocidade máxima 150 mg/min (1,5 mL/min da solução a 10%), exceto na eclâmpsia grave com convulsão (bula Isofarma) e na arritmia com instabilidade (HC-FMUSP).",
+   "Zuspan 1 g/h: 10 mL a 50% (5 g) + 490 mL de SF 0,9% = 1 g/100 mL, a 100 mL/h; ou 10 mL + 240 mL de SF = 5 g/250 mL, a 50 mL/h (RBEHG 2023; MS 2022).",
+   "IM (Pritchard): solução a 50% IM profundo no quadrante superior externo da nádega; evitar IM na HELLP com plaquetopenia (MS 2022).",
+   "Conversão: 1 g ≈ 8 mEq ≈ 4 mmol ≈ 100 mg de Mg elementar (HC-FMUSP)."
+  ],
+  "renal": "Na pré-eclâmpsia com creatinina ≥ 1,0 mg/dL (RBEHG; MS: > 1,3): metade da manutenção e dosar o Mg. Hipomagnesemia com ClCr < 30: reduzir a dose em 50% (HC-FMUSP). Insuficiência renal grave: no máximo 20 g em 48 h (bula Isofarma); a bula contraindica na insuficiência renal — pesar risco e monitorar.",
+  "hepatica": "",
+  "gestacao": "Categoria C; estudos sem aumento de anomalias fetais; infusão contínua prolongada (> 24 h) pode causar toxicidade no recém-nascido (depressão neuromuscular e respiratória) (bula Isofarma). Na eclâmpsia, é a droga de escolha (MS 2022).",
+  "lactacao": "Excretado no leite: cautela durante o uso parenteral (bula Isofarma).",
+  "contraindicacoes": [
+   "Bloqueio cardíaco ou dano miocárdico, depressão ou insuficiência respiratória, hipermagnesemia (bulas Isofarma e VMG).",
+   "Insuficiência renal (bulas): pesar contra o risco de vida na eclâmpsia, reduzindo a manutenção.",
+   "Miastenia grave: contraindicado no protocolo de pré-eclâmpsia do painel; a bula VMG só pede monitorar o feto na gestante miastênica."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: sulfato de magnésio injetável).",
+   "Ampolas de 10%, 20% e 50%: prescrever em gramas e conferir a concentração.",
+   "Vigiar a cada hora: reflexo patelar presente, FR ≥ 16 irpm (MS: > 12) e diurese ≥ 25 mL/h; se alterar, reduzir ou parar e dosar Mg (RBEHG 2023). Reflexos somem perto de 10 mEq/L, com risco de parada respiratória e bloqueio cardíaco (bula VMG).",
+   "Intoxicação: parar a infusão, gluconato de cálcio 10% 10 mL (1 g) EV lento, O2 e suporte ventilatório (RBEHG 2023; bula do gluconato de cálcio).",
+   "Teto no adulto: 30–40 g em 24 h (bulas Isofarma e VMG).",
+   "Soma efeito com depressores do SNC; bloqueio neuromuscular excessivo já relatado; precipita se misturado na mesma solução com cálcio, bicarbonato ou fosfato (bula Isofarma)."
+  ],
+  "fontes": [
+   "Bula ANVISA — sulfato de magnésio 10% e 50% (Isofarma/Halex Istar; VMG/Vasconcelos, 05/09/2024)",
+   "Lista de preços CMED/Anvisa, set/2026 (Isofarma, Samtec)",
+   "Peraçoli JC et al. Pré-eclâmpsia – Protocolo 03, 2023. Rede Brasileira de Estudos sobre Hipertensão na Gravidez (RBEHG)",
+   "Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco. Brasília, 2022 — cap. 11",
+   "Global Initiative for Asthma (GINA) 2024 e 2025 — sulfato de magnésio na crise grave",
+   "Drew BJ et al. Prevention of torsade de pointes in hospital settings — AHA/ACCF (Circulation 2010;121:1047)",
+   "Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP. Manole, 2024 — tabela de reposição de eletrólitos",
+   "Joglar JA et al. 2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation (Circulation 2024;149:e1)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "gluconato-de-calcio",
+  "nome": "Gluconato de cálcio 10% (gliconato de cálcio)",
+  "classe": "Eletrólito / antídoto",
+  "subclasse": "Sal de cálcio injetável",
+  "mecanismo": "Repõe o cálcio; na hipercalemia, estabiliza a membrana miocárdica sem baixar o potássio; antagoniza o magnésio.",
+  "apresentacoes": [
+   "Ampola 10 mL a 10% (100 mg/mL; 1 mL = 9,3 mg de cálcio elementar = 0,465 mEq; ampola = 93 mg) — nome na bula Anvisa: gliconato de cálcio (Fresenius Kabi, Blau, Farmarin, Isofarma)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Hipercalemia com alteração no ECG: 30 mL a 10% EV em 10 min; age em até 3 min e dura 30–60 min; repetir se o ECG não melhorar ou voltar a piorar. Na parada ou peri-parada, preferir cloreto de cálcio 10% 10 mL em 5 min (UKKA 2023). A bula permite 1–2 g, ajustando pelo ECG, sem passar de 5 mL/min (bula Fresenius).",
+   "Hipocalcemia sintomática (tetania, convulsão, laringoespasmo, QT longo): 1–2 g (10–20 mL) em 50–100 mL de SG 5% ou SF 0,9%, EV em 10–20 min, com monitor; se persistir, infusão de 0,5–1,5 mg/kg/h de Ca elementar (110 mL de gluconato 10% + 890 mL de SF ou SG 5% ≈ 1 mg/mL, iniciar a 50 mL/h) (HC-FMUSP).",
+   "Intoxicação por magnésio: 1 g (10 mL a 10%) EV lento em cerca de 3 min, com O2 e suporte ventilatório (RBEHG 2023); bula: 1–2 g até 5 mL/min.",
+   "Limite diário no adulto: 15 g (15 ampolas) (bula Fresenius)."
+  ],
+  "pediatria": [
+   "Crianças com hipocalcemia: 200–500 mg (2–5 mL) EV lento em dose única, até 5 mL/min, repetindo até controlar a tetania (bula Fresenius).",
+   "Lactentes com hipocalcemia grave: infusão lenta de 40–80 mg/kg/dia (4–8 mL/kg/dia), por no máximo 36 h (bula Fresenius).",
+   "Recém-nascido com hipocalcemia sintomática: 1 mL/kg EV muito lento, com controle da FC e do cálcio (bula Fresenius). Nunca em artéria umbilical (necrose mesentérica)."
+  ],
+  "diluicao": [
+   "EV lento, sem passar de 5 mL/min, em veia calibrosa, sem extravasar (bula Fresenius). HC-FMUSP e Harrison diluem em 50–100 mL de SG 5% ou SF e correm em 5–20 min.",
+   "Nunca IM ou SC: descamação e necrose (bula Fresenius).",
+   "Não infundir na mesma linha com bicarbonato ou fosfato (precipita) (HC-FMUSP; bula Fresenius). Ceftriaxona não deve ser misturada com soluções de cálcio (bula da ceftriaxona).",
+   "Se houver cristais na ampola, aquecer levemente em banho-maria para dissolver (bula Fresenius).",
+   "Parar a infusão se surgir bradicardia ou arritmia (bula Fresenius)."
+  ],
+  "renal": "Disfunção renal crônica: avaliar risco e benefício (bula); na DRC com hipocalcemia assintomática, não repor cálcio EV — corrigir fósforo e vitamina D (HC-FMUSP).",
+  "hepatica": "",
+  "gestacao": "Categoria C: usar sob orientação médica (bula Fresenius). Na hipercalemia grave ou na intoxicação por magnésio, o benefício prevalece.",
+  "lactacao": "",
+  "contraindicacoes": [
+   "Hipercalcemia, hipercalciúria, cálculo renal de cálcio, sarcoidose (bula Fresenius).",
+   "Uso de digitálico: a bula contraindica; se imprescindível (hipercalemia grave), 10 mL em 100 mL de SG 5% em 20–30 min, com monitor (bula Fresenius; H22 cap. 56)."
+  ],
+  "alertas": [
+   "Cloreto de cálcio 10% tem cerca de 3 vezes mais cálcio por mL que o gluconato: não trocar mL por mL (HC-FMUSP).",
+   "Infusão rápida pode causar bradicardia, arritmia e parada, sobretudo com digitálico (bula Fresenius; HC-FMUSP).",
+   "Efeito na hipercalemia é transitório: seguir com insulina-glicose e remoção do potássio (UKKA 2023).",
+   "Extravasamento: dor, rubor, descamação e necrose; parar e tratar o local (bula Fresenius).",
+   "Tiazídicos favorecem hipercalcemia; reduz a resposta ao verapamil (bula Fresenius)."
+  ],
+  "fontes": [
+   "Bula ANVISA — gliconato de cálcio 100 mg/mL solução injetável (Fresenius Kabi)",
+   "Lista de preços CMED/Anvisa, set/2026 (Blau, Farmarin, Isofarma/Halex Istar)",
+   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023",
+   "Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP. Manole, 2024. Cap. 84 e 85 e tabela de reposição de eletrólitos",
+   "Harrison's Principles of Internal Medicine, 22ª ed. Cap. 56 e 57",
+   "Peraçoli JC et al. Pré-eclâmpsia – Protocolo 03, 2023. RBEHG (intoxicação por magnésio)"
+  ]
+ },
+ {
+  "id": "bicarbonato-de-sodio",
+  "nome": "Bicarbonato de sódio 8,4%",
+  "classe": "Alcalinizante",
+  "subclasse": "Solução hipertônica de bicarbonato de sódio",
+  "mecanismo": "Tampona íons hidrogênio e eleva o pH e o bicarbonato plasmático; a solução a 8,4% tem 1 mEq de bicarbonato e 1 mEq de sódio por mL.",
+  "apresentacoes": [
+   "Ampola 10 mL a 8,4% (84 mg/mL = 1 mEq/mL; 10 mEq por ampola) (Farmace, Samtec)",
+   "Frasco 250 mL a 8,4% (250 mEq) (Fresenius Kabi, Hypofarma, JP)",
+   "Ampola 10 mL a 10% (100 mg/mL ≈ 1,19 mEq/mL) (Farmace) — confira a concentração"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Não usar de rotina na PCR (AHA 2025). Bula americana, se usado na PCR: 44,6–100 mEq EV rápido e depois 50 mEq a cada 5–10 min guiado por gasometria (FDA).",
+   "CAD com pH < 7,0: 100 mmol (100 mL a 8,4%) em 400 mL de água destilada em 2 h, repetido a cada 2 h até pH ≥ 7,0 (ADA/EASD 2024).",
+   "Hipercalemia: não de rotina; considerar só com acidose metabólica, 50–100 mEq EV em 1–2 h, em via separada do cálcio (UKKA 2023; HC-FMUSP). Na parada com hipercalemia, considerar junto com cálcio e insulina-glicose (UKKA 2023).",
+   "Intoxicação por antidepressivo tricíclico com QRS > 100 ms ou arritmia: 1–2 mEq/kg EV em bolus, repetindo até estreitar o QRS, com alvo de pH 7,45–7,55 (Bruccoleri e Burns 2016).",
+   "Acidose metabólica menos urgente: 2–5 mEq/kg em 4–8 h em etapas, sem tentar corrigir tudo nas primeiras 24 h (alvo de CO2 total perto de 20 mEq/L no fim do 1º dia) (FDA)."
+  ],
+  "pediatria": [
+   "Crianças maiores: 2–5 mEq/kg em 4–8 h na acidose metabólica (FDA).",
+   "Neonatos e menores de 2 anos: no máximo 8 mEq/kg/dia; injeção rápida pode causar hipernatremia e hemorragia intracraniana; preferir solução a 4,2% (8,4% diluída 1:1 em AD) (FDA).",
+   "Intoxicação por tricíclico: 1–2 mEq/kg EV em bolus (Bruccoleri e Burns 2016)."
+  ],
+  "diluicao": [
+   "Bolus (PCR, tricíclico): EV rápido, sem diluir (FDA; Bruccoleri e Burns 2016).",
+   "Infusão: pode ser acrescentado a outros soros; CAD: 100 mL a 8,4% + 400 mL de AD (ADA/EASD 2024).",
+   "Não misturar com soluções que contenham cálcio (precipita); não infundir na mesma via do cálcio (FDA; HC-FMUSP).",
+   "Evitar extravasamento: solução hipertônica causa celulite química, necrose e ulceração (FDA)."
+  ],
+  "renal": "Insuficiência renal grave, oligúria ou anúria: carga de sódio, retenção hídrica e edema; usar com muita cautela (FDA).",
+  "hepatica": "",
+  "gestacao": "Sem estudos; usar se claramente necessário (FDA).",
+  "lactacao": "",
+  "contraindicacoes": [
+   "Perda de cloro por vômitos ou sonda gástrica em drenagem contínua; uso de diurético que causa alcalose hipoclorêmica (FDA)."
+  ],
+  "alertas": [
+   "Carga de sódio: cautela na insuficiência cardíaca, edema e retenção de sódio (FDA). Pode causar hipernatremia e hiperosmolaridade.",
+   "Alcalose metabólica, hipocalemia e queda do cálcio iônico (tetania) com o excesso: corrigir K e Ca antes ou junto (FDA).",
+   "Choque séptico com acidemia lática: não usar para melhorar a hemodinâmica se pH ≥ 7,2; considerar se pH ≤ 7,2 com lesão renal aguda AKIN 2–3 (SSC 2021)."
+  ],
+  "fontes": [
+   "FDA label Sodium Bicarbonate Injection, USP 8,4%, DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Farmace, Samtec, Fresenius Kabi, Hypofarma, JP)",
+   "AHA. 2025 Guidelines for CPR and ECC — Adult Advanced Life Support",
+   "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257)",
+   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023",
+   "Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. 84 (Hipercalemia)",
+   "Evans L et al. Surviving Sepsis Campaign 2021 (Crit Care Med 2021;49:e1063)",
+   "Bruccoleri RE, Burns MM. A literature review of the use of sodium bicarbonate for the treatment of QRS widening (J Med Toxicol 2016;12:121)"
+  ]
+ },
+ {
+  "id": "cloreto-de-sodio-20",
+  "nome": "Cloreto de sódio 20% (hipertônico)",
+  "classe": "Eletrólito",
+  "subclasse": "Solução hipertônica concentrada para diluição (preparo de NaCl 3%)",
+  "mecanismo": "Fornece sódio e eleva a osmolalidade plasmática, retirando água das células (inclusive do cérebro edemaciado).",
+  "apresentacoes": [
+   "Ampola 10 mL a 20% (200 mg/mL = 3,42 mEq/mL de Na; 34 mEq por ampola; 6.845 mOsm/L) (Isofarma, Farmarin)",
+   "Existe também NaCl 10% (Isofarma): confira a concentração"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Uso como NaCl 3% (preparado a partir do 20%) na hiponatremia com sintomas graves (convulsão, coma, vômitos, desconforto respiratório): 150 mL de NaCl 3% EV em 20 min; dosar Na em 20 min e repetir até 2 vezes (até 3 bolus) ou até subir 5 mEq/L (diretriz europeia 2014). Painel americano: 100 mL em 10 min, até 3 vezes (2013).",
+   "Sintomas moderadamente graves: um bolus de 150 mL de NaCl 3% em 20 min (europeia) ou infusão de 0,5–2 mL/kg/h (americana).",
+   "Limite: subir no máximo 10 mEq/L nas primeiras 24 h e 8 mEq/L a cada 24 h seguintes; parar a salina 3% com melhora dos sintomas, subida de 10 mEq/L ou Na 130 mEq/L (diretriz europeia 2014).",
+   "Composição corporal muito fora do padrão: 2 mL/kg de NaCl 3% em vez dos 150 mL fixos (diretriz europeia 2014)."
+  ],
+  "pediatria": [
+   "Edema cerebral na CAD: NaCl 3% 2,5–5 mL/kg em 10–15 min (BSPED 2021).",
+   "Hiponatremia grave sintomática: conforme protocolo pediátrico da unidade; a diretriz europeia sugere 2 mL/kg de NaCl 3% quando o peso foge do padrão."
+  ],
+  "diluicao": [
+   "Nunca injetar o NaCl 20% sem diluir (hiperosmolaridade, convulsão, flebite); uso EV lento, só diluído (bula Anvisa do NaCl 20%; ISMP Brasil 2019).",
+   "NaCl 3%, 500 mL: retirar 55 mL de uma bolsa de 500 mL de SF 0,9% e acrescentar 55 mL de NaCl 20% (≈ 513 mEq/L) (HC-FMUSP; bula Isofarma).",
+   "NaCl 3%, 1.000 mL: 110 mL de NaCl 20% + 890 mL de SF 0,9% (bula Isofarma: 3,42 mEq/mL; conta própria conferível).",
+   "Cada 1 mL/kg de NaCl 3% sobe o Na em cerca de 1 mEq/L (estimativa do HC-FMUSP; a subida real pode ser maior).",
+   "Evitar extravasamento (bula Anvisa do NaCl 20%)."
+  ],
+  "renal": "Contraindicado na insuficiência renal grave e na anúria (bula Anvisa); na hiponatremia grave com risco de vida, pesar o risco e monitorar de perto.",
+  "hepatica": "Hepatopatia avançada é fator de alto risco de desmielinização: meta de 4–6 mEq/L/dia e limite de 8 mEq/L em 24 h (painel americano 2013; Hoorn 2017).",
+  "gestacao": "",
+  "lactacao": "",
+  "contraindicacoes": [
+   "Insuficiência cardíaca congestiva, insuficiência renal grave, anúria e estados edematosos com retenção de sódio (bula Anvisa do NaCl 20%) — pesar contra o risco de vida na hiponatremia grave."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: cloreto de sódio hipertônico > 0,9%): dupla checagem do preparo e da velocidade.",
+   "Correção rápida demais na hiponatremia crônica causa síndrome de desmielinização osmótica (paraparesia, disfagia, disartria, rebaixamento, dias depois) (Harrison 22ª ed.; diretriz europeia 2014).",
+   "Na a cada 20 min durante os bolus e a cada 2–4 h na infusão; diurese aquosa abundante anuncia correção rápida demais (diretriz europeia 2014; Harrison 22ª ed.; HC-FMUSP).",
+   "Correção excessiva: suspender, SG 5% 10 mL/kg em 1 h e desmopressina 2 mcg EV, com especialista (diretriz europeia 2014; HC-FMUSP).",
+   "Ter bolsas de 150 mL de NaCl 3% prontas na farmácia reduz erro de conta (diretriz europeia 2014)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Isofarma solução de cloreto de sódio 10% e 20% (Halex Istar) e cloreto de sódio 20% (Farmarin, 10/01/2020)",
+   "Spasovski G et al. Clinical practice guideline on diagnosis and treatment of hyponatraemia (Eur J Endocrinol 2014;170:G1)",
+   "Verbalis JG et al. Diagnosis, evaluation, and treatment of hyponatremia: expert panel recommendations (Am J Med 2013;126:S1)",
+   "Hoorn EJ, Zietse R. Diagnosis and treatment of hyponatremia: compilation of the guidelines (J Am Soc Nephrol 2017;28:1340)",
+   "Harrison's Principles of Internal Medicine, 22ª ed. Cap. 56",
+   "Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP. Manole, 2024. Cap. 81 (Hiponatremia)",
+   "BSPED. Guideline for the Management of Children and Young People with DKA, 2021",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ }
+]

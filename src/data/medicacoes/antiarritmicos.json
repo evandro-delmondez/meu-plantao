@@ -1,0 +1,306 @@
+[
+ {
+  "id": "amiodarona",
+  "nome": "Amiodarona",
+  "classe": "Antiarrítmico",
+  "subclasse": "Classe III (bloqueador de canais de potássio, com ações das classes I, II e IV)",
+  "mecanismo": "Prolonga o potencial de ação e o período refratário; tem também efeito betabloqueador não competitivo e de bloqueio de canais de sódio e cálcio.",
+  "apresentacoes": [
+   "Ampola 3 mL com 150 mg (50 mg/mL), âmbar (cloridrato de amiodarona, genéricos Fresenius Kabi e Hipolabor)",
+   "Comprimido 100 mg e 200 mg (Ancoron, Atlansil) — uso oral, fora do escopo desta ficha"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "PCR com FV/TV sem pulso refratária ao choque: 300 mg EV/IO em bolus; 2ª dose de 150 mg (AHA 2025; bula: 300 mg ou 5 mg/kg em 20 mL de SG 5%, 2ª dose 150 mg ou 2,5 mg/kg).",
+   "Taquicardia com pulso de QRS largo, estável: 150 mg EV em 10 min, repetir se recorrer; depois 1 mg/min por 6 h e 0,5 mg/min por 18 h (AHA 2025; FDA). O esquema de 24 h soma 1.050 mg.",
+   "Bula brasileira (infusão): ataque 5 mg/kg em 250 mL de SG 5% em 20 min a 2 h, repetível 2 a 3 vezes em 24 h; manutenção 10–20 mg/kg/dia (em geral 600–800 mg/24 h, até 1.200 mg/24 h).",
+   "Fibrilação atrial com disfunção sistólica moderada a grave ou IC descompensada: opção para controle de frequência quando diltiazem/verapamil estão contraindicados (ACC/AHA 2023)."
+  ],
+  "pediatria": [
+   "PCR (FV/TV sem pulso): 5 mg/kg EV/IO em bolus (máx. 300 mg), pode repetir até 3 doses; as seguintes até 150 mg (AHA 2025, PALS).",
+   "Bula: segurança e eficácia em crianças não estabelecidas; contém álcool benzílico (síndrome de gasping fatal em neonatos)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "PCR (FV/TV sem pulso)",
+    "mgkg": 5,
+    "max_mg": 300,
+    "intervalo": "até 3 doses",
+    "via": "EV/IO"
+   }
+  ],
+  "diluicao": [
+   "Diluir só em SG 5%; não usar concentrações abaixo de 600 mg/L (0,6 mg/mL); solução diluída estável por 24 h, protegida da luz (bula).",
+   "Bolus na PCR: 300 mg em 20 mL de SG 5% (bula).",
+   "Ataque fora da PCR: 150 mg em 100 mL de SG 5% em 10 min (FDA); ou 5 mg/kg em 250 mL de SG 5% em 20 min a 2 h (bula).",
+   "Manutenção: 900 mg (6 ampolas) + 482 mL de SG 5% = 500 mL (1,8 mg/mL): 1 mg/min = 33 mL/h por 6 h, depois 0,5 mg/min = 17 mL/h (diluição da bomba do painel).",
+   "Concentração acima de 2 mg/mL: preferir acesso central (FDA); a bula recomenda via central sempre que possível. Preferir equipo sem DEHP (bula)."
+  ],
+  "renal": "Sem ajuste: excreção renal insignificante (bula).",
+  "hepatica": "Pode causar lesão hepática aguda grave, inclusive nas primeiras 24 h do uso EV: monitorar transaminases; reduzir a dose ou suspender se subirem mais de 3 vezes o normal (bula).",
+  "gestacao": "Categoria D; contraindicada na gestação, salvo circunstâncias excepcionais (efeito na tireoide fetal). Na PCR, as contraindicações não se aplicam (bula).",
+  "lactacao": "Excretada no leite em quantidade significativa: contraindicada na lactação (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade ao iodo ou à amiodarona.",
+   "Bradicardia sinusal, doença do nó sinusal, BAV avançado ou distúrbios bi/trifasciculares sem marcapasso.",
+   "Hipotensão grave, choque circulatório; insuficiência respiratória grave, miocardiopatia ou insuficiência cardíaca (possível agravamento).",
+   "Uso com fármacos que induzem torsades de pointes; doença tireoidiana; gestação e lactação.",
+   "Nenhuma dessas se aplica na FV refratária ao choque durante a RCP (bula)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: antiarrítmicos endovenosos).",
+   "Bolus fora da PCR causa hipotensão grave e colapso: injetar em no mínimo 3 min e não repetir antes de 15 min; preferir infusão, com monitor (bula).",
+   "Prolonga o QT; bradicardia grave e bloqueio, sobretudo com betabloqueador, diltiazem, verapamil, digoxina e com sofosbuvir associado a outro antiviral (bula).",
+   "Aumenta o efeito da varfarina (monitorar INR), os níveis de digoxina e de fenitoína e o risco de miopatia com sinvastatina (bula).",
+   "Flebite na veia periférica; não misturar com outros fármacos na seringa nem na linha (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — cloridrato de amiodarona 50 mg/mL solução injetável (Hipolabor; Fresenius Kabi)",
+   "Lista de preços CMED/Anvisa, set/2026 (injetável só como genérico/similar sem marca; comprimidos Ancoron e Atlansil)",
+   "FDA label amiodarone hydrochloride injection, DailyMed (150 mg em 10 min, 1 mg/min por 6 h, 0,5 mg/min por 18 h; > 2 mg/mL em veia central)",
+   "AHA. 2025 Guidelines for CPR and ECC — Adult Advanced Life Support e algoritmo de taquicardia com pulso",
+   "AHA 2025 — algoritmos de PCR pediátrica (amiodarona 5 mg/kg)",
+   "Joglar JA et al. 2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation (Circulation 2024;149:e1)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "adenosina",
+  "nome": "Adenosina",
+  "classe": "Antiarrítmico",
+  "subclasse": "Nucleosídeo (agonista do receptor A1), bloqueio transitório do nó AV",
+  "mecanismo": "Reduz a condução no nó AV por poucos segundos e interrompe a reentrada que passa pelo nó AV; meia-vida menor que 10 s.",
+  "apresentacoes": [
+   "Ampola 2 mL com 6 mg (3 mg/mL) (Lowe; genéricos Fresenius Kabi, Halex Istar e Hipolabor)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "TSV estável, QRS estreito e regular, após manobra vagal (Valsalva modificada): 6 mg EV em bolus rápido (1–2 s), seguido de flush de SF; sem reversão em 1–2 min, 12 mg; os 12 mg podem ser repetidos uma vez (FDA; AHA 2025).",
+   "Não passar de 12 mg por dose (FDA).",
+   "Não reverte flutter, FA nem TV; na FA ou flutter pode só reduzir a resposta por instantes e revelar o ritmo de base (FDA)."
+  ],
+  "pediatria": [
+   "TSV: 0,1 mg/kg EV em bolus rápido (máx. 6 mg); 2ª dose 0,2 mg/kg (máx. 12 mg), com flush de SF (AHA 2020, PALS).",
+   "Bula americana: < 50 kg, 0,05–0,1 mg/kg, aumentando 0,05–0,1 mg/kg a cada 1–2 min até dose única máxima de 0,3 mg/kg; ≥ 50 kg, dose de adulto; nunca acima de 12 mg (FDA)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "TSV — 1ª dose",
+    "mgkg": 0.1,
+    "max_mg": 6,
+    "intervalo": "dose única; 2ª após 1–2 min",
+    "via": "EV"
+   },
+   {
+    "rotulo": "TSV — 2ª dose",
+    "mgkg": 0.2,
+    "max_mg": 12,
+    "intervalo": "dose única",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "Sem diluir: bolus rápido em 1–2 s, direto na veia ou na via do equipo mais próxima do paciente, seguido logo de flush rápido de SF (FDA). Técnica usual: duas seringas na mesma torneira (adenosina e 20 mL de SF).",
+   "Preferir veia periférica calibrosa, de antebraço ou fossa antecubital; a via central não foi estudada no adulto (FDA).",
+   "Não refrigerar a ampola: pode cristalizar; se cristalizar, aquecer à temperatura ambiente (FDA)."
+  ],
+  "renal": "Sem ajuste: depurada por captação celular (hemácias e endotélio) (FDA).",
+  "hepatica": "Sem ajuste: depurada por captação celular (FDA).",
+  "gestacao": "Categoria C: usar se claramente necessário; substância endógena, sem efeito fetal esperado (FDA).",
+  "lactacao": "Sem dados na bula; meia-vida menor que 10 s.",
+  "contraindicacoes": [
+   "BAV de 2º ou 3º grau, doença do nó sinusal ou bradicardia sintomática, salvo com marcapasso funcionante (FDA).",
+   "Hipersensibilidade à adenosina."
+  ],
+  "alertas": [
+   "Avisar o paciente: sensação de morte iminente, rubor, dor ou aperto no peito e dispneia por segundos são esperados (FDA).",
+   "Assistolia transitória ou prolongada e, raramente, FV; ter desfibrilador e monitor prontos; cautela com digoxina e verapamil (FDA).",
+   "Broncoespasmo: cautela em asma e DPOC (FDA).",
+   "Teofilina e cafeína antagonizam (pode precisar de dose maior ou falhar); dipiridamol potencializa (doses menores) e carbamazepina aumenta o bloqueio (FDA).",
+   "Taquicardia de QRS largo: só se regular e monomórfica; não usar na taquicardia irregular de QRS largo (FA pré-excitada) (AHA 2025)."
+  ],
+  "fontes": [
+   "FDA label adenosine injection 3 mg/mL for rapid bolus intravenous use, DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Lowe, Halex Istar; genéricos Fresenius Kabi, Hipolabor)",
+   "AHA 2025 Adult Tachyarrhythmia With a Pulse Algorithm",
+   "Topjian AA et al. Pediatric Basic and Advanced Life Support — AHA 2020 (Circulation 2020): adenosina 0,1 mg/kg (máx. 6 mg) e 0,2 mg/kg (máx. 12 mg)",
+   "Appelboam A et al. Valsalva modificada (REVERT), Lancet 2015"
+  ]
+ },
+ {
+  "id": "atropina",
+  "nome": "Atropina",
+  "classe": "Anticolinérgico",
+  "subclasse": "Antagonista muscarínico",
+  "mecanismo": "Bloqueia os receptores muscarínicos: abole o tônus vagal no nó sinusal e no nó AV e reduz secreções e broncorreia.",
+  "apresentacoes": [
+   "Ampola 1 mL com 0,25 mg (0,25 mg/mL) (Atropion, Atrofarma)",
+   "Ampola 1 mL com 0,5 mg (0,5 mg/mL) (Atropion)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IO",
+   "IM",
+   "SC"
+  ],
+  "adulto": [
+   "Bradicardia sintomática: 1 mg EV em bolus, repetir a cada 3–5 min até o máximo de 3 mg; sem resposta, marcapasso transcutâneo e/ou dopamina ou adrenalina (AHA 2025).",
+   "Coronariopata: limitar a dose total a 2–3 mg (0,03–0,04 mg/kg), pela taquicardia e aumento do consumo de oxigênio (FDA).",
+   "Intoxicação por organofosforado, carbamato ou cogumelo muscarínico: 2–3 mg EV, repetidos (FDA); na prática, dobrar a dose a cada 5 min até secar as secreções brônquicas, FC > 80 bpm e PAS > 80 mmHg, e manter infusão de 10–20% da dose total de ataque por hora (Eddleston 2008). Doses totais altas podem ser necessárias.",
+   "Não recomendada de rotina na PCR (AHA 2025)."
+  ],
+  "pediatria": [
+   "Bradicardia por tônus vagal ou BAV primário: 0,02 mg/kg EV/IO (mín. 0,1 mg; máx. 0,5 mg por dose), pode repetir 1 vez (AHA, PALS). Na bradicardia com má perfusão, adrenalina e RCP vêm antes (PALS).",
+   "Bula americana: dose inicial usual 0,01–0,03 mg/kg; posologia pediátrica pouco estudada (FDA)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Bradicardia (vagal/BAV) — mín. 0,1 mg",
+    "mgkg": 0.02,
+    "max_mg": 0.5,
+    "intervalo": "pode repetir 1 vez",
+    "via": "EV/IO"
+   }
+  ],
+  "diluicao": [
+   "EV em bolus, sem diluir (FDA). Com a ampola de 0,25 mg/mL, 1 mg = 4 mL; com a de 0,5 mg/mL, 1 mg = 2 mL: confira a concentração.",
+   "Dose menor que 0,5 mg no adulto pode causar bradicardia paradoxal: fase de estímulo vagal antes da taquicardia com doses pequenas (FDA). Na criança, respeite o mínimo de 0,1 mg (PALS)."
+  ],
+  "renal": "Sem ajuste definido; 13–50% excretados inalterados na urina (FDA).",
+  "hepatica": "Sem ajuste definido; metabolizada principalmente no fígado (FDA).",
+  "gestacao": "Atravessa a placenta; sem estudos em humanos (FDA). Na emergência, não deixar de usar se indicada.",
+  "lactacao": "Traços no leite materno; impacto clínico desconhecido (FDA).",
+  "contraindicacoes": [
+   "Nenhuma absoluta no uso de emergência (FDA)."
+  ],
+  "alertas": [
+   "Pode desencadear glaucoma agudo de ângulo fechado, retenção urinária na hiperplasia prostática e obstrução pilórica completa (FDA).",
+   "Pouco eficaz em BAV de 2º grau Mobitz II e BAV total com escape de QRS largo e no coração transplantado: preparar marcapasso (AHA 2025).",
+   "Intoxicação anticolinérgica: taquicardia, midríase, pele quente e seca, delirium; em crianças, 10 mg ou menos podem ser fatais (FDA)."
+  ],
+  "fontes": [
+   "FDA label Atropine Sulfate Injection, USP, DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Atropion, Blau; Atrofarma, Farmace)",
+   "AHA 2025 Adult Bradycardia With a Pulse Algorithm e 2025 Guidelines for CPR and ECC — Adult Advanced Life Support",
+   "AHA 2025 — algoritmos de PCR e bradicardia pediátricas (atropina 0,02 mg/kg, mín. 0,1 mg, máx. 0,5 mg)",
+   "Eddleston M, Buckley NA, Eyer P, Dawson AH. Management of acute organophosphorus pesticide poisoning (Lancet 2008;371:597)"
+  ]
+ },
+ {
+  "id": "metoprolol",
+  "nome": "Metoprolol (EV)",
+  "classe": "Antiarrítmico",
+  "subclasse": "Betabloqueador beta-1 seletivo (classe II)",
+  "mecanismo": "Bloqueia os receptores beta-1: reduz frequência, condução AV, contratilidade e pressão arterial.",
+  "apresentacoes": [
+   "Ampola 5 mL com 5 mg de tartarato de metoprolol (1 mg/mL) (Seloken, Betacris, Beca, Tarbet; genéricos Cristália e Halex Istar)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Fibrilação atrial ou flutter de alta resposta, estável, sem IC descompensada: 2,5–5 mg EV em 2 min, repetir a cada 5 min até 3 doses (ACC/AHA/ACCP/HRS 2023).",
+   "Emergência hipertensiva com indicação de betabloqueador (ex.: dissecção de aorta, SCA com taquicardia): 5 mg EV em 1–2 min, repetir a cada 5 min se preciso; teto 15–20 mg (Posicionamento Luso-Brasileiro 2020).",
+   "Infarto agudo, paciente estável: 3 bolus de 5 mg EV a intervalos de cerca de 2 min, com monitor de PA, FC e ECG, e depois metoprolol oral (FDA). Não usar se houver sinais de IC, baixo débito, risco de choque, bradicardia ou BAV (ACC/AHA 2025)."
+  ],
+  "pediatria": [
+   "Segurança e eficácia não estabelecidas em crianças (FDA)."
+  ],
+  "diluicao": [
+   "Sem diluir, EV lento em 1–2 min, com monitor de PA, FC e ECG (FDA; Posicionamento Luso-Brasileiro 2020)."
+  ],
+  "renal": "Sem ajuste: menos de 5% excretado inalterado na urina (FDA).",
+  "hepatica": "Metabolizado no fígado: na insuficiência hepática, iniciar com dose menor e monitorar (FDA).",
+  "gestacao": "Estudos observacionais sem associação com malformações; atravessa a placenta: observar no recém-nascido hipotensão, bradicardia, hipoglicemia e depressão respiratória (FDA).",
+  "lactacao": "Passa ao leite em pequena quantidade (0,5–2% da dose materna ajustada ao peso); compatível, observando bradicardia no lactente (FDA).",
+  "contraindicacoes": [
+   "FC < 45 bpm; BAV de 2º ou 3º grau sem marcapasso; BAV de 1º grau importante (PR ≥ 0,24 s) (FDA).",
+   "PAS < 100 mmHg; insuficiência cardíaca descompensada (FDA).",
+   "FA pré-excitada (WPW): não usar bloqueadores do nó AV (ACC/AHA/ACCP/HRS 2023)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: antagonistas adrenérgicos endovenosos).",
+   "Broncoespasmo: evitar em asma e DPOC em crise; se indispensável, ter broncodilatador à mão (FDA).",
+   "Feocromocitoma: iniciar alfabloqueador antes (risco de hipertensão paradoxal) (FDA).",
+   "Bradicardia e bloqueio aditivos com digoxina, diltiazem, verapamil e clonidina (FDA).",
+   "Inibidores do CYP2D6 (fluoxetina, paroxetina, propafenona, quinidina) dobram os níveis (FDA).",
+   "Mascara sinais de hipoglicemia (FDA)."
+  ],
+  "fontes": [
+   "FDA label Metoprolol Tartrate Injection, USP (Lopressor), DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Seloken, AstraZeneca; Betacris, Cristália; Beca, Halex Istar; Tarbet, Teuto)",
+   "Joglar JA et al. 2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation (Circulation 2024;149:e1)",
+   "Vilela-Martin JF et al. Posicionamento Luso-Brasileiro de Emergências Hipertensivas – 2020 (Arq Bras Cardiol 2020;114(4):736)",
+   "ACC/AHA/ACEP/NAEMSP/SCAI. Guideline for the Management of Patients With Acute Coronary Syndromes, 2025 (Circulation)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ },
+ {
+  "id": "lidocaina",
+  "nome": "Lidocaína (antiarrítmica)",
+  "classe": "Antiarrítmico",
+  "subclasse": "Classe IB (bloqueador de canais de sódio)",
+  "mecanismo": "Bloqueia os canais de sódio e encurta o potencial de ação no miocárdio ventricular, sobretudo no tecido isquêmico.",
+  "apresentacoes": [
+   "Frasco-ampola 20 mL a 2% (20 mg/mL = 400 mg) sem vasoconstritor (Xylestesin, Lidojet, Nopasure; genéricos Blau, Fresenius Kabi, Hipolabor, Hypofarma)",
+   "Ampola 5 mL a 2% (100 mg) sem vasoconstritor (genéricos Hipolabor, Hypofarma)"
+  ],
+  "rename": null,
+  "vias": [
+   "EV",
+   "IO"
+  ],
+  "adulto": [
+   "PCR com FV/TV sem pulso refratária (alternativa à amiodarona): 1–1,5 mg/kg EV/IO; 2ª dose 0,5–0,75 mg/kg (AHA 2025).",
+   "Arritmia ventricular (fora da PCR): bolus de 1–1,5 mg/kg a 25–50 mg/min; se tende a recorrer, infusão contínua de 1–4 mg/min (20–50 mcg/kg/min), com ECG contínuo (FDA).",
+   "Após 24 h de infusão, reduzir a velocidade pela metade (depuração cai); raramente é preciso passar de 24 h (FDA)."
+  ],
+  "pediatria": [
+   "PCR (FV/TV sem pulso), alternativa à amiodarona: 1 mg/kg EV/IO (AHA 2025, PALS).",
+   "Bula americana: bolus de 1 mg/kg, seguido de infusão de 20–50 mcg/kg/min; repetir o bolus se a infusão não começar em 15 min (FDA)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "PCR / arritmia ventricular — bolus",
+    "mgkg": 1,
+    "intervalo": "dose única; repetir se a infusão não iniciar em 15 min",
+    "via": "EV/IO"
+   }
+  ],
+  "diluicao": [
+   "Bolus: sem diluir (2% = 20 mg/mL), a 25–50 mg/min (FDA). Ex.: 70 kg × 1,5 mg/kg = 105 mg = 5,25 mL.",
+   "Infusão a 4 mg/mL (concentração do pré-misturado americano): lidocaína 2% sem vasoconstritor 50 mL (1 g) + 200 mL de SG 5% = 250 mL; 1–4 mg/min = 15–60 mL/h (FDA; conta própria — diluição usual, conferir protocolo da unidade).",
+   "Sempre em bomba de infusão calibrada (FDA). Não adicionar a equipos de transfusão de sangue (FDA)."
+  ],
+  "renal": "Leve a moderada: sem mudança; grave (TFG < 30): reduzir a velocidade de manutenção e vigiar toxicidade (FDA).",
+  "hepatica": "Meia-vida pode dobrar ou mais: usar manutenção menor com vigilância de toxicidade (FDA).",
+  "gestacao": "Sem estudos adequados em gestantes; estudos em ratos sem achados; pesar risco e benefício (FDA).",
+  "lactacao": "Presente no leite (razão leite:plasma 0,4–1,1), sem padrão de efeito adverso no lactente (FDA).",
+  "contraindicacoes": [
+   "Hipersensibilidade a anestésicos locais do tipo amida (FDA).",
+   "Síndrome de Stokes-Adams, Wolff-Parkinson-White, bloqueio sinoatrial, AV ou intraventricular grave (sem marcapasso) (FDA)."
+  ],
+  "alertas": [
+   "Medicamento de alta vigilância (ISMP Brasil: antiarrítmicos endovenosos).",
+   "Usar só a apresentação sem vasoconstritor (sem epinefrina) por via EV; existe lidocaína com epinefrina para anestesia local.",
+   "Toxicidade neurológica e cardíaca: formigamento perioral, zumbido, tremor, sonolência, convulsão, depressão respiratória, bradicardia, bloqueio e assistolia (FDA).",
+   "Bradicardia sinusal ou bloqueio incompleto: sem acelerar antes a FC (marcapasso), pode piorar a arritmia ou levar a BAV total (FDA).",
+   "Betabloqueadores e fármacos que reduzem o fluxo hepático elevam o nível; metemoglobinemia possível (FDA)."
+  ],
+  "fontes": [
+   "FDA label Lidocaine Hydrochloride and 5% Dextrose Injection, USP (Baxter), DailyMed",
+   "Lista de preços CMED/Anvisa, set/2026 (Xylestesin, Cristália; Lidojet, União Química; Nopasure, Camber; genéricos)",
+   "AHA. 2025 Guidelines for CPR and ECC — Adult Advanced Life Support (lidocaína 1–1,5 mg/kg; 0,5–0,75 mg/kg)",
+   "AHA 2025 — algoritmos de PCR pediátrica (lidocaína 1 mg/kg)",
+   "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
+  ]
+ }
+]

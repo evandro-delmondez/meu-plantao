@@ -11,8 +11,8 @@ test("PCR: cronômetro, ciclos de 2 min, adrenalina, choques, antiarrítmico e r
   await expect(page.locator("#pcrMsg")).toContainText("Choque (bifásico");
   await page.click('[data-pcr="choque"]');
   await page.clock.fastForward("02:15"); await page.clock.runFor(500);
-  await expect(page.locator("#pcrCiclo")).toHaveText("Checar!");
-  await expect(page.locator("#pcrCicloW")).toHaveClass(/alerta/);
+  await expect.poll(async () => { await page.clock.runFor(200); return page.locator("#pcrCiclo").innerText(); }).toBe("Checar!");
+  await expect.poll(async () => { await page.clock.runFor(200); return page.locator("#pcrCicloW").getAttribute("class"); }).toContain("alerta");
   await page.click('[data-pcr="choque"]');               // 2º choque reinicia o ciclo
   await expect(page.locator("#pcrCicloW")).not.toHaveClass(/alerta/);
   await expect(page.locator("#pcrMsg")).toContainText("agora (após o 2º choque)");

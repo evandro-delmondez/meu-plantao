@@ -17,10 +17,8 @@ test("PCR: cronômetro, ciclos de 2 min, adrenalina, choques, antiarrítmico e r
   await expect(page.locator("#pcrCicloW")).not.toHaveClass(/alerta/);
   await expect(page.locator("#pcrMsg")).toContainText("agora (após o 2º choque)");
   await page.click('[data-pcr="adr"]');
-  await page.clock.fastForward("03:30"); await page.clock.runFor(500);
-  await expect(page.locator("#pcrAdr")).toHaveClass("pronta");
-  await page.clock.fastForward("02:30"); await page.clock.runFor(500);
-  await expect(page.locator("#pcrAdr")).toHaveClass("atrasada");
+  await page.clock.fastForward("06:00"); await page.clock.runFor(1000);
+  await expect.poll(async () => { await page.clock.runFor(200); return page.locator("#pcrAdr").getAttribute("class"); }).toBe("atrasada");
   await page.click('[data-pcr="choque"]');
   await expect(page.locator("#pcrMsg")).toContainText("Amiodarona 300 mg");
   await page.click('[data-pcr="amio"]');

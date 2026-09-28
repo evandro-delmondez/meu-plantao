@@ -38,7 +38,8 @@ test("busca e filtros por grupo e via", async ({ page }) => {
 test("nome comercial aparece abaixo do princípio ativo", async ({ page }) => {
   await abrir(page); await aba(page, "medicacoes");
   await expect(page.locator('#mlist [data-mid="midazolam"] .mmarca')).toContainText("Dormonid");
-  await expect(page.locator('#mlist [data-mid="amoxicilina-clavulanato"] .mmarca')).toHaveCount(0);
+  const amoxClav = await page.locator('#mlist [data-mid="amoxicilina-clavulanato"] .mmarca').innerText();
+  expect(amoxClav).not.toMatch(/(^|, )BD(,|…|$)/);
   await page.click('#mlist [data-mid="midazolam"]');
   await expect(page.locator("#mdetail .mmarcas")).toContainText("Dormonid");
 });

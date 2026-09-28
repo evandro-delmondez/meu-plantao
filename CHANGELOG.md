@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## 1.6.0 — 2026-09-28
+- **16 fichas da sala vermelha, parte B**, com nomes comerciais: Antiarrítmicos (amiodarona, adenosina, atropina, metoprolol, lidocaína), Anticoagulantes e trombolíticos (heparina, enoxaparina, alteplase, tenecteplase) e Glicose e eletrólitos EV (insulina regular, glicose 50%, KCl, sulfato de magnésio, gluconato de cálcio, bicarbonato, NaCl 20%). Conferidas por agente independente.
+- **Correções da conferência:**
+  - metoprolol na emergência hipertensiva: 5 mg a cada 10 min, até 20 mg (Posicionamento Luso-Brasileiro 2020), também no protocolo;
+  - hipoglicemia: tiamina junto com a glicose, sem atrasá-la;
+  - miastenia grave no sulfato de magnésio: fonte corrigida para o Manual de Gestação de Alto Risco do MS.
+- **Teste da PCR estável.**
+
 ## 1.5.3 — 2026-09-28
 - Nomes comerciais nas 45 fichas antigas: 70 marcas conferidas na lista oficial de preços CMED (set/2026); marcas fora da lista ficaram de fora.
 

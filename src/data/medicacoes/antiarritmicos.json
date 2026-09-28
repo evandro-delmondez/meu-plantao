@@ -20,7 +20,7 @@
    "Fibrilação atrial com disfunção sistólica moderada a grave ou IC descompensada: opção para controle de frequência quando diltiazem/verapamil estão contraindicados (ACC/AHA 2023)."
   ],
   "pediatria": [
-   "PCR (FV/TV sem pulso): 5 mg/kg EV/IO em bolus (máx. 300 mg), pode repetir até 3 doses; as seguintes até 150 mg (AHA 2025, PALS).",
+   "PCR (FV/TV sem pulso): 5 mg/kg EV/IO em bolus (máx. 300 mg), pode repetir até 3 doses no total (15 mg/kg) (AHA 2025, PALS).",
    "Bula: segurança e eficácia em crianças não estabelecidas; contém álcool benzílico (síndrome de gasping fatal em neonatos)."
   ],
   "ped_calc": [
@@ -171,7 +171,7 @@
   ],
   "diluicao": [
    "EV em bolus, sem diluir (FDA). Com a ampola de 0,25 mg/mL, 1 mg = 4 mL; com a de 0,5 mg/mL, 1 mg = 2 mL: confira a concentração.",
-   "Dose menor que 0,5 mg no adulto pode causar bradicardia paradoxal: fase de estímulo vagal antes da taquicardia com doses pequenas (FDA). Na criança, respeite o mínimo de 0,1 mg (PALS)."
+   "Doses pequenas podem primeiro reduzir a frequência cardíaca, antes da taquicardia (FDA). Na criança, respeite o mínimo de 0,1 mg (PALS)."
   ],
   "renal": "Sem ajuste definido; 13–50% excretados inalterados na urina (FDA).",
   "hepatica": "Sem ajuste definido; metabolizada principalmente no fígado (FDA).",
@@ -208,14 +208,14 @@
   ],
   "adulto": [
    "Fibrilação atrial ou flutter de alta resposta, estável, sem IC descompensada: 2,5–5 mg EV em 2 min, repetir a cada 5 min até 3 doses (ACC/AHA/ACCP/HRS 2023).",
-   "Emergência hipertensiva com indicação de betabloqueador (ex.: dissecção de aorta, SCA com taquicardia): 5 mg EV em 1–2 min, repetir a cada 5 min se preciso; teto 15–20 mg (Posicionamento Luso-Brasileiro 2020).",
+   "Emergência hipertensiva com indicação de betabloqueador (ex.: dissecção de aorta, SCA com taquicardia): 5 mg EV, repetir a cada 10 min se preciso, até 20 mg (Posicionamento Luso-Brasileiro 2020, tabela 3).",
    "Infarto agudo, paciente estável: 3 bolus de 5 mg EV a intervalos de cerca de 2 min, com monitor de PA, FC e ECG, e depois metoprolol oral (FDA). Não usar se houver sinais de IC, baixo débito, risco de choque, bradicardia ou BAV (ACC/AHA 2025)."
   ],
   "pediatria": [
    "Segurança e eficácia não estabelecidas em crianças (FDA)."
   ],
   "diluicao": [
-   "Sem diluir, EV lento em 1–2 min, com monitor de PA, FC e ECG (FDA; Posicionamento Luso-Brasileiro 2020)."
+   "Sem diluir, EV lento em 1–2 min, com monitor de PA, FC e ECG (FDA)."
   ],
   "renal": "Sem ajuste: menos de 5% excretado inalterado na urina (FDA).",
   "hepatica": "Metabolizado no fígado: na insuficiência hepática, iniciar com dose menor e monitorar (FDA).",

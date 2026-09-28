@@ -462,7 +462,7 @@ const PROTOCOLOS=[
    "Nitroprussiato de sódio: 50 mg em SG 5% até 250 mL (200 mcg/mL), frasco e equipo protegidos da luz. Iniciar 0,3–0,5 mcg/kg/min, aumentar 0,5 mcg/kg/min a cada 5 min; usual até 3 mcg/kg/min; teto 10 mcg/kg/min por no máximo 10 min. Ex.: 70 kg a 0,5 mcg/kg/min = 10,5 mL/h. Risco de cianeto em dose alta, uso prolongado ou insuficiência renal ou hepática. Evitar na SCA.",
    "Nitroglicerina: 50 mg (10 mL) + 240 mL de SG 5% = 200 mcg/mL (frasco de vidro ou equipo próprio). Iniciar 5 mcg/min (1,5 mL/h), aumentar 5 mcg/min a cada 3–5 min até 20 mcg/min, depois 10–20 mcg/min por vez. Teto usual 200 mcg/min (edema agudo de pulmão, ESC 2021). Contraindicada com PAS < 90 mmHg, infarto de VD, sildenafila ou vardenafila em 24 h, tadalafila em 48 h.",
    "Esmolol: ataque 0,5 mg/kg (500 mcg/kg) EV em 1 min; manutenção 50 mcg/kg/min, aumentando 50 mcg/kg/min a cada 4–5 min (repetindo o ataque) até o teto de 200 mcg/kg/min. Conferir a apresentação: 10 mg/mL pronto para uso, ou 2.500 mg/10 mL diluídos em 240 mL de SF ou SG 5% (10 mg/mL). Ex.: 70 kg a 50 mcg/kg/min = 21 mL/h da solução de 10 mg/mL.",
-   "Metoprolol: 5 mg EV em 1–2 min, repetir a cada 5 min se preciso; teto 15–20 mg (dose total).",
+   "Metoprolol: 5 mg EV, repetir a cada 10 min se preciso, até 20 mg (Posicionamento Luso-Brasileiro 2020, tabela 3).",
    "Betabloqueador EV: evitar se FC < 60, BAV de 2º ou 3º grau, insuficiência cardíaca descompensada ou baixo débito, broncoespasmo ativo, intoxicação por cocaína.",
    "Hidralazina (fora da gestação): 10–20 mg EV lento (ampola 20 mg/mL, diluir); início em 10–20 min, dura 3–12 h, pouco titulável; repetir a cada 4–6 h se preciso. Causa taquicardia reflexa: não usar isolada na SCA nem na dissecção.",
    "Labetalol, nicardipina e clevidipina (primeira linha em diretrizes estrangeiras) têm pouca ou nenhuma disponibilidade no Brasil."],
@@ -503,7 +503,7 @@ const PROTOCOLOS=[
    "Transferência: fazer pelo menos o ataque (4 g EV + 10 g IM), que cobre cerca de 4 h.",
    "Creatinina ≥ 1,0 mg/dL (RBEHG; MS: > 1,3): metade da dose de manutenção e dosar o magnésio.",
    "Duração: manter por 24 h após o parto ou após a última convulsão.",
-   "Teto (bula): 30–40 g em 24 h no adulto. Contraindicado na miastenia grave."]},
+   "Teto (bula): 30–40 g em 24 h no adulto. Contraindicado na miastenia grave (MS, Manual de Gestação de Alto Risco 2022)."]},
   {id:"e3",t:"Vigiar o magnésio",tempo:"a cada hora, reavaliar a cada 4 h",itens:[
    "Antes de cada dose ou durante a infusão: reflexo patelar presente, FR ≥ 16 irpm (MS: > 12) e diurese ≥ 25 mL/h.",
    "Se um deles alterar: reduzir ou parar a infusão (ou não fazer a dose IM), dosar magnésio e creatinina; reiniciar se normais. Parada > 2 h: novo ataque de 2 g.",
@@ -568,7 +568,7 @@ const PROTOCOLOS=[
   "Sociedade Brasileira de Cardiologia. Diretriz Brasileira de Hipertensão Arterial – 2025, cap. 10 (Arq Bras Cardiol 2025;122(9)) — labetalol indisponível no Brasil, hidralazina 5 mg a cada 20–30 min até 15 mg, nifedipino sublingual proscrito, nitroprussiato por até 4 h. https://www.scielo.br/j/abc/a/BXT7Vk4B9VKQnJFsJhgJ4Hn/?lang=pt",
   "ACOG Committee Opinion 767. Emergent Therapy for Acute-Onset, Severe Hypertension During Pregnancy and the Postpartum Period (Obstet Gynecol 2019;133:e174) — tratar em 30–60 min; labetalol 20–40–80 mg a cada 10 min (dose cumulativa máxima de 300 mg); hidralazina 5–10 mg.",
   "ACOG Practice Bulletin 222. Gestational Hypertension and Preeclampsia (Obstet Gynecol 2020;135:e237) — critérios diagnósticos e de gravidade.",
-  "Bula profissional Anvisa do sulfato de magnésio 50% — dose diária máxima, velocidade de infusão, contraindicação na miastenia grave; bula Anvisa do gluconato de cálcio 10%.",
+  "Bula profissional Anvisa do sulfato de magnésio 50% — dose diária máxima, velocidade de infusão; bula Anvisa do gluconato de cálcio 10%.",
   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 35, Emergências hipertensivas (hiper-reflexia na gestante e puérpera; pré-eclâmpsia como emergência hipertensiva assintomática)."
  ]},
 /* ---------------------------------------------------------------- Hemorragia pós-parto */

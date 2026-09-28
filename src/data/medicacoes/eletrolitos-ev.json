@@ -95,7 +95,7 @@
   "alertas": [
    "Medicamento de alta vigilância (ISMP Brasil: glicose hipertônica ≥ 20%).",
    "Solução hipertônica: flebite e trombose no local; infusão rápida pode causar hiperglicemia e síndrome hiperosmolar (FDA).",
-   "Etilista ou desnutrido: tiamina 100 mg EV antes da glicose (risco de Wernicke) (EFNS 2010; conduta do painel).",
+   "Etilista ou desnutrido: tiamina EV junto com a glicose (ou antes, só se já estiver à mão), sem atrasar a glicose na hipoglicemia (risco de Wernicke) (EFNS 2010; Schabelman E, Kuo D. J Emerg Med 2012).",
    "Ao suspender infusão concentrada, seguir com SG 5–10% para evitar hipoglicemia de rebote; vigiar K e fósforo (FDA)."
   ],
   "fontes": [
@@ -198,13 +198,13 @@
    "Fibrilação atrial: opção adjuvante para controle de frequência (ACC/AHA/ACCP/HRS 2023)."
   ],
   "pediatria": [
-   "Crise de asma grave (≥ 6 anos) sem resposta ao broncodilatador: 40–50 mg/kg EV em 20 min (máx. 2 g) (GINA 2025).",
+   "Crise de asma grave sem resposta ao broncodilatador: 40–50 mg/kg EV em 20 min (máx. 2 g) (GINA 2024).",
    "Anticonvulsivante (bula): 20–40 mg/kg IM, com a solução diluída a 20% (0,1–0,2 mL/kg da solução a 20%) (bulas VMG e Isofarma).",
    "Para uso EV ou IM em crianças, diluir a no máximo 20% (bula Isofarma)."
   ],
   "ped_calc": [
    {
-    "rotulo": "Asma grave (≥ 6 anos) — 40 mg/kg; faixa 40–50 mg/kg",
+    "rotulo": "Asma grave — 40 mg/kg; faixa 40–50 mg/kg",
     "mgkg": 40,
     "max_mg": 2000,
     "intervalo": "dose única em 20 min",
@@ -345,7 +345,7 @@
   "alertas": [
    "Carga de sódio: cautela na insuficiência cardíaca, edema e retenção de sódio (FDA). Pode causar hipernatremia e hiperosmolaridade.",
    "Alcalose metabólica, hipocalemia e queda do cálcio iônico (tetania) com o excesso: corrigir K e Ca antes ou junto (FDA).",
-   "Choque séptico com acidemia lática: não usar para melhorar a hemodinâmica se pH ≥ 7,2; considerar se pH ≤ 7,2 com lesão renal aguda AKIN 2–3 (SSC 2021)."
+   "Choque séptico com acidemia lática: não usar para melhorar a hemodinâmica; considerar se pH ≤ 7,2 com lesão renal aguda AKIN 2–3 (SSC 2021)."
   ],
   "fontes": [
    "FDA label Sodium Bicarbonate Injection, USP 8,4%, DailyMed",

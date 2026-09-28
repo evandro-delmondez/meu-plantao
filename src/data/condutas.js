@@ -567,9 +567,10 @@ const BASE = [
   "cid": "E16.2",
   "sin": "glicemia baixa hipo",
   "casa": "",
-  "unidade": "Glicemia < 70 mg/dL:\n\n# Consciente e capaz de engolir:\n15–20g de carboidrato VO (1 copo de suco ou 1 colher de sopa de açúcar em água). Repetir a glicemia em 15 min.\n\n# Rebaixado ou sem via oral:\n1) Tiamina 100mg EV (se etilismo ou desnutrição), antes da glicose.\n2) Glicose 50% 40–50 mL EV em veia calibrosa (4–5 amp de 10 mL)\n   Ou Glicose 10% 150–250 mL EV.\n3) Repetir a glicemia em 15 min e manter SG 10% se necessário.",
+  "unidade": "Glicemia < 70 mg/dL:\n\n# Consciente e capaz de engolir:\n15–20g de carboidrato VO (1 copo de suco ou 1 colher de sopa de açúcar em água). Repetir a glicemia em 15 min.\n\n# Rebaixado ou sem via oral:\n1) Tiamina 100mg EV (se etilismo ou desnutrição), junto com a glicose — não atrasar a glicose.\n2) Glicose 50% 40–50 mL EV em veia calibrosa (4–5 amp de 10 mL)\n   Ou Glicose 10% 150–250 mL EV.\n3) Repetir a glicemia em 15 min e manter SG 10% se necessário.",
   "orient": "- Após recuperação, alimentar o paciente.\n- Hipoglicemia por sulfonilureia (glibenclamida, gliclazida) ou insulina NPH: observação prolongada (pode recorrer).",
   "rev": [
+   "Corrigido: tiamina junto com a glicose, sem atrasá-la (Schabelman 2012), em vez de antes.",
    "Unificado: as duas seções de hipoglicemia do modelo.",
    "Corrigido: 1 amp de glicose 50% diluída em 100 mL de SF em 10–15 min era dose insuficiente; padronizado 40–50 mL de glicose 50%.",
    "Adicionado: via oral no consciente e tiamina."

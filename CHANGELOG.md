@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.5.3 — 2026-09-28
+- Nomes comerciais nas 45 fichas antigas: 70 marcas conferidas na lista oficial de preços CMED (set/2026); marcas fora da lista ficaram de fora.
+
 ## 1.5.2 — 2026-09-27
 - Fichas: nome comercial em letra pequena logo abaixo do princípio ativo, na lista e no título.
 

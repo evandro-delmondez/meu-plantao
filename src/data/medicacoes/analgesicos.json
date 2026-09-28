@@ -11,6 +11,11 @@
    "Solução oral 50 mg/mL",
    "Ampola 500 mg/mL (2 mL)"
   ],
+  "marcas": [
+   "Novalgina",
+   "Anador",
+   "Magnopyrol"
+  ],
   "rename": true,
   "vias": [
    "VO",
@@ -73,6 +78,9 @@
    "Comprimido 500 mg e 750 mg",
    "Solução oral (gotas) 200 mg/mL"
   ],
+  "marcas": [
+   "Tylenol"
+  ],
   "rename": true,
   "vias": [
    "VO"
@@ -120,6 +128,11 @@
   "apresentacoes": [
    "Comprimido 200 mg, 300 mg, 400 mg e 600 mg",
    "Suspensão oral (gotas) 50 mg/mL e 100 mg/mL"
+  ],
+  "marcas": [
+   "Alivium",
+   "Advil",
+   "Buscofem"
   ],
   "rename": true,
   "vias": [
@@ -178,6 +191,9 @@
    "Solução oral (gotas) 20 mg/mL",
    "Ampola IM 100 mg/2 mL",
    "Frasco-ampola EV 100 mg (pó liófilo)"
+  ],
+  "marcas": [
+   "Profenid"
   ],
   "rename": null,
   "vias": [
@@ -239,6 +255,11 @@
    "Drágea 50 mg (potássico ou sódico)",
    "Ampola 75 mg/3 mL (sódico)"
   ],
+  "marcas": [
+   "Voltaren",
+   "Cataflam",
+   "Biofenac"
+  ],
   "rename": null,
   "vias": [
    "VO",
@@ -285,6 +306,9 @@
   "apresentacoes": [
    "Comprimido sublingual 10 mg",
    "Ampola 30 mg/mL (1 mL)"
+  ],
+  "marcas": [
+   "Toragesic"
   ],
   "rename": null,
   "vias": [
@@ -336,6 +360,10 @@
    "Comprimido 20 mg",
    "Frasco-ampola 20 mg e 40 mg (pó liofilizado) + diluente 2 mL de água para injetáveis"
   ],
+  "marcas": [
+   "Tilatil",
+   "Teflan"
+  ],
   "rename": null,
   "vias": [
    "VO",
@@ -384,6 +412,9 @@
    "Solução oral (gotas) 10 mg/mL",
    "Ampola 20 mg/mL (1 mL)",
    "Associação: ampola 5 mL com 20 mg de escopolamina + 2.500 mg de dipirona (Buscopan Composto)"
+  ],
+  "marcas": [
+   "Buscopan"
   ],
   "rename": null,
   "vias": [
@@ -439,6 +470,10 @@
    "Solução oral (gotas) 100 mg/mL",
    "Ampola 50 mg/mL (1 mL e 2 mL)"
   ],
+  "marcas": [
+   "Tramal",
+   "Tramadon"
+  ],
   "rename": null,
   "vias": [
    "VO",
@@ -493,6 +528,10 @@
    "Solução oral 3 mg/mL",
    "Comprimido paracetamol 500 mg + codeína 7,5 mg ou 30 mg (Tylex)"
   ],
+  "marcas": [
+   "Tylex",
+   "Codein"
+  ],
   "rename": null,
   "vias": [
    "VO"
@@ -541,6 +580,9 @@
    "Ampola 0,2 mg/mL (1 mL)",
    "Comprimido 10 mg e 30 mg",
    "Solução oral 10 mg/mL"
+  ],
+  "marcas": [
+   "Dimorf"
   ],
   "rename": null,
   "vias": [

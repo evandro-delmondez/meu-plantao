@@ -11,6 +11,9 @@
    "Ampola 2 mg/mL (1 mL)",
    "Frasco-ampola 4 mg/mL (2,5 mL)"
   ],
+  "marcas": [
+   "Decadron"
+  ],
   "rename": true,
   "vias": [
    "VO",
@@ -80,6 +83,9 @@
   "apresentacoes": [
    "Frasco-ampola pó 100 mg",
    "Frasco-ampola pó 500 mg"
+  ],
+  "marcas": [
+   "Androcortil"
   ],
   "rename": true,
   "vias": [
@@ -183,6 +189,9 @@
   "apresentacoes": [
    "Comprimido 5 mg e 20 mg"
   ],
+  "marcas": [
+   "Meticorten"
+  ],
   "rename": true,
   "vias": [
    "VO"
@@ -225,6 +234,10 @@
   "apresentacoes": [
    "Solução oral 1 mg/mL",
    "Solução oral 3 mg/mL"
+  ],
+  "marcas": [
+   "Prelone",
+   "Predsim"
   ],
   "rename": true,
   "vias": [
@@ -284,6 +297,9 @@
    "Suspensão injetável dipropionato 5 mg + fosfato 2 mg/mL (1 mL)",
    "Suspensão injetável acetato 3 mg + fosfato 3 mg/mL (RENAME)"
   ],
+  "marcas": [
+   "Diprospan"
+  ],
   "rename": true,
   "vias": [
    "IM"
@@ -329,6 +345,9 @@
   "apresentacoes": [
    "Comprimido 25 mg",
    "Ampola 25 mg/mL (2 mL)"
+  ],
+  "marcas": [
+   "Fenergan"
   ],
   "rename": null,
   "vias": [
@@ -384,6 +403,9 @@
    "Comprimido 2 mg",
    "Solução oral 0,4 mg/mL"
   ],
+  "marcas": [
+   "Polaramine"
+  ],
   "rename": null,
   "vias": [
    "VO"
@@ -426,6 +448,9 @@
    "Comprimido 10 mg",
    "Xarope 1 mg/mL"
   ],
+  "marcas": [
+   "Claritin"
+  ],
   "rename": null,
   "vias": [
    "VO"
@@ -462,6 +487,9 @@
   "mecanismo": "Alfa-1: vasoconstrição e redução do edema; beta-1: inotropismo; beta-2: broncodilatação e inibição da liberação de mediadores.",
   "apresentacoes": [
    "Ampola 1 mg/mL (1 mL)"
+  ],
+  "marcas": [
+   "Adren"
   ],
   "rename": true,
   "vias": [

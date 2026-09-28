@@ -6,6 +6,7 @@
  "subclasse": "Antagonista 5-HT3",
  "mecanismo": "uma linha curta",
  "apresentacoes": ["Comprimido 4 mg e 8 mg", "Ampola 2 mg/mL (2 mL e 4 mL)"],  // apresentações comuns no Brasil
+ "marcas": ["Zofran", "Vonau"],                 // opcional: nomes comerciais conferidos na lista CMED/Anvisa (sem genéricos); aparecem abaixo do nome
  "rename": true,                              // está na RENAME 2024? true/false/null se não conferido
  "vias": ["VO","IM","EV"],
  "adulto": ["Náuseas e vômitos: 4–8 mg VO, IM ou EV de 8/8h ..."],   // doses usuais em PS/UPA, com máximo quando houver

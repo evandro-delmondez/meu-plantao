@@ -10,6 +10,10 @@
    "Comprimido orodispersível 4 mg e 8 mg",
    "Ampola 2 mg/mL (2 mL e 4 mL)"
   ],
+  "marcas": [
+   "Vonau",
+   "Nausedron"
+  ],
   "rename": true,
   "vias": [
    "VO",
@@ -81,6 +85,9 @@
    "Solução oral (gotas) 4 mg/mL",
    "Ampola 5 mg/mL (2 mL = 10 mg)"
   ],
+  "marcas": [
+   "Plasil"
+  ],
   "rename": true,
   "vias": [
    "VO",
@@ -139,6 +146,9 @@
    "Solução oral (gotas) 4 mg/mL",
    "Solução oral 1 mg/mL",
    "Ampola 5 mg/mL (2 mL = 10 mg)"
+  ],
+  "marcas": [
+   "Digesan"
   ],
   "rename": false,
   "vias": [
@@ -207,6 +217,10 @@
    "EV: ampola 10 mL com dimenidrinato 30 mg + piridoxina 50 mg + glicose 1 g + frutose 1 g (Dramin B6 DL)",
    "IM: ampola 1 mL com dimenidrinato 50 mg + piridoxina 50 mg (Dramin B6 IM)"
   ],
+  "marcas": [
+   "Dramin",
+   "Dramin B6"
+  ],
   "rename": false,
   "vias": [
    "VO",
@@ -270,6 +284,10 @@
    "Cápsula 10 mg e 20 mg",
    "Frasco-ampola 40 mg (pó liofilizado) + diluente 10 mL"
   ],
+  "marcas": [
+   "Losec",
+   "Gastrium"
+  ],
   "rename": true,
   "vias": [
    "VO",
@@ -319,6 +337,10 @@
    "Gotas 75 mg/mL (25 gotas = 1 mL; 3 mg/gota)",
    "Cápsula 125 mg"
   ],
+  "marcas": [
+   "Luftal",
+   "Mylicon"
+  ],
   "rename": null,
   "vias": [
    "VO"
@@ -357,6 +379,9 @@
   "mecanismo": "Reduz a motilidade e a secreção intestinais via receptores opioides entéricos.",
   "apresentacoes": [
    "Comprimido 2 mg"
+  ],
+  "marcas": [
+   "Imosec"
   ],
   "rename": false,
   "vias": [
@@ -402,6 +427,10 @@
   "apresentacoes": [
    "Xarope 667 mg/mL (frasco 120 mL; sachê 15 mL)"
   ],
+  "marcas": [
+   "Lactulona",
+   "Pentalac"
+  ],
   "rename": true,
   "vias": [
    "VO"
@@ -443,6 +472,11 @@
   "mecanismo": "Cotransporte sódio-glicose no enterócito promove absorção de água e eletrólitos.",
   "apresentacoes": [
    "Pó para solução oral, envelope (SUS); composição OMS por litro: Na 75, Cl 65, K 20, citrato 10, glicose 75 mmol/L — 245 mOsm/L"
+  ],
+  "marcas": [
+   "Rehidrat",
+   "Floralyte",
+   "Pedialyte"
   ],
   "rename": true,
   "vias": [

@@ -18,11 +18,13 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
-- **Endereço mais prático:** domínio próprio (ex.: meuplantao.com.br no registro.br, cerca de R$ 40/ano, apontando para o GitHub Pages) ou meu-plantao.pages.dev (Cloudflare, sem login; exige token novo). Adiado em 2026-09-27.
-- **Acesso restrito para colegas:** testado com Cloudflare Access em 2026-09-27 e descartado pelo usuário (pouco prático). O site segue no GitHub Pages.
-- **Eletrólitos:** acrescentar sódio (hiponatremia e hipernatremia, com limite de correção), com fonte e conferência independente.
-- **Fichas:** acrescentar nomes comerciais às medicações, com fonte (bulário da Anvisa).
-- **Conteúdo, só com aprovação antes de mudar qualquer conduta:** fichas da sala vermelha (em rascunho); condições frequentes que faltam (odontalgia, olho vermelho e corpo estranho, paralisia facial, síncope, hiponatremia, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e por opioide, chikungunya e zika, varicela, COVID-19, pneumotórax, pericardite, fraturas e imobilização, cervicalgia, tendinite e bursite); classes de remédios que faltam nas fichas; revisão geral das prescrições; conferência das doses de soro antiofídico e antiescorpiônico (PCDT 2025).
+Atualizado em 2026-09-28 (versão 1.6.0). Decisões já tomadas: `docs/DECISOES.md`.
+- **Fichas que faltam** (aprovar escopo antes): anti-hipertensivos orais, furosemida, AAS e clopidogrel, isossorbida, broncodilatadores, aciclovir e oseltamivir, antifúngicos, albendazol/ivermectina/permetrina, cetirizina e hidroxizina, haloperidol, relaxantes musculares, sumatriptana, colchicina, tiamina, antídotos (naloxona, flumazenil, N-acetilcisteína), levotiroxina e metimazol, tópicos.
+- **Condições frequentes que faltam** (só com aprovação): odontalgia, olho vermelho e corpo estranho, paralisia facial, síncope, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e overdose de opioide, chikungunya e zika, varicela, COVID-19, pneumotórax, pericardite, fraturas e imobilização, cervicalgia, tendinite e bursite.
+- **Revisão geral das 98 prescrições**, por categoria, com conferência.
+- **Tenecteplase no AVC:** calculadora usa 0,25 mg/kg exato; bula usa faixas de peso. Usuário decide se padroniza.
+- **Opcionais:** escore MACOCHA; sugestões não bloqueantes dos conferentes (Holbrook 2012, teto de glicose ISPAD, bula do Metalyse, PALS 2025).
+- **Endereço mais prático:** domínio próprio (registro.br, cerca de R$ 40/ano) ou meu-plantao.pages.dev. Adiado em 2026-09-27.
 
 ## Ideias em espera
 - **Clínica:**

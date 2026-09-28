@@ -43,6 +43,8 @@ docs/                   roteiro, revisão trimestral, formato das medicações
 
 ## Como trabalhar
 
+- **Skills do projeto (`.claude/skills/`):** `retomar` no início e no fim de toda tarefa (lê `docs/DECISOES.md` e as pendências do `docs/ROTEIRO.md`, e registra o que mudou); `conteudo-clinico` para qualquer conteúdo clínico; `conferencia` antes de juntar doses à main; `entregar` para publicar.
+
 - **Nova conduta:** adicione em `src/data/condutas.js` com `fontes`. Se for revisão, registre em `rev`.
 - **Novo checklist:** adicione em `src/data/checklists.js` com a mesma chave da conduta, os quatro grupos e `fontes`. Escreva cada item como substantivo ("febre", "tosse"), para caber em "Refere…" e "Nega…". O lint barra checklist sem fonte ou com grupo vazio.
 - **Nova medicação:** adicione ao JSON do grupo em `src/data/medicacoes/`, seguindo `docs/FORMATO-MEDICACOES.md`. O `ped_calc` só entra com mg/kg explícito na fonte. Grupo novo: crie o JSON e registre em `MGRUPOS` (`src/js/19-medicacoes.js`) e em `MED_ORDER` (`scripts/build.mjs`).

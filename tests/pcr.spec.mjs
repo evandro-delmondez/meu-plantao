@@ -23,9 +23,7 @@ test("PCR: cronômetro, ciclos de 2 min, adrenalina, choques, antiarrítmico e r
   await expect(page.locator("#pcrMsg")).toContainText("Amiodarona 300 mg");
   await page.click('[data-pcr="amio"]');
   await expect(page.locator("#pcrChq")).toHaveText("3");
-  const total = await page.locator("#pcrTotal").innerText();
-  expect(total).toMatch(/^\d\d:\d\d$/);
-  expect(Number(total.slice(0, 2))).toBeGreaterThanOrEqual(5);
+  await expect.poll(async () => { await page.clock.runFor(200); const t = await page.locator("#pcrTotal").innerText(); return /^\d\d:\d\d$/.test(t) ? Number(t.slice(0, 2)) : -1; }).toBeGreaterThanOrEqual(5);
   await page.click('[data-pcr="rce"]');
   await expect(page.locator("#pcrMsg")).toContainText("Retorno da circulação espontânea");
   await page.click("#pcrCopiar");

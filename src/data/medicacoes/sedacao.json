@@ -497,5 +497,83 @@
    "Acquisto NM et al. SCCM Guidelines for Rapid Sequence Intubation (Crit Care Med 2023;51:1411)",
    "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019"
   ]
+ },
+ {
+  "id": "haloperidol",
+  "nome": "Haloperidol",
+  "classe": "Antipsicótico",
+  "subclasse": "Butirofenona (antipsicótico típico, de 1ª geração)",
+  "mecanismo": "Antagonista potente do receptor D2 de dopamina no sistema nervoso central: efeito antipsicótico e sedação psicomotora, sem ação anticolinérgica ou anti-histamínica nas doses usuais.",
+  "apresentacoes": [
+   "Ampola 1 mL com 5 mg (5 mg/mL), só IM (Halo, Uni Haloper, genéricos)",
+   "Comprimido 1 mg e 5 mg (Haldol, Halo, Uni Haloper, genéricos)",
+   "Solução oral 2 mg/mL, 1 gota = 0,1 mg (Haldol, Halo, genéricos)",
+   "Decanoato de haloperidol 50 mg/mL, ampola 1 mL IM de liberação prolongada (Haldol Decanoato, Halo Decanoato, Decan Haloper): outro produto, de manutenção mensal; não serve para agitação aguda"
+  ],
+  "marcas": [
+   "Haldol",
+   "Halo",
+   "Uni Haloper"
+  ],
+  "rename": true,
+  "vias": [
+   "IM",
+   "VO"
+  ],
+  "adulto": [
+   "Agitação psicomotora aguda, quando a via oral não é possível: 2,5–5 mg IM; pode repetir após 1 h, embora intervalos de 4–8 h costumem bastar; passar para via oral assim que possível (bula). Bula americana: 2–5 mg IM, até de hora em hora, máximo 20 mg/dia (FDA).",
+   "Agitação grave no PS (conduta do painel): 5 mg IM + prometazina 50 mg IM profunda; reavaliar em 30 min e repetir 1 vez se preciso. TREC-Rio: haloperidol 5–10 mg + prometazina até 50 mg IM acalmou mais rápido que o haloperidol isolado e evitou distonia aguda.",
+   "Diretriz brasileira (ABP 2019): 2,5–10 mg IM, isolado ou com prometazina 25–50 mg; pode repetir em 30 min; a tabela da diretriz traz teto de 30 mg/24 h, acima dos 20 mg/dia das bulas americana e europeia (o painel adota 20 mg/dia).",
+   "Agitação na intoxicação alcoólica, sem rebaixamento: preferir haloperidol a benzodiazepínico (Projeto BETA 2012; ABP 2019). Na abstinência alcoólica, o benzodiazepínico é a escolha.",
+   "Idosos: começar com metade da menor dose de adulto (conduta do painel: 1–2,5 mg), máximo 5 mg/dia (EMA 2017). No delirium e na demência, só se medidas não farmacológicas falharem e houver risco importante para si ou para outros (Beers 2023).",
+   "Delirium, quando medidas não farmacológicas falharam (bula europeia): 1–10 mg IM, começando pela menor dose e ajustando a cada 2–4 h, máximo 10 mg/dia (EMA 2017).",
+   "Via oral (bula): início 0,5–2 mg 2–3 vezes ao dia; manutenção 1–15 mg/dia, na menor dose eficaz.",
+   "Após IM, o pico plasmático vem em 20–40 min; meia-vida média de 24 h (15–37 h) (bula)."
+  ],
+  "pediatria": [
+   "Solução injetável: uso adulto; segurança e eficácia abaixo de 18 anos não estabelecidas (bula; EMA 2017).",
+   "Via oral (bula): 0,1 mg (1 gota da solução de 2 mg/mL) para cada 3 kg, 2 vezes ao dia, ajustando se preciso; não estabelecida abaixo de 6 anos."
+  ],
+  "diluicao": [
+   "IM profunda, sem diluir. Ampola de dose única: usar logo após abrir e descartar a sobra (bula).",
+   "Não usar EV: a bula recomenda só IM; se for dado EV, manter ECG contínuo pelo risco de QT longo e arritmia ventricular (bula; FDA)."
+  ],
+  "renal": "Sem ajuste, com cautela: menos de 3% sai inalterado na urina e a diálise remove muito pouco (bula). Insuficiência renal grave: pode precisar de dose inicial menor (EMA 2017).",
+  "hepatica": "Extensamente metabolizado no fígado: reduzir a dose inicial pela metade e ajustar com incrementos menores e intervalos maiores (bula; EMA 2017).",
+  "gestacao": "Categoria C: usar quando o benefício superar o risco; no 3º trimestre, risco de sintomas extrapiramidais e de abstinência no recém-nascido (bula). Gestante agitada que precisa de remédio: haloperidol isolado é a 1ª opção (ABP 2019).",
+  "lactacao": "Passa para o leite e já foi detectado no plasma de lactentes, com relatos de sintomas extrapiramidais; se for essencial, pesar o benefício da amamentação contra o risco (bula).",
+  "contraindicacoes": [
+   "Coma; depressão do sistema nervoso central por álcool ou outros depressores (bula).",
+   "Doença de Parkinson, demência com corpos de Lewy e paralisia supranuclear progressiva (bula).",
+   "Hipersensibilidade ao haloperidol ou aos excipientes (bula).",
+   "A bula europeia também contraindica: QT longo conhecido ou congênito, infarto agudo recente, insuficiência cardíaca descompensada, arritmia ventricular ou torsades de pointes prévias, hipocalemia não corrigida e uso de outros remédios que alargam o QT (EMA 2017)."
+  ],
+  "alertas": [
+   "Prolonga o QT (risco conhecido de torsades de pointes): risco maior com dose alta, via EV e em predispostos (hipocalemia, hipomagnesemia, cardiopatia, QT longo, outros remédios que alargam o QT). ECG antes quando possível e monitor contínuo se doses IM repetidas; suspender se QTc acima de 500 ms (bula; EMA 2017; CredibleMeds).",
+   "Sintomas extrapiramidais (distonia aguda, acatisia, parkinsonismo). Reação extrapiramidal importante: antiparkinsoniano por via parenteral (bula). A associação com prometazina reduziu a distonia aguda no TREC-Rio.",
+   "Síndrome neuroléptica maligna (febre, rigidez, alteração da consciência, instabilidade autonômica, CPK alta): suspender e dar suporte (bula).",
+   "Baixa o limiar convulsivo: cautela na abstinência alcoólica, na doença cerebral e na epilepsia (bula).",
+   "Idoso com demência: mortalidade aumentada com antipsicóticos (bula); evitar no delirium e na demência, salvo risco importante (Beers 2023).",
+   "Interações: inibidores do CYP3A4 ou do CYP2D6 (itraconazol, cetoconazol, fluoxetina, paroxetina, ritonavir, prometazina, entre outros) elevam o nível; carbamazepina, fenitoína, fenobarbital e rifampicina reduzem. Com lítio, raros casos de encefalopatia (bula).",
+   "Soma sedação com álcool, hipnóticos e opioides (bula).",
+   "Hipotensão grave por haloperidol: volume e noradrenalina; não usar adrenalina, que pode piorar a hipotensão (bula).",
+   "Não confundir com o decanoato de haloperidol 50 mg/mL: injeção de depósito, mensal, só para manutenção de psicose crônica estabilizada (bula do Halo Decanoato)."
+  ],
+  "fontes": [
+   "Bula ANVISA — haloperidol solução injetável 5 mg/mL (Fresenius Kabi), conforme bula padrão aprovada em 09/12/2025",
+   "Bula ANVISA — Halo (haloperidol) solução injetável 5 mg/mL, Cristália, 09/12/2025",
+   "Bula ANVISA — Halo (haloperidol) comprimidos e solução oral, Cristália, 15/12/2025",
+   "Bula ANVISA — Halo Decanoato (decanoato de haloperidol), Cristália, 22/07/2025",
+   "FDA label — Haloperidol (lactato) injection, Fresenius Kabi USA, DailyMed, out/2026",
+   "European Medicines Agency. Haldol and associated names — Article 30 referral, Annex III (2017): doses IM, idoso, insuficiência hepática e renal, contraindicações cardíacas e ECG",
+   "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Haldol, Halo, Uni Haloper; decanoato: Haldol Decanoato, Halo Decanoato, Decan Haloper)",
+   "Ministério da Saúde. Relação Nacional de Medicamentos Essenciais — RENAME 2024 (haloperidol comprimido 1 mg e 5 mg, solução oral 2 mg/mL, solução injetável 5 mg/mL e 50 mg/mL, Componente Básico)",
+   "Baldaçara L et al. Brazilian guidelines for the management of psychomotor agitation. Part 2. Pharmacological approach — ABP (Braz J Psychiatry 2019;41:324)",
+   "Wilson MP et al. The psychopharmacology of agitation — Project BETA (West J Emerg Med 2012;13:26)",
+   "TREC Collaborative Group. Midazolam versus haloperidol plus promethazine (BMJ 2003;327:708)",
+   "Huf G et al. Haloperidol versus haloperidol plus promethazine — TREC (BMJ 2007;335:869)",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023)",
+   "CredibleMeds (AZCERT). QTdrugs List — haloperidol na categoria de risco conhecido (lista do painel)"
+  ]
  }
 ]

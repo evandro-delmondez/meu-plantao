@@ -36,6 +36,8 @@ function linkMeds(root,atual){
     if(mudou){frag.append(txt.slice(pos)); n.replaceWith(frag)}
   }
 }
+// abre a bomba de infusão já com a droga escolhida
+function abrirBic(id){Object.assign(bic,{id,dil:0,dose:"",mlh:"",ult:"dose"});$("#bicDose").value="";$("#bicMlh").value="";setTab("bic")}
 function abrirFicha(id){
   const m=medById[id]; if(!m) return;
   let sh=$("#medSheet");
@@ -54,7 +56,7 @@ function abrirFicha(id){
   $("#msAba").onclick=()=>fecharFicha(()=>openMed(id));
   const inf=INFUSAO.find(x=>x.id===id), bb=$("#msBic"); bb.hidden=!inf;
   if(inf){bb.textContent="Bomba de infusão: "+inf.nome.replace(/ \(.*?\)/,"");
-    bb.onclick=()=>fecharFicha(()=>{Object.assign(bic,{id,dil:0,dose:"",mlh:"",ult:"dose"});$("#bicDose").value="";$("#bicMlh").value="";setTab("bic")})}
+    bb.onclick=()=>fecharFicha(()=>abrirBic(id))}
   $("#medSheet [data-fechar].btn").focus();
 }
 // "depois" roda só quando o histórico já voltou, para a troca de aba não ser desfeita

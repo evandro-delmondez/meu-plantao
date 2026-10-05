@@ -438,3 +438,22 @@ body.sheet-on{overflow:hidden}
 }
 @keyframes sobe{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.msheet-box{animation:none}}
+
+/* cartão "Agora": primeiros minutos, letra maior e doses em destaque */
+.sec.agora{border:2px solid var(--red);background:color-mix(in srgb,var(--red) 5%,var(--surface))}
+.sec.agora .sec-h{flex-wrap:wrap;gap:8px}
+.sec.agora h3{color:var(--red);font-size:18px;letter-spacing:.02em}
+.agpeso{flex-direction:row;align-items:center;gap:8px;font-weight:700;margin-left:auto}
+.agpeso .inp{width:90px;font-size:16px}
+.agquando{margin:0;padding:0 16px 6px;font-weight:700}
+.agalerta{margin:0 16px 8px;padding:6px 10px;border-radius:8px;background:color-mix(in srgb,var(--warn) 14%,transparent);border-left:4px solid var(--warn);font-size:14px}
+.agetapas{list-style:none;margin:0;padding:0 16px 4px;counter-reset:ag}
+.agetapas>li{position:relative;padding:8px 0 8px 14px;border-left:3px solid color-mix(in srgb,var(--red) 40%,transparent);margin-left:4px}
+.agt{display:inline-block;font-size:12.5px;font-weight:800;color:var(--surface);background:var(--red);border-radius:999px;padding:1px 10px;margin-bottom:4px}
+.agetapas ul{margin:0;padding-left:18px;font-size:15.5px;line-height:1.45}
+.agetapas ul li{margin:3px 0}
+.agcalc b{color:var(--red);font-size:16px;white-space:nowrap}
+.agref{display:inline-block;font-size:12.5px;color:var(--muted)}
+.agatalhos{padding:4px 16px 8px}
+.sec.agora .fontes{padding:0 16px 12px}
+.sec.agora .note{padding:0 16px}

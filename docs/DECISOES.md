@@ -37,3 +37,5 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Confiança = rastreabilidade: fonte, ano, data de conferência e selo de conferência visíveis; página de Fontes.
 - Acervo pessoal (PDFs, fluxogramas) num Projeto no claude.ai, com instruções escritas pelo Claude; livros nunca no site público.
 - Pré-hospitalar "às vezes": incluir protocolos SAMU 192 e modo transporte (agitação, transferência) depois da sala vermelha.
+- Cartão "Agora", 1ª leva (2026-10-05): convulsão/estado de mal, agitação psicomotora (nova, com ficha de haloperidol), sepse, anafilaxia, IAM, AVC e PCR. Hiponatremia grave fica para depois.
+- Doses no cartão: campo de peso no topo (só memória), mg e mL já calculados, com a dose de referência ao lado para conferir.

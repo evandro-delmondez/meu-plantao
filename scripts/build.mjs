@@ -29,6 +29,7 @@ const data = [
   stripModule(r("src/data/infusao.js")),
   stripModule(r("src/data/protocolos.js")),
   stripModule(r("src/data/eletrolitos.js")),
+  stripModule(r("src/data/agora.js")),
   "const MEDS=" + JSON.stringify(meds) + ";",
   `const APP_VERSION=${JSON.stringify(pkg.version)};`,
 ].join("\n");

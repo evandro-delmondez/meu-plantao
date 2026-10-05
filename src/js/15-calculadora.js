@@ -36,6 +36,7 @@ function renderCalc(){
   const p=parseFloat(String($("#peso").value).replace(",","."));
   if(!(p>0)){$("#cgroups").innerHTML=`<div class="empty">Digite o peso.</div>`;return}
   $("#cgroups").innerHTML=CALC[ui.modo].map(g=>`<div class="sec cg" style="--c:var(--${g.c})"><div class="sec-h"><h3>${esc(g.t)}</h3></div>${g.d.map(x=>calcRow(x,p)).join("")}<details class="alsrc cgsrc"><summary>Fontes</summary><ol>${g.src.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></div>`).join("");
+  linkMeds($("#cgroups"));
 }
 $("#peso").value=ui.peso;
 $("#peso").addEventListener("input",()=>{ui.peso=$("#peso").value;saveUI();renderCalc()});

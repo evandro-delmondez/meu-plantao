@@ -420,3 +420,21 @@ details.model summary{cursor:pointer;font-weight:700;color:var(--accent);font-si
   .dh .dnote{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* remédio citado no texto: botão discreto que abre a ficha por cima */
+.mlink{font:inherit;color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,transparent);border:0;border-bottom:1.5px dotted var(--accent);border-radius:4px;padding:0 3px;cursor:pointer;line-height:inherit}
+.mlink:hover,.mlink:focus-visible{background:color-mix(in srgb,var(--accent) 18%,transparent)}
+.mcit{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 16px 12px;font-size:13px}
+.mcit .mlink{font-weight:700;border:1.5px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:999px;padding:2px 10px}
+.msheet{position:fixed;inset:0;z-index:60}
+.msheet[hidden]{display:none}
+.msheet-bg{position:absolute;inset:0;background:rgb(0 0 0/.45)}
+.msheet-box{position:absolute;top:0;right:0;bottom:0;width:min(640px,100%);background:var(--bg);overflow-y:auto;overscroll-behavior:contain;box-shadow:var(--shadow);padding:0 0 24px}
+.msheet-top{position:sticky;top:0;z-index:1;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;padding:10px 12px;background:var(--surface);border-bottom:1px solid var(--line)}
+#msBody{padding:0 4px}
+body.sheet-on{overflow:hidden}
+@media (max-width:860px){
+  .msheet-box{top:auto;left:0;width:100%;max-height:88vh;border-radius:16px 16px 0 0;animation:sobe .18s ease-out}
+}
+@keyframes sobe{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.msheet-box{animation:none}}

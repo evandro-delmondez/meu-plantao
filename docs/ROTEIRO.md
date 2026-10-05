@@ -18,7 +18,12 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
-Atualizado em 2026-09-28 (versão 1.6.0). Decisões já tomadas: `docs/DECISOES.md`.
+Atualizado em 2026-10-05 (versão 1.7.0). Decisões já tomadas: `docs/DECISOES.md`.
+- **Visão "copiloto" (aprovada em 2026-10-05), em fatias:**
+  1. ~~páginas conectadas~~ (1.7.0);
+  2. cartão "Agora" + fluxo nas 18 emergências da sala vermelha, começando por hiponatremia grave sintomática, convulsão, sepse, anafilaxia e agitação psicomotora (conteúdo com conferência);
+  3. confiança visível: ano da fonte, data e selo de conferência em cada item, página de Fontes e aviso de revisão vencida;
+  4. modo transporte/pré-hospitalar (protocolos SAMU 192, sedação do agitado, checklist de transferência).
 - **Fichas que faltam** (aprovar escopo antes): anti-hipertensivos orais, furosemida, AAS e clopidogrel, isossorbida, broncodilatadores, aciclovir e oseltamivir, antifúngicos, albendazol/ivermectina/permetrina, cetirizina e hidroxizina, haloperidol, relaxantes musculares, sumatriptana, colchicina, tiamina, antídotos (naloxona, flumazenil, N-acetilcisteína), levotiroxina e metimazol, tópicos.
 - **Condições frequentes que faltam** (só com aprovação): odontalgia, olho vermelho e corpo estranho, paralisia facial, síncope, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e overdose de opioide, chikungunya e zika, varicela, COVID-19, pneumotórax, pericardite, fraturas e imobilização, cervicalgia, tendinite e bursite.
 - **Revisão geral das 98 prescrições**, por categoria, com conferência.

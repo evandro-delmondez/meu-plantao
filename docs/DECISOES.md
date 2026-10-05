@@ -30,3 +30,10 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Site no GitHub Pages (https://evandro-delmondez.github.io/meu-plantao/), publicado pelo GitHub Actions no push para main.
 - Cloudflare Access testado e descartado (2026-09-27): "prefiro o site mesmo".
 - Domínio próprio: adiado (2026-09-27).
+
+## Visão 2026-10-05: copiloto, não livro
+- Sala vermelha: cartão "Agora" (3–5 ações com doses pelo peso) no topo, fluxograma abaixo, detalhes e fontes recolhidos.
+- Remédio citado em conduta/protocolo vira botão; a ficha abre por cima (no celular, de baixo para cima), sem perder a conduta; droga de infusão com atalho para a bomba preenchida.
+- Confiança = rastreabilidade: fonte, ano, data de conferência e selo de conferência visíveis; página de Fontes.
+- Acervo pessoal (PDFs, fluxogramas) num Projeto no claude.ai, com instruções escritas pelo Claude; livros nunca no site público.
+- Pré-hospitalar "às vezes": incluir protocolos SAMU 192 e modo transporte (agitação, transferência) depois da sala vermelha.

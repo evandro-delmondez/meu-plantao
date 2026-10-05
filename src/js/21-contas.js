@@ -66,4 +66,5 @@ function renderEletrolitos(){
     ${(e.faixas||[]).map(f=>`<div class="msec" style="--c:var(--indigo)"><h3>${esc(f.rot)}</h3>${f.condicao?`<p>${esc(f.condicao)}</p>`:""}<ul>${(f.conduta||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}
   </div><div class="panel card">${lista("Via oral",e.via_oral,"green")}${lista("Via endovenosa",e.via_ev,"red")}${lista("Monitorar",e.monitorar,"sky")}${lista("Atenção",e.alertas,"warn")}
     <details class="fontes"><summary>Fontes</summary><ul>${(e.fontes||[]).map(s=>`<li>${linkify(s)}</li>`).join("")}</ul></details></div>`;
+  linkMeds($("#elCorpo"));
 }

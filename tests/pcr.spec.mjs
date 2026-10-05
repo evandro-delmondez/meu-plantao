@@ -10,14 +10,14 @@ test("PCR: cronômetro, ciclos de 2 min, adrenalina, choques, antiarrítmico e r
   await page.click('[data-pcr="choc"]');
   await expect(page.locator("#pcrMsg")).toContainText("Choque (bifásico");
   await page.click('[data-pcr="choque"]');
-  await page.clock.fastForward("02:15"); await page.clock.runFor(500);
+  await page.clock.runFor("02:15");
   await expect.poll(async () => { await page.clock.runFor(200); return page.locator("#pcrCiclo").innerText(); }).toBe("Checar!");
   await expect.poll(async () => { await page.clock.runFor(200); return page.locator("#pcrCicloW").getAttribute("class"); }).toContain("alerta");
   await page.click('[data-pcr="choque"]');               // 2º choque reinicia o ciclo
   await expect(page.locator("#pcrCicloW")).not.toHaveClass(/alerta/);
   await expect(page.locator("#pcrMsg")).toContainText("agora (após o 2º choque)");
   await page.click('[data-pcr="adr"]');
-  await page.clock.fastForward("06:00"); await page.clock.runFor(1000);
+  await page.clock.runFor("06:00");
   await expect.poll(async () => { await page.clock.runFor(200); return page.locator("#pcrAdr").getAttribute("class"); }).toBe("atrasada");
   await page.click('[data-pcr="choque"]');
   await expect(page.locator("#pcrMsg")).toContainText("Amiodarona 300 mg");

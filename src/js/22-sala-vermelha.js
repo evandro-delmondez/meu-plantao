@@ -104,6 +104,7 @@ function renderProtocolo(){
   }).join("");
   $$("#prPassos [data-ir]").forEach(b=>b.onclick=()=>{const alvo=b.dataset.ir;if(p.passos.some(x=>x.id===alvo)){prEstado.caminho.push(alvo);renderProtocolo();const l=$("#prPassos .prp.atual");l&&l.scrollIntoView({block:"nearest"})}});
   $("#prFontes").innerHTML=p.fontes.map(s=>`<li>${linkify(s)}</li>`).join("");
+  linkMeds($("#prPassos"));
 }
 
 /* ---------- PCR: condução com cronômetro (AHA 2025, algoritmo de PCR do adulto) ---------- */

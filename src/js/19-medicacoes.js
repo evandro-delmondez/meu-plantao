@@ -5,7 +5,11 @@ const MALIAS={ /* termos que identificam a medicação dentro do texto das condu
   "sulfametoxazol-trimetoprima":["sulfametoxazol","smx-tmp","bactrim"],"fosfomicina-trometamol":["fosfomicina"],
   "sais-de-reidratacao-oral":["reidratacao oral","sro"],"escopolamina":["escopolamina","hioscina","buscopan"],
   "dimenidrinato":["dimenidrinato","dramin"],"adrenalina":["adrenalina","epinefrina"],"dipirona":["dipirona","metamizol"],
-  "paracetamol":["paracetamol"],"codeina":["codeina"],"dexclorfeniramina":["dexclorfeniramina"],"loratadina":["loratadina"]
+  "paracetamol":["paracetamol"],
+  "insulina-regular":["insulina regular","insulina"],"glicose-50":["glicose 50","glicose hipertonica"],"cloreto-de-potassio":["cloreto de potassio","kcl"],
+  "sulfato-de-magnesio":["sulfato de magnesio","mgso4"],"gluconato-de-calcio":["gluconato de calcio","gliconato de calcio"],"bicarbonato-de-sodio":["bicarbonato de sodio","bicarbonato"],
+  "cloreto-de-sodio-20":["cloreto de sodio 20","nacl 20"],"acido-valproico":["acido valproico","valproato"],"cetamina":["escetamina","cetamina"],"fentanil":["fentanil","fentanila"],
+  "succinilcolina":["succinilcolina","suxametonio"],"noradrenalina":["noradrenalina","norepinefrina"],"lidocaina":["lidocaina ev"],"heparina":["heparina nao fracionada","heparina"],"codeina":["codeina"],"dexclorfeniramina":["dexclorfeniramina"],"loratadina":["loratadina"]
 };
 // o peso da criança fica só na memória (regra 5); versões antigas o salvavam em rxp_med_v1
 const mui=Object.assign({grupo:null,via:null,sel:MEDS[0]&&MEDS[0].id,rename:false},lsGet("rxp_med_v1",{}),{peso:""});
@@ -80,12 +84,14 @@ function medTexto(m){
   add("Rim",m.renal);add("Fígado",m.hepatica);add("Gestação",m.gestacao);add("Lactação",m.lactacao);add("Contraindicações",m.contraindicacoes);add("Alertas",m.alertas);add("Fontes",m.fontes);
   return L.join("\n");
 }
-function renderMedDetail(){
-  const m=medById[mui.sel]||MEDS[0]; const el=$("#mdetail"); if(!m){el.innerHTML="";return}
+// renderiza a ficha na aba Remédios ou, com folha=true, na janela que abre por cima (23-conexoes.js)
+function renderMedDetail(el=$("#mdetail"),m=medById[mui.sel]||MEDS[0],folha=false){
+  if(!m){el.innerHTML="";return}
+  const q=s=>el.querySelector(s);
   const g=MGRUPOS[m.grupo]||{nome:"",cor:"slate"};
   const usadas=allItems().filter(it=>medsNaConduta(it).some(x=>x.id===m.id));
   el.innerHTML=`<div class="dh">
-    <button class="btn sm back" id="mBack">← Lista</button>
+    ${folha?"":`<button class="btn sm back" id="mBack">← Lista</button>`}
     <span class="cat" style="--c:var(--${g.cor})"><span class="dot"></span>${esc(g.nome)}</span>
     <h2>${esc(m.nome)}</h2>${medMarcas(m).length?`<p class="mmarcas">${esc(medMarcas(m).join(", "))}</p>`:""}
     <div class="meta"><span class="badge cl" style="--c:var(--${g.cor})">${esc(m.classe||"")}${m.subclasse?" · "+esc(m.subclasse):""}</span>
@@ -105,10 +111,11 @@ function renderMedDetail(){
   ${usadas.length?`<section class="msec" style="--c:var(--accent)"><h3>Aparece nas condutas</h3><div class="medlinks">${usadas.map(it=>`<button class="chip" data-cond="${esc(it.id)}" style="--c:var(--accent)">${esc(it.nome)}</button>`).join("")}</div></section>`:""}
   <details class="sec fontes" open><summary class="sec-h"><h3>Fontes</h3></summary><ol>${(m.fontes||[]).map(f=>`<li>${esc(f)}</li>`).join("")}</ol></details>
   <p class="note">Diluições marcadas como usuais variam entre serviços: confira o protocolo da sua unidade.</p>`;
-  $("#mBack").onclick=()=>{$("#tab-medicacoes").classList.remove("show-detail");window.scrollTo({top:0})};
-  $("#mCopy").onclick=e=>copy(medTexto(m),e.currentTarget);
-  const pi=$("#mPeso"); if(pi) pi.addEventListener("input",()=>{mui.peso=pi.value;saveMui();$("#mCalcBody").innerHTML=medCalcRows(m)});
-  $$("#mdetail [data-cond]").forEach(b=>b.onclick=()=>{setTab("prescricoes");select(b.dataset.cond)});
+  if(q("#mBack")) q("#mBack").onclick=()=>{$("#tab-medicacoes").classList.remove("show-detail");window.scrollTo({top:0})};
+  q("#mCopy").onclick=e=>copy(medTexto(m),e.currentTarget);
+  const pi=q("#mPeso"); if(pi) pi.addEventListener("input",()=>{mui.peso=pi.value;saveMui();q("#mCalcBody").innerHTML=medCalcRows(m)});
+  el.querySelectorAll("[data-cond]").forEach(b=>b.onclick=()=>{const ir=()=>{setTab("prescricoes");select(b.dataset.cond)};folha?fecharFicha(ir):ir()});
+  linkMeds(el,m.id);
 }
 $("#mq").addEventListener("input",renderMedList);
 $("#mq").addEventListener("keydown",e=>{if(e.key==="Enter"){const f=$("#mlist [data-mid]");if(f)selectMed(f.dataset.mid)}});

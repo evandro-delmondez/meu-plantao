@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.7.0 — 2026-10-05
+- **Páginas conectadas:** o remédio citado em condutas, protocolos, eletrólitos, calculadora e nas próprias fichas vira botão; a ficha abre por cima (no celular, de baixo para cima) sem perder a conduta. O botão voltar do celular e a tecla Esc fecham a ficha.
+- Abaixo da receita e do "Na unidade", a linha **Fichas** lista os remédios citados.
+- Ficha por cima com atalhos para a **bomba de infusão** (já com a droga escolhida) e para a aba Remédios.
+- Reconhecimento de nomes compostos (KCl, sulfato de magnésio, gluconato de cálcio, insulina regular, escetamina etc.); a lidocaína do anestésico local deixa de apontar para a ficha da lidocaína antiarrítmica.
+- Roteiro do acervo pessoal no claude.ai (`docs/PROJETO-CLAUDE.md`).
+
 ## 1.6.0 — 2026-09-28
 - **16 fichas da sala vermelha, parte B**, com nomes comerciais: Antiarrítmicos (amiodarona, adenosina, atropina, metoprolol, lidocaína), Anticoagulantes e trombolíticos (heparina, enoxaparina, alteplase, tenecteplase) e Glicose e eletrólitos EV (insulina regular, glicose 50%, KCl, sulfato de magnésio, gluconato de cálcio, bicarbonato, NaCl 20%). Conferidas por agente independente.
 - **Correções da conferência:**

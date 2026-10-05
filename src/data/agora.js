@@ -5,7 +5,7 @@
    AGORA[idDaConduta] = {
      quando: "critério de entrada, em 1 linha",
      alerta: "1 frase de segurança (opcional)",
-     etapas: [{ t: "0–5 min", acoes: [ { txt: "ação", dose: {...} } ] }],
+     etapas: [{ t: "0–5 min", acoes: [ { txt: "ação curta (até ~120 caracteres)", dose: {...}, mais: "exceções e observações (abre em 'detalhes')" } ] }],   ← até 3 ações por etapa
      atalhos: [{ rot: "PCR guiada", aba: "pcr" } | { rot: "Fluxo do IAM", protocolo: "iamcsst" } | { rot: "Bomba: noradrenalina", bic: "noradrenalina" }],
      fontes: ["..."]
    }

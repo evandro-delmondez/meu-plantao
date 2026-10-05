@@ -457,3 +457,7 @@ body.sheet-on{overflow:hidden}
 .agatalhos{padding:4px 16px 8px}
 .sec.agora .fontes{padding:0 16px 12px}
 .sec.agora .note{padding:0 16px}
+.agmais{display:inline;font-size:13px}
+.agmais summary{display:inline;cursor:pointer;color:var(--muted);text-decoration:underline dotted}
+.agmais[open]{display:block;margin:2px 0 4px;padding:4px 8px;border-radius:6px;background:var(--surface-2)}
+.agmais p{margin:2px 0 0}

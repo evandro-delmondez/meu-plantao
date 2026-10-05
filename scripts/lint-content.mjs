@@ -126,8 +126,10 @@ for (const [id, a] of Object.entries(AGORA || {})) {
   if (!Array.isArray(a.fontes) || !a.fontes.length) err(`${onde}: sem fontes`);
   for (const e of a.etapas || []) {
     if (!e.t || !Array.isArray(e.acoes) || !e.acoes.length) err(`${onde}: etapa sem título ou ações`);
+    if ((e.acoes || []).length > 3) err(`${onde} → ${e.t}: mais de 3 ações (cartão enxuto; o resto vai em "mais")`);
     for (const x of e.acoes || []) {
       if (!x.txt) err(`${onde} → ${e.t}: ação sem texto`);
+      else if (x.txt.length > 160) err(`${onde} → ${e.t}: ação longa (${x.txt.length} caracteres; mova detalhes para "mais")`);
       const d = x.dose; if (!d) continue;
       if (!d.ref) err(`${onde} → ${x.txt}: dose sem "ref"`);
       if (d.porKg != null && (!(d.porKg > 0) || !UNS.has(d.un))) err(`${onde} → ${x.txt}: porKg/un inválidos`);

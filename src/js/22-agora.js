@@ -18,7 +18,7 @@ function renderAgora(it){
       ${temKg?`<label class="f agpeso">Peso (kg)<input class="inp" id="agPeso" type="number" inputmode="decimal" min="1" max="300" value="${esc(String(pac.peso||""))}" placeholder="kg"></label>`:""}</div>
     <p class="agquando">${esc(a.quando)}</p>
     ${a.alerta?`<p class="agalerta">${esc(a.alerta)}</p>`:""}
-    <ol class="agetapas">${a.etapas.map((e,ei)=>`<li><span class="agt">${esc(e.t)}</span><ul>${e.acoes.map((x,ai)=>`<li>${esc(x.txt)}${x.dose?` <span class="agcalc" data-k="${ei}-${ai}">${agoraDose(x.dose)}</span> <span class="agref">${esc(x.dose.ref)}</span>`:""}</li>`).join("")}</ul></li>`).join("")}</ol>
+    <ol class="agetapas">${a.etapas.map((e,ei)=>`<li><span class="agt">${esc(e.t)}</span><ul>${e.acoes.map((x,ai)=>`<li>${esc(x.txt)}${x.dose?` <span class="agcalc" data-k="${ei}-${ai}">${agoraDose(x.dose)}</span> <span class="agref">${esc(x.dose.ref)}</span>`:""}${x.mais?`<details class="agmais"><summary>detalhes</summary><p>${esc(x.mais)}</p></details>`:""}</li>`).join("")}</ul></li>`).join("")}</ol>
     ${(a.atalhos||[]).length?`<div class="actions agatalhos">${a.atalhos.map(atalho).join("")}</div>`:""}
     <p class="note">Doses para adulto${temKg?" com o peso informado (não fica salvo)":""}. Confira a referência ao lado de cada dose antes de administrar.</p>
     <details class="fontes"><summary>Fontes do cartão</summary><ol>${a.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></section>`;

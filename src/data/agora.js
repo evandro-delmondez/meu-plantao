@@ -28,12 +28,12 @@ convulsao: {
     ]},
     { t: "20 min: 2ª droga (escolha uma, dose única)", acoes: [
       { txt: "Fenitoína EV em SF 0,9% (nunca em soro glicosado), com monitor de ECG e PA.", dose: { ref: "20 mg/kg EV, até 50 mg/min (idoso ou cardiopata: até 20 mg/min)", porKg: 20, un: "mg", conc: 50 },
-        mais: "O teto de 1.500 mg citado no ESETT e na AES é da fosfenitoína, não da fenitoína. As três opções desta etapa têm eficácia semelhante (ESETT)." },
+        mais: "Fenitoína não tem teto de dose nas diretrizes; o teto de 1.500 mg (AES, ESETT) é da fosfenitoína. As três opções têm eficácia semelhante (ESETT)." },
       { txt: "Ou levetiracetam EV em 15 min.", dose: { ref: "60 mg/kg EV (máx. 4.500 mg) em 15 min", porKg: 60, un: "mg", max: 4500, conc: 100 } },
-      { txt: "Ou ácido valproico EV em 10 min, se houver na unidade (pode faltar no Brasil).", dose: { ref: "40 mg/kg EV (máx. 3.000 mg) em 10 min", porKg: 40, un: "mg", max: 3000, conc: 100 },
-        mais: "Não usar em hepatopatia, doença mitocondrial (mutação POLG), distúrbio do ciclo da ureia, porfiria nem na gestação (bula). O Depacon não aparece na lista CMED de set/2026 nem na RENAME: confirme na farmácia." }
+      { txt: "Ou ácido valproico EV em 10 min, se houver na unidade (pode faltar no Brasil). Não usar em hepatopatia nem na gestação.", dose: { ref: "40 mg/kg EV (máx. 3.000 mg) em 10 min", porKg: 40, un: "mg", max: 3000, conc: 100 },
+        mais: "Não usar em hepatopatia, doença mitocondrial (mutação POLG), distúrbio do ciclo da ureia, porfiria nem na gestação (bula). O Depacon não aparece na lista CMED de set/2026 nem na RENAME: confirme na farmácia. A bula orienta 60 min (até 20 mg/min); os 10 min vêm do ESETT e da AES." }
     ]},
-    { t: "Sem as três, ou crise persistente", acoes: [
+    { t: "Sem nenhuma das três", acoes: [
       { txt: "Fenobarbital EV, com material de ventilação pronto (contraindicado na gestação pela bula; pesar o risco).", dose: { ref: "20 mg/kg EV, até 50 mg/min (volume para 100 mg/mL; existe ampola de 200 mg/mL)", porKg: 20, un: "mg", conc: 100 } },
       { txt: "Preparar a via aérea avançada se não houver proteção da via aérea." }
     ]},
@@ -79,13 +79,14 @@ agitacao: {
     { t: "Situações especiais", acoes: [
       { txt: "Intoxicação por álcool: haloperidol isolado; evite benzodiazepínico. Com rebaixamento da consciência: não sedar.", dose: { ref: "Haloperidol 5 mg IM (1 mL de 5 mg/mL)" } },
       { txt: "Abstinência alcoólica (tremor, suor, taquicardia) ou intoxicação por cocaína: benzodiazepínico.", dose: { ref: "Diazepam 10 mg EV lento (até 5 mg/min)" } },
-      { txt: "Idoso: presuma delirium e trate a causa; se sedar, haloperidol em dose baixa, sem prometazina nem benzodiazepínico.", dose: { ref: "Idoso: haloperidol 1–2,5 mg IM (máx. 5 mg/dia)" },
-        mais: "Gestante: haloperidol isolado." }
+      { txt: "Idoso: presuma delirium e trate a causa; se sedar, haloperidol em dose baixa, sem prometazina nem benzodiazepínico. Gestante: haloperidol isolado.", dose: { ref: "Idoso: haloperidol 1–2,5 mg IM (máx. 5 mg/dia)" } }
+    ]},
+    { t: "Contenção, se indispensável", acoes: [
+      { txt: "Contenção só se a conversa e o remédio não bastarem: prescrever, registrar o motivo; sinais vitais e circulação dos membros a cada 15 min na 1ª hora.",
+        mais: "Cinco pessoas treinadas, uma por membro e uma para a cabeça. Quatro membros, no leito (evitar maca), de barriga para cima, cabeceira a 30°. Vigiar sinais vitais, oximetria, consciência, pele e circulação dos membros a cada 15 min na 1ª hora e a cada 30 min por 4 h; retirar assim que possível (em princípio, até 2 h). Explicar ao paciente e à família." }
     ]},
     { t: "30 min: reavaliar", acoes: [
       { txt: "Sem controle em 30 min: pode repetir a mesma medicação 1 vez. Haloperidol: máx. 20 mg/dia." },
-      { txt: "Contenção só se a conversa e o remédio não bastarem, como ponte até o remédio agir; prescrever e registrar o motivo.",
-        mais: "Cinco pessoas treinadas, uma por membro e uma para a cabeça. Quatro membros, no leito (evitar maca), de barriga para cima, cabeceira a 30°. Vigiar sinais vitais, oximetria, consciência, pele e circulação dos membros a cada 15 min na 1ª hora e a cada 30 min por 4 h; retirar assim que possível (em princípio, até 2 h). Explicar ao paciente e à família." },
       { txt: "Após sedar: oximetria e sinais vitais seguidos; ECG quando possível.",
         mais: "Exames conforme a suspeita: eletrólitos, função renal e hepática, toxicológico; tomografia de crânio se trauma, sinal focal ou causa não esclarecida." }
     ]}
@@ -115,7 +116,7 @@ anafilaxia: {
   etapas: [
     { t: "0–5 min", acoes: [
       { txt: "Adrenalina 1 mg/mL IM no vasto lateral da coxa, sem diluir, agora (não espere acesso venoso).", dose: { ref: "0,01 mg/kg IM (máx. 0,5 mg = 0,5 mL no adulto)", porKg: 0.01, un: "mg", max: 0.5, conc: 1 } },
-      { txt: "Retire o gatilho (infusão, contraste, sangue) e deite com as pernas elevadas; não levantar nem sentar de repente.", mais: "Sentado se a falta de ar piorar deitado; gestante em decúbito lateral esquerdo." },
+      { txt: "Retire o gatilho (infusão, contraste, sangue); deite com as pernas elevadas (sentado se a falta de ar piorar; gestante em decúbito lateral esquerdo).", mais: "Não levantar nem sentar de repente." },
       { txt: "O2 10–15 L/min com reservatório, monitor, PA a cada 5 min, acesso calibroso; prepare a via aérea (pode ser difícil).", mais: "Pedir ajuda; intubação pelo mais experiente, com plano para via aérea cirúrgica." }
     ]},
     { t: "5 min: reavaliar", acoes: [
@@ -124,15 +125,15 @@ anafilaxia: {
       { txt: "Broncoespasmo ou estridor: nebulização como adjuvante, sem atrasar a adrenalina IM nem a intubação.", dose: { ref: "Salbutamol 5 mg + ipratrópio 500 mcg nebulizados; estridor: adrenalina 1 mg/mL, 5 mL nebulizados" } }
     ]},
     { t: "10 min: refratária", acoes: [
-      { txt: "Sem resposta após 2 doses IM: adrenalina EV em bomba, via exclusiva (pode ser periférica); manter a IM a cada 5 min até a bomba começar.", dose: { ref: "1 mg em 100 mL de SF 0,9% (10 mcg/mL): iniciar a 0,5 mL/kg/h; 1 mL/kg/h se hipotensão ou hipóxia (70 kg: 35–70 mL/h)" },
-        mais: "Nunca injetar na veia a ampola de 1 mg/mL sem diluir. Monitor contínuo." },
+      { txt: "Sem resposta após 2 doses IM: adrenalina EV só em bomba (nunca a ampola pura na veia), via exclusiva; manter a IM a cada 5 min até a bomba começar.", dose: { ref: "1 mg em 100 mL de SF 0,9% (10 mcg/mL): iniciar a 0,5 mL/kg/h; 1 mL/kg/h se hipotensão ou hipóxia (70 kg: 35–70 mL/h)" },
+        mais: "Pode ser veia periférica. Monitor contínuo; não infundir no braço do manguito de PA." },
       { txt: "Em uso de betabloqueador e sem resposta: glucagon EV (vigiar vômito e proteger a via aérea).", dose: { ref: "Glucagon 1 mg EV; pode repetir ou seguir com infusão de 1–2 mg/h" } },
       { txt: "Sem resposta à adrenalina EV: acesso central, UTI e segundo vasopressor.", dose: { ref: "Noradrenalina 0,05–0,5 mcg/kg/min EV" } }
     ]},
     { t: "Depois de estabilizar", acoes: [
       { txt: "Anti-histamínico só para sintomas de pele.", dose: { ref: "Loratadina ou cetirizina 10 mg VO; sem via oral, prometazina 25–50 mg IM profunda (máx. 100 mg/dia)" } },
       { txt: "Corticoide não é rotina: considerar se asma, broncoespasmo persistente ou reação refratária.", dose: { ref: "Hidrocortisona 200 mg EV ou metilprednisolona 1–2 mg/kg EV (máx. 125 mg)" } },
-      { txt: "Observar pelo menos 6 h após a resolução; 12 h se reação grave, mais de 2 doses de adrenalina ou asma grave.", mais: "2 h só se cumprir todos os critérios do fluxo da anafilaxia." }
+      { txt: "Observar pelo menos 6 h após a resolução; 12 h se precisou de mais de 2 doses de adrenalina, asma grave ou comprometimento respiratório grave.", mais: "2 h só se cumprir todos os critérios do fluxo da anafilaxia." }
     ]}
   ],
   atalhos: [
@@ -155,14 +156,14 @@ sepse: {
   alerta: "Volume individualizado: reavalie perfusão e congestão a cada etapa; cardiopata pode precisar de infusão mais lenta.",
   etapas: [
     { t: "Na chegada", acoes: [
-      { txt: "Monitor e acesso calibroso; lactato (resultado em até 30 min) e hemoculturas, sem atrasar o antibiótico." },
+      { txt: "Monitor e acesso calibroso; lactato (resultado em até 30 min) e hemoculturas antes do antibiótico, sem atrasá-lo." },
       { txt: "Hemograma, creatinina, bilirrubinas, coagulograma e gasometria." },
       { txt: "Tempo de enchimento capilar > 3 s é hipoperfusão, mesmo com lactato normal." }
     ]},
     { t: "1ª hora", acoes: [
       { txt: "Antibiótico EV de amplo espectro pelo foco provável e pelo guia do serviço, já (idealmente na 1ª hora); 1ª dose plena, sem ajuste renal.",
         mais: "Sepse só possível, sem choque: investigação rápida; se a suspeita persistir, antibiótico em até 3 h (SSC 2026)." },
-      { txt: "Hipotensão ou hipoperfusão: cristaloide balanceado (Ringer lactato) em bolus, reavaliando; no TCE, SF 0,9%.", dose: { ref: "30 mL/kg EV: iniciar na 1ª hora e terminar em até 3 h", porKg: 30, un: "mL" },
+      { txt: "Hipotensão (PAM < 65) ou hipoperfusão (lactato > 2× o normal, enchimento capilar lento): Ringer lactato em bolus, reavaliando; no TCE, SF 0,9%.", dose: { ref: "30 mL/kg EV: iniciar na 1ª hora e terminar em até 3 h", porKg: 30, un: "mL" },
         mais: "Hipotensão: PAS < 90 ou PAM < 65 mmHg. Hipoperfusão: lactato > 2 vezes o normal, enchimento capilar lento, livedo, oligúria. A SSC 2026 fala em pelo menos 30 mL/kg; o ILAS, em até 30 mL/kg: individualizar." }
     ]},
     { t: "PAM < 65 mmHg apesar do volume", acoes: [
@@ -202,14 +203,14 @@ sca: {
       { txt: "ECG em até 10 min (repetir a cada 15–30 min se a dor persistir); monitor, desfibrilador ao lado, acesso venoso e troponina.",
         mais: "Infarto inferior: V3R e V4R; infradesnível de V1–V3: V7–V9. Não esperar a troponina para reperfundir. O2 só se SpO2 < 90%." },
       { txt: "AAS mastigado, se não houver alergia.", dose: { ref: "162–325 mg VO (ex.: 300 mg = 3 cp de 100 mg)" } },
-      { txt: "Dor: nitrato SL se PAS ≥ 90 mmHg, sem suspeita de infarto de VD e sem sildenafila (24 h) ou tadalafila (48 h).", dose: { ref: "dinitrato de isossorbida 5 mg SL, até 3 doses a cada 5 min; dor refratária: morfina 2–4 mg EV" },
+      { txt: "Dor: nitrato SL se PAS ≥ 90 mmHg, sem suspeita de infarto de VD e sem inibidor de PDE-5 recente (sildenafila/vardenafila 24 h, tadalafila 48 h).", dose: { ref: "dinitrato de isossorbida 5 mg SL, até 3 doses a cada 5 min; dor refratária: morfina 2–4 mg EV" },
         mais: "Sem controle da dor: nitroglicerina EV em bomba." }
     ]},
     { t: "Com supra: decidir em ≤ 10 min", acoes: [
       { txt: "Acione a regulação/central de IAM. Angioplastia possível em ≤ 120 min do diagnóstico: transferir já, com médico e monitor.",
         mais: "O tempo inclui o transporte. Choque ou insuficiência cardíaca grave: angioplastia mesmo com atraso." },
       { txt: "Indo para angioplastia: 2º antiagregante combinado com a hemodinâmica. Prasugrel: não usar se AVC ou AIT prévio.", dose: { ref: "ticagrelor 180 mg VO ou prasugrel 60 mg VO; sem os dois, clopidogrel 600 mg VO" },
-        mais: "Prasugrel: evitar a partir de 75 anos ou com menos de 60 kg. A heparina é feita na sala de hemodinâmica." },
+        mais: "Prasugrel: a partir de 75 anos, em geral evitar; com menos de 60 kg, manutenção de 5 mg/dia (bula FDA; ESC 2023). A heparina é feita na sala de hemodinâmica." },
       { txt: "Sintomas há ≤ 12 h, angioplastia impossível em ≤ 120 min e sem contraindicação absoluta: fibrinólise na unidade.", mais: "Mais de 12 h de sintomas: ver o fluxo do IAM." }
     ]},
     { t: "Fibrinólise: porta-agulha ≤ 30 min", acoes: [
@@ -220,8 +221,8 @@ sca: {
     { t: "Anticoagular junto com a fibrinólise", acoes: [
       { txt: "Enoxaparina, < 75 anos: 30 mg EV em bolus e, 15 min depois, SC de 12/12 h.", dose: { ref: "1 mg/kg SC de 12/12 h (máx. 100 mg nas 2 primeiras doses); ClCr < 30 mL/min: 1 mg/kg SC 1x/dia", porKg: 1, un: "mg", max: 100, conc: 100 } },
       { txt: "Enoxaparina, ≥ 75 anos: sem bolus.", dose: { ref: "0,75 mg/kg SC de 12/12 h (máx. 75 mg nas 2 primeiras doses); ClCr < 30 mL/min: 1 mg/kg SC 1x/dia", porKg: 0.75, un: "mg", max: 75, conc: 100 } },
-      { txt: "Ou heparina não fracionada (frasco de 5.000 UI/mL) em bolus, depois 12 UI/kg/h (máx. 1.000 UI/h); TTPa 1,5–2 vezes o controle.", dose: { ref: "60 UI/kg EV em bolus (máx. 4.000 UI)", porKg: 60, un: "UI", max: 4000, conc: 5000 },
-        mais: "Atenção: a ampola de uso SC tem 20.000 UI/mL." }
+      { txt: "Ou HNF (frasco EV de 5.000 UI/mL; a ampola SC tem 20.000 UI/mL) em bolus, depois 12 UI/kg/h (máx. 1.000 UI/h); TTPa 1,5–2 vezes o controle.", dose: { ref: "60 UI/kg EV em bolus (máx. 4.000 UI); mL calculados para 5.000 UI/mL", porKg: 60, un: "UI", max: 4000, conc: 5000 },
+        mais: "HNF = heparina não fracionada." }
     ]},
     { t: "60–90 min após o fibrinolítico", acoes: [
       { txt: "ECG: queda ≥ 50% do supra com alívio da dor = reperfusão; transferir para cateterismo em 2–24 h." },
@@ -229,8 +230,8 @@ sca: {
       { txt: "Rebaixamento ou déficit neurológico: suspender a heparina e fazer TC de crânio." }
     ]},
     { t: "Sem supra", acoes: [
-      { txt: "ECG seriado e troponina de alta sensibilidade (0/1 h ou 0/2 h); instabilidade ou dor refratária: estratégia invasiva imediata (< 2 h).",
-        mais: "ECG com V7–V9 e V3R–V4R. Insuficiência cardíaca ou arritmia grave também indicam estratégia invasiva imediata, como no infarto com supra." },
+      { txt: "ECG seriado e troponina de alta sensibilidade (0/1 h ou 0/2 h); instabilidade, dor refratária, IC aguda ou arritmia grave: invasiva imediata (< 2 h).",
+        mais: "ECG com V7–V9 e V3R–V4R. IC = insuficiência cardíaca." },
       { txt: "2º antiagregante, conforme a estratégia do serviço.", dose: { ref: "ticagrelor 180 mg VO ou clopidogrel 300–600 mg VO" } },
       { txt: "Anticoagular.", dose: { ref: "enoxaparina 1 mg/kg SC de 12/12 h; ClCr < 30 mL/min: 1 mg/kg SC 1x/dia", porKg: 1, un: "mg", conc: 100 },
         mais: "Alternativa: heparina não fracionada 60 UI/kg EV em bolus (máx. 4.000 UI)." }
@@ -276,8 +277,10 @@ avc: {
       { txt: "PA ≤ 180/105 mmHg; exame neurológico e PA a cada 15 min por 2 h, a cada 30 min por 6 h e de hora em hora até 24 h.",
         mais: "Sem antiagregante ou anticoagulante por 24 h; TC de controle antes de iniciá-los." },
       { txt: "Piora neurológica, cefaleia intensa, vômitos ou hipertensão aguda: parar a alteplase e TC de crânio urgente.", mais: "Angioedema: parar e tratar como anafilaxia." },
-      { txt: "Oclusão de grande vaso (até 24 h): transferir para trombectomia sem esperar o fim da alteplase; levar imagens e horário.",
-        mais: "Até o procedimento, PA ≤ 185/110 mmHg; depois, ≤ 180/105 mmHg, sem baixar a PAS para < 140 mmHg." }
+    ]},
+    { t: "Oclusão de grande vaso: até 24 h", acoes: [
+      { txt: "Candidato a trombectomia (com ou sem trombólise): transferir já, sem esperar o fim da alteplase; levar as imagens e o horário.",
+        mais: "Horário = último momento visto bem. Até o procedimento, PA ≤ 185/110 mmHg; depois, ≤ 180/105 mmHg, sem baixar a PAS para < 140 mmHg." }
     ]}
   ],
   atalhos: [

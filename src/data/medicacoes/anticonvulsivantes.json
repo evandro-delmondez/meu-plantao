@@ -99,7 +99,7 @@
    "Faixa terapêutica usual: 10–20 mcg/mL de fenitoína total (1–2 mcg/mL livre) (FDA)."
   ],
   "pediatria": [
-   "Estado de mal: 20 mg/kg EV (máx. 1.500 mg), até 1 mg/kg/min e no máximo 50 mg/min (Neurocritical Care Society 2012; painel).",
+   "Estado de mal: 20 mg/kg EV, até 1 mg/kg/min e no máximo 50 mg/min (Neurocritical Care Society 2012). O teto de 1.500 mg das diretrizes (AES 2016, ESETT) é da fosfenitoína, não da fenitoína.",
    "FDA: ataque de 15–20 mg/kg a 1–3 mg/kg/min ou 50 mg/min, o que for mais lento.",
    "Via IM não recomendada em crianças (bula)."
   ],
@@ -107,7 +107,6 @@
    {
     "rotulo": "Estado de mal — ataque EV",
     "mgkg": 20,
-    "max_mg": 1500,
     "intervalo": "dose única, até 1 mg/kg/min (máx. 50 mg/min)",
     "via": "EV"
    }

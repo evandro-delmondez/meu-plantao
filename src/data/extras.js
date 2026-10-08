@@ -119,7 +119,7 @@ function pedEmerg(p,m){
    `Persistindo após 2 doses de benzodiazepínico — escolher um:`,
    `  Levetiracetam 60 mg/kg = ${f(c(60*p,4500))} mg EV em 15 min (máx. 4.500 mg).`,
    `  Ácido valproico 40 mg/kg = ${f(c(40*p,3000))} mg EV em 10 min (máx. 3.000 mg).`,
-   `  Fenitoína 20 mg/kg = ${f(c(20*p,1500))} mg EV em SF (até 1 mg/kg/min).`,
+   `  Fenitoína 20 mg/kg = ${f(20*p)} mg EV em SF (até 1 mg/kg/min, máx. 50 mg/min).`,
    `  Fenobarbital 20 mg/kg = ${f(20*p)} mg EV.`,
    `Glicemia capilar sempre.`]},
   {t:"Anafilaxia",c:"pink",src:["wao"],l:[

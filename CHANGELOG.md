@@ -1,5 +1,18 @@
 # Histórico de versões
 
+## 1.8.0 — 2026-10-08
+- **Cartão "Agora"** no topo de 7 emergências (convulsão, agitação psicomotora, anafilaxia, sepse, IAM, AVC e PCR): etapas com tempo, até 3 ações por etapa, campo de peso (não fica salvo) com doses em mg e mL já calculadas, aviso de dose máxima, referência ao lado para conferir, "detalhes" recolhidos e atalhos para PCR guiada, intubação, bomba de infusão e fluxos. Conferido por dois agentes independentes e por uma checagem final.
+- **Ficha do haloperidol** no novo grupo **Psiquiatria**.
+- **Correções em conteúdo que já estava no ar:**
+  - adrenalina em infusão na anafilaxia: 1 mg em 100 mL a 0,5–1 mL/kg/h (RCUK 2021) também na ficha e no preparo dos injetáveis; 250 mL fica para a bradicardia;
+  - glucagon no adulto: 1 mg EV, repetível ou seguido de 1–2 mg/h (repetir a cada 5 min é a orientação pediátrica);
+  - agitação: na intoxicação alcoólica, haloperidol isolado; diazepam só na abstinência alcoólica e na cocaína;
+  - convulsão e abstinência alcoólica: tiamina junto com a glicose, sem atrasá-la;
+  - convulsão: contraindicações do valproato EV;
+  - fenitoína pediátrica: sem o teto de 1.500 mg, que é da fosfenitoína;
+  - noradrenalina: dose inicial citada pela bula FDA.
+- Testes do cartão e das fichas por cima também no celular.
+
 ## 1.7.0 — 2026-10-05
 - **Páginas conectadas:** o remédio citado em condutas, protocolos, eletrólitos, calculadora e nas próprias fichas vira botão; a ficha abre por cima (no celular, de baixo para cima) sem perder a conduta. O botão voltar do celular e a tecla Esc fecham a ficha.
 - Abaixo da receita e do "Na unidade", a linha **Fichas** lista os remédios citados.

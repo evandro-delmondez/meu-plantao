@@ -70,7 +70,7 @@ ped:[
   D("Diazepam 5 mg/mL EV","0,2 mg/kg (máx. 10 mg)","mg",[0.2,0.2],5,{max:10}),
   D("Diazepam 5 mg/mL retal","0,5 mg/kg (máx. 20 mg)","mg",[0.5,0.5],5,{max:20}),
   D("Midazolam 5 mg/mL IM/intranasal","0,2 mg/kg (máx. 10 mg)","mg",[0.2,0.2],5,{max:10}),
-  D("Fenitoína 50 mg/mL","20 mg/kg, até 1 mg/kg/min (máx. 50 mg/min)","mg",[20,20],50,{max:1500,ratekg:1,rate:50}),
+  D("Fenitoína 50 mg/mL","20 mg/kg, até 1 mg/kg/min (máx. 50 mg/min)","mg",[20,20],50,{ratekg:1,rate:50}),
   D("SF 0,9% bolus","20 mL/kg","mL",[20,20],1,{vol:true}),
   D("Glicose 10%","2 a 4 mL/kg (hipoglicemia)","mL",[2,4],1,{vol:true}),
   D("Soro de manutenção (Holliday-Segar)","100/50/20 mL/kg","mL/dia",p=>p<=10?p*100:p<=20?1000+(p-10)*50:1500+(p-20)*20,1,{hs:true}),

@@ -67,8 +67,7 @@ const BASE = [
    "Ajustado: ibuprofeno 300mg 12/12h → 600mg 8/8h (dose anti-inflamatória).",
    "Ajustado: duração do antibiótico 10 → 7 dias (IDSA: 5–10 dias).",
    "Adicionado: SMX-TMP para suspeita de MRSA comunitário.",
-   "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares).",
-   "Corrigido (2026-10-08): diazepam só na abstinência alcoólica e na cocaína; na intoxicação alcoólica, haloperidol isolado (ABP 2019; Projeto BETA 2012; bula do haloperidol)."
+   "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
    "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10).",
@@ -278,7 +277,7 @@ const BASE = [
   "cid": "G41.9",
   "sin": "convulsao epilepsia crise tonico clonica status",
   "casa": "",
-  "unidade": "Passo 0 (0–5 min)\n1) Monitorização, O2, acesso venoso, decúbito lateral, aspiração se necessário.\n2) Glicemia capilar. Exames: Na, K, Ca, Mg, ureia, creatinina, gasometria, hemograma, ECG. TC de crânio e LCR conforme o caso.\n3) Se hipoglicemia: Glicose 50% 50 mL EV (ou Glicose 10% 150–200 mL); se etilismo/desnutrição, Tiamina 100mg EV junto, sem atrasar a glicose.\n\nPasso 1 (5 min) — benzodiazepínico\nDiazepam 10mg EV (adulto) | 0,15–0,2 mg/kg (criança, máx. 10mg). Pode repetir 1x após 5 min.\nOu Midazolam 10mg IM (> 40 kg) | 5mg IM (13–40 kg). Dose única.\n\nPasso 2 (20 min) — se persistir\nFenitoína 20 mg/kg EV em SF 0,9% (máx. 50 mg/min; monitorizar ECG e PA)\nOu Levetiracetam 60 mg/kg EV (máx. 4.500mg) em 15 min\nOu Ácido valproico 40 mg/kg EV (máx. 3.000mg) em 10 min\nOu Fenobarbital 20 mg/kg EV, até 50 mg/min (bula: menos de 60 mg/min); existem ampolas de 100 e de 200 mg/mL. Bula: contraindicado na gestação e na lactação, em recém-nascidos e em mulheres em idade fértil — pesar o risco na emergência\n* Obter via aérea avançada se necessário.\n\nPasso 3 (40 min) — refratário\nMidazolam 0,2 mg/kg ataque + 0,05–2 mg/kg/h\nOu Propofol 1–2 mg/kg ataque + 2–10 mg/kg/h\nOu Tiopental 3–5 mg/kg ataque + 3–5 mg/kg/h\n* IOT, EEG contínuo e UTI.",
+  "unidade": "Passo 0 (0–5 min)\n1) Monitorização, O2, acesso venoso, decúbito lateral, aspiração se necessário.\n2) Glicemia capilar. Exames: Na, K, Ca, Mg, ureia, creatinina, gasometria, hemograma, ECG. TC de crânio e LCR conforme o caso.\n3) Se hipoglicemia: Glicose 50% 50 mL EV (ou Glicose 10% 150–200 mL); se etilismo/desnutrição, Tiamina 100mg EV junto, sem atrasar a glicose.\n\nPasso 1 (5 min) — benzodiazepínico\nDiazepam 10mg EV (adulto) | 0,15–0,2 mg/kg (criança, máx. 10mg). Pode repetir 1x após 5 min.\nOu Midazolam 10mg IM (> 40 kg) | 5mg IM (13–40 kg). Dose única.\n\nPasso 2 (20 min) — se persistir\nFenitoína 20 mg/kg EV em SF 0,9% (máx. 50 mg/min; monitorizar ECG e PA)\nOu Levetiracetam 60 mg/kg EV (máx. 4.500mg) em 15 min\nOu Ácido valproico 40 mg/kg EV (máx. 3.000mg) em 10 min (não usar em hepatopatia, doença mitocondrial ou gestação)\nOu Fenobarbital 20 mg/kg EV, até 50 mg/min (bula: menos de 60 mg/min); existem ampolas de 100 e de 200 mg/mL. Bula: contraindicado na gestação e na lactação, em recém-nascidos e em mulheres em idade fértil — pesar o risco na emergência\n* Obter via aérea avançada se necessário.\n\nPasso 3 (40 min) — refratário\nMidazolam 0,2 mg/kg ataque + 0,05–2 mg/kg/h\nOu Propofol 1–2 mg/kg ataque + 2–10 mg/kg/h\nOu Tiopental 3–5 mg/kg ataque + 3–5 mg/kg/h\n* IOT, EEG contínuo e UTI.",
   "orient": "- Use a aba Calculadora para doses e volumes pelo peso.",
   "rev": [
    "Atualizado: fenobarbital até 50 mg/min (bula: < 60 mg/min), duas concentrações e contraindicações da bula; retirada a cetamina do estado de mal refratário (sem dose com fonte).",
@@ -289,6 +288,8 @@ const BASE = [
    "Corrigido: midazolam IM é dose única no ESETT/RAMPART; manutenção do propofol 2–10 mg/kg/h."
   ],
   "fontes": [
+   "Schabelman E, Kuo D. Glucose before thiamine for Wernicke encephalopathy: a literature review (J Emerg Med 2012;42:488).",
+   "Bula Anvisa do Depacon (valproato de sódio injetável): contraindicado em hepatopatia, doença mitocondrial (POLG), distúrbio do ciclo da ureia e porfiria.",
    "Brophy GM et al. Guidelines for the evaluation and management of status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3): fenobarbital 20 mg/kg.",
    "Bula da escetamina: Ketanest S (União Europeia) — indução 0,5–1 mg/kg EV; Ketamin (Cristália), bula Anvisa — potência cerca de 2 vezes a da cetamina racêmica.",
    "Bula do fenobarbital injetável (Fenocris, Cristália; Carbital 200 mg/mL), Anvisa.",
@@ -1229,6 +1230,7 @@ const BASE = [
   "unidade": "1) Abordagem verbal e ambiente seguro. Descartar hipoglicemia, hipóxia, intoxicação.\n2) Haloperidol 5 mg (1 amp) IM + Prometazina 50 mg (1 amp) IM (ambos somente IM)\n   Ou Midazolam 15mg IM (3 mL de 5 mg/mL; cuidado com depressão respiratória)\n   Intoxicação por álcool: Haloperidol 5 mg IM isolado; evitar benzodiazepínico. Com rebaixamento da consciência: não sedar.\n   Abstinência alcoólica ou intoxicação por cocaína: Diazepam 10mg EV lento (até 5 mg/min).\n3) Reavaliar em 30 min; pode repetir 1x.",
   "orient": "- Idosos: reduzir a dose do haloperidol (1–2,5mg).\n- Monitorar SatO2 e sinais vitais após a sedação.",
   "rev": [
+   "Corrigido (2026-10-08): diazepam só na abstinência alcoólica e na cocaína; na intoxicação alcoólica, haloperidol isolado (ABP 2019; Projeto BETA 2012; bula do haloperidol).",
    "Adicionado: descartar causas orgânicas, midazolam e dose em idosos.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
@@ -1236,7 +1238,8 @@ const BASE = [
    "Huf G et al. Haloperidol mais prometazina para agitação (TREC — BMJ 2007).",
    "Baldaçara L et al. Diretrizes brasileiras para manejo da agitação psicomotora (ABP/ABRAMEDE, Braz J Psychiatry 2019).",
    "Wilson MP et al. Project BETA Psychopharmacology Workgroup (West J Emerg Med 2012;13:26): haloperidol na intoxicação alcoólica; benzodiazepínico na abstinência.",
-   "Bula do Compaz (diazepam 5 mg/mL injetável), Cristália, Anvisa: EV lenta, 0,5–1 mL/min."
+   "Bula do Compaz (diazepam 5 mg/mL injetável), Cristália, Anvisa: EV lenta, 0,5–1 mL/min.",
+   "Bula do haloperidol solução injetável 5 mg/mL, Anvisa 09/12/2025: contraindicado no coma e na depressão do sistema nervoso central por álcool ou outros depressores."
   ]
  },
  {
@@ -1246,9 +1249,10 @@ const BASE = [
   "cid": "F10.3",
   "sin": "alcool abstinencia tremor delirium",
   "casa": "",
-  "unidade": "1) Tiamina 300mg IM/EV (antes de qualquer glicose).\n2) Hidratação venosa se desidratado; glicemia capilar; eletrólitos (Mg, K).\n3) Diazepam 10–20mg VO a cada 1h conforme sintomas (tremor, sudorese, agitação)\n   Ou Diazepam 10mg EV lento (máx. 5 mg/min) se não aceitar VO.\n   (Hepatopata grave ou idoso: Lorazepam 1–2mg VO.)\n4) Delirium tremens ou convulsão: internar.",
+  "unidade": "1) Tiamina 300mg IM/EV (antes ou junto com soro glicosado; na hipoglicemia, não atrasar a glicose).\n2) Hidratação venosa se desidratado; glicemia capilar; eletrólitos (Mg, K).\n3) Diazepam 10–20mg VO a cada 1h conforme sintomas (tremor, sudorese, agitação)\n   Ou Diazepam 10mg EV lento (máx. 5 mg/min) se não aceitar VO.\n   (Hepatopata grave ou idoso: Lorazepam 1–2mg VO.)\n4) Delirium tremens ou convulsão: internar.",
   "orient": "- Encaminhar ao CAPS AD.",
   "rev": [
+   "Corrigido (2026-10-08): tiamina antes ou junto com o soro glicosado, sem atrasar a glicose na hipoglicemia (Schabelman e Kuo, J Emerg Med 2012;42:488).",
    "Corrigido: 'Diazepam 1 amp EV até de 1/1h' → dose guiada por sintomas, VO preferencial.",
    "Adicionado: tiamina antes da glicose e lorazepam em hepatopatas."
   ],

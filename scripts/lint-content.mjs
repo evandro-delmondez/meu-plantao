@@ -13,10 +13,10 @@ const err = (m) => erros.push(m), warn = (m) => avisos.push(m);
 // carrega os arquivos de dados num contexto isolado
 const ctx = {};
 vm.createContext(ctx);
-const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js", "checklists.js", "calculadora.js", "infusao.js", "protocolos.js", "eletrolitos.js"]
+const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js", "checklists.js", "calculadora.js", "infusao.js", "protocolos.js", "eletrolitos.js", "agora.js"]
   .map((f) => readFileSync(join(root, "src/data", f), "utf8").replace(/^if \(typeof module.*$/gm, "")).join("\n");
-vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,INFUSAO,IOT_FONTES,PROTOCOLOS,ELETROLITOS,QT_RISCO,QT_FONTES};", ctx);
-const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES, PROTOCOLOS, ELETROLITOS, QT_RISCO, QT_FONTES } = ctx.__dados;
+vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,INFUSAO,IOT_FONTES,PROTOCOLOS,ELETROLITOS,QT_RISCO,QT_FONTES,AGORA};", ctx);
+const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES, PROTOCOLOS, ELETROLITOS, QT_RISCO, QT_FONTES, AGORA } = ctx.__dados;
 
 const CAPS = /[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{12,}/;          // trecho longo em maiúsculas
 const RUIM = /\bundefined\b|\bNaN\b|\[object Object\]/;
@@ -116,6 +116,33 @@ for (const e of ELETROLITOS || []) {
 }
 if ((QT_RISCO || []).length && !(QT_FONTES || []).length) err("QT: lista sem fontes");
 for (const q of QT_RISCO || []) { if (!q.nome || !Array.isArray(q.termos) || !q.termos.length || !q.risco) err(`QT "${q.nome}": campos incompletos`); verTexto(`QT "${q.nome}"`, q); }
+
+// ---------- cartão "Agora" ----------
+const UNS = new Set(["mg", "mcg", "g", "UI", "mL"]);
+for (const [id, a] of Object.entries(AGORA || {})) {
+  const onde = `cartão Agora "${id}"`;
+  if (!ids.has(id)) err(`${onde}: conduta não existe`);
+  if (!a.quando || !Array.isArray(a.etapas) || !a.etapas.length) err(`${onde}: sem "quando" ou etapas`);
+  if (!Array.isArray(a.fontes) || !a.fontes.length) err(`${onde}: sem fontes`);
+  for (const e of a.etapas || []) {
+    if (!e.t || !Array.isArray(e.acoes) || !e.acoes.length) err(`${onde}: etapa sem título ou ações`);
+    if ((e.acoes || []).length > 3) err(`${onde} → ${e.t}: mais de 3 ações (cartão enxuto; o resto vai em "mais")`);
+    for (const x of e.acoes || []) {
+      if (!x.txt) err(`${onde} → ${e.t}: ação sem texto`);
+      else if (x.txt.length > 160) err(`${onde} → ${e.t}: ação longa (${x.txt.length} caracteres; mova detalhes para "mais")`);
+      const d = x.dose; if (!d) continue;
+      if (!d.ref) err(`${onde} → ${x.txt}: dose sem "ref"`);
+      if (d.porKg != null && (!(d.porKg > 0) || !UNS.has(d.un))) err(`${onde} → ${x.txt}: porKg/un inválidos`);
+      if (d.conc != null && !(d.conc > 0)) err(`${onde} → ${x.txt}: conc inválida`);
+      if (d.max != null && !(d.max > 0)) err(`${onde} → ${x.txt}: max inválido`);
+    }
+  }
+  for (const s of a.atalhos || []) {
+    if (s.protocolo && !(PROTOCOLOS || []).some((p) => p.id === s.protocolo)) err(`${onde}: protocolo "${s.protocolo}" não existe`);
+    if (s.bic && !(INFUSAO || []).some((p) => p.id === s.bic)) err(`${onde}: bomba "${s.bic}" não existe`);
+  }
+  verTexto(onde, a);
+}
 
 // ---------- escores ----------
 for (const s of SC || []) {

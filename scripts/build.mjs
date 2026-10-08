@@ -13,7 +13,7 @@ const pkg = JSON.parse(r("package.json"));
 
 // ---------- dados ----------
 const stripModule = (t) => t.replace(/^if \(typeof module.*$/gm, "");
-const MED_ORDER = ["analgesicos", "gastro", "antibioticos", "corticoides", "vasoativos", "sedacao", "anticonvulsivantes", "antiarritmicos", "anticoagulantes", "eletrolitos-ev"];
+const MED_ORDER = ["analgesicos", "gastro", "antibioticos", "corticoides", "vasoativos", "sedacao", "anticonvulsivantes", "antiarritmicos", "anticoagulantes", "eletrolitos-ev", "psiquiatria"];
 const medDir = join(root, "src/data/medicacoes");
 const grpIdx = (f) => { const i = MED_ORDER.indexOf(f.replace(".json", "")); return i < 0 ? 99 : i; };
 const medFiles = readdirSync(medDir).filter((f) => f.endsWith(".json")).sort((a, b) => grpIdx(a) - grpIdx(b) || a.localeCompare(b));
@@ -29,6 +29,7 @@ const data = [
   stripModule(r("src/data/infusao.js")),
   stripModule(r("src/data/protocolos.js")),
   stripModule(r("src/data/eletrolitos.js")),
+  stripModule(r("src/data/agora.js")),
   "const MEDS=" + JSON.stringify(meds) + ";",
   `const APP_VERSION=${JSON.stringify(pkg.version)};`,
 ].join("\n");

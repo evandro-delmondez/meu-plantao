@@ -339,7 +339,7 @@ const PROTOCOLOS=[
    decisao:{pergunta:"Houve resposta à infusão de adrenalina?",opcoes:[{rot:"Sim",ir:"nobs"},{rot:"Não",ir:"n6"}]}},
   {id:"n6",t:"Refratária à infusão de adrenalina",itens:[
    "Acesso central e UTI. Segundo vasopressor conforme protocolo local: noradrenalina 0,05–0,5 mcg/kg/min EV, ou vasopressina (RCUK: bolus EV de 2 U, repetir se preciso, e considerar infusão).",
-   "Em uso de betabloqueador: glucagon 1 mg EV (criança 20–30 mcg/kg, máx. 1 mg), repetir a cada 5 min ou infusão de 1–2 mg/h no adulto. Vigiar vômito (proteger via aérea), hiperglicemia, hipocalemia.",
+   "Em uso de betabloqueador: glucagon no adulto 1 mg EV, que pode ser repetido ou seguido de infusão de 1–2 mg/h; na criança 20–30 mcg/kg (máx. 1 mg), repetir a cada 5 min se preciso. Vigiar vômito (proteger via aérea), hiperglicemia, hipocalemia.",
    "Hidrocortisona 200 mg EV no adulto (criança 4 mg/kg EV, máx. 200 mg), só depois da reanimação inicial; nunca no lugar da adrenalina.",
    "Bradicardia grave persistente apesar do volume: atropina 0,5 mg EV no adulto (RCUK), repetir se preciso até o teto de 3 mg (AHA); criança 10–20 mcg/kg EV (RCUK).",
    "Sulfato de magnésio não é broncodilatador de primeira linha aqui (vasodilata e piora a hipotensão).",

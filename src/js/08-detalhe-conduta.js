@@ -151,6 +151,7 @@ function renderDetail(){
     <p class="note dnote">Os textos são editáveis para este paciente. ${changed?"":"Nada vira padrão sem você pedir."}</p>
     <div id="sessBar" class="sessbar" ${changed?"":"hidden"}><span>Você alterou o texto desta prescrição.</span><button class="btn sm primary" id="sessSave">Salvar como meu padrão</button><button class="btn sm" id="sessUndo">Descartar alterações</button></div>
   </div>
+  ${renderAgora(it)}
   ${renderPac(it)}
   ${renderAlertas(it)}
   ${it.id==="dengue"?renderDengueCalc():""}
@@ -174,6 +175,7 @@ function renderDetail(){
   ["pcSexo","pcGest","pcPnc"].forEach(id=>$("#"+id).addEventListener("change",pcUp));
   if(it.id==="dengue") bindDengueCalc(it);
   bindChecklist(it);
+  bindAgora(it);
   growAll();
   $("#toEv").onclick=()=>{$("#evCond").value=it.id;evManual=false;setTab("evolucao")};
   linkMeds(el);

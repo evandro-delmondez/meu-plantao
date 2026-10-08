@@ -21,13 +21,15 @@ Depois: perfil por unidade (remédios disponíveis, diluições locais, telefone
 Atualizado em 2026-10-05 (versão 1.7.0). Decisões já tomadas: `docs/DECISOES.md`.
 - **Visão "copiloto" (aprovada em 2026-10-05), em fatias:**
   1. ~~páginas conectadas~~ (1.7.0);
-  2. cartão "Agora" + fluxo nas 18 emergências da sala vermelha, começando por hiponatremia grave sintomática, convulsão, sepse, anafilaxia e agitação psicomotora (conteúdo com conferência);
+  2. cartão "Agora": 1ª leva (convulsão, agitação, anafilaxia, sepse, IAM, AVC, PCR) em 1.8.0; faltam as outras 11 emergências da sala vermelha e a hiponatremia grave sintomática;
   3. confiança visível: ano da fonte, data e selo de conferência em cada item, página de Fontes e aviso de revisão vencida;
   4. modo transporte/pré-hospitalar (protocolos SAMU 192, sedação do agitado, checklist de transferência).
 - **Fichas que faltam** (aprovar escopo antes): anti-hipertensivos orais, furosemida, AAS e clopidogrel, isossorbida, broncodilatadores, aciclovir e oseltamivir, antifúngicos, albendazol/ivermectina/permetrina, cetirizina e hidroxizina, haloperidol, relaxantes musculares, sumatriptana, colchicina, tiamina, antídotos (naloxona, flumazenil, N-acetilcisteína), levotiroxina e metimazol, tópicos.
 - **Condições frequentes que faltam** (só com aprovação): odontalgia, olho vermelho e corpo estranho, paralisia facial, síncope, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e overdose de opioide, chikungunya e zika, varicela, COVID-19, pneumotórax, pericardite, fraturas e imobilização, cervicalgia, tendinite e bursite.
 - **Revisão geral das 98 prescrições**, por categoria, com conferência.
-- **Tenecteplase no AVC:** calculadora usa 0,25 mg/kg exato; bula usa faixas de peso. Usuário decide se padroniza.
+- **Decisões clínicas pendentes (divergências da conferência de 2026-10-08):** tenecteplase no AVC (0,25 mg/kg da AHA 2026 × faixas da bula; Anvisa aprovou Metalyse 25 mg para AVC em 12/2025); volume na anafilaxia; fenobarbital 15 × 20 mg/kg; repetir haloperidol em 30 min × 1 h; glucagon (RCUK × AAAAI); valproato em 10 × 60 min.
+- **Ficha do biperideno** (aprovada): rascunho → conferência.
+- **Noradrenalina no cartão da sepse:** mostrar a vazão inicial em mL/h por diluição (sugestão do conferente).
 - **Opcionais:** escore MACOCHA; sugestões não bloqueantes dos conferentes (Holbrook 2012, teto de glicose ISPAD, bula do Metalyse, PALS 2025).
 - **Endereço mais prático:** domínio próprio (registro.br, cerca de R$ 40/ano) ou meu-plantao.pages.dev. Adiado em 2026-09-27.
 

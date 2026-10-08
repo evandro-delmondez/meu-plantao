@@ -1,6 +1,6 @@
 {
   "name": "meu-plantao",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Meu Plantão — apoio à prescrição e condutas em plantão (UPA/PS), com fontes citadas.",
   "scripts": {
     "build": "node scripts/build.mjs",

@@ -25,7 +25,7 @@ Prioridade: diretriz mais recente de sociedade (AHA 2025, SBC, GINA, SSC, KDIGO�
 
 ## Fluxo obrigatório para conteúdo novo ou de alto risco
 1. Pedir aprovação do escopo ao usuário.
-2. Rascunho num **branch separado** (ex.: `fichas-c`), salvando incrementalmente — nada não conferido vai para a `main`.
+2. Rascunhos e relatórios de agentes em `.rascunhos/` (fora do git, não some como o scratchpad). Conteúdo num **branch separado** (ex.: `fichas-c`), salvando incrementalmente — nada não conferido vai para a `main`.
 3. `npm run verificar`.
 4. Conferência independente: skill `conferencia`.
 5. Aplicar as correções obrigatórias; divergências com duas fontes válidas → **informar o usuário**, não decidir sozinho.

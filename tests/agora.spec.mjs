@@ -1,12 +1,15 @@
 import { test, expect } from "@playwright/test";
 import { abrir, aba, RUIM, semRolagemLateral } from "./util.mjs";
 
+// no celular a lista some quando a conduta abre; abre direto pelo item
+const conduta = (page, id) => page.evaluate((i) => document.querySelector(`#list .item[data-id="${i}"]`).click(), id);
+
 const CARTOES = ["convulsao", "agitacao", "anafilaxia", "sepse", "sca", "avc", "pcr"];
 
 test("cartão Agora: aparece no topo das emergências, calcula pelo peso e não salva o peso", async ({ page }) => {
   const erros = await abrir(page); await aba(page, "prescricoes");
   for (const id of CARTOES) {
-    await page.click(`#list .item[data-id="${id}"] >> nth=0`);
+    await conduta(page, id);
     const card = page.locator("#detail .sec.agora");
     await expect(card, id).toBeVisible();
     // o cartão vem antes da receita
@@ -29,13 +32,13 @@ test("cartão Agora: aparece no topo das emergências, calcula pelo peso e não 
 
 test("cartão Agora: peso tem teto de dose máxima e os atalhos levam às ferramentas", async ({ page }) => {
   const erros = await abrir(page); await aba(page, "prescricoes");
-  await page.click('#list .item[data-id="pcr"] >> nth=0');
+  await conduta(page, "pcr");
   const atalho = page.locator("#detail .agatalhos [data-ag]").first();
   await expect(atalho).toBeVisible();
   await atalho.click();
   await expect(page.locator("#tab-prescricoes")).toBeHidden();
   await aba(page, "prescricoes");
-  await page.click('#list .item[data-id="avc"] >> nth=0');
+  await conduta(page, "avc");
   await page.fill("#agPeso", "150");
   await expect(page.locator("#detail .agcalc .teto").first()).toBeVisible();
   expect(erros).toEqual([]);

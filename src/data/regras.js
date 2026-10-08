@@ -131,6 +131,6 @@ const DILU=[
 {re:/sulfato de magnésio/i, nome:"Sulfato de magnésio", txt:"EV em 100 mL de SF/SG; na emergência, em 15–20 min."},
 {re:/gluconato de cálcio/i, nome:"Gluconato de cálcio 10%", txt:"EV lenta; na hipercalemia com alteração no ECG, 30 mL em 10 min."},
 {re:/glicose 50%/i, nome:"Glicose 50% (amp 10 mL = 5 g)", txt:"EV em veia calibrosa; pode diluir em AD."},
-{re:/adrenalina/i, nome:"Adrenalina 1 mg/mL", txt:"Anafilaxia: IM no vasto lateral, sem diluir. PCR: 1 mg EV/IO em bolus. Infusão: em SF/SG 250 mL em bomba."}
+{re:/adrenalina/i, nome:"Adrenalina 1 mg/mL", txt:"Anafilaxia: IM no vasto lateral, sem diluir. PCR: 1 mg EV/IO em bolus. Infusão na anafilaxia refratária: 1 mg em 100 mL de SF 0,9% (10 mcg/mL), 0,5–1 mL/kg/h em bomba (Resuscitation Council UK 2021)."}
 ];
 if (typeof module!=="undefined") module.exports={SRC,RULES,PNC,PNCTXT,ITEM_ALERTS,DILU};

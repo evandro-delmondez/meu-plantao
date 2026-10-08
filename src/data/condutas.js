@@ -67,7 +67,8 @@ const BASE = [
    "Ajustado: ibuprofeno 300mg 12/12h → 600mg 8/8h (dose anti-inflamatória).",
    "Ajustado: duração do antibiótico 10 → 7 dias (IDSA: 5–10 dias).",
    "Adicionado: SMX-TMP para suspeita de MRSA comunitário.",
-   "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
+   "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares).",
+   "Corrigido (2026-10-08): diazepam só na abstinência alcoólica e na cocaína; na intoxicação alcoólica, haloperidol isolado (ABP 2019; Projeto BETA 2012; bula do haloperidol)."
   ],
   "fontes": [
    "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10).",
@@ -277,13 +278,14 @@ const BASE = [
   "cid": "G41.9",
   "sin": "convulsao epilepsia crise tonico clonica status",
   "casa": "",
-  "unidade": "Passo 0 (0–5 min)\n1) Monitorização, O2, acesso venoso, decúbito lateral, aspiração se necessário.\n2) Glicemia capilar. Exames: Na, K, Ca, Mg, ureia, creatinina, gasometria, hemograma, ECG. TC de crânio e LCR conforme o caso.\n3) Se hipoglicemia: Tiamina 100mg EV (se etilismo/desnutrição) + Glicose 50% 50 mL EV (ou Glicose 10% 150–200 mL).\n\nPasso 1 (5 min) — benzodiazepínico\nDiazepam 10mg EV (adulto) | 0,15–0,2 mg/kg (criança, máx. 10mg). Pode repetir 1x após 5 min.\nOu Midazolam 10mg IM (> 40 kg) | 5mg IM (13–40 kg). Dose única.\n\nPasso 2 (20 min) — se persistir\nFenitoína 20 mg/kg EV em SF 0,9% (máx. 50 mg/min; monitorizar ECG e PA)\nOu Levetiracetam 60 mg/kg EV (máx. 4.500mg) em 15 min\nOu Ácido valproico 40 mg/kg EV (máx. 3.000mg) em 10 min\nOu Fenobarbital 20 mg/kg EV, até 50 mg/min (bula: menos de 60 mg/min); existem ampolas de 100 e de 200 mg/mL. Bula: contraindicado na gestação e na lactação, em recém-nascidos e em mulheres em idade fértil — pesar o risco na emergência\n* Obter via aérea avançada se necessário.\n\nPasso 3 (40 min) — refratário\nMidazolam 0,2 mg/kg ataque + 0,05–2 mg/kg/h\nOu Propofol 1–2 mg/kg ataque + 2–10 mg/kg/h\nOu Tiopental 3–5 mg/kg ataque + 3–5 mg/kg/h\n* IOT, EEG contínuo e UTI.",
+  "unidade": "Passo 0 (0–5 min)\n1) Monitorização, O2, acesso venoso, decúbito lateral, aspiração se necessário.\n2) Glicemia capilar. Exames: Na, K, Ca, Mg, ureia, creatinina, gasometria, hemograma, ECG. TC de crânio e LCR conforme o caso.\n3) Se hipoglicemia: Glicose 50% 50 mL EV (ou Glicose 10% 150–200 mL); se etilismo/desnutrição, Tiamina 100mg EV junto, sem atrasar a glicose.\n\nPasso 1 (5 min) — benzodiazepínico\nDiazepam 10mg EV (adulto) | 0,15–0,2 mg/kg (criança, máx. 10mg). Pode repetir 1x após 5 min.\nOu Midazolam 10mg IM (> 40 kg) | 5mg IM (13–40 kg). Dose única.\n\nPasso 2 (20 min) — se persistir\nFenitoína 20 mg/kg EV em SF 0,9% (máx. 50 mg/min; monitorizar ECG e PA)\nOu Levetiracetam 60 mg/kg EV (máx. 4.500mg) em 15 min\nOu Ácido valproico 40 mg/kg EV (máx. 3.000mg) em 10 min\nOu Fenobarbital 20 mg/kg EV, até 50 mg/min (bula: menos de 60 mg/min); existem ampolas de 100 e de 200 mg/mL. Bula: contraindicado na gestação e na lactação, em recém-nascidos e em mulheres em idade fértil — pesar o risco na emergência\n* Obter via aérea avançada se necessário.\n\nPasso 3 (40 min) — refratário\nMidazolam 0,2 mg/kg ataque + 0,05–2 mg/kg/h\nOu Propofol 1–2 mg/kg ataque + 2–10 mg/kg/h\nOu Tiopental 3–5 mg/kg ataque + 3–5 mg/kg/h\n* IOT, EEG contínuo e UTI.",
   "orient": "- Use a aba Calculadora para doses e volumes pelo peso.",
   "rev": [
    "Atualizado: fenobarbital até 50 mg/min (bula: < 60 mg/min), duas concentrações e contraindicações da bula; retirada a cetamina do estado de mal refratário (sem dose com fonte).",
    "Ajustado: tempos seguem a diretriz da AES (5/20/40 min).",
    "Adicionado: levetiracetam e valproato como opções equivalentes no passo 2.",
    "Adicionado: tiamina antes da glicose.",
+   "Corrigido (2026-10-08): tiamina junto com a glicose, sem atrasá-la, como na hipoglicemia (Schabelman e Kuo, J Emerg Med 2012;42:488).",
    "Corrigido: midazolam IM é dose única no ESETT/RAMPART; manutenção do propofol 2–10 mg/kg/h."
   ],
   "fontes": [
@@ -402,9 +404,10 @@ const BASE = [
   "cid": "T78.2",
   "sin": "choque anafilatico adrenalina edema glote",
   "casa": "Uso oral (alta após observação)\n1) Loratadina 10mg --------------------------- 5 cp\nTomar 1 cp VO 1x ao dia, se coceira ou urticária.",
-  "unidade": "1) Adrenalina 1 mg/mL: 0,01 mg/kg IM no vasto lateral da coxa (máx. 0,5 mg = 0,5 mL no adulto; 0,3 mg na criança).\n   Repetir a cada 5 min se não houver melhora.\n2) Deitado com as pernas elevadas (sentado se a falta de ar piorar deitado; gestante em decúbito lateral esquerdo). Não levantar bruscamente.\n3) O2 em máscara com reservatório 10–15 L/min.\n4) SF 0,9% 20 mL/kg EV rápido se hipotensão.\n5) Broncoespasmo persistente: Salbutamol 4–8 jatos ou nebulização.\n6) Refratária (sem melhora após 2 doses IM): adrenalina em infusão — 1 mg em 100 mL de SF 0,9% (10 mcg/mL) a 0,5–1 mL/kg/h, em via exclusiva (pode ser periférica), e UTI. Manter a adrenalina IM a cada 5 min até a infusão começar.\n7) Em uso de betabloqueador e sem resposta: glucagon 1 mg EV, repetir a cada 5 min se preciso.\n8) Depois de estabilizado (não substituem a adrenalina):\n   - Anti-histamínico só para sintomas de pele: loratadina 10 mg VO; sem via oral, prometazina 25–50 mg IM profunda (máx. 100 mg/dia).\n   - Corticoide não é rotina: considerar se asma, broncoespasmo persistente ou reação refratária — hidrocortisona 200 mg EV ou metilprednisolona 1–2 mg/kg EV (máx. 125 mg).",
+  "unidade": "1) Adrenalina 1 mg/mL: 0,01 mg/kg IM no vasto lateral da coxa (máx. 0,5 mg = 0,5 mL no adulto; 0,3 mg na criança).\n   Repetir a cada 5 min se não houver melhora.\n2) Deitado com as pernas elevadas (sentado se a falta de ar piorar deitado; gestante em decúbito lateral esquerdo). Não levantar bruscamente.\n3) O2 em máscara com reservatório 10–15 L/min.\n4) SF 0,9% 20 mL/kg EV rápido se hipotensão.\n5) Broncoespasmo persistente: Salbutamol 4–8 jatos ou nebulização.\n6) Refratária (sem melhora após 2 doses IM): adrenalina em infusão — 1 mg em 100 mL de SF 0,9% (10 mcg/mL) a 0,5–1 mL/kg/h, em via exclusiva (pode ser periférica), e UTI. Manter a adrenalina IM a cada 5 min até a infusão começar.\n7) Em uso de betabloqueador e sem resposta: glucagon 1 mg EV; pode repetir ou seguir com infusão de 1–2 mg/h.\n8) Depois de estabilizado (não substituem a adrenalina):\n   - Anti-histamínico só para sintomas de pele: loratadina 10 mg VO; sem via oral, prometazina 25–50 mg IM profunda (máx. 100 mg/dia).\n   - Corticoide não é rotina: considerar se asma, broncoespasmo persistente ou reação refratária — hidrocortisona 200 mg EV ou metilprednisolona 1–2 mg/kg EV (máx. 125 mg).",
   "orient": "- Observação após a melhora: mínimo de 6 h. Alta em 2 h só se todos: adrenalina dada até 30 min do início, resposta em 5–10 min, resolução completa, adrenalina autoinjetável em mãos com treino e supervisão após a alta (RCUK). 12 h se reação grave (mais de 2 doses), asma grave, possível absorção continuada do alérgeno, chegada tarde da noite ou dificuldade de voltar à emergência.\n- Antes da alta: levantar e checar tontura ou queda da PA ao ficar em pé.\n- Evitar o agente causador; encaminhar ao alergista; adrenalina autoinjetável, se disponível.\n- Retorno imediato se falta de ar, rouquidão, inchaço na boca ou garganta, tontura ou desmaio.",
   "rev": [
+   "Corrigido (2026-10-08): glucagon no adulto 1 mg EV, repetível ou seguido de 1–2 mg/h; repetir a cada 5 min é a orientação pediátrica (RCUK 2021).",
    "Atualizado (RCUK 2021, WAO 2020, AAAAI 2023): corticoide deixa de ser rotina; observação estratificada em 2, 6 ou 12 h; infusão periférica de adrenalina na refratária; glucagon no betabloqueado; prednisona na alta retirada; prometazina 25–50 mg (máx. 100 mg/dia).",
    "Adicionado: expansão volêmica, posicionamento, broncodilatador e infusão de adrenalina na refratária.",
    "Simplificado: corticoide em dose única EV em vez da diluição para 6/6h.",
@@ -1223,7 +1226,7 @@ const BASE = [
   "cid": "R45.1",
   "sin": "agitado agressivo surto contencao",
   "casa": "",
-  "unidade": "1) Abordagem verbal e ambiente seguro. Descartar hipoglicemia, hipóxia, intoxicação.\n2) Haloperidol 5 mg (1 amp) IM + Prometazina 50 mg (1 amp) IM (ambos somente IM)\n   Ou Midazolam 15mg IM (3 mL de 5 mg/mL; cuidado com depressão respiratória)\n   Ou (agitação por intoxicação ou abstinência) Diazepam 10mg EV lento.\n3) Reavaliar em 30 min; pode repetir 1x.",
+  "unidade": "1) Abordagem verbal e ambiente seguro. Descartar hipoglicemia, hipóxia, intoxicação.\n2) Haloperidol 5 mg (1 amp) IM + Prometazina 50 mg (1 amp) IM (ambos somente IM)\n   Ou Midazolam 15mg IM (3 mL de 5 mg/mL; cuidado com depressão respiratória)\n   Intoxicação por álcool: Haloperidol 5 mg IM isolado; evitar benzodiazepínico. Com rebaixamento da consciência: não sedar.\n   Abstinência alcoólica ou intoxicação por cocaína: Diazepam 10mg EV lento (até 5 mg/min).\n3) Reavaliar em 30 min; pode repetir 1x.",
   "orient": "- Idosos: reduzir a dose do haloperidol (1–2,5mg).\n- Monitorar SatO2 e sinais vitais após a sedação.",
   "rev": [
    "Adicionado: descartar causas orgânicas, midazolam e dose em idosos.",
@@ -1231,7 +1234,9 @@ const BASE = [
   ],
   "fontes": [
    "Huf G et al. Haloperidol mais prometazina para agitação (TREC — BMJ 2007).",
-   "Baldaçara L et al. Diretrizes brasileiras para manejo da agitação psicomotora (ABP/ABRAMEDE, Braz J Psychiatry 2019)."
+   "Baldaçara L et al. Diretrizes brasileiras para manejo da agitação psicomotora (ABP/ABRAMEDE, Braz J Psychiatry 2019).",
+   "Wilson MP et al. Project BETA Psychopharmacology Workgroup (West J Emerg Med 2012;13:26): haloperidol na intoxicação alcoólica; benzodiazepínico na abstinência.",
+   "Bula do Compaz (diazepam 5 mg/mL injetável), Cristália, Anvisa: EV lenta, 0,5–1 mL/min."
   ]
  },
  {

@@ -39,3 +39,7 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Pré-hospitalar "às vezes": incluir protocolos SAMU 192 e modo transporte (agitação, transferência) depois da sala vermelha.
 - Cartão "Agora", 1ª leva (2026-10-05): convulsão/estado de mal, agitação psicomotora (nova, com ficha de haloperidol), sepse, anafilaxia, IAM, AVC e PCR. Hiponatremia grave fica para depois.
 - Doses no cartão: campo de peso no topo (só memória), mg e mL já calculados, com a dose de referência ao lado para conferir.
+- Cartão enxuto (2026-10-05): até 3 ações por etapa, frases curtas com a dose; exceções e observações em "detalhes" (o lint barra mais de 3 ações ou ação com mais de 160 caracteres).
+- Ficha do biperideno: criar (distonia aguda por haloperidol/antieméticos) — 2026-10-05.
+- Grupo de fichas "Psiquiatria" (haloperidol, depois biperideno e outros) — 2026-10-05.
+- Rascunhos e relatórios de agentes ficam em `.rascunhos/` no projeto (fora do git); o scratchpad temporário foi apagado entre sessões em 2026-10-08 e levou os relatórios completos.

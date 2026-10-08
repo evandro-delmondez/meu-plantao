@@ -30,8 +30,9 @@ function linkMeds(root,atual){
       if(id===atual||ja.has(id)) continue; ja.add(id);
       frag.append(txt.slice(pos,m.index));
       const b=document.createElement("button"); b.type="button"; b.className="mlink"; b.dataset.med=id; b.title="Abrir a ficha";
-      b.textContent=txt.slice(m.index,m.index+m[0].length); frag.append(b);
-      pos=m.index+m[0].length; mudou=true;
+      let fim=m.index+m[0].length; if(txt[fim]==="%") fim++;   // "glicose 50%" inteiro no botão
+      b.textContent=txt.slice(m.index,fim); frag.append(b);
+      pos=fim; mudou=true;
     }
     if(mudou){frag.append(txt.slice(pos)); n.replaceWith(frag)}
   }

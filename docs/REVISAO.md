@@ -11,6 +11,7 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 5. Atualizar a data acima para daqui a 3 meses.
 
 ## Histórico
+- 2026-10-08 (v1.8.0, branch agora-1) — cartão "Agora" (convulsão, agitação, anafilaxia, sepse, IAM, AVC, PCR) e ficha do haloperidol conferidos por dois agentes independentes (contas com 50, 70 e 120 kg corretas; fontes de 2026 confirmadas); 9 correções obrigatórias, 6 delas em conteúdo já publicado (adrenalina em infusão 1 mg/100 mL, glucagon no adulto, diazepam na agitação, tiamina na convulsão, prasugrel, noradrenalina pela bula FDA). Resumo em `.rascunhos/conferencia-agora-resumo.md` (relatórios completos perdidos com o scratchpad). Divergências deixadas ao médico: tenecteplase no AVC (0,25 mg/kg × faixas da bula), volume na anafilaxia (20 mL/kg × 500–1.000 mL), fenobarbital 15 × 20 mg/kg, repetição do haloperidol 30 min × 1 h, metade da tenecteplase ≥ 75 anos no IAM (ESC, fora da bula), clopidogrel corte em 75 anos. A rechecar: teto de 1.500 mg da fenitoína na calculadora pediátrica e em extras.js (o conferente disse que esse teto é da fosfenitoína).
 - 2026-09-28 (v1.6.0) — 16 fichas da sala vermelha (parte B) conferidas por agente independente; 8 correções aplicadas.
 - 2026-09-27 (v1.5.0) — 17 fichas da sala vermelha, escetamina, fenobarbital e rocurônio pediátrico conferidos por agente independente; 7 correções obrigatórias aplicadas.
 - 2026-09-26 (v1.4.3) — hiponatremia e hipernatremia conferidas por agente independente; números corretos, citações ajustadas.

@@ -127,7 +127,7 @@ function renderFichas(it){
 function renderDilu(it){
   const t=cur(it,"unidade"); if(!t.trim()) return "";
   const hits=DILU.filter(d=>d.re.test(t)); if(!hits.length) return "";
-  return `<div class="sec dilu"><div class="sec-h"><h3>Preparo dos injetáveis (IM e EV)</h3></div><ul>${hits.map(d=>`<li><b>${esc(d.nome)}:</b> ${esc(d.txt)}</li>`).join("")}</ul><p class="note" style="padding:0 16px 12px">Fontes: ${linkify(DILFONTE)}; guias farmacêuticos do Hospital São Camilo e Sírio-Libanês; bulas. Confira a apresentação disponível no seu serviço.</p></div>`;
+  return `<details class="sec dilu"><summary class="sec-h"><h3>Preparo dos injetáveis (IM e EV)</h3></summary><ul>${hits.map(d=>`<li><b>${esc(d.nome)}:</b> ${esc(d.txt)}</li>`).join("")}</ul><p class="note" style="padding:0 16px 12px">Fontes: ${linkify(DILFONTE)}; guias farmacêuticos do Hospital São Camilo e Sírio-Libanês; bulas. Confira a apresentação disponível no seu serviço.</p></details>`;
 }
 function fullText(it){return [cur(it,"casa"),cur(it,"unidade")?("Na unidade:\n"+cur(it,"unidade")):"",cur(it,"orient")?("Orientações:\n"+cur(it,"orient")):""].filter(Boolean).join("\n\n")}
 function renderDetail(){
@@ -154,6 +154,7 @@ function renderDetail(){
     <p class="note dnote">Os textos são editáveis para este paciente. ${changed?"":"Nada vira padrão sem você pedir."}</p>
     <div id="sessBar" class="sessbar" ${changed?"":"hidden"}><span>Você alterou o texto desta prescrição.</span><button class="btn sm primary" id="sessSave">Salvar como meu padrão</button><button class="btn sm" id="sessUndo">Descartar alterações</button></div>
   </div>
+  <nav class="atalhosconduta" aria-label="Ir para">${[["agora","Agora"],["alarmetopo","Alarmes"],["casa","Receita"],["chk","Checklist"],["atend","Fechar"],["altapac","Alta"]].map(([c,r])=>`<button class="chip" data-ir="${c}">${r}</button>`).join("")}</nav>
   ${renderAgora(it)}
   ${renderAlarme(it)}
   ${renderPac(it)}
@@ -169,8 +170,8 @@ function renderDetail(){
   ${renderFichas(it)}
   ${renderAlta(it)}
   ${it.evid?`<div class="sec evid"><div class="sec-h"><h3>Nível de evidência</h3></div><p>${esc(it.evid)}</p></div>`:""}
-  ${(it.fontes&&it.fontes.length)?`<div class="sec fontes"><div class="sec-h"><h3>Fontes</h3></div><ol>${it.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></div>`:""}
-  ${(!it.custom&&!isNew(it)&&it.rev&&it.rev.length)?`<div class="sec rev"><div class="sec-h"><h3>O que mudou em relação ao seu modelo</h3></div><ul>${it.rev.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>`:""}`;
+  ${(it.fontes&&it.fontes.length)?`<details class="sec fontes" id="secFontes"><summary class="sec-h"><h3>Fontes</h3></summary><ol>${it.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details>`:""}
+  ${(!it.custom&&!isNew(it)&&it.rev&&it.rev.length)?`<details class="sec rev"><summary class="sec-h"><h3>O que mudou em relação ao seu modelo</h3></summary><ul>${it.rev.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></details>`:""}`;
   el.querySelectorAll("textarea.rx-edit").forEach(ta=>{grow(ta);ta.addEventListener("input",()=>{grow(ta);sess[it.id]=sess[it.id]||{};sess[it.id][ta.dataset.f]=ta.value;$("#sessBar").hidden=false;})});
   el.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>{const f=b.dataset.copy;const t=cur(it,f);copy(f==="unidade"?"Na unidade:\n"+t:f==="orient"?"Orientações:\n"+t:t,b)});
   el.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{const g=b.dataset.perfil;const p=new Set(ui.perfil||[]);const liga=!perfisAtivos().has(g);liga?p.add(g):p.delete(g);ui.perfil=[...p];if(g==="pnc")pac.pnc=liga;if(g==="gest")pac.gest=liga&&pac.gest;saveUI();renderDetail()});
@@ -184,6 +185,9 @@ function renderDetail(){
   bindAgora(it);
   bindAtend(it);
   bindRxMontar(it);
+  // atalhos: só aparecem as seções que existem nesta conduta
+  $$("#detail .atalhosconduta [data-ir]").forEach(b=>{const alvo=$(`#detail .sec.${b.dataset.ir}`);if(!alvo){b.remove();return}
+    b.onclick=()=>{if(alvo.tagName==="DETAILS")alvo.open=true;alvo.scrollIntoView({block:"start"})}});
   bindAltaPac(it);
   growAll();
   $("#toEv").onclick=()=>{$("#evCond").value=it.id;evManual=false;setTab("evolucao")};

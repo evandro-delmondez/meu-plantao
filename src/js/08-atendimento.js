@@ -46,7 +46,7 @@ function renderAtend(it){
   return `<div class="sec atend"><div class="sec-h"><h3>Fechar o atendimento</h3><button class="btn sm" id="atdNovo" title="Limpa os dados deste paciente">Novo paciente</button></div>
   <div class="atdbody">
     <label class="f atdfull">Queixa e história<textarea class="inp" data-atd="hma" rows="2" placeholder="ex.: dor de garganta há 2 dias, sem tosse">${esc(atd.hma)}</textarea></label>
-    <div class="atdgrid">${inp("alergia","Alergias","","nega")}${inp("ap","Antecedentes","","nega")}${inp("muc","Medicamentos em uso","","nega")}</div>
+    <div class="atdgrid">${inp("alergia","Alergias","","ex.: dipirona; ou escreva nega")}${inp("ap","Antecedentes","","ex.: hipertensão, diabetes")}${inp("muc","Medicamentos em uso","","ex.: losartana 50 mg")}</div>
     <div class="atdsv">${inp("pa","PA","","120x80")}${inp("fc","FC")}${inp("fr","FR")}${inp("sat","Sat O2")}${inp("tax","Temp.")}${inp("hgt","Glicemia")}</div>
     <label class="f">Exame físico<select class="inp" data-atd="exame">${model.exames.map(e=>`<option value="${esc(e.id)}" ${e.id===ex?"selected":""}>${esc(e.nome)}</option>`).join("")}</select></label>
     <div class="atdck">${ck("casa","Receita")}${ck("unid","Conduta na unidade")}${ck("ori","Orientações")}<label class="f">Destino<select class="inp" data-atd="destino">${[["","— não incluir —"],["alta","Alta com orientações"],["observacao","Observação"],["internacao","Internação"],["transferencia","Transferência"]].map(([v,r])=>`<option value="${v}" ${(atd.destino??atdDestinoPadrao(it))===v?"selected":""}>${r}</option>`).join("")}</select></label></div>

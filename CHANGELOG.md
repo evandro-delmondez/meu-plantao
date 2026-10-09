@@ -1,5 +1,15 @@
 # Histórico de versões
 
+## 1.11.0 — 2026-10-09
+Correções da simulação de plantão no celular (10 casos da porta).
+- **Receita com escolha por toque:** acima da receita, chips para escolher entre as alternativas ("Ou"), ligar os blocos opcionais ("Se alergia a penicilina", "Se falha…") e tirar itens. Só o escolhido vai para a receita, a evolução e a cópia, renumerado; notas para o médico ("Criança", "Gestante", "CID") nunca saem na receita. Os alertas (QT, alergia) seguem a receita escolhida.
+- **"+ Paciente"** no topo de todas as abas (dois toques): limpa o paciente em todas as abas — conduta, checklist, escolhas da receita, evolução, atestado, escores, calculadoras, pediatria, bomba, feridas e busca.
+- **Evolução que não contradiz o paciente:** "Nega…" só a partir do checklist marcado com "−"; campo vazio sai como "não informado"; com temperatura de febre o exame diz "febril" e com FR > 20, "taquipneico"; **destino** (alta, observação, internação, transferência) no lugar de "Paciente liberado", sem padrão nas emergências.
+- **Alergia à penicilina num só estado:** marcar no checklist, em Dados do paciente ou no chip de alerta liga os três e entra na evolução.
+- **Busca** por início de palavra ("dente" não acha "acidente"), siglas como palavra inteira (SCA, ITU), sem "de/do/da", com as páginas "Por queixa" e os nomes comerciais.
+- **Pesos começam vazios** (calculadora e Pediatria) e a calculadora avisa quando o peso não combina com o modo adulto ou pediátrico, em vez de trocar sozinha.
+- **Navegação na conduta:** barra fixa de atalhos (Agora, Alarmes, Receita, Checklist, Fechar, Alta); preparo dos injetáveis, fontes e "o que mudou" recolhidos; alvos de toque maiores no celular.
+
 ## 1.10.1 — 2026-10-09
 - **Correções de segurança (auditoria independente, achados críticos):**
   - noradrenalina: a bomba de infusão calcula em mcg/kg/min e agora avisa quando a dose sai de 0,05–2 mcg/kg/min, mostra o total em mcg/min ao lado e a tabela usa pontos clínicos (0,05 a 1); o cartão da sepse e a ficha trazem a conversão de mcg/min para mcg/kg/min. Antes, digitar uma dose em mcg/min na bomba dava vazão cerca de 70 vezes maior sem aviso;

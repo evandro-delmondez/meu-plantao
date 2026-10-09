@@ -86,7 +86,7 @@
   "apresentacoes": [
    "Lactato de biperideno, ampola 1 mL com 5 mg (5 mg/mL), IM ou EV (Cinetol); uso restrito a estabelecimentos de saúde",
    "Cloridrato de biperideno, comprimido 2 mg (Akineton, Cinetol, Propark)",
-   "Cloridrato de biperideno, comprimido de liberação retardada 4 mg (Akineton): não partir nem mastigar; não serve para a crise aguda"
+   "Cloridrato de biperideno, comprimido de liberação retardada 4 mg (Akineton): não partir, abrir nem mastigar; só depois de ajustar a dose com o comprimido de 2 mg (bula do Akineton)"
   ],
   "marcas": [
    "Akineton",
@@ -104,22 +104,22 @@
    "Suspender o remédio causador (Harrison 22ª ed., cap. 447). Melhora rápida após o anticolinérgico EV confirma a causa medicamentosa (Harrison 22ª ed., cap. 470).",
    "Na acatisia por antipsicótico, a dose EV agiu em 1–2 min (pico em cerca de 10 min) e a IM em cerca de 30 min (pico em cerca de 50 min) (estudo de Hirose, citado na bula do Cinetol).",
    "Se os sintomas sumirem durante a injeção EV, parar a injeção ali (ficha técnica espanhola; bula sul-africana).",
-   "Distonia generalizada e persistente, com laringe ou cordas vocais, pode obstruir a via aérea e causar rabdomiólise: proteger a via aérea e internar em UTI (Harrison 22ª ed., cap. 447).",
-   "Depois da crise, se o antipsicótico continuar: 1–4 mg VO 1 a 4 vezes ao dia, conforme a intensidade (bula). OMS: começar com 1 mg 2 vezes ao dia, até 3–12 mg/dia, por curto prazo, depois de tentar reduzir ou trocar o antipsicótico (mhGAP 2.0). O HC-FMUSP orienta manter anticolinérgico VO por cerca de 2 dias após a dose parenteral, porque o causador age por mais tempo (18ª ed., cap. 101).",
-   "Sem biperideno: difenidramina 25–50 mg EV (criança 0,5–1 mg/kg) trata distonia aguda e acatisia; benzodiazepínico serve de adjuvante (HC-FMUSP 18ª ed., cap. 101; Harrison 22ª ed., cap. 447). No Brasil há difenidramina 50 mg/mL injetável de uso hospitalar (Difenidrin, CMED), mas a bula dela não traz essa indicação.",
-   "Prevenção na agitação: associar prometazina 25–50 mg IM ao haloperidol IM reduziu a distonia aguda (TREC-Rio; HC-FMUSP 18ª ed., cap. 15). Não há fonte para usar prometazina como tratamento da distonia já instalada.",
+   "Raramente a distonia aguda por remédio atinge a via aérea (laringe), que deve ser protegida (Harrison 22ª ed., cap. 447). Na distonia com laringoespasmo, prefira o anticolinérgico EV (APA 2020).",
+   "Depois da crise, se o antipsicótico continuar: 1–4 mg VO 1 a 4 vezes ao dia, conforme a intensidade (bula). OMS: começar com 1 mg 2 vezes ao dia, até 3–12 mg/dia, por curto prazo, depois de tentar reduzir ou trocar o antipsicótico (mhGAP 2.0). O HC-FMUSP orienta manter a difenidramina ou a benzatropina VO por cerca de 2 dias após a dose parenteral, porque o causador age por mais tempo (18ª ed., cap. 101); a APA 2020 também admite manter um anticolinérgico VO para evitar recaída até reduzir ou trocar o antipsicótico.",
+   "Sem biperideno: difenidramina 25–50 mg EV ou IM profunda; criança a partir de 2 anos, 0,5–1 mg/kg (HC-FMUSP 18ª ed., cap. 101; dose dentro da faixa da bula do Difenidrin). Uso fora da bula, apoiado pela APA 2020 e pelo Harrison 22ª ed., cap. 447. Contraindicada abaixo de 2 anos, em recém-nascido e prematuro e na amamentação (bula do Difenidrin); no idoso, evitar (Beers 2023). Benzodiazepínico serve de adjuvante (HC-FMUSP). No Brasil: Difenidrin 50 mg/mL, ampola em embalagem hospitalar (CMED).",
+   "Prevenção na agitação: associar prometazina 25–50 mg IM ao haloperidol IM reduziu a distonia aguda (TREC-Rio; HC-FMUSP 18ª ed., cap. 15). As fontes consultadas não indicam a prometazina para tratar a distonia já instalada.",
    "Parkinsonismo grave, fase aguda: 10–20 mg/dia IM ou EV lenta, divididos ao longo do dia. Via oral: começar com 1 mg 2 vezes ao dia; manutenção 3–16 mg/dia; máximo 16 mg/dia (bula)."
   ],
   "pediatria": [
    "Reação extrapiramidal aguda por remédio (bula do Cinetol injetável): menor de 1 ano, no máximo 1 mg por dose; até 6 anos, no máximo 2 mg; até 10 anos, no máximo 3 mg; pode repetir após 30 min.",
-   "IM: 0,04 mg/kg/dose; repetir a cada 30 min se preciso, até 4 doses ao dia (bula do Cinetol, citando o Micromedex). Na calculadora, teto de 3 mg (maior dose infantil da bula); confira também o teto da idade.",
+   "IM: 0,04 mg/kg/dose; repetir a cada 30 min se preciso, até 4 doses ao dia (bula do Cinetol, citando o Micromedex). Com 0,04 mg/kg, o teto da idade só seria atingido acima de 25 kg (menor de 1 ano), 50 kg (até 6 anos) ou 75 kg (até 10 anos). Na calculadora, o teto é 3 mg, o máximo da bula até 10 anos; acima de 10 anos a bula não fixa teto pediátrico (o Pediamécum cita máximo de 5 mg). Medir em seringa de 1 mL (0,04 mg/kg = 0,008 mL/kg da ampola de 5 mg/mL).",
    "EV lenta: 1–2 mg revertem rapidamente a postura distônica (bula do Cinetol, citando o Micromedex).",
-   "Via oral, 3 a 15 anos: 1–2 mg/dia (meio a 1 comprimido de 2 mg, 1 a 3 vezes ao dia). O comprimido de 4 mg de liberação retardada não é recomendado em crianças (bula).",
+   "Via oral, 3 a 15 anos: as bulas brasileiras falam em meio a 1 comprimido de 2 mg, 1 a 3 vezes ao dia, resumido como 1–2 mg por dia; a bula sul-africana e o Pediamécum (AEP) usam 1–2 mg por tomada, 1 a 3 vezes ao dia. Comece pela menor dose. O comprimido de 4 mg de liberação retardada não é recomendado em crianças (bula do Akineton).",
    "Na criança, a distonia aguda costuma ser generalizada (Harrison 22ª ed., cap. 447). A ficha técnica espanhola não estabelece uso abaixo de 18 anos; a bula brasileira traz uso pediátrico, com estudos limitados a tratamentos curtos de distonia por remédio."
   ],
   "ped_calc": [
    {
-    "rotulo": "Reação extrapiramidal aguda — IM",
+    "rotulo": "Reação extrapiramidal aguda — IM (teto da bula por dose: < 1 ano 1 mg; até 6 anos 2 mg; até 10 anos 3 mg)",
     "mgkg": 0.04,
     "max_mg": 3,
     "intervalo": "pode repetir a cada 30 min, até 4 doses/dia",
@@ -128,7 +128,7 @@
   ],
   "diluicao": [
    "IM: 0,5–1 mL da ampola de 5 mg/mL (bula).",
-   "EV: injeção lenta. As bulas não trazem diluição nem tempo exato; injeção rápida pode causar queda grave da pressão e bradicardia grave (bula sul-africana). Monitorar pressão e frequência cardíaca.",
+   "EV: injeção lenta. As bulas não trazem diluição nem tempo exato; injeção rápida pode causar queda grave da pressão e bradicardia grave (bula sul-africana): injetar devagar e observar pressão e pulso.",
    "Ampola de dose única: usar logo após abrir e descartar a sobra (bula do Cinetol; ficha técnica espanhola)."
   ],
   "renal": "Sem dados de farmacocinética na insuficiência renal; quase todo metabolizado, não aparece inalterado na urina. Começar pela menor dose e ajustar pela resposta (ficha técnica espanhola); cautela (OMS, mhGAP 2.0).",
@@ -140,15 +140,16 @@
    "Glaucoma de ângulo fechado (estreito); na bula do injetável, glaucoma agudo não tratado (bula).",
    "Estenose ou obstrução mecânica do tubo digestivo, íleo e megacólon (bula; ficha técnica espanhola).",
    "Injetável: adenoma de próstata e doenças que possam causar taquicardia grave (bula do Cinetol injetável).",
-   "Miastenia grave (bula sul-africana; OMS, mhGAP 2.0)."
+   "Miastenia grave (bula sul-africana; Pediamécum AEP).",
+   "Amamentação: contraindicada na bula do Cinetol injetável."
   ],
   "alertas": [
-   "Idoso: mais sensível aos anticolinérgicos; pode ter confusão, agitação e quadro psicótico mesmo em dose terapêutica, sobretudo com doença cerebral orgânica (bula). Beers 2023 classifica os anticolinérgicos antiparkinsonianos (benzatropina, triexifenidil) como evitar no idoso e não os recomenda para prevenir sintomas extrapiramidais de antipsicótico; o biperideno, da mesma classe, não é citado nominalmente.",
-   "Delirium anticolinérgico e superdose: midríase, mucosas secas, rubor, taquicardia, retenção urinária e intestinal, febre (sobretudo em criança), agitação, alucinações e confusão; nos casos graves, colapso circulatório e parada respiratória. Suporte; diazepam em dose pequena para a excitação; fenotiazínicos (prometazina, clorpromazina) são contraindicados (bula do Cinetol injetável).",
+   "Idoso: mais sensível aos anticolinérgicos; pode ter confusão, agitação e quadro psicótico mesmo em dose terapêutica, sobretudo com doença cerebral orgânica (bula). Beers 2023 classifica os anticolinérgicos antiparkinsonianos (benzatropina, triexifenidil) como evitar no idoso e não os recomenda para prevenir nem tratar sintomas extrapiramidais de antipsicótico; o biperideno, da mesma classe, não é citado nominalmente.",
+   "Delirium anticolinérgico e superdose: midríase, mucosas secas, rubor, taquicardia, retenção urinária e intestinal, febre (sobretudo em criança), agitação, alucinações e confusão; nos casos graves, colapso circulatório e parada respiratória. Suporte; diazepam em dose pequena para a excitação; fenotiazínicos (prometazina, clorpromazina) são contraindicados (bulas do Cinetol injetável e comprimido).",
    "Soma efeito anticolinérgico com antipsicóticos, antidepressivos tricíclicos, anti-histamínicos (prometazina, difenidramina), antiespasmódicos e petidina: risco de síndrome anticolinérgica central e de delirium. Quinidina: mais efeito sobre a condução AV. Potencializa o álcool (bula; ficha técnica espanhola).",
-   "Antagoniza no tubo digestivo o efeito procinético da metoclopramida e da bromoprida (bula do Cinetol injetável; ficha técnica espanhola).",
-   "Abuso e dependência: euforia é efeito descrito; uso prolongado pode levar a tolerância, abstinência e dependência (bula sul-africana). Controlado: lista C1 da Portaria 344/98, receita de controle especial em 2 vias (RDC Anvisa 999/2025).",
-   "Via parenteral pode baixar a pressão arterial (bula); taquicardia é o efeito cardíaco mais comum. Cautela em arritmia, epilepsia e hiperplasia de próstata (retenção urinária) (bula).",
+   "Antagoniza no tubo digestivo o efeito procinético da metoclopramida e análogos, como a bromoprida (bula do Cinetol injetável; ficha técnica espanhola).",
+   "Abuso e dependência: euforia é efeito descrito; uso prolongado pode levar a tolerância, abstinência e dependência (bula sul-africana). Controlado: lista C1 da Portaria 344/98, receita de controle especial em 2 vias (Portaria SVS/MS 344/1998, lista C1; atualização RDC Anvisa 1.023/2026).",
+   "Via parenteral pode baixar a pressão arterial (bula do injetável). Taquicardia (rara) e, muito raramente, bradicardia (bula do comprimido). Cautela em arritmia, epilepsia e hiperplasia de próstata (bula do comprimido); no injetável, adenoma de próstata e doenças que causem taquicardia grave são contraindicação.",
    "Pode desencadear glaucoma de ângulo fechado (bula); controlar a pressão intraocular (ficha técnica espanhola).",
    "Pode piorar a discinesia tardia por antipsicótico (bula).",
    "Uso prolongado: não suspender de repente, pelo risco de piora dos sintomas (ficha técnica espanhola).",
@@ -157,18 +158,20 @@
   "fontes": [
    "Bula ANVISA — Cinetol (lactato de biperideno) solução injetável 5 mg/mL, Cristália, bula do profissional (reg. 1.0298.0096), versão do site da Cristália de abr/2026",
    "Bula ANVISA — Cinetol (cloridrato de biperideno) comprimido 2 mg, Cristália, bula do profissional (reg. 1.0298.0599), conforme bula padrão aprovada em 19/12/2025",
-   "Bula ANVISA — Akineton (cloridrato de biperideno) comprimido 2 mg e comprimido de liberação retardada 4 mg, Laboratórios Bagó do Brasil (reg. 1.5626.0027)",
+   "Bula ANVISA — Akineton (cloridrato de biperideno) comprimido 2 mg e comprimido de liberação retardada 4 mg, Laboratórios Bagó do Brasil (reg. 1.5626.0027) — bula do paciente (PDF de 2019), a profissional não foi obtida",
    "AEMPS (Espanha). Ficha técnica — Akinetón 5 mg/mL solución inyectable, revisão jun/2019 (CIMA)",
    "SAHPRA (África do Sul). Akineton tablets and injection — Professional Information, revisão 02/11/2020",
    "Organização Mundial da Saúde. mhGAP Intervention Guide, versão 2.0 (2016) — módulo Psicoses, tabela 2 (anticolinérgicos para efeitos extrapiramidais) e populações especiais",
-   "Bula ANVISA — Difenidrin (cloridrato de difenidramina) solução injetável 50 mg/mL, Cristália, bula do profissional (site da Cristália, 2026)",
+   "Bula ANVISA — Difenidrin (cloridrato de difenidramina) solução injetável 50 mg/mL, Cristália, reg. 1.0298.0170, bula do profissional (site da Cristália, 2026)",
    "Harrison's Principles of Internal Medicine, 22ª ed. (2025) — cap. 447 (Tremor, Chorea, and Other Movement Disorders: distonia aguda por fármaco) e cap. 470 (Poisoning and Drug Overdose: reações extrapiramidais) — para conferência",
    "Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed. — cap. 15 (Agitação psicomotora) e cap. 101 (Abordagem específica das intoxicações por fármacos: antipsicóticos, distonia aguda e acatisia) — para conferência",
    "Huf G et al. Haloperidol versus haloperidol plus promethazine — TREC (BMJ 2007;335:869)",
    "Ministério da Saúde. Relação Nacional de Medicamentos Essenciais — RENAME 2024, 2ª ed. (2025): cloridrato de biperideno 2 mg e 4 mg liberação prolongada, lactato de biperideno 5 mg/mL injetável, Componente Básico",
    "Lista de preços CMED/Anvisa, set/2026 (marcas registradas: Akineton, Cinetol, Propark; injetável só Cinetol; difenidramina injetável: Difenidrin)",
-   "Anvisa. RDC nº 999, de 24/11/2025 — atualização do Anexo I da Portaria SVS/MS 344/1998 (biperideno na lista C1)",
-   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023)"
+   "Anvisa. RDC nº 1.023, de 11/05/2026 — atualização do Anexo I da Portaria SVS/MS 344/1998 (biperideno na lista C1, item 18)",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71(7):2052–2081)",
+   "Pediamécum (Asociación Española de Pediatría) — Biperideno, atualização dez/2020: doses pediátricas (off-label na Espanha), tetos por idade, contraindicações (inclui miastenia grave)",
+   "American Psychiatric Association. Practice Guideline for the Treatment of Patients With Schizophrenia, 3ª ed. (2020): anticolinérgico na distonia aguda; via EV na distonia com laringoespasmo"
   ]
  }
 ]

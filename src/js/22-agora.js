@@ -1,18 +1,22 @@
 /* ---------- cartão "Agora": primeiros minutos da emergência, com doses prontas pelo peso ---------- */
 // o peso é o mesmo de "Dados do paciente" (pac.peso), só na memória da aba (regra 5)
 const agoraPeso=()=>{const p=parseFloat(String(pac.peso||"").replace(",","."));return p>0&&p<300?p:null};
+// dose pela faixa de peso da bula: [[limite em kg (exclusivo), dose], ..., [null, dose]]
+const agoraFaixa=(d,p)=>{for(const [ate,v] of d.faixas) if(ate==null||p<ate) return v};
 function agoraDose(d){
-  const p=agoraPeso(); if(!d||!d.porKg||!p) return "";
+  const p=agoraPeso(); if(!d||!p) return "";
+  const nf=n=>n.toLocaleString("pt-BR",{maximumFractionDigits:n<10?2:n<100?1:0});
+  const ml=v=>d.conc&&d.un!=="mL"?` = ${nf(v/d.conc)} mL`:"";
+  const fx=d.faixas?agoraFaixa(d,p):null;
+  if(!d.porKg) return fx!=null?`<b>${nf(fx)} ${esc(d.un)}${ml(fx)}</b> <span class="teto">faixa da bula</span>`:"";
   let v=d.porKg*p,teto=false;
   if(d.max!=null&&v>d.max){v=d.max;teto=true}
   if(d.min!=null&&v<d.min) v=d.min;
-  const nf=n=>n.toLocaleString("pt-BR",{maximumFractionDigits:n<10?2:n<100?1:0});
-  const ml=d.conc&&d.un!=="mL"?` = ${nf(v/d.conc)} mL`:"";
-  return `<b>${nf(v)} ${esc(d.un)}${ml}</b>${teto?` <span class="teto">dose máxima</span>`:""}`;
+  return `<b>${nf(v)} ${esc(d.un)}${ml(v)}</b>${teto?` <span class="teto">dose máxima</span>`:""}${fx!=null?` · faixa da bula: <b>${nf(fx)} ${esc(d.un)}${ml(fx)}</b>`:""}`;
 }
 function renderAgora(it){
   const a=AGORA[it.id]; if(!a) return "";
-  const temKg=a.etapas.some(e=>e.acoes.some(x=>x.dose&&x.dose.porKg));
+  const temKg=a.etapas.some(e=>e.acoes.some(x=>x.dose&&(x.dose.porKg||x.dose.faixas)));
   const atalho=(s,i)=>`<button class="btn sm ${i?"":"primary"}" data-ag="${i}">${esc(s.rot)}</button>`;
   return `<section class="sec agora"><div class="sec-h"><h3>Agora</h3>
       ${temKg?`<label class="f agpeso">Peso (kg)<input class="inp" id="agPeso" type="number" inputmode="decimal" min="1" max="300" value="${esc(String(pac.peso||""))}" placeholder="kg"></label>`:""}</div>

@@ -34,7 +34,8 @@ convulsao: {
         mais: "Não usar em hepatopatia, doença mitocondrial (mutação POLG), distúrbio do ciclo da ureia, porfiria nem na gestação (bula). O Depacon não aparece na lista CMED de set/2026 nem na RENAME: confirme na farmácia. A bula orienta 60 min (até 20 mg/min); os 10 min vêm do ESETT e da AES." }
     ]},
     { t: "Sem nenhuma das três", acoes: [
-      { txt: "Fenobarbital EV, com material de ventilação pronto (contraindicado na gestação pela bula; pesar o risco).", dose: { ref: "20 mg/kg EV, até 50 mg/min (volume para 100 mg/mL; existe ampola de 200 mg/mL)", porKg: 20, un: "mg", conc: 100 } },
+      { txt: "Fenobarbital EV, com material de ventilação pronto (contraindicado na gestação pela bula; pesar o risco).", dose: { ref: "20 mg/kg EV, até 50 mg/min (volume para 100 mg/mL; existe ampola de 200 mg/mL)", porKg: 20, un: "mg", conc: 100 },
+        mais: "20 mg/kg segue a Neurocritical Care Society 2012 e o HC-FMUSP; a AES 2016 usa 15 mg/kg." },
       { txt: "Preparar a via aérea avançada se não houver proteção da via aérea." }
     ]},
     { t: "40 min: refratário", acoes: [
@@ -86,7 +87,7 @@ agitacao: {
         mais: "Cinco pessoas treinadas, uma por membro e uma para a cabeça. Quatro membros, no leito (evitar maca), de barriga para cima, cabeceira a 30°. Vigiar sinais vitais, oximetria, consciência, pele e circulação dos membros a cada 15 min na 1ª hora e a cada 30 min por 4 h; retirar assim que possível (em princípio, até 2 h). Explicar ao paciente e à família." }
     ]},
     { t: "30 min: reavaliar", acoes: [
-      { txt: "Sem controle em 30 min: pode repetir a mesma medicação 1 vez. Haloperidol: máx. 20 mg/dia." },
+      { txt: "Sem controle em 30 min: pode repetir a mesma medicação 1 vez. Haloperidol: máx. 20 mg/dia.", mais: "Repetir em 30 min segue a ABP 2019; as bulas do haloperidol falam em repetir a cada 1 h." },
       { txt: "Após sedar: oximetria e sinais vitais seguidos; ECG quando possível.",
         mais: "Exames conforme a suspeita: eletrólitos, função renal e hepática, toxicológico; tomografia de crânio se trauma, sinal focal ou causa não esclarecida." }
     ]}
@@ -121,7 +122,8 @@ anafilaxia: {
     ]},
     { t: "5 min: reavaliar", acoes: [
       { txt: "Sem melhora: repetir a mesma dose de adrenalina IM, de preferência na outra coxa (a cada 5 min).", dose: { ref: "0,01 mg/kg IM (máx. 0,5 mg = 0,5 mL)", porKg: 0.01, un: "mg", max: 0.5, conc: 1 } },
-      { txt: "Hipotensão: SF 0,9% ou Ringer lactato em bolus rápido; não usar coloide.", dose: { ref: "20 mL/kg EV rápido, repetir conforme a resposta", porKg: 20, un: "mL" } },
+      { txt: "Hipotensão: SF 0,9% ou Ringer lactato em bolus rápido; não usar coloide.", dose: { ref: "20 mL/kg EV rápido (máx. 1.000 mL por bolus), repetir conforme a resposta", porKg: 20, un: "mL", max: 1000 },
+        mais: "Teto de 1.000 mL por bolus no adulto (RCUK 2021: 500–1.000 mL); a WAO 2020 usa 20 mL/kg." },
       { txt: "Broncoespasmo ou estridor: nebulização como adjuvante, sem atrasar a adrenalina IM nem a intubação.", dose: { ref: "Salbutamol 5 mg + ipratrópio 500 mcg nebulizados; estridor: adrenalina 1 mg/mL, 5 mL nebulizados" } }
     ]},
     { t: "10 min: refratária", acoes: [
@@ -214,7 +216,7 @@ sca: {
       { txt: "Sintomas há ≤ 12 h, angioplastia impossível em ≤ 120 min e sem contraindicação absoluta: fibrinólise na unidade.", mais: "Mais de 12 h de sintomas: ver o fluxo do IAM." }
     ]},
     { t: "Fibrinólise: porta-agulha ≤ 30 min", acoes: [
-      { txt: "Tenecteplase EV em bolus único de 5–10 s, pela faixa de peso; lavar o acesso com SF 0,9% antes e depois.", dose: { ref: "< 60 kg 30 mg (6 mL) | 60–69 kg 35 mg (7 mL) | 70–79 kg 40 mg (8 mL) | 80–89 kg 45 mg (9 mL) | ≥ 90 kg 50 mg (10 mL); ≥ 75 anos: metade da dose da faixa" },
+      { txt: "Tenecteplase EV em bolus único de 5–10 s, pela faixa de peso; lavar o acesso com SF 0,9% antes e depois.", dose: { ref: "< 60 kg 30 mg (6 mL) | 60–69 kg 35 mg (7 mL) | 70–79 kg 40 mg (8 mL) | 80–89 kg 45 mg (9 mL) | ≥ 90 kg 50 mg (10 mL); ≥ 75 anos: metade da dose da faixa", un: "mg", conc: 5, faixas: [[60, 30], [70, 35], [80, 40], [90, 45], [null, 50]] },
         mais: "Incompatível com soro glicosado. Metade da dose a partir de 75 anos segue a ESC 2023 (fora da bula)." },
       { txt: "Clopidogrel junto com o fibrinolítico.", dose: { ref: "≤ 75 anos: 300 mg VO de ataque; > 75 anos: 75 mg VO, sem ataque" } }
     ]},
@@ -266,7 +268,7 @@ avc: {
     ]},
     { t: "Trombólise até 4,5 h: porta-agulha ≤ 60 min", acoes: [
       { txt: "Só com déficit incapacitante e sem contraindicação (ver fluxo). PA < 185/110 antes; se acima, nitroprussiato; se não baixar, não trombolisar.", dose: { ref: "nitroprussiato: iniciar 0,3–0,5 mcg/kg/min EV e titular a cada 5 min (máx. 10 mcg/kg/min)" } },
-      { txt: "Tenecteplase EV em bolus único (5–10 s); lavar o acesso com SF 0,9%.", dose: { ref: "0,25 mg/kg (máx. 25 mg)", porKg: 0.25, un: "mg", max: 25, conc: 5 } },
+      { txt: "Tenecteplase EV em bolus único (5–10 s); lavar o acesso com SF 0,9%.", dose: { ref: "0,25 mg/kg (máx. 25 mg), AHA 2026; bula: < 60 kg 15 mg | 60–69 kg 17,5 | 70–79 kg 20 | 80–89 kg 22,5 | ≥ 90 kg 25 mg", porKg: 0.25, un: "mg", max: 25, conc: 5, faixas: [[60, 15], [70, 17.5], [80, 20], [90, 22.5], [null, 25]] } },
       { txt: "Ou alteplase (1 mg/mL), dose total:", dose: { ref: "0,9 mg/kg EV (máx. 90 mg)", porKg: 0.9, un: "mg", max: 90, conc: 1 } }
     ]},
     { t: "Alteplase: como dividir", acoes: [
@@ -290,7 +292,8 @@ avc: {
   fontes: [
   "Prabhakaran S et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke — AHA/ASA (Stroke 2026) — tenecteplase 0,25 mg/kg (máx. 25 mg), alteplase 0,9 mg/kg (máx. 90 mg), PA antes e depois da reperfusão, monitorização, trombectomia. https://doi.org/10.1161/STR.0000000000000513",
   "University of Illinois Chicago, Drug Information Group. Major pharmacotherapy updates from the 2026 AHA/ASA stroke guidelines (doses de tenecteplase e alteplase, PA, glicemia). https://dig.pharmacy.uic.edu/faqs/2026-2/april-2026-faqs/update-what-are-major-pharmacotherapy-updates-from-the-2026-aha-asa-stroke-guidelines/",
-  "Bula do nitroprussiato de sódio (0,3 a 10 mcg/kg/min); bula da tenecteplase (bolus de 5–10 s, incompatível com glicose) e FDA label Activase (alteplase 1 mg/mL, 10% em bolus em 1 min).",
+  "Bula FDA do TNKase (indicação de AVC, 2025) e resumo europeu do Metalyse 25 mg: tenecteplase no AVC por faixas de peso (15; 17,5; 20; 22,5; 25 mg). A Anvisa aprovou o Metalyse 25 mg para AVC em 08/12/2025.",
+    "Bula do nitroprussiato de sódio (0,3 a 10 mcg/kg/min); bula da tenecteplase (bolus de 5–10 s, incompatível com glicose) e FDA label Activase (alteplase 1 mg/mL, 10% em bolus em 1 min).",
   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 53, Abordagem do paciente com AVC isquêmico agudo.",
   "Loscalzo J et al. (eds.) Harrison's Principles of Internal Medicine, 22ª ed. McGraw Hill, 2025 — cap. 438, Ischemic Stroke."
  ]

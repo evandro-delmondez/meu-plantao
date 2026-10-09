@@ -43,3 +43,4 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Ficha do biperideno: criar (distonia aguda por haloperidol/antieméticos) — 2026-10-05.
 - Grupo de fichas "Psiquiatria" (haloperidol, depois biperideno e outros) — 2026-10-05.
 - Rascunhos e relatórios de agentes ficam em `.rascunhos/` no projeto (fora do git); o scratchpad temporário foi apagado entre sessões em 2026-10-08 e levou os relatórios completos.
+- Divergências resolvidas (2026-10-08): tenecteplase no AVC = conta de 0,25 mg/kg (AHA 2026) com a dose da faixa da bula ao lado; volume na anafilaxia = 20 mL/kg com teto de 1.000 mL por bolus (RCUK 2021); fenobarbital = 20 mg/kg, citando que a AES 2016 usa 15 mg/kg; haloperidol = repetir em 30 min (ABP 2019), citando que a bula diz 1 h.

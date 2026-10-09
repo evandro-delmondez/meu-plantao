@@ -39,6 +39,7 @@ test("correções da conferência: ivermectina pela bula, Parkland 2–4 e tempo
 
 test("superfície queimada só aparece no Parkland e começa vazia", async ({ page }) => {
   await abrir(page); await aba(page, "calculadora");
+  await page.fill("#peso", "70"); await page.dispatchEvent("#peso", "input");   // o peso começa vazio
   await expect(page.locator("#scq")).toHaveCount(0);
   const park = page.locator(".drug", { hasText: "Parkland" });
   await expect(park.locator("[data-scq]")).toHaveValue("");

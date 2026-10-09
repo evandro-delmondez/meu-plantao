@@ -18,8 +18,8 @@ test("dados de paciente salvos por versões antigas são ignorados e apagados", 
   await expect(page.locator('#cats [data-c="gu"]')).toHaveAttribute("aria-pressed", "true");
   // perfis do paciente anterior não voltam ligados
   await expect(page.locator("[data-perfil][aria-pressed=true]")).toHaveCount(0);
-  await aba(page, "calculadora"); await expect(page.locator("#peso")).toHaveValue("70");
-  await aba(page, "pediatria"); await expect(page.locator("#pdPeso")).toHaveValue("15");
+  await aba(page, "calculadora"); await expect(page.locator("#peso")).toHaveValue("");   // começa vazio: nada do paciente anterior
+  await aba(page, "pediatria"); await expect(page.locator("#pdPeso")).toHaveValue("");   // sem peso de outra criança
   await aba(page, "atestado"); await expect(page.locator('[data-sexo="M"]')).toHaveAttribute("aria-pressed", "true");
   await aba(page, "feridas"); await expect(page.locator('[data-g="animal"] [aria-pressed="true"]')).not.toHaveText(/morcego/i);
   const ls = await page.evaluate(() => ({ ui: JSON.parse(localStorage.getItem("rxp_ui_v1")), med: JSON.parse(localStorage.getItem("rxp_med_v1")), fr: localStorage.getItem("rxp_fr_v1") }));
@@ -39,8 +39,8 @@ test("peso, perfil e sexo usados no plantão não sobrevivem ao recarregar", asy
   await aba(page, "atestado"); await page.click('[data-sexo="F"]');
   await page.reload();
   await aba(page, "prescricoes"); await expect(page.locator('[data-perfil="gest"]')).toHaveAttribute("aria-pressed", "false");
-  await aba(page, "calculadora"); await expect(page.locator("#peso")).toHaveValue("70");
-  await aba(page, "pediatria"); await expect(page.locator("#pdPeso")).toHaveValue("15");
+  await aba(page, "calculadora"); await expect(page.locator("#peso")).toHaveValue("");   // começa vazio: nada do paciente anterior
+  await aba(page, "pediatria"); await expect(page.locator("#pdPeso")).toHaveValue("");   // sem peso de outra criança
   await aba(page, "atestado"); await expect(page.locator('[data-sexo="F"]')).toHaveAttribute("aria-pressed", "false");
   const tudo = await page.evaluate(() => Object.keys(localStorage).map((k) => k + "=" + localStorage.getItem(k)).join("\n"));
   expect(tudo).not.toMatch(/"peso":"95"|"pdPeso"|"perfil"|"sexo"/);

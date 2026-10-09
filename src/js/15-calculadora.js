@@ -35,7 +35,9 @@ function renderCalc(){
   $$("[data-modo]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.modo===ui.modo));
   const p=parseFloat(String($("#peso").value).replace(",","."));
   if(!(p>0)){$("#cgroups").innerHTML=`<div class="empty">Digite o peso.</div>`;return}
-  $("#cgroups").innerHTML=CALC[ui.modo].map(g=>`<div class="sec cg" style="--c:var(--${g.c})"><div class="sec-h"><h3>${esc(g.t)}</h3></div>${g.d.map(x=>calcRow(x,p)).join("")}<details class="alsrc cgsrc"><summary>Fontes</summary><ol>${g.src.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></div>`).join("");
+  // peso incoerente com o modo: avisa em vez de trocar sozinho
+  const aviso=p>250?"Peso acima de 250 kg: confira o número digitado.":ui.modo==="ped"&&p>=50?"Peso de adulto no modo Pediátrico: confira o modo.":ui.modo==="adulto"&&p<35?"Peso baixo para adulto: confira se não é criança (modo Pediátrico).":"";
+  $("#cgroups").innerHTML=(aviso?`<div class="sec pesoaviso"><p>${esc(aviso)}</p></div>`:"")+CALC[ui.modo].map(g=>`<div class="sec cg" style="--c:var(--${g.c})"><div class="sec-h"><h3>${esc(g.t)}</h3></div>${g.d.map(x=>calcRow(x,p)).join("")}<details class="alsrc cgsrc"><summary>Fontes</summary><ol>${g.src.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></div>`).join("");
   linkMeds($("#cgroups"));
 }
 $("#peso").value=ui.peso;
@@ -43,4 +45,4 @@ $("#peso").addEventListener("input",()=>{ui.peso=$("#peso").value;saveUI();rende
 // % de superfície queimada: só nas linhas de Parkland, vazio por padrão (só na memória)
 let calcScq="";
 $("#cgroups").addEventListener("input",e=>{if(e.target.matches("[data-scq]")){calcScq=e.target.value;renderCalc();const i=$("#cgroups [data-scq]");if(i){i.focus()}}});
-$$("[data-modo]").forEach(b=>b.onclick=()=>{ui.modo=b.dataset.modo;if(ui.modo==="ped"&&parseFloat($("#peso").value)>=50){$("#peso").value=20;ui.peso=20}if(ui.modo==="adulto"&&parseFloat($("#peso").value)<40){$("#peso").value=70;ui.peso=70}saveUI();renderCalc()});
+$$("[data-modo]").forEach(b=>b.onclick=()=>{ui.modo=b.dataset.modo;saveUI();renderCalc()});

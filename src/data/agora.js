@@ -216,7 +216,7 @@ sca: {
       { txt: "Sintomas há ≤ 12 h, angioplastia impossível em ≤ 120 min e sem contraindicação absoluta: fibrinólise na unidade.", mais: "Mais de 12 h de sintomas: ver o fluxo do IAM." }
     ]},
     { t: "Fibrinólise: porta-agulha ≤ 30 min", acoes: [
-      { txt: "Tenecteplase EV em bolus único de 5–10 s, pela faixa de peso; lavar o acesso com SF 0,9% antes e depois.", dose: { ref: "< 60 kg 30 mg (6 mL) | 60–69 kg 35 mg (7 mL) | 70–79 kg 40 mg (8 mL) | 80–89 kg 45 mg (9 mL) | ≥ 90 kg 50 mg (10 mL); ≥ 75 anos: metade da dose da faixa", un: "mg", conc: 5, faixas: [[60, 30], [70, 35], [80, 40], [90, 45], [null, 50]] },
+      { txt: "Tenecteplase EV em bolus único de 5–10 s, pela faixa de peso; lavar o acesso com SF 0,9% antes e depois.", dose: { ref: "< 60 kg 30 mg (6 mL) | 60–69 kg 35 mg (7 mL) | 70–79 kg 40 mg (8 mL) | 80–89 kg 45 mg (9 mL) | ≥ 90 kg 50 mg (10 mL); ≥ 75 anos: metade da dose da faixa", un: "mg", conc: 5, faixas: [[60, 30], [70, 35], [80, 40], [90, 45], [null, 50]], metadeIdade: 75 },
         mais: "Incompatível com soro glicosado. Metade da dose a partir de 75 anos segue a ESC 2023 (fora da bula)." },
       { txt: "Clopidogrel junto com o fibrinolítico.", dose: { ref: "≤ 75 anos: 300 mg VO de ataque; > 75 anos: 75 mg VO, sem ataque" } }
     ]},

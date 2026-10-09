@@ -44,3 +44,9 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Grupo de fichas "Psiquiatria" (haloperidol, depois biperideno e outros) — 2026-10-05.
 - Rascunhos e relatórios de agentes ficam em `.rascunhos/` no projeto (fora do git); o scratchpad temporário foi apagado entre sessões em 2026-10-08 e levou os relatórios completos.
 - Divergências resolvidas (2026-10-08): tenecteplase no AVC = conta de 0,25 mg/kg (AHA 2026) com a dose da faixa da bula ao lado; volume na anafilaxia = 20 mL/kg com teto de 1.000 mL por bolus (RCUK 2021); fenobarbital = 20 mg/kg, citando que a AES 2016 usa 15 mg/kg; haloperidol = repetir em 30 min (ABP 2019), citando que a bula diz 1 h.
+
+## Porta (2026-10-08): foco atual
+- O médico vai trabalhar na porta (fichas verde e amarela; queixas de todo tipo, inclusive pneumonia). Prioridade sobre a sala vermelha.
+- Ordem: (1) atendimento em 1 tela (checklist → receita + evolução + atestado prontos para copiar); (2) sinais de alarme em destaque e entrada por queixa; (3) alta segura em linguagem leiga, impressa/QR/WhatsApp, sem dado de paciente; (4) condições que faltam.
+- O texto vai colado no prontuário eletrônico do hospital: precisa colar limpo (texto simples, sem formatação estranha).
+- Rede varia (pública e particular): manter o seletor.

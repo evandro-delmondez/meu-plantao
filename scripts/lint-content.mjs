@@ -134,6 +134,7 @@ for (const [id, a] of Object.entries(AGORA || {})) {
       if (!d.ref) err(`${onde} → ${x.txt}: dose sem "ref"`);
       if (d.porKg != null && (!(d.porKg > 0) || !UNS.has(d.un))) err(`${onde} → ${x.txt}: porKg/un inválidos`);
       if (d.conc != null && !(d.conc > 0)) err(`${onde} → ${x.txt}: conc inválida`);
+      if (d.metadeIdade != null && !(d.metadeIdade > 0 && d.faixas)) err(`${onde} → ${x.txt}: metadeIdade só com faixas`);
       if (d.max != null && !(d.max > 0)) err(`${onde} → ${x.txt}: max inválido`);
       if (d.faixas != null && (!Array.isArray(d.faixas) || !d.faixas.length || !UNS.has(d.un) || d.faixas.some((f, i) => !Array.isArray(f) || !(f[1] > 0) || (i < d.faixas.length - 1 ? !(f[0] > 0) : f[0] !== null)))) err(`${onde} → ${x.txt}: faixas inválidas (última com limite null)`);
     }

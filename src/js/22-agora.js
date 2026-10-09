@@ -8,6 +8,11 @@ function agoraDose(d){
   const nf=n=>n.toLocaleString("pt-BR",{maximumFractionDigits:n<10?2:n<100?1:0});
   const ml=v=>d.conc&&d.un!=="mL"?` = ${nf(v/d.conc)} mL`:"";
   const fx=d.faixas?agoraFaixa(d,p):null;
+  if(!d.porKg&&fx!=null&&d.metadeIdade){   // ex.: tenecteplase no IAM: metade da dose a partir de 75 anos (ESC 2023)
+    const id=parseFloat(String(pac.idade||"").replace(",",".")), meia=`<b>${nf(fx/2)} ${esc(d.un)}${ml(fx/2)}</b>`;
+    if(id>=d.metadeIdade) return `${meia} <span class="teto">metade (≥ ${d.metadeIdade} anos)</span>`;
+    return `<b>${nf(fx)} ${esc(d.un)}${ml(fx)}</b> <span class="teto">faixa da bula</span> · ≥ ${d.metadeIdade} anos: ${meia}`;
+  }
   if(!d.porKg) return fx!=null?`<b>${nf(fx)} ${esc(d.un)}${ml(fx)}</b> <span class="teto">faixa da bula</span>`:"";
   let v=d.porKg*p,teto=false;
   if(d.max!=null&&v>d.max){v=d.max;teto=true}

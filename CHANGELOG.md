@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## 1.8.1 — 2026-10-08
+- **Ficha do biperideno** (grupo Psiquiatria): distonia aguda por haloperidol e antieméticos, com dose pediátrica por peso (teto da bula até 10 anos) e a difenidramina como alternativa, com as contraindicações. Conferida por agente independente.
+- **Decisões do médico sobre as divergências entre fontes:**
+  - tenecteplase no AVC: a conta de 0,25 mg/kg (AHA 2026) e a dose da faixa de peso da bula lado a lado, no cartão, na calculadora e no fluxo;
+  - tenecteplase no IAM calculada pela faixa de peso no cartão, mostrando também a metade da dose a partir de 75 anos (ou só a metade, se a idade informada for ≥ 75);
+  - volume na anafilaxia: 20 mL/kg com teto de 1.000 mL por bolus no adulto;
+  - fenobarbital (20 mg/kg) e haloperidol (repetir em 30 min) mantidos, citando a outra fonte em "detalhes".
+
 ## 1.8.0 — 2026-10-08
 - **Cartão "Agora"** no topo de 7 emergências (convulsão, agitação psicomotora, anafilaxia, sepse, IAM, AVC e PCR): etapas com tempo, até 3 ações por etapa, campo de peso (não fica salvo) com doses em mg e mL já calculadas, aviso de dose máxima, referência ao lado para conferir, "detalhes" recolhidos e atalhos para PCR guiada, intubação, bomba de infusão e fluxos. Conferido por dois agentes independentes e por uma checagem final.
 - **Ficha do haloperidol** no novo grupo **Psiquiatria**.

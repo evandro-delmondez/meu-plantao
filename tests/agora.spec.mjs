@@ -46,7 +46,7 @@ test("cartão Agora: peso tem teto de dose máxima e os atalhos levam às ferram
   await expect(page.locator("#detail .agcalc", { hasText: "faixa da bula" }).first()).toContainText("17,5 mg = 3,5 mL · faixa da bula: 20 mg = 4 mL");
   // IAM: só a faixa da bula
   await conduta(page, "sca"); await page.fill("#agPeso", "70");
-  await expect(page.locator("#detail .agcalc", { hasText: "faixa da bula" }).first()).toContainText("40 mg = 8 mL");
+  await expect(page.locator("#detail .agcalc", { hasText: "faixa da bula" }).first()).toContainText("40 mg = 8 mL faixa da bula · ≥ 75 anos: 20 mg = 4 mL");
   // anafilaxia: volume com teto de 1.000 mL
   await conduta(page, "anafilaxia"); await page.fill("#agPeso", "120");
   await expect(page.locator("#detail .agcalc", { hasText: "1.000 mL" }).first()).toContainText("dose máxima");

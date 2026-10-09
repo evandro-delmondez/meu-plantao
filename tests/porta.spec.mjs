@@ -28,7 +28,7 @@ test("alta para o paciente: texto leigo, QR code com o link da página pública,
   const erros = await abrir(page); await aba(page, "prescricoes");
   await conduta(page, "amigdalite");
   const sec = page.locator("#detail .altapac");
-  await sec.locator("summary").click();
+  await sec.locator(":scope > summary").click();
   await expect(sec.locator(".altavolte li").first()).toBeVisible();
   await page.click("#altaQr");
   await expect(page.locator("#qrSheet .qrimg svg")).toBeVisible();

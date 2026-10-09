@@ -28,6 +28,7 @@ ul{margin:0;padding-left:22px}li{margin:6px 0}
 <script>
 /*__ALTA__*/
 (function(){
+function mostra(){
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const id=decodeURIComponent(location.hash.slice(1)), a=ALTA[id], m=document.getElementById("m");
   if(!a){m.innerHTML='<p class="marca">Meu Plantão</p><h1>Orientação não encontrada</h1><p>Peça ao seu médico para mostrar o código de novo.</p>';return}
@@ -39,6 +40,8 @@ ul{margin:0;padding-left:22px}li{margin:6px 0}
     '<h2 style="visibility:hidden;margin:6px">.</h2><div class="volte"><h2>Volte ao pronto-socorro se</h2>'+lista(a.volte)+'</div>'+
     '<p class="aviso">Esta é uma orientação geral. Tome os remédios como está na sua receita e siga o que o seu médico explicou. Em caso de piora, procure atendimento.</p>'+
     '<details class="fontes naoimprime"><summary>Fontes</summary>'+lista(a.fontes)+'</details>';
+}
+mostra(); addEventListener("hashchange",mostra);
 })();
 </script>
 </body>

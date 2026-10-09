@@ -511,3 +511,6 @@ body.sheet-on{overflow:hidden}
   #impressao .altavolte{background:#fff;border-color:#000}
   #impressao .altavolte h4{color:#000}
 }
+.ciatox{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:4px 16px 10px}
+.ciatox a.btn{text-decoration:none}
+.ciatoxed{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;width:100%}

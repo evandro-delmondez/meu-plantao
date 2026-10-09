@@ -50,3 +50,5 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Ordem: (1) atendimento em 1 tela (checklist → receita + evolução + atestado prontos para copiar); (2) sinais de alarme em destaque e entrada por queixa; (3) alta segura em linguagem leiga, impressa/QR/WhatsApp, sem dado de paciente; (4) condições que faltam.
 - O texto vai colado no prontuário eletrônico do hospital: precisa colar limpo (texto simples, sem formatação estranha).
 - Rede varia (pública e particular): manter o seletor.
+- Entrada por queixa, 1º lote (2026-10-09): cefaleia, tontura/síncope, dor abdominal, dor torácica, febre, tosse/dispneia. Lombalgia, dor musculoesquelética e outras queixas ficam como pendência.
+- Alta segura (2026-10-09): imprimir (A5/A4) e QR code na tela; versão leiga separada das orientações técnicas, com "volte se…". Sem dado do paciente no QR nem na folha.

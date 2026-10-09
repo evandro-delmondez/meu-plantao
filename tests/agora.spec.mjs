@@ -41,5 +41,14 @@ test("cartão Agora: peso tem teto de dose máxima e os atalhos levam às ferram
   await conduta(page, "avc");
   await page.fill("#agPeso", "150");
   await expect(page.locator("#detail .agcalc .teto").first()).toBeVisible();
+  // tenecteplase no AVC: conta da AHA e faixa da bula lado a lado
+  await page.fill("#agPeso", "70");
+  await expect(page.locator("#detail .agcalc", { hasText: "faixa da bula" }).first()).toContainText("17,5 mg = 3,5 mL · faixa da bula: 20 mg = 4 mL");
+  // IAM: só a faixa da bula
+  await conduta(page, "sca"); await page.fill("#agPeso", "70");
+  await expect(page.locator("#detail .agcalc", { hasText: "faixa da bula" }).first()).toContainText("40 mg = 8 mL faixa da bula · ≥ 75 anos: 20 mg = 4 mL");
+  // anafilaxia: volume com teto de 1.000 mL
+  await conduta(page, "anafilaxia"); await page.fill("#agPeso", "120");
+  await expect(page.locator("#detail .agcalc", { hasText: "1.000 mL" }).first()).toContainText("dose máxima");
   expect(erros).toEqual([]);
 });

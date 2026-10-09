@@ -119,7 +119,7 @@ const PROTOCOLOS=[
    decisao:{pergunta:"Há contraindicação que impeça a trombólise?",opcoes:[{rot:"Sim",ir:"a8"},{rot:"Não",ir:"a6"}]}},
   {id:"a6",t:"Pressão arterial e trombólise",tempo:"porta-agulha ≤ 60 min",itens:[
    "PA < 185/110 mmHg antes de iniciar. Se acima: nitroprussiato EV em bomba, iniciar 0,3–0,5 mcg/kg/min e titular a cada 5 min (máx. 10 mcg/kg/min); alternativas: esmolol 0,5 mg/kg EV em 1 min + 0,05–0,2 mg/kg/min; labetalol e nicardipina (primeira linha da AHA) têm pouca disponibilidade no Brasil. Se a PA não ficar < 185/110, não trombolisar.",
-   "Tenecteplase 0,25 mg/kg EV em bolus único (máx. 25 mg).",
+   "Tenecteplase 0,25 mg/kg EV em bolus único (máx. 25 mg), AHA 2026. Pela bula (faixas de peso): < 60 kg 15 mg | 60–69 kg 17,5 mg | 70–79 kg 20 mg | 80–89 kg 22,5 mg | ≥ 90 kg 25 mg.",
    "Ou alteplase 0,9 mg/kg EV (máx. 90 mg): 10% em bolus em 1 min e o restante em 60 min.",
    "Depois: PA ≤ 180/105 mmHg por 24 h; exame neurológico e PA a cada 15 min por 2 h, a cada 30 min por 6 h e a cada hora até 24 h.",
    "Não baixar a PAS para < 140 mmHg de forma intensiva (sem benefício após trombólise; dano após trombectomia).",
@@ -162,6 +162,7 @@ const PROTOCOLOS=[
    "Profilaxia de trombose venosa com compressão pneumática intermitente se imóvel."]}
  ],
  fontes:[
+  "Bula FDA do TNKase (indicação de AVC, 2025) e resumo europeu do Metalyse 25 mg — tenecteplase no AVC por faixas de peso.",
   "Prabhakaran S et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke — AHA/ASA (Stroke 2026). https://doi.org/10.1161/STR.0000000000000513",
   "Resumo emDocs do guideline 2026 (critérios de trombectomia, PA após reperfusão, dupla antiagregação). https://www.emdocs.net/2026-guideline-update-early-management-of-acute-ischemic-stroke/",
   "University of Illinois Chicago, Drug Information Group. Major pharmacotherapy updates from the 2026 AHA/ASA stroke guidelines (doses de tenecteplase e alteplase, janelas, PA, glicemia). https://dig.pharmacy.uic.edu/faqs/2026-2/april-2026-faqs/update-what-are-major-pharmacotherapy-updates-from-the-2026-aha-asa-stroke-guidelines/",

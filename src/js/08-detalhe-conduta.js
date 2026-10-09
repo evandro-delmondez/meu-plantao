@@ -152,6 +152,7 @@ function renderDetail(){
     <div id="sessBar" class="sessbar" ${changed?"":"hidden"}><span>Você alterou o texto desta prescrição.</span><button class="btn sm primary" id="sessSave">Salvar como meu padrão</button><button class="btn sm" id="sessUndo">Descartar alterações</button></div>
   </div>
   ${renderAgora(it)}
+  ${renderAlarme(it)}
   ${renderPac(it)}
   ${renderAlertas(it)}
   ${it.id==="dengue"?renderDengueCalc():""}
@@ -160,6 +161,7 @@ function renderDetail(){
   ${renderDilu(it)}
   ${section(it,"orient","Orientações","orient","Copiar")}
   ${renderChecklist(it)}
+  ${renderAtend(it)}
   ${renderFichas(it)}
   ${renderAlta(it)}
   ${it.evid?`<div class="sec evid"><div class="sec-h"><h3>Nível de evidência</h3></div><p>${esc(it.evid)}</p></div>`:""}
@@ -176,6 +178,7 @@ function renderDetail(){
   if(it.id==="dengue") bindDengueCalc(it);
   bindChecklist(it);
   bindAgora(it);
+  bindAtend(it);
   growAll();
   $("#toEv").onclick=()=>{$("#evCond").value=it.id;evManual=false;setTab("evolucao")};
   linkMeds(el);

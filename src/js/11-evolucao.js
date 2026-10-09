@@ -18,7 +18,11 @@ function buildEv(){
   L.push("");
   const sv=[["PA",v("svPa"),"mmHg"],["FC",v("svFc"),"bpm"],["FR",v("svFr"),"irpm"],["SatO2",v("svSat"),"%"],["Tax",v("svTax"),"°C"],["HGT",v("svHgt"),"mg/dL"]].filter(x=>x[1]);
   if(sv.length){L.push("SSVV: "+sv.map(x=>`${x[0]} ${x[1]}${x[2]==="%"?"%":" "+x[2]}`).join(" | "));L.push("")}
-  L.push(exameAtual($("#evExame").value));
+  // o modelo de exame diz "afebril"; com temperatura de febre informada, não pode contradizer (febre ≥ 37,8 °C, Ministério da Saúde)
+  const tax=parseFloat(v("svTax").replace(",","."));
+  let exm=exameAtual($("#evExame").value);
+  if(tax>=37.8) exm=exm.replace(/\bafebril\b/g,"febril");
+  L.push(exm);
   if(ck&&ck.ex.length){L.push("");ck.ex.forEach(x=>L.push(x))}
   if(evScores.length){L.push("");L.push("Escores:");evScores.forEach(x=>L.push("- "+x))}
   L.push("");

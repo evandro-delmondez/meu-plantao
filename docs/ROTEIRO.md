@@ -18,6 +18,11 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
+- **Porta (prioridade desde 2026-10-08):**
+  1. ~~atendimento em 1 tela e sinais de alarme no topo~~ (1.9.0);
+  2. entrada por queixa (cefaleia, dor abdominal, dor torácica, dispneia, lombalgia, febre, tontura) com sinais de alarme e caminho até a conduta — conteúdo com conferência;
+  3. alta segura: orientações em linguagem leiga e quando voltar, para imprimir, QR code ou WhatsApp, sem dado do paciente;
+  4. condições frequentes que faltam (lista abaixo) e revisão das condutas mais usadas na porta.
 Atualizado em 2026-10-05 (versão 1.7.0). Decisões já tomadas: `docs/DECISOES.md`.
 - **Visão "copiloto" (aprovada em 2026-10-05), em fatias:**
   1. ~~páginas conectadas~~ (1.7.0);

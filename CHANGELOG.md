@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.9.0 — 2026-10-08
+- **Porta: atendimento em 1 tela.** No fim de cada conduta, "Fechar o atendimento": queixa, alergias, antecedentes, medicamentos, sinais vitais, exame físico (escolhido pelo sexo, idade e gestação informados), o checklist marcado, receita, orientações e atestado ou comparecimento, tudo pronto para copiar e colar no prontuário. "Novo paciente" limpa tudo; nada do paciente fica salvo.
+- **Sinais de alarme no topo** de cada conduta, antes da receita, para reavaliar a classificação antes de liberar.
+- Evolução: com temperatura de febre informada (≥ 37,8 °C), o exame físico padrão deixa de dizer "afebril".
+
 ## 1.8.1 — 2026-10-08
 - **Ficha do biperideno** (grupo Psiquiatria): distonia aguda por haloperidol e antieméticos, com dose pediátrica por peso (teto da bula até 10 anos) e a difenidramina como alternativa, com as contraindicações. Conferida por agente independente.
 - **Decisões do médico sobre as divergências entre fontes:**

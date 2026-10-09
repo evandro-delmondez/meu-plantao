@@ -6,10 +6,10 @@
 const INFUSAO=[
 {id:"noradrenalina",nome:"Noradrenalina (norepinefrina)",grupo:"Vasoativas",cor:"red",
  apres:"Ampola 4 mL: hemitartarato 2 mg/mL = 1 mg/mL de norepinefrina base (4 mg por ampola).",
- base:"mcg",un:"mcg/kg/min",porKg:true,porMin:true,
+ base:"mcg",un:"mcg/kg/min",porKg:true,porMin:true,faixa:[0.05,2],faixaTxt:"Dose em mcg/kg/min (não em mcg/min). Faixa de referência 0,05–2 mcg/kg/min (HC-FMUSP). A bula FDA começa com 8–12 mcg/min ≈ 0,1–0,2 mcg/kg/min em 70 kg.",
  dil:[{rot:"4 ampolas (16 mg) + 234 mL de SG 5% = 250 mL",qtd:16000,vol:250},{rot:"1 ampola (4 mg) + 246 mL de SG 5% = 250 mL",qtd:4000,vol:250}],
  obs:["Vasopressor de primeira escolha no choque séptico; alvo inicial de PAM ≥ 65 mmHg.","Confira se o protocolo do seu serviço expressa a dose em norepinefrina base ou em hemitartarato (o hemitartarato dobra o número).","Iniciar por veia periférica calibrosa, sem esperar o acesso central; migrar para o central se o uso se prolongar; vigiar extravasamento."],
- src:["Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026.","Bula da norepinefrina registrada na Anvisa (apresentação e diluição em SG 5%)."]},
+ src:["Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026.","Bula da norepinefrina registrada na Anvisa (apresentação e diluição em SG 5%).","FDA. Levophed (norepinephrine bitartrate), DailyMed: início 8–12 mcg/min em norepinefrina base.","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed., 2024 — cap. 9, Sepse: noradrenalina 0,05–2 mcg/kg/min."]},
 {id:"vasopressina",nome:"Vasopressina",grupo:"Vasoativas",cor:"red",
  apres:"Ampola 1 mL com 20 U.",
  base:"U",un:"U/min",porKg:false,porMin:true,faixa:[0.03,0.03],faixaTxt:"0,03 U/min, associada à noradrenalina (dose fixa, não titular)",

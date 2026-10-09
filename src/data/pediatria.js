@@ -30,7 +30,7 @@ const PEDS=[
 gen(p,m){
  const pa=[10*p,15*p].map(x=>Math.min(x,750)), dp=[10*p,12*p].map(x=>Math.min(x,1000)), ib=[5*p,10*p].map(x=>Math.min(x,400));
  const g=(mg,c)=>Math.round(mg/c*20);
- let t=`Uso oral\n1) Paracetamol 200 mg/mL gotas ---------------- 1 fr\nDar de ${g(pa[0],200)} a ${g(pa[1],200)} gotas (${fm(pa[0])}–${fm(pa[1])} mg) VO de 6/6h se febre ou dor. Máx. 75 mg/kg/dia.`;
+ let t=`Uso oral\n1) Paracetamol 200 mg/mL gotas ---------------- 1 fr\nDar de ${fm(mlDose(pa[0],200))} a ${fm(mlDose(pa[1],200))} mL (${fm(pa[0])}–${fm(pa[1])} mg) VO de 6/6h se febre ou dor. Máx. 75 mg/kg/dia. Medir em mL (seringa): o número de gotas por mL varia entre marcas; abaixo de 12 anos, a bula limita a 35 gotas por dose.`;
  if(m>=3&&p>=5) t+=`\nou\n1) Dipirona 500 mg/mL gotas ------------------- 1 fr\nDar de ${g(dp[0],500)} a ${g(dp[1],500)} gotas (${fm(dp[0])}–${fm(dp[1])} mg) VO de 6/6h se febre ou dor.`;
  if(m>=6) t+=`\nou\n1) Ibuprofeno 50 mg/mL ------------------------ 1 fr\nDar de ${fm(ib[0]/50)} a ${fm(ib[1]/50)} mL (${fm(ib[0])}–${fm(ib[1])} mg) VO de 6/6h a 8/8h se febre ou dor.`;
  return {casa:t,orient:`- Não alternar nem associar antitérmicos (SBP): confunde a família e aumenta o risco de superdosagem.\n- "1 gota/kg" de dipirona leva a superdosagem; seguir a dose calculada.\n- Retorno se prostração, dificuldade para respirar, manchas na pele, recusa de líquidos ou febre > 72h.${m<3?"\n- Lactente < 3 meses com febre: avaliação clínica e laboratorial, não apenas antitérmico.":""}`,

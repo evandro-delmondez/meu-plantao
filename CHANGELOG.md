@@ -1,5 +1,15 @@
 # Histórico de versões
 
+## 1.10.0 — 2026-10-09
+- **Por queixa** (nova aba em Condutas): cefaleia, tontura/vertigem/síncope, dor abdominal, dor torácica, febre e tosse/dispneia. Primeiro os sinais de alarme com o que fazer, depois o que perguntar e examinar, os caminhos que abrem a conduta e os escores úteis. Conferido por agente independente (21 correções aplicadas).
+- **Alta para o paciente** em 15 condutas da porta: texto em linguagem simples, "volte ao pronto-socorro se…", para imprimir ou abrir pelo QR code numa página pública só com a orientação, sem dado do paciente. Conferido (5 correções).
+- **Correções em condutas publicadas** (aprovadas pelo médico):
+  - gripe, faringite, amigdalite e tosse: ibuprofeno só com dengue descartada (MS, Dengue 2024);
+  - dispepsia: endoscopia a partir de 40 anos e testar e tratar o H. pylori abaixo disso (V Consenso Brasileiro, 2026);
+  - gastroenterite: manter a alimentação habitual, antidiarreico não é rotina, gestante sem ciprofloxacino;
+  - náuseas: fontes verificáveis no lugar de "consenso clínico", causas a procurar e sinais de retorno;
+  - constipação: contraindicações do óleo mineral e alerta do Fleet (FDA 2014).
+
 ## 1.9.0 — 2026-10-08
 - **Porta: atendimento em 1 tela.** No fim de cada conduta, "Fechar o atendimento": queixa, alergias, antecedentes, medicamentos, sinais vitais, exame físico (escolhido pelo sexo, idade e gestação informados), o checklist marcado, receita, orientações e atestado ou comparecimento, tudo pronto para copiar e colar no prontuário. "Novo paciente" limpa tudo; nada do paciente fica salvo.
 - **Sinais de alarme no topo** de cada conduta, antes da receita, para reavaliar a classificação antes de liberar.

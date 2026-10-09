@@ -21,8 +21,9 @@ Depois: perfil por unidade (remédios disponíveis, diluições locais, telefone
 - **Pedidos de 2026-10-09 (em ordem):** auditoria de segurança; intoxicações e antídotos (cartão Agora + naloxona, flumazenil, N-acetilcisteína com nomograma, carvão ativado, CIATox a um toque); simulação de plantão no celular; revisão geral das 98 prescrições por categoria.
 - **Porta (prioridade desde 2026-10-08):**
   1. ~~atendimento em 1 tela e sinais de alarme no topo~~ (1.9.0);
-  2. entrada por queixa (cefaleia, dor abdominal, dor torácica, dispneia, lombalgia, febre, tontura) com sinais de alarme e caminho até a conduta — conteúdo com conferência;
-  3. alta segura: orientações em linguagem leiga e quando voltar, para imprimir, QR code ou WhatsApp, sem dado do paciente;
+  2. ~~entrada por queixa, 1º lote (6)~~ (1.10.0); faltam lombalgia, dor musculoesquelética e outras queixas;
+  3. ~~alta segura, 1º lote (15)~~ (1.10.0); faltam as demais condutas da porta;
+  - condutas sugeridas pelas queixas: síncope, pericardite, pneumotórax, chikungunya, febre maculosa, meningite; atualizar asma (GINA 2026), dpoc (GOLD 2026), eap (ESC 2026 — conferir o texto integral), gripe (título do Guia de Influenza 2023), dengue (PA diferencial ≤ 20); citação da ureia no CURB-65 da calculadora;
   4. condições frequentes que faltam (lista abaixo) e revisão das condutas mais usadas na porta.
 Atualizado em 2026-10-05 (versão 1.7.0). Decisões já tomadas: `docs/DECISOES.md`.
 - **Visão "copiloto" (aprovada em 2026-10-05), em fatias:**

@@ -192,15 +192,15 @@ const QUEIXAS = [
 { id: "febre", nome: "Febre (adulto)", cor: "lime",
   alarme: [
     { t: "Hipotensão, confusão, respiração rápida, pele moteada, oligúria ou SpO2 baixa", acao: "Sepse: triagem por NEWS2 (não qSOFA sozinho), lactato, hemoculturas; antibiótico em até 1 h no choque ou sepse provável, em até 3 h se só possível. Ver sepse." },
-    { t: "Petéquias ou púrpura, rigidez de nuca, cefaleia intensa ou confusão", acao: "Meningite ou meningococcemia: precaução respiratória, hemoculturas e antibiótico imediato, sem esperar punção ou TC; notificar." },
+    { t: "Rigidez de nuca ou confusão com febre; púrpura (manchas maiores que 2 mm que não somem à pressão); ou petéquias que se espalham rápido ou em paciente com aspecto grave", acao: "Meningite ou meningococcemia: precaução para gotículas, hemoculturas e antibiótico imediato, sem esperar punção ou TC; notificar. Petéquias poucas, com bom estado geral e quadro de dengue: grupo B (abaixo), reexaminando a pele." },
     { t: "Dengue com sinal de alarme: dor abdominal intensa e contínua, vômitos persistentes, sangramento de mucosa, tontura ao levantar, letargia, hepatomegalia ou derrames", acao: "Dengue com sinais de alarme (grupo C): hidratação venosa imediata na unidade, hemograma e reavaliação horária; internar. Ver dengue." },
-    { t: "Dengue com sinal de choque: extremidades frias, pulso fraco, enchimento capilar > 2 s, PA convergente (< 20 mmHg), hipotensão, sangramento grave ou confusão", acao: "Dengue grave (grupo D): expansão volêmica imediata na sala de emergência e vaga de UTI. Ver dengue." },
+    { t: "Dengue com choque ou gravidade: taquicardia com extremidades frias, pulso fraco, enchimento capilar > 2 s, PA diferencial ≤ 20 mmHg (ex.: 100/80), hipotensão, oligúria, desconforto respiratório (derrame), sangramento grave ou confusão", acao: "Dengue grave (grupo D): expansão volêmica imediata na sala de emergência e vaga de UTI. Ver dengue." },
     { t: "Suspeita de dengue em gestante, idoso, com comorbidade ou risco social, ou com prova do laço positiva ou petéquias", acao: "Dengue grupo B: hemograma obrigatório e observação com hidratação oral até o resultado; não liberar antes." },
-    { t: "Febre em quem faz quimioterapia, tem HIV avançado, transplante, asplenia ou usa imunossupressor", acao: "Neutropenia febril até prova em contrário: hemograma e hemoculturas já, antibiótico empírico em até 1 h da triagem; alta só após estratificar o risco (MASCC)." },
-    { t: "Febre súbita com cefaleia e mialgia após carrapato, capivara, cavalo ou mata (até 15 dias antes), ou manchas que viram petéquias", acao: "Febre maculosa: iniciar doxiciclina na suspeita, sem esperar exame; com sinais de gravidade, internar. Notificar." },
-    { t: "Febre com icterícia, sangramento ou urina escassa; enchente, lama ou ratos, ou área de febre amarela sem vacina", acao: "Pensar em leptospirose ou febre amarela: hemograma, função renal e hepática, CPK; internar e notificar." },
+    { t: "Febre em quem faz quimioterapia, tem HIV avançado, transplante, asplenia ou usa imunossupressor", acao: "Quimioterapia recente: neutropenia febril até prova em contrário; hemograma e hemoculturas já e antibiótico empírico em até 1 h da triagem, sem esperar o hemograma; alta só se baixo risco pelo MASCC. Asplenia: risco de sepse fulminante; com qualquer sinal sistêmico, antibiótico em até 1 h (ver sepse). Transplante, HIV avançado ou imunossupressor: limiar baixo para exames, hemoculturas e internação; MASCC não se aplica." },
+    { t: "Febre súbita com cefaleia e mialgia após carrapato, capivara, cavalo ou mata (até 15 dias antes), ou manchas que viram petéquias", acao: "Febre maculosa: doxiciclina já na suspeita, sem esperar exame (não ter visto o carrapato não exclui). Gravidade (confusão, convulsão, hipotensão, oligúria, falta de ar, sangramento, icterícia, edema importante, exantema que vira petéquia, púrpura ou equimose) ou vômitos: doxiciclina EV e internar. Notificar." },
+    { t: "Febre com icterícia, sangramento, urina escassa, falta de ar ou escarro com sangue, sobretudo após enchente, lama, esgoto ou ratos (até 30 dias antes) ou em área de febre amarela sem vacina", acao: "Leptospirose (ou febre amarela) com sinal de alerta: internar; hemograma, função renal e hepática, potássio, CPK e radiografia de tórax; na suspeita de leptospirose, antibiótico já; notificar. Exposição de risco sem sinal de alerta: tratar leptospirose em casa e reavaliar em 24 a 72 h." },
     { t: "Esteve em área de malária (região amazônica ou exterior) de 8 a 30 dias antes da febre", acao: "Gota espessa ou teste rápido no mesmo dia; confusão, icterícia, sangramento, hipoglicemia ou dispneia = malária grave, internar." },
-    { t: "Febre com dispneia, desconforto respiratório ou SpO2 < 95% em ar ambiente", acao: "Síndrome respiratória aguda grave ou pneumonia: radiografia, internação conforme gravidade; ver pneumonia e tosse/dispneia." }
+    { t: "Febre com dispneia, desconforto respiratório ou SpO2 < 95% em ar ambiente", acao: "SRAG: internar; oseltamivir já na suspeita, sem esperar exame (colher swab antes, se não atrasar); radiografia; notificar. Ver pneumonia e síndrome gripal." }
   ],
   perguntar: [
     "Há quantos dias: na dengue, a fase crítica começa com a queda da febre, entre o 3º e o 7º dia",
@@ -222,6 +222,10 @@ const QUEIXAS = [
   ],
   escores: ["NEWS2 (triagem de sepse; não usar qSOFA isoladamente)", "Classificação de risco da dengue (grupos A, B, C e D)", "MASCC (neutropenia febril)"],
   fontes: [
+    "NICE NG240. Meningitis (bacterial) and meningococcal disease: recognition, diagnosis and management, 2024 (rec. 1.1.4, 1.1.9 e 1.1.10): púrpura > 2 mm, exantema que progride, sinais de meningite.",
+    "Ministério da Saúde. Leptospirose: diagnóstico e manejo clínico, 2014: caso suspeito (exposição nos 30 dias anteriores), sinais de alerta (quadro 1), antibiótico na suspeita e indicações de internação.",
+    "Nota Técnica nº 49/2026-CGZHA/DEDT/SVSA/MS (febre maculosa): doxiciclina para todo caso suspeito; sinais de gravidade; doxiciclina EV e internação nos graves.",
+    "Taplitz RA et al. Outpatient management of fever and neutropenia — ASCO/IDSA (J Clin Oncol 2018;36:1443; atualização 2023); Ladhani SN et al. Infection in absent or hypofunctional spleen — BSH (Br J Haematol 2024;204:1672).",
     "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (definição de caso, grupos A a D, sinais de alarme e de choque, fase crítica).",
     "Ministério da Saúde. Chikungunya: manejo clínico, 2017 (caso suspeito, grupos de risco, sinais de gravidade; não usar AINE nem corticoide na fase aguda).",
     "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026 (NEWS/NEWS2 em vez de qSOFA isolado; antibiótico em até 1 h no choque ou sepse provável e em até 3 h na sepse possível). https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-campaign-international-guidelines-for-management-of-sepsis-and-septic-shock-2026",
@@ -230,21 +234,21 @@ const QUEIXAS = [
     "Ministério da Saúde. Nota Técnica nº 49/2026-CGZHA/DEDT/SVSA/MS — febre maculosa: caso suspeito, sinais de gravidade e doxiciclina na suspeita.",
     "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2024 (malária: caso suspeito com deslocamento de 8 a 30 dias antes; leptospirose; febre amarela; meningites).",
     "Ministério da Saúde. Leptospirose: diagnóstico e manejo clínico, 2014.",
-    "Ministério da Saúde. Protocolo de Tratamento de Influenza, 2023 (síndrome respiratória aguda grave: dispneia, desconforto respiratório ou SpO2 < 95%).",
+    "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023 (síndrome respiratória aguda grave: dispneia, desconforto respiratório ou SpO2 < 95%).",
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 16 — Febre e síndromes hipertérmicas e cap. 50 — Dengue; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 20 — Fever e cap. 215 — Arthropod-Borne and Rodent-Borne Virus Infections."
   ] },
 { id: "tosse-dispneia", nome: "Tosse e dispneia", cor: "sky",
   alarme: [
     { t: "SpO2 < 90%, FR > 30, uso de musculatura acessória, fala só em palavras, cianose, confusão ou sonolência", acao: "Insuficiência respiratória: sala de emergência, oxigênio, monitor e gasometria; preparar ventilação não invasiva ou intubação." },
-    { t: "Asma com fala em palavras, FR > 30, FC > 120, SpO2 < 90% ou pico de fluxo ≤ 50%; ou sonolência, confusão, tórax silencioso", acao: "Crise grave: tratar já na sala de emergência (ver asma). Sonolência, confusão ou tórax silencioso: ameaça à vida, UTI." },
-    { t: "Pneumonia com confusão, FR ≥ 30, PA < 90/60, acometimento multilobar ou hipoxemia", acao: "Calcular CURB-65: 2 ou mais, internar; 3 ou mais ou choque ou necessidade de ventilação, avaliar UTI. Ver pneumonia." },
+    { t: "Asma sem conseguir falar, beber ou deitar, FR > 30, uso de musculatura acessória, SpO2 < 92% em ar ambiente, pico de fluxo < 50% ou murmúrio muito diminuído; ou sonolência, confusão, cianose ou tórax silencioso", acao: "Crise grave: tratar já na sala de emergência (ver asma); oxigênio só se SpO2 < 92%, alvo 92–95%. Sonolência, confusão, cianose ou tórax silencioso: ameaça à vida, chamar UTI ou anestesia. Com anafilaxia: adrenalina IM primeiro." },
+    { t: "Pneumonia com confusão, FR ≥ 30, PAS < 90 ou PAD ≤ 60, acometimento multilobar ou hipoxemia", acao: "CURB-65 (sem ureia, CRB-65): 2, internação curta ou observação; 3 ou mais, internar e avaliar UTI. Choque com vasopressor ou necessidade de ventilação: UTI. Ver pneumonia." },
     { t: "DPOC com piora da falta de ar e SpO2 baixa, sonolência ou confusão", acao: "Exacerbação grave com possível retenção de CO2: oxigênio controlado (alvo 88–92%), gasometria; ventilação não invasiva se acidose respiratória. Ver DPOC." },
     { t: "Ortopneia, estertores, edema de pernas, jugulares ingurgitadas ou PA muito alta", acao: "Insuficiência cardíaca descompensada ou edema agudo de pulmão: sentar, oxigênio, ECG e troponina (procurar SCA ou arritmia como gatilho). Ver edema agudo de pulmão." },
     { t: "Dispneia súbita com dor pleurítica, taquicardia, hemoptise ou fator de risco para trombose", acao: "Suspeita de TEP: Wells ou Genebra, PERC se baixa probabilidade, D-dímero ou angiotomografia. Ver TEP." },
     { t: "Dispneia súbita com dor de um lado e murmúrio diminuído", acao: "Pneumotórax: radiografia ou ultrassom. Com instabilidade (hipotensão ou hipoxemia grave, taquicardia, jugulares ingurgitadas): hipertensivo, descompressão imediata, sem esperar imagem." },
     { t: "Chiado ou estridor com inchaço de lábios ou língua, urticária ou vômitos após alimento, remédio ou picada", acao: "Anafilaxia: adrenalina intramuscular imediata e sala de emergência. Ver anafilaxia." },
     { t: "Hemoptise volumosa, ou com queda de saturação ou instabilidade", acao: "Hemoptise ameaçadora: sala de emergência, proteger a via aérea, deitar sobre o lado que sangra; TC de tórax e pneumologia ou broncoscopia." },
-    { t: "Tosse há 3 semanas ou mais (qualquer duração se HIV, prisão, situação de rua ou indígena), com febre à tarde, suor noturno ou emagrecimento", acao: "Suspeita de tuberculose: máscara cirúrgica no paciente, escarro para teste rápido molecular e radiografia de tórax." }
+    { t: "Tosse há 3 semanas ou mais (qualquer duração se HIV, prisão, situação de rua ou indígena), com ou sem febre à tarde, suor noturno ou emagrecimento", acao: "Suspeita de tuberculose: máscara cirúrgica no paciente, escarro para teste rápido molecular e radiografia de tórax." }
   ],
   perguntar: [
     "Início (súbito ou gradual) e duração da tosse: aguda < 3 semanas, subaguda 3 a 8, crônica > 8",
@@ -259,16 +263,18 @@ const QUEIXAS = [
     { rot: "Pneumonia: febre, tosse, estertores localizados ou imagem compatível", conduta: "pac" },
     { rot: "Crise de asma", conduta: "asma" },
     { rot: "DPOC exacerbada", conduta: "dpoc" },
-    { rot: "Síndrome gripal: febre, tosse ou dor de garganta, coriza", conduta: "gripe" },
+    { rot: "Síndrome gripal sem falta de ar e com SpO2 ≥ 95%: febre súbita com tosse ou dor de garganta e dor de cabeça, no corpo ou nas juntas. Com dispneia, desconforto ou SpO2 ≤ 94%: é SRAG, internar e oseltamivir já (ver febre)", conduta: "gripe" },
     { rot: "Tosse aguda, subaguda ou crônica, coqueluche", conduta: "tosse" },
     { rot: "Insuficiência cardíaca ou edema agudo de pulmão", conduta: "eap" },
     { rot: "TEP", conduta: "tep" }
   ],
   escores: ["CURB-65 (pneumonia)", "Gravidade da crise de asma (GINA)", "Wells ou Genebra e PERC (TEP)", "NEWS2"],
   fontes: [
+    "NICE NG250. Pneumonia: diagnosis and management, 2025 (rec. 1.2.3 e 1.2.9): CURB-65 e CRB-65.",
+    "Leigh-Smith S, Harris T. Tension pneumothorax — time for a re-think? (Emerg Med J 2005;22:8).",
     "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia — ATS/IDSA (Am J Respir Crit Care Med 2019;200:e45) — critérios de gravidade.",
     "Lim WS et al. Defining community acquired pneumonia severity on presentation to hospital: CURB-65 (Thorax 2003;58:377) e Corrêa RA et al. Recomendações da SBPT para PAC em adultos imunocompetentes (J Bras Pneumol 2018;44:405).",
-    "Global Initiative for Asthma (GINA). Global Strategy for Asthma Management and Prevention, 2026 (crise aguda; transferência para UTI se sonolência, confusão ou tórax silencioso) e 2025 (critérios de crise grave). https://ginasthma.org",
+    "Global Initiative for Asthma (GINA). Global Strategy for Asthma Management and Prevention, 2026 — Box 9-6: critérios de crise grave (não fala, não bebe ou não deita; SpO2 < 92% em ar ambiente; FR > 30; musculatura acessória; tórax silencioso ou pouco murmúrio; PFE ou VEF1 < 50%) e de ameaça à vida (sonolência, confusão, cianose); oxigênio com alvo de 92–95%.",
     "Global Initiative for Chronic Obstructive Lung Disease (GOLD) 2026 Report (exacerbação; oxigênio com alvo de 88–92%; ventilação não invasiva na acidose respiratória). https://goldcopd.org",
     "McDonagh TA et al. 2021 ESC Guidelines for heart failure (Eur Heart J 2021;42:3599) e atualização focada de 2023.",
     "Konstantinides SV et al. 2019 ESC Guidelines for acute pulmonary embolism (Eur Heart J 2020;41:543).",
@@ -276,7 +282,7 @@ const QUEIXAS = [
     "Resuscitation Council UK. Emergency treatment of anaphylaxis, 2021, e Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020 (World Allergy Organ J 2020;13:100472).",
     "Davidson K, Shojaee S. Managing Massive Hemoptysis (Chest 2020;157:77).",
     "Ministério da Saúde. Manual de Recomendações para o Controle da Tuberculose no Brasil, 2ª ed., 2019 (sintomático respiratório e populações vulneráveis).",
-    "Ministério da Saúde. Protocolo de Tratamento de Influenza, 2023 (grupos de risco e síndrome respiratória aguda grave).",
+    "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023 (grupos de risco e síndrome respiratória aguda grave).",
     "Irwin RS et al. Classification of Cough as a Symptom in Adults and Management Algorithms — CHEST Guideline (Chest 2018;153:196).",
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 18 — Dispneia, cap. 22 — Hemoptise, cap. 41 — Asma e cap. 43 — PAC; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 39 — Dyspnea e cap. 40 — Cough."
   ] }

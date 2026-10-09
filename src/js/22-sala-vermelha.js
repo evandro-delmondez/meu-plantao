@@ -22,11 +22,13 @@ function bicCalc(){
   else{mlh=numBr(bic.mlh);dose=mlh*c/f;$("#bicDose").value=mlh>=0&&isFinite(dose)?String(Math.round(dose*1000)/1000):""}
   if(!(dose>=0&&mlh>=0)){res.innerHTML="Digite a dose ou a vazão.";return}
   const fora=d.faixa&&(dose<d.faixa[0]-1e-9||dose>d.faixa[1]+1e-9);
-  res.innerHTML=`<b>${fmtN(mlh,1)} mL/h</b> = ${fmtN(dose,3)} ${d.un}${fora?`<br><span class="warn">Fora da faixa de referência (${fmtN(d.faixa[0],3)}–${fmtN(d.faixa[1],3)} ${d.un}).</span>`:""}`;
+  // dose por kg/min: mostra também o total por minuto, para não confundir com protocolos em mcg/min
+  const pm=d.porKg&&/\/kg\/min$/.test(d.un)?` (= ${fmtN(dose*numBr(bic.peso),1)} ${d.un.replace("/kg/min","/min")} com ${fmtN(numBr(bic.peso),1)} kg)`:"";
+  res.innerHTML=`<b>${fmtN(mlh,1)} mL/h</b> = ${fmtN(dose,3)} ${d.un}${pm}${fora?`<br><span class="warn">Fora da faixa de referência (${fmtN(d.faixa[0],3)}–${fmtN(d.faixa[1],3)} ${d.un}).</span>`:""}`;
 }
 function bicTabela(d){
   if(!d.faixa||!(bicFator(d)>0)||!(bicConc(d)>0)) return "";
-  const [a,b]=d.faixa; const pts=a===b?[a]:[0,1,2,3,4].map(i=>a+(b-a)*i/4);
+  const [a,b]=d.faixa; const pts=d.pontos||(a===b?[a]:[0,1,2,3,4].map(i=>a+(b-a)*i/4));
   return `<table class="ftbl"><thead><tr><th>Dose (${d.un})</th><th>Vazão</th></tr></thead><tbody>${pts.map(x=>`<tr><td>${fmtN(x,3)}</td><td><b>${fmtN(bicMlh(d,x),1)} mL/h</b></td></tr>`).join("")}</tbody></table>`;
 }
 function renderBic(){

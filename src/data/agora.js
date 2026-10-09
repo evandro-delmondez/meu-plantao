@@ -169,7 +169,8 @@ sepse: {
         mais: "Hipotensão: PAS < 90 ou PAM < 65 mmHg. Hipoperfusão: lactato > 2 vezes o normal, enchimento capilar lento, livedo, oligúria. A SSC 2026 fala em pelo menos 30 mL/kg; o ILAS, em até 30 mL/kg: individualizar." }
     ]},
     { t: "PAM < 65 mmHg apesar do volume", acoes: [
-      { txt: "Noradrenalina, 1ª escolha, em veia periférica calibrosa, sem esperar o acesso central; hipotensão grave: iniciar já, junto com o volume.", dose: { ref: "bula FDA (Levophed): iniciar 8–12 mcg/min (em norepinefrina base) e titular pela PAM" } },
+      { txt: "Noradrenalina, 1ª escolha, em veia periférica calibrosa, sem esperar o acesso central; hipotensão grave: iniciar já, junto com o volume.", dose: { ref: "bula FDA (Levophed): iniciar 8–12 mcg/min (em norepinefrina base) ≈ 0,1–0,2 mcg/kg/min em 70 kg; titular pela PAM" },
+        mais: "Atenção à unidade: a bomba do painel calcula em mcg/kg/min. Para 8–12 mcg/min, divida pelo peso (ex.: 70 kg → 0,11–0,17 mcg/kg/min)." },
       { txt: "Alvo inicial: PAM 65 mmHg (≥ 65 anos: 60–65 mmHg, se a perfusão estiver adequada). Não tolerar PAM abaixo do alvo por mais de 30–40 min." }
     ]},
     { t: "Choque persistente", acoes: [

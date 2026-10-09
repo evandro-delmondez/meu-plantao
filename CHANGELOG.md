@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.10.1 — 2026-10-09
+- **Correções de segurança (auditoria independente, achados críticos):**
+  - noradrenalina: a bomba de infusão calcula em mcg/kg/min e agora avisa quando a dose sai de 0,05–2 mcg/kg/min, mostra o total em mcg/min ao lado e a tabela usa pontos clínicos (0,05 a 1); o cartão da sepse e a ficha trazem a conversão de mcg/min para mcg/kg/min. Antes, digitar uma dose em mcg/min na bomba dava vazão cerca de 70 vezes maior sem aviso;
+  - paracetamol pediátrico (aba Pediatria): prescrito em mL com seringa oral, não mais em gotas calculadas (gotas por mL variam entre marcas); abaixo de 12 anos, teto de cerca de 2,2 mL (35 gotas da bula); limite superior arredondado para baixo.
+
 ## 1.10.0 — 2026-10-09
 - **Por queixa** (nova aba em Condutas): cefaleia, tontura/vertigem/síncope, dor abdominal, dor torácica, febre e tosse/dispneia. Primeiro os sinais de alarme com o que fazer, depois o que perguntar e examinar, os caminhos que abrem a conduta e os escores úteis. Conferido por agente independente (21 correções aplicadas).
 - **Alta para o paciente** em 15 condutas da porta: texto em linguagem simples, "volte ao pronto-socorro se…", para imprimir ou abrir pelo QR code numa página pública só com a orientação, sem dado do paciente. Conferido (5 correções).

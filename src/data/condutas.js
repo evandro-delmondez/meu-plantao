@@ -113,16 +113,18 @@ const BASE = [
   "cat": "orl",
   "cid": "J03.9",
   "sin": "dor de garganta placa pus amidala",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.\n3) Hexomedine spray -------------------------- 1 fr\nAplicar 3 jatos na garganta de 4/4h por 3 dias.\n4) Amidalin pastilha ------------------------- 1 cx\nDissolver 1 pastilha na boca a cada 3h por 3 dias.\n\nAntibiótico\n5) Amoxicilina 500mg ------------------------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu\n5) Amoxicilina 500mg ------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\nOu (dose única diária)\n5) Amoxicilina 500mg ------------------------- 20 cp\nTomar 2 cp (1 g) VO 1x ao dia por 10 dias.\nOu\n5) Penicilina G benzatina 1.200.000 UI ------- 1 amp\nAplicar IM, dose única (na unidade).\n\n# Se alergia a penicilina:\n5) Azitromicina 500mg ------------------------ 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\nOu\n5) Clindamicina 300mg ------------------------ 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\n\n# Se falha ou recorrência recente:\n5) Amoxicilina + Clavulanato 875/125mg ------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu\n5) Amoxicilina + Clavulanato 500/125mg ------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada).\n3) Hexomedine spray -------------------------- 1 fr\nAplicar 3 jatos na garganta de 4/4h por 3 dias.\n4) Amidalin pastilha ------------------------- 1 cx\nDissolver 1 pastilha na boca a cada 3h por 3 dias.\n\nAntibiótico\n5) Amoxicilina 500mg ------------------------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu\n5) Amoxicilina 500mg ------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\nOu (dose única diária)\n5) Amoxicilina 500mg ------------------------- 20 cp\nTomar 2 cp (1 g) VO 1x ao dia por 10 dias.\nOu\n5) Penicilina G benzatina 1.200.000 UI ------- 1 amp\nAplicar IM, dose única (na unidade).\n\n# Se alergia a penicilina:\n5) Azitromicina 500mg ------------------------ 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\nOu\n5) Clindamicina 300mg ------------------------ 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\n\n# Se falha ou recorrência recente:\n5) Amoxicilina + Clavulanato 875/125mg ------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu\n5) Amoxicilina + Clavulanato 500/125mg ------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.",
   "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n2) Penicilina G benzatina 1.200.000 UI IM, dose única (se opção pela via IM).",
-  "orient": "- Antibiótico indicado se quadro bacteriano provável: febre, exsudato, adenomegalia cervical dolorosa, ausência de tosse.\n- Retorno se dificuldade para abrir a boca, engolir saliva ou respirar (abscesso periamigdaliano).",
+  "orient": "- Febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, em área com dengue (ou viagem nos últimos 14 dias): não prescrever ibuprofeno nem AAS; usar só dipirona ou paracetamol até descartar dengue (MS, Dengue 2024, item 6.1.2).\n- Antibiótico indicado se quadro bacteriano provável: febre, exsudato, adenomegalia cervical dolorosa, ausência de tosse.\n- Retorno se dificuldade para abrir a boca, engolir saliva ou respirar (abscesso periamigdaliano).",
   "rev": [
+   "Corrigido (2026-10-09): não usar ibuprofeno na febre com dengue não descartada (MS, Dengue 2024).",
    "Atualizado: 1ª linha para faringite estreptocócica é amoxicilina ou penicilina benzatina; amoxicilina-clavulanato ficou para falha/recorrência.",
    "Ajustado: ibuprofeno 300mg 12/12h → 600mg 8/8h por 3 dias.",
    "Adicionado: amoxicilina 500 mg de 12/12h ou 1 g 1x/dia (IDSA 2012 aceita ambos por 10 dias).",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: caso suspeito (item 10.1); não usar salicilatos, anti-inflamatórios nem corticoides e orientar a não se automedicar (item 6.1.2); só dipirona e paracetamol (apêndice H). https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf",
    "Shulman ST et al. IDSA Clinical Practice Guideline for Group A Streptococcal Pharyngitis (Clin Infect Dis 2012;55:e86)."
   ]
  },
@@ -257,16 +259,20 @@ const BASE = [
   "cat": "gi",
   "cid": "K59.0",
   "sin": "intestino preso prisao de ventre",
-  "casa": "Uso oral\n1) Lactulose 667mg/mL xarope ----------------- 1 fr\nTomar 10 a 15 mL VO de 8/8h até normalizar o hábito.\n2) Óleo mineral ------------------------------ 1 fr\nTomar 15 mL VO à noite por até 4 dias, se fezes endurecidas.",
+  "casa": "Uso oral\n1) Lactulose 667mg/mL xarope ----------------- 1 fr\nTomar 10 a 15 mL VO de 8/8h até normalizar o hábito.\n2) Óleo mineral ------------------------------ 1 fr\nTomar 15 mL VO à noite, longe do jantar, por até 4 dias, se fezes endurecidas.",
   "unidade": "1) Buscopan Composto 1 amp EV lenta diluída em 10–20 mL de SF, ou IM (se cólica).\n2) Fosfato de sódio enema (Fleet) 1 unidade via retal, dose única\n   Ou Clister glicerinado 12% 500 mL via retal.",
-  "orient": "- Aumentar água (mínimo 2 L/dia) e fibras (frutas, verduras, cereais integrais).\n- Atividade física regular; não segurar a vontade de evacuar.\n- Não usar óleo mineral em idosos acamados ou com disfagia (risco de aspiração).\n- Evitar Fleet em DRC, desidratação e idosos frágeis (preferir clister glicerinado).\n- Retorno se vômitos, distensão abdominal, parada de eliminação de gases ou sangue nas fezes.",
+  "orient": "- Aumentar água (mínimo 2 L/dia) e fibras (frutas, verduras, cereais integrais).\n- Atividade física regular; não segurar a vontade de evacuar.\n- Óleo mineral: só à noite, longe das refeições, por no máximo 1 semana. Não usar em menores de 6 anos, gestantes, acamados, com disfagia ou refluxo (aspiração e pneumonia lipoídica), nem com náusea, vômito ou dor abdominal a esclarecer (bula Anvisa; FDA 21 CFR 201.302).\n- Fosfato de sódio retal (Fleet): dose única, nunca mais de 1 em 24 h. Evitar acima de 55 anos, com desidratação, doença renal, obstrução ou inflamação intestinal, ou em uso de diurético, IECA, BRA ou AINE (preferir clister glicerinado). Não usar em menores de 2 anos (FDA, 2014).\n- Retorno se vômitos, distensão abdominal, parada de eliminação de gases ou sangue nas fezes.",
   "rev": [
+   "Corrigido (2026-10-09): contraindicações do óleo mineral pela bula (menores de 6 anos, gestação, refluxo, náusea, vômito, dor abdominal) e do Fleet pela FDA 2014, com fonte.",
    "Adicionado: evitar óleo mineral em idosos acamados ou com disfagia (risco de aspiração).",
    "Adicionado: evitar Fleet em DRC, desidratação e idosos frágeis (distúrbio hidroeletrolítico).",
    "Removido: metoclopramida na unidade (sem indicação na constipação).",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
+   "Bula do óleo mineral (Anvisa; ex.: Teuto, 2025): contraindicado em menores de 6 anos; evitar com náuseas, vômitos, dor abdominal, gravidez, disfagia, refluxo e em acamados; não tomar com alimentos; no máximo 1 semana sem orientação médica.",
+   "FDA. 21 CFR 201.302 — Mineral oil: vitaminas lipossolúveis, gravidez e pneumonia lipoídica; tomar só ao deitar.",
+   "FDA Drug Safety Communication (08/01/2014): fosfato de sódio de venda livre — no máximo 1 dose em 24 h; risco maior acima de 55 anos, desidratação, doença renal, obstrução ou inflamação intestinal, diurético, IECA, BRA e AINE.",
    "Chang L et al. AGA–ACG Clinical Practice Guideline: Pharmacological Management of Chronic Idiopathic Constipation (Gastroenterology 2023)."
   ]
  },
@@ -467,8 +473,9 @@ const BASE = [
   "sin": "azia queimacao estomago refluxo epigastrio gastrite",
   "casa": "Uso oral\n1) Omeprazol 20mg ---------------------------- 28 cp\nTomar 1 cp VO em jejum, 30 min antes do café da manhã, por 4 semanas.\n2) Domperidona 10mg -------------------------- 21 cp\nTomar 1 cp VO 3x ao dia, 15–30 min antes das refeições, por até 7 dias.\nOu\n2) Bromoprida 10mg --------------------------- 21 cp\nTomar 1 cp VO 3x ao dia, 30 min antes das refeições, por até 7 dias.\n3) Hidróxido de alumínio suspensão ----------- 1 fr\nTomar 10 mL VO 1h após as refeições e ao deitar, se azia, por até 7 dias.",
   "unidade": "1) Omeprazol 40 mg EV: reconstituir no diluente próprio (10 mL) e aplicar lento, ou diluir em 100 mL de SF e correr em 20–30 min.\n2) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Ondansetrona 4 mg EV lenta (≥ 30 s) ou IM.",
-  "orient": "- Fracionar refeições, evitar deitar até 2h após comer, reduzir álcool, café, frituras e cigarro.\n- Evitar anti-inflamatórios.\n- Encaminhar para EDA se: idade ≥ 60 anos (ACG/CAG 2017), perda de peso, anemia, disfagia, vômitos persistentes, sangramento.\n- CID: DRGE K21.9 | Gastrite K29.7.",
+  "orient": "- Fracionar refeições, evitar deitar até 2h após comer, reduzir álcool, café, frituras e cigarro.\n- Evitar anti-inflamatórios.\n- Encaminhar para endoscopia (ambulatorial) se: 40 anos ou mais com dispepsia, sinais de alarme (perda de peso, anemia, disfagia, vômitos persistentes, sangramento, massa abdominal), falha do tratamento com IBP ou parente de 1º grau com câncer gástrico (a partir dos 30 anos) (V Consenso Brasileiro de H. pylori 2026, enunciado 18).\n- Abaixo de 40 anos e sem sinais de alarme: pesquisar e tratar o H. pylori na atenção primária (testar e tratar; V Consenso, enunciado 6; ACG/CAG 2017; Harrison, 22ª ed., cap. 48).\n- CID: DRGE K21.9 | Gastrite K29.7.",
   "rev": [
+   "Ajustado (2026-10-09): idade para endoscopia ≥ 60 → ≥ 40 anos (V Consenso Brasileiro de H. pylori 2026); adicionado testar e tratar o H. pylori.",
    "Removido: texto de HMA que estava colado no meio da prescrição.",
    "Corrigido: domperidona limitada a 7 dias (risco de arritmia) e digitação ('três vezles').",
    "Adicionado: sinais de alarme para EDA.",
@@ -476,6 +483,7 @@ const BASE = [
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
+   "Coelho LGV et al. V Consenso Brasileiro sobre Helicobacter pylori (Arq Gastroenterol 2026;63:e26043). doi 10.1590/S0004-2803.24612026-043: endoscopia a partir de 40 anos com dispepsia ou com sinais de alarme (enunciado 18); testar e tratar até 45 anos sem alarme (enunciado 6).",
    "Moayyedi PM et al. ACG and CAG Clinical Guideline: Management of Dyspepsia (Am J Gastroenterol 2017).",
    "EMA 2014: restrição da domperidona (dose e duração)."
   ]
@@ -662,14 +670,16 @@ const BASE = [
   "cat": "orl",
   "cid": "J02.9",
   "sin": "dor de garganta viral",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada).",
   "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.",
-  "orient": "- Repouso, hidratação, gargarejo com água morna e sal.\n- Antibiótico não é necessário (quadro viral).\n- Retorno se febre > 3 dias, placas ou dificuldade para engolir.",
+  "orient": "- Repouso, hidratação, gargarejo com água morna e sal.\n- Febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, em área com dengue (ou viagem nos últimos 14 dias): não prescrever ibuprofeno nem AAS; usar só dipirona ou paracetamol até descartar dengue (MS, Dengue 2024, item 6.1.2).\n- Antibiótico não é necessário (quadro viral).\n- Retorno se febre > 3 dias, placas ou dificuldade para engolir.",
   "rev": [
+   "Corrigido (2026-10-09): não usar ibuprofeno na febre com dengue não descartada (MS, Dengue 2024).",
    "Movido: orientações que estavam em 'Na unidade' para Orientações.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: caso suspeito (item 10.1); não usar salicilatos, anti-inflamatórios nem corticoides e orientar a não se automedicar (item 6.1.2); só dipirona e paracetamol (apêndice H). https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf",
    "Shulman ST et al. IDSA GAS Pharyngitis Guideline 2012 (não tratar faringite viral com antibiótico)."
   ]
  },
@@ -694,10 +704,11 @@ const BASE = [
   "cat": "gi",
   "cid": "A09",
   "sin": "diarreia vomito gastroenterite virose intestinal",
-  "casa": "Uso oral\n1) Sais de reidratação oral ------------------ 10 envelopes\nDiluir 1 envelope em 1 L de água filtrada e beber aos poucos ao longo do dia, após cada evacuação.\n2) Ondansetrona 8mg (Vonau Flash) ------------ 10 cp\nDissolver 1 cp na língua de 8/8h se náuseas ou vômitos.\n3) Escopolamina + Dipirona 10/250mg (Buscopan Composto) --- 20 cp\nTomar 1 cp VO de 6/6h se dor abdominal ou febre.\n4) Saccharomyces boulardii 200mg (Repoflor) -- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.\nOu\n4) Enterogermina flaconete ------------------- 10 fr\nTomar 1 flaconete VO de 12/12h por 5 dias.\n\n# Se disenteria (diarreia com sangue) com febre:\n5) Ciprofloxacino 500mg ---------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\nOu\n5) Azitromicina 500mg ------------------------ 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.",
+  "casa": "Uso oral\n1) Sais de reidratação oral ------------------ 10 envelopes\nDiluir 1 envelope em 1 L de água filtrada e beber aos poucos ao longo do dia, após cada evacuação.\n2) Ondansetrona 8mg (Vonau Flash) ------------ 10 cp\nDissolver 1 cp na língua de 8/8h se náuseas ou vômitos.\n3) Escopolamina + Dipirona 10/250mg (Buscopan Composto) --- 20 cp\nTomar 1 cp VO de 6/6h se dor abdominal ou febre.\n4) Saccharomyces boulardii 200mg (Repoflor) -- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.\nOu\n4) Enterogermina flaconete ------------------- 10 fr\nTomar 1 flaconete VO de 12/12h por 5 dias.\n\n# Se disenteria (diarreia com sangue) com febre (gestante: só azitromicina):\n5) Ciprofloxacino 500mg ---------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\nOu\n5) Azitromicina 500mg ------------------------ 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.",
   "unidade": "1) SF 0,9% 1.000 mL EV aberto (se desidratação moderada/grave ou vômitos incoercíveis).\n2) Ondansetrona 4 mg EV lenta (≥ 30 s), pode diluir em 8 mL de AD, ou IM\n   Ou Dimenidrinato + Piridoxina: ampola EV (10 mL) em 100 mL de SF em 30 min; existe apresentação própria para IM\n   Ou Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n3) Buscopan Composto 1 amp EV lenta diluída em 10–20 mL de SF, ou IM (se cólica).",
-  "orient": "- Beber 2–3 L de líquidos por dia, em pequenos goles.\n- Evitar laticínios, gordura, café e refrigerante nos primeiros dias.\n- Não usar loperamida se houver sangue ou febre.\n- Retorno imediato se não conseguir ingerir líquidos, desmaio, sangue/pus nas fezes, urina muito escura ou em pouca quantidade.",
+  "orient": "- Beber 2–3 L de líquidos por dia, em pequenos goles.\n- Manter a alimentação habitual, em porções menores se houver náusea; evitar refrigerante e não adoçar chá ou suco (MS, Plano A; IDSA 2017, rec. 45).\n- Antidiarreico não é rotina (MS). Loperamida: nunca em menores de 18 anos, com febre ou com sangue nas fezes (IDSA 2017, rec. 47).\n- Disenteria tratada com antibiótico: reavaliar em 2 dias (MS, cartaz D.1.1).\n- Retorno imediato se não conseguir ingerir líquidos, desmaio, sangue/pus nas fezes, urina muito escura ou em pouca quantidade.",
   "rev": [
+   "Corrigido (2026-10-09): manter a alimentação habitual (MS e IDSA 2017); antidiarreico não é rotina; gestante sem ciprofloxacino; reavaliar disenteria em 2 dias; cartaz do MS nas fontes.",
    "Corrigido: item '3) c' estava incompleto → ondansetrona 8mg.",
    "Removido: omeprazol por 10 dias (sem indicação na GECA).",
    "Corrigido: ciprofloxacino na disenteria 5 → 3 dias; adicionada azitromicina.",
@@ -705,6 +716,7 @@ const BASE = [
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
+   "Ministério da Saúde. Manejo do paciente com diarreia (cartaz): Plano A (líquidos após cada evacuação e vômito, manter a alimentação habitual, voltar se não melhorar em 2 dias ou se sinais de alerta); antibiótico só na disenteria com comprometimento do estado geral; reavaliar em 2 dias; ciprofloxacino: não usar em gestantes; antidiarreicos não devem ser usados. https://bvsms.saude.gov.br/bvs/cartazes/manejo_paciente_diarreia_cartaz.pdf",
    "Shane AL et al. IDSA Clinical Practice Guidelines for Infectious Diarrhea (Clin Infect Dis 2017)."
   ]
  },
@@ -996,14 +1008,18 @@ const BASE = [
   "sin": "enjoo vomito",
   "casa": "Uso oral\n1) Dimenidrinato + Piridoxina 50/10mg (Dramin B6) --- 10 cp\nTomar 1 cp VO de 8/8h por até 3 dias, se enjoo.\nOu\n1) Ondansetrona 8mg (Vonau Flash) ------------ 10 cp\nDissolver 1 cp na língua de 8/8h por até 3 dias, se enjoo.",
   "unidade": "1) Ondansetrona 4 mg EV lenta (≥ 30 s) ou IM\n   Ou Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).",
-  "orient": "- Pequenos goles de líquido; retornar se não conseguir se hidratar.",
+  "orient": "- Procurar a causa antes de tratar só o sintoma: gravidez (teste na mulher em idade fértil), obstrução ou abdome agudo, cetoacidose, infarto (náusea com dor ou desconforto no peito), causa neurológica (cefaleia, alteração visual, déficit focal), labirintopatia e medicamentos (Harrison, 22ª ed., cap. 48).\n- Pequenos goles de líquido; se a desidratação não se corrige por via oral, hidratar EV e observar (Harrison, cap. 48).\n- Metoclopramida: no máximo 5 dias (EMA 2013); no idoso, evitar fora da gastroparesia (discinesia tardia). Ondansetrona: cautela com QT longo (Harrison, 22ª ed., cap. 48).\n- Retorno imediato se vômito com sangue ou borra de café, vômito verde, dor abdominal intensa, cefaleia súbita ou rigidez de nuca, confusão, sinais de desidratação; procurar atendimento se vômitos por mais de 2 dias (NHS).",
   "rev": [
+   "Corrigido (2026-10-09): fonte \"Consenso clínico\" trocada por Harrison 22ª ed. cap. 48, Cochrane 2015 e bulas; adicionados causa a procurar e sinais de retorno.",
    "Ajustado: Dramin B6 7 → 3 dias, se necessário.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
-  "evid": "Escolha do antiemético por consenso; evidência comparativa limitada.",
+  "evid": "Nenhum antiemético se mostrou superior a outro, nem claramente ao placebo, no adulto no pronto-socorro (Cochrane 2015); escolher pelo perfil de efeitos adversos. Ondansetrona oral fora da quimioterapia e do pós-operatório é uso fora da bula.",
   "fontes": [
-   "Consenso clínico."
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 48 — Nausea, Vomiting, and Indigestion: causas, abordagem, hidratação e escolha do antiemético por indicação; metoclopramida e discinesia tardia; antagonistas 5-HT3 e QTc.",
+   "Furyk JS et al. Drugs for the treatment of nausea and vomiting in adults in the emergency department setting (Cochrane Database Syst Rev 2015;(9):CD010106). doi 10.1002/14651858.CD010106.pub2.",
+   "Bulas Anvisa: Dramin B6 (dimenidrinato + piridoxina, Takeda), ondansetrona orodispersível e Plasil injetável (metoclopramida); EMA 2013, metoclopramida (até 10 mg 3x/dia, no máximo 5 dias).",
+   "NHS. Diarrhoea and vomiting: sinais para pronto-socorro e vômito por mais de 2 dias. https://www.nhs.uk/conditions/diarrhoea-and-vomiting/"
   ]
  },
  {
@@ -1284,14 +1300,16 @@ const BASE = [
   "cat": "resp",
   "cid": "J11.1",
   "sin": "gripe resfriado coriza tosse influenza covid",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se febre ou dor.\n2) Loratadina 10mg --------------------------- 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h por 3 dias.\n\nUso nasal\n4) Soro fisiológico 0,9% --------------------- 1 fr\nAplicar 5 a 10 mL com seringa em cada narina 4x ao dia (spray: 2 jatos em cada narina).\n\n# Síndrome gripal em grupo de risco (≥ 60 anos, gestante/puérpera, comorbidades, imunossupressão), até 48h idealmente:\n5) Oseltamivir 75mg -------------------------- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se febre ou dor.\n2) Loratadina 10mg --------------------------- 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada).\n\nUso nasal\n4) Soro fisiológico 0,9% --------------------- 1 fr\nAplicar 5 a 10 mL com seringa em cada narina 4x ao dia (spray: 2 jatos em cada narina).\n\n# Síndrome gripal em grupo de risco (≥ 60 anos, gestante/puérpera, comorbidades, imunossupressão), até 48h idealmente:\n5) Oseltamivir 75mg -------------------------- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.",
   "unidade": "",
-  "orient": "- Repouso, hidratação.\n- Retorno imediato se falta de ar, SatO2 baixa, dor no peito, piora da febre após melhora.\n- CID resfriado: J00.",
+  "orient": "- Repouso, hidratação.\n- Febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, em área com dengue (ou viagem nos últimos 14 dias): não prescrever ibuprofeno nem AAS; usar só dipirona ou paracetamol até descartar dengue (MS, Dengue 2024, item 6.1.2).\n- Grupo de risco tratado em casa: retorno em 48 h ou antes se sinais de gravidade (Guia de Manejo e Tratamento de Influenza 2023, fluxograma).\n- Retorno imediato se falta de ar, SatO2 baixa, dor no peito, piora da febre após melhora.\n- CID resfriado: J00.",
   "rev": [
+   "Corrigido (2026-10-09): não usar ibuprofeno na febre com dengue não descartada (MS, Dengue 2024).",
    "Adicionado: oseltamivir para grupo de risco (protocolo MS).",
    "Removido: budesonida nasal por 15 dias (sem benefício no resfriado)."
   ],
   "fontes": [
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: caso suspeito (item 10.1); não usar salicilatos, anti-inflamatórios nem corticoides e orientar a não se automedicar (item 6.1.2); só dipirona e paracetamol (apêndice H). https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf",
    "Ministério da Saúde. Protocolo de Tratamento de Influenza, 2023 (oseltamivir em grupo de risco)."
   ]
  },
@@ -1806,10 +1824,11 @@ const BASE = [
   "cat": "resp",
   "cid": "R05",
   "sin": "tosse seca produtiva pigarro coqueluche gotejamento pos nasal",
-  "casa": "# Tosse aguda (< 3 semanas) do resfriado — sintomático\nUso oral\n1) Mel -----------------------------------------\nTomar 1 colher de chá (5 mL) puro ou em chá morno até 3x ao dia, principalmente à noite. Não dar a menores de 1 ano.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h por 3 dias.\n\nUso nasal\n4) Soro fisiológico 0,9% --------------------- 1 fr\nLavar as narinas com 5–10 mL em cada lado 3 a 4x ao dia.\n\n# Tosse subaguda pós-infecciosa (3–8 semanas), após excluir pneumonia e coqueluche\n5) Brometo de ipratrópio spray --------------- 1 fr\nInalar 2 jatos de 6/6h por até 2 semanas.\n\n# Coqueluche (suspeita: tosse ≥ 14 dias com paroxismos, guincho inspiratório ou vômito pós-tosse)\n6) Azitromicina 500mg ------------------------ 1 cp + Azitromicina 250mg -- 4 cp\nTomar 500 mg no 1º dia e 250 mg 1x ao dia do 2º ao 5º dia.",
+  "casa": "# Tosse aguda (< 3 semanas) do resfriado — sintomático\nUso oral\n1) Mel -----------------------------------------\nTomar 1 colher de chá (5 mL) puro ou em chá morno até 3x ao dia, principalmente à noite. Não dar a menores de 1 ano.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada).\n\nUso nasal\n4) Soro fisiológico 0,9% --------------------- 1 fr\nLavar as narinas com 5–10 mL em cada lado 3 a 4x ao dia.\n\n# Tosse subaguda pós-infecciosa (3–8 semanas), após excluir pneumonia e coqueluche\n5) Brometo de ipratrópio spray --------------- 1 fr\nInalar 2 jatos de 6/6h por até 2 semanas.\n\n# Coqueluche (suspeita: tosse ≥ 14 dias com paroxismos, guincho inspiratório ou vômito pós-tosse)\n6) Azitromicina 500mg ------------------------ 1 cp + Azitromicina 250mg -- 4 cp\nTomar 500 mg no 1º dia e 250 mg 1x ao dia do 2º ao 5º dia.",
   "unidade": "1) Classificar pela duração: aguda < 3 semanas | subaguda 3–8 semanas | crônica > 8 semanas.\n2) Sinais de alarme: dispneia, hemoptise, febre persistente, perda de peso, rouquidão, sibilância nova, tabagismo importante (≥ 20 maços-ano ou fumante > 45 anos), pneumonias de repetição, imunossupressão.\n3) Aguda: pensar em IVAS, mas excluir pneumonia (FR, SatO2, ausculta), TEP, IC, asma/DPOC exacerbados.\n4) Crônica: RX de tórax; suspender IECA (a tosse some em 1 semana a 3 meses); investigar as causas mais comuns:\n   - Síndrome da tosse das vias aéreas superiores: corticoide nasal (+ anti-histamínico de 1ª geração com descongestionante como teste).\n   - Asma (inclui variante tosse): corticoide inalatório + broncodilatador.\n   - Refluxo: IBP por pelo menos 8 semanas com mudança de hábitos.\n   - Bronquite eosinofílica não asmática: corticoide inalatório.\n5) Tosse por mais de 2–3 semanas com febre, suor noturno ou emagrecimento: investigar tuberculose (baciloscopia/TRM-TB).",
-  "orient": "- Antibiótico não trata tosse viral.\n- Codeína não deve ser usada para tosse em menores de 12 anos.\n- Coqueluche: notificação compulsória; avaliar quimioprofilaxia dos contatos prioritários (menores de 1 ano, gestantes a partir de 32 semanas, imunossuprimidos, profissionais de saúde).\n- Retorno se falta de ar, sangue no escarro, febre alta ou tosse que piora.",
+  "orient": "- Antibiótico não trata tosse viral.\n- Febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, em área com dengue (ou viagem nos últimos 14 dias): não prescrever ibuprofeno nem AAS; usar só dipirona ou paracetamol até descartar dengue (MS, Dengue 2024, item 6.1.2).\n- Codeína não deve ser usada para tosse em menores de 12 anos.\n- Coqueluche: notificação compulsória; avaliar quimioprofilaxia dos contatos prioritários (menores de 1 ano, gestantes a partir de 32 semanas, imunossuprimidos, profissionais de saúde).\n- Retorno se falta de ar, sangue no escarro, febre alta ou tosse que piora.",
   "fontes": [
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: caso suspeito (item 10.1); não usar salicilatos, anti-inflamatórios nem corticoides e orientar a não se automedicar (item 6.1.2); só dipirona e paracetamol (apêndice H). https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf",
    "Irwin RS et al. Classification of Cough as a Symptom in Adults and Management Algorithms — CHEST Guideline (Chest 2018). https://journal.chestnet.org/article/S0012-3692(17)32918-5/fulltext",
    "Malesker MA et al. Treatment for Acute Cough Associated With the Common Cold — CHEST (Chest 2017). https://journal.chestnet.org/article/S0012-3692(17)31408-3/fulltext",
    "Morice AH et al. ERS guidelines on chronic cough in adults and children (Eur Respir J 2020). https://publications.ersnet.org/content/erj/55/1/1901136",
@@ -1821,6 +1840,7 @@ const BASE = [
   ],
   "evid": "Para a tosse aguda do resfriado a evidência dos sintomáticos é de baixa qualidade (CHEST 2017); mel tem benefício pequeno em crianças.",
   "rev": [
+   "Corrigido (2026-10-09): não usar ibuprofeno na febre com dengue não descartada (MS, Dengue 2024).",
    "Item novo."
   ]
  }

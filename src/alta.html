@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Orientações de alta</title>
+<style>
+:root{--bg:#fbfaf7;--ink:#1d2330;--muted:#5d6577;--card:#fff;--line:#e3e0d8;--bad:#c62f2f;--badbg:#fdf1f0;--acc:#2f54eb}
+@media (prefers-color-scheme:dark){:root{--bg:#14171f;--ink:#eef0f5;--muted:#a3aabb;--card:#1c202b;--line:#2c3242;--bad:#ff7b72;--badbg:#2a1c1f;--acc:#8ea6ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:680px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:26px;line-height:1.25;margin:4px 0 10px}
+h2{font-size:19px;margin:22px 0 8px}
+.marca{font-size:14px;color:var(--muted);font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+ul{margin:0;padding-left:22px}li{margin:6px 0}
+.volte{background:var(--badbg);border:2px solid var(--bad);border-radius:14px;padding:14px 16px}
+.volte h2{color:var(--bad);margin-top:0}
+.aviso{font-size:15px;color:var(--muted);margin-top:22px}
+.fontes{font-size:13px;color:var(--muted)}
+@media print{body{background:#fff;color:#000;font-size:13pt}.volte{background:#fff}.naoimprime{display:none}}
+</style>
+</head>
+<body>
+<main id="m"></main>
+<script>
+/*__ALTA__*/
+(function(){
+function mostra(){
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const id=decodeURIComponent(location.hash.slice(1)), a=ALTA[id], m=document.getElementById("m");
+  if(!a){m.innerHTML='<p class="marca">Meu Plantão</p><h1>Orientação não encontrada</h1><p>Peça ao seu médico para mostrar o código de novo.</p>';return}
+  document.title=a.titulo+" — orientações";
+  const lista=l=>"<ul>"+l.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul>";
+  m.innerHTML='<p class="marca">Orientações de alta</p><h1>'+esc(a.titulo)+'</h1>'+
+    '<div class="card"><p style="margin:0">'+esc(a.oque)+'</p></div>'+
+    '<h2>O que fazer em casa</h2><div class="card">'+lista(a.cuidados)+'</div>'+
+    '<h2 style="visibility:hidden;margin:6px">.</h2><div class="volte"><h2>Volte ao pronto-socorro se</h2>'+lista(a.volte)+'</div>'+
+    '<p class="aviso">Esta é uma orientação geral. Tome os remédios como está na sua receita e siga o que o seu médico explicou. Em caso de piora, procure atendimento.</p>'+
+    '<details class="fontes naoimprime"><summary>Fontes</summary>'+lista(a.fontes)+'</details>';
+}
+mostra(); addEventListener("hashchange",mostra);
+})();
+</script>
+</body>
+</html>

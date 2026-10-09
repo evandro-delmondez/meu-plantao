@@ -13,10 +13,10 @@ const err = (m) => erros.push(m), warn = (m) => avisos.push(m);
 // carrega os arquivos de dados num contexto isolado
 const ctx = {};
 vm.createContext(ctx);
-const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js", "checklists.js", "calculadora.js", "infusao.js", "protocolos.js", "eletrolitos.js", "agora.js"]
+const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js", "checklists.js", "calculadora.js", "infusao.js", "protocolos.js", "eletrolitos.js", "agora.js", "queixas.js", "alta.js"]
   .map((f) => readFileSync(join(root, "src/data", f), "utf8").replace(/^if \(typeof module.*$/gm, "")).join("\n");
-vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,INFUSAO,IOT_FONTES,PROTOCOLOS,ELETROLITOS,QT_RISCO,QT_FONTES,AGORA};", ctx);
-const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES, PROTOCOLOS, ELETROLITOS, QT_RISCO, QT_FONTES, AGORA } = ctx.__dados;
+vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,INFUSAO,IOT_FONTES,PROTOCOLOS,ELETROLITOS,QT_RISCO,QT_FONTES,AGORA,QUEIXAS,ALTA};", ctx);
+const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES, PROTOCOLOS, ELETROLITOS, QT_RISCO, QT_FONTES, AGORA, QUEIXAS, ALTA } = ctx.__dados;
 
 const CAPS = /[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{12,}/;          // trecho longo em maiúsculas
 const RUIM = /\bundefined\b|\bNaN\b|\[object Object\]/;
@@ -143,6 +143,26 @@ for (const [id, a] of Object.entries(AGORA || {})) {
     if (s.protocolo && !(PROTOCOLOS || []).some((p) => p.id === s.protocolo)) err(`${onde}: protocolo "${s.protocolo}" não existe`);
     if (s.bic && !(INFUSAO || []).some((p) => p.id === s.bic)) err(`${onde}: bomba "${s.bic}" não existe`);
   }
+  verTexto(onde, a);
+}
+
+// ---------- queixas (porta) ----------
+const qids = new Set();
+for (const q of QUEIXAS || []) {
+  const onde = `queixa "${q.id}"`;
+  if (!q.id || qids.has(q.id)) err(`${onde}: id vazio ou repetido`); qids.add(q.id);
+  if (!q.nome || !Array.isArray(q.alarme) || !q.alarme.length) err(`${onde}: sem nome ou sinais de alarme`);
+  for (const a of q.alarme || []) if (!a.t || !a.acao) err(`${onde}: sinal de alarme sem "t" ou "acao"`);
+  for (const c of q.caminhos || []) { if (!c.rot) err(`${onde}: caminho sem rótulo`); if (c.conduta && !ids.has(c.conduta)) err(`${onde}: conduta "${c.conduta}" não existe`); }
+  if (!Array.isArray(q.fontes) || !q.fontes.length) err(`${onde}: sem fontes`);
+  verTexto(onde, q);
+}
+// ---------- alta em linguagem leiga ----------
+for (const [id, a] of Object.entries(ALTA || {})) {
+  const onde = `alta "${id}"`;
+  if (!ids.has(id)) err(`${onde}: conduta não existe`);
+  if (!a.titulo || !a.oque || !(a.cuidados || []).length || !(a.volte || []).length) err(`${onde}: falta título, "oque", cuidados ou "volte"`);
+  if (!Array.isArray(a.fontes) || !a.fontes.length) err(`${onde}: sem fontes`);
   verTexto(onde, a);
 }
 

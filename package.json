@@ -1,6 +1,6 @@
 {
   "name": "meu-plantao",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "Meu Plantão — apoio à prescrição e condutas em plantão (UPA/PS), com fontes citadas.",
   "scripts": {
     "build": "node scripts/build.mjs",
@@ -12,7 +12,8 @@
   "author": "Evandro Delmondez Oliveira",
   "license": "UNLICENSED",
   "devDependencies": {
-    "@playwright/test": "^1.56.0"
+    "@playwright/test": "^1.56.0",
+    "qrcode-generator": "^2.0.4"
   },
   "private": true,
   "type": "module",

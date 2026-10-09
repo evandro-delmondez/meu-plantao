@@ -30,13 +30,17 @@ const data = [
   stripModule(r("src/data/protocolos.js")),
   stripModule(r("src/data/eletrolitos.js")),
   stripModule(r("src/data/agora.js")),
+  stripModule(r("src/data/queixas.js")),
+  stripModule(r("src/data/alta.js")),
   "const MEDS=" + JSON.stringify(meds) + ";",
   `const APP_VERSION=${JSON.stringify(pkg.version)};`,
 ].join("\n");
 
 // ---------- página base ----------
 const jsDir = join(root, "src/js");
-const js = readdirSync(jsDir).filter((f) => f.endsWith(".js")).sort()
+// biblioteca de QR code (qrcode-generator, MIT, Kazuhiko Arase), sem rede
+const qrLib = readFileSync(join(root, "node_modules/qrcode-generator/dist/qrcode.js"), "utf8").replace(/\(function \(factory\)[\s\S]*$/, "");
+const js = "/* ===== qrcode-generator 2.0.4 (MIT) ===== */\n" + qrLib + "\n" + readdirSync(jsDir).filter((f) => f.endsWith(".js")).sort()
   .map((f) => `/* ===== ${f} ===== */\n` + readFileSync(join(jsDir, f), "utf8")).join("\n");
 let page = r("src/index.html")
   .replace("/*__CSS__*/", () => r("src/styles.css"))
@@ -96,6 +100,9 @@ mkdirSync(join(dist, "claude"), { recursive: true });
 writeFileSync(join(dist, "claude/painel.html"), page);
 writeFileSync(join(dist, "claude/colegas.html"), local);
 writeFileSync(join(dist, "site/index.html"), site);
+// página pública da alta (aberta pelo QR code no celular do paciente): só a orientação, nenhum dado do paciente
+const altaData = stripModule(r("src/data/alta.js"));
+writeFileSync(join(dist, "site/alta.html"), r("src/alta.html").replace("/*__ALTA__*/", () => altaData));
 const hash = createHash("sha256").update(site).digest("hex").slice(0, 10);
 for (const f of readdirSync(join(root, "public"))) {
   if (f === "sw.js") writeFileSync(join(dist, "site/sw.js"), r("public/sw.js").replace("__CACHE__", `meu-plantao-${pkg.version}-${hash}`));

@@ -162,6 +162,7 @@ function renderDetail(){
   ${section(it,"orient","Orientações","orient","Copiar")}
   ${renderChecklist(it)}
   ${renderAtend(it)}
+  ${renderAltaPac(it)}
   ${renderFichas(it)}
   ${renderAlta(it)}
   ${it.evid?`<div class="sec evid"><div class="sec-h"><h3>Nível de evidência</h3></div><p>${esc(it.evid)}</p></div>`:""}
@@ -179,6 +180,7 @@ function renderDetail(){
   bindChecklist(it);
   bindAgora(it);
   bindAtend(it);
+  bindAltaPac(it);
   growAll();
   $("#toEv").onclick=()=>{$("#evCond").value=it.id;evManual=false;setTab("evolucao")};
   linkMeds(el);

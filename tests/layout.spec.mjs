@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { abrir, aba, semRolagemLateral } from "./util.mjs";
 
-const ABAS = ["inicio", "prescricoes", "feridas", "medicacoes", "pediatria", "sala", "pcr", "bic", "iot", "protocolos", "evolucao", "atestado", "modelos", "backup", "escores", "calculadora", "contas", "eletrolitos"];
+const ABAS = ["inicio", "prescricoes", "queixas", "feridas", "medicacoes", "pediatria", "sala", "pcr", "bic", "iot", "protocolos", "evolucao", "atestado", "modelos", "backup", "escores", "calculadora", "contas", "eletrolitos"];
 test("nenhuma aba tem rolagem lateral", async ({ page }) => {
   const erros = await abrir(page);
   for (const a of ABAS) { await aba(page, a); expect(await semRolagemLateral(page), a).toBe(true); }

@@ -27,6 +27,7 @@
     <nav class="tabs" role="tablist" aria-label="Páginas da seção">
       <button role="tab" data-tab="inicio" data-sec="inicio" aria-selected="true">Início</button>
       <button role="tab" data-tab="prescricoes" data-sec="condutas" aria-selected="false">Prescrições</button>
+      <button role="tab" data-tab="queixas" data-sec="condutas" aria-selected="false">Por queixa</button>
       <button role="tab" data-tab="feridas" data-sec="condutas" aria-selected="false">Feridas e mordeduras</button>
       <button role="tab" data-tab="medicacoes" data-sec="remedios" aria-selected="false">Fichas</button>
       <button role="tab" data-tab="pediatria" data-sec="remedios" aria-selected="false">Pediatria por peso</button>
@@ -236,6 +237,16 @@
   </section>
 
   <!-- ATESTADO -->
+  <!-- QUEIXAS -->
+  <section id="tab-queixas" hidden>
+    <div class="panel card">
+      <h2>Por queixa</h2>
+      <p class="note">Primeiro os sinais de alarme (o que tira o paciente do verde), depois o que perguntar e o caminho até a conduta.</p>
+      <div class="chips" id="qLista"></div>
+    </div>
+    <div id="qCorpo"></div>
+  </section>
+
   <!-- FERIDAS -->
   <section id="tab-feridas" hidden>
     <div class="two">

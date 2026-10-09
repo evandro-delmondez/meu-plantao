@@ -480,3 +480,34 @@ body.sheet-on{overflow:hidden}
 .atdout h4{margin:0;font-size:14px}
 .atdout textarea{width:100%;min-height:80px}
 @media (max-width:560px){.atdsv{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* por queixa */
+.qal{list-style:none;margin:0;padding:0 16px 12px}
+.qal li{display:flex;flex-direction:column;gap:2px;padding:7px 0;border-bottom:1px dashed color-mix(in srgb,var(--bad) 30%,transparent)}
+.qal li:last-child{border-bottom:0}
+.qal b{color:var(--bad)}
+.qal span{font-size:14px}
+.qlist{margin:0;padding:0 16px 12px 34px}
+.qcams{display:flex;flex-direction:column;gap:6px;padding:0 16px 14px}
+.qcam{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;font:inherit;padding:9px 12px;border-radius:10px;border:1.5px solid color-mix(in srgb,var(--accent) 35%,transparent);background:color-mix(in srgb,var(--accent) 6%,var(--surface));color:var(--ink);cursor:pointer}
+.qcam.semlink{cursor:default;border-style:dashed}
+.qir{color:var(--accent);font-weight:700;white-space:nowrap}
+/* alta para o paciente */
+.altabody{padding:0 16px 14px}
+.altabody h4,#impressao h4{margin:12px 0 4px}
+.altaoque{font-weight:600}
+.altavolte{border:2px solid var(--bad);border-radius:10px;padding:4px 12px 8px;margin-top:10px;background:color-mix(in srgb,var(--bad) 5%,transparent)}
+.altavolte h4{color:var(--bad)}
+.qrbox{max-width:420px}
+.qrcorpo{padding:12px 18px 20px;text-align:center}
+.qrimg{background:#fff;border-radius:12px;padding:8px;max-width:300px;margin:8px auto}
+.qrimg svg{width:100%;height:auto;display:block}
+#impressao{display:none}
+@media print{
+  body.imprimindo>*:not(#impressao){display:none!important}
+  body.imprimindo #impressao{display:block;color:#000;font:13pt/1.5 system-ui,sans-serif;padding:0 8mm}
+  #impressao h1{font-size:20pt;margin:2px 0 8px}
+  #impressao .impmarca,#impressao .impaviso{font-size:10pt;color:#444}
+  #impressao .altavolte{background:#fff;border-color:#000}
+  #impressao .altavolte h4{color:#000}
+}

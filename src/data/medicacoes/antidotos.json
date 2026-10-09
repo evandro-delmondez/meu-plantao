@@ -1,0 +1,335 @@
+[
+ {
+  "id": "naloxona",
+  "nome": "Naloxona",
+  "classe": "Antídoto",
+  "subclasse": "Antagonista opioide puro",
+  "mecanismo": "Antagonista competitivo dos receptores opioides, com maior afinidade pelo receptor µ: reverte depressão respiratória, sedação e hipotensão causadas por opioides, sem efeito agonista próprio (bula).",
+  "apresentacoes": [
+   "Ampola 1 mL com 0,4 mg (0,4 mg/mL), para uso EV, IM ou SC (Narcan, genérico); uso restrito a estabelecimentos de saúde",
+   "Não há spray nasal de naloxona na lista CMED (set/2026): as doses intranasais de 2–4 mg das fontes americanas são do spray concentrado (4 mg em 0,1 mL), que não consta na lista"
+  ],
+  "marcas": [
+   "Narcan"
+  ],
+  "rename": true,
+  "vias": [
+   "EV",
+   "IM",
+   "SC",
+   "IO"
+  ],
+  "adulto": [
+   "Objetivo: devolver a respiração e os reflexos de proteção da via aérea, não acordar o paciente. Ventilar com bolsa-válvula-máscara antes e durante, até a respiração voltar (AHA 2023; bula).",
+   "Respira, mas com depressão respiratória, e usa opioide de forma crônica (dependente, dor crônica, paliativo): titular em doses pequenas, 0,04 mg EV, subindo em degraus até 0,4 mg, até o total de 2 mg, conforme a resposta (bula Narcan). Começar com 0,04 mg e aumentar a cada 2–3 min (HC-FMUSP 18ª ed., cap. 101; Maryland Poison Center 2026).",
+   "Apneia ou respiração agônica, com pulso: 0,4–2 mg EV, repetindo a cada 2–3 min até respiração adequada (bula). AHA 2023: 0,2–2 mg EV, IO ou IM. Sem acesso venoso: IM ou SC (bula).",
+   "Sem resposta após 10 mg: questionar o diagnóstico de intoxicação por opioide (bula). Fentanil e buprenorfina podem exigir doses maiores, às vezes 10 mg ou mais no total (Harrison 22ª ed., cap. 467; bula).",
+   "Parada cardíaca: RCP de qualidade vem primeiro; a naloxona não tem benefício comprovado na parada e só entra se não atrasar compressões e ventilação (AHA 2023).",
+   "Infusão contínua, se a depressão respiratória volta (opioide de longa duração ou de liberação prolongada): por hora, 2/3 da dose que fez o paciente voltar a respirar, ajustando pela resposta (AHA 2023; HC-FMUSP 18ª ed., cap. 101; Harrison 22ª ed., cap. 467). Ex.: respondeu a 0,4 mg → 0,27 mg/h. Maryland Poison Center: repetir metade da dose inicial 15 min após iniciar a infusão.",
+   "Duração do efeito de 1–1,5 h (HC-FMUSP), meia-vida de 30–81 min (bula): mais curta que a de metadona, morfina e oxicodona de liberação prolongada e adesivo de fentanil. Doses repetidas podem ser necessárias a cada 1–2 h; a via IM dura mais que a EV (bula).",
+   "Observação após reverter: 3–4 h; sem naloxona, pelo menos 2 h; opioide de longa duração (metadona, oxicodona, adesivo de fentanil) ou via atípica (adesivo ingerido): no mínimo 24 h. Precisou de doses repetidas ou infusão, ou ficou com dessaturação ou rebaixamento: internar (HC-FMUSP 18ª ed., cap. 101).",
+   "Abstinência precipitada (vômitos, agitação, taquicardia, sudorese): parar a naloxona, esperar os sintomas cederem e retomar com dose menor, que mantenha a ventilação sem abstinência (Maryland Poison Center 2026)."
+  ],
+  "pediatria": [
+   "Superdose (depressão respiratória grave ou apneia): 0,1 mg/kg EV, IO ou IM, máximo de 2 mg por dose (AHA 2023; bula Narcan: 0,1 mg/kg até 20 kg ou menos de 5 anos; 2 mg acima de 20 kg ou de 5 anos). Repetir a cada 2–3 min se preciso.",
+   "Bula americana (Hospira 2023): começa com 0,01 mg/kg EV e, se não houver resposta, 0,1 mg/kg. A bula brasileira faz o contrário (0,1 mg/kg e, depois, 0,01 mg/kg). Na criança que usa opioide de forma crônica, preferir doses pequenas tituladas, de 0,001–0,02 mg/kg (Maryland Poison Center 2026).",
+   "Sem acesso venoso: IM ou SC, em doses divididas (bula). A Academia Americana de Pediatria não recomenda IM ou SC na intoxicação por absorção irregular (bula FDA).",
+   "Criança que respondeu: monitorar por pelo menos 24 h, pelo risco de voltar a deprimir quando a naloxona acabar (bula FDA).",
+   "Recém-nascido: não faz parte da reanimação inicial; ventilação e suporte vêm antes (bula Narcan). Filho de mãe dependente de opioide: risco de abstinência com convulsão (bula)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Superdose de opioide (apneia ou depressão grave)",
+    "mgkg": 0.1,
+    "max_mg": 2,
+    "intervalo": "repetir a cada 2–3 min se preciso",
+    "via": "EV/IO/IM"
+   }
+  ],
+  "diluicao": [
+   "Bolus EV, IM ou SC: pode ser feito sem diluir (bula). Ação em cerca de 2 min pela via EV; um pouco mais lenta por IM ou SC (bula).",
+   "Para titular 0,04 mg: 1 ampola (0,4 mg) + SF 0,9% até 10 mL = 0,04 mg/mL; 1 mL a cada 2–3 min. A bula permite diluir em SF 0,9%, SG 5% ou água para injetáveis; o volume de 10 mL é diluição usual — conferir protocolo da unidade.",
+   "Infusão contínua: 2 mg (5 ampolas) em 500 mL de SF 0,9% ou SG 5% = 0,004 mg/mL (4 mcg/mL). Usar em até 24 h e proteger a bolsa da luz (bula). Ex.: 0,27 mg/h = 67 mL/h.",
+   "Não misturar com preparações que contenham bissulfito ou metabissulfito, ânions de cadeia longa ou soluções alcalinas (bula)."
+  ],
+  "renal": "Sem ajuste definido; segurança não estabelecida em estudos controlados na insuficiência renal: usar com cautela (bula FDA).",
+  "hepatica": "Metabolizada no fígado por glicuronidação; sem ajuste definido, usar com cautela (bula; bula FDA).",
+  "gestacao": "Categoria B. Atravessa a placenta: na gestante dependente de opioide pode precipitar abstinência na mãe e no feto; usar a menor dose que reverta a depressão respiratória (bula; Maryland Poison Center 2026).",
+  "lactacao": "Não se sabe se passa para o leite; usar com cautela (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade à naloxona ou aos componentes da fórmula: é a única contraindicação da bula."
+  ],
+  "alertas": [
+   "Abstinência aguda no dependente de opioide: começa em minutos e dura cerca de 2 h (dor no corpo, diarreia, taquicardia, febre, coriza, piloereção, sudorese, bocejos, náuseas e vômitos, agitação, tremor, cólica, hipertensão). No recém-nascido, inclui convulsão (bula). Vômito com rebaixamento aumenta o risco de aspiração.",
+   "Reversão abrupta: náuseas, vômitos, taquicardia, hipertensão, convulsão, taquicardia e fibrilação ventriculares, edema pulmonar e parada cardíaca; cautela em cardiopatas (bula). O edema pulmonar costuma responder à ventilação com pressão positiva (AHA 2023).",
+   "Não age na depressão por drogas não opioides. Buprenorfina: reversão lenta e incompleta, pode exigir doses altas (bula).",
+   "A ação é mais curta que a de muitos opioides: quem respondeu deve continuar sob observação, com doses repetidas se preciso (bula).",
+   "Suspeita de opioide com benzodiazepínico: dar naloxona primeiro, antes de outros antídotos (AHA 2023).",
+   "Reverter o opioide pode revelar efeitos de outras drogas usadas junto (cocaína, anticolinérgicos) (Maryland Poison Center 2026).",
+   "Ligar para o CIATox: 0800 722 6001 (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Narcan (cloridrato de naloxona) solução injetável 0,4 mg/mL, Cristália, aprovada em 01/06/2026",
+   "FDA label — Naloxone hydrochloride injection 0,4 mg/mL, Hospira, revisão 07/2023 (DailyMed)",
+   "Lavonas EJ et al. 2023 American Heart Association Focused Update on the Management of Patients With Cardiac Arrest or Life-Threatening Toxicity Due to Poisoning. Circulation 2023;148:e149–e184 (recomendações de opioides e tabela de antídotos)",
+   "Maryland Poison Center. ToxTidbits — Antidote Facts: Naloxone (revisão de abril/2026)",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed., Manole, 2024 — cap. 101, opioides (para conferência)",
+   "Harrison's Principles of Internal Medicine, 22ª ed., McGraw Hill, 2025 — cap. 467, Opioid-Related Disorders, tabela 467-2 (para conferência)",
+   "Lista de preços CMED/Anvisa, gerada em 23/09/2026 (Narcan, Cristália; genérico Hipolabor; só solução injetável)",
+   "Ministério da Saúde. RENAME 2024, 2ª ed. (2025): cloridrato de naloxona 0,4 mg/mL solução injetável, Componente Básico (V03AB15)"
+  ]
+ },
+ {
+  "id": "flumazenil",
+  "nome": "Flumazenil",
+  "classe": "Antídoto",
+  "subclasse": "Antagonista benzodiazepínico",
+  "mecanismo": "Antagonista competitivo do sítio benzodiazepínico do receptor GABA-A: reverte sedação e depressão do sistema nervoso central por benzodiazepínicos e por zolpidem e zopiclona; não reverte álcool, barbitúricos, anestésicos gerais nem opioides (bula; bula FDA).",
+  "apresentacoes": [
+   "Ampola 5 mL com 0,5 mg (0,1 mg/mL), só EV (Lanexat, Flumazil, Lenazen, genéricos); uso hospitalar"
+  ],
+  "marcas": [
+   "Lanexat",
+   "Flumazil",
+   "Lenazen"
+  ],
+  "rename": true,
+  "vias": [
+   "EV"
+  ],
+  "adulto": [
+   "Não usar de rotina no paciente intoxicado, sobretudo no usuário crônico de benzodiazepínico: risco de abstinência grave e convulsão (HC-FMUSP 18ª ed., cap. 101). No coma de causa indefinida, sem história confiável, o risco supera o benefício (AHA 2023). Benzodiazepínico isolado raramente ameaça a vida: o tratamento é suporte, com via aérea e ventilação.",
+   "Quando pode ser usado: reversão de sedação de procedimento em quem não usa benzodiazepínico cronicamente; depressão ou parada respiratória por benzodiazepínico puro, sem contraindicação; ingestão acidental de criança (AHA 2023; HC-FMUSP 18ª ed., cap. 101).",
+   "Dose: 0,2 mg EV em 15 s. Se não acordar em 60 s, 0,1 mg a cada 60 s, até o total de 1 mg; a dose usual é de 0,3–0,6 mg (bula, reversão em anestesia). AHA 2023: 0,2 mg, titulado até 1 mg. Painel: teto de 1 mg.",
+   "Tetos maiores nas bulas: na UTI ou na inconsciência de causa desconhecida, a bula brasileira começa com 0,3 mg e vai até 2 mg; a bula americana, na superdose, faz 0,2 mg em 30 s, depois 0,3 mg e então 0,5 mg a cada minuto até 3 mg (raramente 5 mg). Sem resposta: pensar em outra causa (bula; bula FDA).",
+   "Em paciente de alto risco, titular mais devagar: cada dose leva 6–10 min para o efeito pleno (bula FDA).",
+   "Início em 2–3 min; efeito de 30–45 min (HC-FMUSP 18ª ed., cap. 101), menor que o de muitos benzodiazepínicos: risco de voltar a sedar. Ressedação: repetir em bolus (não antes de 20 min, no máximo 1 mg por vez e 3 mg por hora, pela bula FDA) ou infusão de 0,1–0,4 mg/h ajustada pelo nível de despertar (bula).",
+   "Opioide e benzodiazepínico juntos: naloxona primeiro (AHA 2023).",
+   "Parada cardíaca: o flumazenil não tem papel (AHA 2023)."
+  ],
+  "pediatria": [
+   "Acima de 1 ano (reversão de sedação consciente): 0,01 mg/kg (máximo 0,2 mg) EV em 15 s; se não acordar em 45 s, repetir 0,01 mg/kg (máximo 0,2 mg) a cada 60 s, até 4 vezes, com total máximo de 0,05 mg/kg ou 1 mg, o que for menor (bula). AHA 2023: 0,01 mg/kg.",
+   "Superdose em criança, menores de 1 ano e reanimação do recém-nascido: experiência limitada, usar com cuidado (bula). Sem dados para doses repetidas na ressedação da criança (bula).",
+   "Ressedação em criança de 1–5 anos ocorreu entre 19 e 50 min após a dose (bula FDA): observar."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Dose por vez, acima de 1 ano (bula)",
+    "mgkg": 0.01,
+    "max_mg": 0.2,
+    "intervalo": "a cada 60 s, até 4 repetições; total máx. 0,05 mg/kg ou 1 mg",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "EV direto, sem diluir, em 15 s; preferir veia calibrosa com soro correndo, para reduzir dor e irritação local (bula; bula FDA).",
+   "Infusão: diluir em SG 5% ou SF 0,9%; descartar a solução ou a seringa preparada após 24 h (bula). Ex.: 2 mg (4 ampolas, 20 mL) + 80 mL de SF 0,9% = 100 mL (0,02 mg/mL); 0,1–0,4 mg/h = 5–20 mL/h. Diluição usual — conferir protocolo da unidade.",
+   "Garantir via aérea e acesso venoso antes; ao acordar, o paciente pode ficar confuso e agitado e arrancar tubo e acessos (bula FDA)."
+  ],
+  "renal": "Sem ajuste: a farmacocinética não muda na insuficiência renal nem na hemodiálise (bula).",
+  "hepatica": "Meia-vida maior (1,3 h na insuficiência moderada, 2,4 h na grave): a dose inicial não muda, mas as doses repetidas devem ser menores ou mais espaçadas, com observação mais longa (bula; bula FDA).",
+  "gestacao": "Categoria B na bula brasileira (C na americana): segurança não estabelecida; pesar o benefício contra o risco e evitar nos primeiros meses, salvo se absolutamente necessário (bula).",
+  "lactacao": "Em emergência, não é contraindicado durante a lactação (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade ao flumazenil (bula) ou aos benzodiazepínicos (bula FDA).",
+   "Benzodiazepínico em uso para controlar condição grave, como hipertensão intracraniana ou estado de mal epiléptico (bula).",
+   "Sinais de intoxicação grave por antidepressivo tricíclico ou cíclico: QRS largo, arritmia ventricular, bloqueio, sinais anticolinérgicos (midríase, mucosa seca, íleo), abalos, rigidez ou convulsão focal, colapso circulatório (bula FDA).",
+   "Risco aumentado de convulsão ou arritmia (contraindicação forte, AHA 2023): uso crônico de benzodiazepínico ou dependência, epilepsia em tratamento prolongado com benzodiazepínico, abstinência de sedativos, abalos ou convulsão antes da dose, coingestão de droga pró-convulsivante ou que causa arritmia (bula; bula FDA; AHA 2023).",
+   "Coma de causa indefinida, sem história confiável (AHA 2023)."
+  ],
+  "alertas": [
+   "Convulsões: mais frequentes no uso prolongado de benzodiazepínico e na intoxicação por antidepressivo cíclico. Estar pronto para tratar: benzodiazepínico (pode precisar de dose maior que a usual), fenitoína ou barbitúrico (bula FDA).",
+   "Arritmias (supraventricular, ventricular, assistolia), sobretudo com antidepressivo tricíclico ou hipóxia (AHA 2023).",
+   "Não reverte de forma confiável a depressão respiratória, principalmente na intoxicação mista: ventilação é o tratamento principal (bula FDA; AHA 2023).",
+   "Abstinência (agitação, ansiedade, labilidade emocional, confusão, distorções sensoriais) com injeção rápida em quem usou benzodiazepínico por tempo prolongado: se ocorrer, diazepam ou midazolam EV lento, titulado (bula).",
+   "Ressedação: observar por tempo adequado à dose e à duração do benzodiazepínico; não dirigir nas 24 h seguintes (bula).",
+   "Traumatismo craniano em uso de benzodiazepínico: pode causar convulsão ou alterar o fluxo cerebral (bula).",
+   "Bloqueador neuromuscular: não dar antes de reverter o bloqueio (bula).",
+   "Pode provocar ataque de pânico em quem tem transtorno de pânico (bula).",
+   "Não serve para tratar dependência nem abstinência de benzodiazepínico (bula).",
+   "Ligar para o CIATox: 0800 722 6001 (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Flumazil (flumazenil) solução injetável 0,1 mg/mL, Cristália, conforme bula padrão aprovada em 23/05/2024",
+   "FDA label — Flumazenil injection 0,1 mg/mL, Fresenius Kabi USA, revisão 01/2025 (DailyMed)",
+   "Lavonas EJ et al. 2023 American Heart Association Focused Update on the Management of Patients With Cardiac Arrest or Life-Threatening Toxicity Due to Poisoning. Circulation 2023;148:e149–e184 (recomendações de benzodiazepínicos e tabela de antídotos)",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed., Manole, 2024 — cap. 101, benzodiazepínicos (para conferência)",
+   "Lista de preços CMED/Anvisa, gerada em 23/09/2026 (Lanexat, Biopas; Flumazil, Cristália; Lenazen, Teuto; genéricos Fresenius, Teuto, União Química e Hipolabor)",
+   "Ministério da Saúde. RENAME 2024, 2ª ed. (2025): flumazenil 0,1 mg/mL solução injetável, Componente Básico (V03AB25)"
+  ]
+ },
+ {
+  "id": "acetilcisteina",
+  "nome": "Acetilcisteína",
+  "classe": "Antídoto",
+  "subclasse": "Antídoto do paracetamol (precursor de glutationa)",
+  "mecanismo": "Precursor da cisteína e da glutationa: repõe a glutationa que inativa o NAPQI, metabólito tóxico do paracetamol no fígado; não reduz o nível sérico do paracetamol. Protege mais quando iniciada até 8 h após a ingestão (bula; HC-FMUSP 18ª ed., cap. 101).",
+  "apresentacoes": [
+   "Ampola 3 mL com 300 mg (100 mg/mL), para infusão EV ou inalação (Fluimucil, Flucistein, genérico União Química); 43 mg de sódio por ampola no Fluimucil (bula)",
+   "Não há na lista CMED (set/2026) o frasco de 200 mg/mL (6 g em 30 mL) das bulas americanas: as contas desta ficha usam a ampola de 100 mg/mL",
+   "Uso oral, alternativa ao EV: comprimido efervescente e granulado de 600 mg, xarope 20 e 40 mg/mL (Fluimucil, Fluiteína, genéricos)"
+  ],
+  "marcas": [
+   "Fluimucil",
+   "Flucistein"
+  ],
+  "rename": false,
+  "vias": [
+   "EV",
+   "VO"
+  ],
+  "adulto": [
+   "Indicação pelo nomograma: paracetamol sérico colhido entre 4 e 24 h após ingestão única, de liberação imediata, com hora conhecida, na linha de tratamento (150 mcg/mL em 4 h) ou acima dela. Abaixo da linha, com hora certa e coleta com 4 h ou mais: sem antídoto (bula FDA Acetadote; consenso EUA/Canadá, Dart 2023). Usar a conta do nomograma do painel.",
+   "Iniciar antes do resultado: hora da ingestão desconhecida ou duvidosa; chegada com mais de 8 h da ingestão; sinal clínico de toxicidade; resultado que só sairá depois de 8 h da ingestão, se a dose foi maior que 200 mg/kg ou 10 g (bula FDA; consenso 2023). O HC-FMUSP usa, nessa situação, mais de 150 mg/kg ou 12 g. Depois, o nível decide se continua (bula FDA).",
+   "Uso repetido acima da dose terapêutica (nomograma não vale): tratar se paracetamol maior que 20 mcg/mL (consenso 2023) ou maior que 10 mcg/mL (HC-FMUSP), ou se AST/ALT alteradas.",
+   "Quanto antes, melhor: proteção máxima até 8 h; a eficácia cai depois, sobretudo após 15 h, mas não deixar de tratar até 24 h ou mais, porque a hora relatada pode estar errada (bula; bula FDA).",
+   "Esquema EV de 3 bolsas (21 h, total 300 mg/kg): 150 mg/kg em 1 h; em seguida 50 mg/kg em 4 h; em seguida 100 mg/kg em 16 h (bula Fluimucil; bula FDA). O ataque de 150 mg/kg deve correr em pelo menos 1 h (consenso 2023).",
+   "Peso de cálculo máximo: 100 kg (consenso 2023). Acima de 100 kg, doses fixas: 15 g, 5 g e 10 g no esquema de 3 bolsas; 20 g e 10 g no de 2 bolsas (bula FDA).",
+   "Esquema EV de 2 bolsas (20 h, total 300 mg/kg), só para 41 kg ou mais: 200 mg/kg em 4 h; em seguida 100 mg/kg em 16 h (bula FDA). Dá menos reação anafilactoide, mas não se sabe se protege o fígado igual; o de 3 bolsas dá mais antídoto nas primeiras 3 h e é preferível na ingestão grande ou com sinal precoce de lesão hepática (bula FDA). A bula brasileira traz só o de 3 bolsas. O consenso 2023 aceita qualquer esquema que dê pelo menos 300 mg/kg, EV ou VO, nas primeiras 20–24 h.",
+   "Ao terminar a última bolsa, não parar automaticamente: dosar paracetamol, AST/ALT e INR. Se paracetamol ainda detectável, transaminases subindo ou INR alto, continuar a infusão e discutir com o CIATox (bula FDA; consenso 2023). A 3ª bolsa equivale a 6,25 mg/kg/h (HC-FMUSP). Ingestão maciça, coingestão que retarda a absorção ou doença hepática prévia aumentam a chance de precisar prolongar (bula FDA).",
+   "Critérios para parar (painel EUA/Canadá, citado no HC-FMUSP 18ª ed., cap. 101): paracetamol menor que 10 mcg/mL, INR menor que 2, AST e ALT normais ou em queda de 25–50% do pico, e paciente clinicamente bem.",
+   "Nível na linha de alto risco (300 mcg/mL em 4 h) ou acima: muitos aumentam a dose de acetilcisteína, mas o consenso 2023 não fixa a dose: discutir com o CIATox. Hemodiálise em casos extremos, decidida com o CIATox (HC-FMUSP 18ª ed., cap. 101).",
+   "Via oral, se não houver EV e o paciente tolerar: 140 mg/kg de ataque e 70 mg/kg de 4/4 h, 17 doses (72 h) ou até preencher os critérios de parada (bula FDA da solução oral; HC-FMUSP). Bula do Fluimucil oral: 140 mg/kg o quanto antes, até 10 h da ingestão, e 70 mg/kg de 4/4 h por 1–3 dias. Ex.: 70 kg → ataque de 9.800 mg (cerca de 16 envelopes ou comprimidos de 600 mg) e manutenção de 4.900 mg (cerca de 8). Vomitou até 1 h depois: repetir a dose (bula FDA da solução oral).",
+   "Preferir EV se vômitos, incapacidade de usar VO, INR maior que 2 ou gestação (HC-FMUSP 18ª ed., cap. 101). Na gestante, a avaliação e o tratamento são os mesmos; alguns preferem a via EV (consenso 2023).",
+   "Alta: esquema completo iniciado até 8 h, sem alteração hepática ou renal; se iniciado depois de 8 h, assintomático e com creatinina e provas hepáticas normais (HC-FMUSP 18ª ed., cap. 101). Notificar todo caso suspeito (CID T39.1)."
+  ],
+  "pediatria": [
+   "Mesmos critérios de indicação do adulto, pelo nomograma (bula FDA).",
+   "Esquema de 3 bolsas, o único estudado para 40 kg ou menos: 150 mg/kg em 1 h, 50 mg/kg em 4 h e 100 mg/kg em 16 h (bula Fluimucil; bula FDA). Bula FDA: a partir de 5 kg; abaixo de 5 kg não foi estudado. O de 2 bolsas não tem dados em 40 kg ou menos (bula FDA).",
+   "Volume do diluente por bolsa (bula FDA; a bula brasileira usa as faixas abaixo de 20 kg, 20–40 kg e 40 kg ou mais): 5–20 kg: 3 mL/kg, 7 mL/kg e 14 mL/kg; 21–40 kg: 100 mL, 250 mL e 500 mL.",
+   "Abaixo de 40 kg, risco de sobrecarga de volume, com hiponatremia, convulsão e morte: seguir à risca os volumes e reduzir o volume total em quem precisa de restrição hídrica (bula; bula FDA).",
+   "Via oral: 140 mg/kg de ataque e 70 mg/kg de 4/4 h (bula FDA da solução oral). Os produtos orais do Fluimucil são contraindicados abaixo de 2 anos na bula, mas a mesma bula diz que não há contraindicação no tratamento da intoxicação por paracetamol (bula Fluimucil oral).",
+   "Criança com menos de 6 anos que recebeu paracetamol EV: ligar para o CIATox se dose única de 90 mg/kg ou mais, ou mais de 150 mg/kg em 24 h (consenso 2023)."
+  ],
+  "ped_calc": [
+   {
+    "rotulo": "Bolsa 1 (ataque), esquema de 3 bolsas",
+    "mgkg": 150,
+    "max_mg": 15000,
+    "intervalo": "em 1 h",
+    "via": "EV"
+   },
+   {
+    "rotulo": "Bolsa 2, logo após a 1ª",
+    "mgkg": 50,
+    "max_mg": 5000,
+    "intervalo": "em 4 h",
+    "via": "EV"
+   },
+   {
+    "rotulo": "Bolsa 3, logo após a 2ª",
+    "mgkg": 100,
+    "max_mg": 10000,
+    "intervalo": "em 16 h",
+    "via": "EV"
+   }
+  ],
+  "diluicao": [
+   "Ampola de 100 mg/mL: volume a aspirar (mL) = dose em mg ÷ 100. Ex.: 70 kg → bolsa 1: 10.500 mg = 105 mL (35 ampolas); bolsa 2: 3.500 mg = 35 mL (12 ampolas); bolsa 3: 7.000 mg = 70 mL (24 ampolas). A ampola aberta deve ser usada na hora (bula): o adulto de 70 kg consome cerca de 71 ampolas, conferir o estoque da unidade.",
+   "Volume do diluente, 41 kg ou mais (bula Fluimucil, 40 kg ou mais; bula FDA): bolsa 1 em 200 mL, em 1 h; bolsa 2 em 500 mL, em 4 h; bolsa 3 em 1.000 mL, em 16 h. Esquema de 2 bolsas: 200 mg/kg em 1.000 mL, em 4 h; 100 mg/kg em 500 mL, em 16 h (bula FDA). Programar a bomba pelo volume total da bolsa (diluente mais acetilcisteína) dividido pelo tempo.",
+   "Diluente: SG 5%, NaCl 0,45% ou água para injeção (bula Fluimucil, abaixo de 20 kg; bula FDA, todas as idades). A bula FDA prefere NaCl 0,45% (osmolaridade mais estável, menos água livre) e indica SG 5% ou água se a carga de sódio preocupa; na criança, evitar soro final abaixo de 150 mOsm/L, como a água para injeção nas concentrações baixas. O HC-FMUSP dilui o ataque em 200–300 mL de SF 0,9% ou SG 5%.",
+   "A solução concentrada é hiperosmolar e precisa ser diluída (bula FDA). Diluída, é estável por 24 h em temperatura ambiente (bula FDA). Cor rosada ou arroxeada não altera a atividade (bula; bula FDA). Não misturar com outros medicamentos (bula).",
+   "Via oral: granulado e comprimido efervescente dissolvidos em meio copo de água e tomados em seguida (bula Fluimucil oral)."
+  ],
+  "renal": "Sem ajuste definido; a bula brasileira não tem dados na insuficiência renal. A hemodiálise remove acetilcisteína de forma significativa: se o paciente dialisar, discutir a dose com o CIATox (bula FDA).",
+  "hepatica": "Meia-vida 80% maior na cirrose, sem relevância clínica segundo a bula FDA: sem ajuste. Doença hepática prévia pode prolongar a meia-vida do paracetamol: considerar manter o tratamento além dos 300 mg/kg (bula FDA).",
+  "gestacao": "Categoria B (bula). Paracetamol e acetilcisteína atravessam a placenta; atrasar o tratamento aumenta o risco materno e fetal: tratar como fora da gestação (bula FDA; consenso 2023). Alguns preferem a via EV (consenso 2023); o HC-FMUSP indica EV na gestante.",
+  "lactacao": "Sem dados sobre passagem para o leite. A bula brasileira não recomenda o uso na lactação sem avaliação de risco e benefício; a bula FDA sugere tirar e descartar o leite por 30 h após a última dose.",
+  "contraindicacoes": [
+   "No tratamento da intoxicação por paracetamol, não há contraindicação (bula Fluimucil).",
+   "Reação anafilactoide em tratamento anterior não contraindica nova dose numa nova intoxicação: iniciar e ajustar a via ou a velocidade se houver reação (consenso 2023). O Reino Unido retirou a hipersensibilidade como contraindicação em 2012 (HC-FMUSP 18ª ed., cap. 101). A bula FDA ainda lista hipersensibilidade prévia como contraindicação."
+  ],
+  "alertas": [
+   "Reação anafilactoide (rubor, urticária, prurido, broncoespasmo, angioedema, hipotensão): em geral 15–60 min após o início, quase sempre durante o ataque; 8–18% com o esquema de 3 bolsas, menos com o de 2 bolsas (bula; bula FDA). HC-FMUSP: 10–20%. Rubor e eritema isolados costumam passar sem parar a infusão (bula FDA).",
+   "Manejo da reação: parar a infusão; anti-histamínico, às vezes corticoide; reação grave: tratar como anafilaxia. Resolvidos os sintomas, retomar com cuidado e mais devagar, em geral já com a 2ª bolsa (50 mg/kg em 4 h) e depois a 3ª (bula Fluimucil; bula FDA; HC-FMUSP). Se a reação voltar ou piorar, suspender e discutir alternativa com o CIATox (bula FDA).",
+   "Asma: monitorar de perto; broncoespasmo obriga a parar a infusão e tratar (bula; bula FDA).",
+   "Erro de dose: superdose de acetilcisteína causou anafilaxia, edema cerebral e síndrome hemolítico-urêmica, com mortes (bula FDA). Conferir a conta mg → mL → número de ampolas antes de montar cada bolsa.",
+   "Sódio: 43 mg por ampola do Fluimucil (bula); o esquema completo de 70 kg leva cerca de 3 g de sódio, além do diluente.",
+   "Pode prolongar o tempo de protrombina e elevar o INR (bula): interpretar junto com transaminases e clínica.",
+   "Interfere na dosagem colorimétrica de salicilato e no teste de cetona na urina (bula).",
+   "Carvão ativado adsorve a acetilcisteína e pode reduzir o efeito da via oral (bula FDA da solução oral; bula Fluimucil oral).",
+   "Nitroglicerina junto: risco de hipotensão grave (bula).",
+   "Ligar para o CIATox: 0800 722 6001 (bula)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Fluimucil (acetilcisteína) solução injetável 100 mg/mL, Zambon, aprovada em 12/12/2023",
+   "Bula ANVISA — Fluimucil (acetilcisteína) comprimido efervescente, granulado e xarope, Zambon, aprovada em 15/03/2024 (esquema oral no paracetamol)",
+   "FDA label — Acetadote (acetylcysteine injection) 200 mg/mL, Cumberland, versão de 04/2025 publicada no DailyMed em 30/07/2025 (esquemas de 3 e 2 bolsas, doses fixas acima de 100 kg, diluentes, reações, superdose)",
+   "FDA label — Acetylcysteine solution 10% e 20%, Hospira, revisão de 05/2026 (DailyMed): esquema oral de 140 mg/kg e 70 mg/kg de 4/4 h, 17 doses",
+   "Dart RC et al. Management of Acetaminophen Poisoning in the US and Canada: A Consensus Statement. JAMA Netw Open 2023;6(8):e2327739 (pelo menos 300 mg/kg em 20–24 h, ataque de 150 mg/kg em pelo menos 1 h, cálculo até 100 kg, linha de alto risco, início antes do nível, gestação, reação anafilactoide prévia). https://doi.org/10.1001/jamanetworkopen.2023.27739",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed., Manole, 2024 — cap. 101, paracetamol (para conferência)",
+   "Lista de preços CMED/Anvisa, gerada em 23/09/2026 (solução injetável 100 mg/mL: Fluimucil, Zambon; Flucistein e genérico, União Química; Bromuc, Blau, sem comercialização em 2025)",
+   "Ministério da Saúde. RENAME 2024, 2ª ed. (2025): acetilcisteína não consta"
+  ]
+ },
+ {
+  "id": "carvao-ativado",
+  "nome": "Carvão ativado",
+  "classe": "Antídoto",
+  "subclasse": "Adsorvente para descontaminação digestiva",
+  "mecanismo": "Carbono poroso, de grande área de superfície, que adsorve o tóxico ainda na luz do tubo digestivo; o complexo sai nas fezes e o carvão não é absorvido. Em doses repetidas, também retira do sangue drogas com circulação êntero-hepática ou que voltam para a luz intestinal (Harrison 22ª ed., cap. 470; AACT/EAPCCT 2005).",
+  "apresentacoes": [
+   "Carvão vegetal ativado em pó para suspensão oral (RENAME 2024, Componente Básico): preparar na hora, em água",
+   "Não há suspensão pronta de carvão ativado na lista CMED (set/2026); o único produto listado é o Carverol, comprimido de 250 mg para gases",
+   "Comprimido e cápsula não servem para intoxicação: adsorvem menos que o pó em suspensão (AACT/EAPCCT 2005), e 50 g seriam 200 comprimidos de 250 mg"
+  ],
+  "marcas": [],
+  "rename": true,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Não é rotina. Considerar dose única se a ingestão foi de quantidade potencialmente tóxica de substância adsorvida pelo carvão há até 1 h, com o paciente acordado e cooperativo ou já intubado (AACT/EAPCCT 2005; Harrison 22ª ed., cap. 470). Não há prova de que melhore o desfecho clínico (AACT/EAPCCT 2005).",
+   "Dose única: 1 g/kg (máx. 50 g), VO ou por sonda nasogástrica (Centre antipoison du Québec 2026; HC-FMUSP 18ª ed., cap. 101). Harrison: 1 g/kg. AACT/EAPCCT 2005 (doses da USP DI): adolescentes e adultos, 25–100 g.",
+   "O efeito cai com o tempo: em voluntários, com 50 g ou mais, reduziu a absorção em média 47% quando dado em 30 min, 40% em 60 min e 16,5% em 120 min (AACT/EAPCCT 2005).",
+   "Depois de 1 h, o benefício não pode ser excluído (AACT/EAPCCT 2005): considerar, com o CIATox, se a droga retarda o esvaziamento gástrico (anticolinérgico, opioide), salicilato, liberação prolongada ou revestimento entérico, grande quantidade ou suspeita de bezoar (Centre antipoison du Québec 2026).",
+   "Paracetamol em quantidade potencialmente hepatotóxica: 50–100 g no adulto (consenso EUA/Canadá, Dart 2023). HC-FMUSP: até 1–2 h; até 4 h na liberação prolongada ou com droga que retarda o esvaziamento gástrico.",
+   "Não intubar só para dar carvão (HC-FMUSP 18ª ed., cap. 101).",
+   "Doses múltiplas, só com o CIATox, para quantidade com risco de vida de carbamazepina, fenobarbital, dapsona, quinina ou teofilina (Harrison 22ª ed., cap. 470). O HC-FMUSP (cap. 99, tabela 10) inclui rebaixamento por fenitoína e restringe a dapsona aos casos com meta-hemoglobinemia importante.",
+   "Esquema de doses múltiplas: 50 g de início, depois 25 g de 2/2 h ou 50 g de 4/4 h, por 12–24 h, o equivalente a 12,5 g/h (HC-FMUSP 18ª ed., cap. 99). Harrison: 0,5–1 g/kg a cada 2–4 h, reduzindo se a motilidade intestinal estiver diminuída. Fenobarbital: 50–100 g de início e 12,5–25 g de 4/4 h (HC-FMUSP 18ª ed., cap. 101)."
+  ],
+  "pediatria": [
+   "Dose única: 1 g/kg (máx. 50 g), VO ou por sonda nasogástrica (Centre antipoison du Québec 2026). AACT/EAPCCT 2005 (doses da USP DI): menores de 1 ano, 10–25 g ou 0,5–1 g/kg; de 1 a 12 anos, 25–50 g ou 0,5–1 g/kg.",
+   "Paracetamol em quantidade potencialmente hepatotóxica: 25–50 g na criança (consenso 2023).",
+   "Doses múltiplas: 1 g/kg de início (HC-FMUSP 18ª ed., cap. 99, tabela 10); doses seguintes conforme o CIATox (Centre antipoison du Québec 2026).",
+   "Mesmos limites de tempo e contraindicações do adulto. O HC-FMUSP lista o recém-nascido entre as contraindicações (cap. 99).",
+   "Usar suspensão só com água, sem sorbitol: o sorbitol aumenta vômito, distúrbio eletrolítico e desidratação, sobretudo na criança (Centre antipoison du Québec 2026). Para aceitar melhor, misturar com refrigerante de cola na proporção de 1:1 logo antes, em copo opaco com canudo (Centre antipoison du Québec 2026)."
+  ],
+  "diluicao": [
+   "Pó: suspender em água ou refrigerante de cola na proporção de 1 g de carvão para 5 mL de líquido, ou seja, 50 g em cerca de 250 mL (Centre antipoison du Québec 2026). Agitar bem antes de dar.",
+   "Dar devagar, em cerca de 15 min, para reduzir distensão gástrica e vômito; a dose pode ser fracionada (Centre antipoison du Québec 2026).",
+   "Sonda nasogástrica: confirmar a posição antes, porque a complicação grave é o carvão no pulmão (AACT/EAPCCT 2005). Depois da dose, lavar a sonda com 5–10 mL de água e mantê-la fechada por 1–2 h (Centre antipoison du Québec 2026).",
+   "Não acrescentar sorbitol nem outro catártico: não há benefício na descontaminação, e nas doses múltiplas é contraindicado (Harrison 22ª ed., cap. 470). O HC-FMUSP (cap. 99) não indica catártico de rotina."
+  ],
+  "renal": "Sem ajuste no uso de curta duração; não é absorvido (Centre antipoison du Québec 2026).",
+  "hepatica": "Sem ajuste no uso de curta duração (Centre antipoison du Québec 2026).",
+  "gestacao": "Não é absorvido pelo tubo digestivo; sem ajuste de dose (Centre antipoison du Québec 2026). O HC-FMUSP (cap. 99) lista a gestante entre as contraindicações, o que não aparece na AACT/EAPCCT nem no centro de Québec: decidir com o CIATox.",
+  "lactacao": "Não é absorvido pelo tubo digestivo (Centre antipoison du Québec 2026); as fontes consultadas não trazem dado específico sobre lactação.",
+  "contraindicacoes": [
+   "Via aérea não protegida: rebaixamento do nível de consciência sem intubação (AACT/EAPCCT 2005); o centro de Québec contraindica com Glasgow menor que 15. Agitação psicomotora (HC-FMUSP 18ª ed., cap. 99).",
+   "Hidrocarbonetos com alto risco de aspiração, como gasolina e querosene: a toxicidade principal é a aspiração e o carvão pode provocar vômito (AACT/EAPCCT 2005; Centre antipoison du Québec 2026).",
+   "Cáusticos (ácidos e álcalis): não são adsorvidos e o carvão atrapalha a endoscopia (Harrison 22ª ed., cap. 470; Centre antipoison du Québec 2026). Para a AACT/EAPCCT, não é contraindicação absoluta quando há outra droga sistêmica ingerida junto.",
+   "Risco de sangramento ou perfuração digestiva (doença, cirurgia recente), obstrução intestinal ou íleo (AACT/EAPCCT 2005; HC-FMUSP 18ª ed., cap. 99 e 101; Centre antipoison du Québec 2026).",
+   "Não usar quando o tóxico não é adsorvido: álcoois (metanol, etilenoglicol, etanol), lítio, ferro e outros metais (chumbo, mercúrio, cobre), íons como sódio e potássio, ácidos e álcalis (Centre antipoison du Québec, lista de substâncias; Harrison 22ª ed., cap. 470; HC-FMUSP 18ª ed., cap. 100 e 101). No metanol e no etilenoglicol, o HC-FMUSP contraindica.",
+   "Cianeto: adsorve pouco (1 g de carvão retém só 35 mg); o centro de Québec admite o uso em dose potencialmente letal, o HC-FMUSP lista como contraindicação: decidir com o CIATox.",
+   "Doses múltiplas: também peristaltismo ausente ou diminuído (Centre antipoison du Québec 2026; HC-FMUSP 18ª ed., cap. 99; Harrison 22ª ed., cap. 470)."
+  ],
+  "alertas": [
+   "Aspiração é a complicação grave, com pneumonite e insuficiência respiratória; quase todos os eventos adversos relatados vêm de aspiração ou de carvão dado direto no pulmão por sonda mal posicionada (AACT/EAPCCT 2005; Centre antipoison du Québec 2026).",
+   "Doses múltiplas com motilidade diminuída: obstrução, pseudo-obstrução e infarto intestinal não oclusivo (Harrison 22ª ed., cap. 470). Checar regularmente o peristaltismo e a proteção da via aérea (Centre antipoison du Québec 2026).",
+   "Reduz a absorção de medicamentos dados por via oral, inclusive antídotos orais como a acetilcisteína: ajustar horário e dose (Harrison 22ª ed., cap. 470; HC-FMUSP 18ª ed., cap. 99; bula Fluimucil oral).",
+   "Efeitos comuns: náuseas, vômitos, distensão gástrica, constipação e fezes pretas (Harrison 22ª ed., cap. 470; Centre antipoison du Québec 2026).",
+   "Contato com os olhos pode causar abrasão de córnea (AACT/EAPCCT 2005).",
+   "Ligar para o CIATox: 0800 722 6001 (Disque-Intoxicação, Anvisa)."
+  ],
+  "fontes": [
+   "Chyka PA et al. (AACT/EAPCCT). Position Paper: Single-Dose Activated Charcoal. Clin Toxicol (Phila) 2005;43:61–87 (indicação até 1 h, doses da USP DI por idade, contraindicações, comprimidos inadequados, complicações)",
+   "Centre antipoison du Québec (CIUSSS de la Capitale-Nationale). Antidotes — Activated charcoal, atualizado em 10/02/2026 (1 g/kg, máx. 50 g; preparo 1:5; administração; doses múltiplas pelo centro); e lista de substâncias para as quais o carvão não é ou raramente é recomendado",
+   "Dart RC et al. Management of Acetaminophen Poisoning in the US and Canada: A Consensus Statement. JAMA Netw Open 2023;6(8):e2327739 (carvão 50–100 g no adulto e 25–50 g na criança)",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed., Manole, 2024 — cap. 99, Manejo inicial das intoxicações exógenas (indicação, contraindicações, doses, tabela 10 de doses múltiplas); cap. 100 (metanol e etilenoglicol); cap. 101 (1 g/kg, máx. 50 g; paracetamol, lítio, fenobarbital) — para conferência",
+   "Harrison's Principles of Internal Medicine, 22ª ed., McGraw Hill, 2025 — cap. 470, Poisoning and Drug Overdose (1 g/kg, substâncias pouco adsorvidas, doses múltiplas, catárticos) — para conferência",
+   "Lista de preços CMED/Anvisa, gerada em 23/09/2026 (só Carverol, carvão vegetal ativado 250 mg comprimido, União Química; nenhuma apresentação para intoxicação)",
+   "Ministério da Saúde. RENAME 2024, 2ª ed. (2025): carvão vegetal ativado, pó para suspensão oral, Componente Básico (A07BA01)"
+  ]
+ }
+]

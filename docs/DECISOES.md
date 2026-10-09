@@ -55,3 +55,10 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Condutas da porta corrigidas (2026-10-09): ibuprofeno só depois de descartar dengue (gripe, faringite, amigdalite, tosse); dispepsia com endoscopia a partir de 40 anos (V Consenso Brasileiro de H. pylori); gastroenterite com alimentação habitual; náuseas com fontes reais; contraindicações do óleo mineral e alerta do Fleet.
 - Pedidos de 2026-10-09, nesta ordem: (1) fechar a versão da porta; (2) auditoria de segurança (doses sem teto, siglas ambíguas, contradições entre abas) e intoxicações e antídotos (cartão Agora da intoxicação + fichas de naloxona, flumazenil, N-acetilcisteína com nomograma do paracetamol e carvão ativado + CIATox a um toque); (3) simulação de plantão no celular; (4) revisão geral das 98 prescrições por categoria, com aprovação do médico antes de mudar conduta publicada.
 - CIATox (2026-10-09): mostrar o Disque-Intoxicação nacional (0800 722 6001) e um campo para o médico salvar o telefone do CIATox local (só no aparelho; não é dado de paciente).
+
+## Simulação de plantão (2026-10-09, `.rascunhos/simulacao-plantao.md`)
+- Corrigir os 5 bugs: "Novo paciente" limpa tudo do paciente em todas as abas; evolução não contradiz sinais vitais nem escreve "nega" sem marcação; busca por início de palavra (siglas inteiras); alergia em um só estado; peso pediátrico começa vazio.
+- Receita com escolha por toque: chips para escolher entre alternativas ("Ou") e blocos opcionais ("#"); só o escolhido vai para receita, evolução e cópia; notas para o médico nunca saem na receita.
+- Evolução: seletor de destino (alta / observação / internação / transferência) no lugar de "Paciente liberado com orientações"; sem padrão nas condutas de emergência.
+- Navegação na conduta: barra fixa de atalhos; preparo, fontes e "o que mudou" recolhidos por padrão; alvos de toque com 44 px. (Guardar a rolagem por aba: não pedido.)
+- Ficam para depois, com conferência: alertas automáticos pelos sinais vitais e NEWS2; bloco de gravidade da pneumonia (CRB-65); chips "álcool?" na agitação; conduta de dor de dente; alarmes cruzados (epigástrica → ECG).

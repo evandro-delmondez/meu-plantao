@@ -1,6 +1,6 @@
 /* ---------- atendimento em 1 tela (porta): sinais de alarme no topo e "Fechar o atendimento" na conduta ---------- */
 // tudo do paciente fica só na memória da aba (regra 5); "Novo paciente" limpa
-const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",tax:"",hgt:"",exame:"",unid:false,casa:true,ori:true,alta:true,tipo:"atestado",dias:"",aut:false,hora:"",evMan:null,atMan:null});
+const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",tax:"",hgt:"",exame:"",unid:false,casa:true,ori:true,destino:null,tipo:"atestado",dias:"",aut:false,hora:"",evMan:null,atMan:null});
 let atd=ATD_VAZIO();
 const ATD_EV={hma:"evHma",alergia:"evAlergia",ap:"evAp",muc:"evMuc",pa:"svPa",fc:"svFc",fr:"svFr",sat:"svSat",tax:"svTax",hgt:"svHgt"};
 
@@ -20,14 +20,16 @@ function atdExamePadrao(){
   if(idade>0&&idade<12) return f&&tem("pediatrico-f")?"pediatrico-f":tem("pediatrico")?"pediatrico":model.exameSel;
   return f&&tem("adulto-f")?"adulto-f":tem("adulto")?"adulto":model.exameSel;
 }
+// destino padrão: alta na porta; nas emergências (sala vermelha, cartão Agora), sem padrão
+const atdDestinoPadrao=it=>it.cat==="emerg"||AGORA[it.id]?"":"alta";
 // monta evolução e atestado com o mesmo motor das abas Evolução e Atestado
 function atdTextos(it){
   Object.entries(ATD_EV).forEach(([k,id])=>$("#"+id).value=atd[k]);
   $("#evCond").value=it.id;
   $("#evExame").value=atd.exame||atdExamePadrao();
-  $("#evUnid").checked=atd.unid; $("#evCasa").checked=atd.casa; $("#evOri").checked=atd.ori; $("#evAlta").checked=atd.alta;
+  $("#evUnid").checked=atd.unid; $("#evCasa").checked=atd.casa; $("#evOri").checked=atd.ori; $("#evDestino").value=atd.destino??atdDestinoPadrao(it);
   const l=chkLinhas(it); evChk=l.n?{id:it.id,hma:l.hma,ex:l.ex}:null;
-  $("#evNega").checked=!l.n;
+  $("#evNega").checked=false;   // "Nega…" só sai do checklist marcado com −
   const ev=buildEv();
   let at="";
   if(atd.tipo!=="nenhum"&&(atd.tipo==="comparecimento"||parseInt(atd.dias,10)>0)){
@@ -44,10 +46,10 @@ function renderAtend(it){
   return `<div class="sec atend"><div class="sec-h"><h3>Fechar o atendimento</h3><button class="btn sm" id="atdNovo" title="Limpa os dados deste paciente">Novo paciente</button></div>
   <div class="atdbody">
     <label class="f atdfull">Queixa e história<textarea class="inp" data-atd="hma" rows="2" placeholder="ex.: dor de garganta há 2 dias, sem tosse">${esc(atd.hma)}</textarea></label>
-    <div class="atdgrid">${inp("alergia","Alergias","","nega")}${inp("ap","Antecedentes","","nega")}${inp("muc","Medicamentos em uso","","nega")}</div>
+    <div class="atdgrid">${inp("alergia","Alergias","","ex.: dipirona; ou escreva nega")}${inp("ap","Antecedentes","","ex.: hipertensão, diabetes")}${inp("muc","Medicamentos em uso","","ex.: losartana 50 mg")}</div>
     <div class="atdsv">${inp("pa","PA","","120x80")}${inp("fc","FC")}${inp("fr","FR")}${inp("sat","Sat O2")}${inp("tax","Temp.")}${inp("hgt","Glicemia")}</div>
     <label class="f">Exame físico<select class="inp" data-atd="exame">${model.exames.map(e=>`<option value="${esc(e.id)}" ${e.id===ex?"selected":""}>${esc(e.nome)}</option>`).join("")}</select></label>
-    <div class="atdck">${ck("casa","Receita")}${ck("unid","Conduta na unidade")}${ck("ori","Orientações")}${ck("alta","Liberado com orientações")}</div>
+    <div class="atdck">${ck("casa","Receita")}${ck("unid","Conduta na unidade")}${ck("ori","Orientações")}<label class="f">Destino<select class="inp" data-atd="destino">${[["","— não incluir —"],["alta","Alta com orientações"],["observacao","Observação"],["internacao","Internação"],["transferencia","Transferência"]].map(([v,r])=>`<option value="${v}" ${(atd.destino??atdDestinoPadrao(it))===v?"selected":""}>${r}</option>`).join("")}</select></label></div>
     <p class="note">O checklist "Não esquecer" marcado acima entra sozinho na evolução.</p>
     <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">
       <option value="atestado" ${atd.tipo==="atestado"?"selected":""}>Atestado</option><option value="comparecimento" ${atd.tipo==="comparecimento"?"selected":""}>Comparecimento</option><option value="nenhum" ${atd.tipo==="nenhum"?"selected":""}>Nenhum</option></select></label>
@@ -88,11 +90,6 @@ function bindAtend(it){
   $("#atdCpAt").onclick=e=>copy($("#atdAt").value,e.currentTarget);
   $("#atdCpRx").onclick=e=>{const t=cur(it,"casa");if(!t.trim()){toast("Esta conduta não tem receita domiciliar");return}copy(t,e.currentTarget)};
   $("#atdCpTudo").onclick=e=>copy([$("#atdEv").value,$("#atdAtW").hidden?"":$("#atdAt").value].filter(Boolean).join("\n\n"),e.currentTarget);
-  $("#atdNovo").onclick=()=>{
-    atd=ATD_VAZIO(); Object.assign(pac,{idade:"",sexo:"M",peso:"",cr:"",gest:false,pnc:false});
-    Object.keys(chk).forEach(k=>delete chk[k]); evChk=null; evScores=[];
-    Object.values(ATD_EV).forEach(id=>$("#"+id).value="");
-    renderDetail(); toast("Pronto para o próximo paciente");
-  };
+  bindNovoPaciente($("#atdNovo"));
   atdAtualiza(it);
 }

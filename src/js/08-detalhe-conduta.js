@@ -1,10 +1,11 @@
 /* ---------- detail ---------- */
 const sess={}; // edições temporárias da prescrição: id -> {casa,unidade,orient}
-const cur=(it,f)=>{const s=sess[it.id];return s&&s[f]!=null?s[f]:rxTxt(it[f]||"")};
+// receita: edição à mão > escolhas por toque (08-receita.js) > texto da conduta
+const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="casa"&&rxTemMontar(it))return rxOut[it.id]??rxMonta(it);return rxTxt(it[f]||"")};
 function section(it,cls,title,f,copyLabel){
   const text=cur(it,f);
   if(!text.trim()&&!(sess[it.id]&&sess[it.id][f]!=null)) return "";
-  return `<div class="sec ${cls}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div><textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${f!=="orient"?fichasDoTexto(text):""}</div>`;
+  return `<div class="sec ${cls}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div>${f==="casa"?renderRxMontar(it):""}<textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${f!=="orient"?fichasDoTexto(text):""}</div>`;
 }
 const isNew=it=>!!(it.rev&&it.rev.length===1&&it.rev[0]==="Item novo.");
 function linkify(f){const m=f.match(/https?:\/\/\S+/);if(!m)return esc(f);const u=m[0].replace(/[.,)]+$/,"");const i=f.indexOf(u);return esc(f.slice(0,i))+`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,60))}${u.length>68?"…":""}</a>`+esc(f.slice(i+u.length))}
@@ -92,6 +93,8 @@ function bindChecklist(it){
     const st=chk[it.id]=chk[it.id]||{}; const k=b.dataset.ck;
     if(st[k]===b.dataset.val) delete st[k]; else st[k]=b.dataset.val;
     const li=b.closest(".ck"); li.dataset.v=st[k]==="+"?"pos":st[k]==="-"?"neg":"";
+    // "alergia a penicilina" no checklist liga o mesmo alerta de Dados do paciente e do perfil (um só estado)
+    if(/alergia[^,]*penicilina/i.test(li.querySelector(".ckt").textContent)&&!/gestante/i.test(li.querySelector(".ckt").textContent)){pac.pnc=st[k]==="+";if(!pac.pnc)ui.perfil=(ui.perfil||[]).filter(x=>x!=="pnc");renderDetail();return}
     li.querySelectorAll("[data-ck]").forEach(x=>x.setAttribute("aria-pressed",st[k]===x.dataset.val));
   });
   $("#ckCopy").onclick=e=>{const l=chkLinhas(it);const t=[...l.hma,...l.ex].join("\n");if(!t){toast("Marque algum item com + ou −");return}copy(t,e.currentTarget)};
@@ -124,7 +127,7 @@ function renderFichas(it){
 function renderDilu(it){
   const t=cur(it,"unidade"); if(!t.trim()) return "";
   const hits=DILU.filter(d=>d.re.test(t)); if(!hits.length) return "";
-  return `<div class="sec dilu"><div class="sec-h"><h3>Preparo dos injetáveis (IM e EV)</h3></div><ul>${hits.map(d=>`<li><b>${esc(d.nome)}:</b> ${esc(d.txt)}</li>`).join("")}</ul><p class="note" style="padding:0 16px 12px">Fontes: ${linkify(DILFONTE)}; guias farmacêuticos do Hospital São Camilo e Sírio-Libanês; bulas. Confira a apresentação disponível no seu serviço.</p></div>`;
+  return `<details class="sec dilu"><summary class="sec-h"><h3>Preparo dos injetáveis (IM e EV)</h3></summary><ul>${hits.map(d=>`<li><b>${esc(d.nome)}:</b> ${esc(d.txt)}</li>`).join("")}</ul><p class="note" style="padding:0 16px 12px">Fontes: ${linkify(DILFONTE)}; guias farmacêuticos do Hospital São Camilo e Sírio-Libanês; bulas. Confira a apresentação disponível no seu serviço.</p></details>`;
 }
 function fullText(it){return [cur(it,"casa"),cur(it,"unidade")?("Na unidade:\n"+cur(it,"unidade")):"",cur(it,"orient")?("Orientações:\n"+cur(it,"orient")):""].filter(Boolean).join("\n\n")}
 function renderDetail(){
@@ -151,6 +154,7 @@ function renderDetail(){
     <p class="note dnote">Os textos são editáveis para este paciente. ${changed?"":"Nada vira padrão sem você pedir."}</p>
     <div id="sessBar" class="sessbar" ${changed?"":"hidden"}><span>Você alterou o texto desta prescrição.</span><button class="btn sm primary" id="sessSave">Salvar como meu padrão</button><button class="btn sm" id="sessUndo">Descartar alterações</button></div>
   </div>
+  <nav class="atalhosconduta" aria-label="Ir para">${[["agora","Agora"],["alarmetopo","Alarmes"],["casa","Receita"],["chk","Checklist"],["atend","Fechar"],["altapac","Alta"]].map(([c,r])=>`<button class="chip" data-ir="${c}">${r}</button>`).join("")}</nav>
   ${renderAgora(it)}
   ${renderAlarme(it)}
   ${renderPac(it)}
@@ -166,11 +170,11 @@ function renderDetail(){
   ${renderFichas(it)}
   ${renderAlta(it)}
   ${it.evid?`<div class="sec evid"><div class="sec-h"><h3>Nível de evidência</h3></div><p>${esc(it.evid)}</p></div>`:""}
-  ${(it.fontes&&it.fontes.length)?`<div class="sec fontes"><div class="sec-h"><h3>Fontes</h3></div><ol>${it.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></div>`:""}
-  ${(!it.custom&&!isNew(it)&&it.rev&&it.rev.length)?`<div class="sec rev"><div class="sec-h"><h3>O que mudou em relação ao seu modelo</h3></div><ul>${it.rev.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>`:""}`;
+  ${(it.fontes&&it.fontes.length)?`<details class="sec fontes" id="secFontes"><summary class="sec-h"><h3>Fontes</h3></summary><ol>${it.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details>`:""}
+  ${(!it.custom&&!isNew(it)&&it.rev&&it.rev.length)?`<details class="sec rev"><summary class="sec-h"><h3>O que mudou em relação ao seu modelo</h3></summary><ul>${it.rev.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></details>`:""}`;
   el.querySelectorAll("textarea.rx-edit").forEach(ta=>{grow(ta);ta.addEventListener("input",()=>{grow(ta);sess[it.id]=sess[it.id]||{};sess[it.id][ta.dataset.f]=ta.value;$("#sessBar").hidden=false;})});
   el.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>{const f=b.dataset.copy;const t=cur(it,f);copy(f==="unidade"?"Na unidade:\n"+t:f==="orient"?"Orientações:\n"+t:t,b)});
-  el.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{const g=b.dataset.perfil;const p=new Set(ui.perfil||[]);p.has(g)?p.delete(g):p.add(g);ui.perfil=[...p];saveUI();renderDetail()});
+  el.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{const g=b.dataset.perfil;const p=new Set(ui.perfil||[]);const liga=!perfisAtivos().has(g);liga?p.add(g):p.delete(g);ui.perfil=[...p];if(g==="pnc")pac.pnc=liga;if(g==="gest")pac.gest=liga&&pac.gest;saveUI();renderDetail()});
   $("#cpAll").onclick=e=>{copy(fullText(it),e.currentTarget)};
   $("#favBtn").onclick=()=>toggleFav(it.id);
   const pcUp=()=>{pac.idade=$("#pcIdade").value;pac.sexo=$("#pcSexo").value;pac.peso=$("#pcPeso").value;pac.cr=$("#pcCr").value;pac.gest=$("#pcGest").checked;pac.pnc=$("#pcPnc").checked;const a=document.activeElement&&document.activeElement.id;renderDetail();if(a&&$("#"+a)){const e=$("#"+a);e.focus();if(e.setSelectionRange&&e.type!=="checkbox"&&e.tagName==="INPUT")try{e.setSelectionRange(e.value.length,e.value.length)}catch(x){}}};
@@ -180,6 +184,10 @@ function renderDetail(){
   bindChecklist(it);
   bindAgora(it);
   bindAtend(it);
+  bindRxMontar(it);
+  // atalhos: só aparecem as seções que existem nesta conduta
+  $$("#detail .atalhosconduta [data-ir]").forEach(b=>{const alvo=$(`#detail .sec.${b.dataset.ir}`);if(!alvo){b.remove();return}
+    b.onclick=()=>{if(alvo.tagName==="DETAILS")alvo.open=true;alvo.scrollIntoView({block:"start"})}});
   bindAltaPac(it);
   growAll();
   $("#toEv").onclick=()=>{$("#evCond").value=it.id;evManual=false;setTab("evolucao")};

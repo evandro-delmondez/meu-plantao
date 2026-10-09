@@ -26,6 +26,7 @@ test("ficha por cima leva à bomba de infusão já escolhida e à aba Remédios"
   const erros = await abrir(page); await aba(page, "eletrolitos");
   await expect(page.locator("#elCorpo .mlink").first()).toBeVisible();
   await aba(page, "calculadora");
+  await page.fill("#peso", "70"); await page.dispatchEvent("#peso", "input");   // o peso começa vazio
   await page.evaluate(() => { const b = [...document.querySelectorAll("#cgroups .mlink")].find((x) => x.dataset.med === "noradrenalina"); (b || document.querySelector("#cgroups .mlink")).click(); });
   await expect(page.locator("#medSheet")).toBeVisible();
   if (await page.locator("#msBic").isVisible()) {

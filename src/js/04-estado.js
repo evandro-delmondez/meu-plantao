@@ -2,7 +2,7 @@
 // Regra 5: dados do paciente (peso, idade, sexo, perfis como gestante ou alergia) ficam só na memória da aba.
 // Versões antigas salvavam esses campos em rxp_ui_v1; eles são ignorados ao carregar e apagados no próximo saveUI.
 const ui=Object.assign({tab:"inicio",sel:"amigdalite",cat:null,modo:"adulto",tipo:"atestado",ped:"febre"},lsGet(LS.ui,{}));
-Object.assign(ui,{peso:ui.modo==="ped"?20:70,sexo:"M",perfil:[],pdPeso:"15",pdAnos:"3",pdMeses:"0"});
+Object.assign(ui,{peso:"",sexo:"M",perfil:[],pdPeso:"",pdAnos:"",pdMeses:""});
 // rede: "publica" | "particular" | null — preferência de quem usa o painel (onde está trabalhando hoje)
 // ciatox: telefone do CIATox local salvo por quem usa o painel (não é dado de paciente); versões antigas não têm o campo
 if(!ui.ciatox||typeof ui.ciatox!=="object") ui.ciatox={nome:"",tel:""};

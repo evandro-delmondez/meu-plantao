@@ -70,6 +70,7 @@ sinusite: {
   cuidados: [
     "Tome e use os remédios como está na sua receita.",
     "Se você recebeu antibiótico, tome até o último dia, mesmo que melhore antes. Se não recebeu, não tome por conta própria: na maioria das vezes ele não é necessário.",
+    "Se você não recebeu antibiótico, procure atendimento se piorar depois de ter começado a melhorar, ou se não tiver melhorado nada 10 dias depois do começo dos sintomas.",
     "Lave o nariz com soro fisiológico várias vezes ao dia, como foi ensinado.",
     "Descanse e beba bastante água.",
     "Não use por conta própria aqueles sprays que desentopem o nariz na hora. Usados por muitos dias, eles deixam o nariz ainda mais entupido.",
@@ -80,13 +81,16 @@ sinusite: {
     "Olho saltado para fora, visão dupla ou visão embaçada.",
     "Dor de cabeça muito forte.",
     "Confusão, sonolência fora do normal ou pescoço duro (dificuldade para encostar o queixo no peito).",
-    "Um lado do rosto fica paralisado, ou o olho não se mexe direito.",
+    "O olho não se mexe direito, ou aparece fraqueza ou dormência num lado do rosto ou do corpo, ou a fala fica enrolada.",
+    "Inchaço na testa, acima do olho.",
+    "Febre alta com calafrios, ou você se sente muito mal e abatido.",
     "Está tomando antibiótico e, depois de 3 dias, piorou ou não melhorou nada."
   ],
   fontes: [
+    "NICE NG79, rec. 1.1.9: encaminhar ao hospital se infecção sistêmica grave ou sinais de complicação orbitária ou intracraniana (inchaço sobre o osso frontal, cefaleia frontal intensa, sinais neurológicos focais). https://www.nice.org.uk/guidance/ng79",
     "Chow AW et al. IDSA Clinical Practice Guideline for Acute Bacterial Rhinosinusitis in Children and Adults (Clin Infect Dis 2012;54:e72): reavaliar se piora após 48–72 h de antibiótico ou sem melhora após 3–5 dias.",
     "Rosenfeld RM et al. AAO-HNS Clinical Practice Guideline (Update): Adult Sinusitis (Otolaryngol Head Neck Surg 2015;152:S1): lavagem nasal com soro; maioria viral.",
-    "AAO-HNSF. Clinical Practice Guideline: Adult Sinusitis Update (Otolaryngol Head Neck Surg 2025;173(5 Suppl):S1–S56): observação sem antibiótico na rinossinusite bacteriana não complicada; uso cauteloso de antibiótico.",
+    "AAO-HNSF. Clinical Practice Guideline: Adult Sinusitis Update (Otolaryngol Head Neck Surg 2025;173 Suppl 1:S1–S56; doi 10.1002/ohn.1344): observação sem antibiótico na rinossinusite bacteriana não complicada; uso cauteloso de antibiótico.",
     "NICE NG79. Sinusitis (acute): antimicrobial prescribing, 2017, rec. 1.1.2: duração de 2 a 3 semanas, antibiótico geralmente desnecessário, procurar ajuda se piora rápida ou importante. https://www.nice.org.uk/guidance/ng79",
     "Sakano E et al. IV Consenso Brasileiro sobre Rinites (Braz J Otorhinolaryngol 2018;84:3): uso prolongado de descongestionante tópico causa rinite medicamentosa.",
     "NHS. Sinusitis (sinus infection): autocuidado (repouso, líquidos, lavagem nasal, não fumar). https://www.nhs.uk/conditions/sinusitis-sinus-infection/"
@@ -185,9 +189,11 @@ conjuntivite: {
     "A luz incomoda muito.",
     "Você usa lente de contato e o olho está vermelho e dolorido.",
     "Muito pus, que aparece de repente e volta logo depois de limpar.",
-    "Não melhora depois de terminar o colírio da receita, ou piora a qualquer momento."
+    "Está usando colírio de antibiótico e não melhorou nada em 3 a 4 dias, ou piora a qualquer momento.",
+    "Bolhas ou feridas na pálpebra ou na pele em volta do olho, ou manchas com bolhas na testa do mesmo lado."
   ],
   fontes: [
+    "American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern, 2023: retorno em 3 a 4 dias se a conjuntivite bacteriana não melhorar; bolhas na pálpebra sugerem herpes simples ou zoster.",
     "Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023 (Ophthalmology 2024;131:P134): contágio por 10 a 14 dias; lavar as mãos, toalha e travesseiro separados, evitar contato próximo; encaminhar se perda visual, dor moderada ou intensa, secreção purulenta intensa, acometimento da córnea, falta de resposta ao tratamento.",
     "Azari AA, Barney NP. Conjunctivitis: a systematic review of diagnosis and treatment (JAMA 2013;310:1721): curso autolimitado em 1 a 2 semanas; lente de contato com olho vermelho (risco de ceratite). https://doi.org/10.1001/jama.2013.280318",
     "NHS. Conjunctivitis: limpar com algodão (um para cada olho), compressa fria, não usar lente, não dividir toalha e travesseiro; urgência se dor, sensibilidade à luz, alteração da visão ou olho muito vermelho. https://www.nhs.uk/conditions/conjunctivitis/"
@@ -202,6 +208,8 @@ gripe: {
     "Descanse e beba bastante água, sucos e sopas.",
     "Antibiótico não trata gripe. Não tome por conta própria.",
     "Não dê aspirina para criança ou adolescente.",
+    "Não tome anti-inflamatório nem aspirina por conta própria: se for dengue, eles aumentam o risco de sangramento.",
+    "Se você tem 60 anos ou mais, está grávida ou teve bebê há pouco, ou tem doença crônica (do pulmão, inclusive asma, do coração, dos rins ou do fígado, diabetes, obesidade grave ou baixa imunidade), volte para ser reavaliado em 2 dias, mesmo que esteja melhor.",
     "Fique em casa até 1 dia depois que a febre passar sem remédio para febre. Cubra a boca e o nariz ao tossir ou espirrar, use lenço descartável e lave as mãos.",
     "Não divida copo, talher ou garrafa e deixe a casa arejada. Depois de sarar, tome a vacina da gripe todo ano."
   ],
@@ -212,9 +220,12 @@ gripe: {
     "Febre por mais de 3 dias, ou a febre volta depois de 2 dias sem febre.",
     "Confusão, sonolência fora do normal ou fraqueza muito grande.",
     "Urina muito pouca, boca muito seca ou tontura ao levantar.",
-    "Piora de doença que você já tem, como asma, bronquite, problema de coração ou diabetes."
+    "Piora de doença que você já tem, como asma, bronquite, problema de coração ou diabetes.",
+    "Sangue no catarro.",
+    "Dor forte e contínua na barriga, vômitos que não param, sangramento pelo nariz ou pela gengiva, ou manchas vermelhas na pele, principalmente quando a febre começa a baixar."
   ],
   fontes: [
+    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: caso suspeito (item 10.1), sinais de alarme (quadro 1), não usar salicilatos nem anti-inflamatórios e retorno imediato se sangramento ou sinal de alarme (item 6.1.2); Guia de Manejo e Tratamento de Influenza 2023, fluxograma: retorno em 48 h na síndrome gripal com fator de risco",
     "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023: sinais de agravamento (dispneia, febre por mais de 3 dias ou retorno após 48 h sem febre, alteração do sensório, hipotensão, diurese baixa, desidratação, piora de doença de base); oseltamivir preferencialmente nas primeiras 48 h; sintomáticos e líquidos; risco de síndrome de Reye com ácido acetilsalicílico em menores de 19 anos. https://bvsms.saude.gov.br/bvs/publicacoes/guia_manejo_tratamento_influenza_2023.pdf",
     "Ministério da Saúde. Gripe (influenza), Saúde de A a Z: higiene das mãos, etiqueta respiratória, não compartilhar objetos, ambientes ventilados, afastamento até 24 h sem febre sem antitérmico, vacinação anual. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/g/gripe-influenza",
     "NHS. Flu: antibiótico não funciona para gripe; não somar antigripais ao paracetamol (risco de dose a mais); urgência se dor no peito, falta de ar intensa ou sangue na tosse. https://www.nhs.uk/conditions/flu/"
@@ -375,11 +386,13 @@ dispepsia: {
     "Dor ou aperto no peito ou no alto da barriga com suor frio, falta de ar ou dor que vai para o braço, o pescoço ou o queixo.",
     "Tontura forte, desmaio ou palidez.",
     "Vômitos que não param.",
-    "A comida para no caminho e você não consegue engolir."
+    "A comida para no caminho e você não consegue engolir.",
+    "Dor de barriga muito forte e repentina, ou a barriga fica dura ou dói muito ao encostar."
   ],
   fontes: [
+    "NHS. Stomach ulcer: pronto-socorro se vômito com sangue, fezes pretas, dor de barriga intensa ou dor ao tocar a barriga. https://www.nhs.uk/conditions/stomach-ulcer/",
     "Moayyedi PM et al. ACG and CAG Clinical Guideline: Management of Dyspepsia (Am J Gastroenterol 2017;112:988): endoscopia a partir de 60 anos ou com sinais de alarme; evitar anti-inflamatórios.",
-    "Coelho LGV et al. IVth Brazilian Consensus Conference on Helicobacter pylori infection (Arq Gastroenterol 2018;55:97), enunciado 9: sinais de alarme na dispepsia (perda de peso, disfagia, vômitos persistentes, sangramento, câncer gástrico em parente de 1º grau). https://www.scielo.br/j/ag/a/DQtggHCHth5R6xx75G8tVtC/",
+    "Coelho LGV et al. V Consenso Brasileiro sobre Helicobacter pylori (Arq Gastroenterol 2026;63:e26043), enunciado 18: endoscopia se sinais de alarme, 40 anos ou mais com dispepsia, falha do tratamento ou parente de 1º grau com câncer gástrico.",
     "Katz PO et al. ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease (Am J Gastroenterol 2022;117:27): perder peso, elevar a cabeceira, evitar refeições 2 a 3 h antes de deitar, parar de fumar.",
     "NICE CG184. Gastro-oesophageal reflux disease and dyspepsia in adults, 2014 (atualizado 2019): inibidor de bomba de prótons por 4 semanas e reavaliar se não melhora ou se volta. https://www.nice.org.uk/guidance/cg184",
     "Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain (Circulation 2021;144:e368): dor epigástrica como apresentação de isquemia. https://doi.org/10.1161/CIR.0000000000001029",
@@ -395,7 +408,7 @@ constipacao: {
     "Coma mais fibras, aumentando aos poucos: frutas com casca e bagaço, verduras, legumes, feijão, aveia e pão ou arroz integral.",
     "Caminhe ou faça alguma atividade física todos os dias.",
     "Não segure a vontade de evacuar. Tente ir ao banheiro sempre no mesmo horário, sem pressa, com os pés apoiados num banquinho.",
-    "Se a receita tem óleo para tomar, não tome junto com a comida e não dê para pessoa acamada ou que se engasga ao engolir.",
+    "Se a receita tem óleo mineral: não tome junto com a comida e não use por mais tempo que o da receita. Não dê para criança com menos de 6 anos, para pessoa acamada ou para quem se engasga ao engolir. Pare o óleo se tiver enjoo, vômito ou dor de barriga.",
     "Procure o posto de saúde se o intestino mudou de repente e você tem mais de 50 anos, se perdeu peso sem explicação ou se a prisão de ventre não melhora com o tratamento."
   ],
   volte: [
@@ -405,6 +418,7 @@ constipacao: {
     "Fraqueza, tontura ou palidez junto com o sangramento."
   ],
   fontes: [
+    "Bula do óleo mineral (Teuto), Anvisa: contraindicado em menores de 6 anos; evitar com náuseas, vômitos, dor abdominal, gravidez, dificuldade para engolir, refluxo e em acamados; não administrar com alimentos; no máximo 1 semana sem orientação médica",
     "Chang L et al. AGA–ACG Clinical Practice Guideline: Pharmacological Management of Chronic Idiopathic Constipation (Gastroenterology 2023): fibras e laxantes osmóticos.",
     "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 49 — Diarrhea and Constipation: sinais de alarme (sangramento, anemia, perda de peso, início recente após os 50 anos, obstrução).",
     "Bharucha AE et al. American Gastroenterological Association technical review on constipation (Gastroenterology 2013;144:218). https://doi.org/10.1053/j.gastro.2012.10.028",

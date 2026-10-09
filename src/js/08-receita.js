@@ -28,11 +28,14 @@ function rxRotulo(op){
 }
 // só condutas com alternativas ou blocos opcionais ganham a montagem
 function rxTemMontar(it){const b=rxParse(rxTxt(it.casa||""));return b.length>1||b.some(x=>x.partes.some(p=>p.tipo==="slot"&&p.ops.length>1))}
+// o primeiro bloco com remédio é a receita principal (às vezes ele próprio tem título "#"): vem ligado; os demais, desligados
+const rxPrimeiro=blocos=>blocos.findIndex(b=>b.partes.some(p=>p.tipo==="slot"));
+const rxAtivo=(blocos,st,bi)=>st.b[bi]??(bi===0||bi===rxPrimeiro(blocos));
 function rxEstado(id){return rxSel[id]=rxSel[id]||{s:{},b:{}}}
 function rxMonta(it){
   const blocos=rxParse(rxTxt(it.casa||"")), st=rxEstado(it.id), out=[]; let n=0;
   blocos.forEach((b,bi)=>{
-    if(bi>0&&!st.b[bi]) return;
+    if(!rxAtivo(blocos,st,bi)) return;
     if(out.length&&out[out.length-1]!=="") out.push("");
     let si=0;
     for(const p of b.partes){
@@ -53,8 +56,8 @@ function renderRxMontar(it){
   const blocos=rxParse(rxTxt(it.casa||"")), st=rxEstado(it.id);
   const linhas=[];
   blocos.forEach((b,bi)=>{
-    const ativo=bi===0||st.b[bi];
-    if(bi>0) linhas.push(`<div class="rxlin rxbloco"><button class="chip rxc" data-rxb="${bi}" aria-pressed="${!!ativo}">${ativo?"✓":"+"} ${esc(b.tit)}</button></div>`);
+    const ativo=rxAtivo(blocos,st,bi);
+    if(bi>0&&bi!==rxPrimeiro(blocos)) linhas.push(`<div class="rxlin rxbloco"><button class="chip rxc" data-rxb="${bi}" aria-pressed="${!!ativo}">${ativo?"✓":"+"} ${esc(b.tit)}</button></div>`);
     if(!ativo) return;
     let si=0, soltos=null;   // itens únicos seguidos ficam juntos numa linha, na ordem da receita
     for(const p of b.partes){
@@ -72,5 +75,5 @@ function bindRxMontar(it){
   const st=rxEstado(it.id);
   const aplica=()=>{rxOut[it.id]=rxMonta(it); if(sess[it.id]) delete sess[it.id].casa; renderDetail()};
   box.querySelectorAll("[data-rxs]").forEach(b=>b.onclick=()=>{st.s[b.dataset.rxs]=+b.dataset.rxv;aplica()});
-  box.querySelectorAll("[data-rxb]").forEach(b=>b.onclick=()=>{const i=b.dataset.rxb;st.b[i]=!st.b[i];aplica()});
+  box.querySelectorAll("[data-rxb]").forEach(b=>b.onclick=()=>{const i=+b.dataset.rxb;st.b[i]=!rxAtivo(rxParse(rxTxt(it.casa||"")),st,i);aplica()});
 }

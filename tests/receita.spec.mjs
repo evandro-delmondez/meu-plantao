@@ -30,7 +30,7 @@ test("nenhuma receita montada sai com 'Ou', '#' ou nota para o médico", async (
     if (!(await page.locator("#detail .rxmontar").count())) continue;
     const t = await receita(page);
     expect(t, id).not.toMatch(/^\s*Ou\b|^#|^\s*(Criança|Gestante|CID)\b/m);
-    expect(t, id).toMatch(/^\s*1\)/m);
+    expect(t, id).toMatch(/^\s*1\)/m);   // nunca sai vazia (ex.: dengue começa com um título "#")
     expect(t, id).not.toMatch(RUIM);
   }
   expect(erros).toEqual([]);

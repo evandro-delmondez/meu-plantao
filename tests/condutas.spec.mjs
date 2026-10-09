@@ -38,7 +38,7 @@ test("dipirona 1 g substitui 500 mg quando escolhida", async ({ page }) => {
 test("fichas das medicações aparecem na conduta e abrem por cima, com atalho para a aba Medicações", async ({ page }) => {
   await abrir(page); await aba(page, "prescricoes");
   await page.fill("#q", "amigdalite"); await page.click("#list .item >> nth=0");
-  const chips = page.locator("#detail [data-med]");
+  const chips = page.locator("#detail .mcit [data-med]");
   await expect(chips.first()).toBeVisible();
   await chips.first().click();
   await expect(page.locator("#msBody h2")).not.toBeEmpty();

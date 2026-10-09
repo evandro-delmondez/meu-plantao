@@ -52,3 +52,4 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Rede varia (pública e particular): manter o seletor.
 - Entrada por queixa, 1º lote (2026-10-09): cefaleia, tontura/síncope, dor abdominal, dor torácica, febre, tosse/dispneia. Lombalgia, dor musculoesquelética e outras queixas ficam como pendência.
 - Alta segura (2026-10-09): imprimir (A5/A4) e QR code na tela; versão leiga separada das orientações técnicas, com "volte se…". Sem dado do paciente no QR nem na folha.
+- Condutas da porta corrigidas (2026-10-09): ibuprofeno só depois de descartar dengue (gripe, faringite, amigdalite, tosse); dispepsia com endoscopia a partir de 40 anos (V Consenso Brasileiro de H. pylori); gastroenterite com alimentação habitual; náuseas com fontes reais; contraindicações do óleo mineral e alerta do Fleet.

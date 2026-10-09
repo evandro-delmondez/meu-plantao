@@ -88,11 +88,6 @@ function bindAtend(it){
   $("#atdCpAt").onclick=e=>copy($("#atdAt").value,e.currentTarget);
   $("#atdCpRx").onclick=e=>{const t=cur(it,"casa");if(!t.trim()){toast("Esta conduta não tem receita domiciliar");return}copy(t,e.currentTarget)};
   $("#atdCpTudo").onclick=e=>copy([$("#atdEv").value,$("#atdAtW").hidden?"":$("#atdAt").value].filter(Boolean).join("\n\n"),e.currentTarget);
-  $("#atdNovo").onclick=()=>{
-    atd=ATD_VAZIO(); Object.assign(pac,{idade:"",sexo:"M",peso:"",cr:"",gest:false,pnc:false});
-    Object.keys(chk).forEach(k=>delete chk[k]); evChk=null; evScores=[];
-    Object.values(ATD_EV).forEach(id=>$("#"+id).value="");
-    renderDetail(); toast("Pronto para o próximo paciente");
-  };
+  bindNovoPaciente($("#atdNovo"));
   atdAtualiza(it);
 }

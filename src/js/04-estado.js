@@ -2,7 +2,7 @@
 // Regra 5: dados do paciente (peso, idade, sexo, perfis como gestante ou alergia) ficam só na memória da aba.
 // Versões antigas salvavam esses campos em rxp_ui_v1; eles são ignorados ao carregar e apagados no próximo saveUI.
 const ui=Object.assign({tab:"inicio",sel:"amigdalite",cat:null,modo:"adulto",tipo:"atestado",ped:"febre"},lsGet(LS.ui,{}));
-Object.assign(ui,{peso:ui.modo==="ped"?20:70,sexo:"M",perfil:[],pdPeso:"15",pdAnos:"3",pdMeses:"0"});
+Object.assign(ui,{peso:"",sexo:"M",perfil:[],pdPeso:"",pdAnos:"",pdMeses:""});
 // rede: "publica" | "particular" | null — preferência de quem usa o painel (onde está trabalhando hoje)
 const saveUI=()=>lsSet(LS.ui,{sel:ui.sel,cat:ui.cat,modo:ui.modo,ped:ui.ped,pmode:ui.pmode,score:ui.score,rede:ui.rede||null});
 let editing=false, confirmDel=false, newTmp=null;

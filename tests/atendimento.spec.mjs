@@ -37,7 +37,24 @@ test("porta: sinais de alarme no topo e atendimento fechado em 1 tela, sem salva
   // os dados seguem ao trocar de diagnóstico, até "Novo paciente"
   await conduta(page, "faringite-viral").catch(() => {});
   await page.locator("#atdNovo").click();
+  await expect(page.locator("#atdNovo")).toContainText("Tocar de novo");   // pede confirmação
+  await page.locator("#atdNovo").click();
   await expect(campo(page, "hma")).toHaveValue("");
   await expect(ev).not.toHaveValue(/dor de garganta há 2 dias/);
+  expect(erros).toEqual([]);
+});
+
+test("Novo paciente no topo limpa o paciente em todas as abas", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "calculadora"); await page.fill("#peso", "88"); await page.dispatchEvent("#peso", "input");
+  await aba(page, "pediatria"); await page.fill("#pdPeso", "17"); await page.dispatchEvent("#pdPeso", "input");
+  await aba(page, "bic"); await page.fill("#bicPeso", "90"); await page.dispatchEvent("#bicPeso", "input");
+  await aba(page, "atestado"); await page.fill("#atCid", "A90"); await page.dispatchEvent("#atCid", "input");
+  await aba(page, "evolucao"); await page.fill("#evHma", "paciente anterior"); await page.dispatchEvent("#evHma", "input");
+  await page.click("#novoPac"); await page.click("#novoPac");
+  await expect(page.locator("#evHma")).toHaveValue("");
+  for (const [a, id] of [["calculadora", "#peso"], ["pediatria", "#pdPeso"], ["bic", "#bicPeso"], ["atestado", "#atCid"]]) {
+    await aba(page, a); await expect(page.locator(id), id).toHaveValue("");
+  }
   expect(erros).toEqual([]);
 });

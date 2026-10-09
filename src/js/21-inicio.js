@@ -23,7 +23,9 @@ const PAGINAS=[
 function indiceBusca(){
   const out=[];
   for(const it of allItems()){const c=CATS[it.cat]||CATS.outros;out.push({g:"Condutas",cor:c.cor,t:it.nome,s:[c.nome,it.cid].filter(Boolean).join(" · "),h:norm([it.nome,it.sin,it.cid,c.nome].join(" ")),x:norm([it.casa,it.unidade].join(" ")),n:norm(it.nome),go:()=>abrirConduta(it.id)})}
-  for(const m of MEDS){const g=MGRUPOS[m.grupo]||{nome:"",cor:"slate"};out.push({g:"Medicações",cor:g.cor,t:m.nome,s:[m.classe,(m.vias||[]).join(" · ")].filter(Boolean).join(" · "),h:medHay(m),n:norm(m.nome),go:()=>openMed(m.id)})}
+  // remédio: nome, classe, nomes comerciais e apelidos pesam; o resto da ficha só entra com peso baixo
+  for(const m of MEDS){const g=MGRUPOS[m.grupo]||{nome:"",cor:"slate"};out.push({g:"Medicações",cor:g.cor,t:m.nome,s:[m.classe,(m.vias||[]).join(" · ")].filter(Boolean).join(" · "),h:norm([m.nome,m.classe,m.subclasse,medMarcas(m).join(" "),(MALIAS[m.id]||[]).join(" "),g.nome].join(" ")),x:medHay(m),n:norm(m.nome),go:()=>openMed(m.id)})}
+  for(const q of QUEIXAS) out.push({g:"Por queixa",cor:q.cor||"red",t:q.nome,s:"Sinais de alarme e caminhos",h:norm(q.nome+" "+q.id.replace(/-/g," ")+" queixa"),n:norm(q.nome),go:()=>{qSel=q.id;setTab("queixas");window.scrollTo({top:0})}});
   for(const s of SC) out.push({g:"Escores",cor:"violet",t:s.nome,s:"Escore",h:norm(s.nome+" escore score"),n:norm(s.nome),go:()=>abrirEscore(s.id)});
   for(const p of PEDS) out.push({g:"Pediatria por peso",cor:"sky",t:p.nome,s:"Prescrição pediátrica pelo peso",h:norm(p.nome+" pediatria crianca "+(p.cid||"")),n:norm(p.nome),go:()=>abrirPed(p.id)});
   for(const [modo,grupos] of Object.entries(CALC)) for(const gr of grupos) out.push({g:"Doses por peso",cor:gr.c,t:gr.t+(modo==="ped"?" (pediatria)":""),s:gr.d.map(d=>d.nome.split(/ \d/)[0]).slice(0,4).join(", ")+(gr.d.length>4?"…":""),h:norm(gr.t+" "+gr.d.map(d=>d.nome).join(" ")+(modo==="ped"?" pediatria crianca":" adulto")+" dose peso calculadora"),n:norm(gr.t),go:()=>abrirCalc(modo)});
@@ -31,10 +33,21 @@ function indiceBusca(){
   return out;
 }
 let gAchados=[];
+// busca por início de palavra: "dente" não acha "acidente"; termos de até 3 letras (siglas: SCA, ITU, TEP) só como palavra inteira
+const BUSCA_VAZIAS=new Set(["de","do","da","dos","das","e","a","o","as","os","em","no","na","nos","nas","para","pra","com","sem","por","um","uma"]);
+const palavras=t=>(t||"").split(/[^a-z0-9]+/).filter(Boolean);
+const temPalavra=(lista,w)=>w.length<=3?lista.includes(w):lista.some(p=>p.startsWith(w));
 function buscarTudo(q){
-  const words=norm(q).split(/\s+/).filter(Boolean); if(!words.length) return [];
+  const words=palavras(norm(q)).filter(w=>!BUSCA_VAZIAS.has(w)); if(!words.length) return [];
   // nome e sinônimos pesam mais; o texto da prescrição (x) só entra com peso baixo, para achar "adrenalina" → anafilaxia
-  return indiceBusca().map(x=>{let s=0;for(const w of words){if(x.h.includes(w))s+=x.n.startsWith(w)?5:x.n.includes(w)?3:1;else if(x.x&&x.x.includes(w))s+=0.5;else return null}return [x,s]}).filter(Boolean).sort((a,b)=>b[1]-a[1]).map(a=>a[0]);
+  return indiceBusca().map(x=>{
+    const ph=palavras(x.h), pn=palavras(x.n), px=x.x?palavras(x.x):[]; let s=0;
+    for(const w of words){
+      if(temPalavra(ph,w)) s+=pn[0]&&pn[0].startsWith(w)?5:temPalavra(pn,w)?3:1;
+      else if(temPalavra(px,w)) s+=0.5;
+      else return null;
+    }
+    return [x,s]}).filter(Boolean).sort((a,b)=>b[1]-a[1]).map(a=>a[0]);
 }
 function renderBusca(){
   const q=$("#gq").value.trim(); const box=$("#gres");

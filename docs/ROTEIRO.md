@@ -18,6 +18,7 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
+- **Pedidos de 2026-10-09 (em ordem):** auditoria de segurança; intoxicações e antídotos (cartão Agora + naloxona, flumazenil, N-acetilcisteína com nomograma, carvão ativado, CIATox a um toque); simulação de plantão no celular; revisão geral das 98 prescrições por categoria.
 - **Porta (prioridade desde 2026-10-08):**
   1. ~~atendimento em 1 tela e sinais de alarme no topo~~ (1.9.0);
   2. entrada por queixa (cefaleia, dor abdominal, dor torácica, dispneia, lombalgia, febre, tontura) com sinais de alarme e caminho até a conduta — conteúdo com conferência;

@@ -92,6 +92,8 @@ function bindChecklist(it){
     const st=chk[it.id]=chk[it.id]||{}; const k=b.dataset.ck;
     if(st[k]===b.dataset.val) delete st[k]; else st[k]=b.dataset.val;
     const li=b.closest(".ck"); li.dataset.v=st[k]==="+"?"pos":st[k]==="-"?"neg":"";
+    // "alergia a penicilina" no checklist liga o mesmo alerta de Dados do paciente e do perfil (um só estado)
+    if(/alergia[^,]*penicilina/i.test(li.querySelector(".ckt").textContent)&&!/gestante/i.test(li.querySelector(".ckt").textContent)){pac.pnc=st[k]==="+";if(!pac.pnc)ui.perfil=(ui.perfil||[]).filter(x=>x!=="pnc");renderDetail();return}
     li.querySelectorAll("[data-ck]").forEach(x=>x.setAttribute("aria-pressed",st[k]===x.dataset.val));
   });
   $("#ckCopy").onclick=e=>{const l=chkLinhas(it);const t=[...l.hma,...l.ex].join("\n");if(!t){toast("Marque algum item com + ou −");return}copy(t,e.currentTarget)};
@@ -170,7 +172,7 @@ function renderDetail(){
   ${(!it.custom&&!isNew(it)&&it.rev&&it.rev.length)?`<div class="sec rev"><div class="sec-h"><h3>O que mudou em relação ao seu modelo</h3></div><ul>${it.rev.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>`:""}`;
   el.querySelectorAll("textarea.rx-edit").forEach(ta=>{grow(ta);ta.addEventListener("input",()=>{grow(ta);sess[it.id]=sess[it.id]||{};sess[it.id][ta.dataset.f]=ta.value;$("#sessBar").hidden=false;})});
   el.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>{const f=b.dataset.copy;const t=cur(it,f);copy(f==="unidade"?"Na unidade:\n"+t:f==="orient"?"Orientações:\n"+t:t,b)});
-  el.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{const g=b.dataset.perfil;const p=new Set(ui.perfil||[]);p.has(g)?p.delete(g):p.add(g);ui.perfil=[...p];saveUI();renderDetail()});
+  el.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{const g=b.dataset.perfil;const p=new Set(ui.perfil||[]);const liga=!perfisAtivos().has(g);liga?p.add(g):p.delete(g);ui.perfil=[...p];if(g==="pnc")pac.pnc=liga;if(g==="gest")pac.gest=liga&&pac.gest;saveUI();renderDetail()});
   $("#cpAll").onclick=e=>{copy(fullText(it),e.currentTarget)};
   $("#favBtn").onclick=()=>toggleFav(it.id);
   const pcUp=()=>{pac.idade=$("#pcIdade").value;pac.sexo=$("#pcSexo").value;pac.peso=$("#pcPeso").value;pac.cr=$("#pcCr").value;pac.gest=$("#pcGest").checked;pac.pnc=$("#pcPnc").checked;const a=document.activeElement&&document.activeElement.id;renderDetail();if(a&&$("#"+a)){const e=$("#"+a);e.focus();if(e.setSelectionRange&&e.type!=="checkbox"&&e.tagName==="INPUT")try{e.setSelectionRange(e.value.length,e.value.length)}catch(x){}}};

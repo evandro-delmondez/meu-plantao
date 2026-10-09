@@ -58,3 +58,24 @@ test("Novo paciente no topo limpa o paciente em todas as abas", async ({ page })
   }
   expect(erros).toEqual([]);
 });
+
+test("evolução não contradiz o paciente: febre, taquipneia, alergia e destino", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  await page.evaluate(() => document.querySelector('#list .item[data-id="amigdalite"]').click());
+  await campo(page, "tax").fill("38,4"); await campo(page, "fr").fill("24");
+  let t = await page.locator("#atdEv").inputValue();
+  expect(t).not.toMatch(/Nega febre|Nega outros sintomas/);
+  expect(t).toMatch(/taquipneic/); expect(t).not.toMatch(/\beupneic/);
+  expect(t).toMatch(/Alergias: não informado/);
+  expect(t).toMatch(/Alta com orientações/);
+  // alergia marcada no checklist liga o alerta e entra na evolução
+  const item = page.locator("#detail .ck", { hasText: /alergia a penicilina/ }).first();
+  await item.locator('[data-val="+"]').click();
+  await expect(page.locator("#atdEv")).toHaveValue(/Alergias: penicilina/);
+  await expect(page.locator('#detail [data-perfil="pnc"]')).toHaveAttribute("aria-pressed", "true");
+  // emergência: sem destino padrão
+  await page.evaluate(() => document.querySelector('#list .item[data-id="sepse"]').click());
+  t = await page.locator("#atdEv").inputValue();
+  expect(t).not.toMatch(/Alta com orientações/);
+  expect(erros).toEqual([]);
+});

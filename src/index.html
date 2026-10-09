@@ -202,7 +202,7 @@
           <textarea class="inp" id="evHma" rows="4" placeholder="Paciente refere…"></textarea>
         </label>
         <div class="checks">
-          <label class="check"><input type="checkbox" id="evNega" checked> "Nega outros sintomas. Nega febre."</label>
+          <label class="check"><input type="checkbox" id="evNega"> "Nega outros sintomas." (só se perguntou)</label>
         </div>
         <div class="row">
           <label class="f">Alergias<textarea class="inp" id="evAlergia" rows="2" placeholder="Nega"></textarea></label>
@@ -224,7 +224,7 @@
           <label class="check"><input type="checkbox" id="evCasa" checked> Incluir prescrição domiciliar</label>
           <label class="check"><input type="checkbox" id="evUnid"> Incluir conduta na unidade</label>
           <label class="check"><input type="checkbox" id="evOri" checked> Incluir orientações</label>
-          <label class="check"><input type="checkbox" id="evAlta" checked> "Paciente liberado com orientações"</label>
+          <label class="f">Destino<select class="inp" id="evDestino"><option value="">— não incluir —</option><option value="alta" selected>Alta com orientações</option><option value="observacao">Observação</option><option value="internacao">Internação</option><option value="transferencia">Transferência</option></select></label>
         </div>
         <p class="note">Modelos de exame físico e conduta: aba Meus modelos.</p>
       </div>

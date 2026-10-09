@@ -514,3 +514,8 @@ body.sheet-on{overflow:hidden}
 .pesoaviso{border-left:4px solid var(--warn);background:color-mix(in srgb,var(--warn) 10%,var(--surface))}
 .pesoaviso p{margin:0;padding:10px 14px;font-weight:700}
 .novopac.confirma{background:var(--bad);color:#fff;border-color:var(--bad)}
+.rxmontar{display:flex;flex-direction:column;gap:6px;padding:4px 16px 8px}
+.rxlin{display:flex;flex-wrap:wrap;gap:6px}
+.rxc{min-height:36px;padding:6px 12px;font-size:13.5px;--c:var(--accent)}
+.rxsem{--c:var(--muted)}
+.rxbloco .rxc{--c:var(--warn)}

@@ -1,10 +1,11 @@
 /* ---------- detail ---------- */
 const sess={}; // edições temporárias da prescrição: id -> {casa,unidade,orient}
-const cur=(it,f)=>{const s=sess[it.id];return s&&s[f]!=null?s[f]:rxTxt(it[f]||"")};
+// receita: edição à mão > escolhas por toque (08-receita.js) > texto da conduta
+const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="casa"&&rxTemMontar(it))return rxOut[it.id]??rxMonta(it);return rxTxt(it[f]||"")};
 function section(it,cls,title,f,copyLabel){
   const text=cur(it,f);
   if(!text.trim()&&!(sess[it.id]&&sess[it.id][f]!=null)) return "";
-  return `<div class="sec ${cls}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div><textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${f!=="orient"?fichasDoTexto(text):""}</div>`;
+  return `<div class="sec ${cls}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div>${f==="casa"?renderRxMontar(it):""}<textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${f!=="orient"?fichasDoTexto(text):""}</div>`;
 }
 const isNew=it=>!!(it.rev&&it.rev.length===1&&it.rev[0]==="Item novo.");
 function linkify(f){const m=f.match(/https?:\/\/\S+/);if(!m)return esc(f);const u=m[0].replace(/[.,)]+$/,"");const i=f.indexOf(u);return esc(f.slice(0,i))+`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,60))}${u.length>68?"…":""}</a>`+esc(f.slice(i+u.length))}
@@ -182,6 +183,7 @@ function renderDetail(){
   bindChecklist(it);
   bindAgora(it);
   bindAtend(it);
+  bindRxMontar(it);
   bindAltaPac(it);
   growAll();
   $("#toEv").onclick=()=>{$("#evCond").value=it.id;evManual=false;setTab("evolucao")};

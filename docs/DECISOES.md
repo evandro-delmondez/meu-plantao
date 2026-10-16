@@ -62,3 +62,6 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Evolução: seletor de destino (alta / observação / internação / transferência) no lugar de "Paciente liberado com orientações"; sem padrão nas condutas de emergência.
 - Navegação na conduta: barra fixa de atalhos; preparo, fontes e "o que mudou" recolhidos por padrão; alvos de toque com 44 px. (Guardar a rolagem por aba: não pedido.)
 - Ficam para depois, com conferência: alertas automáticos pelos sinais vitais e NEWS2; bloco de gravidade da pneumonia (CRB-65); chips "álcool?" na agitação; conduta de dor de dente; alarmes cruzados (epigástrica → ECG).
+
+## Material institucional (2026-10-16)
+- Manual e protocolos do hospital onde trabalha ficam no repositório **privado** `plantao-hsls` (resumos + comandos do Claude Code). Nunca copiar para este repositório público nem para o site.

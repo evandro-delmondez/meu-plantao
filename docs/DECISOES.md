@@ -62,3 +62,4 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Evolução: seletor de destino (alta / observação / internação / transferência) no lugar de "Paciente liberado com orientações"; sem padrão nas condutas de emergência.
 - Navegação na conduta: barra fixa de atalhos; preparo, fontes e "o que mudou" recolhidos por padrão; alvos de toque com 44 px. (Guardar a rolagem por aba: não pedido.)
 - Ficam para depois, com conferência: alertas automáticos pelos sinais vitais e NEWS2; bloco de gravidade da pneumonia (CRB-65); chips "álcool?" na agitação; conduta de dor de dente; alarmes cruzados (epigástrica → ECG).
+- Intoxicação (2026-10-09): carvão ativado 1 g/kg, máx. 50 g, em todo o painel (citando que a AACT aceita 25–100 g no adulto); N-acetilcisteína sem dosagem em até 8 h se > 150 mg/kg ou > 10 g (o mais protetor entre HC-FMUSP e consenso 2023).

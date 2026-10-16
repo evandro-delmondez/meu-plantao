@@ -57,3 +57,12 @@ test("nomograma do paracetamol: linha de 150 com meia-vida de 4 h, µmol/L e lim
   await expect(res).toContainText("fora do nomograma");
   expect(erros).toEqual([]);
 });
+
+test("nomograma: µmol/L com ponto de milhar e liberação prolongada sem contradição", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "contas");
+  const campo = (k) => page.locator(`[data-ct="apap"][data-k="${k}"]`);
+  await campo("h").fill("4"); await campo("um").fill("1.250");     // 1.250 µmol/L ≈ 189 mg/L, acima de 150
+  await expect(page.locator("#ct-apap")).toContainText("Na linha ou acima");
+  await expect(page.locator("#ct-apap")).not.toContainText("liberação prolongada ou junto");
+  expect(erros).toEqual([]);
+});

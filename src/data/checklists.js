@@ -351,8 +351,8 @@ tce:{
 },
 intoxicacao:{
  hist:["substância, quantidade e horário da exposição","ingestão intencional (tentativa de suicídio)","ingestão associada de álcool ou outras substâncias","vômitos","medicamentos disponíveis em casa"],
- ant:["tentativa de suicídio prévia","transtorno psiquiátrico","uso de drogas ou etilismo","doença hepática ou renal","gestação"],
- ex:["miose ou midríase","pele seca e quente ou sudorese intensa","bradicardia ou taquicardia","depressão respiratória","hipertermia","QRS largo ou QT longo no ECG"],
+ ant:["tentativa de suicídio prévia","transtorno psiquiátrico","uso de drogas ou etilismo","doença hepática ou renal","gestação","uso crônico de benzodiazepínico","epilepsia"],
+ ex:["miose ou midríase","pele seca e quente ou sudorese intensa","bradicardia ou taquicardia","depressão respiratória","hipertermia","QRS largo ou QT longo no ECG","fasciculações","broncorreia"],
  alarme:["rebaixamento da consciência ou via aérea não protegida","depressão respiratória","convulsão","arritmia ou QRS largo","hipotensão","ideação suicida persistente"],
  fontes:["Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 99 — Manejo inicial das intoxicações exógenas.","Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 470 — Poisoning and Drug Overdose."]
 },

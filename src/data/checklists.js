@@ -333,7 +333,7 @@ eap:{
  ant:["insuficiência cardíaca conhecida","má adesão aos medicamentos ou à restrição de sal e água","uso de anti-inflamatório","doença coronariana","doença renal crônica","fibrilação atrial"],
  ex:["crepitações pulmonares","turgência jugular","B3","edema de membros inferiores","hipotensão ou extremidades frias","saturação de O2 < 90%"],
  alarme:["hipotensão ou má perfusão (choque cardiogênico)","insuficiência respiratória apesar da VNI","síndrome coronariana aguda","arritmia","rebaixamento da consciência"],
- fontes:["McDonagh TA et al. 2021 ESC Guidelines for the diagnosis and treatment of acute and chronic heart failure (Eur Heart J 2021;42:3599).","McDonagh TA et al. 2023 Focused Update of the 2021 ESC Guidelines for heart failure (Eur Heart J 2023;44:3627).","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 34 — Insuficiência cardíaca aguda."]
+ fontes:["Køber L, Adamo M et al. 2026 ESC Guidelines for the management of heart failure (Eur Heart J 2026; doi:10.1093/eurheartj/ehag100).","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 34 — Insuficiência cardíaca aguda."]
 },
 tep:{
  hist:["dispneia súbita","dor torácica pleurítica","hemoptise","síncope","dor ou inchaço em uma perna"],

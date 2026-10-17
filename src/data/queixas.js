@@ -276,7 +276,7 @@ const QUEIXAS = [
     "Lim WS et al. Defining community acquired pneumonia severity on presentation to hospital: CURB-65 (Thorax 2003;58:377) e Corrêa RA et al. Recomendações da SBPT para PAC em adultos imunocompetentes (J Bras Pneumol 2018;44:405).",
     "Global Initiative for Asthma (GINA). Global Strategy for Asthma Management and Prevention, 2026 — Box 9-6: critérios de crise grave (não fala, não bebe ou não deita; SpO2 < 92% em ar ambiente; FR > 30; musculatura acessória; tórax silencioso ou pouco murmúrio; PFE ou VEF1 < 50%) e de ameaça à vida (sonolência, confusão, cianose); oxigênio com alvo de 92–95%.",
     "Global Initiative for Chronic Obstructive Lung Disease (GOLD) 2026 Report (exacerbação; oxigênio com alvo de 88–92%; ventilação não invasiva na acidose respiratória). https://goldcopd.org",
-    "McDonagh TA et al. 2021 ESC Guidelines for heart failure (Eur Heart J 2021;42:3599) e atualização focada de 2023.",
+    "Køber L, Adamo M et al. 2026 ESC Guidelines for the management of heart failure (Eur Heart J 2026; doi:10.1093/eurheartj/ehag100).",
     "Konstantinides SV et al. 2019 ESC Guidelines for acute pulmonary embolism (Eur Heart J 2020;41:543).",
     "Roberts ME et al. British Thoracic Society Guideline for pleural disease (Thorax 2023;78:s1).",
     "Resuscitation Council UK. Emergency treatment of anaphylaxis, 2021, e Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020 (World Allergy Organ J 2020;13:100472).",

@@ -169,13 +169,15 @@ const BASE = [
   "unidade": "1) Ceftriaxona 500 mg IM, dose única (diluente com lidocaína da apresentação IM).\n2) Azitromicina 1g (2 cp de 500mg) VO, dose única supervisionada.",
   "orient": "- Tratar a(s) parceria(s) sexual(is) com o mesmo esquema, mesmo sem sintomas.\n- Abstinência sexual por 7 dias após o tratamento do casal.\n- Ofertar testes rápidos: HIV, sífilis, hepatites B e C.\n- Uso de preservativo.",
   "rev": [
+   "Corrigido (2026-10-17): fonte corrigida (o link \"2022\" abria o PCDT de 2015); esquema conferido com o PCDT IST 2022, quadros 31 e 37 (PCDT IST 2022; CDC 2021).",
    "Preenchido: seção estava vazia. Esquema do PCDT-IST (MS): ceftriaxona 500mg IM + azitromicina 1g VO.",
    "Unificado com o item 'Uretrite' do final do modelo.",
    "CID: N72 cervicite; usar N34.1 para uretrite no homem.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Ministério da Saúde. PCDT Atenção Integral às Pessoas com IST, 2022. https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_diretrizes_terapeutica_atencao_integral_pessoas_infeccoes_sexualmente_transmissiveis.pdf"
+   "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 — quadro 31 (gonorreia e clamídia) e quadro 37 (uretrites): ceftriaxona 500 mg IM + azitromicina 1 g VO, dose única; doxiciclina 100 mg 12/12h por 7 dias como 2ª opção, exceto gestante. https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
+   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — abstinência por 7 dias após o tratamento e até a parceria ser tratada."
   ]
  },
  {
@@ -494,17 +496,20 @@ const BASE = [
   "cat": "gu",
   "cid": "N73.9",
   "sin": "dip anexite salpingite dor pelvica",
-  "casa": "Uso oral\n1) Doxiciclina 100mg ------------------------- 28 cp\nTomar 1 cp VO de 12/12h por 14 dias.\n2) Metronidazol 250mg ------------------------ 56 cp\nTomar 2 cp VO de 12/12h por 14 dias.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n\nParceria sexual:\nCeftriaxona 500mg IM dose única + Azitromicina 1g VO dose única.",
+  "casa": "Uso oral\n1) Doxiciclina 100mg ------------------------- 28 cp\nTomar 1 cp VO de 12/12h por 14 dias.\n2) Metronidazol 250mg ------------------------ 56 cp\nTomar 2 cp VO de 12/12h por 14 dias.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre (no máximo 8 cp por dia).\n\nParceria sexual:\nCeftriaxona 500mg IM dose única + Azitromicina 1g VO dose única.",
   "unidade": "1) Ceftriaxona 500 mg IM, dose única (diluente com lidocaína da apresentação IM).\n2) Beta-hCG antes de iniciar.",
-  "orient": "- Não ingerir álcool durante o metronidazol e até 48h após.\n- Abstinência sexual até o fim do tratamento do casal.\n- Reavaliar em 72h; se não melhorar, internar.\n- Internar se: gestante, abscesso tubo-ovariano, febre alta, vômitos, sem resposta em 72h.\n- Ofertar testes rápidos de HIV, sífilis, hepatites B e C.",
+  "orient": "- Não ingerir bebida alcoólica durante o metronidazol e até 3 dias depois do último comprimido.\n- Abstinência sexual até o fim do tratamento do casal.\n- Reavaliar em 72h; se não melhorar, internar.\n- Internar se: gestante; abscesso tubo-ovariano; estado geral grave, com febre, náuseas ou vômitos; não consegue tomar o antibiótico oral ou não tem como voltar; dúvida com emergência cirúrgica (apendicite, gravidez ectópica); sem melhora em 72h.\n- Ofertar testes rápidos de HIV, sífilis, hepatites B e C.",
   "rev": [
+   "Corrigido (2026-10-17): fonte com link do PCDT IST 2022; critérios de internação do quadro 43; dipirona com máximo diário; álcool até 3 dias após o metronidazol, igual à ficha (PCDT IST 2022; CDC 2021; bula FDA do metronidazol).",
    "Corrigido: ceftriaxona 250mg → 500mg IM (PCDT-IST MS 2022).",
    "Corrigido: parceria deve receber ceftriaxona + azitromicina, não apenas azitromicina.",
    "Adicionado: beta-hCG, critérios de internação e reavaliação em 72h.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Ministério da Saúde. PCDT Atenção Integral às Pessoas com IST, 2022."
+   "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 — cap. 10, DIP: quadro 43 (internação), quadro 44 (ceftriaxona 500 mg IM + doxiciclina 100 mg 12/12h + metronidazol 500 mg 12/12h por 14 dias), parcerias dos últimos 2 meses, DIU e gestação. https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
+   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — DIP: teste de gravidez, critérios de hospitalização e reavaliação em 72 h.",
+   "Bula FDA do metronidazol — álcool contraindicado durante o uso e até 3 dias depois; dipirona até 4 g por dia (EMA, ficha do painel)."
   ]
  },
  {
@@ -1401,13 +1406,16 @@ const BASE = [
   "cid": "A53.9",
   "sin": "cancro lues vdrl treponema",
   "casa": "",
-  "unidade": "# Sífilis recente (primária, secundária, latente < 1 ano):\nPenicilina G benzatina 2.400.000 UI IM, dose única (1.200.000 UI em cada glúteo).\n\n# Sífilis tardia (latente > 1 ano, duração ignorada ou terciária):\nPenicilina G benzatina 2.400.000 UI IM, 1x por semana por 3 semanas (total 7.200.000 UI).\n\n# Neurossífilis: internar (penicilina cristalina EV).",
-  "orient": "- Tratar parceria(s).\n- VDRL de controle a cada 3 meses (gestante: mensal).\n- Notificação compulsória.\n- Gestante: só penicilina é considerada tratamento adequado.",
+  "unidade": "# Sífilis recente (primária, secundária, latente < 1 ano):\nPenicilina G benzatina 2.400.000 unidades IM, dose única (1.200.000 unidades em cada glúteo).\n\n# Sífilis tardia (latente > 1 ano, duração ignorada ou terciária):\nPenicilina G benzatina 2.400.000 unidades IM, 1x por semana por 3 semanas (total 7.200.000 unidades).\n\n# Alergia grave a penicilina (não gestante):\nDoxiciclina 100 mg VO de 12/12h por 15 dias (recente) ou 30 dias (tardia). Gestante: só penicilina (dessensibilização em hospital).\n\n# Neurossífilis, sífilis ocular ou otossífilis: internar. Penicilina cristalina 18–24 milhões de unidades por dia EV (3–4 milhões de 4/4h) por 14 dias; alternativa: ceftriaxona 2 g EV 1x/dia por 10–14 dias.",
+  "orient": "- Tratar já com 1 teste reagente (rápido ou VDRL) se gestante, violência sexual, risco de não voltar, sinais de sífilis primária ou secundária ou sem diagnóstico prévio; colher o segundo teste e seguir.\n- Esquema de 3 semanas: doses a cada 7 dias. Reiniciar se o intervalo passar de 14 dias (gestante: de 9 dias).\n- Avisar que febre, mal-estar e piora das manchas nas primeiras 24 h (reação de Jarisch-Herxheimer) passam sozinhas e não são alergia; usar analgésico simples.\n- Parcerias dos últimos 90 dias: testar e tratar já com penicilina benzatina 2.400.000 unidades IM dose única, mesmo com teste negativo; se teste reagente, tratar conforme o estágio.\n- VDRL de controle a cada 3 meses até 12 meses (3, 6, 9 e 12); gestante: mensal.\n- Notificação compulsória.\n- Gestante: só penicilina é considerada tratamento adequado.",
   "rev": [
+   "Corrigido (2026-10-17): alternativa com doxiciclina, dose da neurossífilis, intervalo entre doses (NT 14/2023), Jarisch-Herxheimer, parcerias dos últimos 90 dias, seguimento até 12 meses, \"UI\" → \"unidades\" e link do PCDT 2022 (PCDT IST 2022, cap. 5 e quadro 40; NT 14/2023; CDC 2021).",
    "Adicionado: esquema da sífilis tardia, seguimento e notificação."
   ],
   "fontes": [
-   "Ministério da Saúde. PCDT Atenção Integral às Pessoas com IST, 2022."
+   "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 — cap. 5, sífilis adquirida: tratamento imediato após 1 teste reagente, quadro 40 (penicilina benzatina; doxiciclina 15 ou 30 dias; neurossífilis), Jarisch-Herxheimer, monitoramento e parcerias. https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
+   "Ministério da Saúde. Nota Técnica nº 14/2023-CGIST/DATHI/SVSA/MS — sífilis na gestante: intervalo entre as doses de penicilina benzatina de até 9 dias.",
+   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — neurossífilis, sífilis ocular e otossífilis."
   ]
  },
  {
@@ -1556,13 +1564,16 @@ const BASE = [
   "sin": "corrimento odor peixe gardnerella",
   "casa": "Uso oral\n1) Metronidazol 250mg ------------------------ 28 cp\nTomar 2 cp VO de 12/12h por 7 dias.\nOu\nUso vaginal\n1) Metronidazol gel vaginal 100mg/g ---------- 1 bisnaga\nAplicar 1 aplicador cheio via vaginal à noite por 5 noites.",
   "unidade": "",
-  "orient": "- Não ingerir bebidas alcoólicas durante o tratamento e até 48h após.\n- Parceiro não precisa ser tratado.",
+  "orient": "- Não ingerir bebida alcoólica durante o tratamento e até 3 dias depois do fim (vale também para o gel).\n- Gestante ou amamentando: mesmo tratamento (comprimido ou gel).\n- Parceiro não precisa ser tratado.",
   "rev": [
+   "Corrigido (2026-10-17): link do PCDT 2022; álcool até 3 dias, como a ficha; gestante e lactante com o mesmo esquema (PCDT IST 2022, quadro 34; bula FDA do metronidazol).",
    "Corrigido: oral e vaginal são alternativas ('ou'), não associação.",
    "Ajustado: abstinência alcoólica 24 → 48h."
   ],
   "fontes": [
-   "Ministério da Saúde. PCDT Atenção Integral às Pessoas com IST, 2022."
+   "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 — quadro 34, vaginose bacteriana (metronidazol VO por 7 dias ou gel vaginal por 5 noites, inclusive na gestação e na lactação; clindamicina como 2ª opção; parceria não tratada). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
+   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — vaginose bacteriana.",
+   "Bula FDA do metronidazol — álcool contraindicado durante o uso e até 3 dias depois."
   ]
  },
  {
@@ -1573,12 +1584,13 @@ const BASE = [
   "sin": "corrimento branco coceira vaginal fungo",
   "casa": "Uso oral\n1) Fluconazol 150mg -------------------------- 1 cp\nTomar 1 cp VO em dose única.\nOu\nUso vaginal\n1) Miconazol 2% creme vaginal ---------------- 1 bisnaga\nAplicar 1 aplicador cheio via vaginal à noite por 7 noites.",
   "unidade": "",
-  "orient": "- Gestante: somente tratamento vaginal.\n- Parceiro só se sintomático.",
+  "orient": "- Gestante ou amamentando: somente o creme vaginal (não usar fluconazol).\n- Parceiro só se sintomático.",
   "rev": [
+   "Corrigido (2026-10-17): link do PCDT 2022; restrição do fluconazol também na lactação (PCDT IST 2022, quadro 33).",
    "Adicionado: item novo (não havia no modelo)."
   ],
   "fontes": [
-   "Ministério da Saúde. PCDT Atenção Integral às Pessoas com IST, 2022."
+   "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 — quadro 33, candidíase vulvovaginal (miconazol vaginal por 7 noites ou nistatina por 14 noites; fluconazol 150 mg dose única como 2ª opção; recorrente; gestante e lactante só via vaginal). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf"
   ]
  },
  {

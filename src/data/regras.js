@@ -13,7 +13,7 @@ emaCod:"EMA/FDA (2015–2017): codeína — contraindicada em menores de 12 anos
 bula:"Bula do medicamento registrada na Anvisa (ajuste renal e uso na gestação).",
 acr:"FitzGerald JD et al. 2020 ACR Guideline for the Management of Gout.",
 ms:"Ministério da Saúde. Dengue: diagnóstico e manejo clínico, 6ª ed., 2024.",
-pcdt:"Ministério da Saúde. PCDT IST, 2022.",
+pcdt:"Ministério da Saúde. PCDT IST, 2022. https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
 emaMeto:"EMA (2013): metoclopramida — reduzir 50% se ClCr 15–60 e 75% se ClCr < 15.",
 acogUti:"ACOG Clinical Consensus: Urinary Tract Infections in Pregnant Individuals (2023). https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2023/08/urinary-tract-infections-in-pregnant-individuals",
 fdaAce:"FDA — advertência em destaque (boxed warning) dos IECA/BRA: toxicidade fetal."

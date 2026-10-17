@@ -170,7 +170,7 @@
   ],
   "fontes": [
    "FDA label Bicillin L-A (DailyMed)",
-   "Ministério da Saúde — PCDT Atenção Integral às Pessoas com IST, 2022 (via TelessaúdeRS-UFRGS)",
+   "Ministério da Saúde — PCDT Atenção Integral às Pessoas com IST, 2022. https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
    "RENAME 2024",
    "Drug allergy: 2022 practice parameter update (AAAAI/ACAAI)",
    "Bula Benzetacil — Eurofarma",
@@ -732,7 +732,7 @@
   ],
   "renal": "Sem ajuste em IR leve a moderada. Hemodiálise: removido na diálise — considerar dose suplementar após a sessão (bula FDA).",
   "hepatica": "Child-Pugh C: reduzir dose em 50%.",
-  "gestacao": "Contraindicado no 1º trimestre para tricomoníase (bula FDA).",
+  "gestacao": "PCDT IST 2022 e CDC 2021: pode ser usado em qualquer trimestre na vaginose e na tricomoníase (1ª opção, inclusive gestantes). A bula FDA desaconselha o esquema de dose única de 2 g no 1º trimestre.",
   "lactacao": "Concentração no leite semelhante à sérica; pode ordenhar e descartar por 24h após o término (bula FDA).",
   "contraindicacoes": [
    "Hipersensibilidade a nitroimidazóis.",
@@ -747,6 +747,8 @@
   "fontes": [
    "FDA label Metronidazole tablets (DailyMed)",
    "FDA label Metronidazole injection (DailyMed)",
+   "Ministério da Saúde — PCDT Atenção Integral às Pessoas com IST, 2022, quadro 34 (vaginose, inclusive na gestação e na lactação). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
+   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — metronidazol em qualquer trimestre.",
    "FDA label Flagyl (DailyMed)",
    "Guia Farmacêutico Hospital Sírio-Libanês — Metronidazol",
    "RENAME 2024"

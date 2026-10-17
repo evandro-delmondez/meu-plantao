@@ -144,7 +144,7 @@ cervicite:{
  ant:["parceria sexual com sintomas ou com IST","parceria nova ou múltiplas parcerias","relação sem preservativo","gestação (ou possibilidade)","IST prévia","testagem recente para HIV, sífilis e hepatites B e C"],
  ex:["secreção mucopurulenta no orifício cervical ou uretral","colo friável ou que sangra ao toque","dor à mobilização do colo ou à palpação dos anexos (DIP)","úlcera genital ou verrugas anogenitais","linfonodomegalia inguinal"],
  alarme:["dor pélvica com febre (doença inflamatória pélvica)","dor e edema testicular (epididimite)","artrite, tenossinovite ou lesões de pele (infecção gonocócica disseminada)","gestação"],
- fontes:["Ministério da Saúde. PCDT para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST), 2022 (versão vigente, atualizada em 2024) — cervicite, uretrite, parcerias e testagem.","Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — infecção gonocócica disseminada e epididimite."]
+ fontes:["Ministério da Saúde. PCDT para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (IST), 2022 (versão vigente) — cervicite, uretrite, parcerias e testagem.","Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — infecção gonocócica disseminada e epididimite."]
 },
 dip:{
  hist:["dor no baixo ventre ou pélvica","dispareunia","corrimento vaginal ou cervical","sangramento irregular ou após relação sexual","febre","náuseas ou vômitos","atraso menstrual"],
@@ -186,7 +186,7 @@ sifilis:{
  ant:["gestação (ou possibilidade)","tratamento prévio de sífilis e VDRL anterior","alergia a penicilina (e o tipo de reação)","infecção pelo HIV","parceria com sífilis","testagem recente para HIV e hepatites B e C"],
  ex:["úlcera única, indolor, de base endurecida (cancro duro)","linfonodomegalia inguinal ou generalizada","exantema em palmas e plantas","condiloma plano","alopecia em clareira","déficit neurológico ou alteração pupilar"],
  alarme:["alteração visual ou auditiva (sífilis ocular ou otossífilis)","cefaleia, rigidez de nuca, confusão ou déficit neurológico (neurossífilis)","gestante (só penicilina é tratamento adequado)","gestante com alergia grave a penicilina (dessensibilização)"],
- fontes:["Ministério da Saúde. PCDT para Atenção Integral às Pessoas com IST, 2022 (versão vigente, com algoritmo de sífilis adquirida e em gestantes atualizado em 2024).","Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — neurossífilis, sífilis ocular e otossífilis."]
+ fontes:["Ministério da Saúde. PCDT para Atenção Integral às Pessoas com IST, 2022 (versão vigente). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf","Ministério da Saúde. Nota Técnica nº 14/2023-CGIST/DATHI/SVSA/MS — intervalo entre doses de penicilina benzatina na gestante.","Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — neurossífilis, sífilis ocular e otossífilis."]
 },
 vaginose:{
  hist:["corrimento branco-acinzentado, fluido e homogêneo","odor fétido, pior após relação sexual ou menstruação","prurido ou ardência (sugere outro diagnóstico)","dor pélvica ou febre","disúria"],

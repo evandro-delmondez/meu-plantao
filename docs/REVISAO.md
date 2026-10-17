@@ -11,6 +11,7 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 5. Atualizar a data acima para daqui a 3 meses.
 
 ## Histórico
+- 2026-10-17 (v1.12.2) — revisão geral, lote 2 (17 condutas; 16 corrigidas), relatórios `.rascunhos/revisao-lote2.md`, `.rascunhos/edicao-lote2.md`, `.rascunhos/conferencia-lote2.md` (2 ajustes aplicados). Pendente: links "PCDT IST 2022" que abrem o PCDT de 2015 em outras condutas (lote 5).
 - 2026-10-17 (v1.12.1) — revisão geral, lote 1 (16 condutas; 13 corrigidas), relatórios `.rascunhos/revisao-lote1.md`, `.rascunhos/edicao-lote1.md`, `.rascunhos/conferencia-lote1.md` (2 ajustes aplicados). Pendente: confirmar na bula do Vannair o máximo de inalações no MART.
 - 2026-10-17 (v1.12.0) — intoxicação: cartão Agora, nomograma, CIATox e 4 fichas de antídotos conferidos (`.rascunhos/conferencia-intox-cartao.md`, `.rascunhos/conferencia-antidotos.md`); correções aplicadas; conduta `intoxicacao` publicada atualizada.
 - 2026-10-09 (v1.10.1) — auditoria de segurança independente (`.rascunhos/auditoria-seguranca.md`: 2 críticos, ~20 importantes, ~35 menores); críticos corrigidos e conferidos (`.rascunhos/conferencia-correcao-critica.md`: 3 ajustes obrigatórios aplicados). Importantes ficam para a revisão geral (ROTEIRO).

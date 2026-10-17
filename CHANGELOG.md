@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.12.2 — 2026-10-17
+- **Revisão geral, lote 2 (Gastro e Uro/Nefro), aprovada pelo médico e conferida:** H. pylori com quádrupla com bismuto por 14 dias (V Consenso Brasileiro 2026); hemorragia digestiva com doses do vasoativo (terlipressina pela bula, por peso) e do omeprazol, alvo de hemoglobina 7–8 e sem ácido tranexâmico; infecção urinária com receita da gestante e alertas de rim (nitrofurantoína, fosfomicina, fenazopiridina); cólica renal, ITU e prostatite com ibuprofeno só com dengue descartada; prostatite com 14 dias (estender se preciso) e esquema para risco de IST; desidratação na criança pelo cartaz do MS de 2023; verminose com ivermectina pela tabela da bula na estrongiloidíase; morfina 0,05 mg/kg na dor abdominal; ajustes em constipação, gastroenterite, dispepsia, enterobíase, afta, gases, hemorroida e HPB.
+
 ## 1.12.1 — 2026-10-17
 - **Revisão geral, lote 1 (Respiratório e Otorrino/Oftalmo), aprovada pelo médico e conferida:** asma pela GINA 2026 (prednisona 40–50 mg; após a crise, budesonida-formoterol como manutenção e alívio; alvo de O2 92–95%); DPOC pela GOLD 2026 (antibiótico 5 dias; metilprednisolona EV se não tolerar VO); pneumonia e OMA do adulto com 5 dias; gripe sem loratadina; bronquiolite com limiar de O2; crupe com teto de 10 mg de dexametasona em todo o painel; tosse com busca de tuberculose; amigdalite com antibiótico só com estreptococo confirmado ou Centor/FeverPAIN alto e azitromicina 500 mg + 250 mg; conjuntivite com tobramicina 4/4h; otite externa com os nomes comerciais certos; rinite sem prometazina IM; sinusite com observação sem antibiótico quando o retorno é garantido e doxiciclina na alergia a penicilina.
 

@@ -2,7 +2,7 @@
 const FR_FONTES=[
  "Ministério da Saúde. Nota Técnica nº 8/2022-CGZV/DEIDT/SVS/MS — Protocolo de profilaxia pré, pós e reexposição da raiva humana no Brasil.",
  "Prefeitura de São Paulo. Protocolo de atendimento da raiva humana, 11/2022 (reexposição em imunodeprimidos; via ID).",
- "Ministério da Saúde. Guia de Vigilância em Saúde, 5ª ed., 2024 — tétano acidental (profilaxia após ferimento; SAT 5.000 UI, IGHAT 250 UI; imunização passiva em situações especiais com última dose há 5 anos ou mais e ferimento de alto risco).",
+ "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed. revisada, 2024 — tétano acidental (profilaxia após ferimento; SAT 5.000 UI, IGHAT 250 UI; imunização passiva em situações especiais com última dose há 5 anos ou mais e ferimento de alto risco).",
  "Stevens DL et al. IDSA 2014 — Practice guidelines for skin and soft tissue infections (mordeduras: antibiótico preemptivo e fechamento primário).",
  "Forsch RT, Little SH, Williams C. Laceration Repair: A Practical Approach. Am Fam Physician 2017;95(10):628-636 (irrigação, janela de fechamento, mordedura de gato)."
 ];

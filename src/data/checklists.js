@@ -128,9 +128,9 @@ pac:{
 dengue:{
  hist:["dia de início da febre","dor abdominal intensa e contínua","vômitos persistentes","sangramento de mucosa","tontura ao levantar ou desmaio","diurese diminuída"],
  ant:["gestação","idade ≥ 65 anos","hipertensão, diabetes, doença renal, hepática ou cardíaca","uso de anticoagulante ou antiagregante"],
- ex:["prova do laço positiva","hipotensão postural","hepatomegalia > 2 cm do rebordo","sinais de derrame (ascite, derrame pleural)","extremidades frias ou pulso fino"],
+ ex:["prova do laço positiva","hipotensão postural","hepatomegalia > 2 cm do rebordo","sinais de derrame (ascite, derrame pleural)","extremidades frias ou pulso fino","PA convergente (diferencial ≤ 20 mmHg)"],
  alarme:["dor abdominal intensa e contínua","vômitos persistentes","acúmulo de líquidos (ascite, derrame pleural ou pericárdico)","hipotensão postural ou lipotimia","hepatomegalia > 2 cm","sangramento de mucosa","letargia ou irritabilidade","aumento progressivo do hematócrito"],
- fontes:["Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (sinais de alarme, condições especiais e sinais de choque)."]
+ fontes:["Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (sinais de alarme, condições especiais e sinais de choque).","Organização Pan-Americana da Saúde. Diretrizes para o diagnóstico clínico e tratamento de dengue, chikungunya e Zika, 2022, e OMS. Dengue: guidelines for diagnosis, treatment, prevention and control, 2009 — choque com pressão diferencial ≤ 20 mmHg (decisão do médico: ≤ 20 mmHg em todo o painel; o texto do MS 2024 diz < 20 mmHg)."]
 },
 ansiedade:{
  hist:["palpitação, dispneia ou dor torácica","parestesias ou tremor","medo de morrer ou de perder o controle","primeira crise na vida","ideação suicida (perguntar diretamente)"],
@@ -571,7 +571,7 @@ ferida:{
  ant:["vacina antitetânica (número de doses e data da última)","diabetes ou imunossupressão","uso de anticoagulante"],
  ex:["profundidade e tecido desvitalizado","corpo estranho","sensibilidade, movimento e perfusão abaixo da lesão","vermelhidão, calor ou pus"],
  alarme:["pus, vermelhidão que se espalha ou febre (infecção)","perda de força ou de sensibilidade abaixo da lesão","sangramento ativo","trismo ou rigidez muscular (tétano)"],
- fontes:["Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2023 — tétano acidental: profilaxia conforme tipo de ferimento e situação vacinal.","Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10).","Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 157 — Tetanus."]
+ fontes:["Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed. revisada, 2024 — tétano acidental: profilaxia conforme tipo de ferimento e situação vacinal.","Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10).","Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 157 — Tetanus."]
 },
 "herpes-simples":{
  hist:["ardor ou formigamento antes das lesões (pródromo)","vesículas agrupadas dolorosas","primeiro episódio","febre, mal-estar ou disúria (primoinfecção genital)","parceiro com lesões semelhantes"],
@@ -669,7 +669,7 @@ tetano:{
  ant:["vacina antitetânica (número de doses e data da última)","imunossupressão","profilaxia antirrábica prévia"],
  ex:["profundidade, tecido desvitalizado ou necrose","corpo estranho","local da mordedura (cabeça, face, mãos, pés)","ferimentos múltiplos ou extensos","sinais de infecção"],
  alarme:["trismo, rigidez de nuca ou de abdome, espasmos (tétano)","vermelhidão que se espalha, pus ou febre","mordedura em face, cabeça, mãos, pés ou múltipla (acidente grave para raiva)","contato com morcego (sempre grave para raiva)"],
- fontes:["Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2023 — tétano acidental: conduta por tipo de ferimento e situação vacinal.","Ministério da Saúde. Nota Técnica nº 8/2022-CGZV/DEIDT/SVS/MS — profilaxia da raiva humana (gravidade da exposição e morcegos).","Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 157 — Tetanus.","Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10) — mordeduras."]
+ fontes:["Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed. revisada, 2024 — tétano acidental: conduta por tipo de ferimento e situação vacinal.","Ministério da Saúde. Nota Técnica nº 8/2022-CGZV/DEIDT/SVS/MS — profilaxia da raiva humana (gravidade da exposição e morcegos).","Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 157 — Tetanus.","Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10) — mordeduras."]
 },
 escorpiao:{
  hist:["hora da picada","dor, parestesia ou sudorese no local","número de episódios de vômito","sudorese generalizada, salivação ou lacrimejamento","agitação ou sonolência","aspecto do escorpião (amarelo) ou foto"],

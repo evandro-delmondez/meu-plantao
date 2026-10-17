@@ -1037,15 +1037,18 @@ const BASE = [
   "cat": "psi",
   "cid": "G47.0",
   "sin": "dificuldade dormir sono",
-  "casa": "Uso oral\n1) Passiflora extrato seco 200mg ------------- 30 cp\nTomar 1 cp VO 30 min antes de dormir.",
+  "casa": "Sem remédio para dormir (higiene do sono)\n1) Deitar e levantar sempre no mesmo horário, inclusive no fim de semana.\n2) Sem telas 1 h antes de deitar; sem cafeína depois das 16 h; evitar cochilos longos.\n3) Usar a cama só para dormir; se não dormir em cerca de 20 min, levantar e voltar quando tiver sono.\n4) Procurar a UBS se a insônia durar mais de 3 meses (terapia cognitivo-comportamental para insônia).",
   "unidade": "",
-  "orient": "- Higiene do sono: horário fixo, evitar telas 1h antes, cafeína após 16h e cochilos longos.\n- Insônia > 3 meses: encaminhar para avaliação (TCC-I é o tratamento de 1ª linha).",
+  "orient": "- Higiene do sono: horário fixo, evitar telas 1h antes, cafeína após 16h e cochilos longos.\n- Insônia há mais de 3 meses: encaminhar à UBS ou ao especialista; o tratamento de 1ª linha é a terapia cognitivo-comportamental para insônia (TCC-I), não o remédio.\n- Evitar benzodiazepínico para dormir (dependência, quedas, acidentes); no idoso, não usar.",
   "rev": [
+   "Corrigido (2026-10-17): passiflora retirada (não recomendada pela Associação Brasileira do Sono); sem hipnótico na porta, só higiene do sono e encaminhamento para TCC-I; orientação contra benzodiazepínico (ABS 2023; ACP 2016; Beers 2023).",
    "Adicionado: higiene do sono."
   ],
-  "evid": "Passiflora tem evidência fraca (revisões Cochrane sem dados suficientes). A base do tratamento da insônia é a TCC-I.",
+  "evid": "Passiflora e valeriana: não recomendadas pela Associação Brasileira do Sono (2023). A base do tratamento é a TCC-I.",
   "fontes": [
-   "Qaseem A et al. ACP Guideline: Management of Chronic Insomnia (Ann Intern Med 2016) — TCC-I como 1ª linha."
+   "Qaseem A et al. ACP Guideline: Management of Chronic Insomnia (Ann Intern Med 2016) — TCC-I como 1ª linha.",
+   "Drager LF et al. 2023 Guidelines on the Diagnosis and Treatment of Insomnia in Adults — Brazilian Sleep Association. Sleep Sci 2023;16(Suppl 2):507–549 (TCC-I multicomponente como padrão-ouro; fitoterápicos, melatonina no adulto e benzodiazepínico não recomendados; zolpidem por até 4 semanas). https://doi.org/10.1055/s-0043-1776281",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar benzodiazepínico e Z-droga no idoso."
   ]
  },
  {
@@ -1346,19 +1349,25 @@ const BASE = [
   "cid": "R45.1",
   "sin": "agitado agressivo surto contencao",
   "casa": "",
-  "unidade": "1) Abordagem verbal e ambiente seguro. Descartar hipoglicemia, hipóxia, intoxicação.\n2) Haloperidol 5 mg (1 amp) IM + Prometazina 50 mg (1 amp) IM (ambos somente IM)\n   Ou Midazolam 15mg IM (3 mL de 5 mg/mL; cuidado com depressão respiratória)\n   Intoxicação por álcool: Haloperidol 5 mg IM isolado; evitar benzodiazepínico. Com rebaixamento da consciência: não sedar.\n   Abstinência alcoólica ou intoxicação por cocaína: Diazepam 10mg EV lento (até 5 mg/min).\n3) Reavaliar em 30 min; pode repetir 1x.",
-  "orient": "- Idosos: reduzir a dose do haloperidol (1–2,5mg).\n- Monitorar SatO2 e sinais vitais após a sedação.",
+  "unidade": "1) Abordagem verbal e ambiente seguro. Descartar hipoglicemia, hipóxia, intoxicação.\n2) Haloperidol 5 mg (1 amp) IM + Prometazina 50 mg (1 amp) IM (ambos somente IM)\n   Ou Midazolam 15mg IM (3 mL de 5 mg/mL; cuidado com depressão respiratória)\n   QT longo, outro remédio que alarga o QT, hipocalemia ou cardiopatia: evitar haloperidol, preferir midazolam; ECG assim que possível.\n   Intoxicação por álcool: Haloperidol 5 mg IM isolado; evitar benzodiazepínico. Com rebaixamento da consciência: não sedar.\n   Abstinência alcoólica ou intoxicação por cocaína: Diazepam 10mg EV lento (até 5 mg/min).\n3) Reavaliar em 30 min; pode repetir a mesma medicação 1 vez. Haloperidol: no máximo 20 mg por dia (idoso, 5 mg). Gestante: haloperidol isolado.\n4) Contenção só se a abordagem verbal e o remédio não bastarem: prescrever e registrar o motivo; 5 pessoas treinadas, 4 pontos, no leito, cabeceira a 30°; sinais vitais e circulação dos membros a cada 15 min na 1ª hora e a cada 30 min por 4 h; retirar assim que possível (em princípio, até 2 h).",
+  "orient": "- Idoso: presumir delirium e tratar a causa. Se precisar sedar, haloperidol 1–2,5 mg IM (máx. 5 mg/dia), sem prometazina e sem benzodiazepínico.\n- Monitorar SatO2 e sinais vitais após a sedação.",
   "rev": [
+   "Corrigido (2026-10-17): alinhado ao cartão Agora — idoso sem prometazina nem benzodiazepínico (haloperidol máx. 5 mg/dia); QT longo e cardiopatia; haloperidol no máximo 20 mg por dia; gestante com haloperidol isolado; contenção física com monitoração (ABP 2019, partes 1 e 2; EMA 2017; Beers 2023; HC-FMUSP 18ª ed.).",
    "Corrigido (2026-10-08): diazepam só na abstinência alcoólica e na cocaína; na intoxicação alcoólica, haloperidol isolado (ABP 2019; Projeto BETA 2012; bula do haloperidol).",
    "Adicionado: descartar causas orgânicas, midazolam e dose em idosos.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
    "Huf G et al. Haloperidol mais prometazina para agitação (TREC — BMJ 2007).",
-   "Baldaçara L et al. Diretrizes brasileiras para manejo da agitação psicomotora (ABP/ABRAMEDE, Braz J Psychiatry 2019).",
    "Wilson MP et al. Project BETA Psychopharmacology Workgroup (West J Emerg Med 2012;13:26): haloperidol na intoxicação alcoólica; benzodiazepínico na abstinência.",
    "Bula do Compaz (diazepam 5 mg/mL injetável), Cristália, Anvisa: EV lenta, 0,5–1 mL/min.",
-   "Bula do haloperidol solução injetável 5 mg/mL, Anvisa 09/12/2025: contraindicado no coma e na depressão do sistema nervoso central por álcool ou outros depressores."
+   "Bula do haloperidol solução injetável 5 mg/mL, Anvisa 09/12/2025: contraindicado no coma e na depressão do sistema nervoso central por álcool ou outros depressores.",
+   "Baldaçara L et al. Brazilian guidelines for the management of psychomotor agitation. Part 1. Non-pharmacological approach — ABP (Braz J Psychiatry 2019;41:153). https://doi.org/10.1590/1516-4446-2018-0163",
+   "Baldaçara L et al. Brazilian guidelines for the management of psychomotor agitation. Part 2. Pharmacological approach — ABP (Braz J Psychiatry 2019;41:324). https://doi.org/10.1590/1516-4446-2018-0177",
+   "European Medicines Agency. Haldol — Article 30 referral, Annex III (2017): idoso começa com metade da menor dose de adulto, máx. 5 mg/dia; contraindicado no QT longo, hipocalemia não corrigida e com outros remédios que alargam o QT.",
+   "FDA. Haloperidol (lactato) injection — bula americana, Fresenius Kabi USA, DailyMed, out/2026: 2–5 mg IM, até de hora em hora, dose máxima de 20 mg/dia.",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar benzodiazepínico e anti-histamínico de 1ª geração no idoso; antipsicótico no delirium só se medidas não farmacológicas falharem.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 15, Agitação psicomotora."
   ]
  },
  {
@@ -1368,15 +1377,20 @@ const BASE = [
   "cid": "F10.3",
   "sin": "alcool abstinencia tremor delirium",
   "casa": "",
-  "unidade": "1) Tiamina 300mg IM/EV (antes ou junto com soro glicosado; na hipoglicemia, não atrasar a glicose).\n2) Hidratação venosa se desidratado; glicemia capilar; eletrólitos (Mg, K).\n3) Diazepam 10–20mg VO a cada 1h conforme sintomas (tremor, sudorese, agitação)\n   Ou Diazepam 10mg EV lento (máx. 5 mg/min) se não aceitar VO.\n   (Hepatopata grave ou idoso: Lorazepam 1–2mg VO.)\n4) Delirium tremens ou convulsão: internar.",
+  "unidade": "1) Tiamina 300mg IM ou EV (antes ou junto com soro glicosado; na hipoglicemia, não atrasar a glicose). Suspeita de encefalopatia de Wernicke (confusão, ataxia, alteração do movimento dos olhos): Tiamina 200mg EV em 100 mL de SF em 30 min, de 8/8h, e internar.\n2) Hidratação venosa se desidratado; glicemia capilar; eletrólitos (Mg, K).\n3) Aplicar a CIWA-Ar a cada 1 h. Se CIWA-Ar ≥ 10: Diazepam 10–20mg VO e reavaliar em 1 h; repetir enquanto ≥ 10. Abaixo de 10, não dar.\n   Ou Diazepam 10mg EV lento (máx. 5 mg/min) se não aceitar VO.\n   (Hepatopata grave ou idoso: Lorazepam 1–2mg VO.)\n4) Delirium tremens ou convulsão: internar.\n5) Agitação grave ou CIWA-Ar ≥ 19: Diazepam 10mg EV lento, repetir a cada 5–10 min até ficar calmo e acordável; monitorar oximetria. Não usar haloperidol sozinho (piora o risco de convulsão); se precisar, só junto com o benzodiazepínico.",
   "orient": "- Encaminhar ao CAPS AD.",
   "rev": [
+   "Corrigido (2026-10-17): diazepam guiado pela CIWA-Ar ≥ 10; tiamina 200 mg EV de 8/8h na suspeita de Wernicke; conduta na abstinência grave (CIWA-Ar ≥ 19) e alerta contra haloperidol isolado (ASAM 2020; EFNS 2010; Sullivan 1989; HC-FMUSP 18ª ed.).",
    "Corrigido (2026-10-08): tiamina antes ou junto com o soro glicosado, sem atrasar a glicose na hipoglicemia (Schabelman e Kuo, J Emerg Med 2012;42:488).",
    "Corrigido: 'Diazepam 1 amp EV até de 1/1h' → dose guiada por sintomas, VO preferencial.",
    "Adicionado: tiamina antes da glicose e lorazepam em hepatopatas."
   ],
   "fontes": [
-   "ASAM Clinical Practice Guideline on Alcohol Withdrawal Management, 2020."
+   "American Society of Addiction Medicine. The ASAM Clinical Practice Guideline on Alcohol Withdrawal Management. J Addict Med 2020;14(3S Suppl 1):1–72 (benzodiazepínico guiado pela CIWA-Ar; leve < 10, moderada 10–18, grave ≥ 19; lorazepam ou oxazepam na hepatopatia grave e no idoso; tiamina a todos; benzodiazepínico EV em bolus frequentes na abstinência grave; antipsicótico só como adjuvante).",
+   "Sullivan JT et al. Assessment of alcohol withdrawal: the revised Clinical Institute Withdrawal Assessment for Alcohol scale (CIWA-Ar) (Br J Addict 1989;84:1353).",
+   "Galvin R et al. EFNS guidelines for diagnosis, therapy and prevention of Wernicke encephalopathy (Eur J Neurol 2010;17:1408): tiamina 200 mg EV 3 vezes ao dia, diluída em 100 mL de soro fisiológico ou glicosado, em 30 min.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 105, Síndrome de abstinência alcoólica.",
+   "Bula do Compaz (diazepam 5 mg/mL injetável), Cristália, Anvisa: EV lenta, 0,5–1 mL/min."
   ]
  },
  {
@@ -1385,15 +1399,19 @@ const BASE = [
   "cat": "psi",
   "cid": "F41.0",
   "sin": "panico ansiedade nervoso",
-  "casa": "Uso oral\n1) Passiflora extrato seco 200mg ------------- 30 cp\nTomar 1 cp VO de 12/12h.",
-  "unidade": "1) Descartar causas orgânicas (ECG, glicemia, SatO2) conforme o caso.\n2) Diazepam 5–10mg VO (se crise intensa com agitação).",
-  "orient": "- Técnicas de respiração.\n- Encaminhar para acompanhamento na UBS/psicologia.\n- CID: ansiedade não especificada F41.9.",
+  "casa": "",
+  "unidade": "1) Descartar causas orgânicas (ECG, glicemia, SatO2) conforme o caso.\n2) Se crise intensa que não cede com acolhimento e respiração: Diazepam 5mg VO, dose única (idoso: evitar; se indispensável, 2,5mg). Não prescrever benzodiazepínico para casa.",
+  "orient": "- Técnicas de respiração.\n- Encaminhar para acompanhamento na UBS/psicologia.\n- CID: transtorno de pânico F41.0 | ansiedade não especificada F41.9.",
   "rev": [
+   "Corrigido (2026-10-17): passiflora retirada (sem fonte que sustente; Cochrane 2007 sem dados suficientes); diazepam 5–10 mg → 5 mg em dose única, sem receita para casa e com alerta no idoso; CID do pânico na orientação; fontes no lugar de \"consenso clínico\" (NICE CG113; Beers 2023; Katon 2006).",
    "Corrigido: diazepam IM tem absorção errática; trocado por VO."
   ],
-  "evid": "Passiflora tem evidência fraca. Benzodiazepínico só para a crise.",
+  "evid": "Benzodiazepínico só na crise, em dose única; o tratamento é TCC e, se necessário, antidepressivo (NICE CG113).",
   "fontes": [
-   "Consenso clínico; passiflora com evidência fraca (Miyasaka LS, Cochrane 2007)."
+   "NICE CG113. Generalised anxiety disorder and panic disorder in adults: management, 2011 (atualizada em 2020): no pânico, não usar benzodiazepínico; TCC e, se necessário, ISRS; na emergência, descartar causa clínica e informar sobre o diagnóstico.",
+   "Katon WJ. Clinical practice: panic disorder (N Engl J Med 2006;354:2360) — diferencial clínico.",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar benzodiazepínico no idoso.",
+   "Miyasaka LS et al. Passiflora for anxiety disorder (Cochrane 2007;CD004518): evidência insuficiente — motivo da retirada da passiflora."
   ]
  },
  {

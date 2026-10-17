@@ -99,16 +99,19 @@ const BASE = [
   "cat": "resp",
   "cid": "J45.9",
   "sin": "broncoespasmo chiado sibilancia bombinha",
-  "casa": "Uso oral\n1) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.\n\nUso inalatório\n2) Salbutamol 100mcg spray ------------------- 1 fr\nInalar 4 jatos com espaçador de 4/4h se falta de ar ou chiado nos próximos 2 a 3 dias; depois, somente se necessário.\n3) Budesonida + Formoterol 200/6mcg ---------- 1 fr\nInalar 1 jato de 12/12h, uso contínuo até reavaliação ambulatorial.\nOu (se indisponível)\n3) Beclometasona 250mcg spray ---------------- 1 fr\nInalar 1 jato de 12/12h com espaçador, uso contínuo. Enxaguar a boca após o uso.",
-  "unidade": "1) Salbutamol 100mcg spray: 4 a 10 jatos com espaçador a cada 20 min na 1ª hora (3 ciclos).\n   Ou Nebulização: Salbutamol 5mg/mL 10 a 20 gotas (2,5–5mg) + Brometo de ipratrópio 0,25mg/mL 40 gotas (0,5mg) em 3–5 mL de SF 0,9%, a cada 20 min, 3 vezes.\n2) Brometo de ipratrópio spray: 4 a 8 jatos a cada 20 min junto com o salbutamol (crise moderada/grave ou sem resposta).\n3) Corticoide na 1ª hora: Prednisona 40–60mg VO (2–3 cp de 20mg)\n   Ou Hidrocortisona 200mg EV (se não tolerar VO).\n4) O2 por cateter nasal se SatO2 < 93% (alvo 93–95% no adulto).\n5) Crise grave ou refratária: Sulfato de magnésio 50% 2g (4 mL) em 100 mL de SF 0,9% EV em 20 min.\n6) Reavaliar em 1h: fala, FR, uso de musculatura acessória, SatO2, PFE.",
-  "orient": "- Técnica inalatória com espaçador revisada com o paciente.\n- Retorno imediato se falta de ar ao falar, lábios roxos ou sem melhora com o salbutamol.\n- Acompanhamento com clínico para controle da asma.",
+  "casa": "Uso oral\n1) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.\n\nUso inalatório\n2) Budesonida + Formoterol 200/6mcg ---------- 1 fr\nInalar 2 jatos de 12/12h, uso contínuo, e 1 jato a mais se falta de ar ou chiado. No máximo 12 jatos por dia, somando todos. Enxaguar a boca após o uso.\nOu (se indisponível)\n2) Beclometasona 250mcg spray ---------------- 1 fr\nInalar 1 jato de 12/12h com espaçador, uso contínuo. Enxaguar a boca após o uso.\n\n# Se beclometasona (sem budesonida-formoterol), alívio com salbutamol:\n3) Salbutamol 100mcg spray ------------------- 1 fr\nInalar 4 jatos com espaçador de 4/4h se falta de ar ou chiado nos próximos 2 a 3 dias; depois, somente se necessário.",
+  "unidade": "1) Salbutamol 100mcg spray: 4 a 10 jatos com espaçador a cada 20 min na 1ª hora (3 ciclos).\n   Ou Nebulização: Salbutamol 5mg/mL 10 a 20 gotas (2,5–5mg) + Brometo de ipratrópio 0,25mg/mL 40 gotas (0,5mg) em 3–5 mL de SF 0,9%, a cada 20 min, 3 vezes.\n2) Brometo de ipratrópio spray 20mcg/jato: 4 jatos a cada 20 min junto com o salbutamol, até 3 vezes (crise moderada/grave ou sem resposta).\n3) Corticoide na 1ª hora: Prednisona 40–50mg VO (2 cp de 20mg)\n   Ou Hidrocortisona 200mg EV (se não tolerar VO).\n4) O2 por cateter nasal se SatO2 < 92% (alvo 92–95% no adulto; na gestante, acima de 95%).\n5) Crise grave ou refratária: Sulfato de magnésio 50% 2g (4 mL) em 100 mL de SF 0,9% EV em 20 min.\n6) Reavaliar em 1h: fala, FR, uso de musculatura acessória, SatO2, PFE.",
+  "orient": "- Técnica inalatória com espaçador revisada com o paciente.\n- Retorno imediato se falta de ar ao falar, lábios roxos ou sem melhora com a bombinha de alívio.\n- Consulta com clínico em 2 a 7 dias para controle da asma (GINA 2026).",
   "rev": [
+   "Corrigido (2026-10-17): GINA 2026 — alvo de O2 92–95% (gestante acima de 95%); prednisona 40–60 → 40–50 mg; ipratrópio 4 jatos até 3 vezes; após a crise, budesonida-formoterol 2 jatos de 12/12h como manutenção e alívio (MART, máx. 12 jatos por dia), com salbutamol só junto da beclometasona; retorno em 2–7 dias (GINA 2026, fig. 9 e box 4-7; SBPT 2020; HC-FMUSP 18ª ed.).",
    "Removido: loratadina (não trata asma; usar só se rinite associada).",
    "Atualizado (GINA): O2 com alvo 93–95%; corticoide 1x ao dia; controlador contínuo em vez de 6 semanas; budesonida-formoterol como opção preferencial.",
    "Adicionado: sulfato de magnésio para crise grave."
   ],
   "fontes": [
-   "Global Initiative for Asthma (GINA) 2024 — Global Strategy for Asthma Management and Prevention. https://ginasthma.org"
+   "Global Initiative for Asthma (GINA) 2026 — Global Strategy for Asthma Management and Prevention (Summary Guide, fig. 9 e box 9-5: crise na atenção primária e emergência; alta com ICS-formoterol ou ICS-LABA em dose média; retorno em 2–7 dias; box 4-7 e p. 35: manutenção e alívio com budesonida-formoterol, MART, 2 inalações 2x ao dia e 1 a mais se sintomas, máx. 12 inalações por dia). https://ginasthma.org",
+   "Pizzichini MMP et al. Recomendações para o manejo da asma da Sociedade Brasileira de Pneumologia e Tisiologia — 2020. J Bras Pneumol 2020;46(1):e20190307 (prednisona 40–50 mg por 5–7 dias; SABA nunca isolado). https://doi.org/10.1590/1806-3713/e20190307",
+   "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. Asma (ipratrópio 500 mcg; hidrocortisona 200–300 mg EV; gestante com alvo de saturação > 95%)."
   ]
  },
  {
@@ -117,10 +120,11 @@ const BASE = [
   "cat": "orl",
   "cid": "J03.9",
   "sin": "dor de garganta placa pus amidala",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada).\n3) Hexomedine spray -------------------------- 1 fr\nAplicar 3 jatos na garganta de 4/4h por 3 dias.\n4) Amidalin pastilha ------------------------- 1 cx\nDissolver 1 pastilha na boca a cada 3h por 3 dias.\n\nAntibiótico\n5) Amoxicilina 500mg ------------------------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu\n5) Amoxicilina 500mg ------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\nOu (dose única diária)\n5) Amoxicilina 500mg ------------------------- 20 cp\nTomar 2 cp (1 g) VO 1x ao dia por 10 dias.\nOu\n5) Penicilina G benzatina 1.200.000 UI ------- 1 amp\nAplicar IM, dose única (na unidade).\n\n# Se alergia a penicilina:\n5) Azitromicina 500mg ------------------------ 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\nOu\n5) Clindamicina 300mg ------------------------ 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\n\n# Se falha ou recorrência recente:\n5) Amoxicilina + Clavulanato 875/125mg ------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu\n5) Amoxicilina + Clavulanato 500/125mg ------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.",
-  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n2) Penicilina G benzatina 1.200.000 UI IM, dose única (se opção pela via IM).",
-  "orient": "- Febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, em área com dengue (ou viagem nos últimos 14 dias): não prescrever ibuprofeno nem AAS; usar só dipirona ou paracetamol até descartar dengue (MS, Dengue 2024, item 6.1.2).\n- Antibiótico indicado se quadro bacteriano provável: febre, exsudato, adenomegalia cervical dolorosa, ausência de tosse.\n- Retorno se dificuldade para abrir a boca, engolir saliva ou respirar (abscesso periamigdaliano).",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada).\n3) Hexomedine spray -------------------------- 1 fr\nAplicar 3 jatos na garganta de 4/4h por 3 dias.\n4) Amidalin pastilha ------------------------- 1 cx\nDissolver 1 pastilha na boca a cada 3h por 3 dias.\n\nAntibiótico\n5) Amoxicilina 500mg ------------------------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu\n5) Amoxicilina 500mg ------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\nOu (dose única diária)\n5) Amoxicilina 500mg ------------------------- 20 cp\nTomar 2 cp (1 g) VO 1x ao dia por 10 dias.\nOu\n5) Penicilina G benzatina 1.200.000 unidades - 1 amp\nAplicar IM, dose única (na unidade).\n\n# Se alergia a penicilina:\n5) Azitromicina 250mg ------------------------ 6 cp\nTomar 2 cp (500 mg) VO no 1º dia e 1 cp 1x ao dia do 2º ao 5º dia.\nOu\n5) Clindamicina 300mg ------------------------ 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\n\n# Se falha ou recorrência recente:\n5) Amoxicilina + Clavulanato 875/125mg ------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu\n5) Amoxicilina + Clavulanato 500/125mg ------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n2) Penicilina G benzatina 1.200.000 unidades IM profunda no glúteo, dose única (se opção pela via IM). Nunca EV.",
+  "orient": "- Febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, em área com dengue (ou viagem nos últimos 14 dias): não prescrever ibuprofeno nem AAS; usar só dipirona ou paracetamol até descartar dengue (MS, Dengue 2024, item 6.1.2).\n- Antibiótico só com estreptococo confirmado (teste rápido ou cultura). Tosse, coriza, rouquidão, conjuntivite ou aftas sugerem vírus: não testar nem tratar.\n- Sem teste na unidade: Centor 3–4 (febre, exsudato, linfonodo cervical anterior doloroso, sem tosse) ou FeverPAIN ≥ 4 favorecem antibiótico; Centor 0–2 ou FeverPAIN 0–3, preferir não tratar (FeverPAIN 2–3: receita de reserva) e reavaliar se piorar ou não melhorar em 3–5 dias.\n- Azitromicina só se alergia grave a penicilina: há estreptococo resistente a macrolídeo.\n- Retorno se dificuldade para abrir a boca, engolir saliva ou respirar (abscesso periamigdaliano).",
   "rev": [
+   "Corrigido (2026-10-17): antibiótico só com estreptococo confirmado ou Centor/FeverPAIN alto (IDSA 2012; NICE NG84); azitromicina 500 mg por 5 dias (2,5 g) → 500 mg no 1º dia e 250 mg do 2º ao 5º (bula FDA Zithromax; CDC); \"UI\" por extenso e \"nunca EV\" na penicilina benzatina (MS/Anvisa 2013; ISMP Brasil 2015).",
    "Corrigido (2026-10-09): não usar ibuprofeno na febre com dengue não descartada (MS, Dengue 2024).",
    "Atualizado: 1ª linha para faringite estreptocócica é amoxicilina ou penicilina benzatina; amoxicilina-clavulanato ficou para falha/recorrência.",
    "Ajustado: ibuprofeno 300mg 12/12h → 600mg 8/8h por 3 dias.",
@@ -129,7 +133,11 @@ const BASE = [
   ],
   "fontes": [
    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: caso suspeito (item 10.1); não usar salicilatos, anti-inflamatórios nem corticoides e orientar a não se automedicar (item 6.1.2); só dipirona e paracetamol (apêndice H). https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf",
-   "Shulman ST et al. IDSA Clinical Practice Guideline for Group A Streptococcal Pharyngitis (Clin Infect Dis 2012;55:e86)."
+   "Shulman ST et al. IDSA Clinical Practice Guideline for Group A Streptococcal Pharyngitis (Clin Infect Dis 2012;55:e86).",
+   "NICE NG84. Sore throat (acute): antimicrobial prescribing, 2018, seção 1.1 (FeverPAIN e Centor; antibiótico imediato, de reserva ou nenhum) e 1.2 (pastilha com anestésico pode aliviar um pouco). https://www.nice.org.uk/guidance/ng84",
+   "CDC. Clinical Guidance for Group A Streptococcal Pharyngitis: teste antes do tratamento; amoxicilina ou penicilina por 10 dias; azitromicina 500 mg no 1º dia e 250 mg do 2º ao 5º dia. https://www.cdc.gov/group-a-strep/hcp/clinical-guidance/strep-throat.html",
+   "Barbosa PJB et al. Diretrizes Brasileiras para o Diagnóstico, Tratamento e Prevenção da Febre Reumática (Arq Bras Cardiol 2009;93(3 supl. 4):1–18): penicilina benzatina ou amoxicilina por 10 dias na prevenção primária.",
+   "MS/Anvisa/Fiocruz. Protocolo de segurança na prescrição, uso e administração de medicamentos, 2013: não abreviar \"unidade\" nem \"unidade internacional\"; ISMP Brasil, Boletim v.4 n.2, 2015. Penicilina G benzatina: só IM, nunca EV (bula; tarja FDA)."
   ]
  },
  {
@@ -252,15 +260,18 @@ const BASE = [
   "cat": "orl",
   "cid": "H10.9",
   "sin": "olho vermelho secrecao ocular",
-  "casa": "# Bacteriana (secreção purulenta, pálpebras coladas):\nUso oftálmico\n1) Tobramicina 0,3% colírio ------------------ 1 fr\nPingar 1 a 2 gotas no olho afetado de 6/6h por 7 dias.\n\n# Viral / irritativa:\nUso oftálmico\n1) Lágrima artificial (carmelose 0,5%) ------- 1 fr\nPingar 1 gota em cada olho de 4/4h por 7 dias.",
+  "casa": "# Bacteriana (secreção purulenta, pálpebras coladas):\nUso oftálmico\n1) Tobramicina 0,3% colírio ------------------ 1 fr\nPingar 1 a 2 gotas no olho afetado de 4/4h (enquanto acordado) por 7 dias.\n\n# Viral / irritativa:\nUso oftálmico\n1) Lágrima artificial (carmelose 0,5%) ------- 1 fr\nPingar 1 gota em cada olho de 4/4h por 7 dias.",
   "unidade": "",
-  "orient": "- Compressas frias por 10–20 min, várias vezes ao dia.\n- Limpar a secreção com gaze e soro fisiológico, de dentro para fora.\n- Lavar as mãos com frequência, não compartilhar toalhas e evitar coçar os olhos.\n- Suspender lentes de contato durante o tratamento.\n- Procurar oftalmologista se dor ocular intensa, baixa da visão ou fotofobia.",
+  "orient": "- Compressas frias por 10–20 min, várias vezes ao dia.\n- Limpar a secreção com gaze e soro fisiológico, de dentro para fora.\n- Lavar as mãos com frequência, não compartilhar toalhas e evitar coçar os olhos.\n- Suspender lentes de contato durante o tratamento.\n- Encaminhar ao oftalmologista no mesmo dia se dor ocular moderada ou intensa, baixa da visão, fotofobia, lesão na córnea, secreção purulenta intensa e de início rápido, vesículas na pálpebra ou usuário de lente de contato com olho vermelho.\n- Bacteriana sem melhora em 3–4 dias de colírio: reavaliar.",
   "rev": [
+   "Corrigido (2026-10-17): tobramicina 6/6h → 4/4h (bula Tobrex); encaminhamento ampliado (lente de contato, secreção intensa, vesículas, córnea) e reavaliação em 3–4 dias (AAO PPP 2023; JAMA 2013).",
    "Corrigido: removida a orientação de 'não usar soro fisiológico'; SF é adequado para limpar a secreção.",
    "Adicionado: conduta para conjuntivite viral (mais comum) e sinais de alarme."
   ],
   "fontes": [
-   "American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern, 2018."
+   "Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023 (Ophthalmology 2024;131:P134): bacteriana leve é autolimitada, antibiótico tópico por 5–7 dias encurta o quadro; viral sem antibiótico (compressa fria, lágrima artificial, contágio por 10–14 dias); encaminhar se baixa visual, dor moderada ou intensa, secreção purulenta intensa, córnea acometida ou sem resposta.",
+   "Bula Tobrex (tobramicina 0,3% colírio): 1 a 2 gotas a cada 4 h na infecção leve a moderada; a partir de 2 meses de idade.",
+   "Azari AA, Barney NP. Conjunctivitis: a systematic review of diagnosis and treatment (JAMA 2013;310:1721): usuário de lente de contato com olho vermelho tem risco de ceratite."
   ]
  },
  {
@@ -543,16 +554,19 @@ const BASE = [
   "cat": "resp",
   "cid": "J44.1",
   "sin": "enfisema bronquite cronica exacerbacao",
-  "casa": "Uso oral\n1) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.\n2) Azitromicina 500mg ------------------------ 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias (se escarro purulento ou aumento do volume).\nOu\n2) Amoxicilina + Clavulanato 875/125mg ------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\n\nUso inalatório\n3) Salbutamol 100mcg spray ------------------- 1 fr\nInalar 2 a 4 jatos com espaçador de 4/4h a 6/6h se falta de ar.",
-  "unidade": "1) Nebulização: Fenoterol 5mg/mL 10 gotas + Brometo de ipratrópio 0,25mg/mL 40 gotas em 3–5 mL de SF 0,9%. Repetir a cada 20 min até 3x se necessário.\n   (Nebulizar com ar comprimido em hipercápnicos.)\n2) Prednisona 40mg VO ou Hidrocortisona 100mg EV.\n3) O2 com alvo de SatO2 88–92%.\n4) Gasometria se SatO2 < 88%, sonolência ou uso de musculatura acessória (considerar VNI).",
+  "casa": "Uso oral\n1) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.\n2) Azitromicina 500mg ------------------------ 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.\n(Antibiótico só se escarro purulento, com piora da falta de ar ou do volume do escarro.)\nOu\n2) Amoxicilina + Clavulanato 875/125mg ------- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.\n\nUso inalatório\n3) Salbutamol 100mcg spray ------------------- 1 fr\nInalar 2 a 4 jatos com espaçador de 4/4h a 6/6h se falta de ar.",
+  "unidade": "1) Nebulização: Fenoterol 5mg/mL 10 gotas + Brometo de ipratrópio 0,25mg/mL 40 gotas em 3–5 mL de SF 0,9%. Repetir a cada 20 min até 3x se necessário.\n   (Nebulizar com ar comprimido em hipercápnicos.)\n2) Prednisona 40mg VO 1x ao dia (por até 5 dias). Se não tolerar VO: Metilprednisolona 40mg EV.\n3) O2 com alvo de SatO2 88–92%.\n4) Gasometria se SatO2 < 88%, sonolência ou uso de musculatura acessória (considerar VNI).",
   "orient": "- Manter as medicações inalatórias de uso contínuo.\n- Retorno imediato se piora da falta de ar, sonolência ou lábios roxos.",
   "rev": [
+   "Corrigido (2026-10-17): amoxicilina-clavulanato 7 → 5 dias; antibiótico só com escarro purulento (nota fora da receita); hidrocortisona 100 mg EV (não equivalia a prednisona 40 mg) → metilprednisolona 40 mg EV se não tolerar VO (GOLD 2026, cap. 4; HC-FMUSP 18ª ed., cap. DPOC).",
    "Corrigido: ipratrópio 5 gotas → 40 gotas (0,5mg); fenoterol 10 gotas.",
    "Adicionado: alvo de SatO2 88–92% e critérios de gasometria/VNI.",
    "Ajustado (GOLD): prednisona 40mg 1x/dia; antibiótico se escarro purulento."
   ],
   "fontes": [
-   "Global Initiative for Chronic Obstructive Lung Disease (GOLD) 2025 Report. https://goldcopd.org"
+   "Global Initiative for Chronic Obstructive Lung Disease (GOLD) 2026 Report, cap. 4 — Management of Exacerbations (SABA ± ipratrópio; corticoide sistêmico por até 5 dias; antibiótico por 5 dias se escarro purulento; O2 com alvo 88–92%). https://goldcopd.org",
+   "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. DPOC (antibiótico com 3 sintomas cardinais, ou 2 se um for escarro purulento, ou suporte ventilatório; prednisona 40 mg VO; metilprednisolona EV 20–60 mg; nebulização com ar comprimido).",
+   "Bula FDA Zithromax (azitromicina): exacerbação bacteriana aguda de DPOC, 500 mg 1x ao dia por 3 dias."
   ]
  },
  {
@@ -1066,16 +1080,18 @@ const BASE = [
   "cat": "orl",
   "cid": "H60.9",
   "sin": "dor ouvido piscina",
-  "casa": "Uso otológico\n1) Ciprofloxacino + Hidrocortisona otológico (Otomixyn/Ciprodex) ou Polimixina B + Neomicina + Hidrocortisona (Otosporin) --- 1 fr\nPingar 3–4 gotas no ouvido afetado de 8/8h por 7 dias.\n\nUso oral\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.",
-  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Dexametasona 4 mg IM ou EV lenta.",
-  "orient": "- Não molhar o ouvido durante o tratamento (algodão com vaselina no banho).\n- Suspeita de perfuração: usar só quinolona tópica (evitar neomicina).\n- Antibiótico oral só se celulite ao redor, diabetes/imunossupressão ou otite externa maligna.",
+  "casa": "Uso otológico\n1) Polimixina B + Neomicina + Hidrocortisona (Otosporin) --- 1 fr\nPingar 3 gotas no ouvido afetado de 8/8h por 7 dias.\nOu\n1) Ciprofloxacino + Hidrocortisona (Otociriax) ------------- 1 fr\nPingar 3 gotas no ouvido afetado de 12/12h por 7 dias.\nOu (perfuração suspeita ou confirmada, ou tubo de ventilação)\n1) Ciprofloxacino 5 mg/mL otológico (Otofoxin) ------------- 1 fr\nPingar 3 gotas no ouvido afetado de 8/8h por 7 dias.\n\nUso oral\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de soro fisiológico 0,9% ou água destilada.\n2) Se conduto muito edemaciado e a gota não entra: limpeza do conduto (aspiração) e, se preciso, mecha (pavio) para levar a gota.",
+  "orient": "- Não molhar o ouvido durante o tratamento (algodão com vaselina no banho).\n- Perfuração suspeita ou confirmada, ou tubo de ventilação: usar só ciprofloxacino sem corticoide (Otofoxin); não usar neomicina nem as associações com corticoide.\n- Antibiótico oral só se celulite ao redor, diabetes/imunossupressão ou otite externa maligna.",
   "rev": [
+   "Corrigido (2026-10-17): nomes comerciais corrigidos (Otomixyn tem neomicina; Ciprodex sai) → Otosporin, Otociriax ou, se perfuração ou tubo, Otofoxin, cada um com a posologia da bula; dexametasona IM removida (sem fonte); limpeza do conduto e mecha (bulas; AAO-HNS 2014, KAS 3–6).",
    "Removido: cefalexina oral de rotina (otite externa não complicada se trata só com tópico).",
    "Adicionado: opção com quinolona tópica e alerta de perfuração.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Rosenfeld RM et al. AAO-HNS Clinical Practice Guideline: Acute Otitis Externa (Otolaryngol Head Neck Surg 2014)."
+   "Rosenfeld RM et al. AAO-HNS Clinical Practice Guideline: Acute Otitis Externa (Otolaryngol Head Neck Surg 2014;150(1 Suppl):S1): analgesia; gotas tópicas sem antibiótico oral; limpeza e mecha; perfuração ou tubo: gota não ototóxica; reavaliar em 48–72 h. https://doi.org/10.1177/0194599813517083",
+   "Bulas Otosporin (3 gotas 3–4x/dia por 7–10 dias), Otociriax (3 gotas 2x/dia por 7 dias) e Otofoxin (3–5 gotas 3x/dia por 7 dias); Otosporin e Otociriax contraindicados com perfuração timpânica."
   ]
  },
  {
@@ -1084,17 +1100,19 @@ const BASE = [
   "cat": "orl",
   "cid": "H66.9",
   "sin": "dor ouvido otite media",
-  "casa": "Uso oral\n1) Amoxicilina 875mg ------------------------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu\n1) Amoxicilina 500mg ------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\nOu (uso de amoxicilina nos últimos 30 dias ou falha)\n1) Amoxicilina + Clavulanato 875/125mg ------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\nOu (alergia a penicilina)\n1) Azitromicina 500mg ------------------------ 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.",
-  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Dexametasona 4 mg IM ou EV lenta.",
+  "casa": "Uso oral\n1) Amoxicilina 875mg ------------------------- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.\nOu\n1) Amoxicilina 500mg ------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.\nOu (uso de amoxicilina nos últimos 30 dias ou falha)\n1) Amoxicilina + Clavulanato 875/125mg ------- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.\nOu (alergia a penicilina)\n1) Azitromicina 500mg ------------------------ 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de soro fisiológico 0,9% ou água destilada.",
   "orient": "- Retorno se febre persistente após 48–72h, dor atrás da orelha ou secreção.",
   "rev": [
+   "Corrigido (2026-10-17): antibiótico 10 → 5 dias no adulto; dexametasona IM removida (sem fonte; corticoide sistêmico sem benefício) (NICE NG91; AAP 2013, KAS 2 e 4).",
    "Adicionado: amoxicilina-clavulanato e opção para alérgicos.",
    "Adicionado: amoxicilina 875 mg de 12/12h (posologia aprovada em bula).",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
-  "evid": "Sem diretriz específica para adultos; condutas extrapoladas da pediatria (AAP 2013).",
+  "evid": "Sem diretriz específica para adultos; dose e duração extrapoladas da AAP 2013 (≥ 6 anos) e do NICE NG91 (5–7 dias).",
   "fontes": [
-   "Lieberthal AS et al. AAP: The Diagnosis and Management of Acute Otitis Media (Pediatrics 2013) — extrapolado para adultos."
+   "Lieberthal AS et al. AAP: The Diagnosis and Management of Acute Otitis Media (Pediatrics 2013) — extrapolado para adultos.",
+   "NICE NG91. Otitis media (acute): antimicrobial prescribing, 2018 (atualizada 2022), seção 1.1 e tabela de escolha do antibiótico: amoxicilina por 5–7 dias; macrolídeo se alergia; antibiótico imediato ou de reserva conforme gravidade (escrito para menores de 18 anos; extrapolado). https://www.nice.org.uk/guidance/ng91"
   ]
  },
  {
@@ -1156,10 +1174,11 @@ const BASE = [
   "cat": "resp",
   "cid": "J18.9",
   "sin": "pneumonia pac infeccao pulmao",
-  "casa": "# PAC sem comorbidades, CURB-65 0–1:\nUso oral\n1) Amoxicilina 500mg ------------------------- 42 cp\nTomar 2 cp (1 g) VO de 8/8h por 7 dias.\n(Na PAC a ATS/IDSA usa 1 g de 8/8h; não há esquema de 12/12h com amoxicilina isolada nessa diretriz.)\nOu\n1) Azitromicina 500mg ------------------------ 1 cp + Azitromicina 250mg -- 4 cp\nTomar 500 mg VO no 1º dia e 250 mg 1x ao dia do 2º ao 5º dia (monoterapia só se resistência local a macrolídeo < 25%).\n\n# PAC com comorbidades (DPOC, DM, IC, DRC, etilismo) ou ATB nos últimos 3 meses:\n1) Amoxicilina + Clavulanato 875/125mg ------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\n2) Azitromicina 500mg ------------------------ 1 cp + Azitromicina 250mg -- 4 cp\nTomar 500 mg VO no 1º dia e 250 mg 1x ao dia do 2º ao 5º dia.\nOu (monoterapia)\n1) Levofloxacino 750mg ----------------------- 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\n\nSintomáticos\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.",
+  "casa": "# PAC sem comorbidades, CURB-65 0–1:\nUso oral\n1) Amoxicilina 500mg ------------------------- 30 cp\nTomar 2 cp (1 g) VO de 8/8h por 5 dias.\n(Na PAC a ATS/IDSA usa 1 g de 8/8h; não há esquema de 12/12h com amoxicilina isolada nessa diretriz.)\nOu\n1) Azitromicina 500mg ------------------------ 1 cp + Azitromicina 250mg -- 4 cp\nTomar 500 mg VO no 1º dia e 250 mg 1x ao dia do 2º ao 5º dia (monoterapia só se resistência local a macrolídeo < 25%).\n\n# PAC com comorbidades (DPOC, DM, IC, DRC, etilismo) ou ATB nos últimos 3 meses:\n1) Amoxicilina + Clavulanato 875/125mg ------- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.\n2) Azitromicina 500mg ------------------------ 1 cp + Azitromicina 250mg -- 4 cp\nTomar 500 mg VO no 1º dia e 250 mg 1x ao dia do 2º ao 5º dia.\nOu (monoterapia)\n1) Levofloxacino 750mg ----------------------- 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\n\nSintomáticos\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.",
   "unidade": "1) Calcular CURB-65: Confusão, Ureia > 50 mg/dL, FR ≥ 30, PAS < 90 ou PAD ≤ 60, idade ≥ 65.\n   0–1: tratar em casa | 2: considerar internação | ≥ 3: internar (avaliar UTI).\n2) RX de tórax; SatO2.\n3) 1ª dose do antibiótico na unidade.",
   "orient": "- Reavaliar em 48–72h.\n- Retorno imediato se falta de ar, confusão ou febre persistente após 72h.",
   "rev": [
+   "Corrigido (2026-10-17): amoxicilina e amoxicilina-clavulanato 7 → 5 dias (ATS 2025: 3–5 dias se estável; NICE NG250; HC-FMUSP 18ª ed.: 5–7 dias).",
    "Removido: prednisona (corticoide não é indicado na PAC não grave).",
    "Removido: ambroxol de rotina (sem benefício em desfecho).",
    "Reestruturado: 4 prescrições → esquemas por perfil de risco (SBPT/ATS-IDSA).",
@@ -1169,7 +1188,9 @@ const BASE = [
   ],
   "fontes": [
    "Metlay JP et al. Diagnosis and Treatment of Adults with CAP — ATS/IDSA (Am J Respir Crit Care Med 2019).",
-   "Corrêa RA et al. Recomendações da SBPT para PAC em adultos imunocompetentes, 2018 (J Bras Pneumol)."
+   "Corrêa RA et al. Recomendações da SBPT para PAC em adultos imunocompetentes, 2018 (J Bras Pneumol 2018;44(5):405–423).",
+   "Jones BE et al. Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline (Am J Respir Crit Care Med 2026;212:24–44; publicado em jul/2025): ambulatorial e internado não grave estáveis, 3–5 dias de antibiótico; corticoide só na PAC grave. https://doi.org/10.1164/rccm.202507-1692ST",
+   "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. Pneumonia adquirida na comunidade (5–7 dias no ambulatório; quinolona no ambulatório pode mascarar tuberculose)."
   ]
  },
  {
@@ -1236,16 +1257,18 @@ const BASE = [
   "cid": "J30.4",
   "sin": "alergia nariz espirro coriza",
   "casa": "Uso nasal\n1) Budesonida 64mcg spray nasal -------------- 1 fr\nAplicar 2 jatos em cada narina 1x ao dia (pela manhã), uso contínuo por pelo menos 30 dias.\n2) Soro fisiológico 0,9% --------------------- 1 fr\nLavar as narinas com 5–10 mL em cada lado 3x ao dia.\n\nUso oral\n3) Loratadina 10mg --------------------------- 10 cp\nTomar 1 cp VO 1x ao dia por 10 dias.",
-  "unidade": "1) Prometazina 25–50 mg somente IM profunda (se crise intensa).",
+  "unidade": "1) Sem medicação injetável na rinite alérgica. Se sintomas intensos: Loratadina 10mg VO e primeira aplicação do corticoide nasal ainda na unidade.",
   "orient": "- Controle ambiental: evitar poeira, mofo, pelos; trocar roupa de cama semanalmente.",
   "rev": [
+   "Corrigido (2026-10-17): prometazina IM removida (sem indicação na rinite alérgica; tarja FDA, ISMP, Beers) → loratadina VO e 1ª aplicação do corticoide nasal na unidade; fontes atualizadas (ARIA-EAACI 2024–2025; Sakano 2018).",
    "Adicionado: corticoide nasal (1ª linha no tratamento).",
    "Trocado: dexclorfeniramina IM → prometazina IM (apresentação disponível).",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Bousquet J et al. ARIA 2019/2020 (J Allergy Clin Immunol).",
-   "Sakano E et al. IV Consenso Brasileiro sobre Rinites (Braz J Otorhinolaryngol 2018)."
+   "Sousa-Pinto B et al. Allergic Rhinitis and its Impact on Asthma (ARIA)-EAACI Guidelines 2024–2025 Revision, Part I (tratamentos intranasais: corticoide nasal; corticoide + azelastina) e Part II (anti-histamínico oral de 2ª geração) (Allergy 2025).",
+   "Sakano E et al. IV Consenso Brasileiro sobre Rinites (Braz J Otorhinolaryngol 2018;84:3): corticoide nasal como base; anti-H1 de 2ª geração; controle ambiental; lavagem nasal. https://doi.org/10.1016/j.bjorl.2017.10.006",
+   "Bula Budecort Aqua (budesonida 64 mcg/jato): 2 jatos em cada narina 1x ao dia pela manhã, máx. 256 mcg/dia."
   ]
  },
  {
@@ -1344,17 +1367,19 @@ const BASE = [
   "cat": "resp",
   "cid": "J11.1",
   "sin": "gripe resfriado coriza tosse influenza covid",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se febre ou dor.\n2) Loratadina 10mg --------------------------- 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada).\n\nUso nasal\n4) Soro fisiológico 0,9% --------------------- 1 fr\nAplicar 5 a 10 mL com seringa em cada narina 4x ao dia (spray: 2 jatos em cada narina).\n\n# Síndrome gripal em grupo de risco (≥ 60 anos, gestante/puérpera, comorbidades, imunossupressão), até 48h idealmente:\n5) Oseltamivir 75mg -------------------------- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se febre ou dor.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada).\n\nUso nasal\n3) Soro fisiológico 0,9% --------------------- 1 fr\nAplicar 5 a 10 mL com seringa em cada narina 4x ao dia (spray: 2 jatos em cada narina).\n\n# Síndrome gripal em grupo de risco (≥ 60 anos, gestante/puérpera, comorbidades, imunossupressão), até 48h idealmente:\n4) Oseltamivir 75mg -------------------------- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.",
   "unidade": "",
   "orient": "- Repouso, hidratação.\n- Febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, em área com dengue (ou viagem nos últimos 14 dias): não prescrever ibuprofeno nem AAS; usar só dipirona ou paracetamol até descartar dengue (MS, Dengue 2024, item 6.1.2).\n- Grupo de risco tratado em casa: retorno em 48 h ou antes se sinais de gravidade (Guia de Manejo e Tratamento de Influenza 2023, fluxograma).\n- Retorno imediato se falta de ar, SatO2 baixa, dor no peito, piora da febre após melhora.\n- CID resfriado: J00.",
   "rev": [
+   "Corrigido (2026-10-17): loratadina removida (sem benefício no resfriado, Cochrane 2015); título do guia de influenza corrigido (MS, Guia de Manejo e Tratamento de Influenza 2023).",
    "Corrigido (2026-10-09): não usar ibuprofeno na febre com dengue não descartada (MS, Dengue 2024).",
    "Adicionado: oseltamivir para grupo de risco (protocolo MS).",
    "Removido: budesonida nasal por 15 dias (sem benefício no resfriado)."
   ],
   "fontes": [
    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: caso suspeito (item 10.1); não usar salicilatos, anti-inflamatórios nem corticoides e orientar a não se automedicar (item 6.1.2); só dipirona e paracetamol (apêndice H). https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf",
-   "Ministério da Saúde. Protocolo de Tratamento de Influenza, 2023 (oseltamivir em grupo de risco)."
+   "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023: oseltamivir 75 mg de 12/12h por 5 dias na síndrome gripal com condição de risco, de preferência nas primeiras 48 h; retorno em 48 h; ajuste renal. https://bvsms.saude.gov.br/bvs/publicacoes/guia_manejo_tratamento_influenza_2023.pdf",
+   "De Sutter AI et al. Antihistamines for the common cold (Cochrane Database Syst Rev 2015;(11):CD009345): anti-histamínico isolado sem efeito clinicamente relevante na obstrução, coriza ou espirros."
   ]
  },
  {
@@ -1363,18 +1388,20 @@ const BASE = [
   "cat": "orl",
   "cid": "J01.9",
   "sin": "sinusite dor face secrecao nasal",
-  "casa": "# Antibiótico só se: sintomas > 10 dias sem melhora, piora após melhora inicial (dupla piora) ou febre ≥ 39°C + secreção purulenta ≥ 3 dias.\nUso oral\n1) Amoxicilina 875mg ------------------------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\nOu\n1) Amoxicilina 500mg ------------------------- 21 cp\nTomar 1 cp VO de 8/8h por 7 dias.\nOu (ATB recente, > 65 anos ou comorbidades)\n1) Amoxicilina + Clavulanato 875/125mg ------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n\nUso nasal\n3) Budesonida 64mcg spray nasal -------------- 1 fr\nAplicar 2 jatos em cada narina pela manhã por 15 dias.\n4) Soro fisiológico 0,9% --------------------- 1 fr\nLavar cada narina com 5 a 10 mL com seringa 4x ao dia.",
+  "casa": "# Antibiótico só se: sintomas > 10 dias sem melhora, piora após melhora inicial (dupla piora) ou início grave: febre ≥ 39°C com secreção purulenta ou dor facial por 3 a 4 dias seguidos.\nUso oral\n1) Amoxicilina 875mg ------------------------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\nOu\n1) Amoxicilina 500mg ------------------------- 21 cp\nTomar 1 cp VO de 8/8h por 7 dias.\nOu (ATB recente, > 65 anos ou comorbidades)\n1) Amoxicilina + Clavulanato 875/125mg ------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\nOu (alergia a penicilina)\n1) Doxiciclina 100mg ------------------------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias, com bastante água e sem deitar logo depois.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n\nUso nasal\n3) Budesonida 64mcg spray nasal -------------- 1 fr\nAplicar 2 jatos em cada narina pela manhã por 15 dias.\n4) Soro fisiológico 0,9% --------------------- 1 fr\nLavar cada narina com 5 a 10 mL com seringa 4x ao dia.",
   "unidade": "",
-  "orient": "- Quadros virais (< 10 dias) não precisam de antibiótico.\n- Retorno imediato se edema ou vermelhidão ao redor do olho, alteração visual, cefaleia intensa.",
+  "orient": "- Rinossinusite bacteriana não complicada: oferecer observação sem antibiótico se o retorno estiver garantido; começar o antibiótico se piorar ou não melhorar em 7 dias.\n- Quadros virais (< 10 dias) não precisam de antibiótico.\n- Retorno imediato se edema ou vermelhidão ao redor do olho, alteração visual, cefaleia intensa.",
   "rev": [
+   "Corrigido (2026-10-17): oferecer observação sem antibiótico como 1ª opção na bacteriana não complicada com retorno garantido; início grave por 3 a 4 dias seguidos (era ≥ 3 dias); doxiciclina 100 mg de 12/12h por 7 dias para alergia a penicilina (AAO-HNSF 2025; IDSA 2012).",
    "Adicionado: critérios para antibiótico.",
    "Ajustado: amoxicilina simples como 1ª linha; clavulanato em risco.",
    "Removido: prednisona de rotina e loratadina (sem benefício na sinusite bacteriana).",
    "Adicionado: amoxicilina 875 mg de 12/12h (AAO-HNS 2015 lista 500 mg 8/8h ou 875 mg 12/12h)."
   ],
   "fontes": [
-   "Chow AW et al. IDSA Clinical Practice Guideline for Acute Bacterial Rhinosinusitis (Clin Infect Dis 2012).",
-   "Rosenfeld RM et al. AAO-HNS Adult Sinusitis Guideline (2015)."
+   "Chow AW et al. IDSA Clinical Practice Guideline for Acute Bacterial Rhinosinusitis in Children and Adults (Clin Infect Dis 2012;54:e72): critérios de início (≥ 10 dias, grave por 3–4 dias, dupla piora); 5–7 dias no adulto; doxiciclina ou quinolona se alergia; macrolídeo não recomendado.",
+   "AAO-HNSF. Clinical Practice Guideline: Adult Sinusitis Update (Otolaryngol Head Neck Surg 2025;173 Suppl 1:S1–S56; doi 10.1002/ohn.1344): observação sem antibiótico na bacteriana não complicada com retorno garantido; se antibiótico, amoxicilina com ou sem clavulanato por 5–7 dias; reavaliar se piora ou sem melhora em 3–5 dias.",
+   "Bula FDA doxiciclina (DailyMed): tomar com bastante líquido (esofagite e úlcera esofágica); IDSA 2012: 100 mg de 12/12h na rinossinusite do adulto alérgico a penicilina."
   ]
  },
  {
@@ -1861,12 +1888,15 @@ const BASE = [
   "cid": "J21.9",
   "sin": "bronquiolite vsr lactente chiado bebe",
   "casa": "Uso nasal\n1) Soro fisiológico 0,9% --------------------- 1 fr\nPingar gotas em cada narina e aspirar antes das mamadas, quantas vezes precisar.",
-  "unidade": "1) Diagnóstico clínico (história e exame). Não pedir RX nem pesquisa viral de rotina.\n2) Não usar de rotina: salbutamol, adrenalina, corticoide, antibiótico (sem infecção bacteriana), fisioterapia respiratória.\n3) Solução salina hipertônica nebulizada não é recomendada na emergência (pode ser usada em internados).\n4) O2 e oximetria: conforme julgamento clínico.\n5) Sem aceitar via oral: hidratação por sonda nasogástrica ou EV.",
+  "unidade": "1) Diagnóstico clínico (história e exame). Não pedir RX nem pesquisa viral de rotina.\n2) Não usar de rotina: salbutamol, adrenalina, corticoide, antibiótico (sem infecção bacteriana), fisioterapia respiratória.\n3) Solução salina hipertônica nebulizada não é recomendada na emergência (pode ser usada em internados).\n4) O2 se SatO2 < 90% (< 92% se < 6 semanas ou comorbidade). Oximetria contínua não é necessária em quem não está em O2.\n5) Sem aceitar via oral: hidratação por sonda nasogástrica ou EV.",
   "orient": "- Sinais de alarme para retorno: esforço respiratório, pausas respiratórias, cianose, recusa alimentar, menos fraldas molhadas.",
   "fontes": [
-   "Ralston SL et al. AAP Clinical Practice Guideline: The Diagnosis, Management, and Prevention of Bronchiolitis (Pediatrics 2014;134:e1474). https://publications.aap.org/pediatrics/article/134/5/e1474/75848/"
+   "Ralston SL et al. AAP Clinical Practice Guideline: The Diagnosis, Management, and Prevention of Bronchiolitis (Pediatrics 2014;134:e1474). https://publications.aap.org/pediatrics/article/134/5/e1474/75848/",
+   "NICE NG9. Bronchiolitis in children: diagnosis and management, 2015 (atualizada 2021) — limiares de saturação, quando internar, evolução esperada. https://www.nice.org.uk/guidance/ng9",
+   "Friedman JN et al. Canadian Paediatric Society. Bronchiolitis: recommendations for diagnosis, monitoring and management of children one to 24 months of age (Paediatr Child Health 2014;19:485)."
   ],
   "rev": [
+   "Corrigido (2026-10-17): O2 \"conforme julgamento clínico\" → O2 se SatO2 < 90% (< 92% se < 6 semanas ou comorbidade), sem oximetria contínua fora do O2 (AAP 2014; NICE NG9).",
    "Item novo."
   ]
  },
@@ -1882,9 +1912,11 @@ const BASE = [
   "fontes": [
    "Gates A et al. Glucocorticoids for croup in children (Cochrane Database Syst Rev 2018;CD001955).",
    "Bjornson C et al. Nebulized epinephrine for croup in children (Cochrane Database Syst Rev 2013;CD006619).",
-   "Smith DK et al. Croup: Diagnosis and Management (Am Fam Physician 2018;97:575)."
+   "Smith DK et al. Croup: Diagnosis and Management (Am Fam Physician 2018;97:575).",
+   "Ortiz-Alvarez O. Canadian Paediatric Society. Acute management of croup in the emergency department (Paediatr Child Health 2017;22:166): dexametasona 0,6 mg/kg VO dose única; adrenalina 1 mg/mL 0,5 mL/kg (máx. 5 mL) nebulizada; observar pelo menos 2 h. https://doi.org/10.1093/pch/pxx019"
   ],
   "rev": [
+   "Corrigido (2026-10-17): fonte da dose (CPS 2017) citada na conduta; teto da dexametasona de 10 mg igual em todo o painel, também na ficha (CPS 2017; TREKK 2023 aceita 12 mg).",
    "Item novo."
   ]
  },
@@ -1895,7 +1927,7 @@ const BASE = [
   "cid": "R05",
   "sin": "tosse seca produtiva pigarro coqueluche gotejamento pos nasal",
   "casa": "# Tosse aguda (< 3 semanas) do resfriado — sintomático\nUso oral\n1) Mel -----------------------------------------\nTomar 1 colher de chá (5 mL) puro ou em chá morno até 3x ao dia, principalmente à noite. Não dar a menores de 1 ano.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada).\n\nUso nasal\n4) Soro fisiológico 0,9% --------------------- 1 fr\nLavar as narinas com 5–10 mL em cada lado 3 a 4x ao dia.\n\n# Tosse subaguda pós-infecciosa (3–8 semanas), após excluir pneumonia e coqueluche\n5) Brometo de ipratrópio spray --------------- 1 fr\nInalar 2 jatos de 6/6h por até 2 semanas.\n\n# Coqueluche (suspeita: tosse ≥ 14 dias com paroxismos, guincho inspiratório ou vômito pós-tosse)\n6) Azitromicina 500mg ------------------------ 1 cp + Azitromicina 250mg -- 4 cp\nTomar 500 mg no 1º dia e 250 mg 1x ao dia do 2º ao 5º dia.",
-  "unidade": "1) Classificar pela duração: aguda < 3 semanas | subaguda 3–8 semanas | crônica > 8 semanas.\n2) Sinais de alarme: dispneia, hemoptise, febre persistente, perda de peso, rouquidão, sibilância nova, tabagismo importante (≥ 20 maços-ano ou fumante > 45 anos), pneumonias de repetição, imunossupressão.\n3) Aguda: pensar em IVAS, mas excluir pneumonia (FR, SatO2, ausculta), TEP, IC, asma/DPOC exacerbados.\n4) Crônica: RX de tórax; suspender IECA (a tosse some em 1 semana a 3 meses); investigar as causas mais comuns:\n   - Síndrome da tosse das vias aéreas superiores: corticoide nasal (+ anti-histamínico de 1ª geração com descongestionante como teste).\n   - Asma (inclui variante tosse): corticoide inalatório + broncodilatador.\n   - Refluxo: IBP por pelo menos 8 semanas com mudança de hábitos.\n   - Bronquite eosinofílica não asmática: corticoide inalatório.\n5) Tosse por mais de 2–3 semanas com febre, suor noturno ou emagrecimento: investigar tuberculose (baciloscopia/TRM-TB).",
+  "unidade": "1) Classificar pela duração: aguda < 3 semanas | subaguda 3–8 semanas | crônica > 8 semanas.\n2) Sinais de alarme: dispneia, hemoptise, febre persistente, perda de peso, rouquidão, sibilância nova, tabagismo importante (≥ 20 maços-ano ou fumante > 45 anos), pneumonias de repetição, imunossupressão.\n3) Aguda: pensar em IVAS, mas excluir pneumonia (FR, SatO2, ausculta), TEP, IC, asma/DPOC exacerbados.\n4) Crônica: RX de tórax; suspender IECA (a tosse some em 1 semana a 3 meses); investigar as causas mais comuns:\n   - Síndrome da tosse das vias aéreas superiores: corticoide nasal (+ anti-histamínico de 1ª geração com descongestionante como teste).\n   - Asma (inclui variante tosse): corticoide inalatório + broncodilatador.\n   - Refluxo: IBP por pelo menos 8 semanas com mudança de hábitos.\n   - Bronquite eosinofílica não asmática: corticoide inalatório.\n5) Tosse há 3 semanas ou mais, mesmo sem febre ou emagrecimento: pedir baciloscopia ou TRM-TB. Em pessoa privada de liberdade, em situação de rua, com HIV, indígena ou contato de tuberculose: investigar com tosse de qualquer duração.",
   "orient": "- Antibiótico não trata tosse viral.\n- Febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, em área com dengue (ou viagem nos últimos 14 dias): não prescrever ibuprofeno nem AAS; usar só dipirona ou paracetamol até descartar dengue (MS, Dengue 2024, item 6.1.2).\n- Codeína não deve ser usada para tosse em menores de 12 anos.\n- Coqueluche: notificação compulsória; avaliar quimioprofilaxia dos contatos prioritários (menores de 1 ano, gestantes a partir de 32 semanas, imunossuprimidos, profissionais de saúde).\n- Retorno se falta de ar, sangue no escarro, febre alta ou tosse que piora.",
   "fontes": [
    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: caso suspeito (item 10.1); não usar salicilatos, anti-inflamatórios nem corticoides e orientar a não se automedicar (item 6.1.2); só dipirona e paracetamol (apêndice H). https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf",
@@ -1906,10 +1938,12 @@ const BASE = [
    "Oduwole O et al. Honey for acute cough in children (Cochrane 2018;CD007094).",
    "Braman SS. Postinfectious cough: ACCP guidelines (Chest 2006) — ipratrópio inalatório.",
    "Ministério da Saúde. Nota Técnica Conjunta nº 165/2025 — coqueluche (azitromicina e quimioprofilaxia). https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/notas-tecnicas/2025/nota-tecnica-conjunta-no-165-2025-dpni-svsa-ms.pdf",
-   "EMA 2015: codeína contraindicada para tosse em menores de 12 anos."
+   "EMA 2015: codeína contraindicada para tosse em menores de 12 anos.",
+   "Ministério da Saúde. Manual de Recomendações para o Controle da Tuberculose no Brasil, 2ª ed. atualizada, 2019: sintomático respiratório é quem tem tosse há 3 semanas ou mais; nas populações vulneráveis (privados de liberdade, situação de rua, pessoas com HIV, indígenas, contatos), tosse de qualquer duração."
   ],
   "evid": "Para a tosse aguda do resfriado a evidência dos sintomáticos é de baixa qualidade (CHEST 2017); mel tem benefício pequeno em crianças.",
   "rev": [
+   "Corrigido (2026-10-17): tuberculose: investigar com tosse há 3 semanas ou mais mesmo sem febre ou emagrecimento, e com qualquer duração nas populações vulneráveis (MS, Manual de Recomendações para o Controle da Tuberculose, 2019).",
    "Corrigido (2026-10-09): não usar ibuprofeno na febre com dengue não descartada (MS, Dengue 2024).",
    "Item novo."
   ]

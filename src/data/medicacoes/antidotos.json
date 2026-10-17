@@ -20,18 +20,18 @@
    "IO"
   ],
   "adulto": [
-   "Objetivo: devolver a respiração e os reflexos de proteção da via aérea, não acordar o paciente. Ventilar com bolsa-válvula-máscara antes e durante, até a respiração voltar (AHA 2023; bula).",
+   "Objetivo: devolver a respiração e os reflexos de proteção da via aérea, não acordar o paciente. Ventilar com bolsa-válvula-máscara antes e durante, até a respiração voltar (AHA 2025; bula).",
    "Respira, mas com depressão respiratória, e usa opioide de forma crônica (dependente, dor crônica, paliativo): titular em doses pequenas, 0,04 mg EV, subindo em degraus até 0,4 mg, até o total de 2 mg, conforme a resposta (bula Narcan). Começar com 0,04 mg e aumentar a cada 2–3 min (HC-FMUSP 18ª ed., cap. 101; Maryland Poison Center 2026).",
-   "Apneia ou respiração agônica, com pulso: 0,4–2 mg EV, repetindo a cada 2–3 min até respiração adequada (bula). AHA 2023: 0,2–2 mg EV, IO ou IM. Sem acesso venoso: IM ou SC (bula).",
+   "Apneia ou respiração agônica, com pulso: 0,4–2 mg EV, repetindo a cada 2–3 min até respiração adequada (bula). AHA 2025: 0,2–2 mg EV, IO ou IM. Sem acesso venoso: IM ou SC (bula).",
    "Sem resposta após 10 mg: questionar o diagnóstico de intoxicação por opioide (bula). Fentanil e buprenorfina podem exigir doses maiores, às vezes 10 mg ou mais no total (Harrison 22ª ed., cap. 467; bula).",
-   "Parada cardíaca: RCP de qualidade vem primeiro; a naloxona não tem benefício comprovado na parada e só entra se não atrasar compressões e ventilação (AHA 2023).",
-   "Infusão contínua, se a depressão respiratória volta (opioide de longa duração ou de liberação prolongada): por hora, 2/3 da dose que fez o paciente voltar a respirar, ajustando pela resposta (AHA 2023; HC-FMUSP 18ª ed., cap. 101; Harrison 22ª ed., cap. 467). Ex.: respondeu a 0,4 mg → 0,27 mg/h. Maryland Poison Center: repetir metade da dose inicial 15 min após iniciar a infusão.",
+   "Parada cardíaca: RCP de qualidade vem primeiro; a naloxona não tem benefício comprovado na parada e só entra se não atrasar compressões e ventilação (AHA 2025).",
+   "Infusão contínua, se a depressão respiratória volta (opioide de longa duração ou de liberação prolongada): por hora, 2/3 da dose que fez o paciente voltar a respirar, ajustando pela resposta (AHA 2025; HC-FMUSP 18ª ed., cap. 101; Harrison 22ª ed., cap. 467). Ex.: respondeu a 0,4 mg → 0,27 mg/h. Maryland Poison Center: repetir metade da dose inicial 15 min após iniciar a infusão.",
    "Duração do efeito de 1–1,5 h (HC-FMUSP), meia-vida de 30–81 min (bula): mais curta que a de metadona, morfina e oxicodona de liberação prolongada e adesivo de fentanil. Doses repetidas podem ser necessárias a cada 1–2 h; a via IM dura mais que a EV (bula).",
    "Observação após reverter: 3–4 h; sem naloxona, pelo menos 2 h; opioide de longa duração (metadona, oxicodona, adesivo de fentanil) ou via atípica (adesivo ingerido): no mínimo 24 h. Precisou de doses repetidas ou infusão, ou ficou com dessaturação ou rebaixamento: internar (HC-FMUSP 18ª ed., cap. 101).",
    "Abstinência precipitada (vômitos, agitação, taquicardia, sudorese): parar a naloxona, esperar os sintomas cederem e retomar com dose menor, que mantenha a ventilação sem abstinência (Maryland Poison Center 2026)."
   ],
   "pediatria": [
-   "Superdose (depressão respiratória grave ou apneia): 0,1 mg/kg EV, IO ou IM, máximo de 2 mg por dose (AHA 2023; bula Narcan: 0,1 mg/kg até 20 kg ou menos de 5 anos; 2 mg acima de 20 kg ou de 5 anos). Repetir a cada 2–3 min se preciso.",
+   "Superdose (depressão respiratória grave ou apneia): 0,1 mg/kg EV, IO ou IM, máximo de 2 mg por dose (AHA 2025; bula Narcan: 0,1 mg/kg até 20 kg ou menos de 5 anos; 2 mg acima de 20 kg ou de 5 anos). Repetir a cada 2–3 min se preciso.",
    "Bula americana (Hospira 2023): começa com 0,01 mg/kg EV e, se não houver resposta, 0,1 mg/kg. A bula brasileira faz o contrário (0,1 mg/kg e, depois, 0,01 mg/kg). Na criança que usa opioide de forma crônica, preferir doses pequenas tituladas, de 0,001–0,02 mg/kg (Maryland Poison Center 2026).",
    "Sem acesso venoso: IM ou SC, em doses divididas (bula). A Academia Americana de Pediatria não recomenda IM ou SC na intoxicação por absorção irregular (bula FDA).",
    "Criança que respondeu: monitorar por pelo menos 24 h, pelo risco de voltar a deprimir quando a naloxona acabar (bula FDA).",
@@ -61,10 +61,10 @@
   ],
   "alertas": [
    "Abstinência aguda no dependente de opioide: começa em minutos e dura cerca de 2 h (dor no corpo, diarreia, taquicardia, febre, coriza, piloereção, sudorese, bocejos, náuseas e vômitos, agitação, tremor, cólica, hipertensão). No recém-nascido, inclui convulsão (bula). Vômito com rebaixamento aumenta o risco de aspiração.",
-   "Reversão abrupta: náuseas, vômitos, taquicardia, hipertensão, convulsão, taquicardia e fibrilação ventriculares, edema pulmonar e parada cardíaca; cautela em cardiopatas (bula). O edema pulmonar costuma responder à ventilação com pressão positiva (AHA 2023).",
+   "Reversão abrupta: náuseas, vômitos, taquicardia, hipertensão, convulsão, taquicardia e fibrilação ventriculares, edema pulmonar e parada cardíaca; cautela em cardiopatas (bula). O edema pulmonar costuma responder à ventilação com pressão positiva (AHA 2025).",
    "Não age na depressão por drogas não opioides. Buprenorfina: reversão lenta e incompleta, pode exigir doses altas (bula).",
    "A ação é mais curta que a de muitos opioides: quem respondeu deve continuar sob observação, com doses repetidas se preciso (bula).",
-   "Suspeita de opioide com benzodiazepínico: dar naloxona primeiro, antes de outros antídotos (AHA 2023).",
+   "Suspeita de opioide com benzodiazepínico: dar naloxona primeiro, antes de outros antídotos (AHA 2025).",
    "Reverter o opioide pode revelar efeitos de outras drogas usadas junto (cocaína, anticolinérgicos) (Maryland Poison Center 2026).",
    "Ligar para o CIATox: 0800 722 6001 (bula)."
   ],
@@ -76,7 +76,8 @@
    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed., Manole, 2024 — cap. 101, opioides (para conferência)",
    "Harrison's Principles of Internal Medicine, 22ª ed., McGraw Hill, 2025 — cap. 467, Opioid-Related Disorders, tabela 467-2 (para conferência)",
    "Lista de preços CMED/Anvisa, gerada em 23/09/2026 (Narcan, Cristália; genérico Hipolabor; só solução injetável)",
-   "Ministério da Saúde. RENAME 2024, 2ª ed. (2025): cloridrato de naloxona 0,4 mg/mL solução injetável, Componente Básico (V03AB15)"
+   "Ministério da Saúde. RENAME 2024, 2ª ed. (2025): cloridrato de naloxona 0,4 mg/mL solução injetável, Componente Básico (V03AB15)",
+   "Cao D et al. 2025 American Heart Association Guidelines for Cardiopulmonary Resuscitation and Emergency Cardiovascular Care — Part 10: Special Circumstances of Resuscitation. Circulation 2025;152(16 Suppl 2):S578–S672"
   ]
  },
  {
@@ -98,17 +99,17 @@
    "EV"
   ],
   "adulto": [
-   "Não usar de rotina no paciente intoxicado, sobretudo no usuário crônico de benzodiazepínico: risco de abstinência grave e convulsão (HC-FMUSP 18ª ed., cap. 101). No coma de causa indefinida, sem história confiável, o risco supera o benefício (AHA 2023). Benzodiazepínico isolado raramente ameaça a vida: o tratamento é suporte, com via aérea e ventilação.",
-   "Quando pode ser usado: reversão de sedação de procedimento em quem não usa benzodiazepínico cronicamente; depressão ou parada respiratória por benzodiazepínico puro, sem contraindicação; ingestão acidental de criança (AHA 2023; HC-FMUSP 18ª ed., cap. 101).",
-   "Dose: 0,2 mg EV em 15 s. Se não acordar em 60 s, 0,1 mg a cada 60 s, até o total de 1 mg; a dose usual é de 0,3–0,6 mg (bula, reversão em anestesia). AHA 2023: 0,2 mg, titulado até 1 mg. Painel: teto de 1 mg.",
+   "Não usar de rotina no paciente intoxicado, sobretudo no usuário crônico de benzodiazepínico: risco de abstinência grave e convulsão (HC-FMUSP 18ª ed., cap. 101). No coma de causa indefinida, sem história confiável, o risco supera o benefício (AHA 2025). Benzodiazepínico isolado raramente ameaça a vida: o tratamento é suporte, com via aérea e ventilação.",
+   "Quando pode ser usado: reversão de sedação de procedimento em quem não usa benzodiazepínico cronicamente; depressão ou parada respiratória por benzodiazepínico puro, sem contraindicação; ingestão acidental de criança (AHA 2025; HC-FMUSP 18ª ed., cap. 101).",
+   "Dose: 0,2 mg EV em 15 s. Se não acordar em 60 s, 0,1 mg a cada 60 s, até o total de 1 mg; a dose usual é de 0,3–0,6 mg (bula, reversão em anestesia). AHA 2025: 0,2 mg, titulado até 1 mg. Painel: teto de 1 mg.",
    "Tetos maiores nas bulas: na UTI ou na inconsciência de causa desconhecida, a bula brasileira começa com 0,3 mg e vai até 2 mg; a bula americana, na superdose, faz 0,2 mg em 30 s, depois 0,3 mg e então 0,5 mg a cada minuto até 3 mg (raramente 5 mg). Sem resposta: pensar em outra causa (bula; bula FDA).",
    "Em paciente de alto risco, titular mais devagar: cada dose leva 6–10 min para o efeito pleno (bula FDA).",
    "Início em 2–3 min; efeito de 30–45 min (HC-FMUSP 18ª ed., cap. 101), menor que o de muitos benzodiazepínicos: risco de voltar a sedar. Ressedação: repetir em bolus (não antes de 20 min, no máximo 1 mg por vez e 3 mg por hora, pela bula FDA) ou infusão de 0,1–0,4 mg/h ajustada pelo nível de despertar (bula).",
-   "Opioide e benzodiazepínico juntos: naloxona primeiro (AHA 2023).",
-   "Parada cardíaca: o flumazenil não tem papel (AHA 2023)."
+   "Opioide e benzodiazepínico juntos: naloxona primeiro (AHA 2025).",
+   "Parada cardíaca: o flumazenil não tem papel (AHA 2025)."
   ],
   "pediatria": [
-   "Acima de 1 ano (reversão de sedação consciente): 0,01 mg/kg (máximo 0,2 mg) EV em 15 s; se não acordar em 45 s, repetir 0,01 mg/kg (máximo 0,2 mg) a cada 60 s, até 4 vezes, com total máximo de 0,05 mg/kg ou 1 mg, o que for menor (bula). AHA 2023: 0,01 mg/kg.",
+   "Acima de 1 ano (reversão de sedação consciente): 0,01 mg/kg (máximo 0,2 mg) EV em 15 s; se não acordar em 45 s, repetir 0,01 mg/kg (máximo 0,2 mg) a cada 60 s, até 4 vezes, com total máximo de 0,05 mg/kg ou 1 mg, o que for menor (bula). AHA 2025: 0,01 mg/kg.",
    "Superdose em criança, menores de 1 ano e reanimação do recém-nascido: experiência limitada, usar com cuidado (bula). Sem dados para doses repetidas na ressedação da criança (bula).",
    "Ressedação em criança de 1–5 anos ocorreu entre 19 e 50 min após a dose (bula FDA): observar."
   ],
@@ -134,13 +135,13 @@
    "Hipersensibilidade ao flumazenil (bula) ou aos benzodiazepínicos (bula FDA).",
    "Benzodiazepínico em uso para controlar condição grave, como hipertensão intracraniana ou estado de mal epiléptico (bula).",
    "Sinais de intoxicação grave por antidepressivo tricíclico ou cíclico: QRS largo, arritmia ventricular, bloqueio, sinais anticolinérgicos (midríase, mucosa seca, íleo), abalos, rigidez ou convulsão focal, colapso circulatório (bula FDA).",
-   "Risco aumentado de convulsão ou arritmia (contraindicação forte, AHA 2023): uso crônico de benzodiazepínico ou dependência, epilepsia em tratamento prolongado com benzodiazepínico, abstinência de sedativos, abalos ou convulsão antes da dose, coingestão de droga pró-convulsivante ou que causa arritmia (bula; bula FDA; AHA 2023).",
-   "Coma de causa indefinida, sem história confiável (AHA 2023)."
+   "Risco aumentado de convulsão ou arritmia (contraindicação forte, AHA 2025): uso crônico de benzodiazepínico ou dependência, epilepsia em tratamento prolongado com benzodiazepínico, abstinência de sedativos, abalos ou convulsão antes da dose, coingestão de droga pró-convulsivante ou que causa arritmia (bula; bula FDA; AHA 2025).",
+   "Coma de causa indefinida, sem história confiável (AHA 2025)."
   ],
   "alertas": [
    "Convulsões: mais frequentes no uso prolongado de benzodiazepínico e na intoxicação por antidepressivo cíclico. Estar pronto para tratar: benzodiazepínico (pode precisar de dose maior que a usual), fenitoína ou barbitúrico (bula FDA).",
-   "Arritmias (supraventricular, ventricular, assistolia), sobretudo com antidepressivo tricíclico ou hipóxia (AHA 2023).",
-   "Não reverte de forma confiável a depressão respiratória, principalmente na intoxicação mista: ventilação é o tratamento principal (bula FDA; AHA 2023).",
+   "Arritmias (supraventricular, ventricular, assistolia), sobretudo com antidepressivo tricíclico ou hipóxia (AHA 2025).",
+   "Não reverte de forma confiável a depressão respiratória, principalmente na intoxicação mista: ventilação é o tratamento principal (bula FDA; AHA 2025).",
    "Abstinência (agitação, ansiedade, labilidade emocional, confusão, distorções sensoriais) com injeção rápida em quem usou benzodiazepínico por tempo prolongado: se ocorrer, diazepam ou midazolam EV lento, titulado (bula).",
    "Ressedação: observar por tempo adequado à dose e à duração do benzodiazepínico; não dirigir nas 24 h seguintes (bula).",
    "Traumatismo craniano em uso de benzodiazepínico: pode causar convulsão ou alterar o fluxo cerebral (bula).",
@@ -155,7 +156,8 @@
    "Lavonas EJ et al. 2023 American Heart Association Focused Update on the Management of Patients With Cardiac Arrest or Life-Threatening Toxicity Due to Poisoning. Circulation 2023;148:e149–e184 (recomendações de benzodiazepínicos e tabela de antídotos)",
    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed., Manole, 2024 — cap. 101, benzodiazepínicos (para conferência)",
    "Lista de preços CMED/Anvisa, gerada em 23/09/2026 (Lanexat, Biopas; Flumazil, Cristália; Lenazen, Teuto; genéricos Fresenius, Teuto, União Química e Hipolabor)",
-   "Ministério da Saúde. RENAME 2024, 2ª ed. (2025): flumazenil 0,1 mg/mL solução injetável, Componente Básico (V03AB25)"
+   "Ministério da Saúde. RENAME 2024, 2ª ed. (2025): flumazenil 0,1 mg/mL solução injetável, Componente Básico (V03AB25)",
+   "Cao D et al. 2025 American Heart Association Guidelines for Cardiopulmonary Resuscitation and Emergency Cardiovascular Care — Part 10: Special Circumstances of Resuscitation. Circulation 2025;152(16 Suppl 2):S578–S672"
   ]
  },
  {
@@ -180,7 +182,7 @@
   ],
   "adulto": [
    "Indicação pelo nomograma: paracetamol sérico colhido entre 4 e 24 h após ingestão única, de liberação imediata, com hora conhecida, na linha de tratamento (150 mcg/mL em 4 h) ou acima dela. Abaixo da linha, com hora certa e coleta com 4 h ou mais: sem antídoto (bula FDA Acetadote; consenso EUA/Canadá, Dart 2023). Usar a conta do nomograma do painel.",
-   "Iniciar antes do resultado: hora da ingestão desconhecida ou duvidosa; chegada com mais de 8 h da ingestão; sinal clínico de toxicidade; resultado que só sairá depois de 8 h da ingestão, se a dose foi maior que 200 mg/kg ou 10 g (bula FDA; consenso 2023). O HC-FMUSP usa, nessa situação, mais de 150 mg/kg ou 12 g. Depois, o nível decide se continua (bula FDA).",
+   "Iniciar antes do resultado: hora da ingestão desconhecida ou duvidosa; chegada com mais de 8 h da ingestão; sinal clínico de toxicidade; resultado que só sairá depois de 8 h da ingestão, se a dose foi maior que 150 mg/kg ou 10 g (decisão do painel: o mais protetor entre o HC-FMUSP, > 150 mg/kg ou > 12 g, e o consenso 2023, > 200 mg/kg ou > 10 g). Depois, o nível decide se continua (bula FDA).",
    "Uso repetido acima da dose terapêutica (nomograma não vale): tratar se paracetamol maior que 20 mcg/mL (consenso 2023) ou maior que 10 mcg/mL (HC-FMUSP), ou se AST/ALT alteradas.",
    "Quanto antes, melhor: proteção máxima até 8 h; a eficácia cai depois, sobretudo após 15 h, mas não deixar de tratar até 24 h ou mais, porque a hora relatada pode estar errada (bula; bula FDA).",
    "Esquema EV de 3 bolsas (21 h, total 300 mg/kg): 150 mg/kg em 1 h; em seguida 50 mg/kg em 4 h; em seguida 100 mg/kg em 16 h (bula Fluimucil; bula FDA). O ataque de 150 mg/kg deve correr em pelo menos 1 h (consenso 2023).",
@@ -283,15 +285,15 @@
    "Dose única: 1 g/kg (máx. 50 g), VO ou por sonda nasogástrica (Centre antipoison du Québec 2026; HC-FMUSP 18ª ed., cap. 101). Harrison: 1 g/kg. AACT/EAPCCT 2005 (doses da USP DI): adolescentes e adultos, 25–100 g.",
    "O efeito cai com o tempo: em voluntários, com 50 g ou mais, reduziu a absorção em média 47% quando dado em 30 min, 40% em 60 min e 16,5% em 120 min (AACT/EAPCCT 2005).",
    "Depois de 1 h, o benefício não pode ser excluído (AACT/EAPCCT 2005): considerar, com o CIATox, se a droga retarda o esvaziamento gástrico (anticolinérgico, opioide), salicilato, liberação prolongada ou revestimento entérico, grande quantidade ou suspeita de bezoar (Centre antipoison du Québec 2026).",
-   "Paracetamol em quantidade potencialmente hepatotóxica: 50–100 g no adulto (consenso EUA/Canadá, Dart 2023). HC-FMUSP: até 1–2 h; até 4 h na liberação prolongada ou com droga que retarda o esvaziamento gástrico.",
+   "Paracetamol em quantidade potencialmente hepatotóxica: mesma dose, 1 g/kg (máx. 50 g); o consenso EUA/Canadá (Dart 2023) usa 50–100 g no adulto. Prazo maior: até 1–2 h, e até 4 h na liberação prolongada ou com droga que retarda o esvaziamento gástrico (HC-FMUSP 18ª ed., cap. 101).",
    "Não intubar só para dar carvão (HC-FMUSP 18ª ed., cap. 101).",
    "Doses múltiplas, só com o CIATox, para quantidade com risco de vida de carbamazepina, fenobarbital, dapsona, quinina ou teofilina (Harrison 22ª ed., cap. 470). O HC-FMUSP (cap. 99, tabela 10) inclui rebaixamento por fenitoína e restringe a dapsona aos casos com meta-hemoglobinemia importante.",
-   "Esquema de doses múltiplas: 50 g de início, depois 25 g de 2/2 h ou 50 g de 4/4 h, por 12–24 h, o equivalente a 12,5 g/h (HC-FMUSP 18ª ed., cap. 99). Harrison: 0,5–1 g/kg a cada 2–4 h, reduzindo se a motilidade intestinal estiver diminuída. Fenobarbital: 50–100 g de início e 12,5–25 g de 4/4 h (HC-FMUSP 18ª ed., cap. 101)."
+   "Esquema de doses múltiplas: 50 g de início, depois 25 g de 2/2 h ou 50 g de 4/4 h, por 12–24 h, o equivalente a 12,5 g/h (HC-FMUSP 18ª ed., cap. 99). Harrison: 0,5–1 g/kg a cada 2–4 h, reduzindo se a motilidade intestinal estiver diminuída. Fenobarbital: o mesmo esquema; o HC-FMUSP (cap. 101) cita 50–100 g de início e 12,5–25 g de 4/4 h, mas o painel usa 50 g de início (tabela 10 do cap. 99)."
   ],
   "pediatria": [
    "Dose única: 1 g/kg (máx. 50 g), VO ou por sonda nasogástrica (Centre antipoison du Québec 2026). AACT/EAPCCT 2005 (doses da USP DI): menores de 1 ano, 10–25 g ou 0,5–1 g/kg; de 1 a 12 anos, 25–50 g ou 0,5–1 g/kg.",
-   "Paracetamol em quantidade potencialmente hepatotóxica: 25–50 g na criança (consenso 2023).",
-   "Doses múltiplas: 1 g/kg de início (HC-FMUSP 18ª ed., cap. 99, tabela 10); doses seguintes conforme o CIATox (Centre antipoison du Québec 2026).",
+   "Paracetamol em quantidade potencialmente hepatotóxica: mesma dose, 1 g/kg (máx. 50 g); o consenso 2023 (Dart) usa 25–50 g na criança.",
+   "Doses múltiplas: 1 g/kg de início (máx. 50 g) (HC-FMUSP 18ª ed., cap. 99, tabela 10); doses seguintes conforme o CIATox (Centre antipoison du Québec 2026).",
    "Mesmos limites de tempo e contraindicações do adulto. O HC-FMUSP lista o recém-nascido entre as contraindicações (cap. 99).",
    "Usar suspensão só com água, sem sorbitol: o sorbitol aumenta vômito, distúrbio eletrolítico e desidratação, sobretudo na criança (Centre antipoison du Québec 2026). Para aceitar melhor, misturar com refrigerante de cola na proporção de 1:1 logo antes, em copo opaco com canudo (Centre antipoison du Québec 2026)."
   ],
@@ -325,7 +327,7 @@
   "fontes": [
    "Chyka PA et al. (AACT/EAPCCT). Position Paper: Single-Dose Activated Charcoal. Clin Toxicol (Phila) 2005;43:61–87 (indicação até 1 h, doses da USP DI por idade, contraindicações, comprimidos inadequados, complicações)",
    "Centre antipoison du Québec (CIUSSS de la Capitale-Nationale). Antidotes — Activated charcoal, atualizado em 10/02/2026 (1 g/kg, máx. 50 g; preparo 1:5; administração; doses múltiplas pelo centro); e lista de substâncias para as quais o carvão não é ou raramente é recomendado",
-   "Dart RC et al. Management of Acetaminophen Poisoning in the US and Canada: A Consensus Statement. JAMA Netw Open 2023;6(8):e2327739 (carvão 50–100 g no adulto e 25–50 g na criança)",
+   "Dart RC et al. Management of Acetaminophen Poisoning in the US and Canada: A Consensus Statement. JAMA Netw Open 2023;6(8):e2327739 (carvão: o consenso usa 50–100 g no adulto e 25–50 g na criança; o painel usa 1 g/kg, máx. 50 g, por decisão do médico)",
    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed., Manole, 2024 — cap. 99, Manejo inicial das intoxicações exógenas (indicação, contraindicações, doses, tabela 10 de doses múltiplas); cap. 100 (metanol e etilenoglicol); cap. 101 (1 g/kg, máx. 50 g; paracetamol, lítio, fenobarbital) — para conferência",
    "Harrison's Principles of Internal Medicine, 22ª ed., McGraw Hill, 2025 — cap. 470, Poisoning and Drug Overdose (1 g/kg, substâncias pouco adsorvidas, doses múltiplas, catárticos) — para conferência",
    "Lista de preços CMED/Anvisa, gerada em 23/09/2026 (só Carverol, carvão vegetal ativado 250 mg comprimido, União Química; nenhuma apresentação para intoxicação)",

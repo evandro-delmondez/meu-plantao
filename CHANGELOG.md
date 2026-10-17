@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## 1.12.0 — 2026-10-17
+- **Intoxicação — cartão "Agora":** estabilizar, reconhecer a síndrome tóxica, carvão ativado, antídotos (naloxona, flumazenil, N-acetilcisteína, bicarbonato no tricíclico, atropina no organofosforado, glicose e octreotide na sulfonilureia), observação e notificação; doses pelo peso.
+- **CIATox a um toque:** Disque-Intoxicação 0800 722 6001 e o CIATox da sua região, salvo no aparelho.
+- **Nomograma do paracetamol** (Cálculos > Laboratório): linha de 150, nível em mcg/mL ou µmol/L, avisos de quando não vale.
+- **Fichas novas, grupo Antídotos:** naloxona, flumazenil, N-acetilcisteína (3 bolsas e 2 bolsas, peso de cálculo até 100 kg) e carvão ativado.
+- **Decisões do médico:** carvão ativado 1 g/kg (máx. 50 g) em todo o painel, inclusive na calculadora; N-acetilcisteína sem dosagem em até 8 h se > 150 mg/kg ou > 10 g.
+- **Conduta de intoxicação** reescrita com as mesmas doses do cartão. Conferido por agentes independentes (cartão, nomograma, CIATox e fichas).
+
 ## 1.11.0 — 2026-10-09
 Correções da simulação de plantão no celular (10 casos da porta).
 - **Receita com escolha por toque:** acima da receita, chips para escolher entre as alternativas ("Ou"), ligar os blocos opcionais ("Se alergia a penicilina", "Se falha…") e tirar itens. Só o escolhido vai para a receita, a evolução e a cópia, renumerado; notas para o médico ("Criança", "Gestante", "CID") nunca saem na receita. Os alertas (QT, alergia) seguem a receita escolhida.

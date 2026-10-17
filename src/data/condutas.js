@@ -201,16 +201,19 @@ const BASE = [
   "cat": "dor",
   "cid": "R51",
   "sin": "dor de cabeca cefaleia tensional",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.\n3) Dimenidrinato + Piridoxina 50/10mg -------- 1 cx\nTomar 1 cp VO de 6/6h se náuseas, vômitos ou tontura.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre (no máximo 8 cp por dia).\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h se dor forte, após as refeições, por até 3 dias (só se dengue descartada). No máximo 3 cp por dia.\n3) Dimenidrinato + Piridoxina 50/10mg -------- 1 cx\nTomar 1 cp VO de 6/6h se náuseas, vômitos ou tontura.",
   "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).",
-  "orient": "- Retorno imediato se: pior dor de cabeça da vida, início súbito, febre com rigidez de nuca, déficit neurológico, confusão, piora progressiva.",
+  "orient": "- Retorno imediato se: pior dor de cabeça da vida, início súbito, febre com rigidez de nuca, déficit neurológico, confusão, piora progressiva.\n- Febre com dor de cabeça, dor no corpo ou atrás dos olhos: pensar em dengue antes de anti-inflamatório.\n- Evitar analgésico em mais de 10 dias por mês (risco de cefaleia por uso excessivo); seguimento na UBS se crises frequentes.",
   "rev": [
+   "Corrigido (2026-10-17): ibuprofeno só se dor forte, por até 3 dias, com dengue descartada e no máximo 3 cp por dia; dipirona com teto de 8 cp por dia; fonte SNNOOP10 corrigida (era citada como SNOOP4); orientação sobre dengue e uso excessivo de analgésico (ABN/SBCe 2018; MS Dengue 2024; Do 2019).",
    "Ajustado: ibuprofeno 300mg 12/12h → 600mg 8/8h.",
    "Adicionado: sinais de alarme e opção na unidade.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Do TP et al. Red and orange flags for secondary headaches (SNOOP4) (Neurology 2019;92:134)."
+   "Do TP et al. Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list. Neurology 2019;92(3):134–144. https://doi.org/10.1212/WNL.0000000000006697",
+   "Speciali JG et al. Protocolo Nacional para Diagnóstico e Manejo das Cefaleias nas Unidades de Urgência do Brasil — 2018. Academia Brasileira de Neurologia e Sociedade Brasileira de Cefaleia (tensional episódica: paracetamol 750–1.000 mg ou dipirona 500–1.000 mg até 6/6h, ibuprofeno 400–800 mg até 6/6h; seguimento na UBS). https://neurologiahu.paginas.ufsc.br/files/2012/08/Protocolo-nacional-para-diagno%CC%81stico-e-manejo-das-cefaleias-nas-unidades-de-urge%CC%82ncia-do-Brasil_2018.pdf",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
  },
  {
@@ -219,15 +222,19 @@ const BASE = [
   "cat": "dor",
   "cid": "G44.0",
   "sin": "cluster cefaleia trigeminal",
-  "casa": "Uso oral (profilaxia de transição, até avaliação com neurologista)\n1) Verapamil 80mg ---------------------------- 90 cp\nTomar 1 cp VO de 8/8h.\n2) Prednisona 20mg --------------------------- 15 cp\nTomar 3 cp VO pela manhã por 5 dias (ponte até o verapamil agir).",
-  "unidade": "1) O2 a 100% em máscara não reinalante, 12 a 15 L/min, por 15 a 20 min, com o paciente sentado.\n2) Sumatriptano 6mg SC (máx. 2 doses em 24h, intervalo ≥ 1h)\n   Ou Sumatriptano spray nasal 20mg (1 jato).",
+  "casa": "Uso oral (profilaxia de transição, até avaliação com neurologista)\n1) Verapamil 80mg ---------------------------- 90 cp\nTomar 1 cp VO de 8/8h.\n2) Prednisona 20mg --------------------------- 55 cp\nTomar pela manhã, após o café: 5 cp por 5 dias; depois 4 cp por 3 dias, 3 cp por 3 dias, 2 cp por 3 dias e 1 cp por 3 dias, e parar (ponte até o verapamil agir).",
+  "unidade": "1) O2 a 100% em máscara não reinalante, 12 a 15 L/min, por 15 a 20 min, com o paciente sentado.\n2) Sumatriptano 6mg SC (máx. 2 doses em 24h, intervalo ≥ 1h)\n   Ou Sumatriptano spray nasal 10mg/dose (Sumax nasal): 2 doses (20mg), uma em cada narina. Menos eficaz que o subcutâneo; não somar mais de 40mg em 24h.",
   "orient": "- Encaminhar ao neurologista.\n- Evitar álcool durante o período de crises.\n- Verapamil: fazer ECG basal (risco de bloqueio AV).",
   "rev": [
+   "Corrigido (2026-10-17): sumatriptano nasal com a apresentação brasileira (10 mg/dose; 2 doses = 20 mg; máx. 40 mg em 24 h); ponte com prednisona 60 mg → 100 mg por 5 dias com redução de 20 mg a cada 3 dias (EAN 2023; PredCH, Obermann 2021; bula Sumax).",
    "Corrigido: máscara de Venturi não entrega 100%; usar máscara não reinalante 12–15 L/min.",
    "Adicionado: ponte com prednisona e ECG antes do verapamil."
   ],
   "fontes": [
-   "Robbins MS et al. Treatment of Cluster Headache: AHS Evidence-Based Guidelines (Headache 2016;56:1093)."
+   "Robbins MS et al. Treatment of Cluster Headache: AHS Evidence-Based Guidelines (Headache 2016;56:1093).",
+   "May A et al. European Academy of Neurology guidelines on the treatment of cluster headache. Eur J Neurol 2023;30(10):2955–2979 (O2 100% ≥ 12 L/min por 15 min; sumatriptano 6 mg subcutâneo; verapamil ≥ 240 mg/dia com ECG; prednisona ≥ 100 mg/dia por 5 dias). https://doi.org/10.1111/ene.15956",
+   "Obermann M et al. Safety and efficacy of prednisone versus placebo in short-term prevention of episodic cluster headache (PredCH). Lancet Neurol 2021;20(1):29–37 (100 mg por 5 dias, depois redução de 20 mg a cada 3 dias).",
+   "Bula Anvisa do Sumax (sumatriptano): injetável 6 mg/0,5 mL, até 2 doses em 24 h com intervalo ≥ 1 h; spray nasal 10 mg/dose, máx. 40 mg em 24 h; contraindicado em doença coronariana, AVC, HAS não controlada e com ergotamina em 24 h."
   ]
  },
  {
@@ -310,9 +317,10 @@ const BASE = [
   "cid": "G41.9",
   "sin": "convulsao epilepsia crise tonico clonica status",
   "casa": "",
-  "unidade": "Passo 0 (0–5 min)\n1) Monitorização, O2, acesso venoso, decúbito lateral, aspiração se necessário.\n2) Glicemia capilar. Exames: Na, K, Ca, Mg, ureia, creatinina, gasometria, hemograma, ECG. TC de crânio e LCR conforme o caso.\n3) Se hipoglicemia: Glicose 50% 50 mL EV (ou Glicose 10% 150–200 mL); se etilismo/desnutrição, Tiamina 100mg EV junto, sem atrasar a glicose.\n\nPasso 1 (5 min) — benzodiazepínico\nDiazepam 10mg EV (adulto) | 0,15–0,2 mg/kg (criança, máx. 10mg). Pode repetir 1x após 5 min.\nOu Midazolam 10mg IM (> 40 kg) | 5mg IM (13–40 kg). Dose única.\n\nPasso 2 (20 min) — se persistir\nFenitoína 20 mg/kg EV em SF 0,9% (máx. 50 mg/min; monitorizar ECG e PA)\nOu Levetiracetam 60 mg/kg EV (máx. 4.500mg) em 15 min\nOu Ácido valproico 40 mg/kg EV (máx. 3.000mg) em 10 min (não usar em hepatopatia, doença mitocondrial ou gestação)\nOu Fenobarbital 20 mg/kg EV, até 50 mg/min (bula: menos de 60 mg/min); existem ampolas de 100 e de 200 mg/mL. Bula: contraindicado na gestação e na lactação, em recém-nascidos e em mulheres em idade fértil — pesar o risco na emergência\n* Obter via aérea avançada se necessário.\n\nPasso 3 (40 min) — refratário\nMidazolam 0,2 mg/kg ataque + 0,05–2 mg/kg/h\nOu Propofol 1–2 mg/kg ataque + 2–10 mg/kg/h\nOu Tiopental 3–5 mg/kg ataque + 3–5 mg/kg/h\n* IOT, EEG contínuo e UTI.",
+  "unidade": "Passo 0 (0–5 min)\n1) Monitorização, O2, acesso venoso, decúbito lateral, aspiração se necessário.\n2) Glicemia capilar. Exames: Na, K, Ca, Mg, ureia, creatinina, gasometria, hemograma, ECG. TC de crânio e LCR conforme o caso.\n3) Se hipoglicemia: Glicose 50% 50 mL EV (ou Glicose 10% 150–200 mL); se etilismo/desnutrição, Tiamina 100mg EV junto, sem atrasar a glicose.\n4) Gestante a partir de 20 semanas ou puérpera: pensar em eclâmpsia; sulfato de magnésio é a droga de escolha (ver conduta Pré-eclâmpsia/eclâmpsia).\n\nPasso 1 (5 min) — benzodiazepínico\nDiazepam 10mg EV lento, sem diluir, até 5 mg/min (adulto) | 0,15–0,2 mg/kg (criança, máx. 10mg). Pode repetir 1 vez após 5 min.\nOu Midazolam 10mg IM (> 40 kg) | 5mg IM (13–40 kg). Dose única.\n\nPasso 2 (20 min) — se persistir\nFenitoína 20 mg/kg EV em SF 0,9%, nunca em soro glicosado (até 50 mg/min; idoso ou cardiopata: até 20 mg/min; monitorizar ECG e PA)\nOu Levetiracetam 60 mg/kg EV (máx. 4.500mg) em 15 min\nOu Ácido valproico 40 mg/kg EV (máx. 3.000mg) em 10 min (não usar em hepatopatia, doença mitocondrial ou gestação)\nOu Fenobarbital 20 mg/kg EV, até 50 mg/min (bula: menos de 60 mg/min); existem ampolas de 100 e de 200 mg/mL. Bula: contraindicado na gestação e na lactação, em recém-nascidos e em mulheres em idade fértil — pesar o risco na emergência\n* Obter via aérea avançada se necessário.\n\nPasso 3 (40 min) — refratário\nMidazolam 0,2 mg/kg ataque + 0,05–2 mg/kg/h\nOu Propofol 1–2 mg/kg ataque + 2–10 mg/kg/h\nOu Tiopental 3–5 mg/kg ataque, depois 1–2 mg/kg a cada 2–3 min até controlar + 3–7 mg/kg/h (EFNS 2010)\n* IOT, EEG contínuo e UTI.",
   "orient": "- Use a aba Calculadora para doses e volumes pelo peso.",
   "rev": [
+   "Corrigido (2026-10-17): diazepam lento até 5 mg/min e fenitoína até 20 mg/min no idoso ou cardiopata, nunca em soro glicosado, como no cartão Agora; eclâmpsia no passo 0; tiopental mantido com a dose da EFNS 2010 (manutenção 3–5 → 3–7 mg/kg/h, com bolus adicionais de 1–2 mg/kg); fonte da escetamina retirada; ACEP 2024 (NCS 2012; bula Compaz; HC-FMUSP 18ª ed.; MS 2022).",
    "Atualizado: fenobarbital até 50 mg/min (bula: < 60 mg/min), duas concentrações e contraindicações da bula; retirada a cetamina do estado de mal refratário (sem dose com fonte).",
    "Ajustado: tempos seguem a diretriz da AES (5/20/40 min).",
    "Adicionado: levetiracetam e valproato como opções equivalentes no passo 2.",
@@ -324,11 +332,15 @@ const BASE = [
    "Schabelman E, Kuo D. Glucose before thiamine for Wernicke encephalopathy: a literature review (J Emerg Med 2012;42:488).",
    "Bula Anvisa do Depacon (valproato de sódio injetável): contraindicado em hepatopatia, doença mitocondrial (POLG), distúrbio do ciclo da ureia e porfiria.",
    "Brophy GM et al. Guidelines for the evaluation and management of status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3): fenobarbital 20 mg/kg.",
-   "Bula da escetamina: Ketanest S (União Europeia) — indução 0,5–1 mg/kg EV; Ketamin (Cristália), bula Anvisa — potência cerca de 2 vezes a da cetamina racêmica.",
    "Bula do fenobarbital injetável (Fenocris, Cristália; Carbital 200 mg/mL), Anvisa.",
    "Glauser T et al. Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus — AES (Epilepsy Curr 2016;16:48).",
    "Kapur J et al. ESETT: levetiracetam, fosfenitoína ou valproato (N Engl J Med 2019;381:2103).",
-   "Silbergleit R et al. RAMPART: midazolam IM vs lorazepam EV (N Engl J Med 2012)."
+   "Silbergleit R et al. RAMPART: midazolam IM vs lorazepam EV (N Engl J Med 2012).",
+   "Smith MD et al. ACEP Clinical Policy: Critical Issues in the Management of Adult Patients Presenting to the Emergency Department With Seizures (Ann Emerg Med 2024;84(1):e1–e12). doi 10.1016/j.annemergmed.2024.02.018",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. complementar 18, Abordagem do estado de mal epiléptico (fenitoína até 20 mg/min no idoso e no cardiopata).",
+   "Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022 — cap. 11: eclâmpsia e sulfato de magnésio.",
+   "Meierkord H et al. EFNS guideline on the management of status epilepticus in adults (Eur J Neurol 2010;17:348–355): tiopental 3–5 mg/kg em bolus, mais 1–2 mg/kg a cada 2–3 min até controlar, depois 3–7 mg/kg/h; midazolam 0,2 mg/kg + 0,05–0,4 mg/kg/h; propofol 2–3 mg/kg + 4–10 mg/kg/h. https://doi.org/10.1111/j.1468-1331.2009.02917.x",
+   "Bula Fenital (fenitoína injetável), Anvisa: incompatível com soro glicosado."
   ]
  },
  {
@@ -525,16 +537,22 @@ const BASE = [
   "cat": "dor",
   "cid": "M54.5",
   "sin": "dor nas costas lombar muscular mialgia contratura",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.\nOu\n1) Paracetamol 750mg ------------------------- 20 cp\nTomar 1 cp VO de 6/6h se dor.\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\nOu\n2) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n3) Ciclobenzaprina 5mg ----------------------- 10 cp\nTomar 1 cp VO à noite por 10 dias.\n4) Tramadol 50mg ----------------------------- 10 cp\nTomar 1 cp VO de 8/8h somente se dor intensa.",
-  "unidade": "1) Cetoprofeno 100 mg IM (ampola 50 mg/mL, 2 mL) ou EV (apresentação própria para EV, em 100 mL de SF em 20–30 min)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n2) Dexametasona 4 mg IM ou EV lenta (opcional; benefício pequeno).",
-  "orient": "- Manter-se ativo, evitar repouso absoluto; calor local.\n- Retorno imediato se: perda de força nas pernas, alteração urinária/fecal, anestesia em sela, febre, trauma, câncer prévio, perda de peso.\n- CID dorsalgia M54.9 | mialgia M79.1.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).\nOu\n1) Paracetamol 750mg ------------------------- 20 cp\nTomar 1 cp VO de 6/6h se dor (no máximo 4 cp por dia).\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\nOu\n2) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n3) Ciclobenzaprina 5mg ----------------------- 10 cp\nTomar 1 cp VO à noite por até 10 dias. Pode dar sono: não dirigir. Evitar em idosos.\n4) Tramadol 50mg ----------------------------- 10 cp\nTomar 1 cp VO de 8/8h somente se dor intensa que não melhora com os anteriores, por até 5 dias (no máximo 3 cp por dia).",
+  "unidade": "1) Cetoprofeno 100 mg IM (ampola 50 mg/mL, 2 mL) ou EV (apresentação própria para EV, em 100 mL de SF em 20–30 min)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.",
+  "orient": "- Manter-se ativo, evitar repouso absoluto; calor local.\n- Retorno imediato se: perda de força nas pernas, alteração urinária/fecal, anestesia em sela, febre, trauma, câncer prévio, perda de peso.\n- CID dorsalgia M54.9 | mialgia M79.1.\n- Dor no corpo com febre: pensar em dengue e não usar anti-inflamatório (ibuprofeno, diclofenaco, cetoprofeno) até descartá-la.",
   "rev": [
+   "Corrigido (2026-10-17): teto da dipirona (8 cp por dia), do paracetamol (4 cp por dia) e do tramadol (3 cp por dia, até 5 dias); ciclobenzaprina com alerta de sono e no idoso; dexametasona retirada (sem benefício, ACP 2017; NICE NG59); alerta de dengue na mialgia (CDC 2022; Beers 2023; MS Dengue 2024).",
    "Ajustado: tramadol somente se dor intensa (não fixo por 5 dias).",
    "Adicionado: sinais de alarme (bandeiras vermelhas).",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Qaseem A et al. ACP Guideline: Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (Ann Intern Med 2017)."
+   "Qaseem A et al. ACP Guideline: Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (Ann Intern Med 2017).",
+   "NICE NG59. Low back pain and sciatica in over 16s: assessment and management, 2016 (atualizada em 2020): manter-se ativo; AINE na menor dose e pelo menor tempo; não oferecer paracetamol isolado, opioide fraco só se AINE contraindicado ou ineficaz.",
+   "Dowell D et al. CDC Clinical Practice Guideline for Prescribing Opioids for Pain — United States, 2022. MMWR Recomm Rep 2022;71(3):1–95.",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar relaxante muscular; tramadol com cautela (hiponatremia).",
+   "Bula Anvisa da ciclobenzaprina (Miosan): sonolência; uso por até 2–3 semanas; interação com tramadol e antidepressivos (síndrome serotoninérgica).",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
  },
  {
@@ -634,17 +652,22 @@ const BASE = [
   "cat": "dor",
   "cid": "G43.9",
   "sin": "migranea dor de cabeca pulsatil",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.\n3) Naratriptana 2,5mg ------------------------ 4 cp\nTomar 1 cp VO no início da crise. Pode repetir após 4h. Máx. 2 cp/dia.",
-  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n2) Dexametasona 10 mg EV lenta ou IM (reduz recorrência nas 72h).\n   (Alternativa IM: Dipirona 1g IM + Dexametasona 4mg IM + Ondansetrona 4mg IM.)",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO no início da crise, após alimentar-se; pode repetir após 8h (no máximo 3 cp por dia; só se dengue descartada).\n3) Naratriptana 2,5mg ------------------------ 4 cp\nTomar 1 cp VO no início da crise. Se a dor melhorar e voltar, pode repetir após 4h; se não melhorar com o 1º, não repetir na mesma crise. No máximo 2 cp por dia.",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n2) Dexametasona 10 mg EV lenta ou IM (reduz recorrência nas 72h).\n   (Tudo IM, sem acesso venoso: Dipirona 1 g IM + Metoclopramida 10 mg IM + Dexametasona 10 mg IM.)",
   "orient": "- Triptano contraindicado em doença coronariana, AVC prévio e HAS não controlada.\n- Diário de crises; evitar uso de analgésico > 10 dias/mês (cefaleia por abuso).",
   "rev": [
+   "Corrigido (2026-10-17): ibuprofeno na crise, e não em horário fixo, com teto de 3 cp por dia e só com dengue descartada; dipirona com teto de 8 cp por dia; naratriptana sem repetir quando a 1ª dose falha; alternativa IM com metoclopramida e dexametasona 10 mg (sai ondansetrona e dexametasona 4 mg) (ACP 2025; AHS 2016; bula Naramig; MS Dengue 2024).",
    "Adicionado: metoclopramida EV (antiemético com efeito antimigranoso) e dexametasona 10mg para evitar recorrência.",
    "Adicionado: contraindicações do triptano.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
    "Orr SL et al. Management of Adults With Acute Migraine in the ED: AHS Evidence Assessment (Headache 2016;56:911).",
-   "Ailani J et al. AHS Consensus Statement 2021 (triptanos e contraindicações)."
+   "Ailani J et al. AHS Consensus Statement 2021 (triptanos e contraindicações).",
+   "Qaseem A et al. Pharmacologic Treatment of Acute Episodic Migraine Headache in Outpatient Settings: A Clinical Guideline From the American College of Physicians. Ann Intern Med 2025 (online 18/03/2025): AINE ou paracetamol; triptano somado se não responder.",
+   "Speciali JG et al. Protocolo Nacional para Diagnóstico e Manejo das Cefaleias nas Unidades de Urgência do Brasil — 2018 (ABN/SBCe).",
+   "Bula Anvisa do Naramig (naratriptana 2,5 mg), GSK: segunda dose após pelo menos 4 h só se a dor voltar; não repetir se a 1ª não fez efeito; máx. 5 mg em 24 h.",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
  },
  {
@@ -780,16 +803,21 @@ const BASE = [
   "cat": "dor",
   "cid": "M10.9",
   "sin": "artrite gotosa acido urico podagra",
-  "casa": "Uso oral\n1) Colchicina 0,5mg -------------------------- 20 cp\nTomar 2 cp VO agora e 1 cp após 1h. Depois, 1 cp de 12/12h até 2–3 dias após o fim da crise.\n2) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\nOu (se contraindicação a AINE)\n2) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.",
+  "casa": "Uso oral\n1) Colchicina 0,5mg -------------------------- 20 cp\nTomar 2 cp VO agora e 1 cp após 1h. Depois, 1 cp de 12/12h até 2–3 dias após o fim da crise.\n2) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias. Não usar se doença renal, úlcera, sangramento, anticoagulante ou insuficiência cardíaca.\nOu (se contraindicação a AINE)\n2) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.",
   "unidade": "1) Cetoprofeno 100 mg EV (apresentação própria para EV) em 100 mL de SF em 20–30 min, ou IM (ampola 50 mg/mL)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n2) Dexametasona 4–10 mg IM ou EV lenta.",
-  "orient": "- Não suspender o alopurinol se já usa.\n- Evitar álcool (principalmente cerveja), carnes vermelhas, frutos do mar e refrigerantes.\n- Gelo local 20 min, 3–4x ao dia.\n- Ajustar colchicina em DRC.",
+  "orient": "- Não suspender o alopurinol se já usa.\n- Evitar álcool (principalmente cerveja), carnes vermelhas, frutos do mar e refrigerantes.\n- Gelo local 20 min, 3–4x ao dia.\n- Colchicina: começar em até 36 h do início da crise. Não usar com claritromicina, eritromicina, cetoconazol, itraconazol, ritonavir, ciclosporina ou tacrolimo (toxicidade grave). Na doença renal crônica avançada (clearance < 30 mL/min) ou em diálise, preferir corticoide. Se usar: clearance < 30, só o esquema do 1º dia, sem o 12/12h; diálise, 1 cp (0,5 mg) em dose única; nos dois casos, não repetir antes de 14 dias (bula Colcrys). Suspender se diarreia.",
   "rev": [
+   "Corrigido (2026-10-17): colchicina com as interações graves (claritromicina, azóis, ritonavir, ciclosporina, tacrolimo) e a conduta na DRC avançada; diclofenaco com contraindicações na receita (ACR 2020; EULAR 2016; bula Colcrys; Beers 2023).",
    "Corrigido (importante): colchicina 1mg 8/8h por 7 dias é dose tóxica. Esquema de baixa dose: 1mg + 0,5mg após 1h, depois 0,5mg 12/12h (ACR/EULAR).",
    "Adicionado: prednisona como alternativa ao AINE.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "FitzGerald JD et al. 2020 American College of Rheumatology Guideline for the Management of Gout (Arthritis Care Res 2020)."
+   "FitzGerald JD et al. 2020 American College of Rheumatology Guideline for the Management of Gout (Arthritis Care Res 2020).",
+   "Richette P et al. 2016 updated EULAR evidence-based recommendations for the management of gout (Ann Rheum Dis 2017;76:29): colchicina 1 mg e 0,5 mg após 1 h no 1º dia; prednisolona 30–35 mg/dia por 3–5 dias; evitar colchicina e AINE na DRC grave; evitar colchicina com inibidores potentes de CYP3A4 e glicoproteína P.",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 384 — Gout and Other Crystal-Associated Arthropathies.",
+   "Bula FDA do Colcrys (colchicina): na DRC grave, não repetir o tratamento da crise antes de 14 dias; contraindicada com inibidor potente de CYP3A4 ou glicoproteína P na doença renal ou hepática.",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): AINE no idoso com risco renal e de sangramento."
   ]
  },
  {
@@ -798,14 +826,17 @@ const BASE = [
   "cat": "dor",
   "cid": "M10.9",
   "sin": "acido urico alopurinol",
-  "casa": "Uso oral\n1) Alopurinol 100mg -------------------------- 30 cp\nTomar 1 cp VO 1x ao dia. Iniciar 2 a 4 semanas após a crise; ajustar com clínico conforme ácido úrico (meta < 6 mg/dL).\n2) Colchicina 0,5mg -------------------------- 60 cp\nTomar 1 cp VO de 12/12h por 3 a 6 meses (profilaxia de crises ao iniciar o alopurinol).",
+  "casa": "Uso oral\n1) Alopurinol 100mg -------------------------- 30 cp\nTomar 1 cp VO 1 vez ao dia (na doença renal crônica moderada ou grave, meio cp). Pode começar durante a crise, junto com a colchicina. Aumentar com o clínico a cada 2 a 5 semanas, conforme o ácido úrico (meta < 6 mg/dL). Se já usa, não suspender durante a crise.\n2) Colchicina 0,5mg -------------------------- 60 cp\nTomar 1 cp VO de 12/12h por 3 a 6 meses (profilaxia de crises ao iniciar o alopurinol). Na doença renal crônica moderada ou no idoso, 1 cp 1 vez ao dia. Não usar com claritromicina, cetoconazol ou ciclosporina. Clearance < 30 mL/min ou diálise: não usar sem o clínico (a bula pede 0,3 mg/dia, dose que o comprimido de 0,5 mg não permite).",
   "unidade": "",
   "orient": "- Início e titulação idealmente no ambulatório.\n- Suspender e procurar atendimento se lesões de pele (risco de reação grave ao alopurinol).",
   "rev": [
+   "Corrigido (2026-10-17): alopurinol pode começar durante a crise; meio cp na DRC moderada ou grave, na própria receita; titulação a cada 2 a 5 semanas; colchicina 1 vez ao dia na DRC e no idoso, com as interações (ACR 2020; EULAR 2016; bula Zyloric).",
    "Corrigido: alopurinol deve iniciar em dose baixa (100mg; 50mg na DRC) e ser titulado, não 300mg de início (ACR 2020)."
   ],
   "fontes": [
-   "FitzGerald JD et al. 2020 ACR Guideline for the Management of Gout."
+   "FitzGerald JD et al. 2020 ACR Guideline for the Management of Gout.",
+   "Richette P et al. 2016 updated EULAR evidence-based recommendations for the management of gout (Ann Rheum Dis 2017;76:29): alopurinol começando com 100 mg/dia e aumentando 100 mg a cada 2–4 semanas; profilaxia com colchicina 0,5–1 mg/dia por 6 meses, com dose menor na DRC; evitar com inibidores potentes.",
+   "Bula Anvisa do Zyloric (alopurinol): suspender ao primeiro sinal de erupção cutânea; reduzir a dose na insuficiência renal."
   ]
  },
  {
@@ -1036,15 +1067,18 @@ const BASE = [
   "cat": "psi",
   "cid": "G47.0",
   "sin": "dificuldade dormir sono",
-  "casa": "Uso oral\n1) Passiflora extrato seco 200mg ------------- 30 cp\nTomar 1 cp VO 30 min antes de dormir.",
+  "casa": "Sem remédio para dormir (higiene do sono)\n1) Deitar e levantar sempre no mesmo horário, inclusive no fim de semana.\n2) Sem telas 1 h antes de deitar; sem cafeína depois das 16 h; evitar cochilos longos.\n3) Usar a cama só para dormir; se não dormir em cerca de 20 min, levantar e voltar quando tiver sono.\n4) Procurar a UBS se a insônia durar mais de 3 meses (terapia cognitivo-comportamental para insônia).",
   "unidade": "",
-  "orient": "- Higiene do sono: horário fixo, evitar telas 1h antes, cafeína após 16h e cochilos longos.\n- Insônia > 3 meses: encaminhar para avaliação (TCC-I é o tratamento de 1ª linha).",
+  "orient": "- Higiene do sono: horário fixo, evitar telas 1h antes, cafeína após 16h e cochilos longos.\n- Insônia há mais de 3 meses: encaminhar à UBS ou ao especialista; o tratamento de 1ª linha é a terapia cognitivo-comportamental para insônia (TCC-I), não o remédio.\n- Evitar benzodiazepínico para dormir (dependência, quedas, acidentes); no idoso, não usar.",
   "rev": [
+   "Corrigido (2026-10-17): passiflora retirada (não recomendada pela Associação Brasileira do Sono); sem hipnótico na porta, só higiene do sono e encaminhamento para TCC-I; orientação contra benzodiazepínico (ABS 2023; ACP 2016; Beers 2023).",
    "Adicionado: higiene do sono."
   ],
-  "evid": "Passiflora tem evidência fraca (revisões Cochrane sem dados suficientes). A base do tratamento da insônia é a TCC-I.",
+  "evid": "Passiflora e valeriana: não recomendadas pela Associação Brasileira do Sono (2023). A base do tratamento é a TCC-I.",
   "fontes": [
-   "Qaseem A et al. ACP Guideline: Management of Chronic Insomnia (Ann Intern Med 2016) — TCC-I como 1ª linha."
+   "Qaseem A et al. ACP Guideline: Management of Chronic Insomnia (Ann Intern Med 2016) — TCC-I como 1ª linha.",
+   "Drager LF et al. 2023 Guidelines on the Diagnosis and Treatment of Insomnia in Adults — Brazilian Sleep Association. Sleep Sci 2023;16(Suppl 2):507–549 (TCC-I multicomponente como padrão-ouro; fitoterápicos, melatonina no adulto e benzodiazepínico não recomendados; zolpidem por até 4 semanas). https://doi.org/10.1055/s-0043-1776281",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar benzodiazepínico e Z-droga no idoso."
   ]
  },
  {
@@ -1053,17 +1087,21 @@ const BASE = [
   "cat": "dor",
   "cid": "R42",
   "sin": "tontura vertigem labirintite vppb",
-  "casa": "Uso oral\n1) Dimenidrinato + Piridoxina 50/10mg -------- 1 cx\nTomar 1 cp VO de 6/6h por 3 dias se tontura, náuseas ou vômitos.\n\n# Vertigem aguda intensa:\n1) Flunarizina 10mg -------------------------- 5 cp\nTomar 1 cp VO ao deitar por 5 dias.\n\n# Vertigem crônica/recorrente (ex.: Ménière):\n1) Betaistina 16mg --------------------------- 30 cp\nTomar 1 cp VO de 8/8h (reavaliar com otorrino).\n\n# Gestante:\n1) Meclizina 25mg (Meclin) ------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\n\n# Refratário aos anti-histamínicos:\n1) Clonazepam 0,5mg -------------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\n\n# Náuseas:\n2) Ondansetrona 4mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h por 3 dias se náuseas ou vômitos.",
-  "unidade": "1) Dimenidrinato + Piridoxina: ampola EV (10 mL) em 100 mL de SF em 30 min; existe apresentação própria para IM\n   Ou Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n2) Exame: HINTS (head impulse, nistagmo, skew) e Dix-Hallpike.\n3) VPPB (Dix-Hallpike positivo): manobra de Epley.",
+  "casa": "Uso oral\n1) Dimenidrinato + Piridoxina 50/10mg -------- 12 cp\nTomar 1 cp VO de 6/6h se tontura, náuseas ou vômitos, por até 3 dias. Dá sono: não dirigir. Evitar em idosos.\n\n# Vertigem crônica/recorrente (ex.: Ménière):\n1) Betaistina 16mg --------------------------- 30 cp\nTomar 1 cp VO de 8/8h (reavaliar com otorrino).\n\n# Gestante:\n1) Meclizina 25mg (Meclin) ------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\n\n# Refratário aos anti-histamínicos:\n1) Clonazepam 0,5mg -------------------------- 6 cp\nTomar 1 cp VO de 12/12h por até 3 dias. Pode dar sono: não dirigir. Não usar em idosos nem na vertigem posicional (VPPB).\n\n# Náuseas:\n2) Ondansetrona 4mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h por 3 dias se náuseas ou vômitos.",
+  "unidade": "1) Dimenidrinato + Piridoxina: ampola EV (10 mL) em 100 mL de SF em 30 min; existe apresentação própria para IM\n   Ou Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n2) Exame: tontura contínua com nistagmo → HINTS (impulso cefálico, nistagmo, desvio vertical), se treinado; tontura só ao mudar a posição → Dix-Hallpike. Tomografia de crânio não exclui AVC de fossa posterior: HINTS central ou duvidoso → ressonância (ou transferir).\n3) VPPB (Dix-Hallpike positivo): manobra de Epley.",
   "orient": "- Supressores vestibulares por no máximo 3 dias (atrasam a compensação).\n- Retorno imediato se: dificuldade para andar, fala enrolada, visão dupla, fraqueza, cefaleia súbita (sinais de AVC).\n- CID: labirintite H83.0 | VPPB H81.1.",
   "rev": [
+   "Corrigido (2026-10-17): flunarizina retirada (sem fonte; contrariava o máximo de 3 dias de supressor); clonazepam e dimenidrinato com alerta de sono, no idoso e na VPPB; dimenidrinato 1 cx → 12 cp; HINTS só na tontura contínua com nistagmo e por treinado; tomografia não exclui AVC (GRACE-3 2023; AAO-HNS 2017; Beers 2023).",
    "Ajustado: betaistina 8mg → 16mg de 8/8h (dose usual).",
    "Adicionado: HINTS, manobra de Epley e sinais de AVC.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
    "Bhattacharyya N et al. AAO-HNS Clinical Practice Guideline: BPPV (Update) (Otolaryngol Head Neck Surg 2017).",
-   "Kattah JC et al. HINTS (Stroke 2009)."
+   "Kattah JC et al. HINTS (Stroke 2009).",
+   "Edlow JA et al. Guidelines for reasonable and appropriate care in the emergency department 3 (GRACE-3): Acute dizziness and vertigo in the emergency department. Acad Emerg Med 2023;30(5):442–486 (HINTS só por treinado; sem tomografia; Epley na VPPB; supressor vestibular só por 3–5 dias; considerar corticoide na neurite vestibular com até 3 dias). https://doi.org/10.1111/acem.14728",
+   "Basura GJ et al. Clinical Practice Guideline: Ménière's Disease. AAO-HNS. Otolaryngol Head Neck Surg 2020;162(2S):S1–S55 (betaistina como opção de manutenção; supressor só na crise).",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar anti-histamínico de 1ª geração e benzodiazepínico no idoso."
   ]
  },
  {
@@ -1353,19 +1391,25 @@ const BASE = [
   "cid": "R45.1",
   "sin": "agitado agressivo surto contencao",
   "casa": "",
-  "unidade": "1) Abordagem verbal e ambiente seguro. Descartar hipoglicemia, hipóxia, intoxicação.\n2) Haloperidol 5 mg (1 amp) IM + Prometazina 50 mg (1 amp) IM (ambos somente IM)\n   Ou Midazolam 15mg IM (3 mL de 5 mg/mL; cuidado com depressão respiratória)\n   Intoxicação por álcool: Haloperidol 5 mg IM isolado; evitar benzodiazepínico. Com rebaixamento da consciência: não sedar.\n   Abstinência alcoólica ou intoxicação por cocaína: Diazepam 10mg EV lento (até 5 mg/min).\n3) Reavaliar em 30 min; pode repetir 1x.",
-  "orient": "- Idosos: reduzir a dose do haloperidol (1–2,5mg).\n- Monitorar SatO2 e sinais vitais após a sedação.",
+  "unidade": "1) Abordagem verbal e ambiente seguro. Descartar hipoglicemia, hipóxia, intoxicação.\n2) Haloperidol 5 mg (1 amp) IM + Prometazina 50 mg (1 amp) IM (ambos somente IM)\n   Ou Midazolam 15mg IM (3 mL de 5 mg/mL; cuidado com depressão respiratória)\n   QT longo, outro remédio que alarga o QT, hipocalemia ou cardiopatia: evitar haloperidol, preferir midazolam; ECG assim que possível.\n   Intoxicação por álcool: Haloperidol 5 mg IM isolado; evitar benzodiazepínico. Com rebaixamento da consciência: não sedar.\n   Abstinência alcoólica ou intoxicação por cocaína: Diazepam 10mg EV lento (até 5 mg/min).\n3) Reavaliar em 30 min; pode repetir a mesma medicação 1 vez. Haloperidol: no máximo 20 mg por dia (idoso, 5 mg). Gestante: haloperidol isolado.\n4) Contenção só se a abordagem verbal e o remédio não bastarem: prescrever e registrar o motivo; 5 pessoas treinadas, 4 pontos, no leito, cabeceira a 30°; sinais vitais e circulação dos membros a cada 15 min na 1ª hora e a cada 30 min por 4 h; retirar assim que possível (em princípio, até 2 h).",
+  "orient": "- Idoso: presumir delirium e tratar a causa. Se precisar sedar, haloperidol 1–2,5 mg IM (máx. 5 mg/dia), sem prometazina e sem benzodiazepínico.\n- Monitorar SatO2 e sinais vitais após a sedação.",
   "rev": [
+   "Corrigido (2026-10-17): alinhado ao cartão Agora — idoso sem prometazina nem benzodiazepínico (haloperidol máx. 5 mg/dia); QT longo e cardiopatia; haloperidol no máximo 20 mg por dia; gestante com haloperidol isolado; contenção física com monitoração (ABP 2019, partes 1 e 2; EMA 2017; Beers 2023; HC-FMUSP 18ª ed.).",
    "Corrigido (2026-10-08): diazepam só na abstinência alcoólica e na cocaína; na intoxicação alcoólica, haloperidol isolado (ABP 2019; Projeto BETA 2012; bula do haloperidol).",
    "Adicionado: descartar causas orgânicas, midazolam e dose em idosos.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
    "Huf G et al. Haloperidol mais prometazina para agitação (TREC — BMJ 2007).",
-   "Baldaçara L et al. Diretrizes brasileiras para manejo da agitação psicomotora (ABP/ABRAMEDE, Braz J Psychiatry 2019).",
    "Wilson MP et al. Project BETA Psychopharmacology Workgroup (West J Emerg Med 2012;13:26): haloperidol na intoxicação alcoólica; benzodiazepínico na abstinência.",
    "Bula do Compaz (diazepam 5 mg/mL injetável), Cristália, Anvisa: EV lenta, 0,5–1 mL/min.",
-   "Bula do haloperidol solução injetável 5 mg/mL, Anvisa 09/12/2025: contraindicado no coma e na depressão do sistema nervoso central por álcool ou outros depressores."
+   "Bula do haloperidol solução injetável 5 mg/mL, Anvisa 09/12/2025: contraindicado no coma e na depressão do sistema nervoso central por álcool ou outros depressores.",
+   "Baldaçara L et al. Brazilian guidelines for the management of psychomotor agitation. Part 1. Non-pharmacological approach — ABP (Braz J Psychiatry 2019;41:153). https://doi.org/10.1590/1516-4446-2018-0163",
+   "Baldaçara L et al. Brazilian guidelines for the management of psychomotor agitation. Part 2. Pharmacological approach — ABP (Braz J Psychiatry 2019;41:324). https://doi.org/10.1590/1516-4446-2018-0177",
+   "European Medicines Agency. Haldol — Article 30 referral, Annex III (2017): idoso começa com metade da menor dose de adulto, máx. 5 mg/dia; contraindicado no QT longo, hipocalemia não corrigida e com outros remédios que alargam o QT.",
+   "FDA. Haloperidol (lactato) injection — bula americana, Fresenius Kabi USA, DailyMed, out/2026: 2–5 mg IM, até de hora em hora, dose máxima de 20 mg/dia.",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar benzodiazepínico e anti-histamínico de 1ª geração no idoso; antipsicótico no delirium só se medidas não farmacológicas falharem.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 15, Agitação psicomotora."
   ]
  },
  {
@@ -1375,15 +1419,20 @@ const BASE = [
   "cid": "F10.3",
   "sin": "alcool abstinencia tremor delirium",
   "casa": "",
-  "unidade": "1) Tiamina 300mg IM/EV (antes ou junto com soro glicosado; na hipoglicemia, não atrasar a glicose).\n2) Hidratação venosa se desidratado; glicemia capilar; eletrólitos (Mg, K).\n3) Diazepam 10–20mg VO a cada 1h conforme sintomas (tremor, sudorese, agitação)\n   Ou Diazepam 10mg EV lento (máx. 5 mg/min) se não aceitar VO.\n   (Hepatopata grave ou idoso: Lorazepam 1–2mg VO.)\n4) Delirium tremens ou convulsão: internar.",
+  "unidade": "1) Tiamina 300mg IM ou EV (antes ou junto com soro glicosado; na hipoglicemia, não atrasar a glicose). Suspeita de encefalopatia de Wernicke (confusão, ataxia, alteração do movimento dos olhos): Tiamina 200mg EV em 100 mL de SF em 30 min, de 8/8h, e internar.\n2) Hidratação venosa se desidratado; glicemia capilar; eletrólitos (Mg, K).\n3) Aplicar a CIWA-Ar a cada 1 h. Se CIWA-Ar ≥ 10: Diazepam 10–20mg VO e reavaliar em 1 h; repetir enquanto ≥ 10. Abaixo de 10, não dar.\n   Ou Diazepam 10mg EV lento (máx. 5 mg/min) se não aceitar VO.\n   (Hepatopata grave ou idoso: Lorazepam 1–2mg VO.)\n4) Delirium tremens ou convulsão: internar.\n5) Agitação grave ou CIWA-Ar ≥ 19: Diazepam 10mg EV lento, repetir a cada 5–10 min até ficar calmo e acordável; monitorar oximetria. Não usar haloperidol sozinho (piora o risco de convulsão); se precisar, só junto com o benzodiazepínico.",
   "orient": "- Encaminhar ao CAPS AD.",
   "rev": [
+   "Corrigido (2026-10-17): diazepam guiado pela CIWA-Ar ≥ 10; tiamina 200 mg EV de 8/8h na suspeita de Wernicke; conduta na abstinência grave (CIWA-Ar ≥ 19) e alerta contra haloperidol isolado (ASAM 2020; EFNS 2010; Sullivan 1989; HC-FMUSP 18ª ed.).",
    "Corrigido (2026-10-08): tiamina antes ou junto com o soro glicosado, sem atrasar a glicose na hipoglicemia (Schabelman e Kuo, J Emerg Med 2012;42:488).",
    "Corrigido: 'Diazepam 1 amp EV até de 1/1h' → dose guiada por sintomas, VO preferencial.",
    "Adicionado: tiamina antes da glicose e lorazepam em hepatopatas."
   ],
   "fontes": [
-   "ASAM Clinical Practice Guideline on Alcohol Withdrawal Management, 2020."
+   "American Society of Addiction Medicine. The ASAM Clinical Practice Guideline on Alcohol Withdrawal Management. J Addict Med 2020;14(3S Suppl 1):1–72 (benzodiazepínico guiado pela CIWA-Ar; leve < 10, moderada 10–18, grave ≥ 19; lorazepam ou oxazepam na hepatopatia grave e no idoso; tiamina a todos; benzodiazepínico EV em bolus frequentes na abstinência grave; antipsicótico só como adjuvante).",
+   "Sullivan JT et al. Assessment of alcohol withdrawal: the revised Clinical Institute Withdrawal Assessment for Alcohol scale (CIWA-Ar) (Br J Addict 1989;84:1353).",
+   "Galvin R et al. EFNS guidelines for diagnosis, therapy and prevention of Wernicke encephalopathy (Eur J Neurol 2010;17:1408): tiamina 200 mg EV 3 vezes ao dia, diluída em 100 mL de soro fisiológico ou glicosado, em 30 min.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 105, Síndrome de abstinência alcoólica.",
+   "Bula do Compaz (diazepam 5 mg/mL injetável), Cristália, Anvisa: EV lenta, 0,5–1 mL/min."
   ]
  },
  {
@@ -1392,15 +1441,19 @@ const BASE = [
   "cat": "psi",
   "cid": "F41.0",
   "sin": "panico ansiedade nervoso",
-  "casa": "Uso oral\n1) Passiflora extrato seco 200mg ------------- 30 cp\nTomar 1 cp VO de 12/12h.",
-  "unidade": "1) Descartar causas orgânicas (ECG, glicemia, SatO2) conforme o caso.\n2) Diazepam 5–10mg VO (se crise intensa com agitação).",
-  "orient": "- Técnicas de respiração.\n- Encaminhar para acompanhamento na UBS/psicologia.\n- CID: ansiedade não especificada F41.9.",
+  "casa": "",
+  "unidade": "1) Descartar causas orgânicas (ECG, glicemia, SatO2) conforme o caso.\n2) Se crise intensa que não cede com acolhimento e respiração: Diazepam 5mg VO, dose única (idoso: evitar; se indispensável, 2,5mg). Não prescrever benzodiazepínico para casa.",
+  "orient": "- Técnicas de respiração.\n- Encaminhar para acompanhamento na UBS/psicologia.\n- CID: transtorno de pânico F41.0 | ansiedade não especificada F41.9.",
   "rev": [
+   "Corrigido (2026-10-17): passiflora retirada (sem fonte que sustente; Cochrane 2007 sem dados suficientes); diazepam 5–10 mg → 5 mg em dose única, sem receita para casa e com alerta no idoso; CID do pânico na orientação; fontes no lugar de \"consenso clínico\" (NICE CG113; Beers 2023; Katon 2006).",
    "Corrigido: diazepam IM tem absorção errática; trocado por VO."
   ],
-  "evid": "Passiflora tem evidência fraca. Benzodiazepínico só para a crise.",
+  "evid": "Benzodiazepínico só na crise, em dose única; o tratamento é TCC e, se necessário, antidepressivo (NICE CG113).",
   "fontes": [
-   "Consenso clínico; passiflora com evidência fraca (Miyasaka LS, Cochrane 2007)."
+   "NICE CG113. Generalised anxiety disorder and panic disorder in adults: management, 2011 (atualizada em 2020): no pânico, não usar benzodiazepínico; TCC e, se necessário, ISRS; na emergência, descartar causa clínica e informar sobre o diagnóstico.",
+   "Katon WJ. Clinical practice: panic disorder (N Engl J Med 2006;354:2360) — diferencial clínico.",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar benzodiazepínico no idoso.",
+   "Miyasaka LS et al. Passiflora for anxiety disorder (Cochrane 2007;CD004518): evidência insuficiente — motivo da retirada da passiflora."
   ]
  },
  {
@@ -1569,13 +1622,15 @@ const BASE = [
   "cid": "I63.9",
   "sin": "avc derrame deficit neurologico trombolise stroke",
   "casa": "",
-  "unidade": "1) Glicemia capilar imediata (hipoglicemia imita AVC). Registrar a hora em que o paciente foi visto bem pela última vez.\n2) NIHSS e TC de crânio sem contraste urgente; angio-TC se possível candidato a trombectomia. Não atrasar a imagem vascular esperando creatinina.\n3) ECG e troponina são recomendados, mas não devem atrasar a trombólise.\n\nTrombólise EV até 4,5h do último momento visto bem (sem contraindicações):\n4) Tenecteplase 0,25 mg/kg em bolus (máx. 25 mg)\n   Ou Alteplase 0,9 mg/kg (máx. 90 mg): 10% em bolus em 1 min e o restante em 60 min.\n5) PA antes da trombólise < 185/110 mmHg e < 180/105 mmHg nas 24h seguintes.\n\n6) Oclusão de grande vaso: trombectomia até 6h (e até 24h em casos selecionados). Acionar a regulação/centro de AVC.\n7) Não reduzir a glicemia com insulina EV para alvo de 80–130 mg/dL (sem benefício).\n8) Sem trombólise: AAS após excluir hemorragia na TC, conforme protocolo.",
+  "unidade": "1) Glicemia capilar imediata (hipoglicemia imita AVC). Registrar a hora em que o paciente foi visto bem pela última vez.\n2) NIHSS e TC de crânio sem contraste urgente; angio-TC se possível candidato a trombectomia. Não atrasar a imagem vascular esperando creatinina.\n3) ECG e troponina são recomendados, mas não devem atrasar a trombólise.\n\nTrombólise EV até 4,5h do último momento visto bem, com déficit incapacitante e sem contraindicações (ver fluxo):\n4) Tenecteplase 0,25 mg/kg em bolus (máx. 25 mg)\n   Ou Alteplase 0,9 mg/kg (máx. 90 mg): 10% em bolus em 1 min e o restante em 60 min.\n5) PA antes da trombólise < 185/110 mmHg (se acima: nitroprussiato, ver bomba; se não baixar, não trombolisar) e ≤ 180/105 mmHg nas 24h seguintes.\n\n6) Oclusão de grande vaso: trombectomia até 6h (e até 24h em casos selecionados). Acionar a regulação/centro de AVC.\n7) Glicemia entre 140 e 180 mg/dL; corrigir se < 60 mg/dL. Não buscar 80–130 mg/dL com insulina EV (sem benefício).\n8) Sem trombólise: AAS 160–325 mg VO (ou por sonda) nas primeiras 24–48 h, após a imagem excluir hemorragia e após teste de deglutição. Com trombólise: nenhum antiagregante ou anticoagulante por 24 h, até a TC de controle.\n9) Déficit leve não incapacitante (NIHSS ≤ 5) ou AIT de alto risco, sem trombólise: Clopidogrel 300–600 mg VO + AAS 160–325 mg VO em até 24 h; depois clopidogrel 75 mg/dia + AAS 75–100 mg/dia por 21 dias.",
   "orient": "- Tempo é cérebro: acionar o fluxo de AVC do serviço/regulação assim que houver suspeita.",
   "fontes": [
-   "AHA/ASA. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke (Stroke). https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
-   "Resumo emDocs do guideline 2026. https://www.emdocs.net/2026-guideline-update-early-management-of-acute-ischemic-stroke/"
+   "Prabhakaran S et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke — AHA/ASA (Stroke 2026): tenecteplase 0,25 mg/kg (máx. 25 mg) ou alteplase 0,9 mg/kg (máx. 90 mg); PA < 185/110 antes e ≤ 180/105 depois; glicemia 140–180; dupla antiagregação no AVC leve; trombectomia até 24 h. https://doi.org/10.1161/STR.0000000000000513",
+   "Powers WJ et al. 2019 Update to the 2018 Guidelines for the Early Management of Acute Ischemic Stroke (Stroke 2019;50:e344) — tabela de contraindicações à trombólise.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 53, Abordagem do paciente com AVC isquêmico agudo."
   ],
   "rev": [
+   "Corrigido (2026-10-17): dose do AAS (160–325 mg) com teste de deglutição e nada de antitrombótico por 24 h após a trombólise; dupla antiagregação no AVC leve e no AIT de alto risco; trombólise só com déficit incapacitante; conduta na PA alta antes da trombólise; alvo de glicemia 140–180 mg/dL; resumo do emDocs trocado pelas fontes primárias, como no cartão Agora e no fluxo (AHA/ASA 2026; Powers 2019; HC-FMUSP 18ª ed.).",
    "Item novo."
   ]
  },
@@ -1780,14 +1835,18 @@ const BASE = [
   "cat": "dor",
   "cid": "S06.0",
   "sin": "traumatismo cranioencefalico concussao batida cabeca queda",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor de cabeça.",
-  "unidade": "Regra canadense de TC de crânio (adulto ≥ 16 anos, Glasgow 13–15 com perda de consciência, amnésia ou desorientação testemunhada).\nTC indicada se qualquer um:\nAlto risco (lesão neurocirúrgica):\n- Glasgow < 15 duas horas após o trauma\n- Suspeita de fratura aberta ou com afundamento\n- Sinal de fratura de base de crânio (hemotímpano, olhos de guaxinim, rinorreia/otorreia liquórica, sinal de Battle)\n- Vômitos ≥ 2 episódios\n- Idade ≥ 65 anos\nMédio risco (lesão na TC):\n- Amnésia retrógrada ≥ 30 min\n- Mecanismo perigoso (atropelamento, ejeção do veículo, queda > 1 m ou > 5 degraus)\n\nA regra não se aplica (exclusões): < 16 anos, uso de anticoagulante ou coagulopatia, convulsão pós-trauma, fratura aberta evidente. Nesses casos, baixo limiar para TC.\nCriança: usar a regra PECARN.",
-  "orient": "- Alta com acompanhante; retorno imediato se piora da dor de cabeça, vômitos repetidos, sonolência, confusão, convulsão, fraqueza, alteração da fala.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor de cabeça (no máximo 8 cp por dia).",
+  "unidade": "Regra canadense de TC de crânio (adulto ≥ 16 anos, Glasgow 13–15 com perda de consciência, amnésia ou desorientação testemunhada).\nTC indicada se qualquer um:\nAlto risco (lesão neurocirúrgica):\n- Glasgow < 15 duas horas após o trauma\n- Suspeita de fratura aberta ou com afundamento\n- Sinal de fratura de base de crânio (hemotímpano, olhos de guaxinim, rinorreia/otorreia liquórica, sinal de Battle)\n- Vômitos ≥ 2 episódios\n- Idade ≥ 65 anos\nMédio risco (lesão na TC):\n- Amnésia retrógrada ≥ 30 min\n- Mecanismo perigoso (atropelamento, ejeção do veículo, queda > 1 m ou > 5 degraus)\n\nA regra não se aplica (exclusões): < 16 anos, uso de anticoagulante ou coagulopatia, convulsão pós-trauma, fratura aberta evidente. Anticoagulado (varfarina, rivaroxabana, apixabana, dabigatrana, heparina) ou com coagulopatia: fazer TC, mesmo sem outro critério (idealmente em até 8 h). Convulsão ou fratura aberta: TC.\nCriança: usar a regra PECARN.",
+  "orient": "- Alta com um adulto que fique junto nas primeiras 24 h; retorno imediato se piora da dor de cabeça, vômitos repetidos, sonolência difícil de acordar, confusão, convulsão, fraqueza, alteração da fala ou da visão, ou saída de líquido claro pelo nariz ou ouvido.\n- Evitar álcool, calmantes e esporte de contato até melhorar; voltar às atividades aos poucos.",
   "fontes": [
    "Stiell IG et al. The Canadian CT Head Rule for patients with minor head injury (Lancet 2001;357:1391). https://pubmed.ncbi.nlm.nih.gov/11356436/",
-   "ACEP Clinical Policy: Mild Traumatic Brain Injury, 2023. https://pubmed.ncbi.nlm.nih.gov/37085214/"
+   "Valente JH et al. Clinical Policy: Critical Issues in the Management of Adult Patients Presenting to the Emergency Department With Mild Traumatic Brain Injury — ACEP (Ann Emerg Med 2023;81:e63). https://pubmed.ncbi.nlm.nih.gov/37085214/",
+   "NICE NG232. Head injury: assessment and early management, 2023 (TC em até 8 h para anticoagulado, exceto AAS isolado; alta com adulto responsável nas primeiras 24 h e sinais para retorno).",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 63, Traumatismo cranioencefálico.",
+   "Ficha dipirona: máximo de 4 g por dia (EMA 2024)."
   ],
   "rev": [
+   "Corrigido (2026-10-17): TC para todo anticoagulado ou com coagulopatia, mesmo sem outro critério (antes: baixo limiar); teto da dipirona (8 cp por dia); adulto junto nas primeiras 24 h e o que evitar; fontes completas (NICE NG232 2023; ACEP 2023; HC-FMUSP 18ª ed.).",
    "Item novo."
   ]
  },
@@ -1797,14 +1856,17 @@ const BASE = [
   "cat": "dor",
   "cid": "S93.4",
   "sin": "torcao pe tornozelo trauma musculoesqueletico",
-  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.\n\nUso tópico (alternativa ao AINE oral)\n3) Diclofenaco dietilamônio gel -------------- 1 bisnaga\nAplicar no local 3 a 4x ao dia por até 7 dias.",
+  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).\n\nUso tópico (alternativa ao AINE oral)\n3) Diclofenaco dietilamônio gel -------------- 1 bisnaga\nAplicar no local 3 a 4x ao dia por até 7 dias.",
   "unidade": "Regras de Ottawa — RX indicado se dor maleolar/mediopé E qualquer um:\n- Dor à palpação dos 6 cm distais da borda posterior ou ponta do maléolo lateral ou medial.\n- Dor à palpação da base do 5º metatarso ou do navicular.\n- Incapacidade de dar 4 passos (logo após o trauma e na emergência).",
   "orient": "- Gelo 15–20 min várias vezes ao dia nos primeiros dias; elevação do membro.\n- Tratamento funcional (tornozeleira/órtese e carga conforme tolerância) é preferível à imobilização rígida.\n- Iniciar exercícios de mobilidade e propriocepção precocemente.",
   "fontes": [
    "Bachmann LM et al. Accuracy of Ottawa ankle rules to exclude fractures: systematic review (BMJ 2003;326:417). https://www.ncbi.nlm.nih.gov/books/NBK69576/",
-   "Vuurberg G et al. Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline (Br J Sports Med 2018)."
+   "Stiell IG et al. Decision rules for the use of radiography in acute ankle injuries: refinement and prospective validation (JAMA 1993;269:1127).",
+   "Vuurberg G et al. Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline (Br J Sports Med 2018;52(15):956): tratamento funcional melhor que imobilização; AINE por curto período para dor e edema; reexame em 3–5 dias. https://doi.org/10.1136/bjsports-2017-098106",
+   "Ficha dipirona: máximo de 4 g por dia (EMA 2024)."
   ],
   "rev": [
+   "Corrigido (2026-10-17): teto da dipirona (8 cp por dia); fontes completas (Ottawa, Stiell 1993; Vuurberg 2018; ficha dipirona).",
    "Item novo."
   ]
  },

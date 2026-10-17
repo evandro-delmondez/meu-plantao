@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.12.3 — 2026-10-17
+- **Revisão geral, lote 3 (Dor/Neuro/Ortop e Psiquiatria), aprovada pelo médico e conferida:** analgésicos com teto diário e ibuprofeno só com dengue descartada (cefaleia, enxaqueca, lombalgia, entorse, TCE); salvas com sumatriptano nasal pela apresentação brasileira e prednisona 100 mg com redução (EAN 2023); enxaqueca sem repetir naratriptana e com metoclopramida + dexametasona 10 mg IM; gota e profilaxia com interações da colchicina e conduta na doença renal; alopurinol podendo começar na crise; convulsão alinhada ao cartão Agora, tiopental com a dose da EFNS 2010; vertigem sem flunarizina; insônia sem hipnótico; ansiedade sem passiflora; lombalgia sem dexametasona; agitação e AVC alinhados ao cartão e ao fluxo; abstinência guiada pela CIWA-Ar com tiamina na suspeita de Wernicke; TCE com TC para todo anticoagulado (NICE 2023).
+
 ## 1.12.2 — 2026-10-17
 - **Revisão geral, lote 2 (Gastro e Uro/Nefro), aprovada pelo médico e conferida:** H. pylori com quádrupla com bismuto por 14 dias (V Consenso Brasileiro 2026); hemorragia digestiva com doses do vasoativo (terlipressina pela bula, por peso) e do omeprazol, alvo de hemoglobina 7–8 e sem ácido tranexâmico; infecção urinária com receita da gestante e alertas de rim (nitrofurantoína, fosfomicina, fenazopiridina); cólica renal, ITU e prostatite com ibuprofeno só com dengue descartada; prostatite com 14 dias (estender se preciso) e esquema para risco de IST; desidratação na criança pelo cartaz do MS de 2023; verminose com ivermectina pela tabela da bula na estrongiloidíase; morfina 0,05 mg/kg na dor abdominal; ajustes em constipação, gastroenterite, dispepsia, enterobíase, afta, gases, hemorroida e HPB.
 

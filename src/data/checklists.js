@@ -466,7 +466,7 @@ hda:{
  ant:["idade < 6 meses","desnutrição grave","imunodeficiência","cardiopatia grave"],
  ex:["estado geral irritado ou letárgico","olhos fundos","lágrimas ausentes","boca e língua secas","sinal da prega que desaparece lentamente","pulso fraco ou ausente","sede: bebe avidamente ou não consegue beber"],
  alarme:["criança comatosa, hipotônica ou letárgica","incapaz de beber","pulso fraco ou ausente","sinal da prega muito lento (mais de 2 segundos)","vômitos repetidos","sangue nas fezes com comprometimento do estado geral","sem melhora da desidratação após 6 horas de tratamento"],
- fontes:["Ministério da Saúde. Manejo do paciente com diarreia: avaliação do estado de hidratação do paciente (cartaz), 2023. https://bvsms.saude.gov.br/bvs/cartazes/manejo_paciente_diarreia_cartaz.pdf","Sociedade Brasileira de Pediatria. Guia Prático: Diarreia Aguda Infecciosa, 2023."]
+ fontes:["Ministério da Saúde. Manejo do paciente com diarreia: avaliação do estado de hidratação do paciente (cartaz, atualização 2023). https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dda/publicacoes/manejo-do-paciente-com-diarreia-avaliacao-do-estado-de-hidratacao-do-paciente","Sociedade Brasileira de Pediatria. Guia Prático: Diarreia Aguda Infecciosa, 2023."]
 },
 cerume:{
  hist:["hipoacusia","plenitude auricular","otalgia","zumbido","tontura","otorreia"],

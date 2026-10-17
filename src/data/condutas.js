@@ -730,7 +730,7 @@ const BASE = [
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Ministério da Saúde. Manejo do paciente com diarreia (cartaz): Plano A (líquidos após cada evacuação e vômito, manter a alimentação habitual, voltar se não melhorar em 2 dias ou se sinais de alerta); antibiótico só na disenteria com comprometimento do estado geral; reavaliar em 2 dias; ciprofloxacino: não usar em gestantes; antidiarreicos não devem ser usados. https://bvsms.saude.gov.br/bvs/cartazes/manejo_paciente_diarreia_cartaz.pdf",
+   "Ministério da Saúde. Manejo do paciente com diarreia (cartaz, atualização 2023): Plano A (líquidos após cada evacuação e vômito, manter a alimentação habitual, voltar se não melhorar em 2 dias ou se sinais de alerta); antibiótico só na disenteria com comprometimento do estado geral; reavaliar em 2 dias; ciprofloxacino: não usar em gestantes; antidiarreicos não devem ser usados. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dda/publicacoes/manejo-do-paciente-com-diarreia-avaliacao-do-estado-de-hidratacao-do-paciente",
    "Shane AL et al. IDSA Clinical Practice Guidelines for Infectious Diarrhea (Clin Infect Dis 2017).",
    "Bula Novalgina (dipirona 500 mg, Anvisa): adultos, 500 mg a 1 g até 4x ao dia; máximo 4 g/dia.",
    "Bula Buscopan drágeas (butilbrometo de escopolamina 10 mg, Anvisa): 10 a 20 mg, 3 a 5x ao dia.",
@@ -1414,15 +1414,20 @@ const BASE = [
   "cat": "gi",
   "cid": "B82.9",
   "sin": "verme parasitose",
-  "casa": "Uso oral (escolher um)\n1) Albendazol 400mg -------------------------- 1 cp\nTomar 1 cp VO em dose única. (Estrongiloidíase/teníase: 1x ao dia por 3 dias.)\nOu\n1) Mebendazol 100mg -------------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\nOu\n1) Nitazoxanida 500mg (Annita) --------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias, com alimento.",
+  "casa": "Uso oral (escolher um)\n1) Albendazol 400mg -------------------------- 1 cp\nTomar 1 cp VO em dose única (áscaris, ancilóstomo, tricuríase).\nOu\n1) Mebendazol 100mg -------------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\nOu\n1) Nitazoxanida 500mg (Annita) --------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias, com alimento.\n\n# Estrongiloidíase (ou corticoide/imunossupressão com suspeita):\n1) Ivermectina 6mg --------------------------- (conforme o peso)\nTomar 200 mcg/kg VO 1x ao dia por 2 dias, em jejum, com água: 25–35 kg 1 cp; 36–50 kg 1½ cp; 51–65 kg 2 cp; 66–79 kg 2½ cp; 80 kg ou mais 200 mcg/kg.\n(Sem ivermectina: albendazol 400 mg 1x ao dia por 3 dias, menos eficaz.)",
   "unidade": "",
-  "orient": "- Lavar as mãos e os alimentos; beber água filtrada.",
+  "orient": "- Lavar as mãos e os alimentos; beber água filtrada.\n- Gestante: não usar albendazol nem mebendazol (bula; Harrison cap. 239); adiar para depois do parto, salvo indicação do pré-natal. Ivermectina também não (bula).",
   "rev": [
+   "Corrigido (2026-10-17): estrongiloidíase com ivermectina 200 mcg/kg por 2 dias, pela tabela de peso da bula, e albendazol de 3 dias como alternativa (Harrison 22ª ed., cap. 239; bula Revectina); teníase retirada do albendazol (praziquantel, cap. 242, sem ficha); gestante não usa albendazol nem mebendazol (bula Zentel); fontes identificadas (Harrison, OMS 2017, bulas).",
    "Corrigido: mebendazol e tiabendazol estavam prescritos juntos; ficou uma opção por vez.",
    "Removido: tiabendazol oral (muitos efeitos adversos; albendazol/ivermectina são preferíveis)."
   ],
   "fontes": [
-   "Ministério da Saúde / OMS — tratamento de geo-helmintíases."
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 239 (Intestinal Nematode Infections): albendazol 400 mg dose única ou mebendazol 100 mg de 12/12h por 3 dias; estrongiloidíase com ivermectina 200 mcg/kg/dia por 2 dias; benzimidazóis contraindicados na gestação.",
+   "World Health Organization. Guideline: preventive chemotherapy to control soil-transmitted helminth infections in at-risk population groups. Geneva: WHO, 2017. https://www.who.int/publications/i/item/9789241550116",
+   "Bula Zentel (albendazol, GSK, Anvisa) e bula Annita (nitazoxanida, Farmoquímica, Anvisa).",
+   "Bula Revectina (ivermectina 6 mg, Anvisa): cerca de 200 mcg/kg em dose oral única na estrongiloidíase, com tabela de peso (15–24 kg ½ cp; 25–35 kg 1 cp; 36–50 kg 1½; 51–65 kg 2; 66–79 kg 2½; 80 kg ou mais 200 mcg/kg); não usar em menores de 15 kg ou de 5 anos; exame de fezes para confirmar a cura. O esquema de 2 dias é do Harrison.",
+   "FDA. Stromectol (ivermectina), bula americana: tomar em jejum, com água."
   ]
  },
  {
@@ -1640,13 +1645,19 @@ const BASE = [
   "cid": "K92.2",
   "sin": "hda hematemese melena sangramento digestivo varizes",
   "casa": "",
-  "unidade": "1) Dois acessos calibrosos, reposição volêmica, tipagem, hemograma, coagulograma, função renal.\n2) Escore de Glasgow-Blatchford: 0–1 = muito baixo risco, pode ter alta com seguimento ambulatorial.\n3) Transfusão restritiva: hemácias se Hb < 7 g/dL (limiar maior em cardiopatas/sangramento ativo).\n4) Eritromicina 250 mg EV 30–120 min antes da endoscopia.\n5) Endoscopia em até 24h (varizes suspeitas: até 12h, após estabilização).\n6) Não varicosa: IBP em dose alta após a hemostasia endoscópica (a diretriz ACG não se posiciona sobre o IBP antes da endoscopia).\n7) Suspeita de varizes (cirrose):\n   - Vasoativo já na chegada, por até 5 dias: terlipressina, octreotida ou somatostatina.\n   - Ceftriaxona 1 g EV 1x/dia por até 7 dias.",
+  "unidade": "1) Dois acessos calibrosos, reposição volêmica, tipagem, hemograma, coagulograma, função renal.\n2) Escore de Glasgow-Blatchford: 0–1 = muito baixo risco, pode ter alta com seguimento ambulatorial.\n3) Transfusão restritiva: hemácias se Hb < 7 g/dL; alvo 7 a 8 g/dL na suspeita de varizes (não passar de 8). Limiar de 8 g/dL em doença cardiovascular. Não usar ácido tranexâmico.\n4) Eritromicina 250 mg EV 30–120 min antes da endoscopia.\n5) Endoscopia em até 24h (varizes suspeitas: até 12h, após estabilização).\n6) Suspeita de úlcera: omeprazol 80 mg EV em bolus já na chegada, sem atrasar a endoscopia (ESGE 2021). Após a hemostasia endoscópica: omeprazol 40 mg EV de 12/12h, ou 80 mg em bolus + 8 mg/h, por 72 h (ACG 2021).\n7) Suspeita de varizes (cirrose):\n   - Vasoativo já na chegada, por 2 a 5 dias (escolher um):\n     Terlipressina 2 mg EV de 4/4h; depois do controle do sangramento (ou se peso < 50 kg ou efeito adverso), 1 mg EV de 4/4h. Evitar em doença coronariana ou arterial periférica.\n     Ou Octreotida 50 mcg EV em bolus + 50 mcg/h em infusão contínua.\n     Ou Somatostatina 250 mcg EV em bolus + 250 mcg/h em infusão contínua (até 500 mcg/h).\n   - Ceftriaxona 1 g EV 1x/dia por até 7 dias.",
   "orient": "",
   "fontes": [
-   "Laine L et al. ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding (Am J Gastroenterol 2021). https://pubmed.ncbi.nlm.nih.gov/33929377/",
-   "Gralnek IM et al. ESGE 2022: Endoscopic diagnosis and management of esophagogastric variceal hemorrhage (Endoscopy 2022). https://www.esge.com/assets/downloads/pdfs/guidelines/2022_a-1939-4887.pdf"
+   "Laine L et al. ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding (Am J Gastroenterol 2021;116:899). https://pubmed.ncbi.nlm.nih.gov/33929377/",
+   "Gralnek IM et al. ESGE Guideline: Endoscopic diagnosis and management of nonvariceal upper gastrointestinal hemorrhage — Update 2021 (Endoscopy 2021;53:300).",
+   "Gralnek IM et al. ESGE 2022: Endoscopic diagnosis and management of esophagogastric variceal hemorrhage (Endoscopy 2022). https://www.esge.com/assets/downloads/pdfs/guidelines/2022_a-1939-4887.pdf",
+   "de Franchis R et al. Baveno VII — Renewing consensus in portal hypertension (J Hepatol 2022;76:959): vasoativo por 2–5 dias, ceftriaxona 1 g/dia por até 7 dias, hemoglobina alvo 7–8 g/dL, endoscopia em até 12 h.",
+   "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. 74, Hemorragia digestiva alta (doses de terlipressina, somatostatina, octreotida e IBP).",
+   "Bula Glypressin (terlipressina, Ferring): 2 mg EV de 4/4h; 1 mg de 4/4h se peso < 50 kg ou efeito adverso; cautela em doença cardiovascular (isquemia). A bula limita a 48 h; Baveno VII aceita 2 a 5 dias.",
+   "HALT-IT Trial Collaborators. Effects of a high-dose 24-h infusion of tranexamic acid on death and thromboembolic events in patients with acute gastrointestinal bleeding (Lancet 2020;395:1927): sem redução de mortalidade e mais trombose venosa."
   ],
   "rev": [
+   "Corrigido (2026-10-17): doses do vasoativo (terlipressina 2 mg de 4/4h, octreotida ou somatostatina, por 2 a 5 dias) e do omeprazol (80 mg EV na chegada; depois 40 mg de 12/12h ou infusão por 72 h); alvo de hemoglobina 7 a 8 g/dL nas varizes; não usar ácido tranexâmico (Baveno VII; ESGE 2021; ACG 2021; HC-FMUSP 18ª ed., cap. 74; bula Glypressin; HALT-IT).",
    "Item novo."
   ]
  },
@@ -1657,12 +1668,15 @@ const BASE = [
   "cid": "R10.4",
   "sin": "abdome agudo apendicite dor na barriga",
   "casa": "",
-  "unidade": "1) Sinais de alarme: instabilidade, peritonite, dor desproporcional ao exame (isquemia mesentérica), idoso, imunossuprimido, gestante.\n2) Beta-hCG em toda mulher em idade fértil.\n3) ECG em idosos/dor epigástrica (SCA pode se apresentar como dor abdominal).\n4) Analgesia precoce não atrasa nem mascara o diagnóstico: dipirona 1g EV; se intensa, morfina 0,1 mg/kg EV titulada.\n5) Exames e imagem conforme a hipótese (USG, TC).",
+  "unidade": "1) Sinais de alarme: instabilidade, peritonite, dor desproporcional ao exame (isquemia mesentérica), idoso, imunossuprimido, gestante. Febre nos últimos 7 dias com dor abdominal intensa e contínua: dengue com sinal de alarme (grupo C) até prova em contrário; não usar anti-inflamatório.\n2) Beta-hCG em toda mulher em idade fértil.\n3) ECG em idosos/dor epigástrica (SCA pode se apresentar como dor abdominal).\n4) Analgesia precoce não atrasa nem mascara o diagnóstico: dipirona 1 g EV lenta (no máximo 1 mL/min, paciente deitado). Se intensa: morfina 0,05 mg/kg (cerca de 2,5 a 5 mg) EV lenta, repetir a cada 20 min até controlar a dor (diluir 10 mg em 9 mL = 1 mg/mL). Idoso e doente renal: começar com metade.\n5) Exames e imagem conforme a hipótese (USG, TC).",
   "orient": "",
   "fontes": [
-   "Manterola C et al. Analgesia in patients with acute abdominal pain (Cochrane Database Syst Rev 2011;CD005660): opioides não aumentaram erro diagnóstico."
+   "Manterola C, Vial M, Moraga J, Astudillo P. Analgesia in patients with acute abdominal pain (Cochrane Database Syst Rev 2011;CD005660): opioides não aumentaram erro diagnóstico.",
+   "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. 25, Dor abdominal (sinais de alarme, beta-hCG, ECG, morfina 0,05 mg/kg a cada 20 min).",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024."
   ],
   "rev": [
+   "Corrigido (2026-10-17): morfina 0,1 → 0,05 mg/kg EV a cada 20 min, com metade no idoso e no doente renal; dipirona EV lenta (HC-FMUSP 18ª ed., cap. 25; fichas morfina e dipirona); febre com dor abdominal intensa entra como alarme de dengue (MS, Dengue, 6ª ed., 2024).",
    "Item novo."
   ]
  },
@@ -1808,13 +1822,15 @@ const BASE = [
   "cid": "A09",
   "sin": "desidratacao pediatria diarreia crianca plano a b c soro",
   "casa": "Plano A (sem desidratação)\n1) Sais de reidratação oral ------------------ 10 envelopes\nOferecer após cada evacuação: < 1 ano 50–100 mL | 1–10 anos 100–200 mL | > 10 anos o que aceitar.\n2) Zinco (crianças < 5 anos)\nAté 6 meses: 10 mg/dia | > 6 meses: 20 mg/dia, por 10 a 14 dias.\n3) Probiótico (opcional; reduz cerca de 1 dia de diarreia)\nSaccharomyces boulardii 250–750 mg/dia por 5 a 7 dias.",
-  "unidade": "Plano B (desidratação leve/moderada):\nSRO 50–100 mL/kg em 4–6h, em pequenos volumes, reavaliando; termina quando sumirem os sinais de desidratação.\n\nPlano C (desidratação grave):\nFase rápida — SF 0,9% ou Ringer lactato:\n- < 1 ano: 30 mL/kg em 1h, depois 70 mL/kg em 5h.\n- ≥ 1 ano: 30 mL/kg em 30 min, depois 70 mL/kg em 2h30.\n\nVômitos persistentes — ondansetrona dose única:\n6 meses–2 anos: 2 mg | > 2–10 anos (até 30 kg): 4 mg | > 10 anos (> 30 kg): 8 mg.\n\nAntibiótico só na disenteria com comprometimento do estado geral:\n- Até 10 anos/30 kg: azitromicina 10 mg/kg no 1º dia e 5 mg/kg por mais 4 dias, ou ceftriaxona 50–100 mg/kg IM 1x/dia por 3–5 dias.\n- > 10 anos/30 kg: ciprofloxacino 500 mg de 12/12h por 3 dias.",
+  "unidade": "Plano B (desidratação leve/moderada):\nSRO 50–100 mL/kg em 4–6h, em pequenos volumes, reavaliando; termina quando sumirem os sinais de desidratação. Se continuar desidratado: sonda nasogástrica (gastróclise); se evoluir para desidratação grave: Plano C. Sem melhora em 6 h: encaminhar ao hospital.\n\nPlano C (desidratação grave):\nFase rápida — SF 0,9% ou Ringer lactato:\n- < 1 ano: 30 mL/kg em 1h, depois 70 mL/kg em 5h.\n- ≥ 1 ano: 30 mL/kg em 30 min, depois 70 mL/kg em 2h30.\n\nVômitos persistentes — ondansetrona dose única:\n6 meses–2 anos: 2 mg | > 2–10 anos (até 30 kg): 4 mg | > 10 anos (> 30 kg): 8 mg.\n\nAntibiótico só na disenteria com comprometimento do estado geral:\n- Até 10 anos/30 kg (a partir de 3 meses): azitromicina 10 mg/kg (máx. 500 mg) VO no 1º dia e 5 mg/kg (máx. 250 mg) 1x ao dia por mais 4 dias. Alternativa (sem via oral ou grave): ceftriaxona 50 mg/kg (máx. 2 g) IM 1x ao dia por 3 a 5 dias.\n- > 10 anos/30 kg: ciprofloxacino 500 mg de 12/12h por 3 dias.",
   "orient": "- Manter aleitamento e alimentação habitual.\n- Retorno se piora, sangue nas fezes, vômitos que impedem a hidratação, sonolência ou pouca urina.",
   "fontes": [
    "Sociedade Brasileira de Pediatria. Guia Prático: Diarreia Aguda Infecciosa, 2023. https://www.sbp.com.br/fileadmin/user_upload/sbp/2023/junho/14/24048aPRESS-GPA-Diarreia_Aguda_Infecciosa-pSITE.pdf",
-   "Ministério da Saúde. Manejo do paciente com diarreia (cartaz). https://bvsms.saude.gov.br/bvs/cartazes/manejo_paciente_diarreia_cartaz.pdf"
+   "Ministério da Saúde. Manejo do paciente com diarreia: avaliação do estado de hidratação do paciente (cartaz, atualização 2023). https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dda/publicacoes/manejo-do-paciente-com-diarreia-avaliacao-do-estado-de-hidratacao-do-paciente",
+   "Fichas azitromicina (bula: máximo 500 mg/dia) e ceftriaxona (máximo 2 g/dia) do painel."
   ],
   "rev": [
+   "Corrigido (2026-10-17): link do MS trocado pelo cartaz de 2023 (o antigo trazia outro Plano C); azitromicina e ceftriaxona com dose máxima e ceftriaxona 50 mg/kg na criança até 30 kg, como o cartaz; Plano B com gastróclise e \"sem melhora em 6 h: hospital\" (MS, cartaz 2023).",
    "Item novo."
   ]
  },

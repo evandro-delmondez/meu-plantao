@@ -11,6 +11,7 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 5. Atualizar a data acima para daqui a 3 meses.
 
 ## Histórico
+- 2026-10-17 (v1.12.1) — revisão geral, lote 1 (16 condutas; 13 corrigidas), relatórios `.rascunhos/revisao-lote1.md`, `.rascunhos/edicao-lote1.md`, `.rascunhos/conferencia-lote1.md` (2 ajustes aplicados). Pendente: confirmar na bula do Vannair o máximo de inalações no MART.
 - 2026-10-17 (v1.12.0) — intoxicação: cartão Agora, nomograma, CIATox e 4 fichas de antídotos conferidos (`.rascunhos/conferencia-intox-cartao.md`, `.rascunhos/conferencia-antidotos.md`); correções aplicadas; conduta `intoxicacao` publicada atualizada.
 - 2026-10-09 (v1.10.1) — auditoria de segurança independente (`.rascunhos/auditoria-seguranca.md`: 2 críticos, ~20 importantes, ~35 menores); críticos corrigidos e conferidos (`.rascunhos/conferencia-correcao-critica.md`: 3 ajustes obrigatórios aplicados). Importantes ficam para a revisão geral (ROTEIRO).
 - 2026-10-09 (v1.10.0) — porta: 6 queixas (21 correções obrigatórias), alta leiga de 15 condutas (5 correções) e 8 condutas publicadas corrigidas com aprovação do médico. Relatórios em `.rascunhos/conferencia-queixas.md` e `.rascunhos/conferencia-alta-1.md`. Divergências: PA diferencial na dengue (< 20 no fluxograma × ≤ 20 no quadro do MS 2024; adotado ≤ 20 na queixa); CURB-65 mantido (NICE 2025, SBPT); ureia > 50 mg/dL na calculadora × ~42 em Lim 2003.

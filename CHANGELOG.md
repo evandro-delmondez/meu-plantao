@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.12.1 — 2026-10-17
+- **Revisão geral, lote 1 (Respiratório e Otorrino/Oftalmo), aprovada pelo médico e conferida:** asma pela GINA 2026 (prednisona 40–50 mg; após a crise, budesonida-formoterol como manutenção e alívio; alvo de O2 92–95%); DPOC pela GOLD 2026 (antibiótico 5 dias; metilprednisolona EV se não tolerar VO); pneumonia e OMA do adulto com 5 dias; gripe sem loratadina; bronquiolite com limiar de O2; crupe com teto de 10 mg de dexametasona em todo o painel; tosse com busca de tuberculose; amigdalite com antibiótico só com estreptococo confirmado ou Centor/FeverPAIN alto e azitromicina 500 mg + 250 mg; conjuntivite com tobramicina 4/4h; otite externa com os nomes comerciais certos; rinite sem prometazina IM; sinusite com observação sem antibiótico quando o retorno é garantido e doxiciclina na alergia a penicilina.
+
 ## 1.12.0 — 2026-10-17
 - **Intoxicação — cartão "Agora":** estabilizar, reconhecer a síndrome tóxica, carvão ativado, antídotos (naloxona, flumazenil, N-acetilcisteína, bicarbonato no tricíclico, atropina no organofosforado, glicose e octreotide na sulfonilureia), observação e notificação; doses pelo peso.
 - **CIATox a um toque:** Disque-Intoxicação 0800 722 6001 e o CIATox da sua região, salvo no aparelho.

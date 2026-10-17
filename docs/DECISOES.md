@@ -68,3 +68,4 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 ## Material institucional (2026-10-16)
 - Manual e protocolos do hospital onde trabalha ficam no repositório **privado** `plantao-hsls` (resumos + comandos do Claude Code). Nunca copiar para este repositório público nem para o site.
 - Revisão lotes 1 e 2 (2026-10-17): aplicar todas as correções obrigatórias (`.rascunhos/revisao-lote1.md`, `.rascunhos/revisao-lote2.md`), com conferência antes de publicar. Asma após a crise: budesonida-formoterol como manutenção e alívio (MART, GINA 2026). OMA no adulto: 5 dias. Prostatite aguda: 14 dias, estendendo se preciso. Demais escolhas listadas na coluna "Decisão do médico" dos relatórios: manter como está.
+- Terlipressina na HDA (2026-10-17): dose pela bula Anvisa, por peso (≤ 50 kg 1 mg; 50–70 kg 1,5 mg; > 70 kg 2 mg, de 4/4h), citando que o Baveno VII usa 2 mg.

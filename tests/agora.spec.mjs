@@ -4,7 +4,7 @@ import { abrir, aba, RUIM, semRolagemLateral } from "./util.mjs";
 // no celular a lista some quando a conduta abre; abre direto pelo item
 const conduta = (page, id) => page.evaluate((i) => document.querySelector(`#list .item[data-id="${i}"]`).click(), id);
 
-const CARTOES = ["convulsao", "agitacao", "anafilaxia", "sepse", "sca", "avc", "pcr"];
+const CARTOES = ["convulsao", "agitacao", "anafilaxia", "sepse", "sca", "avc", "pcr", "intoxicacao"];
 
 test("cartão Agora: aparece no topo das emergências, calcula pelo peso e não salva o peso", async ({ page }) => {
   const erros = await abrir(page); await aba(page, "prescricoes");

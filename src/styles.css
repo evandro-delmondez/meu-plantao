@@ -511,6 +511,9 @@ body.sheet-on{overflow:hidden}
   #impressao .altavolte{background:#fff;border-color:#000}
   #impressao .altavolte h4{color:#000}
 }
+.ciatox{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:4px 16px 10px}
+.ciatox a.btn{text-decoration:none}
+.ciatoxed{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;width:100%}
 .pesoaviso{border-left:4px solid var(--warn);background:color-mix(in srgb,var(--warn) 10%,var(--surface))}
 .pesoaviso p{margin:0;padding:10px 14px;font-weight:700}
 .novopac.confirma{background:var(--bad);color:#fff;border-color:var(--bad)}

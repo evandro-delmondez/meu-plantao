@@ -20,6 +20,24 @@ const CONTAS=[
   else l.push("pH normal ou distúrbio não classificável só com estes valores: considerar distúrbio misto e calcular o ânion gap.");
   return l},
  src:["Harrison's Principles of Internal Medicine, 22ª ed. (McGraw Hill, 2025), cap. 58 — Acidosis and Alkalosis (tabelas 58-1 e 58-3) — equação de Winter e compensações respiratórias agudas e crônicas (a partir de pCO2 40 e HCO3 24).","Berend K, de Vries APJ, Gans ROB. Physiological approach to assessment of acid-base disturbances (N Engl J Med 2014;371:1434) — alcalose metabólica: pCO2 = 0,7 × HCO3 + 21 ± 2.","Albert MS, Dell RB, Winters RW. Quantitative displacement of acid-base equilibrium in metabolic acidosis (Ann Intern Med 1967;66:312)."]},
+{id:"apap",t:"Nomograma do paracetamol (Rumack-Matthew, linha de 150)",cor:"red",
+ campos:[["h","Horas desde a ingestão"],["mg","Paracetamol sérico (mcg/mL = mg/L)"],["um","ou em µmol/L"]],
+ // limiar(t) = 150 × 2^(−(t−4)/4) mcg/mL, de 4 a 24 h (meia-vida de 4 h); µmol/L ÷ 6,615 = mg/L
+ calc:v=>{
+  const aviso="Só para ingestão única, de liberação imediata, com hora conhecida, entre 4 e 24 h. Hora desconhecida, várias tomadas ou liberação prolongada: iniciar N-acetilcisteína e ligar para o CIATox (0800 722 6001). Uso repetido ou mais de 24 h: fora do nomograma (critério abaixo).";
+  if(!(v.h>0)) return null;
+  if(v.h<4) return [`<span class="warn">Coleta antes de 4 h: não interpretar; repetir com 4 h.</span>`,aviso];
+  if(v.h>24) return [`<span class="warn">Mais de 24 h ou uso repetido: fora do nomograma. Com sinal de toxicidade, iniciar N-acetilcisteína já. Tratar se paracetamol > 10 mcg/mL ou transaminases alteradas (HC-FMUSP); no uso repetido, o consenso 2023 usa > 20 mcg/mL.</span>`,aviso];
+  const lim=150*Math.pow(2,-(v.h-4)/4), nivel=v.mg>0?v.mg:v.um>0?v.um/6.615:null;
+  const l=[`Linha de tratamento com ${fmtN(v.h,1)} h: <b>${fmtN(lim,1)} mcg/mL</b> (${fmtN(lim*6.615,0)} µmol/L)`];
+  if(nivel!=null){
+    if(!(v.mg>0)) l.push(`Nível convertido: ${fmtN(nivel,1)} mcg/mL`);
+    if(nivel>=lim) l.push(`<span class="warn"><b>Na linha ou acima: iniciar N-acetilcisteína.</b></span>`);
+    else if(nivel>=lim*0.9) l.push(`<b>Abaixo da linha, mas muito perto (menos de 10%):</b> confirmar a hora e discutir com o CIATox.`);
+    else l.push(`<b>Abaixo da linha:</b> sem antídoto se a hora é certa e a coleta foi com 4 h ou mais; repetir em 4–6 h se junto com opioide ou anticolinérgico (absorção lenta).`);
+  }
+  l.push(aviso); return l},
+ src:["Rumack BH, Matthew H. Acetaminophen poisoning and toxicity (Pediatrics 1975;55:871); Rumack BH et al. (Arch Intern Med 1981;141:380): linha de tratamento de 150 mcg/mL em 4 h, meia-vida de 4 h.","Dart RC et al. Management of Acetaminophen Poisoning in the US and Canada: A Consensus Statement (JAMA Netw Open 2023;6:e2327739): linha de 150; hora desconhecida, ingestão escalonada, liberação prolongada e mais de 24 h; repetir o nível em 4–6 h com liberação prolongada ou anticolinérgico/opioide; µmol/L.","FDA. Acetadote (acetylcysteine injection), DailyMed, 2025: linha de 150; iniciar a dose de ataque se a hora é desconhecida ou o nível não sai em até 8 h.","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 101 (paracetamol: nomograma e situações que o invalidam).","Divergência: o Reino Unido (MHRA 2012) usa a linha de 100 mcg/mL para todos; EUA, Canadá, Austrália e Nova Zelândia usam 150."]},
 {id:"nac",t:"Sódio corrigido pela glicemia",cor:"teal",
  campos:[["na","Na"],["gli","Glicose"]],
  calc:v=>{if(!(v.na>0&&v.gli>0))return null;const x=Math.max(0,v.gli-100)/100;return [`Fator 1,6 (Katz): <b>${fmtN(v.na+1.6*x,1)}</b> mEq/L`,`Fator 2,4 (Hillier): <b>${fmtN(v.na+2.4*x,1)}</b> mEq/L`]},
@@ -49,7 +67,7 @@ function renderContas(){
     <div class="row">${c.campos.map(([k,l])=>k==="fem"?`<label class="check"><input type="checkbox" data-ct="${c.id}" data-k="fem" ${contasVal[c.id]&&contasVal[c.id].fem===1?"checked":""}> Sexo feminino</label>`:`<label class="f">${esc(l)}<input class="inp" type="number" inputmode="decimal" step="any" data-ct="${c.id}" data-k="${k}" value="${contasVal[c.id]&&contasVal[c.id][k]!=null?contasVal[c.id][k]:""}"></label>`).join("")}</div>
     <div class="scres" id="ct-${c.id}"></div>
     <details class="fontes"><summary>Fontes</summary><ul>${c.src.map(s=>`<li>${linkify(s)}</li>`).join("")}</ul></details></div>`).join("");
-  $$("#contas [data-ct]").forEach(i=>i.addEventListener("input",()=>{const v=contasVal[i.dataset.ct]=contasVal[i.dataset.ct]||{};v[i.dataset.k]=i.type==="checkbox"?(i.checked?1:0):numBr(i.value);contaRes(i.dataset.ct)}));
+  $$("#contas [data-ct]").forEach(i=>i.addEventListener("input",()=>{const v=contasVal[i.dataset.ct]=contasVal[i.dataset.ct]||{};v[i.dataset.k]=i.type==="checkbox"?(i.checked?1:0):i.dataset.k==="um"&&/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(i.value.trim())?numBr(i.value.trim().replace(/\./g,"")):numBr(i.value);contaRes(i.dataset.ct)}));
   CONTAS.forEach(c=>contaRes(c.id));
 }
 function contaRes(id){const c=CONTAS.find(x=>x.id===id);const r=c.calc(contasVal[id]||{});$("#ct-"+id).innerHTML=r?r.join("<br>"):`<span class="note">Preencha os campos.</span>`}

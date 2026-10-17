@@ -28,7 +28,8 @@ function renderAgora(it){
     <p class="agquando">${esc(a.quando)}</p>
     ${a.alerta?`<p class="agalerta">${esc(a.alerta)}</p>`:""}
     <ol class="agetapas">${a.etapas.map((e,ei)=>`<li><span class="agt">${esc(e.t)}</span><ul>${e.acoes.map((x,ai)=>`<li>${esc(x.txt)}${x.dose?` <span class="agcalc" data-k="${ei}-${ai}">${agoraDose(x.dose)}</span> <span class="agref">${esc(x.dose.ref)}</span>`:""}${x.mais?`<details class="agmais"><summary>detalhes</summary><p>${esc(x.mais)}</p></details>`:""}</li>`).join("")}</ul></li>`).join("")}</ol>
-    ${(a.atalhos||[]).length?`<div class="actions agatalhos">${a.atalhos.map(atalho).join("")}</div>`:""}
+    ${(a.atalhos||[]).filter(x=>!x.ciatox).length?`<div class="actions agatalhos">${a.atalhos.map((x,i)=>x.ciatox?"":atalho(x,i)).join("")}</div>`:""}
+    ${(a.atalhos||[]).some(x=>x.ciatox)?ciatoxHTML():""}
     <p class="note">Doses para adulto${temKg?" com o peso informado (não fica salvo)":""}. Confira a referência ao lado de cada dose antes de administrar.</p>
     <details class="fontes"><summary>Fontes do cartão</summary><ol>${a.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></section>`;
 }
@@ -39,6 +40,7 @@ function bindAgora(it){
     pac.peso=pi.value; if($("#pcPeso")) $("#pcPeso").value=pi.value;
     $$("#detail .agcalc").forEach(s=>{const [ei,ai]=s.dataset.k.split("-").map(Number);s.innerHTML=agoraDose(a.etapas[ei].acoes[ai].dose)});
   });
+  bindCiatox($("#detail .sec.agora"));
   $$("#detail [data-ag]").forEach(b=>b.onclick=()=>{
     const s=a.atalhos[+b.dataset.ag];
     if(s.protocolo){prIniciar(s.protocolo);setTab("protocolos")}

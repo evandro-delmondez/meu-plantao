@@ -38,8 +38,8 @@ adulto:[
   D("Dengue grupo C — SF 0,9%","10 mL/kg/h na 1ª e na 2ª hora (máx. 20 mL/kg em 2h)","mL/h",[10,10],1,{vol:true,perh:true}),
   D("Dengue grupo D — SF 0,9%","20 mL/kg em 20 min (até 3x)","mL",[20,20],1,{vol:true}),
   D("Parkland — queimaduras (Ringer lactato)","2–4 mL × kg × % SCQ em 24h (metade nas primeiras 8h)","mL",[0,0],1,{parkland:[2,4],obs:"Idoso, doença renal crônica ou insuficiência cardíaca: começar com 2–3 mL (MS)."})]},
- {t:"Toxico / Infecto",c:"lime",src:["Bula da ivermectina registrada na Anvisa (200 mcg/kg).", "AACT/EAPCCT. Position Paper: Single-Dose Activated Charcoal.", "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024."],d:[
-  D("Carvão ativado","adulto 25–100 g, dose única até 1h da ingestão","g",p=>25,1,{fixedtxt:"25–100 g"}),
+ {t:"Toxico / Infecto",c:"lime",src:["Bula da ivermectina registrada na Anvisa (200 mcg/kg).", "AACT/EAPCCT. Position Paper: Single-Dose Activated Charcoal.", "Centre antipoison du Québec. Antidotes — Activated charcoal, 2026: 1 g/kg, máx. 50 g, adulto e criança; Medicina de Emergência HC-FMUSP, 18ª ed., cap. 101 (decisão do médico: 1 g/kg, máx. 50 g, em todo o painel; a AACT/EAPCCT aceita 25–100 g no adulto).", "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024."],d:[
+  D("Carvão ativado","1 g/kg em dose única, até 1 h da ingestão (máx. 50 g); a AACT/EAPCCT aceita 25–100 g no adulto","g",[1,1],1,{gonly:true,max:50}),
   D("Ivermectina 6 mg (cp)","200 mcg/kg VO, dose única — tabela de peso da bula","cp",p=>p*0.2,6,{ivermectina:true})]}
 ],
 ped:[
@@ -66,7 +66,7 @@ ped:[
   D("Plano C — fase rápida (< 1 ano)","30 mL/kg em 1h, depois 70 mL/kg em 5h","mL",[30,30],1,{vol:true,obs:"Recém-nascido ou cardiopatia grave: começar com 10 mL/kg."}),
   D("Plano C — fase rápida (≥ 1 ano)","30 mL/kg em 30 min, depois 70 mL/kg em 2h30","mL",[30,30],1,{vol:true}),
   D("Parkland pediátrico (Ringer lactato)","2–4 mL × kg × % SCQ em 24h (metade nas primeiras 8h)","mL",[0,0],1,{parkland:[2,4]})]},
- {t:"Emergência pediátrica",c:"red",src:["Cardona V et al. WAO Anaphylaxis Guidance 2020.", "Glauser T et al. AES 2016: estado de mal epiléptico (Epilepsy Curr 2016).", "Abraham MB et al. ISPAD Clinical Practice Consensus Guidelines 2022: hypoglycemia (Pediatr Diabetes 2022;23:1322) — glicose 10% 2 mL/kg, até 5 mL/kg.", "Surviving Sepsis Campaign — crianças.", "Holliday MA, Segar WE. The maintenance need for water in parenteral fluid therapy (Pediatrics 1957;19:823).", "Sociedade Brasileira de Pediatria. Guia Prático: Diarreia Aguda Infecciosa, 2023.", "Ministério da Saúde. Manejo do paciente com diarreia (cartaz).", "Ministério da Saúde. Cartilha para tratamento de emergência das queimaduras, 2012.", "AACT/EAPCCT. Position Paper: Single-Dose Activated Charcoal.", "Bjornson C et al. Nebulized epinephrine for croup in children (Cochrane 2013)."],d:[
+ {t:"Emergência pediátrica",c:"red",src:["Centre antipoison du Québec. Antidotes — Activated charcoal, 2026: 1 g/kg, máx. 50 g, adulto e criança; Medicina de Emergência HC-FMUSP, 18ª ed., cap. 101 (decisão do médico: 1 g/kg, máx. 50 g, em todo o painel; a AACT/EAPCCT aceita 25–100 g no adulto).", "Cardona V et al. WAO Anaphylaxis Guidance 2020.", "Glauser T et al. AES 2016: estado de mal epiléptico (Epilepsy Curr 2016).", "Abraham MB et al. ISPAD Clinical Practice Consensus Guidelines 2022: hypoglycemia (Pediatr Diabetes 2022;23:1322) — glicose 10% 2 mL/kg, até 5 mL/kg.", "Surviving Sepsis Campaign — crianças.", "Holliday MA, Segar WE. The maintenance need for water in parenteral fluid therapy (Pediatrics 1957;19:823).", "Sociedade Brasileira de Pediatria. Guia Prático: Diarreia Aguda Infecciosa, 2023.", "Ministério da Saúde. Manejo do paciente com diarreia (cartaz).", "Ministério da Saúde. Cartilha para tratamento de emergência das queimaduras, 2012.", "AACT/EAPCCT. Position Paper: Single-Dose Activated Charcoal.", "Bjornson C et al. Nebulized epinephrine for croup in children (Cochrane 2013)."],d:[
   D("Adrenalina 1 mg/mL IM","0,01 mg/kg (máx. 0,3 mg; adolescente 0,5)","mg",[0.01,0.01],1,{max:0.3}),
   D("Diazepam 5 mg/mL EV","0,2 mg/kg (máx. 10 mg)","mg",[0.2,0.2],5,{max:10}),
   D("Diazepam 5 mg/mL retal","0,5 mg/kg (máx. 20 mg)","mg",[0.5,0.5],5,{max:20}),
@@ -75,7 +75,7 @@ ped:[
   D("SF 0,9% bolus","20 mL/kg","mL",[20,20],1,{vol:true}),
   D("Glicose 10%","2 a 4 mL/kg (hipoglicemia)","mL",[2,4],1,{vol:true}),
   D("Soro de manutenção (Holliday-Segar)","100/50/20 mL/kg","mL/dia",p=>p<=10?p*100:p<=20?1000+(p-10)*50:1500+(p-20)*20,1,{hs:true}),
-  D("Carvão ativado","0,5–1 g/kg (até 1h da ingestão; máx. 50 g de 1 a 12 anos)","g",[0.5,1],1,{gonly:true,max:50})]}
+  D("Carvão ativado","1 g/kg em dose única, até 1 h da ingestão (máx. 50 g)","g",[1,1],1,{gonly:true,max:50})]}
 ]
 };
 if (typeof module!=="undefined") module.exports={CALC,D};

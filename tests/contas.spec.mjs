@@ -38,3 +38,31 @@ test("contas de laboratório e ECG", async ({ page }) => {
   expect(await page.locator("#tab-contas").innerText()).not.toMatch(RUIM);
   expect(erros).toEqual([]);
 });
+
+test("nomograma do paracetamol: linha de 150 com meia-vida de 4 h, µmol/L e limites de uso", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "contas");
+  const campo = (k) => page.locator(`[data-ct="apap"][data-k="${k}"]`);
+  const res = page.locator("#ct-apap");
+  await campo("h").fill("8");
+  await expect(res).toContainText("75 mcg/mL");
+  await campo("mg").fill("80");
+  await expect(res).toContainText("Na linha ou acima: iniciar N-acetilcisteína");
+  await campo("mg").fill("50");
+  await expect(res).toContainText("Abaixo da linha");
+  await campo("mg").fill(""); await campo("um").fill("248"); await campo("h").fill("12");   // 37,49 mg/L: logo abaixo de 37,5
+  await expect(res).toContainText("muito perto");
+  await campo("h").fill("3");
+  await expect(res).toContainText("Coleta antes de 4 h");
+  await campo("h").fill("30");
+  await expect(res).toContainText("fora do nomograma");
+  expect(erros).toEqual([]);
+});
+
+test("nomograma: µmol/L com ponto de milhar e liberação prolongada sem contradição", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "contas");
+  const campo = (k) => page.locator(`[data-ct="apap"][data-k="${k}"]`);
+  await campo("h").fill("4"); await campo("um").fill("1.250");     // 1.250 µmol/L ≈ 189 mg/L, acima de 150
+  await expect(page.locator("#ct-apap")).toContainText("Na linha ou acima");
+  await expect(page.locator("#ct-apap")).not.toContainText("liberação prolongada ou junto");
+  expect(erros).toEqual([]);
+});

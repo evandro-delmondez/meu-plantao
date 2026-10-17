@@ -4,7 +4,9 @@
 const ui=Object.assign({tab:"inicio",sel:"amigdalite",cat:null,modo:"adulto",tipo:"atestado",ped:"febre"},lsGet(LS.ui,{}));
 Object.assign(ui,{peso:"",sexo:"M",perfil:[],pdPeso:"",pdAnos:"",pdMeses:""});
 // rede: "publica" | "particular" | null — preferência de quem usa o painel (onde está trabalhando hoje)
-const saveUI=()=>lsSet(LS.ui,{sel:ui.sel,cat:ui.cat,modo:ui.modo,ped:ui.ped,pmode:ui.pmode,score:ui.score,rede:ui.rede||null});
+// ciatox: telefone do CIATox local salvo por quem usa o painel (não é dado de paciente); versões antigas não têm o campo
+if(!ui.ciatox||typeof ui.ciatox!=="object") ui.ciatox={nome:"",tel:""};
+const saveUI=()=>lsSet(LS.ui,{sel:ui.sel,cat:ui.cat,modo:ui.modo,ped:ui.ped,pmode:ui.pmode,score:ui.score,rede:ui.rede||null,ciatox:ui.ciatox});
 let editing=false, confirmDel=false, newTmp=null;
 
 function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>el.hidden=true,1600)}

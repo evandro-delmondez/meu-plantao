@@ -27,20 +27,20 @@
    "Equivalência: dexametasona 0,75 mg = prednisona 5 mg = hidrocortisona 20 mg (VO/EV; Manual Einstein)."
   ],
   "pediatria": [
-   "Crupe: dose única de 0,15–0,6 mg/kg VO (máx. 12 mg) — TREKK 2023; CPS (Canadá) recomenda 0,6 mg/kg VO dose única, IM se VO impossível."
+   "Crupe: dose única de 0,15–0,6 mg/kg VO ou IM (o painel usa teto de 10 mg; TREKK 2023 aceita 12 mg) — CPS (Canadá) recomenda 0,6 mg/kg VO dose única, IM se VO impossível."
   ],
   "ped_calc": [
    {
     "rotulo": "Crupe — dose alta",
     "mgkg": 0.6,
-    "max_mg": 12,
+    "max_mg": 10,
     "intervalo": "dose única",
     "via": "VO/IM"
    },
    {
     "rotulo": "Crupe — dose baixa",
     "mgkg": 0.15,
-    "max_mg": 12,
+    "max_mg": 10,
     "intervalo": "dose única",
     "via": "VO"
    }

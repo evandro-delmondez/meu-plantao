@@ -25,7 +25,7 @@ sinusite:{
  ant:["uso de antibiótico no último mês","alergia a penicilina","imunossupressão","sinusites de repetição"],
  ex:["dor à palpação dos seios da face","secreção purulenta na rinoscopia","edema ou eritema periorbitário","alteração da movimentação ocular"],
  alarme:["edema, eritema ou dor periorbitária","proptose, diplopia ou alteração visual","cefaleia intensa","confusão mental ou sinais meníngeos","paralisia de nervo craniano"],
- fontes:["Chow AW et al. IDSA Clinical Practice Guideline for Acute Bacterial Rhinosinusitis in Children and Adults (Clin Infect Dis 2012;54:e72).","Rosenfeld RM et al. AAO-HNS Clinical Practice Guideline (Update): Adult Sinusitis (Otolaryngol Head Neck Surg 2015;152:S1)."]
+ fontes:["Chow AW et al. IDSA Clinical Practice Guideline for Acute Bacterial Rhinosinusitis in Children and Adults (Clin Infect Dis 2012;54:e72).","AAO-HNSF. Clinical Practice Guideline: Adult Sinusitis Update (Otolaryngol Head Neck Surg 2025;173 Suppl 1:S1–S56; doi 10.1002/ohn.1344)."]
 },
 oma:{
  hist:["otalgia","febre","hipoacusia ou plenitude auricular","otorreia","infecção de vias aéreas recente"],
@@ -114,9 +114,9 @@ sca:{
 asma:{
  hist:["fala só palavras ou frases curtas","sonolência ou confusão","uso de salbutamol mais que o habitual","febre ou sintomas de infecção respiratória"],
  ant:["intubação ou UTI por asma","internação ou emergência por asma no último ano","uso atual ou recente de corticoide oral","não usa corticoide inalatório","uso de mais de 1 frasco de salbutamol por mês","alergia alimentar"],
- ex:["uso de musculatura acessória","FR > 30 irpm","FC > 120 bpm","saturação de O2 < 90%","pico de fluxo ≤ 50% do previsto","tórax silencioso"],
- alarme:["sonolência, confusão ou tórax silencioso","saturação de O2 < 90% apesar do tratamento","sem melhora após broncodilatador","exaustão"],
- fontes:["Global Initiative for Asthma (GINA) 2024 — Global Strategy for Asthma Management and Prevention (gravidade da crise e fatores de risco para morte por asma). https://ginasthma.org"]
+ ex:["uso de musculatura acessória","FR > 30 irpm","FC > 120 bpm","saturação de O2 < 92% em ar ambiente","pico de fluxo ≤ 50% do previsto","tórax silencioso"],
+ alarme:["sonolência, confusão ou tórax silencioso","saturação de O2 < 92% apesar do tratamento","sem melhora após broncodilatador","exaustão"],
+ fontes:["Global Initiative for Asthma (GINA) 2026 — Global Strategy for Asthma Management and Prevention (gravidade da crise e fatores de risco para morte por asma). https://ginasthma.org"]
 },
 pac:{
  hist:["tosse","expectoração purulenta","dispneia","dor torácica pleurítica","febre","confusão mental"],

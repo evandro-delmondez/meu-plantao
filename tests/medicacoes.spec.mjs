@@ -21,7 +21,7 @@ test("calculadora pediátrica aplica o teto por dose", async ({ page }) => {
   await page.fill("#mq", "dexametasona"); await page.press("#mq", "Enter");
   await page.fill("#mPeso", "30"); await page.dispatchEvent("#mPeso", "input");
   const linha = page.locator("#mCalcBody tr", { hasText: "dose alta" });
-  await expect(linha).toContainText("12 mg"); await expect(linha).toContainText("teto");
+  await expect(linha).toContainText("10 mg"); await expect(linha).toContainText("teto");
 });
 test("busca e filtros por grupo e via", async ({ page }) => {
   await abrir(page); await aba(page, "medicacoes");

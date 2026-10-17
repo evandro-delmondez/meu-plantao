@@ -294,8 +294,9 @@ asma: {
   oque: "A asma é uma inflamação dos brônquios, os canos que levam o ar ao pulmão: na crise eles se fecham e dão chiado, tosse e falta de ar. Não tem cura, mas o tratamento de todos os dias evita novas crises.",
   cuidados: [
     "Tome e use os remédios como está na sua receita. Tome os comprimidos da crise até o último dia, mesmo que melhore.",
-    "A bombinha de alívio é para quando tiver falta de ar ou chiado. Use sempre com o espaçador, como foi ensinado.",
-    "A bombinha de controle deve ser usada todos os dias, mesmo sem sintomas. Depois de usar, enxágue a boca e cuspa a água.",
+    "Se a sua receita tem uma bombinha só (budesonida com formoterol), ela é de controle e de alívio ao mesmo tempo: use todos os dias, mesmo sem sintomas, e 1 jato a mais se tiver falta de ar ou chiado. No máximo 12 jatos por dia, somando todos.",
+    "Se a sua receita tem duas bombinhas, a de alívio é para quando tiver falta de ar ou chiado, e a de controle deve ser usada todos os dias, mesmo sem sintomas. Bombinha em spray: use com o espaçador, como foi ensinado.",
+    "Depois de usar a bombinha de controle, enxágue a boca e cuspa a água.",
     "Marque consulta no posto de saúde nos próximos dias, em até 1 semana, para rever o tratamento. Leve suas bombinhas.",
     "Fique longe de fumaça (cigarro, fogão a lenha, queimadas), poeira e cheiros fortes. Se você fuma, peça ajuda no posto para parar.",
     "Tome a vacina da gripe todo ano."
@@ -308,7 +309,7 @@ asma: {
     "Sonolência, confusão ou cansaço muito grande para respirar."
   ],
   fontes: [
-    "Global Initiative for Asthma (GINA) 2026 — Global Strategy for Asthma Management and Prevention: alta da emergência (completar o corticoide oral, tratamento de controle, técnica inalatória, plano de ação escrito, retorno em até 1 semana), evitar fumaça, vacina da gripe. https://ginasthma.org",
+    "Global Initiative for Asthma (GINA) 2026 — Global Strategy for Asthma Management and Prevention: alta da emergência (completar o corticoide oral, tratamento de controle, técnica inalatória, plano de ação escrito, retorno em até 1 semana; manutenção e alívio com budesonida-formoterol, MART, máx. 12 inalações por dia), evitar fumaça, vacina da gripe. https://ginasthma.org",
     "Ministério da Saúde. Asma, Saúde de A a Z: não tem cura, mas o tratamento controla; acompanhamento na Unidade Básica de Saúde. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/asma",
     "NHS. Asthma attack: emergência se piora ou se não melhora com a bombinha de alívio; consulta em até 2 dias após a crise. https://www.nhs.uk/conditions/asthma/asthma-attack/",
     "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023: asma como condição de risco para complicações da gripe. https://bvsms.saude.gov.br/bvs/publicacoes/guia_manejo_tratamento_influenza_2023.pdf"

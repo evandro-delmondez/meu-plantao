@@ -1878,14 +1878,19 @@ const BASE = [
   "cat": "pele",
   "cid": "T30.0",
   "sin": "queimado escaldadura fogo",
-  "casa": "Uso tópico (queimaduras pequenas de 2º grau, alta)\n1) Sulfadiazina de prata 1% creme ------------ 1 bisnaga\nAplicar sobre a lesão após limpeza, 1 a 2x ao dia, com curativo.\n\nUso oral\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.",
-  "unidade": "1) Interromper o processo: resfriar com água corrente em temperatura ambiente; não usar gelo.\n2) Calcular a superfície corporal queimada (SCQ) — regra dos nove (adulto) ou Lund-Browder (criança).\n3) Hidratação se SCQ > 20% no adulto ou > 10% na criança, com Ringer lactato:\n   Parkland: 2–4 mL × peso (kg) × % SCQ (2 mL em idosos/insuficiência renal; 4 mL em crianças e adultos jovens).\n   Metade nas primeiras 8h (a contar da queimadura) e metade nas 16h seguintes. Alvo de diurese 0,5–1 mL/kg/h.\n4) Analgesia: dipirona 500 mg–1 g EV; morfina 1 mg/10 kg (adulto) | criança: dipirona 15–25 mg/kg, morfina 0,1 mg/kg/dose.\n5) Limpeza com água e clorexidina 2%; sulfadiazina de prata 1%.\n6) Profilaxia antitetânica. não usar antibiótico sistêmico profilático.\nEncaminhar a centro de queimados: 2º grau > 20% SCQ (adulto), 3º grau de qualquer extensão, face, olhos, períneo, mãos, pés, grandes articulações, lesão inalatória, trauma elétrico ou químico.",
+  "casa": "Uso tópico (queimaduras pequenas de 2º grau, alta)\n1) Sulfadiazina de prata 1% creme ------------ 1 bisnaga\nAplicar sobre a lesão após limpeza, 1 a 2x ao dia, com curativo.\n(Não usar no fim da gestação, em recém-nascido até 2 meses nem com alergia a sulfa.)\n\nUso oral\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).",
+  "unidade": "1) Interromper o processo: resfriar com água corrente em temperatura ambiente; não usar gelo.\n2) Calcular a superfície corporal queimada (SCQ) — regra dos nove (adulto) ou Lund-Browder (criança).\n3) Hidratação se SCQ > 20% no adulto ou > 10% na criança, com Ringer lactato:\n   Parkland: 2 mL × peso (kg) × % SCQ em 24h no adulto (criança: 3 mL; trauma elétrico: 4 mL), ajustando a velocidade pela diurese.\n   Metade nas primeiras 8h (a contar da queimadura) e metade nas 16h seguintes. Alvo de diurese 0,5–1 mL/kg/h (criança: 1 mL/kg/h; trauma elétrico: cerca de 1,5 mL/kg/h até clarear a urina). Sonda vesical se > 20% no adulto ou > 10% na criança.\n4) Analgesia: dipirona 500 mg–1 g EV; morfina 1 mg/10 kg (adulto) | criança: dipirona 15–25 mg/kg, morfina 0,1 mg/kg/dose.\n5) Limpeza com água e clorexidina 2%; sulfadiazina de prata 1%.\n6) Profilaxia antitetânica. Não usar antibiótico sistêmico profilático nem corticoide.\nEncaminhar a centro de queimados: 2º grau > 20% da superfície corporal no adulto ou > 10% em criança ou maior de 50 anos; 3º grau de qualquer extensão; face, olhos, períneo, mãos, pés ou grandes articulações; lesão inalatória; queimadura elétrica ou química; lesão circunferencial de tórax ou de membros; politrauma, doença associada grave, maus-tratos ou tentativa de suicídio.",
   "orient": "- Não furar bolhas em casa; retorno para troca de curativo.",
-  "fontes": [
-   "Ministério da Saúde. Cartilha para tratamento de emergência das queimaduras, 2012. https://portal.cfm.org.br/images/stories/pdf/queimados.pdf"
-  ],
   "rev": [
+   "Corrigido (2026-10-17): Parkland 2–4 mL → 2 mL × kg × % SCQ no adulto, 3 mL na criança e 4 mL no trauma elétrico, ajustando pela diurese (ATLS 10ª ed., cap. 9; ABA/ABLS 2023); critérios de transferência completos (cartilha MS 2012, item 12); diurese de 1 mL/kg/h na criança e cerca de 1,5 mL/kg/h no trauma elétrico, sonda vesical (cartilha MS, itens 2 e 5; ATLS); sem corticoide (cartilha MS, item 8); contraindicações da sulfadiazina (bula Dermazine); dipirona com no máximo 8 cp por dia (ficha dipirona).",
    "Item novo."
+  ],
+  "fontes": [
+   "Ministério da Saúde. Cartilha para tratamento de emergência das queimaduras, 2012. https://portal.cfm.org.br/images/stories/pdf/queimados.pdf",
+   "American College of Surgeons. ATLS — Advanced Trauma Life Support, 10ª ed., 2018, cap. 9 (Thermal Injuries): Parkland começando com 2 mL × kg × % SCQ no adulto, 3 mL na criança e 4 mL no trauma elétrico; diurese 0,5 mL/kg/h no adulto e 1 mL/kg/h na criança < 30 kg.",
+   "American Burn Association. Advanced Burn Life Support (ABLS) Provider Manual, 2023 — reposição inicial 2 mL × kg × % SCQ no adulto, ajustada pela diurese.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 69 — Queimaduras térmicas.",
+   "Bula da sulfadiazina de prata 1% (Dermazine), registrada na Anvisa — contraindicada no fim da gestação, em prematuros e recém-nascidos até 2 meses e na alergia a sulfonamidas."
   ]
  },
  {

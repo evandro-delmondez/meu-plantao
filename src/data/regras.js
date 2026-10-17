@@ -82,7 +82,7 @@ const RULES=[
 {re:/ivermectina/i, nome:"Ivermectina",
  gest:["Não usar na gestação (bula); preferir permetrina.","bula"]},
 {re:/albendazol|mebendazol/i, nome:"Albendazol/mebendazol",
- gest:["Evitar no 1º trimestre (bula).","bula"]},
+ gest:["Bula: não usar na gestação nem em quem planeja engravidar. Na enterobíase, priorizar higiene e adiar o tratamento; se indispensável, só depois do 1º trimestre.","bula"]},
 {re:/tiamazol|metimazol/i, nome:"Tiamazol",
  gest:["No 1º trimestre, preferir propiltiouracil.","ata"]},
 {re:/azitromicina|claritromicina/i, nome:"Macrolídeo",

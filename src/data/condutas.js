@@ -80,13 +80,17 @@ const BASE = [
   "cat": "gi",
   "cid": "K12.0",
   "sin": "ulcera oral boca",
-  "casa": "Uso oral\n1) Clorexidina 0,12% solução oral ------------ 1 fr\nFazer bochecho por 1 minuto, após a higiene oral, 2x ao dia, por 7 a 10 dias. Não engolir.\nOu\n1) Triancinolona 1mg/g em orabase (Omcilon-A Orabase) --- 1 bisnaga\nAplicar sobre as lesões 3x ao dia, após as refeições, por 7 dias.",
+  "casa": "Uso oral\n1) Clorexidina 0,12% solução oral ------------ 1 fr\nBochechar 15 mL (1 tampa), sem diluir, por 30 segundos, 2x ao dia (manhã e noite), após a higiene oral, por 7 a 10 dias. Não engolir.\nOu\n1) Triancinolona 1mg/g em orabase (Omcilon-A Orabase) --- 1 bisnaga\nAplicar pequena quantidade sobre as lesões, sem esfregar, 2 a 3x ao dia, após as refeições e ao deitar, por até 7 dias.",
   "unidade": "",
   "orient": "- Evitar alimentos ácidos, muito quentes ou condimentados.\n- Úlcera que não cicatriza em 2 a 3 semanas deve ser reavaliada.",
-  "rev": [],
+  "rev": [
+   "Corrigido (2026-10-17): clorexidina 15 mL por 30 segundos e triancinolona sem esfregar, também ao deitar (bulas Periogard e Omcilon-A Orabase); fonte Cochrane trocada, pois a citada (CD005411) avalia só tratamento sistêmico (Edgar 2017)."
+  ],
   "evid": "Poucos ensaios de qualidade; tratamento é sintomático.",
   "fontes": [
-   "Taylor J et al. Interventions for the management of recurrent aphthous stomatitis (Cochrane Database Syst Rev 2014;CD005411)."
+   "Edgar NR, Saleh D, Miller RA. Recurrent aphthous stomatitis: a review (J Clin Aesthet Dermatol 2017;10(3):26-36; PMID 28360966). Tratamento tópico de 1ª linha: clorexidina, corticoide tópico, anestésico local.",
+   "Bula Periogard (gluconato de clorexidina 0,12%, Colgate): 15 mL sem diluir, por 30 segundos, 2x ao dia, após a higiene oral.",
+   "Bula Omcilon-A Orabase (triancinolona acetonida 1 mg/g): aplicar sem esfregar, ao deitar e 2 a 3x ao dia após as refeições; reavaliar se não melhorar em 7 dias."
   ]
  },
  {
@@ -259,10 +263,11 @@ const BASE = [
   "cat": "gi",
   "cid": "K59.0",
   "sin": "intestino preso prisao de ventre",
-  "casa": "Uso oral\n1) Lactulose 667mg/mL xarope ----------------- 1 fr\nTomar 10 a 15 mL VO de 8/8h até normalizar o hábito.\n2) Óleo mineral ------------------------------ 1 fr\nTomar 15 mL VO à noite, longe do jantar, por até 4 dias, se fezes endurecidas.",
-  "unidade": "1) Buscopan Composto 1 amp EV lenta diluída em 10–20 mL de SF, ou IM (se cólica).\n2) Fosfato de sódio enema (Fleet) 1 unidade via retal, dose única\n   Ou Clister glicerinado 12% 500 mL via retal.",
+  "casa": "Uso oral\n1) Lactulose 667mg/mL xarope ----------------- 1 fr\nTomar 15 mL VO 1x ao dia, pela manhã ou à noite. Se não evacuar em 2 dias, aumentar para 30 mL 1x ao dia (máximo 30 mL/dia). Reduzir se as fezes ficarem líquidas.\n2) Óleo mineral ------------------------------ 1 fr\nTomar 15 mL VO à noite, longe do jantar, por até 4 dias, se fezes endurecidas.",
+  "unidade": "1) Escopolamina 20 mg + dipirona 2,5 g (Buscopan Composto) 1 ampola EV lenta (no mínimo 5 minutos, paciente deitado), diluída em 10–20 mL de SF 0,9%, ou IM profunda. Só se cólica e depois de afastar obstrução intestinal.\n2) Fosfato de sódio enema (Fleet) 1 unidade via retal, dose única\n   Ou Clister glicerinado 12% 500 mL via retal.",
   "orient": "- Aumentar água (mínimo 2 L/dia) e fibras (frutas, verduras, cereais integrais).\n- Atividade física regular; não segurar a vontade de evacuar.\n- Óleo mineral: só à noite, longe das refeições, por no máximo 1 semana. Não usar em menores de 6 anos, gestantes, acamados, com disfagia ou refluxo (aspiração e pneumonia lipoídica), nem com náusea, vômito ou dor abdominal a esclarecer (bula Anvisa; FDA 21 CFR 201.302).\n- Fosfato de sódio retal (Fleet): dose única, nunca mais de 1 em 24 h. Evitar acima de 55 anos, com desidratação, doença renal, obstrução ou inflamação intestinal, ou em uso de diurético, IECA, BRA ou AINE (preferir clister glicerinado). Não usar em menores de 2 anos (FDA, 2014).\n- Retorno se vômitos, distensão abdominal, parada de eliminação de gases ou sangue nas fezes.",
   "rev": [
+   "Corrigido (2026-10-17): lactulose 10–15 mL de 8/8h (30–45 mL/dia) → 15 a 30 mL/dia em dose única (bula Lactulona); Buscopan Composto EV com princípio ativo, no mínimo 5 minutos e só depois de afastar obstrução intestinal (bula Buscopan Composto injetável).",
    "Corrigido (2026-10-09): contraindicações do óleo mineral pela bula (menores de 6 anos, gestação, refluxo, náusea, vômito, dor abdominal) e do Fleet pela FDA 2014, com fonte.",
    "Adicionado: evitar óleo mineral em idosos acamados ou com disfagia (risco de aspiração).",
    "Adicionado: evitar Fleet em DRC, desidratação e idosos frágeis (distúrbio hidroeletrolítico).",
@@ -273,7 +278,9 @@ const BASE = [
    "Bula do óleo mineral (Anvisa; ex.: Teuto, 2025): contraindicado em menores de 6 anos; evitar com náuseas, vômitos, dor abdominal, gravidez, disfagia, refluxo e em acamados; não tomar com alimentos; no máximo 1 semana sem orientação médica.",
    "FDA. 21 CFR 201.302 — Mineral oil: vitaminas lipossolúveis, gravidez e pneumonia lipoídica; tomar só ao deitar.",
    "FDA Drug Safety Communication (08/01/2014): fosfato de sódio de venda livre — no máximo 1 dose em 24 h; risco maior acima de 55 anos, desidratação, doença renal, obstrução ou inflamação intestinal, diurético, IECA, BRA e AINE.",
-   "Chang L et al. AGA–ACG Clinical Practice Guideline: Pharmacological Management of Chronic Idiopathic Constipation (Gastroenterology 2023)."
+   "Chang L et al. AGA–ACG Clinical Practice Guideline: Pharmacological Management of Chronic Idiopathic Constipation (Gastroenterology 2023).",
+   "Bula Lactulona (lactulose 667 mg/mL, Daiichi Sankyo, Anvisa): adultos 15 a 30 mL/dia, em dose única pela manhã ou à noite, ajustada pelo número de evacuações.",
+   "Bula Buscopan Composto injetável (Boehringer Ingelheim, Anvisa): EV lenta, no máximo 1 mL/min, com o paciente deitado; contraindicado na obstrução intestinal mecânica e no megacólon."
   ]
  },
  {
@@ -475,6 +482,7 @@ const BASE = [
   "unidade": "1) Omeprazol 40 mg EV: reconstituir no diluente próprio (10 mL) e aplicar lento, ou diluir em 100 mL de SF e correr em 20–30 min.\n2) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Ondansetrona 4 mg EV lenta (≥ 30 s) ou IM.",
   "orient": "- Fracionar refeições, evitar deitar até 2h após comer, reduzir álcool, café, frituras e cigarro.\n- Evitar anti-inflamatórios.\n- Encaminhar para endoscopia (ambulatorial) se: 40 anos ou mais com dispepsia, sinais de alarme (perda de peso, anemia, disfagia, vômitos persistentes, sangramento, massa abdominal), falha do tratamento com IBP ou parente de 1º grau com câncer gástrico (a partir dos 30 anos) (V Consenso Brasileiro de H. pylori 2026, enunciado 18).\n- Abaixo de 40 anos e sem sinais de alarme: pesquisar e tratar o H. pylori na atenção primária (testar e tratar; V Consenso, enunciado 6; ACG/CAG 2017; Harrison, 22ª ed., cap. 48).\n- CID: DRGE K21.9 | Gastrite K29.7.",
   "rev": [
+   "Corrigido (2026-10-17): checklist e alta leiga com o limiar de 40 anos para endoscopia, como a conduta (V Consenso Brasileiro de H. pylori 2026, enunciado 18).",
    "Ajustado (2026-10-09): idade para endoscopia ≥ 60 → ≥ 40 anos (V Consenso Brasileiro de H. pylori 2026); adicionado testar e tratar o H. pylori.",
    "Removido: texto de HMA que estava colado no meio da prescrição.",
    "Corrigido: domperidona limitada a 7 dias (risco de arritmia) e digitação ('três vezles').",
@@ -551,10 +559,12 @@ const BASE = [
   "unidade": "",
   "orient": "- Tratar todos os contatos domiciliares.\n- Lavar roupas de cama e toalhas em água quente; cortar as unhas; lavar as mãos.",
   "rev": [
+   "Corrigido (2026-10-17): fontes separadas e com link (CDC, bula Zentel); alerta de gestação do albendazol fiel à bula: não usar na gestação nem em quem planeja engravidar (bula Zentel).",
    "Removido: dipirona IM para prurido anal (dipirona não trata prurido)."
   ],
   "fontes": [
-   "CDC. Enterobiasis — Treatment. Ministério da Saúde. Guia de Doenças Infecciosas e Parasitárias."
+   "CDC. Pinworm infection: clinical care. Mebendazol, pamoato de pirantel ou albendazol em dose única, repetida após 2 semanas; tratar os contatos domiciliares. https://www.cdc.gov/pinworm/hcp/clinical-care/",
+   "Bula Zentel (albendazol, Anvisa): enterobíase, 400 mg em dose única a partir de 2 anos; 2º ciclo se necessário; medidas de higiene para quem mora junto; não usar na gestação."
   ]
  },
  {

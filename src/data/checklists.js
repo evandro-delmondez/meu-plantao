@@ -78,10 +78,10 @@ geca:{
 },
 dispepsia:{
  hist:["queimação retroesternal ou regurgitação","dor relacionada a esforço, com dispneia ou sudorese (pensar em isquemia)","disfagia ou odinofagia","vômitos persistentes","perda de peso sem explicação","fezes escuras (melena)"],
- ant:["idade ≥ 60 anos","uso de anti-inflamatório ou AAS","câncer gastrointestinal na família","anemia"],
+ ant:["idade ≥ 40 anos (indicação de endoscopia)","uso de anti-inflamatório ou AAS","câncer gastrointestinal na família","anemia"],
  ex:["palidez","massa abdominal palpável","linfonodomegalia (supraclavicular)","dor com defesa ou descompressão dolorosa"],
  alarme:["hematêmese ou melena","disfagia progressiva","perda de peso","dor epigástrica com características de isquemia"],
- fontes:["Moayyedi PM et al. ACG and CAG Clinical Guideline: Management of Dyspepsia (Am J Gastroenterol 2017;112:988).","Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain (Circulation 2021;144:e368) — dor epigástrica como apresentação de isquemia. https://doi.org/10.1161/CIR.0000000000001029"]
+ fontes:["Coelho LGV et al. V Consenso Brasileiro sobre Helicobacter pylori (Arq Gastroenterol 2026;63:e26043), enunciado 18: endoscopia com 40 anos ou mais com dispepsia ou com sinais de alarme.","Moayyedi PM et al. ACG and CAG Clinical Guideline: Management of Dyspepsia (Am J Gastroenterol 2017;112:988).","Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain (Circulation 2021;144:e368) — dor epigástrica como apresentação de isquemia. https://doi.org/10.1161/CIR.0000000000001029"]
 },
 colica:{
  hist:["dor lombar em cólica irradiada para a virilha","hematúria","febre ou calafrios","diurese muito diminuída","dor no hipocôndrio direito após refeição","icterícia, colúria ou acolia"],

@@ -378,7 +378,7 @@ dispepsia: {
     "Não tome anti-inflamatório nem aspirina por conta própria: eles irritam o estômago. Se um médico receitou, não pare sem falar com ele.",
     "Se a queimação piora deitado, levante a cabeceira da cama com calços ou tijolos (travesseiros a mais não ajudam). Se estiver acima do peso, emagrecer ajuda.",
     "Procure o posto de saúde se não melhorar com 4 semanas de tratamento ou se a queimação voltar quando parar o remédio.",
-    "Procure também o posto de saúde se perdeu peso sem explicação, tem anemia ou alguém da família teve câncer de estômago: pode ser preciso um exame com uma câmera pela boca (endoscopia)."
+    "Procure também o posto de saúde se você tem 40 anos ou mais, se perdeu peso sem explicação, tem anemia ou alguém da família teve câncer de estômago: pode ser preciso um exame com uma câmera pela boca (endoscopia)."
   ],
   volte: [
     "Vômito com sangue ou parecido com borra de café.",
@@ -391,7 +391,7 @@ dispepsia: {
   ],
   fontes: [
     "NHS. Stomach ulcer: pronto-socorro se vômito com sangue, fezes pretas, dor de barriga intensa ou dor ao tocar a barriga. https://www.nhs.uk/conditions/stomach-ulcer/",
-    "Moayyedi PM et al. ACG and CAG Clinical Guideline: Management of Dyspepsia (Am J Gastroenterol 2017;112:988): endoscopia a partir de 60 anos ou com sinais de alarme; evitar anti-inflamatórios.",
+    "Moayyedi PM et al. ACG and CAG Clinical Guideline: Management of Dyspepsia (Am J Gastroenterol 2017;112:988): evitar anti-inflamatórios; sinais de alarme.",
     "Coelho LGV et al. V Consenso Brasileiro sobre Helicobacter pylori (Arq Gastroenterol 2026;63:e26043), enunciado 18: endoscopia se sinais de alarme, 40 anos ou mais com dispepsia, falha do tratamento ou parente de 1º grau com câncer gástrico.",
     "Katz PO et al. ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease (Am J Gastroenterol 2022;117:27): perder peso, elevar a cabeceira, evitar refeições 2 a 3 h antes de deitar, parar de fumar.",
     "NICE CG184. Gastro-oesophageal reflux disease and dyspepsia in adults, 2014 (atualizado 2019): inibidor de bomba de prótons por 4 semanas e reavaliar se não melhora ou se volta. https://www.nice.org.uk/guidance/cg184",

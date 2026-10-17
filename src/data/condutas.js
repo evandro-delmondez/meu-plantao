@@ -698,14 +698,17 @@ const BASE = [
   "cat": "pele",
   "cid": "T14.0",
   "sin": "ferimento machucado arranhao corte",
-  "casa": "Uso tópico\n1) Soro fisiológico 0,9% --------------------- 1 fr\nLavar o local 2x ao dia antes do curativo.\n2) Sulfadiazina de prata 1% creme ------------ 1 bisnaga\nAplicar fina camada na lesão 1 a 2x ao dia até cicatrizar (se lesão extensa ou exsudativa).\n\nUso oral\n3) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor.",
+  "casa": "Uso tópico\n1) Soro fisiológico 0,9% --------------------- 1 fr\nLavar o local 2x ao dia antes do curativo.\n2) Vaselina sólida --------------------------- 1 pote\nAplicar fina camada sobre a ferida limpa e cobrir com gaze ou curativo, trocando 1x ao dia até cicatrizar.\n\nUso oral\n3) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).",
   "unidade": "1) Limpeza com SF 0,9% + curativo.\n2) Verificar vacina antitetânica (ver \"Tétano / Feridas\").",
   "orient": "- Manter limpo e seco. Retorno se vermelhidão, calor, pus ou febre.",
   "rev": [
+   "Corrigido (2026-10-17): sulfadiazina de prata (indicada para queimadura, bula Dermazine) → vaselina sólida e curativo trocado 1x ao dia (AAD, How to treat minor cuts); dipirona com no máximo 8 cp por dia (ficha dipirona); fontes do MS e da AAD no lugar de \"consenso clínico\".",
    "Adicionado: checagem da vacina antitetânica."
   ],
   "fontes": [
-   "Consenso clínico; profilaxia antitetânica conforme Ministério da Saúde (Guia de Vigilância em Saúde)."
+   "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2023 — tétano acidental: profilaxia conforme o tipo de ferimento e a situação vacinal.",
+   "American Academy of Dermatology. How to treat minor cuts (limpeza com água, vaselina, curativo). https://www.aad.org/public/everyday-care/injured-skin/burns/treat-minor-cuts",
+   "Bula da sulfadiazina de prata 1% (Dermazine), registrada na Anvisa — indicação: queimaduras."
   ]
  },
  {
@@ -851,17 +854,21 @@ const BASE = [
   "cat": "pele",
   "cid": "B00.9",
   "sin": "herpes labial genital hsv",
-  "casa": "Uso oral\n# Herpes labial (iniciar nos pródromos ou até 1 dia das lesões):\n1) Aciclovir 400mg --------------------------- 25 cp\nTomar 1 cp VO 5x ao dia por 5 dias.\n\n# Herpes genital — 1º episódio:\n1) Aciclovir 400mg --------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\n\n# Herpes genital — recorrência:\n1) Aciclovir 400mg --------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
+  "casa": "Uso oral\n# Herpes labial (iniciar nos pródromos ou até 1 dia das lesões):\n1) Aciclovir 400mg --------------------------- 25 cp\nTomar 1 cp VO 5x ao dia por 5 dias.\nOu\n1) Valaciclovir 500mg ------------------------ 8 cp\nTomar 4 cp (2 g) VO de 12/12h por 1 dia, no início dos sintomas.\n\n# Herpes genital — 1º episódio:\n1) Aciclovir 400mg --------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\n\n# Herpes genital — recorrência:\n1) Aciclovir 400mg --------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
   "unidade": "",
-  "orient": "- Iniciar o mais cedo possível (idealmente nas primeiras 48–72h).\n- Herpes genital: ofertar testes rápidos de HIV, sífilis e hepatites; evitar relação durante as lesões.\n- CID: labial B00.1 | genital A60.0.",
+  "orient": "- Iniciar o mais cedo possível (idealmente nas primeiras 48–72h).\n- Herpes genital: ofertar testes rápidos de HIV, sífilis e hepatites; evitar relação durante as lesões.\n- Insuficiência renal: ClCr < 10 → aciclovir 200 mg de 12/12h; valaciclovir conforme o ClCr (ver ajuste renal; bulas). Hidratar bem.\n- CID: labial B00.1 | genital A60.0.",
   "rev": [
+   "Corrigido (2026-10-17): ajuste renal do aciclovir separado do zoster: no herpes simples, só ClCr < 10 → 200 mg de 12/12h (antes o painel sugeria 800 mg de 8/8h); valaciclovir como alternativa no herpes labial, 2 g de 12/12h por 1 dia, com ajuste renal (bula do aciclovir; bula Valtrex); PCDT IST 2022 do MS nas fontes.",
    "Separado: esquemas por situação (labial, genital 1º episódio, recorrência).",
    "Removido: nota '(se gestante: 5 dias)', sem respaldo.",
    "Corrigido: herpes labial com aciclovir 400 mg 5x/dia por 5 dias (Spruance 1990), não 8/8h."
   ],
   "fontes": [
-   "Workowski KA et al. CDC STI Treatment Guidelines 2021 (herpes genital).",
-   "Spruance SL et al. Aciclovir 400 mg 5x/dia no herpes labial (Antimicrob Agents Chemother 1990)."
+   "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (PCDT IST), 2022 — herpes genital: 1º episódio aciclovir 400 mg 8/8h por 7–10 dias; recorrência 400 mg 8/8h por 5 dias ou 800 mg 12/12h por 5 dias, iniciando no pródromo.",
+   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — herpes genital.",
+   "Spruance SL et al. Aciclovir 400 mg 5x/dia no herpes labial (Antimicrob Agents Chemother 1990).",
+   "Bula do valaciclovir (Valtrex), GSK, registrada na Anvisa; bula FDA Valtrex — herpes labial 2 g de 12/12h por 1 dia; ajuste renal (ClCr 30–49: 1 g 12/12h por 1 dia; 10–29: 500 mg 12/12h por 1 dia; < 10: 500 mg dose única).",
+   "Bula do aciclovir comprimido, registrada na Anvisa — ajuste renal: esquemas de 200–400 mg → 200 mg de 12/12h se ClCr < 10; 800 mg 5x/dia → 800 mg de 8/8h se ClCr 10–25 e de 12/12h se < 10."
   ]
  },
  {
@@ -870,15 +877,20 @@ const BASE = [
   "cat": "pele",
   "cid": "B02.9",
   "sin": "cobreiro zona herpes facial",
-  "casa": "Uso oral\n1) Aciclovir 400mg --------------------------- 70 cp\nTomar 2 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\nOu (se disponível no posto)\n1) Aciclovir 200mg --------------------------- 140 cp\nTomar 4 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\n2) Paracetamol + Codeína 500/30mg (Paco) ----- 15 cp\nTomar 1 cp VO de 6/6h se dor intensa.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.",
+  "casa": "Uso oral\n1) Aciclovir 400mg --------------------------- 70 cp\nTomar 2 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\nOu (se disponível no posto)\n1) Aciclovir 200mg --------------------------- 140 cp\nTomar 4 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\nOu\n1) Valaciclovir 500mg ------------------------ 42 cp\nTomar 2 cp (1 g) VO de 8/8h por 7 dias.\n2) Paracetamol + Codeína 500/30mg (Paco) ----- 15 cp\nTomar 1 cp VO de 6/6h se dor intensa (no máximo 4 cp por dia).\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).",
   "unidade": "",
   "orient": "- Iniciar até 72h do início das lesões (ou depois, se lesões novas surgindo ou imunossuprimido).\n- Lesão na ponta do nariz (sinal de Hutchinson), olho vermelho ou baixa da visão: avaliação oftalmológica urgente.\n- Evitar contato com gestantes, recém-nascidos e imunossuprimidos até as lesões virarem crostas.",
   "rev": [
+   "Corrigido (2026-10-17): paracetamol + codeína com no máximo 4 cp por dia e dipirona com no máximo 8 cp por dia (fichas codeina e dipirona); valaciclovir 1 g de 8/8h por 7 dias como alternativa, com ajuste renal (Dworkin 2007; bula Valtrex); ajuste renal do aciclovir separado do herpes simples, mantendo 800 mg de 8/8h (ClCr 10–25) e de 12/12h (< 10) (bula).",
    "Renomeado: 'Herpes facial' → Herpes zoster. A dose de 800mg 5x/dia é de zoster, não de herpes labial.",
    "Adicionado: duração de 7 dias e alerta de zoster oftálmico."
   ],
   "fontes": [
-   "Dworkin RH et al. Recommendations for the management of herpes zoster (Clin Infect Dis 2007)."
+   "Dworkin RH et al. Recommendations for the management of herpes zoster (Clin Infect Dis 2007).",
+   "National Institute for Health and Care Excellence. CKS Shingles (revisado em 2024): antiviral em até 72 h se > 50 anos, imunossuprimido, zoster fora do tronco ou dor/erupção moderada a grave; zoster oftálmico com encaminhamento no mesmo dia. https://cks.nice.org.uk/topics/shingles/",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 198 — Varicella-Zoster Virus Infections.",
+   "Bula do valaciclovir (Valtrex), GSK, registrada na Anvisa; bula FDA Valtrex — zoster 1 g de 8/8h por 7 dias; ajuste renal (ClCr 30–49: 1 g 12/12h; 10–29: 1 g 24/24h; < 10: 500 mg 24/24h).",
+   "Bula do aciclovir comprimido, registrada na Anvisa — zoster 800 mg 5x/dia; ClCr 10–25: 800 mg de 8/8h; < 10: 800 mg de 12/12h."
   ]
  },
  {
@@ -938,17 +950,21 @@ const BASE = [
   "cat": "pele",
   "cid": "L01.0",
   "sin": "crosta melicerica ferida infectada",
-  "casa": "Uso tópico (lesões localizadas)\n1) Mupirocina 2% pomada ---------------------- 1 bisnaga\nAplicar nas lesões 3x ao dia, após remover as crostas com água morna e sabão, por 5 a 7 dias.\nOu\n1) Neomicina + Bacitracina pomada ------------ 1 bisnaga\nAplicar nas lesões 3x ao dia, após limpeza, por 7 dias.\n\nUso oral (lesões extensas ou múltiplas)\n2) Cefalexina 500mg -------------------------- 28 cp\nTomar 1 cp VO de 6/6h por 7 dias.\nOu (alergia a penicilina)\n2) Clindamicina 300mg ------------------------ 21 cp\nTomar 1 cp VO de 8/8h por 7 dias.\n\n3) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor ou febre.",
+  "casa": "Uso tópico (lesões localizadas)\n1) Mupirocina 2% pomada ---------------------- 1 bisnaga\nAplicar nas lesões 3x ao dia, após remover as crostas com água morna e sabão, por 5 a 7 dias.\nOu\n1) Ácido fusídico 2% creme ------------------- 1 bisnaga\nAplicar nas lesões 3x ao dia, após remover as crostas, por 5 dias.\n\nUso oral (lesões extensas ou múltiplas)\n2) Cefalexina 500mg -------------------------- 20 cp\nTomar 1 cp VO de 6/6h por 5 dias.\nOu (alergia a penicilina)\n2) Clindamicina 300mg ------------------------ 20 cp\nTomar 1 cp VO de 6/6h por 5 dias.\n\n3) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor ou febre (no máximo 8 cp por dia).",
   "unidade": "",
   "orient": "- Cortar as unhas, lavar as mãos, não compartilhar toalhas.\n- Afastar da escola/creche até 24h após o início do antibiótico.",
   "rev": [
+   "Corrigido (2026-10-17): clindamicina 300 mg de 8/8h → 6/6h (IDSA SSTI 2014, tabela 1); antibiótico oral por 5 dias, 20 cp (NICE NG153); neomicina + bacitracina → ácido fusídico 2% 3x ao dia por 5 dias (NICE NG153; Cochrane, Koning 2012); dipirona com no máximo 8 cp por dia (ficha dipirona).",
    "Removido: penicilina benzatina (não cobre S. aureus, principal agente).",
    "Removido: eritromicina em xarope (dose pediátrica, subdosada para adulto).",
    "Adicionado: mupirocina como 1ª linha tópica.",
    "Removido: diclofenaco + paracetamol de rotina."
   ],
   "fontes": [
-   "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014)."
+   "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10) — impetigo: tabela 1 (clindamicina 300–400 mg 4x ao dia).",
+   "National Institute for Health and Care Excellence. NG153 — Impetigo: antimicrobial prescribing, 2020 — tópico (ácido fusídico 2% 3x ao dia) por 5 dias na lesão localizada; oral por 5 dias (até 7) se extenso ou bolhoso. https://www.nice.org.uk/guidance/ng153",
+   "Koning S et al. Interventions for impetigo (Cochrane Database Syst Rev 2012;CD003261).",
+   "American Academy of Pediatrics. Red Book 2024–2027 — impetigo: volta à escola 24 h após o início do antibiótico."
   ]
  },
  {

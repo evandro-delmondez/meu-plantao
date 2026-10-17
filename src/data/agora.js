@@ -179,7 +179,7 @@ agitacao: {
     "Bula do Compaz (diazepam 5 mg/mL injetável), Cristália, registrada na Anvisa: EV lenta, 0,5–1 mL/min (2,5–5 mg/min).",
     "Bula do Fenergan (cloridrato de prometazina) injetável, Sanofi, registrada na Anvisa — 25–50 mg IM profunda, não exceder 100 mg/dia.",
     "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023): no idoso, evitar benzodiazepínico e anti-histamínico de 1ª geração; antipsicótico no delirium só se medidas não farmacológicas falharem e houver risco importante para si ou para outros.",
-    "American Diabetes Association. Standards of Care in Diabetes—2025, seção 6 (Glycemic Goals and Hypoglycemia).",
+    "American Diabetes Association. Standards of Care in Diabetes—2026, seção 6 (Glycemic Goals and Hypoglycemia).",
     "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 15, Agitação psicomotora: os 4 H do 1º minuto (hipóxia, hipoglicemia, hipertermia, hipovolemia), contenção em decúbito dorsal com cabeceira a 30° e monitorização, benzodiazepínico na abstinência alcoólica, evitar benzodiazepínico no idoso."
   ]
 },

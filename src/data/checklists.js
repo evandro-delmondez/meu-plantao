@@ -368,7 +368,7 @@ hipoglicemia:{
  ant:["uso de sulfonilureia (glibenclamida, gliclazida)","uso de insulina","doença renal crônica","hipoglicemias prévias ou sem sintomas de alerta","etilismo ou desnutrição","idade avançada"],
  ex:["rebaixamento da consciência","sudorese e palidez","déficit neurológico focal","sinais de sepse"],
  alarme:["hipoglicemia que volta após a correção","rebaixamento persistente após normalizar a glicemia","convulsão","ingestão intencional de insulina ou antidiabético","hipoglicemia por sulfonilureia"],
- fontes:["American Diabetes Association. Standards of Care in Diabetes—2025, seção 6 (Glycemic Goals and Hypoglycemia).","Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 418 — Hypoglycemia.","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 88 — Hipoglicemia."]
+ fontes:["American Diabetes Association. Standards of Care in Diabetes—2026, seção 6 (Glycemic Goals and Hypoglycemia).","Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 418 — Hypoglycemia.","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 88 — Hipoglicemia."]
 },
 hipertireoidismo:{
  hist:["palpitação","intolerância ao calor e sudorese","perda de peso com apetite aumentado","tremor, nervosismo ou irritabilidade","diarreia","febre ou dor de garganta em uso de antitireoidiano"],

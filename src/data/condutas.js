@@ -190,11 +190,14 @@ const BASE = [
   "unidade": "",
   "orient": "- Pode causar sonolência; não dirigir após o uso.",
   "rev": [
+   "Corrigido (2026-10-17): fonte da meclizina (bula FDA) e revisão Cochrane de 2022 sobre anti-histamínicos (bula FDA do Antivert; Cochrane 2022).",
    "Corrigido: intervalo 12h → 24h (meclizina tem ação de ~24h)."
   ],
-  "evid": "Evidência modesta para anti-histamínicos; escopolamina tem mais estudos.",
+  "evid": "Anti-histamínico provavelmente previne a cinetose em viagem real (Cochrane 2022, evidência moderada), com mais sonolência; escopolamina transdérmica tem mais estudos, mas não é comercializada no Brasil.",
   "fontes": [
-   "Spinks A, Wasiak J. Scopolamine for preventing and treating motion sickness (Cochrane 2011;CD002851)."
+   "FDA. Meclizine hydrochloride (Antivert) — bula: 25–50 mg VO 1 h antes da viagem, repetir a cada 24 h se preciso; sonolência; cautela em asma, glaucoma e aumento da próstata.",
+   "Karrim N, Byrne R, Magula N, Saman Y. Antihistamines for motion sickness (Cochrane Database Syst Rev 2022;10:CD012715). PubMed 36250781.",
+   "Spinks A, Wasiak J. Scopolamine for preventing and treating motion sickness (Cochrane 2011;CD002851) — escopolamina transdérmica."
   ]
  },
  {
@@ -518,10 +521,11 @@ const BASE = [
   "cat": "gu",
   "cid": "N94.6",
   "sin": "colica menstrual",
-  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias, iniciar no 1º dia do ciclo.\nOu\n1) Ácido mefenâmico 500mg -------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.\n2) Paracetamol + Codeína 500/30mg (Paco) ----- 12 cp\nTomar 1 cp VO de 8/8h se dor forte.",
-  "unidade": "1) Cetoprofeno 100 mg IM (ampola 50 mg/mL, 2 mL) ou EV (apresentação própria para EV, em 100 mL de SF em 20–30 min)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.",
+  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias, iniciar no 1º dia do ciclo.\nOu\n1) Ácido mefenâmico 500mg -------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
+  "unidade": "1) Cetoprofeno 100 mg IM (ampola 50 mg/mL, 2 mL) ou EV (apresentação própria para EV, em 100 mL de SF em 20–30 min)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de soro fisiológico ou água destilada.",
   "orient": "- Calor local. Se dor progressiva ou refratária, investigar endometriose com ginecologista.",
   "rev": [
+   "Corrigido (2026-10-17): codeína retirada da receita (opioide sem indicação na dismenorreia primária; AINE é a 1ª linha e, se não bastar, contraceptivo hormonal) (SOGC 2017; ACOG CO 760).",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
@@ -659,16 +663,19 @@ const BASE = [
   "cid": "E16.2",
   "sin": "glicemia baixa hipo",
   "casa": "",
-  "unidade": "Glicemia < 70 mg/dL:\n\n# Consciente e capaz de engolir:\n15–20g de carboidrato VO (1 copo de suco ou 1 colher de sopa de açúcar em água). Repetir a glicemia em 15 min.\n\n# Rebaixado ou sem via oral:\n1) Tiamina 100mg EV (se etilismo ou desnutrição), junto com a glicose — não atrasar a glicose.\n2) Glicose 50% 40–50 mL EV em veia calibrosa (4–5 amp de 10 mL)\n   Ou Glicose 10% 150–250 mL EV.\n3) Repetir a glicemia em 15 min e manter SG 10% se necessário.",
-  "orient": "- Após recuperação, alimentar o paciente.\n- Hipoglicemia por sulfonilureia (glibenclamida, gliclazida) ou insulina NPH: observação prolongada (pode recorrer).",
+  "unidade": "Glicemia < 70 mg/dL:\n\n# Consciente e capaz de engolir:\n15–20g de carboidrato VO (1 copo de suco ou 1 colher de sopa de açúcar em água). Repetir a glicemia em 15 min.\n\n# Rebaixado ou sem via oral:\n1) Tiamina 100mg EV (se etilismo ou desnutrição), junto com a glicose — não atrasar a glicose.\n2) Glicose 50% 40–50 mL EV em veia calibrosa (4–5 amp de 10 mL)\n   Ou Glicose 10% 150–250 mL EV.\n3) Repetir a glicemia em 15 min e manter soro glicosado 10% se necessário.",
+  "orient": "- Após recuperação, alimentar o paciente.\n- Hipoglicemia por sulfonilureia (glibenclamida, gliclazida, glimepirida), insulina de ação longa ou doença renal crônica: observar 12 a 24 h com glicemia capilar de hora em hora. Sulfonilureia com hipoglicemia que volta: octreotide (ver cartão de intoxicação).",
   "rev": [
+   "Corrigido (2026-10-17): ADA 2026; tempo de observação de 12 a 24 h; octreotide coerente com o cartão de intoxicação (ADA 2026; HC-FMUSP 18ª ed., cap. 88; Klein-Schwartz 2016).",
    "Corrigido: tiamina junto com a glicose, sem atrasá-la (Schabelman 2012), em vez de antes.",
    "Unificado: as duas seções de hipoglicemia do modelo.",
    "Corrigido: 1 amp de glicose 50% diluída em 100 mL de SF em 10–15 min era dose insuficiente; padronizado 40–50 mL de glicose 50%.",
    "Adicionado: via oral no consciente e tiamina."
   ],
   "fontes": [
-   "American Diabetes Association. Standards of Care in Diabetes—2025, seção 6 (Glycemic Goals and Hypoglycemia)."
+   "American Diabetes Association. Standards of Care in Diabetes—2026, seção 6, Glycemic Goals and Hypoglycemia (Diabetes Care 2026;49 Suppl 1) — 15–20 g de glicose VO, repetir em 15 min; glucagon se não puder engolir.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 88, Hipoglicemia (glicose EV 15–20 g, até 50 g; glucagon 1–2 mg IM sem acesso; tiamina junto; observar 12–24 h com glicemia de hora em hora se risco de recorrência).",
+   "Klein-Schwartz W et al. Treatment of sulfonylurea and insulin overdose (Br J Clin Pharmacol 2016;81:496) — octreotide na hipoglicemia por sulfonilureia."
   ]
  },
  {
@@ -996,12 +1003,14 @@ const BASE = [
   "sin": "tireoide levotiroxina tsh",
   "casa": "Uso oral\n1) Levotiroxina 50mcg ------------------------ 30 cp\nTomar 1 cp VO em jejum, 30–60 min antes do café da manhã, todos os dias.",
   "unidade": "",
-  "orient": "- Idosos ou cardiopatas: iniciar com 25mcg.\n- Repetir TSH em 6–8 semanas para ajuste.",
+  "orient": "- Iniciar só com TSH alto confirmado (com T4 livre baixo ou TSH ≥ 10). Idosos ou cardiopatas: começar com 25 mcg (meio comprimido de 50 mcg ou apresentação de 25 mcg).\n- Repetir TSH em 6–8 semanas para ajuste.",
   "rev": [
+   "Corrigido (2026-10-17): início só com diagnóstico confirmado; 25 mcg com apresentação coerente com a receita; consenso SBEM (ATA 2014; SBEM 2013).",
    "Adicionado: dose inicial em idosos/cardiopatas e controle do TSH."
   ],
   "fontes": [
-   "Jonklaas J et al. ATA Guidelines for the Treatment of Hypothyroidism (Thyroid 2014)."
+   "Jonklaas J et al. Guidelines for the Treatment of Hypothyroidism — American Thyroid Association (Thyroid 2014;24:1670) — recomendações 21 e 22: dose inicial e idoso ou coronariopata.",
+   "Brenta G et al. Diretrizes clínicas práticas para o manejo do hipotireoidismo — SBEM (Arq Bras Endocrinol Metab 2013;57:265)."
   ]
  },
  {
@@ -1388,15 +1397,18 @@ const BASE = [
   "cat": "gu",
   "cid": "N93.9",
   "sin": "menorragia hemorragia uterina sangramento vaginal",
-  "casa": "Uso oral\n1) Ácido tranexâmico 250mg ------------------- 60 cp\nTomar 4 cp (1g) VO de 8/8h por até 5 dias (ACOG usa 1,3 g de 8/8h).\n2) Ácido mefenâmico 500mg -------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
-  "unidade": "1) Beta-hCG antes de tudo.\n2) Hemograma; avaliar sinais de instabilidade.\n3) Instável: 2 acessos, SF 0,9%, ácido tranexâmico 1g EV, avaliação ginecológica de urgência.",
-  "orient": "- Encaminhar ao ginecologista (USG transvaginal).\n- Retorno se sangramento > 1 absorvente/hora, tontura ou desmaio.",
+  "casa": "Uso oral\n1) Ácido tranexâmico 250mg ------------------- 60 cp\nTomar 4 cp (1g) VO de 8/8h por até 5 dias.\n2) Ácido mefenâmico 500mg -------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
+  "unidade": "1) Beta-hCG antes de tudo.\n2) Hemograma; avaliar sinais de instabilidade.\n3) Instável: 2 acessos calibrosos, soro fisiológico 0,9%, ácido tranexâmico 1 g EV lenta (em 10 min), avaliação ginecológica de urgência; transfundir se anemia grave. Não tamponar a vagina de rotina.\n   (A ACOG usa 10 mg/kg EV, máx. 600 mg por dose; o painel segue o HC-FMUSP, até 1 g EV.)",
+  "orient": "- Encaminhar ao ginecologista (USG transvaginal).\n- Retorno se sangramento > 1 absorvente/hora, tontura ou desmaio.\n- Não usar ácido tranexâmico se trombose atual ou prévia (trombose venosa, embolia pulmonar, AVC); cautela com anticoncepcional hormonal combinado.",
   "rev": [
+   "Corrigido (2026-10-17): nota da ACOG fora da receita; contraindicação do ácido tranexâmico; ácido tranexâmico EV 1 g em 10 min (HC-FMUSP), com a dose da ACOG (10 mg/kg, máx. 600 mg) citada; fonte HC-FMUSP cap. 111 (ACOG CO 557; HC-FMUSP 18ª ed., cap. 111; bula FDA do Lysteda).",
    "Corrigido: ácido tranexâmico 500mg → 1g de 8/8h.",
    "Adicionado: beta-hCG e conduta na instabilidade."
   ],
   "fontes": [
-   "ACOG Committee Opinion 557: Management of Acute Abnormal Uterine Bleeding in Nonpregnant Reproductive-Aged Women (2013)."
+   "ACOG Committee Opinion 557: Management of Acute Abnormal Uterine Bleeding in Nonpregnant Reproductive-Aged Women (Obstet Gynecol 2013;121:891; reafirmado em 2019) — ácido tranexâmico 1,3 g VO ou 10 mg/kg EV (máx. 600 mg) 3x/dia por 5 dias; opções hormonais.",
+   "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. 111, Emergências ginecológicas: sangramento vaginal (ácido tranexâmico 500–1.000 mg VO ou EV de 6/6 a 8/8h, máx. 3,9 g/dia, com AINE; reposição, transfusão e contra o tamponamento de rotina); no trauma, 1 g EV em 10 min.",
+   "FDA. Lysteda (ácido tranexâmico) — bula: contraindicado em doença tromboembólica ativa ou história de trombose; risco somado com contraceptivo hormonal combinado."
   ]
  },
  {

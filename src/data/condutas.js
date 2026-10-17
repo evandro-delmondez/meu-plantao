@@ -1072,14 +1072,18 @@ const BASE = [
   "cat": "pele",
   "cid": "B76.9",
   "sin": "bicho geografico",
-  "casa": "Uso oral\n1) Albendazol 400mg -------------------------- 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.\nOu\n1) Ivermectina 6mg --------------------------- (por peso)\nTomar 200 mcg/kg VO em dose única (≈ 1 cp a cada 30 kg).\n\nUso tópico\n2) Tiabendazol 50mg/g pomada (Foldan) -------- 1 bisnaga\nAplicar nas lesões, friccionando sobre os trajetos, 3x ao dia por 5 dias.",
+  "casa": "Uso oral\n1) Albendazol 400mg -------------------------- 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.\nOu\n1) Ivermectina 6mg --------------------------- conforme peso\nTomar VO em dose única, com água. Dose por peso: 15–24 kg ½ cp; 25–35 kg 1 cp; 36–50 kg 1½ cp; 51–65 kg 2 cp; 66–79 kg 2½ cp; 80 kg ou mais 200 mcg/kg.\n(Não usar abaixo de 15 kg ou de 5 anos, nem na gestação.)\n\nUso tópico\n2) Tiabendazol 50mg/g pomada (Foldan) -------- 1 bisnaga\nAplicar nas lesões, friccionando sobre os trajetos, 3x ao dia por 5 dias.",
   "unidade": "",
-  "orient": "- Evitar andar descalço em areia/terra.",
+  "orient": "- Evitar andar descalço em areia/terra.\n- Gestante e criança < 2 anos ou < 15 kg: preferir tratamento só tópico (tiabendazol).",
   "rev": [
+   "Corrigido (2026-10-17): ivermectina pela tabela de peso da bula (½ cp de 15–24 kg a 2½ cp de 66–79 kg; 200 mcg/kg a partir de 80 kg), sem uso abaixo de 15 kg ou de 5 anos nem na gestação (bula Revectina); gestante e criança < 2 anos ou < 15 kg só com tópico (CDC).",
    "Adicionado: ivermectina como alternativa."
   ],
   "fontes": [
-   "Caumes E. Treatment of cutaneous larva migrans (Clin Infect Dis 2000)."
+   "Caumes E. Treatment of cutaneous larva migrans (Clin Infect Dis 2000).",
+   "Centers for Disease Control and Prevention. Clinical Care of Zoonotic Hookworm (larva migrans cutânea): albendazol 400 mg/dia por 3–7 dias ou ivermectina 200 mcg/kg dose única; crianças < 2 anos ou < 15 kg, só tópico. https://www.cdc.gov/zoonotic-hookworm/hcp/clinical-care/index.html",
+   "Bula Revectina (ivermectina 6 mg), Abbott, registrada na Anvisa — tabela de dose por peso; contraindicada abaixo de 15 kg ou 5 anos.",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 238 — Trichinellosis and Other Tissue Nematode Infections (larva migrans cutânea)."
   ]
  },
  {
@@ -1185,17 +1189,22 @@ const BASE = [
   "cat": "pele",
   "cid": "T63.4",
   "sin": "picada abelha mosquito formiga",
-  "casa": "Uso oral\n1) Dexclorfeniramina 2mg --------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.\n2) Prednisona 20mg --------------------------- 6 cp\nTomar 2 cp VO pela manhã por 3 dias.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.",
-  "unidade": "1) Hidrocortisona 100 mg IM, ou EV (reconstituir; direto lento ou em 100 mL de SF em 30–60 min)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n* Sinais de anafilaxia → protocolo de anafilaxia (adrenalina IM).",
+  "casa": "Uso oral\n1) Loratadina 10mg --------------------------- 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\n2) Prednisona 20mg --------------------------- 6 cp\nTomar 2 cp VO pela manhã por 3 dias.\n(Só se reação local extensa: inchaço maior que 10 cm ou que pega articulação.)\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).",
+  "unidade": "1) Retirar o ferrão, se houver (raspar com a borda de um cartão); compressa fria.\n2) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de soro fisiológico ou água destilada, se dor.\n3) Loratadina 10mg VO, se coceira ou edema.\n* Sinais de anafilaxia → protocolo de anafilaxia (adrenalina IM).",
   "orient": "- Compressa fria no local.\n- Retorno imediato se falta de ar, inchaço no rosto ou tontura.",
   "rev": [
+   "Corrigido (2026-10-17): hidrocortisona IM/EV de rotina sai (sem fonte na reação local) → retirar o ferrão, compressa fria, dipirona e loratadina; prednisona só na reação local extensa; dexclorfeniramina → loratadina 10 mg 1x ao dia (Golden 2016; WAO 2020; Beers 2023); dipirona com no máximo 8 cp por dia (ficha dipirona).",
    "Corrigido: dexclorfeniramina 0,5mg → 2mg (comprimido disponível e dose usual).",
    "Ajustado: prednisona 20 → 40mg/dia.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
-  "evid": "Baseado em consenso clínico (poucos ensaios).",
+  "evid": "Practice parameter AAAAI/ACAAI 2016 (poucos ensaios; baseado em opinião de especialistas).",
   "fontes": [
-   "Consenso clínico; anafilaxia conforme WAO 2020."
+   "Golden DBK et al. Stinging insect hypersensitivity: a practice parameter update 2016 (Ann Allergy Asthma Immunol 2017;118:28) — reação local e reação local extensa.",
+   "Sturm GJ et al. EAACI guidelines on allergen immunotherapy: Hymenoptera venom allergy (Allergy 2018;73:744) — reação local extensa: corticoide oral curto.",
+   "Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020 (World Allergy Organ J 2020;13:100472).",
+   "Bula Claritin (loratadina 10 mg), registrada na Anvisa; American Geriatrics Society. Beers Criteria, 2023.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 11 — Anafilaxia e outras alergias."
   ]
  },
  {
@@ -1246,16 +1255,19 @@ const BASE = [
   "cat": "pele",
   "cid": "L55.9",
   "sin": "sol vermelhidao",
-  "casa": "Uso tópico\n1) Hidratante com aloe vera / loção de calamina --- 1 fr\nAplicar nas áreas afetadas 3x ao dia.\n2) Sulfadiazina de prata 1% creme ------------ 1 bisnaga\nAplicar fina camada nas áreas com bolhas 2x ao dia por 5 dias.\n\nUso oral\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h por 3 dias.",
-  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.",
+  "casa": "Uso tópico\n1) Hidratante com aloe vera / loção de calamina --- 1 fr\nAplicar nas áreas afetadas 3x ao dia.\n2) Hidrocortisona 1% creme ------------------- 1 bisnaga\nAplicar fina camada nas áreas mais doloridas, sem bolha aberta, 2x ao dia por até 3 dias.\n(Bolhas extensas: seguir a conduta \"Queimaduras\".)\n\nUso oral\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h por 3 dias.\n(Ibuprofeno só se dengue descartada, em quem tem febre.)",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de soro fisiológico ou água destilada.",
   "orient": "- Não furar bolhas; compressas frias; hidratação oral; evitar sol e usar protetor.",
   "rev": [
+   "Corrigido (2026-10-17): sulfadiazina de prata → hidrocortisona 1% nas áreas sem bolha aberta, por até 3 dias, e bolhas extensas na conduta \"Queimaduras\" (AAD, How to treat sunburn); ibuprofeno só se dengue descartada em quem tem febre (MS, Dengue, 6ª ed., 2024); fontes AAD e Harrison no lugar de \"consenso clínico\".",
    "Ajustado: sulfadiazina reservada para áreas com bolhas; hidratante na pele íntegra.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
-  "evid": "Baseado em consenso clínico.",
+  "evid": "Recomendações da AAD e do Harrison (tratamento sintomático; poucos ensaios).",
   "fontes": [
-   "Consenso clínico."
+   "American Academy of Dermatology. How to treat sunburn: banho ou compressa fria, hidratante com aloe vera, hidrocortisona 1% se desconforto, AINE oral, hidratação, não furar bolhas. https://www.aad.org/public/everyday-care/injured-skin/burns/treat-sunburn",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 64 — Photosensitivity and Other Reactions to Sunlight.",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
  },
  {
@@ -1440,16 +1452,21 @@ const BASE = [
   "cat": "pele",
   "cid": "L50.9",
   "sin": "alergia placas coceira",
-  "casa": "Uso oral\n1) Loratadina 10mg --------------------------- 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias.\nOu\n1) Dexclorfeniramina 2mg/5mL xarope ---------- 1 fr\nTomar 10 mL VO de 8/8h por 5 dias.\n2) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.",
-  "unidade": "1) Prometazina 50 mg somente IM profunda.\n* Se angioedema de glote, falta de ar ou hipotensão → protocolo de anafilaxia.",
+  "casa": "Uso oral\n1) Loratadina 10mg --------------------------- 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias.\nOu\n1) Levocetirizina 5mg ------------------------ 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias. Se não melhorar em 2–4 dias, pode tomar 1 cp de 12/12h.\n2) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.",
+  "unidade": "1) Levocetirizina 5mg VO (ou loratadina 10mg VO).\n   Se não puder tomar VO e prurido intenso: prometazina 25mg IM profunda (não usar em idosos nem em menores de 2 anos; máx. 100 mg/dia).\n2) Se placas extensas: prednisona 40mg VO.\n* Se angioedema de glote, falta de ar ou hipotensão → protocolo de anafilaxia.",
   "orient": "- Evitar o possível desencadeante e AINEs.\n- Urticária > 6 semanas: encaminhar.",
   "rev": [
+   "Corrigido (2026-10-17): anti-histamínico de 1ª geração → 2ª geração: dexclorfeniramina xarope 10 mL (4 mg, acima da bula) → levocetirizina 5 mg 1x ao dia, até 12/12h (diretriz internacional de urticária 2026; bula Polaramine); prometazina IM só sem VO, 25 mg, nunca em idoso nem em menor de 2 anos (bula Fenergan; FDA 2023; Beers 2023); diretriz 2022 → 2026.",
    "Ajustado: prednisona 1x ao dia pela manhã.",
    "Adicionado: alerta de anafilaxia.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Zuberbier T et al. EAACI/GA²LEN/EuroGuiDerm/APAAACI Guideline for Urticaria (Allergy 2022)."
+   "Zuberbier T et al. The International Guideline for the Definition, Classification, Diagnosis and Management of Urticaria (Allergy 2026;81(8):2582–2632). https://doi.org/10.1111/all.70210 — anti-histamínico de 2ª geração diário, até 4x a dose; corticoide oral só em curso curto.",
+   "Zuberbier T et al. EAACI/GA²LEN/EuroGuiDerm/APAAACI Guideline for Urticaria (Allergy 2022;77:734) — não usar anti-histamínico de 1ª geração; corticoide oral por no máximo 10 dias na urticária aguda.",
+   "Bula Fenergan (prometazina 25 mg/mL), registrada na Anvisa — 25–50 mg IM, máx. 100 mg/dia, contraindicada abaixo de 2 anos; FDA 2023 (tarja de lesão tecidual); American Geriatrics Society. Beers Criteria, 2023.",
+   "Bula Polaramine (dexclorfeniramina), registrada na Anvisa — adulto 2 mg 3–4x ao dia, máx. 12 mg/dia.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 11 — Anafilaxia e outras alergias."
   ]
  },
  {

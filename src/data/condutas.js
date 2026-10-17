@@ -1575,13 +1575,15 @@ const BASE = [
   "cid": "I63.9",
   "sin": "avc derrame deficit neurologico trombolise stroke",
   "casa": "",
-  "unidade": "1) Glicemia capilar imediata (hipoglicemia imita AVC). Registrar a hora em que o paciente foi visto bem pela última vez.\n2) NIHSS e TC de crânio sem contraste urgente; angio-TC se possível candidato a trombectomia. Não atrasar a imagem vascular esperando creatinina.\n3) ECG e troponina são recomendados, mas não devem atrasar a trombólise.\n\nTrombólise EV até 4,5h do último momento visto bem (sem contraindicações):\n4) Tenecteplase 0,25 mg/kg em bolus (máx. 25 mg)\n   Ou Alteplase 0,9 mg/kg (máx. 90 mg): 10% em bolus em 1 min e o restante em 60 min.\n5) PA antes da trombólise < 185/110 mmHg e < 180/105 mmHg nas 24h seguintes.\n\n6) Oclusão de grande vaso: trombectomia até 6h (e até 24h em casos selecionados). Acionar a regulação/centro de AVC.\n7) Não reduzir a glicemia com insulina EV para alvo de 80–130 mg/dL (sem benefício).\n8) Sem trombólise: AAS após excluir hemorragia na TC, conforme protocolo.",
+  "unidade": "1) Glicemia capilar imediata (hipoglicemia imita AVC). Registrar a hora em que o paciente foi visto bem pela última vez.\n2) NIHSS e TC de crânio sem contraste urgente; angio-TC se possível candidato a trombectomia. Não atrasar a imagem vascular esperando creatinina.\n3) ECG e troponina são recomendados, mas não devem atrasar a trombólise.\n\nTrombólise EV até 4,5h do último momento visto bem, com déficit incapacitante e sem contraindicações (ver fluxo):\n4) Tenecteplase 0,25 mg/kg em bolus (máx. 25 mg)\n   Ou Alteplase 0,9 mg/kg (máx. 90 mg): 10% em bolus em 1 min e o restante em 60 min.\n5) PA antes da trombólise < 185/110 mmHg (se acima: nitroprussiato, ver bomba; se não baixar, não trombolisar) e ≤ 180/105 mmHg nas 24h seguintes.\n\n6) Oclusão de grande vaso: trombectomia até 6h (e até 24h em casos selecionados). Acionar a regulação/centro de AVC.\n7) Glicemia entre 140 e 180 mg/dL; corrigir se < 60 mg/dL. Não buscar 80–130 mg/dL com insulina EV (sem benefício).\n8) Sem trombólise: AAS 160–325 mg VO (ou por sonda) nas primeiras 24–48 h, após a imagem excluir hemorragia e após teste de deglutição. Com trombólise: nenhum antiagregante ou anticoagulante por 24 h, até a TC de controle.\n9) Déficit leve não incapacitante (NIHSS ≤ 5) ou AIT de alto risco, sem trombólise: Clopidogrel 300–600 mg VO + AAS 160–325 mg VO em até 24 h; depois clopidogrel 75 mg/dia + AAS 75–100 mg/dia por 21 dias.",
   "orient": "- Tempo é cérebro: acionar o fluxo de AVC do serviço/regulação assim que houver suspeita.",
   "fontes": [
-   "AHA/ASA. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke (Stroke). https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
-   "Resumo emDocs do guideline 2026. https://www.emdocs.net/2026-guideline-update-early-management-of-acute-ischemic-stroke/"
+   "Prabhakaran S et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke — AHA/ASA (Stroke 2026): tenecteplase 0,25 mg/kg (máx. 25 mg) ou alteplase 0,9 mg/kg (máx. 90 mg); PA < 185/110 antes e ≤ 180/105 depois; glicemia 140–180; dupla antiagregação no AVC leve; trombectomia até 24 h. https://doi.org/10.1161/STR.0000000000000513",
+   "Powers WJ et al. 2019 Update to the 2018 Guidelines for the Early Management of Acute Ischemic Stroke (Stroke 2019;50:e344) — tabela de contraindicações à trombólise.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 53, Abordagem do paciente com AVC isquêmico agudo."
   ],
   "rev": [
+   "Corrigido (2026-10-17): dose do AAS (160–325 mg) com teste de deglutição e nada de antitrombótico por 24 h após a trombólise; dupla antiagregação no AVC leve e no AIT de alto risco; trombólise só com déficit incapacitante; conduta na PA alta antes da trombólise; alvo de glicemia 140–180 mg/dL; resumo do emDocs trocado pelas fontes primárias, como no cartão Agora e no fluxo (AHA/ASA 2026; Powers 2019; HC-FMUSP 18ª ed.).",
    "Item novo."
   ]
  },
@@ -1786,14 +1788,18 @@ const BASE = [
   "cat": "dor",
   "cid": "S06.0",
   "sin": "traumatismo cranioencefalico concussao batida cabeca queda",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor de cabeça.",
-  "unidade": "Regra canadense de TC de crânio (adulto ≥ 16 anos, Glasgow 13–15 com perda de consciência, amnésia ou desorientação testemunhada).\nTC indicada se qualquer um:\nAlto risco (lesão neurocirúrgica):\n- Glasgow < 15 duas horas após o trauma\n- Suspeita de fratura aberta ou com afundamento\n- Sinal de fratura de base de crânio (hemotímpano, olhos de guaxinim, rinorreia/otorreia liquórica, sinal de Battle)\n- Vômitos ≥ 2 episódios\n- Idade ≥ 65 anos\nMédio risco (lesão na TC):\n- Amnésia retrógrada ≥ 30 min\n- Mecanismo perigoso (atropelamento, ejeção do veículo, queda > 1 m ou > 5 degraus)\n\nA regra não se aplica (exclusões): < 16 anos, uso de anticoagulante ou coagulopatia, convulsão pós-trauma, fratura aberta evidente. Nesses casos, baixo limiar para TC.\nCriança: usar a regra PECARN.",
-  "orient": "- Alta com acompanhante; retorno imediato se piora da dor de cabeça, vômitos repetidos, sonolência, confusão, convulsão, fraqueza, alteração da fala.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor de cabeça (no máximo 8 cp por dia).",
+  "unidade": "Regra canadense de TC de crânio (adulto ≥ 16 anos, Glasgow 13–15 com perda de consciência, amnésia ou desorientação testemunhada).\nTC indicada se qualquer um:\nAlto risco (lesão neurocirúrgica):\n- Glasgow < 15 duas horas após o trauma\n- Suspeita de fratura aberta ou com afundamento\n- Sinal de fratura de base de crânio (hemotímpano, olhos de guaxinim, rinorreia/otorreia liquórica, sinal de Battle)\n- Vômitos ≥ 2 episódios\n- Idade ≥ 65 anos\nMédio risco (lesão na TC):\n- Amnésia retrógrada ≥ 30 min\n- Mecanismo perigoso (atropelamento, ejeção do veículo, queda > 1 m ou > 5 degraus)\n\nA regra não se aplica (exclusões): < 16 anos, uso de anticoagulante ou coagulopatia, convulsão pós-trauma, fratura aberta evidente. Anticoagulado (varfarina, rivaroxabana, apixabana, dabigatrana, heparina) ou com coagulopatia: fazer TC, mesmo sem outro critério (idealmente em até 8 h). Convulsão ou fratura aberta: TC.\nCriança: usar a regra PECARN.",
+  "orient": "- Alta com um adulto que fique junto nas primeiras 24 h; retorno imediato se piora da dor de cabeça, vômitos repetidos, sonolência difícil de acordar, confusão, convulsão, fraqueza, alteração da fala ou da visão, ou saída de líquido claro pelo nariz ou ouvido.\n- Evitar álcool, calmantes e esporte de contato até melhorar; voltar às atividades aos poucos.",
   "fontes": [
    "Stiell IG et al. The Canadian CT Head Rule for patients with minor head injury (Lancet 2001;357:1391). https://pubmed.ncbi.nlm.nih.gov/11356436/",
-   "ACEP Clinical Policy: Mild Traumatic Brain Injury, 2023. https://pubmed.ncbi.nlm.nih.gov/37085214/"
+   "Valente JH et al. Clinical Policy: Critical Issues in the Management of Adult Patients Presenting to the Emergency Department With Mild Traumatic Brain Injury — ACEP (Ann Emerg Med 2023;81:e63). https://pubmed.ncbi.nlm.nih.gov/37085214/",
+   "NICE NG232. Head injury: assessment and early management, 2023 (TC em até 8 h para anticoagulado, exceto AAS isolado; alta com adulto responsável nas primeiras 24 h e sinais para retorno).",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 63, Traumatismo cranioencefálico.",
+   "Ficha dipirona: máximo de 4 g por dia (EMA 2024)."
   ],
   "rev": [
+   "Corrigido (2026-10-17): TC para todo anticoagulado ou com coagulopatia, mesmo sem outro critério (antes: baixo limiar); teto da dipirona (8 cp por dia); adulto junto nas primeiras 24 h e o que evitar; fontes completas (NICE NG232 2023; ACEP 2023; HC-FMUSP 18ª ed.).",
    "Item novo."
   ]
  },
@@ -1803,14 +1809,17 @@ const BASE = [
   "cat": "dor",
   "cid": "S93.4",
   "sin": "torcao pe tornozelo trauma musculoesqueletico",
-  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.\n\nUso tópico (alternativa ao AINE oral)\n3) Diclofenaco dietilamônio gel -------------- 1 bisnaga\nAplicar no local 3 a 4x ao dia por até 7 dias.",
+  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).\n\nUso tópico (alternativa ao AINE oral)\n3) Diclofenaco dietilamônio gel -------------- 1 bisnaga\nAplicar no local 3 a 4x ao dia por até 7 dias.",
   "unidade": "Regras de Ottawa — RX indicado se dor maleolar/mediopé E qualquer um:\n- Dor à palpação dos 6 cm distais da borda posterior ou ponta do maléolo lateral ou medial.\n- Dor à palpação da base do 5º metatarso ou do navicular.\n- Incapacidade de dar 4 passos (logo após o trauma e na emergência).",
   "orient": "- Gelo 15–20 min várias vezes ao dia nos primeiros dias; elevação do membro.\n- Tratamento funcional (tornozeleira/órtese e carga conforme tolerância) é preferível à imobilização rígida.\n- Iniciar exercícios de mobilidade e propriocepção precocemente.",
   "fontes": [
    "Bachmann LM et al. Accuracy of Ottawa ankle rules to exclude fractures: systematic review (BMJ 2003;326:417). https://www.ncbi.nlm.nih.gov/books/NBK69576/",
-   "Vuurberg G et al. Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline (Br J Sports Med 2018)."
+   "Stiell IG et al. Decision rules for the use of radiography in acute ankle injuries: refinement and prospective validation (JAMA 1993;269:1127).",
+   "Vuurberg G et al. Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline (Br J Sports Med 2018;52(15):956): tratamento funcional melhor que imobilização; AINE por curto período para dor e edema; reexame em 3–5 dias. https://doi.org/10.1136/bjsports-2017-098106",
+   "Ficha dipirona: máximo de 4 g por dia (EMA 2024)."
   ],
   "rev": [
+   "Corrigido (2026-10-17): teto da dipirona (8 cp por dia); fontes completas (Ottawa, Stiell 1993; Vuurberg 2018; ficha dipirona).",
    "Item novo."
   ]
  },

@@ -634,13 +634,17 @@ const BASE = [
   "cid": "R73.9",
   "sin": "glicemia alta diabetes dm insulina",
   "casa": "",
-  "unidade": "Insulina regular SC conforme glicemia capilar:\n180–200 mg/dL: 2 UI\n201–250 mg/dL: 4 UI\n251–300 mg/dL: 6 UI\n301–350 mg/dL: 8 UI\n351–400 mg/dL: 10 UI\n> 400 mg/dL: 12 UI e avisar o médico\n\n* Se glicemia > 250 com vômitos, dor abdominal, taquipneia ou rebaixamento: investigar CAD/EHH (gasometria, cetonúria, eletrólitos). Não tratar só com escala SC.",
-  "orient": "- Escala isolada de insulina é desencorajada no paciente internado (ADA): serve só para correção pontual no pronto atendimento.\n- Revisar adesão e ajustar a medicação de uso contínuo com o clínico.\n- CID: DM2 descompensado E11.9.",
+  "unidade": "Insulina regular SC (ou análogo rápido) conforme a glicemia capilar, pela escala de correção da SBD 2026. Coluna usual; entre parênteses, sensível (idoso, frágil, IMC < 19, disfunção de órgão) e resistente (IMC > 33, corticoide, hiperglicemia persistente). A diretriz orienta aplicar até 15 min antes da refeição.\n141–180 mg/dL: 1 unidade (sensível 0; resistente 2 unidades)\n181–220 mg/dL: 2 unidades (sensível 1; resistente 4)\n221–260 mg/dL: 3 unidades (sensível 1; resistente 6)\n261–300 mg/dL: 4 unidades (sensível 2; resistente 8)\n301–340 mg/dL: 5 unidades (sensível 2; resistente 10)\n341–380 mg/dL: 6 unidades (sensível 3; resistente 12)\n381–420 mg/dL: 7 unidades (sensível 3; resistente 14)\n> 420 mg/dL: 8 unidades (sensível 4; resistente 16) e avisar o médico\n\n* Se glicemia > 250 com vômitos, dor abdominal, taquipneia ou rebaixamento: investigar CAD/EHH (gasometria, cetonúria, eletrólitos). Não tratar só com escala SC.",
+  "orient": "- Escala isolada de insulina é desencorajada no paciente internado (ADA 2026; SBD 2026): serve só para correção pontual de hiperglicemia ocasional; hiperglicemia persistente (2 ou mais glicemias > 180 mg/dL em 24 h) pede insulina basal.\n- Revisar adesão e ajustar a medicação de uso contínuo com o clínico.\n- CID: DM2 descompensado E11.9.",
   "rev": [
+   "Corrigido (2026-10-17): \"UI\" → \"unidades\" (ISMP); escala trocada pela publicada na diretriz da SBD 2026 (tabela 3, colunas usual, sensível e resistente); ADA 2026 e consenso de crises hiperglicêmicas 2024 nas fontes (SBD 2026; ADA 2026; ISMP Brasil 2015).",
    "Adicionado: alerta para cetoacidose/estado hiperosmolar."
   ],
   "fontes": [
-   "American Diabetes Association. Standards of Care in Diabetes—2025, seção 16 (Diabetes Care in the Hospital)."
+   "Marino EC, Momesso D, Toyoshima MTK et al. Manejo da hiperglicemia hospitalar em pacientes não críticos — Diretriz da Sociedade Brasileira de Diabetes, ed. 2026 — tabela 3, sugestão de escala de correção (sensível, usual e resistente); escala isolada só para hiperglicemia ocasional. https://diretriz.diabetes.org.br/?p=21079",
+   "American Diabetes Association. Standards of Care in Diabetes—2026, seção 16, Diabetes Care in the Hospital (Diabetes Care 2026;49 Suppl 1) — escala de correção isolada desencorajada; correção associada à insulina basal.",
+   "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257) — quando investigar cetoacidose e estado hiperosmolar.",
+   "ISMP Brasil. Erros de medicação associados a abreviaturas, siglas e símbolos (Boletim ISMP Brasil, 2015); ISMP List of Error-Prone Abbreviations, 2021 — \"U\" e \"UI\": escrever \"unidades\"."
   ]
  },
  {
@@ -964,15 +968,19 @@ const BASE = [
   "cat": "endo",
   "cid": "E05.9",
   "sin": "tireoide graves tireotoxicose",
-  "casa": "Uso oral\n1) Tiamazol 5mg (Tapazol) -------------------- 45 cp\nTomar 1 cp VO de 8/8h e retornar em 15 dias para reavaliação.\nOu (gestante no 1º trimestre ou crise tireotóxica)\n1) Propiltiouracil 100mg (Propil) ------------ 45 cp\nTomar 1 cp VO de 8/8h e retornar em 15 dias para reavaliação.\n2) Propranolol 40mg -------------------------- 45 cp\nTomar 1 cp VO de 8/8h (se taquicardia/tremor; evitar em asma).",
-  "unidade": "",
-  "orient": "- Suspender e procurar atendimento se febre ou dor de garganta (risco de agranulocitose).\n- Solicitar TSH, T4 livre, hemograma e TGO/TGP; encaminhar ao endocrinologista.",
+  "casa": "(Iniciar o antitireoidiano só com TSH suprimido, T4 livre alto e causa provável de Graves ou bócio tóxico; tireoidite — dor na tireoide, pós-parto, amiodarona — trata-se só com betabloqueador.)\nUso oral\n1) Tiamazol 5mg (Tapazol) -------------------- 45 cp\nTomar 3 cp (15 mg) VO 1 vez ao dia e retornar em 15 dias para reavaliação.\nOu (gestante no 1º trimestre)\n1) Propiltiouracil 100mg (Propil) ------------ 45 cp\nTomar 1 cp VO de 8/8h e retornar em 15 dias para reavaliação.\n2) Propranolol 40mg -------------------------- 45 cp\nTomar 1 cp VO de 8/8h (se taquicardia/tremor; evitar em asma).",
+  "unidade": "Crise tireotóxica (febre, agitação ou confusão, taquicardia intensa ou FA, insuficiência cardíaca, vômitos ou icterícia; Burch-Wartofsky ≥ 45): não é caso de alta. Propranolol 40–80 mg VO, propiltiouracil 600 mg VO ou por sonda de ataque, hidrocortisona 100 mg EV e vaga de UTI; iodo só 1 h depois do propiltiouracil.",
+  "orient": "- Suspender e procurar atendimento se febre, dor de garganta ou feridas na boca (risco de agranulocitose), ou se pele ou olhos amarelos, urina escura ou dor na barriga (risco de lesão do fígado, sobretudo com o propiltiouracil).\n- Solicitar TSH, T4 livre, hemograma e TGO/TGP; encaminhar ao endocrinologista.",
   "rev": [
+   "Corrigido (2026-10-17): crise tireotóxica fora da receita de casa e com conduta de UTI na unidade; tiamazol 15 mg em dose única diária e só com diagnóstico confirmado; alerta de hepatotoxicidade (ATA 2016; SBEM 2013; HC-FMUSP 18ª ed., cap. 90).",
    "Corrigido (importante): propiltiouracil 5mg não existe; apresentação é 100mg.",
    "Adicionado: indicação do PTU, alerta de agranulocitose e exames."
   ],
   "fontes": [
-   "Ross DS et al. 2016 ATA Guidelines for Hyperthyroidism and Other Causes of Thyrotoxicosis (Thyroid 2016)."
+   "Ross DS et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis (Thyroid 2016;26:1343) — confirmar a causa antes do antitireoidiano; metimazol em dose única diária (10–20 mg se T4 livre 1,5–2 vezes o limite); alerta escrito de agranulocitose e hepatotoxicidade; tempestade tireoidiana.",
+   "Maia AL et al. Consenso brasileiro para o diagnóstico e tratamento do hipertireoidismo: recomendações do Departamento de Tireoide da SBEM (Arq Bras Endocrinol Metab 2013;57:205).",
+   "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. 90, Crise tireotóxica (UTI; propiltiouracil 600–1.000 mg de ataque; propranolol 40–80 mg VO; hidrocortisona; iodo 1–3 h após o antitireoidiano).",
+   "FDA. Propylthiouracil — bula, alerta em tarja: lesão hepática grave."
   ]
  },
  {
@@ -1801,13 +1809,15 @@ const BASE = [
   "cid": "E10.1",
   "sin": "cad cetoacidose ehh hiperosmolar hiperglicemia grave",
   "casa": "",
-  "unidade": "Critérios (consenso ADA/EASD/JBDS 2024):\n- CAD: glicemia ≥ 200 mg/dL (ou DM prévio) + cetonemia (beta-hidroxibutirato ≥ 3 mmol/L ou cetonúria ≥ 2+) + acidose (pH < 7,3 e/ou bicarbonato < 18).\n- EHH: glicemia ≥ 600 mg/dL + osmolalidade efetiva > 300 mOsm/kg + beta-hidroxibutirato < 3 + pH ≥ 7,3 e bicarbonato ≥ 15.\n\nTratamento:\n1) Hidratação: SF 0,9% ou cristaloide balanceado 500–1.000 mL/h nas primeiras 2–4h.\n2) Potássio antes da insulina:\n   - K < 3,5: repor (10 mmol/h) e adiar a insulina.\n   - K < 5,0: iniciar reposição para manter K entre 4 e 5.\n3) Insulina regular EV em bomba:\n   - CAD grave: 0,1 U/kg/h.\n   - CAD leve/moderada: pode-se usar análogo rápido SC a cada 1–2h.\n   - EHH: 0,05 U/kg/h.\n4) Glicemia < 250 mg/dL: associar SG 5–10%.\n5) Bicarbonato só se pH < 7,0.\n6) Transição para SC: iniciar insulina basal 1–2h antes de desligar a bomba.\n7) Buscar desencadeante (infecção, omissão de insulina, iSGLT2, IAM).",
+  "unidade": "Critérios (consenso ADA/EASD/JBDS 2024):\n- CAD: glicemia ≥ 200 mg/dL (ou DM prévio) + cetonemia (beta-hidroxibutirato ≥ 3 mmol/L ou cetonúria ≥ 2+) + acidose (pH < 7,3 e/ou bicarbonato < 18).\n- EHH: glicemia ≥ 600 mg/dL + osmolalidade efetiva > 300 mOsm/kg + beta-hidroxibutirato < 3 + pH ≥ 7,3 e bicarbonato ≥ 15.\n\nTratamento:\n1) Hidratação: soro fisiológico 0,9% ou cristaloide balanceado 500–1.000 mL/h nas primeiras 2–4h.\n2) Potássio antes da insulina:\n   - K < 3,5: não iniciar a insulina; repor 10 mmol/h até K > 3,5.\n   - K 3,5–5,0: iniciar a insulina e pôr 20–30 mmol de K por litro de soro (1 ampola de KCl 19,1% = 25 mEq por litro), para manter K entre 4 e 5.\n   - K > 5,0: insulina sem potássio; dosar K a cada 2 h.\n3) Insulina regular EV em bomba:\n   - CAD moderada ou grave: 0,1 unidade/kg/h.\n   - CAD leve ou moderada, sem complicação e consciente: alternativa com análogo rápido SC 0,1 unidade/kg a cada 1 h ou 0,2 unidade/kg a cada 2 h.\n   - EHH: 0,05 unidade/kg/h.\n4) Glicemia < 250 mg/dL: associar soro glicosado 5–10%.\n5) Bicarbonato só se pH < 7,0.\n6) Transição para SC: iniciar insulina basal 1–2h antes de desligar a bomba.\n7) Buscar desencadeante (infecção, omissão de insulina, iSGLT2, IAM).",
   "orient": "- Use a Calculadora para a taxa de insulina por peso.",
   "fontes": [
    "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257). https://diabetesjournals.org/care/article/47/8/1257/156808/",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 89, Hiperglicemias (potássio antes da insulina; KCl 19,1% = 25 mEq por ampola).",
    "Resumo do Cleveland Clinic Journal of Medicine 2025. https://www.ccjm.org/content/92/3/152"
   ],
   "rev": [
+   "Corrigido (2026-10-17): faixa de potássio igual ao protocolo e ao consenso (K < 3,5 sem insulina; 3,5–5,0 com 20–30 mmol/L; > 5,0 sem potássio); bomba de insulina na CAD moderada ou grave e análogo SC só na leve ou moderada sem complicação; \"U\" → \"unidades\" (ISMP) (consenso ADA/EASD/JBDS/AACE/DTS 2024; HC-FMUSP 18ª ed., cap. 89).",
    "Item novo."
   ]
  },
@@ -1818,12 +1828,14 @@ const BASE = [
   "cid": "E87.5",
   "sin": "potassio alto k elevado",
   "casa": "",
-  "unidade": "Gravidade: leve 5,5–5,9 | moderada 6,0–6,4 | grave ≥ 6,5 mmol/L.\n1) ECG imediato e monitorização.\n2) Alterações no ECG: gluconato de cálcio 10% 30 mL EV em 10 min (em PCR/peri-PCR: cloreto de cálcio 10% 10 mL em 5 min). Repetir se o ECG não melhorar.\n3) Deslocar o K para dentro da célula:\n   - Insulina regular 10 U + 25 g de glicose EV em 15 min (ex.: 10 U em 50 mL de glicose 50%).\n   - Se glicemia prévia < 126 mg/dL (7 mmol/L): manter glicose 10% 50 mL/h por 5h.\n   - Monitorar glicemia em 0, 30, 60, 90, 120, 180, 240, 300 e 360 min.\n   - Grave: salbutamol nebulizado 10–20 mg como adjuvante (nunca isolado).\n4) Bicarbonato de sódio EV não é recomendado de rotina.\n5) Remover o K: suspender fármacos causadores, diurético se volemia permitir, diálise se refratária.",
+  "unidade": "Gravidade: leve 5,5–5,9 | moderada 6,0–6,4 | grave ≥ 6,5 mmol/L.\n1) ECG imediato e monitorização.\n2) Alterações no ECG: gluconato de cálcio 10% 30 mL EV em 10 min (em PCR/peri-PCR: cloreto de cálcio 10% 10 mL em 5 min). Repetir se o ECG não melhorar.\n3) Deslocar o K para dentro da célula:\n   - Insulina regular 10 unidades + 25 g de glicose EV em 15 min (ex.: 10 unidades em 50 mL de glicose 50%).\n   - Se glicemia prévia < 126 mg/dL (7 mmol/L): manter glicose 10% 50 mL/h por 5h.\n   - Monitorar glicemia em 0, 30, 60, 90, 120, 180, 240, 300 e 360 min.\n   - Grave: salbutamol nebulizado 10–20 mg como adjuvante (nunca isolado).\n4) Bicarbonato de sódio EV não é recomendado de rotina.\n5) Remover o K: suspender fármacos causadores, diurético se volemia permitir, diálise se refratária.",
   "orient": "",
   "fontes": [
-   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023. https://www.ukkidney.org/sites/default/files/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20191223_0.pdf"
+   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, atualização de julho de 2026 (doses iguais às de 2023; cálcio EV 30 mL de gluconato 10% em 10 min ou 10 mL de cloreto 10% em 5 min, recomendação 2C). https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+   "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. 84, Hipercalemia."
   ],
   "rev": [
+   "Corrigido (2026-10-17): UKKA julho de 2026 (doses sem mudança); \"U\" → \"unidades\" na insulina (UKKA 2026; ISMP Brasil 2015; HC-FMUSP 18ª ed., cap. 84).",
    "Item novo."
   ]
  },
@@ -2003,16 +2015,18 @@ const BASE = [
   "cid": "O14.1",
   "sin": "gestante pressao alta eclampsia sulfato de magnesio hellp",
   "casa": "",
-  "unidade": "Sinais de gravidade: PA ≥ 160 e/ou 110 mmHg persistente por 15 min, iminência de eclâmpsia (cefaleia, alterações visuais, dor epigástrica, hiper-reflexia), eclâmpsia, HELLP, oligúria (< 500 mL/24 h), creatinina ≥ 1,0 mg/dL, edema pulmonar, dor torácica.\nDecúbito lateral esquerdo, acesso venoso, sonda vesical; hemograma com plaquetas, AST/ALT, LDH, bilirrubinas, creatinina.\n\nSulfato de magnésio (prevenção e tratamento da convulsão):\n- Ataque (Zuspan e Pritchard): 4 g EV = 8 mL de MgSO4 50% + 12 mL de água destilada, EV lento em 15–20 min (RBEHG 2023; o MS 2022 aceita 5–10 min).\n- Zuspan: manutenção 1 g/h EV em bomba.\n- Pritchard: além dos 4 g EV, 10 g IM no ataque (10 mL de MgSO4 50% IM profundo em cada nádega); depois 5 g (10 mL a 50%) IM profundo a cada 4 h. Útil para transporte ou sem bomba; evitar IM na HELLP com plaquetopenia.\n- Creatinina ≥ 1,0 mg/dL (RBEHG; MS: > 1,3): metade da dose de manutenção e dosar o magnésio.\n- Manter por 24 h após o parto ou a última convulsão.\n- Monitorar: reflexo patelar presente, FR ≥ 16, diurese ≥ 25 mL/h.\n- Nova convulsão durante o MgSO4: mais 2 g EV em bolus e manutenção a 2 g/h; sem controle, UTI e neuroimagem.\n- Intoxicação (depressão respiratória, arreflexia): parar o MgSO4; gluconato de cálcio 10% 10 mL (1 g) EV lento em cerca de 3 min; O2 e suporte ventilatório.\n\nCrise hipertensiva na gestação (PA ≥ 160/110, tratar em até 30–60 min):\n- Hidralazina 20 mg/mL: 1 amp + 19 mL de água destilada = 1 mg/mL; 5 mg EV a cada 20 min (máx. 30 mg).\n- Ou Nifedipino de liberação imediata 10 mg VO a cada 20–30 min (máx. 30 mg); não mastigar, não usar sublingual.\n- Meta: reduzir 15–25%, PAS 140–150 e PAD 90–100 mmHg.\n- Edema pulmonar ou refratária: nitroglicerina ou nitroprussiato EV (nitroprussiato por no máximo 4 h).",
+  "unidade": "Sinais de gravidade: PA ≥ 160 e/ou 110 mmHg persistente por 15 min, iminência de eclâmpsia (cefaleia, alterações visuais, dor epigástrica, hiper-reflexia), eclâmpsia, HELLP, oligúria (< 500 mL/24 h), creatinina ≥ 1,0 mg/dL, edema pulmonar, dor torácica.\nDecúbito lateral esquerdo, acesso venoso, sonda vesical; hemograma com plaquetas, AST/ALT, LDH, bilirrubinas, creatinina.\n\nSulfato de magnésio (prevenção e tratamento da convulsão):\n- Ataque (Zuspan e Pritchard): 4 g EV = 8 mL de sulfato de magnésio 50% + 12 mL de água destilada, EV lento em 15–20 min (RBEHG 2023; o MS 2022 aceita 5–10 min).\n- Zuspan: manutenção 1 g/h EV em bomba.\n- Pritchard: além dos 4 g EV, 10 g IM no ataque (10 mL de sulfato de magnésio 50% IM profundo em cada nádega); depois 5 g (10 mL a 50%) IM profundo a cada 4 h. Útil para transporte ou sem bomba; evitar IM na HELLP com plaquetopenia.\n- Creatinina ≥ 1,0 mg/dL (RBEHG; MS: > 1,3): metade da dose de manutenção e dosar o magnésio.\n- Manter por 24 h após o parto ou a última convulsão.\n- Monitorar: reflexo patelar presente, FR ≥ 16, diurese ≥ 25 mL/h.\n- Nova convulsão durante o sulfato de magnésio: mais 2 g EV em bolus e manutenção a 2 g/h; sem controle, UTI e neuroimagem.\n- Intoxicação (depressão respiratória, arreflexia): parar o sulfato de magnésio; gluconato de cálcio 10% 10 mL (1 g) EV lento em cerca de 3 min; O2 e suporte ventilatório.\n\nCrise hipertensiva na gestação (PA ≥ 160/110, tratar em até 30–60 min):\n- Hidralazina 20 mg/mL: 1 amp + 19 mL de água destilada = 1 mg/mL; 5 mg EV a cada 20 min (máx. 30 mg).\n- Ou Nifedipino de liberação imediata 10 mg VO a cada 20–30 min (máx. 30 mg); não mastigar, não usar sublingual.\n- Meta: reduzir 15–25%, PAS 140–150 e PAD 90–100 mmHg.\n- Edema pulmonar ou refratária: nitroglicerina ou nitroprussiato EV (nitroprussiato por no máximo 4 h).",
   "orient": "- Encaminhar para maternidade de referência; decisão sobre o parto com a obstetrícia.\n- Transferência: fazer pelo menos o ataque do sulfato de magnésio (4 g EV + 10 g IM cobre cerca de 4 h).\n- Parto em qualquer idade gestacional se eclâmpsia, HELLP, descolamento de placenta, edema pulmonar, hipertensão refratária a 3 fármacos, piora laboratorial ou alteração da vitalidade fetal; sem sinais de gravidade, parto com 37 semanas.\n- Puerpério: a PA pode piorar entre o 3º e o 6º dia; cerca de 30% das eclâmpsias ocorrem após o parto.",
   "fontes": [
-   "Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022 — cap. 11.",
+   "Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022 — cap. 11 (pré-eclâmpsia, HELLP, eclâmpsia e sulfato de magnésio; creatinina > 1,3 mg/dL: metade da manutenção). https://bvsms.saude.gov.br/bvs/publicacoes/manual_gestacao_alto_risco.pdf",
    "Sociedade Brasileira de Cardiologia. Diretriz Brasileira de Hipertensão Arterial 2025, cap. 10 (Arq Bras Cardiol 2025;122(9)).",
    "ACOG Committee Opinion 767. Emergent therapy for acute-onset, severe hypertension during pregnancy and the postpartum period (Obstet Gynecol 2019;133:e174).",
    "Bula profissional Anvisa do sulfato de magnésio 50% e do gluconato de cálcio 10%.",
-   "Rede Brasileira de Estudos sobre Hipertensão na Gravidez (RBEHG). Protocolo 03 – Pré-eclâmpsia, 2023. https://rbehg.com.br/wp-content/uploads/2023/08/PROTOCOLO-2023-FINAL.pdf"
+   "Rede Brasileira de Estudos sobre Hipertensão na Gravidez (RBEHG). Protocolo 03 – Pré-eclâmpsia, 2023. https://rbehg.com.br/wp-content/uploads/2023/08/PROTOCOLO-2023-FINAL.pdf",
+   "ISMP Brasil. Erros de medicação associados a abreviaturas, siglas e símbolos (Boletim ISMP Brasil, 2015); ISMP List of Error-Prone Abbreviations — sulfato de magnésio por extenso, nunca a sigla."
   ],
   "rev": [
+   "Corrigido (2026-10-17): sulfato de magnésio escrito por extenso, sem a sigla, na conduta, no protocolo e na ficha; link do Manual de Gestação de Alto Risco 2022; doses sem mudança (ISMP Brasil 2015; MS 2022).",
    "Atualizado (RBEHG 2023, MS 2022): tempo do ataque de sulfato de magnésio, diluição do Pritchard IM, ajuste pela creatinina, conduta na nova convulsão, diluição da hidralazina, momento do parto e cuidados no puerpério.",
    "Item novo."
   ]

@@ -1,12 +1,12 @@
 /* ===== Reposição de eletrólitos e medicamentos que prolongam o QT. Alto risco: conferência independente. =====
-   Rascunho integrado em 2026-09-26; etiquetas [HC] = Medicina de Emergência 18ª ed. (HC-FMUSP), [H22] = Harrison 22ª ed., [UKKA] = UK Kidney Association 2023. */
+   Rascunho integrado em 2026-09-26; etiquetas [HC] = Medicina de Emergência 18ª ed. (HC-FMUSP), [H22] = Harrison 22ª ed., [UKKA] = UK Kidney Association (atualização de jul/2026; doses e numeração iguais às de 2023). */
 /* ===== Reposição de eletrólitos (adulto) e alerta de QT longo na receita =====
    Rascunho para src/data/eletrolitos.js. Conteúdo de alto risco (doses, diluições EV):
    conferência independente contra as fontes antes do merge (regra 2 do CLAUDE.md).
    Abreviações das fontes usadas nos itens:
    [HC] Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP (Manole, 2024).
    [H22] Harrison's Principles of Internal Medicine, 22ª ed.
-   [UKKA] UK Kidney Association. Treatment of Acute Hyperkalaemia in Adults, out/2023.
+   [UKKA] UK Kidney Association. Treatment of Acute Hyperkalaemia in Adults, atualização de jul/2026 (doses iguais às de out/2023).
    1 mEq de K = 1 mmol de K; mmol/L de K = mEq/L. */
 const ELETROLITOS=[
 {id:"hipocalemia",nome:"Hipocalemia (K < 3,5 mEq/L)",
@@ -189,12 +189,12 @@ const ELETROLITOS=[
     "Com IECA/BRA: em geral controlar o K com outras medidas antes de reduzir ou suspender o bloqueio do sistema renina-angiotensina. [KDIGO 2024, ponto de prática 3.6.3]"]},
   {rot:"moderada (K 6,0–6,4 mEq/L)",condicao:"Tratar mesmo sem alteração no ECG.",
    conduta:["Se houver alteração no ECG: cálcio EV (ver grave).",
-    "Insulina regular 10 UI + 25 g de glicose EV (sugerido). [UKKA 2023, 16.3.2]",
+    "Insulina regular 10 unidades + 25 g de glicose EV (sugerido). [UKKA 2023, 16.3.2]",
     "Salbutamol nebulizado 10–20 mg pode ser adjuvante. [UKKA 2023, 16.4.2]",
     "Considerar ciclossilicato de zircônio sódico. [UKKA 2023, 16.6.1b]"]},
   {rot:"grave (K ≥ 6,5 mEq/L) ou qualquer K alto com alteração no ECG",condicao:"Emergência. Monitor contínuo, acesso EV, chamar nefrologia ou UTI. [UKKA 2023, 19.1–19.4]",
    conduta:["Passo 1, proteger o coração (se ECG alterado): gluconato de cálcio 10% 30 mL EV em 10 min (dose única de 6,8 mmol), ou cloreto de cálcio 10% 10 mL em 5 min, preferido na parada ou peri-parada. Age em até 3 min e dura 30–60 min; repetir se o ECG não melhorar ou voltar a piorar. [UKKA 2023, 16.2a/b; H22 cap. 56]",
-    "Passo 2, deslocar o K para dentro da célula: insulina regular 10 UI EV + 25 g de glicose (50 mL de SG 50% ou 250 mL de SG 10%). Início em 10–20 min, pico 30–60 min, dura 4–6 h; reduz cerca de 0,6–1,2 mEq/L. [UKKA 2023, 16.3.1; H22 cap. 56; HC cap. 84]",
+    "Passo 2, deslocar o K para dentro da célula: insulina regular 10 unidades EV + 25 g de glicose (50 mL de SG 50% ou 250 mL de SG 10%). Início em 10–20 min, pico 30–60 min, dura 4–6 h; reduz cerca de 0,6–1,2 mEq/L. [UKKA 2023, 16.3.1; H22 cap. 56; HC cap. 84]",
     "Glicemia pré-tratamento < 126 mg/dL (7,0 mmol/L): após a insulina-glicose, SG 10% a 50 mL/h por 5 h. [UKKA 2023, 16.3.3] Glicemia ≥ 200–250 mg/dL: insulina sem glicose, com glicemia próxima. [H22 cap. 56]",
     "Associar salbutamol nebulizado 10–20 mg (em cerca de 4 mL de SF, em 10 min): início em 30 min, pico em 90 min; nunca como terapia única. [UKKA 2023, 16.4.1 e 16.4.3; H22 cap. 56]",
     "Bicarbonato de sódio não de rotina; considerar só com acidose metabólica (HC: 50–100 mEq em 1–2 h). [UKKA 2023, 16.5; HC cap. 84]",
@@ -209,7 +209,7 @@ const ELETROLITOS=[
  via_ev:["Gluconato de cálcio 10% (9,3 mg de Ca elementar/mL): 30 mL em 10 min [UKKA 2023]; a bula permite 1–2 g sem passar de 5 mL/min, ajustando pelo ECG. [bula Anvisa Fresenius]",
   "Harrison e HC usam 10 mL em 2–5 min (HC: diluídos em 100 mL de SG 5% ou SF), repetindo após 5 min se o ECG persistir alterado. [H22 cap. 56; HC cap. 84]",
   "Cloreto de cálcio 10%: 10 mL em 5 min; cerca de 3 vezes mais cálcio que o gluconato; de preferência acesso central. [UKKA 2023; HC cap. 84]",
-  "Insulina regular 10 UI EV em bolus seguida de 25 g de glicose; nunca glicose hipertônica sem insulina (piora o K pelo efeito osmótico). [H22 cap. 56]",
+  "Insulina regular 10 unidades EV em bolus seguida de 25 g de glicose; nunca glicose hipertônica sem insulina (piora o K pelo efeito osmótico). [H22 cap. 56]",
   "Bicarbonato de sódio 8,4%: 50–100 mEq em 1–2 h, só com acidose metabólica; não na mesma via do cálcio. [HC cap. 84]"],
  monitorar:["K em 1, 2, 4, 6 e 24 h após o tratamento da hipercalemia moderada ou grave (rebote quando passa o efeito). [UKKA 2023, 17.1.2]",
   "Glicemia em 0, 30, 60, 90, 120, 180, 240, 300 e 360 min após insulina-glicose (hipoglicemia é comum e tardia). [UKKA 2023, 17.2]",
@@ -219,9 +219,9 @@ const ELETROLITOS=[
   "Digoxina: cálcio EV com extrema cautela; se necessário, 10 mL de gluconato 10% em 100 mL de SG 5% em 20–30 min. [H22 cap. 56]",
   "Salbutamol: cautela em coronariopata (taquicardia, angina); betabloqueador não seletivo reduz a resposta. [H22 cap. 56; HC cap. 84]",
   "Paciente em hemodiálise com K ≥ 6,5: diálise urgente; dar cálcio EV se o ECG estiver alterado, mesmo com diálise disponível. [UKKA 2023, 18.1–18.2]",
-  "Parada cardíaca com suspeita de hipercalemia: cloreto de cálcio EV, insulina 10 UI + 25 g de glicose e considerar bicarbonato. [UKKA 2023, 25.1–25.3]",
+  "Parada cardíaca com suspeita de hipercalemia: cloreto de cálcio EV, insulina 10 unidades + 25 g de glicose e considerar bicarbonato. [UKKA 2023, 25.1–25.3]",
   "Insulina é medicamento potencialmente perigoso: conferir UI e via. [ISMP Brasil 2019]"],
- fontes:["UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults. Versão final out/2023 (revisão prevista out/2026). https://ukkidney.org",
+ fontes:["UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults. Atualização de jul/2026 (revisão prevista out/2026). https://ukkidney.org",
   "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int 2024;105(4S):S117–S314. Ponto de prática 3.6.3.",
   "Harrison's Principles of Internal Medicine, 22ª ed. Cap. 56 (Fluid and Electrolyte Disturbances), hipercalemia: tratamento.",
   "Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP. Manole, 2024. Cap. 84 (Hipercalemia) e tabela de medicações para hipercalemia.",

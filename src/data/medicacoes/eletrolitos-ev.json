@@ -6,8 +6,8 @@
   "subclasse": "Insulina humana de ação rápida (regular)",
   "mecanismo": "Estimula a captação de glicose e de potássio pelas células e inibe a lipólise e a cetogênese; EV age em minutos e tem meia-vida curta.",
   "apresentacoes": [
-   "Frasco-ampola 10 mL com 100 UI/mL (Humulin R, Novolin R, Insunorm R, Insuliv R, Funed Insulina R, Bahiafarma Insulina Humana R)",
-   "Refil/carpule 3 mL e caneta com 100 UI/mL (Humulin R, Novolin R, Funed Insulina R)"
+   "Frasco-ampola 10 mL com 100 unidades/mL (Humulin R, Novolin R, Insunorm R, Insuliv R, Funed Insulina R, Bahiafarma Insulina Humana R)",
+   "Refil/carpule 3 mL e caneta com 100 unidades/mL (Humulin R, Novolin R, Funed Insulina R)"
   ],
   "rename": true,
   "vias": [
@@ -16,20 +16,20 @@
    "IM"
   ],
   "adulto": [
-   "CAD moderada ou grave (ou EHH com cetose): 0,1 U/kg/h EV em bomba, dose fixa; se a bomba demorar, 0,1 U/kg EV ou IM em bolus. Não iniciar com K < 3,5 mEq/L: repor antes (ADA/EASD 2024).",
-   "CAD: com glicemia < 250 mg/dL, acrescentar SG 5–10% e reduzir para 0,05 U/kg/h; não suspender enquanto houver cetose; manter a EV por 1–2 h após a primeira dose SC (ADA/EASD 2024).",
-   "EHH sem cetose importante: 0,05 U/kg/h EV (ADA/EASD 2024).",
-   "Hipercalemia: 10 UI EV em bolus + 25 g de glicose (50 mL de SG 50% ou 250 mL de SG 10%) em 15 min; se glicemia prévia < 126 mg/dL, SG 10% 50 mL/h por 5 h; glicemia seriada até 6 h (UKKA 2023).",
-   "Hiperglicemia sem crise, correção SC pela glicemia capilar: 2 UI (180–200 mg/dL) a 12 UI (> 400 mg/dL), conforme a escala da conduta do painel; glicemia > 250 com vômitos, dor abdominal, taquipneia ou rebaixamento: investigar CAD/EHH."
+   "CAD moderada ou grave (ou EHH com cetose): 0,1 unidade/kg/h EV em bomba, dose fixa; se a bomba demorar, 0,1 unidade/kg EV ou IM em bolus. Não iniciar com K < 3,5 mEq/L: repor antes (ADA/EASD 2024).",
+   "CAD: com glicemia < 250 mg/dL, acrescentar SG 5–10% e reduzir para 0,05 unidade/kg/h; não suspender enquanto houver cetose; manter a EV por 1–2 h após a primeira dose SC (ADA/EASD 2024).",
+   "EHH sem cetose importante: 0,05 unidade/kg/h EV (ADA/EASD 2024).",
+   "Hipercalemia: 10 unidades EV em bolus + 25 g de glicose (50 mL de SG 50% ou 250 mL de SG 10%) em 15 min; se glicemia prévia < 126 mg/dL, SG 10% 50 mL/h por 5 h; glicemia seriada até 6 h (UKKA 2026).",
+   "Hiperglicemia sem crise, correção SC pontual pela glicemia capilar: escala da SBD 2026 (usual de 1 unidade em 141–180 mg/dL a 8 unidades acima de 420 mg/dL; sensível e resistente na conduta do painel); glicemia > 250 com vômitos, dor abdominal, taquipneia ou rebaixamento: investigar CAD/EHH."
   ],
   "pediatria": [
-   "CAD: 0,05–0,1 U/kg/h EV, iniciando 1–2 h após o início dos fluidos; adiar se K < 3,0 mEq/L (BSPED 2021).",
+   "CAD: 0,05–0,1 unidade/kg/h EV, iniciando 1–2 h após o início dos fluidos; adiar se K < 3,0 mEq/L (BSPED 2021).",
    "Hipercalemia e outras indicações: conforme protocolo pediátrico da unidade."
   ],
   "diluicao": [
-   "EV: concentração entre 0,1 e 1 U/mL, em SF 0,9% (FDA). Ex.: 50 U em 250 mL de SF 0,9% = 0,2 U/mL; desprezar os primeiros 50 mL pelo equipo (adsorção ao plástico); 70 kg × 0,1 U/kg/h = 7 U/h = 35 mL/h (HC-FMUSP).",
+   "EV: concentração entre 0,1 e 1 unidade/mL, em SF 0,9% (FDA). Ex.: 50 unidades em 250 mL de SF 0,9% = 0,2 unidade/mL; desprezar os primeiros 50 mL pelo equipo (adsorção ao plástico); 70 kg × 0,1 unidade/kg/h = 7 unidades/h = 35 mL/h (HC-FMUSP).",
    "Bolsa preparada estável por 48 h na geladeira e mais 48 h em temperatura ambiente (FDA).",
-   "Bolus EV (hipercalemia): 10 UI EV direto, seguido da glicose."
+   "Bolus EV (hipercalemia): 10 unidades EV direto, seguido da glicose."
   ],
   "renal": "Risco maior de hipoglicemia; monitorar mais e reduzir a dose se preciso (FDA). Na hipercalemia de paciente em diálise ou com DRC avançada, a hipoglicemia tardia é mais comum (UKKA 2023).",
   "hepatica": "Risco maior de hipoglicemia: monitorar e ajustar (FDA).",
@@ -40,7 +40,7 @@
    "Hipersensibilidade à insulina humana ou aos excipientes (FDA)."
   ],
   "alertas": [
-   "Medicamento de alta vigilância (ISMP Brasil: insulina SC e EV em todas as apresentações): dupla checagem de UI, tipo de insulina e via.",
+   "Medicamento de alta vigilância (ISMP Brasil: insulina SC e EV em todas as apresentações): dupla checagem da dose em unidades, do tipo de insulina e da via. Escrever sempre unidades por extenso, nunca a sigla (ISMP).",
    "Hipocalemia potencialmente fatal: dosar K antes e a cada 2–4 h na infusão (FDA; ADA/EASD 2024).",
    "Hipoglicemia: glicemia capilar de hora em hora na infusão EV.",
    "Nunca compartilhar canetas ou refis entre pacientes, mesmo trocando a agulha (FDA)."
@@ -48,11 +48,13 @@
   "fontes": [
    "FDA label Humulin R (insulin human) injection U-100, DailyMed",
    "Lista de preços CMED/Anvisa, set/2026 (Humulin R, Eli Lilly; Novolin R, Novo Nordisk; Insunorm R, Biocon; Insuliv R, EMS; Funed; Bahiafarma)",
+   "Marino EC, Momesso D, Toyoshima MTK et al. Manejo da hiperglicemia hospitalar em pacientes não críticos — Diretriz da Sociedade Brasileira de Diabetes, ed. 2026 — tabela 3, sugestão de escala de correção (sensível, usual e resistente); escala isolada só para hiperglicemia ocasional. https://diretriz.diabetes.org.br/?p=21079",
    "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report — ADA/EASD/JBDS/AACE/DTS (Diabetes Care 2024;47:1257)",
-   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023",
-   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 89, Hiperglicemias (preparo 50 U/250 mL)",
+   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, atualização de julho de 2026 (doses iguais às de 2023)",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 89, Hiperglicemias (preparo 50 unidades/250 mL)",
    "BSPED. Guideline for the Management of Children and Young People under the age of 18 years with Diabetic Ketoacidosis, 2021",
    "Brasil. Ministério da Saúde. Relação Nacional de Medicamentos Essenciais (RENAME) 2024",
+   "ISMP Brasil. Erros de medicação associados a abreviaturas, siglas e símbolos (Boletim ISMP Brasil, 2015); ISMP List of Error-Prone Abbreviations, 2021 — \"U\" e \"UI\": escrever \"unidades\".",
    "ISMP Brasil. Medicamentos potencialmente perigosos de uso hospitalar — lista atualizada 2019 (Boletim ISMP Brasil, fev/2019)"
   ]
  },
@@ -72,7 +74,7 @@
   ],
   "adulto": [
    "Hipoglicemia grave (rebaixado ou sem via oral): 40–50 mL EV (20–25 g) em veia calibrosa, ou glicose 10% 150–250 mL; glicemia de novo em 15 min e manter SG 10% se preciso (ADA 2025; conduta do painel). Bula americana: 20–50 mL (10–25 g) costumam bastar, podendo repetir (FDA).",
-   "Hipercalemia: 50 mL (25 g) junto com insulina regular 10 UI EV em 15 min (UKKA 2023). Nunca glicose hipertônica sem insulina na hipercalemia (piora o K pelo efeito osmótico) (Harrison 22ª ed.).",
+   "Hipercalemia: 50 mL (25 g) junto com insulina regular 10 unidades EV em 15 min (UKKA 2026). Nunca glicose hipertônica sem insulina na hipercalemia (piora o K pelo efeito osmótico) (Harrison 22ª ed.).",
    "Colher glicemia antes de administrar (FDA)."
   ],
   "pediatria": [
@@ -101,8 +103,8 @@
   "fontes": [
    "FDA label 50% Dextrose Injection, USP, DailyMed",
    "Lista de preços CMED/Anvisa, set/2026 (Isofarma, Halex Istar; Farmace-Glicose; Equiplex; Samtec; Fresenius Kabi; Baxter)",
-   "American Diabetes Association. Standards of Care in Diabetes—2025, seção 6 (Glycemic Goals and Hypoglycemia)",
-   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023",
+   "American Diabetes Association. Standards of Care in Diabetes—2026, seção 6 (Glycemic Goals and Hypoglycemia)",
+   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, atualização de julho de 2026 (doses iguais às de 2023)",
    "Harrison's Principles of Internal Medicine, 22ª ed., cap. 56 (hipercalemia)",
    "Abraham MB et al. ISPAD Clinical Practice Consensus Guidelines 2022: hypoglycemia (Pediatr Diabetes 2022;23:1322)",
    "AHA — Pediatric Advanced Life Support (glicose 0,5–1 g/kg)",
@@ -191,7 +193,7 @@
   ],
   "adulto": [
    "Pré-eclâmpsia grave e eclâmpsia — ataque: 4 g EV lento em 15–20 min (8 mL a 50% + 12 mL de AD ou SF = 20 mL; ou 8 mL em 100 mL de SF a 300 mL/h). Manutenção Zuspan: 1 g/h EV em bomba (até 2 g/h); ou Pritchard: 10 g IM no ataque (5 g em cada nádega) e 5 g IM a cada 4 h. Manter 24 h após o parto ou a última convulsão (RBEHG 2023; MS 2022).",
-   "Nova convulsão durante o MgSO4: mais 2 g EV em bolus e manutenção a 2 g/h (RBEHG 2023).",
+   "Nova convulsão durante o sulfato de magnésio: mais 2 g EV em bolus e manutenção a 2 g/h (RBEHG 2023).",
    "Asma grave ou refratária: 2 g EV em 20 min (4 mL a 50% em 100 mL de SF 0,9%) (GINA 2024).",
    "Torsades de pointes: 2 g EV em bolus, mesmo com magnésio normal (AHA/ACCF 2010).",
    "Hipomagnesemia: leve 1–2 g EV em 1–2 h; moderada 2–4 g em 4–12 h; grave 4–8 g em 12–24 h; com arritmia ou instabilidade, 1–2 g em 2–5 min com monitor e depois manutenção (HC-FMUSP).",
@@ -296,7 +298,7 @@
   "fontes": [
    "Bula ANVISA — gliconato de cálcio 100 mg/mL solução injetável (Fresenius Kabi)",
    "Lista de preços CMED/Anvisa, set/2026 (Blau, Farmarin, Isofarma/Halex Istar)",
-   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023",
+   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, atualização de julho de 2026 (doses iguais às de 2023)",
    "Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP. Manole, 2024. Cap. 84 e 85 e tabela de reposição de eletrólitos",
    "Harrison's Principles of Internal Medicine, 22ª ed. Cap. 56 e 57",
    "Peraçoli JC et al. Pré-eclâmpsia – Protocolo 03, 2023. RBEHG (intoxicação por magnésio)"
@@ -352,7 +354,7 @@
    "Lista de preços CMED/Anvisa, set/2026 (Farmace, Samtec, Fresenius Kabi, Hypofarma, JP)",
    "AHA. 2025 Guidelines for CPR and ECC — Adult Advanced Life Support",
    "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257)",
-   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023",
+   "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, atualização de julho de 2026 (doses iguais às de 2023)",
    "Medicina de Emergência: abordagem prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. 84 (Hipercalemia)",
    "Evans L et al. Surviving Sepsis Campaign 2021 (Crit Care Med 2021;49:e1063)",
    "Bruccoleri RE, Burns MM. A literature review of the use of sodium bicarbonate for the treatment of QRS widening (J Med Toxicol 2016;12:121)"

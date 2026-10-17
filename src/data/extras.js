@@ -139,7 +139,7 @@ function pedEmerg(p,m){
    `Choque: SF 0,9% ${f(10*p)} mL em 15 min (10 mL/kg), reavaliar (até 40 mL/kg).`,
    `Sem choque: SF 0,9% ${f(10*p)} mL em 30 min; descontar do déficit.`,
    `Déficit: 5% (pH ≥ 7,1) ou 10% (pH < 7,1), repor em 48h + manutenção (Holliday-Segar, peso máx. 75 kg).`,
-   `Insulina regular ${f(0.05*p)} U/h (0,05 U/kg/h; < 5 anos) ou ${f(0.1*p)} U/h (0,1 U/kg/h, CAD grave), iniciando 1–2h após o início dos fluidos.`,
+   `Insulina regular ${f(0.05*p)} unidades/h (0,05 unidade/kg/h; < 5 anos) ou ${f(0.1*p)} unidades/h (0,1 unidade/kg/h, CAD grave), iniciando 1–2h após o início dos fluidos.`,
    `K < 3,0: adiar insulina. Glicemia ≤ 14 mmol/L (≈ 250 mg/dL): trocar para soro com glicose 5–10%.`,
    `Edema cerebral: salina hipertônica 3% ${f(2.5*p)}–${f(5*p)} mL em 10–15 min ou manitol 20% ${f(0.5*p)}–${f(p)} g em 10–15 min.`]},
   {t:"Crise de asma grave",c:"sky",src:["gina"],l:[

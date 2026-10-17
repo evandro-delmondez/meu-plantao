@@ -13,7 +13,7 @@ function calcRow(x,p){
   else if(x.ui){big=rng(lo/x.conc,hi/x.conc)+" mL";small=rng(lo,hi)+" UI"}
   else if(x.mgonly){big=rng(lo,hi)+" mg"}
   else if(x.gonly){big=rng(lo,hi)+" g"}
-  else if(x.uh){big=fmt(lo)+" U/h";small="EHH: "+fmt(lo/2)+" U/h"}
+  else if(x.uh){big=fmt(lo)+" unidades/h";small="EHH: "+fmt(lo/2)+" unidades/h"}
   else if(x.alteplase){big=fmt(lo)+" mg";small="bolus "+fmt(lo*0.1)+" mg + "+fmt(lo*0.9)+" mg em 60 min"}
   else if(x.ivermectina){ // tabela da bula (6 mg): 15–24 kg ½; 25–35 1; 36–50 1½; 51–65 2; 66–79 2½; ≥ 80 kg 200 mcg/kg
     if(p<15){big="Não indicado";small="bula: abaixo de 15 kg não usar"}

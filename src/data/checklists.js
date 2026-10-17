@@ -361,7 +361,7 @@ hiperglicemia:{
  ant:["diabetes tipo 1","uso irregular ou suspensão de insulina ou antidiabético","uso de inibidor de SGLT2 (cetoacidose com glicemia pouco elevada)","uso de corticoide","gestação"],
  ex:["desidratação","respiração de Kussmaul","hálito cetônico","rebaixamento da consciência","hipotensão ou taquicardia"],
  alarme:["vômitos com dor abdominal","respiração de Kussmaul","rebaixamento da consciência","desidratação grave ou hipotensão"],
- fontes:["American Diabetes Association. Standards of Care in Diabetes—2025, seção 16 (Diabetes Care in the Hospital).","Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257)."]
+ fontes:["American Diabetes Association. Standards of Care in Diabetes—2026, seção 16 (Diabetes Care in the Hospital).","Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257)."]
 },
 hipoglicemia:{
  hist:["tremor, sudorese ou palpitação","confusão, sonolência ou alteração de comportamento","convulsão","jejum prolongado ou refeição omitida","exercício intenso","ingestão de álcool","dose de insulina ou antidiabético maior que a habitual"],
@@ -396,7 +396,7 @@ hipercalemia:{
  ant:["doença renal crônica ou diálise","uso de IECA, BRA, espironolactona ou diurético poupador de potássio","uso de anti-inflamatório, trimetoprima, heparina ou betabloqueador","diabetes","insuficiência cardíaca","rabdomiólise, hemólise ou lise tumoral"],
  ex:["bradicardia","fraqueza muscular","alteração no ECG (onda T apiculada, QRS largo, ausência de onda P)","desidratação ou hipovolemia"],
  alarme:["alteração no ECG","bradicardia ou arritmia","potássio ≥ 6,5 mmol/L","anúria ou lesão renal aguda","fraqueza muscular progressiva"],
- fontes:["UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, 2023.","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 84 — Hipercalemia.","Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 56 — Fluid and Electrolyte Disturbances (causas de hipercalemia, inclusive fármacos)."]
+ fontes:["UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, atualização de julho de 2026.","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 84 — Hipercalemia.","Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 56 — Fluid and Electrolyte Disturbances (causas de hipercalemia, inclusive fármacos)."]
 },
 afta:{
  hist:["úlceras orais dolorosas recorrentes","úlcera única que não cicatriza há mais de 3 semanas","úlceras genitais","dor ou vermelhidão ocular","diarreia, dor abdominal ou perda de peso (doença celíaca ou inflamatória intestinal)","febre"],

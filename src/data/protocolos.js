@@ -198,28 +198,28 @@ const PROTOCOLOS=[
    "Dosar K a cada 1–2 h. K ≤ 2,5 mmol/L na CAD triplica a mortalidade."],
    decisao:{pergunta:"K subiu para > 3,5 mmol/L?",opcoes:[{rot:"Sim",ir:"c4"}]}},
   {id:"c4",t:"Insulina",itens:[
-   "CAD moderada ou grave, ou EHH misto com cetose: insulina regular EV em bomba, dose fixa de 0,1 U/kg/h. Se a bomba demorar: 0,1 U/kg EV ou IM em bolus.",
-   "Preparo (exemplo): insulina regular 50 U em 250 mL de SF 0,9% = 0,2 U/mL; desprezar os primeiros 50 mL pelo equipo (adsorção). Ex.: 70 kg × 0,1 = 7 U/h = 35 mL/h.",
-   "CAD leve ou moderada sem complicação, consciente: alternativa com análogo rápido SC 0,1 U/kg em bolus e depois 0,1 U/kg a cada 1 h ou 0,2 U/kg a cada 2 h. Não usar SC na CAD grave, complicada ou no EHH.",
-   "EHH sem cetose importante: insulina regular EV 0,05 U/kg/h (alguns aguardam a glicemia parar de cair só com soro antes de iniciar).",
-   "Já usa insulina basal: manter a dose habitual. Pode-se associar basal SC 0,15–0,3 U/kg desde o início.",
+   "CAD moderada ou grave, ou EHH misto com cetose: insulina regular EV em bomba, dose fixa de 0,1 unidade/kg/h. Se a bomba demorar: 0,1 unidade/kg EV ou IM em bolus.",
+   "Preparo (exemplo): insulina regular 50 unidades em 250 mL de SF 0,9% = 0,2 unidade/mL; desprezar os primeiros 50 mL pelo equipo (adsorção). Ex.: 70 kg × 0,1 = 7 unidades/h = 35 mL/h.",
+   "CAD leve ou moderada sem complicação, consciente: alternativa com análogo rápido SC 0,1 unidade/kg em bolus e depois 0,1 unidade/kg a cada 1 h ou 0,2 unidade/kg a cada 2 h. Não usar SC na CAD grave, complicada ou no EHH.",
+   "EHH sem cetose importante: insulina regular EV 0,05 unidade/kg/h (alguns aguardam a glicemia parar de cair só com soro antes de iniciar).",
+   "Já usa insulina basal: manter a dose habitual. Pode-se associar basal SC 0,15–0,3 unidade/kg desde o início.",
    "Bicarbonato: só se pH < 7,0 — 100 mmol (100 mL de bicarbonato de sódio 8,4%) em 400 mL de água destilada, repetido a cada 2 h até pH > 7,0.",
    "Fosfato: só se fósforo < 1,0 mmol/L com fraqueza muscular, insuficiência respiratória ou cardíaca."]},
   {id:"c5",t:"Monitorar e ajustar",itens:[
    "Glicemia capilar de hora em hora; eletrólitos, função renal, pH venoso e osmolalidade a cada 2–4 h; K 2 h após iniciar a insulina e depois a cada 4 h.",
-   "Glicemia < 250 mg/dL: acrescentar SG 5% ou 10% ao soro e reduzir a insulina para 0,05 U/kg/h (SC: 0,05 U/kg/h ou 0,1 U/kg a cada 2 h). Alvo: CAD 150–200 mg/dL; EHH 200–250 mg/dL até a resolução.",
+   "Glicemia < 250 mg/dL: acrescentar SG 5% ou 10% ao soro e reduzir a insulina para 0,05 unidade/kg/h (SC: 0,05 unidade/kg/h ou 0,1 unidade/kg a cada 2 h). Alvo: CAD 150–200 mg/dL; EHH 200–250 mg/dL até a resolução.",
    "CAD euglicêmica: SG 5–10% junto com o SF desde o início da insulina.",
    "Não suspender a insulina enquanto houver cetose: ajustar a glicose do soro."],
    decisao:{pergunta:"Critérios de resolução atingidos?",opcoes:[{rot:"Sim",ir:"c6"}]}},
   {id:"c6",t:"Resolução e transição para SC",itens:[
    "CAD resolvida: pH venoso > 7,3 ou bicarbonato > 18 mmol/L e cetonemia < 0,6 mmol/L. EHH resolvido: osmolalidade < 300 mOsm/kg, diurese > 0,5 mL/kg/h, glicemia < 250 mg/dL e melhora mental.",
-   "Quando conseguir comer: iniciar esquema SC (basal + rápida). Diabetes novo: basal 0,15–0,3 U/kg/dia; já usava insulina: retomar a dose habitual ajustada.",
+   "Quando conseguir comer: iniciar esquema SC (basal + rápida). Diabetes novo: basal 0,15–0,3 unidade/kg/dia; já usava insulina: retomar a dose habitual ajustada.",
    "Manter a insulina EV por 1–2 h após a primeira dose de insulina SC.",
    "Suspender gliflozina até a recuperação; educar sobre dias de doença."]}
  ],
  fontes:[
   "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report — ADA/EASD/JBDS/AACE/DTS (Diabetes Care 2024;47:1257). https://doi.org/10.2337/dci24-0032",
-  "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 89, Hiperglicemias (preparo da insulina 50 U/250 mL; KCl 19,1% = 25 mEq por ampola).",
+  "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 89, Hiperglicemias (preparo da insulina 50 unidades/250 mL; KCl 19,1% = 25 mEq por ampola).",
   "Bula do cloreto de potássio injetável (Farmace) registrada na Anvisa — diluição obrigatória; concentração máxima desejável 80 mEq/L; velocidade usual até 10–15 mEq/h.",
   "Loscalzo J et al. (eds.) Harrison's Principles of Internal Medicine, 22ª ed. McGraw Hill — cap. 416, Diabetes Mellitus: Management and Therapies (tabela 416-9)."
  ]},
@@ -234,7 +234,7 @@ const PROTOCOLOS=[
    "Dosar o K na gasometria (arterial ou venosa) enquanto sai o laboratório.",
    "Suspeita de pseudo-hipercalemia (hemólise, trombocitose, leucocitose, garrote prolongado): repetir a coleta, mas não atrasar o cálcio se o ECG estiver alterado.",
    "Suspender o que eleva o K: suplementos de K, IECA/BRA, espironolactona, AINE, sulfametoxazol-trimetoprima, heparina, betabloqueador não seletivo.",
-   "Parada cardíaca com suspeita de hipercalemia: cloreto de cálcio 10% 10 mL EV em bolus, insulina 10 UI + 25 g de glicose EV e considerar bicarbonato de sódio, junto com a RCP."],
+   "Parada cardíaca com suspeita de hipercalemia: cloreto de cálcio 10% 10 mL EV em bolus, insulina 10 unidades + 25 g de glicose EV e considerar bicarbonato de sódio, junto com a RCP."],
    decisao:{pergunta:"Qual o cenário?",opcoes:[{rot:"ECG alterado (qualquer K ≥ 5,5)",ir:"h2"},{rot:"K ≥ 6,5 sem alteração no ECG",ir:"h3"},{rot:"K 6,0–6,4 sem alteração no ECG",ir:"hmod"},{rot:"K 5,5–5,9 sem alteração no ECG",ir:"hleve"}]}},
   {id:"h2",t:"Proteger o coração: cálcio EV",tempo:"age em até 3 min",itens:[
    "Gluconato de cálcio 10% 30 mL EV em 10 min (6,8 mmol de cálcio), com monitor.",
@@ -251,7 +251,7 @@ const PROTOCOLOS=[
    "Bradicardia com insuficiência renal, bloqueador do nó AV e choque: pensar em síndrome BRASH (tratar o conjunto, não só o K)."],
    decisao:{pergunta:"Cálcio repetido.",opcoes:[{rot:"Deslocar o K para dentro da célula",ir:"h3"}]}},
   {id:"h3",t:"Deslocar o K para dentro da célula",tempo:"início 10–20 min",itens:[
-   "Insulina regular 10 UI EV + 25 g de glicose EV em 15 min (50 mL de SG 50% ou 250 mL de SG 10%). Pico em 30–60 min, dura 4–6 h; baixa o K em cerca de 0,6–1,2 mmol/L.",
+   "Insulina regular 10 unidades EV + 25 g de glicose EV em 15 min (50 mL de SG 50% ou 250 mL de SG 10%). Pico em 30–60 min, dura 4–6 h; baixa o K em cerca de 0,6–1,2 mmol/L.",
    "Glicemia antes do tratamento < 126 mg/dL (7,0 mmol/L): depois da insulina-glicose, SG 10% a 50 mL/h por 5 h.",
    "Glicemia ≥ 200–250 mg/dL (Harrison): insulina sem a glicose, com glicemia próxima. Nunca glicose hipertônica sem insulina (piora o K pelo efeito osmótico).",
    "Glicemia capilar em 0, 30, 60, 90, 120, 180, 240, 300 e 360 min (hipoglicemia é comum e tardia).",
@@ -266,7 +266,7 @@ const PROTOCOLOS=[
    decisao:{pergunta:"Há indicação de diálise: hipercalemia refratária, oligúria ou anúria, doença renal avançada, paciente em hemodiálise ou lesão tecidual extensa?",opcoes:[{rot:"Sim",ir:"hdial"},{rot:"Não",ir:"hfim"}]}},
   {id:"hmod",t:"Hipercalemia moderada sem alteração no ECG",itens:[
    "Tratar mesmo sem alteração no ECG; manter monitor se instável.",
-   "Insulina regular 10 UI + 25 g de glicose EV (sugerido pela UKKA), com o mesmo controle de glicemia do passo de redistribuição.",
+   "Insulina regular 10 unidades + 25 g de glicose EV (sugerido pela UKKA), com o mesmo controle de glicemia do passo de redistribuição.",
    "Salbutamol nebulizado 10–20 mg pode ser associado (nunca isolado).",
    "Considerar ciclossilicato de zircônio sódico.",
    "Se surgir alteração no ECG: cálcio EV imediato."],
@@ -289,7 +289,7 @@ const PROTOCOLOS=[
    "Antes da alta ou da reintrodução: revisar medicações e dieta; reintroduzir IECA/BRA com K e creatinina de controle."]}
  ],
  fontes:[
-  "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, out/2023 (classificação, cálcio 30 mL de gluconato 10% ou 10 mL de cloreto 10%, insulina 10 UI + 25 g de glicose, SG 10% 50 mL/h por 5 h se glicemia < 7 mmol/L, salbutamol 10–20 mg, monitorização de K e glicemia, diálise, parada cardíaca). https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults",
+  "UK Kidney Association. Clinical Practice Guideline: Treatment of Acute Hyperkalaemia in Adults, atualização de jul/2026, doses iguais às de out/2023 (classificação, cálcio 30 mL de gluconato 10% ou 10 mL de cloreto 10%, insulina 10 unidades + 25 g de glicose, SG 10% 50 mL/h por 5 h se glicemia < 7 mmol/L, salbutamol 10–20 mg, monitorização de K e glicemia, diálise, parada cardíaca). https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults",
   "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of CKD (Kidney Int 2024;105(4S):S117) — ponto de prática 3.6.3 (manter IECA/BRA).",
   "Bula FDA do gluconato de cálcio injetável (velocidade máxima 200 mg/min); bula Anvisa do Lokelma (ciclossilicato de zircônio sódico).",
   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 84, Hipercalemia (ECG, furosemida, bicarbonato só com acidose, poliestirenossulfonato).",
@@ -497,11 +497,11 @@ const PROTOCOLOS=[
    "Acionar a obstetrícia e a regulação para maternidade de referência (alto risco) cedo."],
    decisao:{pergunta:"Qual o cenário?",opcoes:[{rot:"Convulsão (eclâmpsia)",ir:"eecl"},{rot:"Sinais de gravidade",ir:"e2"},{rot:"Pré-eclâmpsia sem sinais de gravidade",ir:"esem"}]}},
   {id:"e2",t:"Sulfato de magnésio",tempo:"o mais rápido possível",itens:[
-   "Indicação: iminência de eclâmpsia, eclâmpsia, HELLP, crise hipertensiva (PA ≥ 160/110 mmHg, mesmo sem sintomas) ou deterioração clínica ou laboratorial. Usar o MgSO4 não obriga o parto.",
-   "Conferir a ampola: MgSO4 50% (10 mL = 5 g); 20% (10 mL = 2 g); 10% (10 mL = 1 g). Doses abaixo com a de 50%.",
-   "Ataque (Zuspan e Pritchard): 4 g EV = 8 mL de MgSO4 50% + 12 mL de água destilada ou SF 0,9% (20 mL), EV lento em 15–20 min (RBEHG 2023; MS 2022: 5–10 min). Alternativa: 8 mL em 100 mL de SF 0,9% em bomba a 300 mL/h (cerca de 20 min).",
-   "Zuspan (manutenção EV): 1 g/h em bomba exclusiva. Preparo: 10 mL de MgSO4 50% (5 g) + 490 mL de SF 0,9% = 1 g/100 mL, a 100 mL/h (ou 10 mL + 240 mL de SF = 5 g/250 mL, a 50 mL/h, MS). Pode subir para 2 g/h se os sintomas persistirem (20 mL de MgSO4 50% + 480 mL de SF, a 100 mL/h).",
-   "Pritchard (manutenção IM): no ataque, além dos 4 g EV, 10 g IM (10 mL de MgSO4 50% IM profundo em cada nádega, quadrante superior externo); depois 5 g (10 mL a 50%) IM profundo a cada 4 h. Preferido para transporte ou sem bomba de infusão; evitar IM na HELLP com plaquetopenia.",
+   "Indicação: iminência de eclâmpsia, eclâmpsia, HELLP, crise hipertensiva (PA ≥ 160/110 mmHg, mesmo sem sintomas) ou deterioração clínica ou laboratorial. Usar o sulfato de magnésio não obriga o parto.",
+   "Conferir a ampola: sulfato de magnésio 50% (10 mL = 5 g); 20% (10 mL = 2 g); 10% (10 mL = 1 g). Doses abaixo com a de 50%.",
+   "Ataque (Zuspan e Pritchard): 4 g EV = 8 mL de sulfato de magnésio 50% + 12 mL de água destilada ou SF 0,9% (20 mL), EV lento em 15–20 min (RBEHG 2023; MS 2022: 5–10 min). Alternativa: 8 mL em 100 mL de SF 0,9% em bomba a 300 mL/h (cerca de 20 min).",
+   "Zuspan (manutenção EV): 1 g/h em bomba exclusiva. Preparo: 10 mL de sulfato de magnésio 50% (5 g) + 490 mL de SF 0,9% = 1 g/100 mL, a 100 mL/h (ou 10 mL + 240 mL de SF = 5 g/250 mL, a 50 mL/h, MS). Pode subir para 2 g/h se os sintomas persistirem (20 mL de sulfato de magnésio 50% + 480 mL de SF, a 100 mL/h).",
+   "Pritchard (manutenção IM): no ataque, além dos 4 g EV, 10 g IM (10 mL de sulfato de magnésio 50% IM profundo em cada nádega, quadrante superior externo); depois 5 g (10 mL a 50%) IM profundo a cada 4 h. Preferido para transporte ou sem bomba de infusão; evitar IM na HELLP com plaquetopenia.",
    "Transferência: fazer pelo menos o ataque (4 g EV + 10 g IM), que cobre cerca de 4 h.",
    "Creatinina ≥ 1,0 mg/dL (RBEHG; MS: > 1,3): metade da dose de manutenção e dosar o magnésio.",
    "Duração: manter por 24 h após o parto ou após a última convulsão.",
@@ -510,8 +510,8 @@ const PROTOCOLOS=[
    "Antes de cada dose ou durante a infusão: reflexo patelar presente, FR ≥ 16 irpm (MS: > 12) e diurese ≥ 25 mL/h.",
    "Se um deles alterar: reduzir ou parar a infusão (ou não fazer a dose IM), dosar magnésio e creatinina; reiniciar se normais. Parada > 2 h: novo ataque de 2 g.",
    "Faixa terapêutica 4–7 mEq/L; reflexo patelar some com 8–10 mEq/L; risco de parada respiratória a partir de 12 mEq/L.",
-   "Intoxicação (depressão respiratória, arreflexia): parar o MgSO4, gluconato de cálcio 10% 10 mL (1 g) EV lento em cerca de 3 min, O2 e suporte ventilatório.",
-   "Nova convulsão durante o MgSO4: mais 2 g EV em bolus (4 mL a 50% diluídos em 10 mL) e manutenção a 2 g/h. Se 2 bolus não controlarem: fenitoína EV (RBEHG) ou benzodiazepínico (MS), UTI e neuroimagem (hemorragia intracraniana)."],
+   "Intoxicação (depressão respiratória, arreflexia): parar o sulfato de magnésio, gluconato de cálcio 10% 10 mL (1 g) EV lento em cerca de 3 min, O2 e suporte ventilatório.",
+   "Nova convulsão durante o sulfato de magnésio: mais 2 g EV em bolus (4 mL a 50% diluídos em 10 mL) e manutenção a 2 g/h. Se 2 bolus não controlarem: fenitoína EV (RBEHG) ou benzodiazepínico (MS), UTI e neuroimagem (hemorragia intracraniana)."],
    decisao:{pergunta:"PA ≥ 160 e/ou 110 mmHg persistente por 15 min (ou crise com sintomas)?",opcoes:[{rot:"Sim",ir:"e4"},{rot:"Não",ir:"e5"}]}},
   {id:"e4",t:"Anti-hipertensivo de ação rápida",tempo:"iniciar em até 30–60 min",itens:[
    "Meta: reduzir 15–25%, com PAS entre 140 e 150 e PAD entre 90 e 100 mmHg. Evitar queda brusca (AVC materno, sofrimento fetal). Hipotensão: elevar os membros inferiores e hidratar com cautela.",
@@ -538,9 +538,9 @@ const PROTOCOLOS=[
    "Diurese ≥ 25–30 mL/h com SF 0,9% cauteloso; nunca palpar o fígado com força (risco de rotura de hematoma).",
    "Pós-parto: UTI, controle de plaquetas, LDH, AST e bilirrubinas; piora transitória nas primeiras 24 h é comum."]},
   {id:"e6",t:"Momento do parto",itens:[
-   "Tratamento definitivo: parto e retirada da placenta, depois da estabilização materna (PA controlada, MgSO4 iniciado, convulsão controlada). Via preferencial: vaginal (indução), cesárea por indicação obstétrica.",
+   "Tratamento definitivo: parto e retirada da placenta, depois da estabilização materna (PA controlada, sulfato de magnésio iniciado, convulsão controlada). Via preferencial: vaginal (indução), cesárea por indicação obstétrica.",
    "Parto indicado em qualquer idade gestacional: eclâmpsia ou iminência refratária, HELLP, descolamento de placenta, edema pulmonar, hipertensão refratária a 3 fármacos, piora laboratorial progressiva, insuficiência renal, hematoma ou rotura hepática, alteração da vitalidade fetal.",
-   "Sem essas condições: < 23–24 semanas, individualizar (prognóstico fetal ruim); 24–34 semanas, conduta expectante em hospital terciário com corticoide (betametasona 12 mg IM a cada 24 h, 2 doses; ou dexametasona 6 mg IM a cada 12 h, 4 doses) e MgSO4 para neuroproteção se parto < 32 semanas; 34–37 semanas, pode-se prolongar com monitoração; ≥ 37 semanas, parto.",
+   "Sem essas condições: < 23–24 semanas, individualizar (prognóstico fetal ruim); 24–34 semanas, conduta expectante em hospital terciário com corticoide (betametasona 12 mg IM a cada 24 h, 2 doses; ou dexametasona 6 mg IM a cada 12 h, 4 doses) e sulfato de magnésio para neuroproteção se parto < 32 semanas; 34–37 semanas, pode-se prolongar com monitoração; ≥ 37 semanas, parto.",
    "Pré-eclâmpsia sem sinais de gravidade: parto com 37 semanas."],
    decisao:{pergunta:"Plano de parto definido com a obstetrícia.",opcoes:[{rot:"Ver puerpério e alta",ir:"efim"}]}},
   {id:"eecl",t:"Eclâmpsia: convulsão",tempo:"agora",itens:[
@@ -559,7 +559,7 @@ const PROTOCOLOS=[
    "Parto com 37 semanas."],
    decisao:{pergunta:"Surgiram sinais de gravidade?",opcoes:[{rot:"Sim",ir:"e2"},{rot:"Não",ir:"e6"}]}},
   {id:"efim",t:"Puerpério e alta",itens:[
-   "Manter o MgSO4 por 24 h após o parto ou a última convulsão; cerca de 30% das eclâmpsias são no puerpério, sobretudo na 1ª semana.",
+   "Manter o sulfato de magnésio por 24 h após o parto ou a última convulsão; cerca de 30% das eclâmpsias são no puerpério, sobretudo na 1ª semana.",
    "A PA pode piorar entre o 3º e o 6º dia pós-parto: manter e ajustar os anti-hipertensivos; reduzir ou retirar se PA < 110/70 mmHg. No puerpério, além dos da gestação, IECA (enalapril, captopril) é liberado; evitar BRA e clonidina na amamentação (RBEHG).",
    "Evitar AINE para analgesia na pré-eclâmpsia grave; vigiar a hidratação EV e a diurese.",
    "Alta com relatório, sinais de alarme e retorno precoce para PA. Risco cardiovascular aumentado no longo prazo; na próxima gestação, AAS 100 mg/dia VO de 12 a 36 semanas e cálcio."]}

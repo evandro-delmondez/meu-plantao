@@ -699,13 +699,16 @@ const BASE = [
   "cat": "gi",
   "cid": "R14",
   "sin": "distensao abdominal meteorismo",
-  "casa": "Uso oral\n1) Simeticona 75mg/mL gotas ------------------ 1 fr\nTomar 15 gotas VO de 8/8h por 3 dias.",
+  "casa": "Uso oral\n1) Simeticona 75mg/mL gotas ------------------ 1 fr\nTomar 13 gotas (40 mg) VO 3x ao dia, após as refeições, por até 3 dias.",
   "unidade": "",
   "orient": "- Evitar refrigerantes, feijão, repolho, chiclete e comer rápido.",
-  "rev": [],
+  "rev": [
+   "Corrigido (2026-10-17): simeticona 15 → 13 gotas (40 mg) 3x ao dia, como a bula Luftal e a ficha; fontes de verdade (bula Luftal; AGA 2023) no lugar de \"evidência limitada\"."
+  ],
   "evid": "Simeticona tem evidência limitada.",
   "fontes": [
-   "Evidência limitada; conduta sintomática."
+   "Bula Luftal gotas (simeticona 75 mg/mL, Anvisa): adultos e maiores de 12 anos, 13 gotas 3x ao dia; máximo 500 mg/dia (166 gotas).",
+   "Moshiree B et al. AGA Clinical Practice Update on Evaluation and Management of Belching, Abdominal Bloating, and Distention (Gastroenterology 2023;165:791). https://doi.org/10.1053/j.gastro.2023.04.039"
   ]
  },
  {
@@ -714,10 +717,11 @@ const BASE = [
   "cat": "gi",
   "cid": "A09",
   "sin": "diarreia vomito gastroenterite virose intestinal",
-  "casa": "Uso oral\n1) Sais de reidratação oral ------------------ 10 envelopes\nDiluir 1 envelope em 1 L de água filtrada e beber aos poucos ao longo do dia, após cada evacuação.\n2) Ondansetrona 8mg (Vonau Flash) ------------ 10 cp\nDissolver 1 cp na língua de 8/8h se náuseas ou vômitos.\n3) Escopolamina + Dipirona 10/250mg (Buscopan Composto) --- 20 cp\nTomar 1 cp VO de 6/6h se dor abdominal ou febre.\n4) Saccharomyces boulardii 200mg (Repoflor) -- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.\nOu\n4) Enterogermina flaconete ------------------- 10 fr\nTomar 1 flaconete VO de 12/12h por 5 dias.\n\n# Se disenteria (diarreia com sangue) com febre (gestante: só azitromicina):\n5) Ciprofloxacino 500mg ---------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\nOu\n5) Azitromicina 500mg ------------------------ 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.",
-  "unidade": "1) SF 0,9% 1.000 mL EV aberto (se desidratação moderada/grave ou vômitos incoercíveis).\n2) Ondansetrona 4 mg EV lenta (≥ 30 s), pode diluir em 8 mL de AD, ou IM\n   Ou Dimenidrinato + Piridoxina: ampola EV (10 mL) em 100 mL de SF em 30 min; existe apresentação própria para IM\n   Ou Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n3) Buscopan Composto 1 amp EV lenta diluída em 10–20 mL de SF, ou IM (se cólica).",
+  "casa": "Uso oral\n1) Sais de reidratação oral ------------------ 10 envelopes\nDiluir 1 envelope em 1 L de água filtrada e beber aos poucos ao longo do dia, após cada evacuação.\n2) Ondansetrona 8mg (Vonau Flash) ------------ 10 cp\nDissolver 1 cp na língua de 8/8h se náuseas ou vômitos.\n3) Dipirona 500 mg ---------------------------- 20 cp\nTomar 1 a 2 cp VO de 6/6h se dor ou febre (máximo 4 g/dia).\n4) Saccharomyces boulardii 200mg (Repoflor) -- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.\nOu\n4) Enterogermina flaconete ------------------- 10 fr\nTomar 1 flaconete VO de 12/12h por 5 dias.\n\n# Se cólica:\n5) Escopolamina 10 mg (Buscopan) ------------- 20 drágeas\nTomar 1 a 2 drágeas VO de 8/8h se cólica (máximo 6 drágeas/dia).\n\n# Se disenteria (diarreia com sangue) com febre (gestante: só azitromicina):\n6) Ciprofloxacino 500mg ---------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\nOu\n6) Azitromicina 500mg ------------------------ 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.",
+  "unidade": "1) SF 0,9% 1.000 mL EV aberto (se desidratação moderada/grave ou vômitos incoercíveis).\n2) Ondansetrona 4 mg EV lenta (≥ 30 s), pode diluir em 8 mL de AD, ou IM\n   Ou Dimenidrinato + Piridoxina: ampola EV (10 mL) em 100 mL de SF em 30 min; existe apresentação própria para IM\n   Ou Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n3) Escopolamina 20 mg + dipirona 2,5 g (Buscopan Composto) 1 ampola EV lenta (no mínimo 5 minutos, paciente deitado), diluída em 10–20 mL de SF 0,9%, ou IM profunda (se cólica).",
   "orient": "- Beber 2–3 L de líquidos por dia, em pequenos goles.\n- Manter a alimentação habitual, em porções menores se houver náusea; evitar refrigerante e não adoçar chá ou suco (MS, Plano A; IDSA 2017, rec. 45).\n- Antidiarreico não é rotina (MS). Loperamida: nunca em menores de 18 anos, com febre ou com sangue nas fezes (IDSA 2017, rec. 47).\n- Disenteria tratada com antibiótico: reavaliar em 2 dias (MS, cartaz D.1.1).\n- Retorno imediato se não conseguir ingerir líquidos, desmaio, sangue/pus nas fezes, urina muito escura ou em pouca quantidade.",
   "rev": [
+   "Corrigido (2026-10-17): Buscopan Composto comprimido \"se dor ou febre\" (só 250 mg de dipirona) → dipirona 500 mg 1 a 2 cp de 6/6h, máx. 4 g/dia (bula Novalgina), e escopolamina 10 mg só se cólica, em bloco próprio (bula Buscopan); Buscopan Composto EV com princípio ativo e no mínimo 5 minutos (bula injetável).",
    "Corrigido (2026-10-09): manter a alimentação habitual (MS e IDSA 2017); antidiarreico não é rotina; gestante sem ciprofloxacino; reavaliar disenteria em 2 dias; cartaz do MS nas fontes.",
    "Corrigido: item '3) c' estava incompleto → ondansetrona 8mg.",
    "Removido: omeprazol por 10 dias (sem indicação na GECA).",
@@ -727,7 +731,10 @@ const BASE = [
   ],
   "fontes": [
    "Ministério da Saúde. Manejo do paciente com diarreia (cartaz): Plano A (líquidos após cada evacuação e vômito, manter a alimentação habitual, voltar se não melhorar em 2 dias ou se sinais de alerta); antibiótico só na disenteria com comprometimento do estado geral; reavaliar em 2 dias; ciprofloxacino: não usar em gestantes; antidiarreicos não devem ser usados. https://bvsms.saude.gov.br/bvs/cartazes/manejo_paciente_diarreia_cartaz.pdf",
-   "Shane AL et al. IDSA Clinical Practice Guidelines for Infectious Diarrhea (Clin Infect Dis 2017)."
+   "Shane AL et al. IDSA Clinical Practice Guidelines for Infectious Diarrhea (Clin Infect Dis 2017).",
+   "Bula Novalgina (dipirona 500 mg, Anvisa): adultos, 500 mg a 1 g até 4x ao dia; máximo 4 g/dia.",
+   "Bula Buscopan drágeas (butilbrometo de escopolamina 10 mg, Anvisa): 10 a 20 mg, 3 a 5x ao dia.",
+   "Bula Buscopan Composto injetável (Boehringer Ingelheim, Anvisa): EV lenta, no máximo 1 mL/min, com o paciente deitado; contraindicado na obstrução intestinal mecânica e no megacólon."
   ]
  },
  {
@@ -787,17 +794,21 @@ const BASE = [
   "cat": "gi",
   "cid": "I84.9",
   "sin": "hemorroida sangramento anal",
-  "casa": "Uso oral\n1) Diosmina + Hesperidina 450/50mg (Daflon 500) --- 60 cp\nTomar 2 cp VO de 8/8h por 4 dias, depois 2 cp de 12/12h por 3 dias, depois 1 cp de 12/12h.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.\n3) Ibuprofeno 600mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.\n4) Óleo mineral ------------------------------ 1 fr\nTomar 15 mL VO à noite enquanto houver fezes endurecidas.\n\nUso tópico\n5) Proctyl pomada ---------------------------- 1 bisnaga\nAplicar na região anal 2 a 3x ao dia, após higiene, por 7 dias.",
+  "casa": "Uso oral\n1) Diosmina + Hesperidina 450/50mg (Daflon 500) --- 60 cp\nTomar 2 cp VO de 8/8h por 4 dias, depois 2 cp de 12/12h por 3 dias, depois 1 cp de 12/12h até terminar a caixa (cerca de 12 dias).\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.\n3) Ibuprofeno 600mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.\n4) Óleo mineral ------------------------------ 1 fr\nTomar 15 mL VO à noite, longe do jantar, por até 7 dias, se fezes endurecidas.\n\nUso tópico\n5) Policresuleno + cinchocaína pomada (Proctyl) --- 1 bisnaga\nAplicar na região anal 2 a 3x ao dia, após higiene, por 7 dias.",
   "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.",
   "orient": "- Banho de assento com água morna 3x ao dia por 10 min.\n- Dieta rica em fibras e água; não usar papel higiênico (preferir lavar).\n- Sangramento persistente ou > 45 anos: encaminhar para colonoscopia.",
   "rev": [
+   "Corrigido (2026-10-17): Daflon com fim (até terminar a caixa, cerca de 12 dias de manutenção; bula Daflon 500); óleo mineral por até 7 dias (bula); pomada com princípio ativo (policresuleno + cinchocaína; bula Proctyl).",
    "Ajustado: Daflon para o esquema da bula na crise (6 cp/dia × 4 dias, 4 cp/dia × 3 dias).",
    "Removido: Decadron IM na unidade.",
    "Adicionado: banho de assento e rastreio.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Davis BR et al. ASCRS Clinical Practice Guidelines for the Management of Hemorrhoids (Dis Colon Rectum 2018)."
+   "Davis BR et al. ASCRS Clinical Practice Guidelines for the Management of Hemorrhoids (Dis Colon Rectum 2018).",
+   "Bula Daflon 500 (diosmina + hesperidina, Servier, Anvisa): crise, 6 cp/dia por 4 dias e 4 cp/dia por 3 dias; manutenção, 2 cp/dia.",
+   "Bula do óleo mineral (Anvisa): laxante por no máximo 1 semana sem orientação médica; não tomar com alimentos.",
+   "Bula Proctyl pomada (policresuleno + cloridrato de cinchocaína, Takeda, Anvisa)."
   ]
  },
  {
@@ -926,17 +937,20 @@ const BASE = [
   "cat": "gi",
   "cid": "B98.0",
   "sin": "helicobacter ulcera gastrite",
-  "casa": "Uso oral (14 dias)\n1) Amoxicilina 500mg ------------------------- 56 cp\nTomar 2 cp (1g) VO de 12/12h por 14 dias.\n2) Claritromicina 500mg ---------------------- 28 cp\nTomar 1 cp VO de 12/12h por 14 dias.\n3) Omeprazol 20mg ---------------------------- 56 cp\nTomar 2 cp (40mg) VO de 12/12h, 30 min antes do café e do jantar, por 14 dias.\n\n# Se alergia a penicilina: trocar a amoxicilina por\n1) Metronidazol 250mg ------------------------ 56 cp\nTomar 2 cp (500mg) VO de 12/12h por 14 dias.",
+  "casa": "Uso oral (14 dias)\n1) Omeprazol 20mg ---------------------------- 56 cp\nTomar 2 cp (40mg) VO de 12/12h, 30 min antes do café e do jantar, por 14 dias.\n2) Subcitrato de bismuto coloidal 240mg (manipulado) --- 28 cáps\nTomar 1 cáps VO de 12/12h por 14 dias.\n3) Tetraciclina 500mg ------------------------- 56 cáps\nTomar 1 cáps VO de 6/6h por 14 dias, com água, longe de leite, antiácido e ferro.\n4) Metronidazol 400mg ------------------------- 56 cp\nTomar 1 cp VO de 6/6h por 14 dias, após as refeições.\n\n# Sem bismuto disponível (não serve para alergia a penicilina):\n(Alergia a penicilina: usar o 1º esquema, a quádrupla com bismuto, que não tem amoxicilina.)\n1) Vonoprazana 20mg (Inzelm) ------------------ 28 cp\nTomar 1 cp VO de 12/12h por 14 dias.\n2) Amoxicilina 500mg -------------------------- 56 cáps\nTomar 2 cáps (1g) VO de 12/12h por 14 dias.\n3) Claritromicina 500mg ----------------------- 28 cp\nTomar 1 cp VO de 12/12h por 14 dias.",
   "unidade": "",
-  "orient": "- Não ingerir álcool se usar metronidazol.\n- Controle de erradicação (teste respiratório ou EDA) 4 semanas após o fim, sem IBP há 2 semanas.",
+  "orient": "- Controle de cura: teste respiratório com ureia 13C ou pesquisa de antígeno fecal monoclonal, pelo menos 4 semanas após o fim dos antibióticos e do bismuto e 14 dias sem omeprazol ou vonoprazana (V Consenso 2026, enunciados 17 e 20).\n- Bismuto deixa as fezes escuras; não confundir com sangramento (fezes pretas com fraqueza, tontura ou vômito com sangue: voltar).\n- Não ingerir álcool durante o metronidazol e até 3 dias depois.\n- Tetraciclina: não usar na gestação, na amamentação nem em menores de 8 anos.\n- Parar de fumar aumenta a chance de cura (enunciado 26).",
   "rev": [
+   "Atualizado (2026-10-17): esquemas pelo V Consenso Brasileiro 2026; tripla clássica com IBP deixa de ser 1ª linha empírica; quádrupla com bismuto (omeprazol, bismuto, tetraciclina, metronidazol) por 14 dias, que serve também na alergia a penicilina; sem bismuto, vonoprazana + amoxicilina + claritromicina; controle de cura por teste respiratório ou antígeno fecal (V Consenso 2026, enunciados 17, 20, 27, 28 e 32).",
    "Corrigido: duração 7 → 14 dias (IV Consenso Brasileiro de H. pylori).",
    "Corrigido: omeprazol 20 → 40mg 12/12h (IBP em dose dobrada).",
    "Ajustado: quantidades de comprimidos."
   ],
   "fontes": [
-   "Coelho LGV et al. IV Consenso Brasileiro sobre Infecção por H. pylori (Arq Gastroenterol 2018).",
-   "Malfertheiner P et al. Maastricht VI/Florence Consensus (Gut 2022)."
+   "Coelho LGV et al. V Consenso Brasileiro sobre Infecção por Helicobacter pylori (Arq Gastroenterol 2026;63:e26043). doi 10.1590/S0004-2803.24612026-043: 1ª linha (enunciado 28, tabela 3), alergia a penicilina (enunciado 32, tabela 6), controle de cura (enunciados 17 e 20).",
+   "Chey WD et al. ACG Clinical Guideline: Treatment of Helicobacter pylori Infection (Am J Gastroenterol 2024;119:1730).",
+   "Malfertheiner P et al. Maastricht VI/Florence Consensus (Gut 2022;71:1724).",
+   "Bula da tetraciclina (Anvisa): contraindicada na gestação, na amamentação, em menores de 8 anos e na insuficiência renal; bula do Flagyl (metronidazol: efeito antabuse com álcool)."
   ]
  },
  {

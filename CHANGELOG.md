@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.12.4 — 2026-10-17
+- **Revisão geral, lote 4 (Dermato), aprovada pelo médico e conferida:** ajuste renal do aciclovir corrigido (no herpes simples o painel sugeria aumentar a dose) e valaciclovir como alternativa no herpes labial e no zoster, com ajuste renal; clindamicina 300 mg de 6/6h; ivermectina pela tabela de peso da bula (escabiose, larva migrans); impetigo com ácido fusídico e antibiótico oral por 5 dias; urticária com anti-histamínico de 2ª geração e dose de bula; permetrina na gestação e a partir de 2 meses; tetos de dipirona e codeína; sem sulfadiazina fora da queimadura, sem creme de anti-histamínico, sem hidrocortisona de rotina na picada.
+- **Queimaduras:** Parkland iniciando com 2 mL × kg × % SCQ no adulto (American Burn Association 2023; ATLS 11ª ed.), 3 mL na criança com manutenção e 4 mL no trauma elétrico, ajustando pela diurese (0,5–1 mL/kg/h no adulto; 1–1,5 na criança), na conduta e na calculadora.
+
 ## 1.12.3 — 2026-10-17
 - **Revisão geral, lote 3 (Dor/Neuro/Ortop e Psiquiatria), aprovada pelo médico e conferida:** analgésicos com teto diário e ibuprofeno só com dengue descartada (cefaleia, enxaqueca, lombalgia, entorse, TCE); salvas com sumatriptano nasal pela apresentação brasileira e prednisona 100 mg com redução (EAN 2023); enxaqueca sem repetir naratriptana e com metoclopramida + dexametasona 10 mg IM; gota e profilaxia com interações da colchicina e conduta na doença renal; alopurinol podendo começar na crise; convulsão alinhada ao cartão Agora, tiopental com a dose da EFNS 2010; vertigem sem flunarizina; insônia sem hipnótico; ansiedade sem passiflora; lombalgia sem dexametasona; agitação e AVC alinhados ao cartão e ao fluxo; abstinência guiada pela CIWA-Ar com tiamina na suspeita de Wernicke; TCE com TC para todo anticoagulado (NICE 2023).
 

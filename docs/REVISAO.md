@@ -11,6 +11,7 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 5. Atualizar a data acima para daqui a 3 meses.
 
 ## Histórico
+- 2026-10-17 (v1.12.4) — revisão geral, lote 4 (13 condutas corrigidas), relatórios `.rascunhos/revisao-lote4.md`, `.rascunhos/edicao-lote4.md`, `.rascunhos/conferencia-lote4.md` (sem obrigatórios). Parkland pela ABA 2023/ATLS 11; pediatria de 3 mL a conferir no texto do ATLS 11.
 - 2026-10-17 (v1.12.3) — revisão geral, lote 3 (15 condutas corrigidas), relatórios `.rascunhos/revisao-lote3.md`, `.rascunhos/edicao-lote3.md`, `.rascunhos/conferencia-lote3.md` (3 ajustes aplicados).
 - 2026-10-17 (v1.12.2) — revisão geral, lote 2 (17 condutas; 16 corrigidas), relatórios `.rascunhos/revisao-lote2.md`, `.rascunhos/edicao-lote2.md`, `.rascunhos/conferencia-lote2.md` (2 ajustes aplicados). Pendente: links "PCDT IST 2022" que abrem o PCDT de 2015 em outras condutas (lote 5).
 - 2026-10-17 (v1.12.1) — revisão geral, lote 1 (16 condutas; 13 corrigidas), relatórios `.rascunhos/revisao-lote1.md`, `.rascunhos/edicao-lote1.md`, `.rascunhos/conferencia-lote1.md` (2 ajustes aplicados). Pendente: confirmar na bula do Vannair o máximo de inalações no MART.

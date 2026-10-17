@@ -59,10 +59,11 @@ const BASE = [
   "cat": "pele",
   "cid": "L02.9",
   "sin": "furunculo carbunculo pus",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n\nAntibiótico (se celulite ao redor, sinais sistêmicos, lesão > 2 cm ou imunossupressão)\n3) Cefalexina 500mg -------------------------- 28 cp\nTomar 1 cp VO de 6/6h por 7 dias.\nOu (suspeita de MRSA comunitário / falha prévia)\n3) Sulfametoxazol + Trimetoprima 800/160mg --- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\nOu (alergia a penicilina)\n3) Clindamicina 300mg ------------------------ 21 cp\nTomar 1 cp VO de 8/8h por 7 dias.",
-  "unidade": "1) Drenagem (incisão, expressão e lavagem com SF 0,9%) + curativo, se flutuante.\n2) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre (no máximo 8 cp por dia).\n\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por até 5 dias.\n(Ibuprofeno só se dengue descartada, em quem tem febre.)\n\nAntibiótico (se celulite ao redor, sinais sistêmicos, lesão > 2 cm ou imunossupressão)\n3) Cefalexina 500mg -------------------------- 28 cp\nTomar 1 cp VO de 6/6h por 7 dias.\nOu (suspeita de MRSA comunitário / falha prévia)\n3) Sulfametoxazol + Trimetoprima 800/160mg --- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\nOu (alergia a penicilina)\n3) Clindamicina 300mg ------------------------ 28 cp\nTomar 1 cp VO de 6/6h por 7 dias.",
+  "unidade": "1) Drenagem (incisão, expressão e lavagem com SF 0,9%) + curativo, se flutuante.\n2) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de soro fisiológico ou água destilada.",
   "orient": "- Compressas mornas 3 a 4x ao dia.\n- Retorno em 48h para reavaliação e troca de curativo.\n- Retorno imediato se febre, vermelhidão que se espalha ou piora da dor.",
   "rev": [
+   "Corrigido (2026-10-17): clindamicina 300 mg de 8/8h → 6/6h, 28 cp (IDSA SSTI 2014, tabela 2; NICE NG141); dipirona com no máximo 8 cp por dia (ficha dipirona, EMA 2024); ibuprofeno por até 5 dias e só se dengue descartada em quem tem febre (MS, Dengue, 6ª ed., 2024).",
    "Atualizado: drenagem é o tratamento principal; antibiótico só com os critérios indicados.",
    "Ajustado: ibuprofeno 300mg 12/12h → 600mg 8/8h (dose anti-inflamatória).",
    "Ajustado: duração do antibiótico 10 → 7 dias (IDSA: 5–10 dias).",
@@ -71,7 +72,9 @@ const BASE = [
   ],
   "fontes": [
    "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10).",
-   "Talan DA et al. Trimethoprim–sulfamethoxazole for uncomplicated skin abscess (N Engl J Med 2016;374:823)."
+   "Talan DA et al. Trimethoprim–sulfamethoxazole for uncomplicated skin abscess (N Engl J Med 2016;374:823).",
+   "National Institute for Health and Care Excellence. NG141 — Cellulitis and erysipelas: antimicrobial prescribing, 2019 (clindamicina 300 mg 4x ao dia; 450 mg se grave). https://www.nice.org.uk/guidance/ng141",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
  },
  {
@@ -423,13 +426,16 @@ const BASE = [
   "cat": "pele",
   "cid": "L23.9",
   "sin": "alergia pele coceira prurido eczema dermatite contato",
-  "casa": "Uso oral\n1) Loratadina 10mg --------------------------- 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias.\nOu\n1) Levocetirizina 5mg ------------------------ 7 cp\nTomar 1 cp VO à noite por 7 dias.\n\nUso tópico\n2) Dexclorfeniramina + Betametasona creme ---- 1 bisnaga\nAplicar fina camada na região afetada 2x ao dia por 7 dias (na face, no máx. 5 dias).",
+  "casa": "Uso oral\n1) Loratadina 10mg --------------------------- 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias.\nOu\n1) Levocetirizina 5mg ------------------------ 7 cp\nTomar 1 cp VO à noite por 7 dias.\n\nUso tópico\n2) Betametasona 0,1% creme (valerato) -------- 1 bisnaga\nAplicar fina camada na região afetada do corpo 2x ao dia por 7 a 14 dias. Não usar na face, nas dobras nem nos genitais.\nOu (face, dobras ou genitais)\n2) Hidrocortisona 1% creme ------------------- 1 bisnaga\nAplicar fina camada 2x ao dia por até 7 dias.",
   "unidade": "",
   "orient": "- Evitar o agente desencadeante; usar sabonete neutro e hidratante.",
-  "rev": [],
-  "evid": "Baseado em consenso clínico; corticoide tópico é o pilar da dermatite de contato.",
+  "rev": [
+   "Corrigido (2026-10-17): creme de dexclorfeniramina + betametasona (sem registro tópico na Anvisa; anti-histamínico tópico sensibiliza) → corticoide tópico isolado: betametasona 0,1% no corpo por 7 a 14 dias ou hidrocortisona 1% na face, dobras e genitais por até 7 dias (Fonacier 2015; Harrison, 22ª ed., cap. 60)."
+  ],
+  "evid": "Diretriz AAAAI/ACAAI 2015 (evidência moderada para corticoide tópico).",
   "fontes": [
-   "Consenso clínico; ver Fonacier L et al. Contact dermatitis: a practice parameter update (J Allergy Clin Immunol Pract 2015)."
+   "Fonacier L et al. Contact dermatitis: a practice parameter — update 2015 (J Allergy Clin Immunol Pract 2015;3:S1) — corticoide tópico pela potência e região; evitar anti-histamínico tópico; prednisona se > 20% da superfície.",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 60 — Eczema, Psoriasis, Cutaneous Infections, Acne, and Other Common Skin Disorders."
   ]
  },
  {
@@ -686,15 +692,20 @@ const BASE = [
   "cat": "pele",
   "cid": "B86",
   "sin": "sarna coceira noturna",
-  "casa": "Uso tópico\n1) Permetrina 5% loção/creme ----------------- 1 fr\nAplicar à noite do pescoço aos pés (incluir entre dedos e sob unhas), deixar agir 8–12h e remover no banho. Repetir após 7 dias.\n\nUso oral (casos extensos, falha do tópico ou surtos)\n2) Ivermectina 6mg --------------------------- conforme peso\nTomar dose de 200 mcg/kg (≈ 1 cp a cada 30 kg) VO em dose única, em jejum. Repetir após 7 dias.\n\n3) Hidroxizina 25mg -------------------------- 20 cp\nTomar 1 cp VO à noite (ou de 8/8h) se coceira.",
+  "casa": "Uso tópico\n1) Permetrina 5% loção/creme ----------------- 1 fr\nAplicar à noite do pescoço aos pés (incluir entre dedos, sob as unhas, umbigo e genitais), deixar agir 8–12h e remover no banho. Repetir após 7 dias. Em idosos e crianças pequenas, aplicar também no couro cabeludo e na face, poupando olhos e boca.\n\nUso oral (casos extensos, falha do tópico ou surtos)\n2) Ivermectina 6mg --------------------------- conforme peso\nTomar VO em dose única, com água, e repetir após 7 dias. Dose por peso: 15–24 kg ½ cp; 25–35 kg 1 cp; 36–50 kg 1½ cp; 51–65 kg 2 cp; 66–79 kg 2½ cp; 80 kg ou mais 200 mcg/kg.\n(Não usar abaixo de 15 kg ou de 5 anos; na gestação, preferir permetrina.)\n\n3) Hidroxizina 25mg -------------------------- 20 cp\nTomar 1 cp VO à noite (ou de 8/8h) se coceira (no máximo 3 cp por dia). Evitar em idosos (ver alerta).",
   "unidade": "",
-  "orient": "- Tratar todos os contatos ao mesmo tempo.\n- Lavar roupas de cama e de uso em água quente ou guardar em saco fechado por 72h.\n- A coceira pode persistir 2–4 semanas após o tratamento correto.\n- Ivermectina: não usar em gestantes nem em < 15 kg.",
+  "orient": "- Tratar todos os contatos ao mesmo tempo.\n- Lavar roupas de cama e de uso em água quente ou guardar em saco fechado por 72h.\n- A coceira pode persistir 2–4 semanas após o tratamento correto.\n- Gestante, amamentando e criança a partir de 2 meses: permetrina é a escolha. Ivermectina não abaixo de 15 kg ou de 5 anos e, na gestação, só com indicação médica (preferir permetrina).",
   "rev": [
+   "Corrigido (2026-10-17): ivermectina pela tabela de peso da bula (½ cp de 15–24 kg a 2½ cp de 66–79 kg; 200 mcg/kg a partir de 80 kg), com água, sem uso abaixo de 15 kg ou de 5 anos (bula Revectina); permetrina como escolha na gestação, na amamentação e a partir de 2 meses, com couro cabeludo e face em idosos e crianças pequenas (IUSTI 2026; bula da permetrina 5%); hidroxizina com no máximo 3 cp por dia e aviso para idosos (bula Hixizine; Beers 2023); IUSTI 2017 → 2026.",
    "Corrigido: ivermectina '3 cp' fixos → dose por peso (200 mcg/kg). Use a Calculadora.",
    "Trocado: dipirona IM para prurido → hidroxizina VO."
   ],
   "fontes": [
-   "Salavastru CM et al. European guideline for the management of scabies — IUSTI (J Eur Acad Dermatol Venereol 2017)."
+   "IUSTI. 2026 European Guideline for the Management of Scabies (versão final, jun/2026): permetrina 5% por 8–12 h repetida em 7–14 dias; ivermectina 200 mcg/kg em 2 doses com 1 semana de intervalo; gestação, amamentação e lactentes. https://iusti.org/treatment-guideline",
+   "Bula Revectina (ivermectina 6 mg), Abbott, registrada na Anvisa — tabela de dose por peso; contraindicada abaixo de 15 kg ou 5 anos.",
+   "Bula da permetrina 5% loção (Nedax), registrada na Anvisa — uso a partir de 2 meses.",
+   "Bula Hixizine (hidroxizina 25 mg), registrada na Anvisa — adulto 25 mg 3 a 4x ao dia; American Geriatrics Society. Beers Criteria, 2023 (anti-histamínico de 1ª geração: evitar no idoso).",
+   "Centers for Disease Control and Prevention. Scabies — Clinical Care, 2024. https://www.cdc.gov/scabies/hcp/clinical-care/"
   ]
  },
  {
@@ -703,10 +714,11 @@ const BASE = [
   "cat": "pele",
   "cid": "A46",
   "sin": "celulite perna vermelha infeccao pele",
-  "casa": "Uso oral\n1) Cefalexina 500mg -------------------------- 20 cp\nTomar 1 cp VO de 6/6h por 5 dias (estender até 10 dias se não houver melhora).\nOu\n1) Amoxicilina 500mg ------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias (erisipela típica; estender se não houver melhora).\n(Não encontrei diretriz com amoxicilina de 12/12h para erisipela.)\nOu (alergia a penicilina)\n1) Clindamicina 300mg ------------------------ 15 cp\nTomar 1 cp VO de 8/8h por 5 dias (estender se não houver melhora).\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.",
-  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n2) Marcar a borda da lesão com caneta para acompanhar a evolução.\n* Internar para ATB EV (oxacilina/cefazolina) se: sinais sistêmicos, falha em 48–72h, imunossupressão, face extensa, ou não conseguir VO.",
+  "casa": "Uso oral\n1) Cefalexina 500mg -------------------------- 20 cp\nTomar 1 cp VO de 6/6h por 5 dias (estender até 10 dias se não houver melhora).\nOu\n1) Amoxicilina 500mg ------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias (erisipela típica; estender se não houver melhora).\n(Não encontrei diretriz com amoxicilina de 12/12h para erisipela.)\nOu (alergia a penicilina)\n1) Clindamicina 300mg ------------------------ 20 cp\nTomar 1 cp VO de 6/6h por 5 dias (estender se não houver melhora).\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre (no máximo 8 cp por dia).",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de soro fisiológico ou água destilada.\n2) Marcar a borda da lesão com caneta para acompanhar a evolução.\n* Internar para antibiótico EV (cefazolina ou oxacilina; alergia a penicilina: clindamicina) se: sinais sistêmicos (SIRS), falha em 48–72h, imunossupressão, face extensa, não conseguir tomar VO ou suspeita de infecção necrosante (avaliar cirurgia).",
   "orient": "- Repouso com o membro elevado.\n- Tratar a porta de entrada (frieira, ferida).\n- Retorno em 48–72h ou antes se febre, bolhas, dor desproporcional ou lesão avançando além da marca.",
   "rev": [
+   "Corrigido (2026-10-17): clindamicina 300 mg de 8/8h → 6/6h, 20 cp (IDSA SSTI 2014, tabela 2; NICE NG141); dipirona com no máximo 8 cp por dia (ficha dipirona); critério de internação sem sigla, com cefazolina, oxacilina ou clindamicina EV e suspeita de infecção necrosante (IDSA SSTI 2014, rec. 21).",
    "Removido: neomicina + bacitracina tópica (sem papel na erisipela).",
    "Removido: ibuprofeno (pode mascarar infecção necrosante; opcional).",
    "Trocado: ceftriaxona IM de rotina → critérios de internação.",
@@ -714,7 +726,9 @@ const BASE = [
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014)."
+   "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10) — rec. 18–25 e tabela 2.",
+   "National Institute for Health and Care Excellence. NG141 — Cellulitis and erysipelas: antimicrobial prescribing, 2019 — 5 a 7 dias, estendendo conforme a evolução; clindamicina 300–450 mg 4x ao dia na alergia. https://www.nice.org.uk/guidance/ng141",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 134 — Infections of the Skin, Muscles, and Soft Tissues."
   ]
  },
  {
@@ -723,14 +737,17 @@ const BASE = [
   "cat": "pele",
   "cid": "T14.0",
   "sin": "ferimento machucado arranhao corte",
-  "casa": "Uso tópico\n1) Soro fisiológico 0,9% --------------------- 1 fr\nLavar o local 2x ao dia antes do curativo.\n2) Sulfadiazina de prata 1% creme ------------ 1 bisnaga\nAplicar fina camada na lesão 1 a 2x ao dia até cicatrizar (se lesão extensa ou exsudativa).\n\nUso oral\n3) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor.",
+  "casa": "Uso tópico\n1) Soro fisiológico 0,9% --------------------- 1 fr\nLavar o local 2x ao dia antes do curativo.\n2) Vaselina sólida --------------------------- 1 pote\nAplicar fina camada sobre a ferida limpa e cobrir com gaze ou curativo, trocando 1x ao dia até cicatrizar.\n\nUso oral\n3) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).",
   "unidade": "1) Limpeza com SF 0,9% + curativo.\n2) Verificar vacina antitetânica (ver \"Tétano / Feridas\").",
   "orient": "- Manter limpo e seco. Retorno se vermelhidão, calor, pus ou febre.",
   "rev": [
+   "Corrigido (2026-10-17): sulfadiazina de prata (indicada para queimadura, bula Dermazine) → vaselina sólida e curativo trocado 1x ao dia (AAD, How to treat minor cuts); dipirona com no máximo 8 cp por dia (ficha dipirona); fontes do MS e da AAD no lugar de \"consenso clínico\".",
    "Adicionado: checagem da vacina antitetânica."
   ],
   "fontes": [
-   "Consenso clínico; profilaxia antitetânica conforme Ministério da Saúde (Guia de Vigilância em Saúde)."
+   "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2023 — tétano acidental: profilaxia conforme o tipo de ferimento e a situação vacinal.",
+   "American Academy of Dermatology. How to treat minor cuts (limpeza com água, vaselina, curativo). https://www.aad.org/public/everyday-care/injured-skin/burns/treat-minor-cuts",
+   "Bula da sulfadiazina de prata 1% (Dermazine), registrada na Anvisa — indicação: queimaduras."
   ]
  },
  {
@@ -884,17 +901,21 @@ const BASE = [
   "cat": "pele",
   "cid": "B00.9",
   "sin": "herpes labial genital hsv",
-  "casa": "Uso oral\n# Herpes labial (iniciar nos pródromos ou até 1 dia das lesões):\n1) Aciclovir 400mg --------------------------- 25 cp\nTomar 1 cp VO 5x ao dia por 5 dias.\n\n# Herpes genital — 1º episódio:\n1) Aciclovir 400mg --------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\n\n# Herpes genital — recorrência:\n1) Aciclovir 400mg --------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
+  "casa": "Uso oral\n# Herpes labial (iniciar nos pródromos ou até 1 dia das lesões):\n1) Aciclovir 400mg --------------------------- 25 cp\nTomar 1 cp VO 5x ao dia por 5 dias.\nOu\n1) Valaciclovir 500mg ------------------------ 8 cp\nTomar 4 cp (2 g) VO de 12/12h por 1 dia, no início dos sintomas.\n\n# Herpes genital — 1º episódio:\n1) Aciclovir 400mg --------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\n\n# Herpes genital — recorrência:\n1) Aciclovir 400mg --------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
   "unidade": "",
-  "orient": "- Iniciar o mais cedo possível (idealmente nas primeiras 48–72h).\n- Herpes genital: ofertar testes rápidos de HIV, sífilis e hepatites; evitar relação durante as lesões.\n- CID: labial B00.1 | genital A60.0.",
+  "orient": "- Iniciar o mais cedo possível (idealmente nas primeiras 48–72h).\n- Herpes genital: ofertar testes rápidos de HIV, sífilis e hepatites; evitar relação durante as lesões.\n- Insuficiência renal: ClCr < 10 → aciclovir 200 mg de 12/12h; valaciclovir conforme o ClCr (ver ajuste renal; bulas). Hidratar bem.\n- CID: labial B00.1 | genital A60.0.",
   "rev": [
+   "Corrigido (2026-10-17): ajuste renal do aciclovir separado do zoster: no herpes simples, só ClCr < 10 → 200 mg de 12/12h (antes o painel sugeria 800 mg de 8/8h); valaciclovir como alternativa no herpes labial, 2 g de 12/12h por 1 dia, com ajuste renal (bula do aciclovir; bula Valtrex); PCDT IST 2022 do MS nas fontes.",
    "Separado: esquemas por situação (labial, genital 1º episódio, recorrência).",
    "Removido: nota '(se gestante: 5 dias)', sem respaldo.",
    "Corrigido: herpes labial com aciclovir 400 mg 5x/dia por 5 dias (Spruance 1990), não 8/8h."
   ],
   "fontes": [
-   "Workowski KA et al. CDC STI Treatment Guidelines 2021 (herpes genital).",
-   "Spruance SL et al. Aciclovir 400 mg 5x/dia no herpes labial (Antimicrob Agents Chemother 1990)."
+   "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com Infecções Sexualmente Transmissíveis (PCDT IST), 2022 — herpes genital: 1º episódio aciclovir 400 mg 8/8h por 7–10 dias; recorrência 400 mg 8/8h por 5 dias ou 800 mg 12/12h por 5 dias, iniciando no pródromo.",
+   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — herpes genital.",
+   "Spruance SL et al. Aciclovir 400 mg 5x/dia no herpes labial (Antimicrob Agents Chemother 1990).",
+   "Bula do valaciclovir (Valtrex), GSK, registrada na Anvisa; bula FDA Valtrex — herpes labial 2 g de 12/12h por 1 dia; ajuste renal (ClCr 30–49: 1 g 12/12h por 1 dia; 10–29: 500 mg 12/12h por 1 dia; < 10: 500 mg dose única).",
+   "Bula do aciclovir comprimido, registrada na Anvisa — ajuste renal: esquemas de 200–400 mg → 200 mg de 12/12h se ClCr < 10; 800 mg 5x/dia → 800 mg de 8/8h se ClCr 10–25 e de 12/12h se < 10."
   ]
  },
  {
@@ -903,15 +924,20 @@ const BASE = [
   "cat": "pele",
   "cid": "B02.9",
   "sin": "cobreiro zona herpes facial",
-  "casa": "Uso oral\n1) Aciclovir 400mg --------------------------- 70 cp\nTomar 2 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\nOu (se disponível no posto)\n1) Aciclovir 200mg --------------------------- 140 cp\nTomar 4 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\n2) Paracetamol + Codeína 500/30mg (Paco) ----- 15 cp\nTomar 1 cp VO de 6/6h se dor intensa.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.",
+  "casa": "Uso oral\n1) Aciclovir 400mg --------------------------- 70 cp\nTomar 2 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\nOu (se disponível no posto)\n1) Aciclovir 200mg --------------------------- 140 cp\nTomar 4 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\nOu\n1) Valaciclovir 500mg ------------------------ 42 cp\nTomar 2 cp (1 g) VO de 8/8h por 7 dias.\n2) Paracetamol + Codeína 500/30mg (Paco) ----- 15 cp\nTomar 1 cp VO de 6/6h se dor intensa (no máximo 4 cp por dia).\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).",
   "unidade": "",
   "orient": "- Iniciar até 72h do início das lesões (ou depois, se lesões novas surgindo ou imunossuprimido).\n- Lesão na ponta do nariz (sinal de Hutchinson), olho vermelho ou baixa da visão: avaliação oftalmológica urgente.\n- Evitar contato com gestantes, recém-nascidos e imunossuprimidos até as lesões virarem crostas.",
   "rev": [
+   "Corrigido (2026-10-17): paracetamol + codeína com no máximo 4 cp por dia e dipirona com no máximo 8 cp por dia (fichas codeina e dipirona); valaciclovir 1 g de 8/8h por 7 dias como alternativa, com ajuste renal (Dworkin 2007; bula Valtrex); ajuste renal do aciclovir separado do herpes simples, mantendo 800 mg de 8/8h (ClCr 10–25) e de 12/12h (< 10) (bula).",
    "Renomeado: 'Herpes facial' → Herpes zoster. A dose de 800mg 5x/dia é de zoster, não de herpes labial.",
    "Adicionado: duração de 7 dias e alerta de zoster oftálmico."
   ],
   "fontes": [
-   "Dworkin RH et al. Recommendations for the management of herpes zoster (Clin Infect Dis 2007)."
+   "Dworkin RH et al. Recommendations for the management of herpes zoster (Clin Infect Dis 2007).",
+   "National Institute for Health and Care Excellence. CKS Shingles (revisado em 2024): antiviral em até 72 h se > 50 anos, imunossuprimido, zoster fora do tronco ou dor/erupção moderada a grave; zoster oftálmico com encaminhamento no mesmo dia. https://cks.nice.org.uk/topics/shingles/",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 198 — Varicella-Zoster Virus Infections.",
+   "Bula do valaciclovir (Valtrex), GSK, registrada na Anvisa; bula FDA Valtrex — zoster 1 g de 8/8h por 7 dias; ajuste renal (ClCr 30–49: 1 g 12/12h; 10–29: 1 g 24/24h; < 10: 500 mg 24/24h).",
+   "Bula do aciclovir comprimido, registrada na Anvisa — zoster 800 mg 5x/dia; ClCr 10–25: 800 mg de 8/8h; < 10: 800 mg de 12/12h."
   ]
  },
  {
@@ -971,17 +997,21 @@ const BASE = [
   "cat": "pele",
   "cid": "L01.0",
   "sin": "crosta melicerica ferida infectada",
-  "casa": "Uso tópico (lesões localizadas)\n1) Mupirocina 2% pomada ---------------------- 1 bisnaga\nAplicar nas lesões 3x ao dia, após remover as crostas com água morna e sabão, por 5 a 7 dias.\nOu\n1) Neomicina + Bacitracina pomada ------------ 1 bisnaga\nAplicar nas lesões 3x ao dia, após limpeza, por 7 dias.\n\nUso oral (lesões extensas ou múltiplas)\n2) Cefalexina 500mg -------------------------- 28 cp\nTomar 1 cp VO de 6/6h por 7 dias.\nOu (alergia a penicilina)\n2) Clindamicina 300mg ------------------------ 21 cp\nTomar 1 cp VO de 8/8h por 7 dias.\n\n3) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor ou febre.",
+  "casa": "Uso tópico (lesões localizadas)\n1) Mupirocina 2% pomada ---------------------- 1 bisnaga\nAplicar nas lesões 3x ao dia, após remover as crostas com água morna e sabão, por 5 a 7 dias.\nOu\n1) Ácido fusídico 2% creme ------------------- 1 bisnaga\nAplicar nas lesões 3x ao dia, após remover as crostas, por 5 dias.\n\nUso oral (lesões extensas ou múltiplas)\n2) Cefalexina 500mg -------------------------- 20 cp\nTomar 1 cp VO de 6/6h por 5 dias.\nOu (alergia a penicilina)\n2) Clindamicina 300mg ------------------------ 20 cp\nTomar 1 cp VO de 6/6h por 5 dias.\n\n3) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor ou febre (no máximo 8 cp por dia).",
   "unidade": "",
   "orient": "- Cortar as unhas, lavar as mãos, não compartilhar toalhas.\n- Afastar da escola/creche até 24h após o início do antibiótico.",
   "rev": [
+   "Corrigido (2026-10-17): clindamicina 300 mg de 8/8h → 6/6h (IDSA SSTI 2014, tabela 1); antibiótico oral por 5 dias, 20 cp (NICE NG153); neomicina + bacitracina → ácido fusídico 2% 3x ao dia por 5 dias (NICE NG153; Cochrane, Koning 2012); dipirona com no máximo 8 cp por dia (ficha dipirona).",
    "Removido: penicilina benzatina (não cobre S. aureus, principal agente).",
    "Removido: eritromicina em xarope (dose pediátrica, subdosada para adulto).",
    "Adicionado: mupirocina como 1ª linha tópica.",
    "Removido: diclofenaco + paracetamol de rotina."
   ],
   "fontes": [
-   "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014)."
+   "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10) — impetigo: tabela 1 (clindamicina 300–400 mg 4x ao dia).",
+   "National Institute for Health and Care Excellence. NG153 — Impetigo: antimicrobial prescribing, 2020 — tópico (ácido fusídico 2% 3x ao dia) por 5 dias na lesão localizada; oral por 5 dias (até 7) se extenso ou bolhoso. https://www.nice.org.uk/guidance/ng153",
+   "Koning S et al. Interventions for impetigo (Cochrane Database Syst Rev 2012;CD003261).",
+   "American Academy of Pediatrics. Red Book 2024–2027 — impetigo: volta à escola 24 h após o início do antibiótico."
   ]
  },
  {
@@ -1096,14 +1126,18 @@ const BASE = [
   "cat": "pele",
   "cid": "B76.9",
   "sin": "bicho geografico",
-  "casa": "Uso oral\n1) Albendazol 400mg -------------------------- 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.\nOu\n1) Ivermectina 6mg --------------------------- (por peso)\nTomar 200 mcg/kg VO em dose única (≈ 1 cp a cada 30 kg).\n\nUso tópico\n2) Tiabendazol 50mg/g pomada (Foldan) -------- 1 bisnaga\nAplicar nas lesões, friccionando sobre os trajetos, 3x ao dia por 5 dias.",
+  "casa": "Uso oral\n1) Albendazol 400mg -------------------------- 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.\nOu\n1) Ivermectina 6mg --------------------------- conforme peso\nTomar VO em dose única, com água. Dose por peso: 15–24 kg ½ cp; 25–35 kg 1 cp; 36–50 kg 1½ cp; 51–65 kg 2 cp; 66–79 kg 2½ cp; 80 kg ou mais 200 mcg/kg.\n(Não usar abaixo de 15 kg ou de 5 anos, nem na gestação.)\n\nUso tópico\n2) Tiabendazol 50mg/g pomada (Foldan) -------- 1 bisnaga\nAplicar nas lesões, friccionando sobre os trajetos, 3x ao dia por 5 dias.",
   "unidade": "",
-  "orient": "- Evitar andar descalço em areia/terra.",
+  "orient": "- Evitar andar descalço em areia/terra.\n- Gestante e criança < 2 anos ou < 15 kg: preferir tratamento só tópico (tiabendazol).",
   "rev": [
+   "Corrigido (2026-10-17): ivermectina pela tabela de peso da bula (½ cp de 15–24 kg a 2½ cp de 66–79 kg; 200 mcg/kg a partir de 80 kg), sem uso abaixo de 15 kg ou de 5 anos nem na gestação (bula Revectina); gestante e criança < 2 anos ou < 15 kg só com tópico (CDC).",
    "Adicionado: ivermectina como alternativa."
   ],
   "fontes": [
-   "Caumes E. Treatment of cutaneous larva migrans (Clin Infect Dis 2000)."
+   "Caumes E. Treatment of cutaneous larva migrans (Clin Infect Dis 2000).",
+   "Centers for Disease Control and Prevention. Clinical Care of Zoonotic Hookworm (larva migrans cutânea): albendazol 400 mg/dia por 3–7 dias ou ivermectina 200 mcg/kg dose única; crianças < 2 anos ou < 15 kg, só tópico. https://www.cdc.gov/zoonotic-hookworm/hcp/clinical-care/index.html",
+   "Bula Revectina (ivermectina 6 mg), Abbott, registrada na Anvisa — tabela de dose por peso; contraindicada abaixo de 15 kg ou 5 anos.",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 238 — Trichinellosis and Other Tissue Nematode Infections (larva migrans cutânea)."
   ]
  },
  {
@@ -1211,17 +1245,22 @@ const BASE = [
   "cat": "pele",
   "cid": "T63.4",
   "sin": "picada abelha mosquito formiga",
-  "casa": "Uso oral\n1) Dexclorfeniramina 2mg --------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.\n2) Prednisona 20mg --------------------------- 6 cp\nTomar 2 cp VO pela manhã por 3 dias.\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.",
-  "unidade": "1) Hidrocortisona 100 mg IM, ou EV (reconstituir; direto lento ou em 100 mL de SF em 30–60 min)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n* Sinais de anafilaxia → protocolo de anafilaxia (adrenalina IM).",
+  "casa": "Uso oral\n1) Loratadina 10mg --------------------------- 5 cp\nTomar 1 cp VO 1x ao dia por 5 dias.\n2) Prednisona 20mg --------------------------- 6 cp\nTomar 2 cp VO pela manhã por 3 dias.\n(Só se reação local extensa: inchaço maior que 10 cm ou que pega articulação.)\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).",
+  "unidade": "1) Retirar o ferrão, se houver (raspar com a borda de um cartão); compressa fria.\n2) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de soro fisiológico ou água destilada, se dor.\n3) Loratadina 10mg VO, se coceira ou edema.\n* Sinais de anafilaxia → protocolo de anafilaxia (adrenalina IM).",
   "orient": "- Compressa fria no local.\n- Retorno imediato se falta de ar, inchaço no rosto ou tontura.",
   "rev": [
+   "Corrigido (2026-10-17): hidrocortisona IM/EV de rotina sai (sem fonte na reação local) → retirar o ferrão, compressa fria, dipirona e loratadina; prednisona só na reação local extensa; dexclorfeniramina → loratadina 10 mg 1x ao dia (Golden 2016; WAO 2020; Beers 2023); dipirona com no máximo 8 cp por dia (ficha dipirona).",
    "Corrigido: dexclorfeniramina 0,5mg → 2mg (comprimido disponível e dose usual).",
    "Ajustado: prednisona 20 → 40mg/dia.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
-  "evid": "Baseado em consenso clínico (poucos ensaios).",
+  "evid": "Practice parameter AAAAI/ACAAI 2016 (poucos ensaios; baseado em opinião de especialistas).",
   "fontes": [
-   "Consenso clínico; anafilaxia conforme WAO 2020."
+   "Golden DBK et al. Stinging insect hypersensitivity: a practice parameter update 2016 (Ann Allergy Asthma Immunol 2017;118:28) — reação local e reação local extensa.",
+   "Sturm GJ et al. EAACI guidelines on allergen immunotherapy: Hymenoptera venom allergy (Allergy 2018;73:744) — reação local extensa: corticoide oral curto.",
+   "Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020 (World Allergy Organ J 2020;13:100472).",
+   "Bula Claritin (loratadina 10 mg), registrada na Anvisa; American Geriatrics Society. Beers Criteria, 2023.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 11 — Anafilaxia e outras alergias."
   ]
  },
  {
@@ -1272,16 +1311,19 @@ const BASE = [
   "cat": "pele",
   "cid": "L55.9",
   "sin": "sol vermelhidao",
-  "casa": "Uso tópico\n1) Hidratante com aloe vera / loção de calamina --- 1 fr\nAplicar nas áreas afetadas 3x ao dia.\n2) Sulfadiazina de prata 1% creme ------------ 1 bisnaga\nAplicar fina camada nas áreas com bolhas 2x ao dia por 5 dias.\n\nUso oral\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h por 3 dias.",
-  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.",
+  "casa": "Uso tópico\n1) Hidratante com aloe vera / loção de calamina --- 1 fr\nAplicar nas áreas afetadas 3x ao dia.\n2) Hidrocortisona 1% creme ------------------- 1 bisnaga\nAplicar fina camada nas áreas mais doloridas, sem bolha aberta, 2x ao dia por até 3 dias.\n(Bolhas extensas: seguir a conduta \"Queimaduras\".)\n\nUso oral\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h por 3 dias.\n(Ibuprofeno só se dengue descartada, em quem tem febre.)",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de soro fisiológico ou água destilada.",
   "orient": "- Não furar bolhas; compressas frias; hidratação oral; evitar sol e usar protetor.",
   "rev": [
+   "Corrigido (2026-10-17): sulfadiazina de prata → hidrocortisona 1% nas áreas sem bolha aberta, por até 3 dias, e bolhas extensas na conduta \"Queimaduras\" (AAD, How to treat sunburn); ibuprofeno só se dengue descartada em quem tem febre (MS, Dengue, 6ª ed., 2024); fontes AAD e Harrison no lugar de \"consenso clínico\".",
    "Ajustado: sulfadiazina reservada para áreas com bolhas; hidratante na pele íntegra.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
-  "evid": "Baseado em consenso clínico.",
+  "evid": "Recomendações da AAD e do Harrison (tratamento sintomático; poucos ensaios).",
   "fontes": [
-   "Consenso clínico."
+   "American Academy of Dermatology. How to treat sunburn: banho ou compressa fria, hidratante com aloe vera, hidrocortisona 1% se desconforto, AINE oral, hidratação, não furar bolhas. https://www.aad.org/public/everyday-care/injured-skin/burns/treat-sunburn",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 64 — Photosensitivity and Other Reactions to Sunlight.",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
  },
  {
@@ -1481,16 +1523,21 @@ const BASE = [
   "cat": "pele",
   "cid": "L50.9",
   "sin": "alergia placas coceira",
-  "casa": "Uso oral\n1) Loratadina 10mg --------------------------- 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias.\nOu\n1) Dexclorfeniramina 2mg/5mL xarope ---------- 1 fr\nTomar 10 mL VO de 8/8h por 5 dias.\n2) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.",
-  "unidade": "1) Prometazina 50 mg somente IM profunda.\n* Se angioedema de glote, falta de ar ou hipotensão → protocolo de anafilaxia.",
+  "casa": "Uso oral\n1) Loratadina 10mg --------------------------- 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias.\nOu\n1) Levocetirizina 5mg ------------------------ 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias.\n2) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.",
+  "unidade": "1) Levocetirizina 5mg VO (ou loratadina 10mg VO).\n   Se não puder tomar VO e prurido intenso: prometazina 25mg IM profunda (não usar em idosos nem em menores de 2 anos; máx. 100 mg/dia).\n2) Se placas extensas: prednisona 40mg VO.\n* Se angioedema de glote, falta de ar ou hipotensão → protocolo de anafilaxia.",
   "orient": "- Evitar o possível desencadeante e AINEs.\n- Urticária > 6 semanas: encaminhar.",
   "rev": [
+   "Corrigido (2026-10-17): anti-histamínico de 1ª geração → 2ª geração: dexclorfeniramina xarope 10 mL (4 mg, acima da bula) → levocetirizina 5 mg 1x ao dia, até 12/12h (diretriz internacional de urticária 2026; bula Polaramine); prometazina IM só sem VO, 25 mg, nunca em idoso nem em menor de 2 anos (bula Fenergan; FDA 2023; Beers 2023); diretriz 2022 → 2026.",
    "Ajustado: prednisona 1x ao dia pela manhã.",
    "Adicionado: alerta de anafilaxia.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Zuberbier T et al. EAACI/GA²LEN/EuroGuiDerm/APAAACI Guideline for Urticaria (Allergy 2022)."
+   "Zuberbier T et al. The International Guideline for the Definition, Classification, Diagnosis and Management of Urticaria (Allergy 2026;81(8):2582–2632). https://doi.org/10.1111/all.70210 — anti-histamínico de 2ª geração diário, até 4x a dose; corticoide oral só em curso curto.",
+   "Zuberbier T et al. EAACI/GA²LEN/EuroGuiDerm/APAAACI Guideline for Urticaria (Allergy 2022;77:734) — não usar anti-histamínico de 1ª geração; corticoide oral por no máximo 10 dias na urticária aguda.",
+   "Bula Fenergan (prometazina 25 mg/mL), registrada na Anvisa — 25–50 mg IM, máx. 100 mg/dia, contraindicada abaixo de 2 anos; FDA 2023 (tarja de lesão tecidual); American Geriatrics Society. Beers Criteria, 2023.",
+   "Bula Polaramine (dexclorfeniramina), registrada na Anvisa — adulto 2 mg 3–4x ao dia, máx. 12 mg/dia.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 11 — Anafilaxia e outras alergias."
   ]
  },
  {
@@ -1933,14 +1980,20 @@ const BASE = [
   "cat": "pele",
   "cid": "T30.0",
   "sin": "queimado escaldadura fogo",
-  "casa": "Uso tópico (queimaduras pequenas de 2º grau, alta)\n1) Sulfadiazina de prata 1% creme ------------ 1 bisnaga\nAplicar sobre a lesão após limpeza, 1 a 2x ao dia, com curativo.\n\nUso oral\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.",
-  "unidade": "1) Interromper o processo: resfriar com água corrente em temperatura ambiente; não usar gelo.\n2) Calcular a superfície corporal queimada (SCQ) — regra dos nove (adulto) ou Lund-Browder (criança).\n3) Hidratação se SCQ > 20% no adulto ou > 10% na criança, com Ringer lactato:\n   Parkland: 2–4 mL × peso (kg) × % SCQ (2 mL em idosos/insuficiência renal; 4 mL em crianças e adultos jovens).\n   Metade nas primeiras 8h (a contar da queimadura) e metade nas 16h seguintes. Alvo de diurese 0,5–1 mL/kg/h.\n4) Analgesia: dipirona 500 mg–1 g EV; morfina 1 mg/10 kg (adulto) | criança: dipirona 15–25 mg/kg, morfina 0,1 mg/kg/dose.\n5) Limpeza com água e clorexidina 2%; sulfadiazina de prata 1%.\n6) Profilaxia antitetânica. não usar antibiótico sistêmico profilático.\nEncaminhar a centro de queimados: 2º grau > 20% SCQ (adulto), 3º grau de qualquer extensão, face, olhos, períneo, mãos, pés, grandes articulações, lesão inalatória, trauma elétrico ou químico.",
+  "casa": "Uso tópico (queimaduras pequenas de 2º grau, alta)\n1) Sulfadiazina de prata 1% creme ------------ 1 bisnaga\nAplicar sobre a lesão após limpeza, 1 a 2x ao dia, com curativo.\n(Não usar no fim da gestação, em recém-nascido até 2 meses nem com alergia a sulfa.)\n\nUso oral\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).",
+  "unidade": "1) Interromper o processo: resfriar com água corrente em temperatura ambiente; não usar gelo.\n2) Calcular a superfície corporal queimada (SCQ) — regra dos nove (adulto) ou Lund-Browder (criança).\n3) Hidratação se SCQ > 20% no adulto ou > 10% na criança, com Ringer lactato:\n   Parkland: 2 mL × peso (kg) × % SCQ em 24h no adulto (criança: 3 mL; trauma elétrico: 4 mL), ajustando a velocidade pela diurese.\n   Metade nas primeiras 8h (a contar da queimadura) e metade nas 16h seguintes. Alvo de diurese 0,5–1 mL/kg/h (criança: 1 mL/kg/h; trauma elétrico: cerca de 1,5 mL/kg/h até clarear a urina). Sonda vesical se > 20% no adulto ou > 10% na criança.\n4) Analgesia: dipirona 500 mg–1 g EV; morfina 1 mg/10 kg (adulto) | criança: dipirona 15–25 mg/kg, morfina 0,1 mg/kg/dose.\n5) Limpeza com água e clorexidina 2%; sulfadiazina de prata 1%.\n6) Profilaxia antitetânica. Não usar antibiótico sistêmico profilático nem corticoide.\nEncaminhar a centro de queimados: 2º grau > 20% da superfície corporal no adulto ou > 10% em criança ou maior de 50 anos; 3º grau de qualquer extensão; face, olhos, períneo, mãos, pés ou grandes articulações; lesão inalatória; queimadura elétrica ou química; lesão circunferencial de tórax ou de membros; politrauma, doença associada grave, maus-tratos ou tentativa de suicídio.",
   "orient": "- Não furar bolhas em casa; retorno para troca de curativo.",
-  "fontes": [
-   "Ministério da Saúde. Cartilha para tratamento de emergência das queimaduras, 2012. https://portal.cfm.org.br/images/stories/pdf/queimados.pdf"
-  ],
   "rev": [
+   "Corrigido (2026-10-17): Parkland 2–4 mL → 2 mL × kg × % SCQ no adulto, 3 mL na criança e 4 mL no trauma elétrico, ajustando pela diurese (ATLS 10ª ed., cap. 9; ABA/ABLS 2023); critérios de transferência completos (cartilha MS 2012, item 12); diurese de 1–1,5 mL/kg/h na criança (ABA 2023) e cerca de 1,5 mL/kg/h no trauma elétrico, sonda vesical (cartilha MS, itens 2 e 5; ATLS); sem corticoide (cartilha MS, item 8); contraindicações da sulfadiazina (bula Dermazine); dipirona com no máximo 8 cp por dia (ficha dipirona).",
    "Item novo."
+  ],
+  "fontes": [
+   "Ministério da Saúde. Cartilha para tratamento de emergência das queimaduras, 2012. https://portal.cfm.org.br/images/stories/pdf/queimados.pdf",
+   "Cartotto R et al. American Burn Association Clinical Practice Guidelines on Burn Shock Resuscitation (J Burn Care Res 2024;45(3):565): iniciar com 2 mL × kg × % SCQ no adulto; diurese 0,5–1 mL/kg/h no adulto e 1–1,5 mL/kg/h na criança; manutenção somada na criança. O ATLS 11ª ed. (2025) adotou o início com 2 mL no adulto.",
+   "American College of Surgeons. ATLS — Advanced Trauma Life Support, 10ª ed., 2018, cap. 9 (Thermal Injuries): Parkland começando com 2 mL × kg × % SCQ no adulto, 3 mL na criança e 4 mL no trauma elétrico; diurese 0,5 mL/kg/h no adulto e 1 mL/kg/h na criança < 30 kg.",
+   "American Burn Association. Advanced Burn Life Support (ABLS) Provider Manual, 2023 — reposição inicial 2 mL × kg × % SCQ no adulto, ajustada pela diurese.",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 69 — Queimaduras térmicas.",
+   "Bula da sulfadiazina de prata 1% (Dermazine), registrada na Anvisa — contraindicada no fim da gestação, em prematuros e recém-nascidos até 2 meses e na alergia a sulfonamidas."
   ]
  },
  {

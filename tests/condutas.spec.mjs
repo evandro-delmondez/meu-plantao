@@ -27,6 +27,25 @@ test("ajuste renal e alertas de perfil aparecem", async ({ page }) => {
   await expect(page.locator(".renal-adj")).toContainText("ClCr");
 });
 
+test("ajuste renal do aciclovir separa herpes simples de zoster (lote 4)", async ({ page }) => {
+  await abrir(page); await aba(page, "prescricoes");
+  const abrirConduta = async (q, id, cr) => {
+    await page.fill("#q", q); await page.click(`#list .item[data-id="${id}"] >> nth=0`);
+    const pac = page.locator(".sec.pac");
+    if (!(await pac.evaluate((e) => e.open))) await page.click(".sec.pac summary");
+    for (const [sel, v] of [["#pcIdade", "80"], ["#pcPeso", "50"], ["#pcCr", cr]]) { await page.fill(sel, v); await page.dispatchEvent(sel, "change"); }
+    return page.locator(".renal-adj");
+  };
+  let r = await abrirConduta("herpes simples", "herpes-simples", "5");   // ClCr ≈ 8
+  await expect(r).toContainText("200 mg de 12/12h");
+  await expect(r).not.toContainText("800 mg");
+  r = await abrirConduta("herpes simples", "herpes-simples", "2.4");     // ClCr ≈ 17: sem ajuste do aciclovir
+  await expect(r).not.toContainText("800 mg de 8/8h");
+  r = await abrirConduta("zoster", "zoster", "2.4");
+  await expect(r).toContainText("800 mg de 8/8h (ClCr 10–25)");
+  await expect(r).not.toContainText("200 mg de 12/12h");
+});
+
 test("dipirona 1 g substitui 500 mg quando escolhida", async ({ page }) => {
   await abrir(page); await aba(page, "prescricoes");
   await aba(page, "modelos"); await page.click('[data-dip="1g"]');

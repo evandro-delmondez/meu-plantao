@@ -22,7 +22,7 @@ test("doses por peso: cálculo, teto e fontes em todos os blocos", async ({ page
   expect(erros).toEqual([]);
 });
 
-test("correções da conferência: ivermectina pela bula, Parkland 2–4 e tempo da fenitoína pediátrica", async ({ page }) => {
+test("correções da conferência: ivermectina pela bula, Parkland 2 mL (adulto) e 3 mL (criança) e tempo da fenitoína pediátrica", async ({ page }) => {
   const erros = await abrir(page); await aba(page, "calculadora");
   const peso = async (p) => { await page.fill("#peso", String(p)); await page.dispatchEvent("#peso", "input"); };
   const iver = page.locator(".drug", { hasText: "Ivermectina" });
@@ -30,7 +30,7 @@ test("correções da conferência: ivermectina pela bula, Parkland 2–4 e tempo
   await peso(12); await expect(iver.locator(".ml")).toHaveText("Não indicado");
   await page.click('[data-modo="ped"]'); await peso(20);
   await page.locator(".drug", { hasText: "Parkland pediátrico" }).locator("[data-scq]").fill("10");
-  await expect(page.locator(".drug", { hasText: "Parkland pediátrico" }).locator(".ml")).toHaveText("400–800 mL/24h");
+  await expect(page.locator(".drug", { hasText: "Parkland pediátrico" }).locator(".ml")).toHaveText("600 mL/24h");   // 3 mL × 20 kg × 10% (ATLS)
   // fenitoína 20 mg/kg × 20 kg = 400 mg a 1 mg/kg/min (20 mg/min) → ≥ 20 min
   await expect(page.locator(".drug", { hasText: "Fenitoína" })).toContainText("Infundir em ≥ 20 min");
   await expect(page.locator(".drug", { hasText: "Paracetamol" }).locator(".mg")).not.toContainText("gotas");
@@ -44,5 +44,5 @@ test("superfície queimada só aparece no Parkland e começa vazia", async ({ pa
   const park = page.locator(".drug", { hasText: "Parkland" });
   await expect(park.locator("[data-scq]")).toHaveValue("");
   await park.locator("[data-scq]").fill("10"); 
-  await expect(page.locator(".drug", { hasText: "Parkland" }).locator(".ml")).toContainText("mL/24h");
+  await expect(page.locator(".drug", { hasText: "Parkland" }).locator(".ml")).toHaveText("1.400 mL/24h");   // 2 mL × 70 kg × 10%
 });

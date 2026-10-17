@@ -646,17 +646,22 @@ const BASE = [
   "cat": "dor",
   "cid": "G43.9",
   "sin": "migranea dor de cabeca pulsatil",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.\n3) Naratriptana 2,5mg ------------------------ 4 cp\nTomar 1 cp VO no início da crise. Pode repetir após 4h. Máx. 2 cp/dia.",
-  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n2) Dexametasona 10 mg EV lenta ou IM (reduz recorrência nas 72h).\n   (Alternativa IM: Dipirona 1g IM + Dexametasona 4mg IM + Ondansetrona 4mg IM.)",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO no início da crise, após alimentar-se; pode repetir após 8h (no máximo 3 cp por dia; só se dengue descartada).\n3) Naratriptana 2,5mg ------------------------ 4 cp\nTomar 1 cp VO no início da crise. Se a dor melhorar e voltar, pode repetir após 4h; se não melhorar com o 1º, não repetir na mesma crise. No máximo 2 cp por dia.",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n2) Dexametasona 10 mg EV lenta ou IM (reduz recorrência nas 72h).\n   (Tudo IM, sem acesso venoso: Dipirona 1 g IM + Metoclopramida 10 mg IM + Dexametasona 10 mg IM.)",
   "orient": "- Triptano contraindicado em doença coronariana, AVC prévio e HAS não controlada.\n- Diário de crises; evitar uso de analgésico > 10 dias/mês (cefaleia por abuso).",
   "rev": [
+   "Corrigido (2026-10-17): ibuprofeno na crise, e não em horário fixo, com teto de 3 cp por dia e só com dengue descartada; dipirona com teto de 8 cp por dia; naratriptana sem repetir quando a 1ª dose falha; alternativa IM com metoclopramida e dexametasona 10 mg (sai ondansetrona e dexametasona 4 mg) (ACP 2025; AHS 2016; bula Naramig; MS Dengue 2024).",
    "Adicionado: metoclopramida EV (antiemético com efeito antimigranoso) e dexametasona 10mg para evitar recorrência.",
    "Adicionado: contraindicações do triptano.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
    "Orr SL et al. Management of Adults With Acute Migraine in the ED: AHS Evidence Assessment (Headache 2016;56:911).",
-   "Ailani J et al. AHS Consensus Statement 2021 (triptanos e contraindicações)."
+   "Ailani J et al. AHS Consensus Statement 2021 (triptanos e contraindicações).",
+   "Qaseem A et al. Pharmacologic Treatment of Acute Episodic Migraine Headache in Outpatient Settings: A Clinical Guideline From the American College of Physicians. Ann Intern Med 2025 (online 18/03/2025): AINE ou paracetamol; triptano somado se não responder.",
+   "Speciali JG et al. Protocolo Nacional para Diagnóstico e Manejo das Cefaleias nas Unidades de Urgência do Brasil — 2018 (ABN/SBCe).",
+   "Bula Anvisa do Naramig (naratriptana 2,5 mg), GSK: segunda dose após pelo menos 4 h só se a dor voltar; não repetir se a 1ª não fez efeito; máx. 5 mg em 24 h.",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
  },
  {
@@ -781,16 +786,21 @@ const BASE = [
   "cat": "dor",
   "cid": "M10.9",
   "sin": "artrite gotosa acido urico podagra",
-  "casa": "Uso oral\n1) Colchicina 0,5mg -------------------------- 20 cp\nTomar 2 cp VO agora e 1 cp após 1h. Depois, 1 cp de 12/12h até 2–3 dias após o fim da crise.\n2) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\nOu (se contraindicação a AINE)\n2) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.",
+  "casa": "Uso oral\n1) Colchicina 0,5mg -------------------------- 20 cp\nTomar 2 cp VO agora e 1 cp após 1h. Depois, 1 cp de 12/12h até 2–3 dias após o fim da crise.\n2) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias. Não usar se doença renal, úlcera, sangramento, anticoagulante ou insuficiência cardíaca.\nOu (se contraindicação a AINE)\n2) Prednisona 20mg --------------------------- 10 cp\nTomar 2 cp VO pela manhã por 5 dias.",
   "unidade": "1) Cetoprofeno 100 mg EV (apresentação própria para EV) em 100 mL de SF em 20–30 min, ou IM (ampola 50 mg/mL)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n2) Dexametasona 4–10 mg IM ou EV lenta.",
-  "orient": "- Não suspender o alopurinol se já usa.\n- Evitar álcool (principalmente cerveja), carnes vermelhas, frutos do mar e refrigerantes.\n- Gelo local 20 min, 3–4x ao dia.\n- Ajustar colchicina em DRC.",
+  "orient": "- Não suspender o alopurinol se já usa.\n- Evitar álcool (principalmente cerveja), carnes vermelhas, frutos do mar e refrigerantes.\n- Gelo local 20 min, 3–4x ao dia.\n- Colchicina: começar em até 36 h do início da crise. Não usar com claritromicina, eritromicina, cetoconazol, itraconazol, ritonavir, ciclosporina ou tacrolimo (toxicidade grave). Na doença renal crônica avançada (clearance < 30 mL/min) ou em diálise, preferir corticoide; se usar, não repetir o esquema antes de 14 dias. Suspender se diarreia.",
   "rev": [
+   "Corrigido (2026-10-17): colchicina com as interações graves (claritromicina, azóis, ritonavir, ciclosporina, tacrolimo) e a conduta na DRC avançada; diclofenaco com contraindicações na receita (ACR 2020; EULAR 2016; bula Colcrys; Beers 2023).",
    "Corrigido (importante): colchicina 1mg 8/8h por 7 dias é dose tóxica. Esquema de baixa dose: 1mg + 0,5mg após 1h, depois 0,5mg 12/12h (ACR/EULAR).",
    "Adicionado: prednisona como alternativa ao AINE.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "FitzGerald JD et al. 2020 American College of Rheumatology Guideline for the Management of Gout (Arthritis Care Res 2020)."
+   "FitzGerald JD et al. 2020 American College of Rheumatology Guideline for the Management of Gout (Arthritis Care Res 2020).",
+   "Richette P et al. 2016 updated EULAR evidence-based recommendations for the management of gout (Ann Rheum Dis 2017;76:29): colchicina 1 mg e 0,5 mg após 1 h no 1º dia; prednisolona 30–35 mg/dia por 3–5 dias; evitar colchicina e AINE na DRC grave; evitar colchicina com inibidores potentes de CYP3A4 e glicoproteína P.",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 384 — Gout and Other Crystal-Associated Arthropathies.",
+   "Bula FDA do Colcrys (colchicina): na DRC grave, não repetir o tratamento da crise antes de 14 dias; contraindicada com inibidor potente de CYP3A4 ou glicoproteína P na doença renal ou hepática.",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): AINE no idoso com risco renal e de sangramento."
   ]
  },
  {
@@ -799,14 +809,17 @@ const BASE = [
   "cat": "dor",
   "cid": "M10.9",
   "sin": "acido urico alopurinol",
-  "casa": "Uso oral\n1) Alopurinol 100mg -------------------------- 30 cp\nTomar 1 cp VO 1x ao dia. Iniciar 2 a 4 semanas após a crise; ajustar com clínico conforme ácido úrico (meta < 6 mg/dL).\n2) Colchicina 0,5mg -------------------------- 60 cp\nTomar 1 cp VO de 12/12h por 3 a 6 meses (profilaxia de crises ao iniciar o alopurinol).",
+  "casa": "Uso oral\n1) Alopurinol 100mg -------------------------- 30 cp\nTomar 1 cp VO 1 vez ao dia (na doença renal crônica moderada ou grave, meio cp). Pode começar durante a crise, junto com a colchicina. Aumentar com o clínico a cada 2 a 5 semanas, conforme o ácido úrico (meta < 6 mg/dL). Se já usa, não suspender durante a crise.\n2) Colchicina 0,5mg -------------------------- 60 cp\nTomar 1 cp VO de 12/12h por 3 a 6 meses (profilaxia de crises ao iniciar o alopurinol). Na doença renal crônica ou no idoso, 1 cp 1 vez ao dia. Não usar com claritromicina, cetoconazol ou ciclosporina.",
   "unidade": "",
   "orient": "- Início e titulação idealmente no ambulatório.\n- Suspender e procurar atendimento se lesões de pele (risco de reação grave ao alopurinol).",
   "rev": [
+   "Corrigido (2026-10-17): alopurinol pode começar durante a crise; meio cp na DRC moderada ou grave, na própria receita; titulação a cada 2 a 5 semanas; colchicina 1 vez ao dia na DRC e no idoso, com as interações (ACR 2020; EULAR 2016; bula Zyloric).",
    "Corrigido: alopurinol deve iniciar em dose baixa (100mg; 50mg na DRC) e ser titulado, não 300mg de início (ACR 2020)."
   ],
   "fontes": [
-   "FitzGerald JD et al. 2020 ACR Guideline for the Management of Gout."
+   "FitzGerald JD et al. 2020 ACR Guideline for the Management of Gout.",
+   "Richette P et al. 2016 updated EULAR evidence-based recommendations for the management of gout (Ann Rheum Dis 2017;76:29): alopurinol começando com 100 mg/dia e aumentando 100 mg a cada 2–4 semanas; profilaxia com colchicina 0,5–1 mg/dia por 6 meses, com dose menor na DRC; evitar com inibidores potentes.",
+   "Bula Anvisa do Zyloric (alopurinol): suspender ao primeiro sinal de erupção cutânea; reduzir a dose na insuficiência renal."
   ]
  },
  {
@@ -1041,17 +1054,21 @@ const BASE = [
   "cat": "dor",
   "cid": "R42",
   "sin": "tontura vertigem labirintite vppb",
-  "casa": "Uso oral\n1) Dimenidrinato + Piridoxina 50/10mg -------- 1 cx\nTomar 1 cp VO de 6/6h por 3 dias se tontura, náuseas ou vômitos.\n\n# Vertigem aguda intensa:\n1) Flunarizina 10mg -------------------------- 5 cp\nTomar 1 cp VO ao deitar por 5 dias.\n\n# Vertigem crônica/recorrente (ex.: Ménière):\n1) Betaistina 16mg --------------------------- 30 cp\nTomar 1 cp VO de 8/8h (reavaliar com otorrino).\n\n# Gestante:\n1) Meclizina 25mg (Meclin) ------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\n\n# Refratário aos anti-histamínicos:\n1) Clonazepam 0,5mg -------------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\n\n# Náuseas:\n2) Ondansetrona 4mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h por 3 dias se náuseas ou vômitos.",
-  "unidade": "1) Dimenidrinato + Piridoxina: ampola EV (10 mL) em 100 mL de SF em 30 min; existe apresentação própria para IM\n   Ou Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n2) Exame: HINTS (head impulse, nistagmo, skew) e Dix-Hallpike.\n3) VPPB (Dix-Hallpike positivo): manobra de Epley.",
+  "casa": "Uso oral\n1) Dimenidrinato + Piridoxina 50/10mg -------- 12 cp\nTomar 1 cp VO de 6/6h se tontura, náuseas ou vômitos, por até 3 dias. Dá sono: não dirigir. Evitar em idosos.\n\n# Vertigem crônica/recorrente (ex.: Ménière):\n1) Betaistina 16mg --------------------------- 30 cp\nTomar 1 cp VO de 8/8h (reavaliar com otorrino).\n\n# Gestante:\n1) Meclizina 25mg (Meclin) ------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\n\n# Refratário aos anti-histamínicos:\n1) Clonazepam 0,5mg -------------------------- 6 cp\nTomar 1 cp VO de 12/12h por até 3 dias. Pode dar sono: não dirigir. Não usar em idosos nem na vertigem posicional (VPPB).\n\n# Náuseas:\n2) Ondansetrona 4mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h por 3 dias se náuseas ou vômitos.",
+  "unidade": "1) Dimenidrinato + Piridoxina: ampola EV (10 mL) em 100 mL de SF em 30 min; existe apresentação própria para IM\n   Ou Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).\n2) Exame: tontura contínua com nistagmo → HINTS (impulso cefálico, nistagmo, desvio vertical), se treinado; tontura só ao mudar a posição → Dix-Hallpike. Tomografia de crânio não exclui AVC de fossa posterior: HINTS central ou duvidoso → ressonância (ou transferir).\n3) VPPB (Dix-Hallpike positivo): manobra de Epley.",
   "orient": "- Supressores vestibulares por no máximo 3 dias (atrasam a compensação).\n- Retorno imediato se: dificuldade para andar, fala enrolada, visão dupla, fraqueza, cefaleia súbita (sinais de AVC).\n- CID: labirintite H83.0 | VPPB H81.1.",
   "rev": [
+   "Corrigido (2026-10-17): flunarizina retirada (sem fonte; contrariava o máximo de 3 dias de supressor); clonazepam e dimenidrinato com alerta de sono, no idoso e na VPPB; dimenidrinato 1 cx → 12 cp; HINTS só na tontura contínua com nistagmo e por treinado; tomografia não exclui AVC (GRACE-3 2023; AAO-HNS 2017; Beers 2023).",
    "Ajustado: betaistina 8mg → 16mg de 8/8h (dose usual).",
    "Adicionado: HINTS, manobra de Epley e sinais de AVC.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
    "Bhattacharyya N et al. AAO-HNS Clinical Practice Guideline: BPPV (Update) (Otolaryngol Head Neck Surg 2017).",
-   "Kattah JC et al. HINTS (Stroke 2009)."
+   "Kattah JC et al. HINTS (Stroke 2009).",
+   "Edlow JA et al. Guidelines for reasonable and appropriate care in the emergency department 3 (GRACE-3): Acute dizziness and vertigo in the emergency department. Acad Emerg Med 2023;30(5):442–486 (HINTS só por treinado; sem tomografia; Epley na VPPB; supressor vestibular só por 3–5 dias; considerar corticoide na neurite vestibular com até 3 dias). https://doi.org/10.1111/acem.14728",
+   "Basura GJ et al. Clinical Practice Guideline: Ménière's Disease. AAO-HNS. Otolaryngol Head Neck Surg 2020;162(2S):S1–S55 (betaistina como opção de manutenção; supressor só na crise).",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar anti-histamínico de 1ª geração e benzodiazepínico no idoso."
   ]
  },
  {

@@ -64,3 +64,6 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Ficam para depois, com conferência: alertas automáticos pelos sinais vitais e NEWS2; bloco de gravidade da pneumonia (CRB-65); chips "álcool?" na agitação; conduta de dor de dente; alarmes cruzados (epigástrica → ECG).
 - Intoxicação (2026-10-09): carvão ativado 1 g/kg, máx. 50 g, em todo o painel (citando que a AACT aceita 25–100 g no adulto); N-acetilcisteína sem dosagem em até 8 h se > 150 mg/kg ou > 10 g (o mais protetor entre HC-FMUSP e consenso 2023).
 - Revisão geral das 98 prescrições (2026-10-16): em 6 lotes por categoria (1 resp + orl; 2 gi + uro; 3 dor + psi; 4 pele; 5 gu + endo + outros; 6 cardio + emerg + toxinf), relatório por conduta em `.rascunhos/revisao-loteN.md`; mudanças em conduta publicada só com aprovação do médico.
+
+## Material institucional (2026-10-16)
+- Manual e protocolos do hospital onde trabalha ficam no repositório **privado** `plantao-hsls` (resumos + comandos do Claude Code). Nunca copiar para este repositório público nem para o site.

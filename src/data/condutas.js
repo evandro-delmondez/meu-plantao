@@ -198,16 +198,19 @@ const BASE = [
   "cat": "dor",
   "cid": "R51",
   "sin": "dor de cabeca cefaleia tensional",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.\n3) Dimenidrinato + Piridoxina 50/10mg -------- 1 cx\nTomar 1 cp VO de 6/6h se náuseas, vômitos ou tontura.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre (no máximo 8 cp por dia).\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h se dor forte, após as refeições, por até 3 dias (só se dengue descartada). No máximo 3 cp por dia.\n3) Dimenidrinato + Piridoxina 50/10mg -------- 1 cx\nTomar 1 cp VO de 6/6h se náuseas, vômitos ou tontura.",
   "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD\n   + Metoclopramida 10 mg IM ou EV lenta (≥ 3 min).",
-  "orient": "- Retorno imediato se: pior dor de cabeça da vida, início súbito, febre com rigidez de nuca, déficit neurológico, confusão, piora progressiva.",
+  "orient": "- Retorno imediato se: pior dor de cabeça da vida, início súbito, febre com rigidez de nuca, déficit neurológico, confusão, piora progressiva.\n- Febre com dor de cabeça, dor no corpo ou atrás dos olhos: pensar em dengue antes de anti-inflamatório.\n- Evitar analgésico em mais de 10 dias por mês (risco de cefaleia por uso excessivo); seguimento na UBS se crises frequentes.",
   "rev": [
+   "Corrigido (2026-10-17): ibuprofeno só se dor forte, por até 3 dias, com dengue descartada e no máximo 3 cp por dia; dipirona com teto de 8 cp por dia; fonte SNNOOP10 corrigida (era citada como SNOOP4); orientação sobre dengue e uso excessivo de analgésico (ABN/SBCe 2018; MS Dengue 2024; Do 2019).",
    "Ajustado: ibuprofeno 300mg 12/12h → 600mg 8/8h.",
    "Adicionado: sinais de alarme e opção na unidade.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Do TP et al. Red and orange flags for secondary headaches (SNOOP4) (Neurology 2019;92:134)."
+   "Do TP et al. Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list. Neurology 2019;92(3):134–144. https://doi.org/10.1212/WNL.0000000000006697",
+   "Speciali JG et al. Protocolo Nacional para Diagnóstico e Manejo das Cefaleias nas Unidades de Urgência do Brasil — 2018. Academia Brasileira de Neurologia e Sociedade Brasileira de Cefaleia (tensional episódica: paracetamol 750–1.000 mg ou dipirona 500–1.000 mg até 6/6h, ibuprofeno 400–800 mg até 6/6h; seguimento na UBS). https://neurologiahu.paginas.ufsc.br/files/2012/08/Protocolo-nacional-para-diagno%CC%81stico-e-manejo-das-cefaleias-nas-unidades-de-urge%CC%82ncia-do-Brasil_2018.pdf",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
  },
  {
@@ -216,15 +219,19 @@ const BASE = [
   "cat": "dor",
   "cid": "G44.0",
   "sin": "cluster cefaleia trigeminal",
-  "casa": "Uso oral (profilaxia de transição, até avaliação com neurologista)\n1) Verapamil 80mg ---------------------------- 90 cp\nTomar 1 cp VO de 8/8h.\n2) Prednisona 20mg --------------------------- 15 cp\nTomar 3 cp VO pela manhã por 5 dias (ponte até o verapamil agir).",
-  "unidade": "1) O2 a 100% em máscara não reinalante, 12 a 15 L/min, por 15 a 20 min, com o paciente sentado.\n2) Sumatriptano 6mg SC (máx. 2 doses em 24h, intervalo ≥ 1h)\n   Ou Sumatriptano spray nasal 20mg (1 jato).",
+  "casa": "Uso oral (profilaxia de transição, até avaliação com neurologista)\n1) Verapamil 80mg ---------------------------- 90 cp\nTomar 1 cp VO de 8/8h.\n2) Prednisona 20mg --------------------------- 55 cp\nTomar pela manhã, após o café: 5 cp por 5 dias; depois 4 cp por 3 dias, 3 cp por 3 dias, 2 cp por 3 dias e 1 cp por 3 dias, e parar (ponte até o verapamil agir).",
+  "unidade": "1) O2 a 100% em máscara não reinalante, 12 a 15 L/min, por 15 a 20 min, com o paciente sentado.\n2) Sumatriptano 6mg SC (máx. 2 doses em 24h, intervalo ≥ 1h)\n   Ou Sumatriptano spray nasal 10mg/dose (Sumax nasal): 2 doses (20mg), uma em cada narina. Menos eficaz que o subcutâneo; não somar mais de 40mg em 24h.",
   "orient": "- Encaminhar ao neurologista.\n- Evitar álcool durante o período de crises.\n- Verapamil: fazer ECG basal (risco de bloqueio AV).",
   "rev": [
+   "Corrigido (2026-10-17): sumatriptano nasal com a apresentação brasileira (10 mg/dose; 2 doses = 20 mg; máx. 40 mg em 24 h); ponte com prednisona 60 mg → 100 mg por 5 dias com redução de 20 mg a cada 3 dias (EAN 2023; PredCH, Obermann 2021; bula Sumax).",
    "Corrigido: máscara de Venturi não entrega 100%; usar máscara não reinalante 12–15 L/min.",
    "Adicionado: ponte com prednisona e ECG antes do verapamil."
   ],
   "fontes": [
-   "Robbins MS et al. Treatment of Cluster Headache: AHS Evidence-Based Guidelines (Headache 2016;56:1093)."
+   "Robbins MS et al. Treatment of Cluster Headache: AHS Evidence-Based Guidelines (Headache 2016;56:1093).",
+   "May A et al. European Academy of Neurology guidelines on the treatment of cluster headache. Eur J Neurol 2023;30(10):2955–2979 (O2 100% ≥ 12 L/min por 15 min; sumatriptano 6 mg subcutâneo; verapamil ≥ 240 mg/dia com ECG; prednisona ≥ 100 mg/dia por 5 dias). https://doi.org/10.1111/ene.15956",
+   "Obermann M et al. Safety and efficacy of prednisone versus placebo in short-term prevention of episodic cluster headache (PredCH). Lancet Neurol 2021;20(1):29–37 (100 mg por 5 dias, depois redução de 20 mg a cada 3 dias).",
+   "Bula Anvisa do Sumax (sumatriptano): injetável 6 mg/0,5 mL, até 2 doses em 24 h com intervalo ≥ 1 h; spray nasal 10 mg/dose, máx. 40 mg em 24 h; contraindicado em doença coronariana, AVC, HAS não controlada e com ergotamina em 24 h."
   ]
  },
  {
@@ -307,9 +314,10 @@ const BASE = [
   "cid": "G41.9",
   "sin": "convulsao epilepsia crise tonico clonica status",
   "casa": "",
-  "unidade": "Passo 0 (0–5 min)\n1) Monitorização, O2, acesso venoso, decúbito lateral, aspiração se necessário.\n2) Glicemia capilar. Exames: Na, K, Ca, Mg, ureia, creatinina, gasometria, hemograma, ECG. TC de crânio e LCR conforme o caso.\n3) Se hipoglicemia: Glicose 50% 50 mL EV (ou Glicose 10% 150–200 mL); se etilismo/desnutrição, Tiamina 100mg EV junto, sem atrasar a glicose.\n\nPasso 1 (5 min) — benzodiazepínico\nDiazepam 10mg EV (adulto) | 0,15–0,2 mg/kg (criança, máx. 10mg). Pode repetir 1x após 5 min.\nOu Midazolam 10mg IM (> 40 kg) | 5mg IM (13–40 kg). Dose única.\n\nPasso 2 (20 min) — se persistir\nFenitoína 20 mg/kg EV em SF 0,9% (máx. 50 mg/min; monitorizar ECG e PA)\nOu Levetiracetam 60 mg/kg EV (máx. 4.500mg) em 15 min\nOu Ácido valproico 40 mg/kg EV (máx. 3.000mg) em 10 min (não usar em hepatopatia, doença mitocondrial ou gestação)\nOu Fenobarbital 20 mg/kg EV, até 50 mg/min (bula: menos de 60 mg/min); existem ampolas de 100 e de 200 mg/mL. Bula: contraindicado na gestação e na lactação, em recém-nascidos e em mulheres em idade fértil — pesar o risco na emergência\n* Obter via aérea avançada se necessário.\n\nPasso 3 (40 min) — refratário\nMidazolam 0,2 mg/kg ataque + 0,05–2 mg/kg/h\nOu Propofol 1–2 mg/kg ataque + 2–10 mg/kg/h\nOu Tiopental 3–5 mg/kg ataque + 3–5 mg/kg/h\n* IOT, EEG contínuo e UTI.",
+  "unidade": "Passo 0 (0–5 min)\n1) Monitorização, O2, acesso venoso, decúbito lateral, aspiração se necessário.\n2) Glicemia capilar. Exames: Na, K, Ca, Mg, ureia, creatinina, gasometria, hemograma, ECG. TC de crânio e LCR conforme o caso.\n3) Se hipoglicemia: Glicose 50% 50 mL EV (ou Glicose 10% 150–200 mL); se etilismo/desnutrição, Tiamina 100mg EV junto, sem atrasar a glicose.\n4) Gestante a partir de 20 semanas ou puérpera: pensar em eclâmpsia; sulfato de magnésio é a droga de escolha (ver conduta Pré-eclâmpsia/eclâmpsia).\n\nPasso 1 (5 min) — benzodiazepínico\nDiazepam 10mg EV lento, sem diluir, até 5 mg/min (adulto) | 0,15–0,2 mg/kg (criança, máx. 10mg). Pode repetir 1 vez após 5 min.\nOu Midazolam 10mg IM (> 40 kg) | 5mg IM (13–40 kg). Dose única.\n\nPasso 2 (20 min) — se persistir\nFenitoína 20 mg/kg EV em SF 0,9%, nunca em soro glicosado (até 50 mg/min; idoso ou cardiopata: até 20 mg/min; monitorizar ECG e PA)\nOu Levetiracetam 60 mg/kg EV (máx. 4.500mg) em 15 min\nOu Ácido valproico 40 mg/kg EV (máx. 3.000mg) em 10 min (não usar em hepatopatia, doença mitocondrial ou gestação)\nOu Fenobarbital 20 mg/kg EV, até 50 mg/min (bula: menos de 60 mg/min); existem ampolas de 100 e de 200 mg/mL. Bula: contraindicado na gestação e na lactação, em recém-nascidos e em mulheres em idade fértil — pesar o risco na emergência\n* Obter via aérea avançada se necessário.\n\nPasso 3 (40 min) — refratário\nMidazolam 0,2 mg/kg ataque + 0,05–2 mg/kg/h\nOu Propofol 1–2 mg/kg ataque + 2–10 mg/kg/h\nOu Tiopental 3–5 mg/kg ataque, depois 1–2 mg/kg a cada 2–3 min até controlar + 3–7 mg/kg/h (EFNS 2010)\n* IOT, EEG contínuo e UTI.",
   "orient": "- Use a aba Calculadora para doses e volumes pelo peso.",
   "rev": [
+   "Corrigido (2026-10-17): diazepam lento até 5 mg/min e fenitoína até 20 mg/min no idoso ou cardiopata, nunca em soro glicosado, como no cartão Agora; eclâmpsia no passo 0; tiopental mantido com a dose da EFNS 2010 (manutenção 3–5 → 3–7 mg/kg/h, com bolus adicionais de 1–2 mg/kg); fonte da escetamina retirada; ACEP 2024 (NCS 2012; bula Compaz; HC-FMUSP 18ª ed.; MS 2022).",
    "Atualizado: fenobarbital até 50 mg/min (bula: < 60 mg/min), duas concentrações e contraindicações da bula; retirada a cetamina do estado de mal refratário (sem dose com fonte).",
    "Ajustado: tempos seguem a diretriz da AES (5/20/40 min).",
    "Adicionado: levetiracetam e valproato como opções equivalentes no passo 2.",
@@ -321,11 +329,15 @@ const BASE = [
    "Schabelman E, Kuo D. Glucose before thiamine for Wernicke encephalopathy: a literature review (J Emerg Med 2012;42:488).",
    "Bula Anvisa do Depacon (valproato de sódio injetável): contraindicado em hepatopatia, doença mitocondrial (POLG), distúrbio do ciclo da ureia e porfiria.",
    "Brophy GM et al. Guidelines for the evaluation and management of status epilepticus — Neurocritical Care Society (Neurocrit Care 2012;17:3): fenobarbital 20 mg/kg.",
-   "Bula da escetamina: Ketanest S (União Europeia) — indução 0,5–1 mg/kg EV; Ketamin (Cristália), bula Anvisa — potência cerca de 2 vezes a da cetamina racêmica.",
    "Bula do fenobarbital injetável (Fenocris, Cristália; Carbital 200 mg/mL), Anvisa.",
    "Glauser T et al. Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus — AES (Epilepsy Curr 2016;16:48).",
    "Kapur J et al. ESETT: levetiracetam, fosfenitoína ou valproato (N Engl J Med 2019;381:2103).",
-   "Silbergleit R et al. RAMPART: midazolam IM vs lorazepam EV (N Engl J Med 2012)."
+   "Silbergleit R et al. RAMPART: midazolam IM vs lorazepam EV (N Engl J Med 2012).",
+   "American College of Emergency Physicians. Clinical Policy: Critical Issues in the Management of Adult Patients Presenting to the Emergency Department With Seizures (Ann Emerg Med, jul/2024; conferir volume e páginas): fosfenitoína, levetiracetam ou valproato com eficácia semelhante após o benzodiazepínico. https://www.acep.org/siteassets/new-pdfs/clinical-policies/seizures-2024-final.pdf",
+   "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. complementar 18, Abordagem do estado de mal epiléptico (fenitoína até 20 mg/min no idoso e no cardiopata).",
+   "Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022 — cap. 11: eclâmpsia e sulfato de magnésio.",
+   "Meierkord H et al. EFNS guideline on the management of status epilepticus in adults (Eur J Neurol 2010;17:348–355): tiopental 3–5 mg/kg em bolus, mais 1–2 mg/kg a cada 2–3 min até controlar, depois 3–7 mg/kg/h; midazolam 0,2 mg/kg + 0,05–0,4 mg/kg/h; propofol 2–3 mg/kg + 4–10 mg/kg/h. https://doi.org/10.1111/j.1468-1331.2009.02917.x",
+   "Bula Fenital (fenitoína injetável), Anvisa: incompatível com soro glicosado."
   ]
  },
  {
@@ -519,16 +531,22 @@ const BASE = [
   "cat": "dor",
   "cid": "M54.5",
   "sin": "dor nas costas lombar muscular mialgia contratura",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor.\nOu\n1) Paracetamol 750mg ------------------------- 20 cp\nTomar 1 cp VO de 6/6h se dor.\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\nOu\n2) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n3) Ciclobenzaprina 5mg ----------------------- 10 cp\nTomar 1 cp VO à noite por 10 dias.\n4) Tramadol 50mg ----------------------------- 10 cp\nTomar 1 cp VO de 8/8h somente se dor intensa.",
-  "unidade": "1) Cetoprofeno 100 mg IM (ampola 50 mg/mL, 2 mL) ou EV (apresentação própria para EV, em 100 mL de SF em 20–30 min)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n2) Dexametasona 4 mg IM ou EV lenta (opcional; benefício pequeno).",
-  "orient": "- Manter-se ativo, evitar repouso absoluto; calor local.\n- Retorno imediato se: perda de força nas pernas, alteração urinária/fecal, anestesia em sela, febre, trauma, câncer prévio, perda de peso.\n- CID dorsalgia M54.9 | mialgia M79.1.",
+  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).\nOu\n1) Paracetamol 750mg ------------------------- 20 cp\nTomar 1 cp VO de 6/6h se dor (no máximo 4 cp por dia).\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\nOu\n2) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n3) Ciclobenzaprina 5mg ----------------------- 10 cp\nTomar 1 cp VO à noite por até 10 dias. Pode dar sono: não dirigir. Evitar em idosos.\n4) Tramadol 50mg ----------------------------- 10 cp\nTomar 1 cp VO de 8/8h somente se dor intensa que não melhora com os anteriores, por até 5 dias (no máximo 3 cp por dia).",
+  "unidade": "1) Cetoprofeno 100 mg IM (ampola 50 mg/mL, 2 mL) ou EV (apresentação própria para EV, em 100 mL de SF em 20–30 min)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.",
+  "orient": "- Manter-se ativo, evitar repouso absoluto; calor local.\n- Retorno imediato se: perda de força nas pernas, alteração urinária/fecal, anestesia em sela, febre, trauma, câncer prévio, perda de peso.\n- CID dorsalgia M54.9 | mialgia M79.1.\n- Dor no corpo com febre: pensar em dengue e não usar anti-inflamatório (ibuprofeno, diclofenaco, cetoprofeno) até descartá-la.",
   "rev": [
+   "Corrigido (2026-10-17): teto da dipirona (8 cp por dia), do paracetamol (4 cp por dia) e do tramadol (3 cp por dia, até 5 dias); ciclobenzaprina com alerta de sono e no idoso; dexametasona retirada (sem benefício, ACP 2017; NICE NG59); alerta de dengue na mialgia (CDC 2022; Beers 2023; MS Dengue 2024).",
    "Ajustado: tramadol somente se dor intensa (não fixo por 5 dias).",
    "Adicionado: sinais de alarme (bandeiras vermelhas).",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Qaseem A et al. ACP Guideline: Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (Ann Intern Med 2017)."
+   "Qaseem A et al. ACP Guideline: Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (Ann Intern Med 2017).",
+   "NICE NG59. Low back pain and sciatica in over 16s: assessment and management, 2016 (atualizada em 2020): manter-se ativo; AINE na menor dose e pelo menor tempo; não oferecer paracetamol isolado, opioide fraco só se AINE contraindicado ou ineficaz.",
+   "Dowell D et al. CDC Clinical Practice Guideline for Prescribing Opioids for Pain — United States, 2022. MMWR Recomm Rep 2022;71(3):1–95.",
+   "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): evitar relaxante muscular; tramadol com cautela (hiponatremia).",
+   "Bula Anvisa da ciclobenzaprina (Miosan): sonolência; uso por até 2–3 semanas; interação com tramadol e antidepressivos (síndrome serotoninérgica).",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
  },
  {

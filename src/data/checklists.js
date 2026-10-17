@@ -88,7 +88,7 @@ colica:{
  ant:["cálculo renal prévio","rim único ou transplante","gestação","litíase biliar conhecida"],
  ex:["punho-percussão lombar dolorosa","sinal de Murphy","febre","icterícia"],
  alarme:["febre com cólica renal (obstrução infectada)","anúria ou rim único obstruído","dor refratária à analgesia","febre com icterícia (colangite)","Murphy positivo com febre (colecistite)"],
- fontes:["EAU Guidelines on Urolithiasis, 2024 (descompressão urgente se obstrução com infecção).","Yokoe M et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (J Hepatobiliary Pancreat Sci 2018;25:41)."]
+ fontes:["EAU Guidelines on Urolithiasis, 2026 (descompressão urgente se obstrução com infecção). https://uroweb.org/guidelines/urolithiasis","Yokoe M et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis (J Hepatobiliary Pancreat Sci 2018;25:41)."]
 },
 "dor-abdominal":{
  hist:["local da dor e se migrou","início súbito","vômitos","parada de eliminação de gases e fezes","febre","sangramento ou atraso menstrual"],

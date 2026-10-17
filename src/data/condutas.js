@@ -225,10 +225,11 @@ const BASE = [
   "cat": "uro",
   "cid": "N23",
   "sin": "litiase calculo rim vesicula colelitiase nefrolitiase",
-  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n2) Escopolamina + Dipirona 10/250mg (Buscopan Composto) --- 20 cp\nTomar 1 cp VO de 6/6h se dor abdominal ou febre.\n3) Tramadol 50mg ----------------------------- 10 cp\nTomar 1 cp VO de 8/8h se dor intensa que não melhora com os anteriores.\n4) Ondansetrona 8mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h se náuseas ou vômitos.\n\n# Cólica renal com cálculo ureteral distal > 5 mm (e ≤ 10 mm):\n5) Tansulosina 0,4mg ------------------------- 30 cp\nTomar 1 cp VO à noite por até 4 semanas.",
-  "unidade": "1) Cetoprofeno 100 mg EV (apresentação própria para EV) em 100 mL de SF em 20–30 min, ou IM (ampola 50 mg/mL, 2 mL) — 1ª escolha na cólica renal, se sem contraindicação (DRC, gestação, sangramento, úlcera).\n2) Buscopan Composto 1 amp (5 mL) EV lenta diluída em 10–20 mL de SF, ou IM profunda\n   + Ondansetrona 4 mg EV lenta (≥ 30 s) ou IM.\nSe persistir após 30–40 min, repetir a analgesia uma vez. Se ainda persistir:\n3) Tramadol 100 mg (2 mL) EV em 100 mL de SF em 30–60 min (infusão rápida aumenta náuseas), ou IM\n   Ou Morfina 2–4 mg EV (diluir 1 amp de 10 mg em 9 mL de AD/SF = 1 mg/mL; fazer 2–4 mL lento).",
+  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por até 5 dias (só se dengue descartada; não usar na gestação nem na doença renal).\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (máximo 8 cp por dia). Se tiver febre, volte ao pronto-socorro.\n3) Tramadol 50mg ----------------------------- 10 cp\nTomar 1 cp VO de 8/8h se dor intensa que não melhora com os anteriores (máximo 3 cp por dia). Pode dar sono; não dirigir.\n4) Ondansetrona 8mg -------------------------- 10 cp\nTomar 1 cp VO de 8/8h se náuseas ou vômitos.\n\n# Cólica renal com cálculo ureteral distal > 5 mm (e ≤ 10 mm):\n5) Tansulosina 0,4mg ------------------------- 30 cp\nTomar 1 cp VO à noite por até 4 semanas.",
+  "unidade": "1) Cetoprofeno 100 mg EV (apresentação própria para EV) em 100 mL de SF em 20–30 min, ou IM (ampola 50 mg/mL, 2 mL) — 1ª escolha na cólica renal, se sem contraindicação (DRC, gestação, sangramento, úlcera).\n2) Dipirona 1 g (2 mL) EV lenta (no máximo 1 mL/min, paciente deitado), diluída em 10–20 mL de SF, ou IM profunda (junto com o AINE, ou sozinha se AINE contraindicado).\n   Cólica biliar sem melhora: escopolamina 20 mg + dipirona 2,5 g (Buscopan Composto) 1 ampola EV lenta (no mínimo 5 minutos) em vez da dipirona isolada.\n   + Ondansetrona 4 mg EV lenta (≥ 30 s) ou IM, se náusea ou vômito.\nSe persistir após 30–40 min, repetir a analgesia uma vez. Se ainda persistir:\n3) Tramadol 100 mg (2 mL) EV em 100 mL de SF em 30–60 min (infusão rápida aumenta náuseas), ou IM\n   Ou Morfina 2–4 mg EV (diluir 1 amp de 10 mg em 9 mL de AD/SF = 1 mg/mL; fazer 2–4 mL lento).",
   "orient": "- Aumentar ingestão de água.\n- Renal: retorno imediato se febre, calafrios ou redução importante da urina (obstrução infectada é emergência).\n- Biliar: retorno se febre, icterícia ou dor que não passa em 6h. Solicitar USG de abdome e encaminhar para cirurgia eletiva.\n- CID cólica biliar: K80.2.",
   "rev": [
+   "Corrigido (2026-10-17): ibuprofeno só se dengue descartada (MS, Dengue, 6ª ed., 2024); Buscopan Composto comprimido \"se dor ou febre\" → dipirona 2 cp (máx. 8/dia) e \"febre: volte\"; tramadol com máximo de 3 cp/dia (bula Tramal); na unidade, dipirona EV no lugar do Buscopan Composto, que fica só para a cólica biliar e em no mínimo 5 minutos (EAU Urolithiasis 2026: antiespasmódico não acrescenta analgesia).",
    "Adicionado: AINE (cetoprofeno) como 1ª escolha na cólica renal.",
    "Adicionado: tansulosina para cálculo distal e morfina como alternativa.",
    "Ajustado: tramadol 12/12h → 8/8h se necessário.",
@@ -236,8 +237,13 @@ const BASE = [
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "EAU Guidelines on Urolithiasis, 2024 (AINE como 1ª escolha; terapia expulsiva com alfabloqueador).",
-   "Pathan SA et al. Diclofenac/paracetamol/morphine in renal colic (Lancet 2016)."
+   "EAU Guidelines on Urolithiasis, 2026. https://uroweb.org/guidelines/urolithiasis — AINE como 1ª escolha (forte); opioide como 2ª (fraca); antiespasmódico não acrescenta analgesia; alfabloqueador para cálculo ureteral distal de 5–10 mm (forte, fora da bula); descompressão urgente se obstrução com sepse.",
+   "Pathan SA et al. Delivering safe and effective analgesia for management of renal colic in the emergency department: a double-blind, multigroup, randomised controlled trial (Lancet 2016;387:1999).",
+   "Fraquelli M et al. Non-steroid anti-inflammatory drugs for biliary colic (Cochrane Database Syst Rev 2016;CD006390; PMID 27610712).",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue.",
+   "Bula Novalgina (dipirona 500 mg, Anvisa): máximo 4 g/dia.",
+   "Bula Tramal (tramadol, Anvisa): máximo 400 mg/dia; sonolência, evitar dirigir.",
+   "Bula Buscopan Composto injetável (Boehringer Ingelheim, Anvisa): EV lenta, no máximo 1 mL/min, com o paciente deitado."
   ]
  },
  {
@@ -853,14 +859,16 @@ const BASE = [
   "cat": "uro",
   "cid": "N40",
   "sin": "prostata jato fraco retencao urinaria",
-  "casa": "Uso oral\n1) Tansulosina 0,4mg ------------------------- 30 cp\nTomar 1 cp VO à noite, uso contínuo.\n2) Finasterida 5mg --------------------------- 30 cp\nTomar 1 cp VO 1x ao dia, uso contínuo (se próstata aumentada > 30–40 g; efeito após 3–6 meses).",
+  "casa": "Uso oral\n1) Tansulosina 0,4mg ------------------------- 30 cp\nTomar 1 cp VO à noite, uso contínuo.\n2) Finasterida 5mg --------------------------- 30 cp\nTomar 1 cp VO 1x ao dia, uso contínuo (só se próstata > 30 mL no exame de imagem, PSA > 1,5 ng/mL ou próstata aumentada ao toque; efeito após 3 a 6 meses; reduz o PSA pela metade).",
   "unidade": "# Retenção urinária aguda:\n1) Sondagem vesical de demora + iniciar tansulosina.\n2) Encaminhar ao urologista (tentativa de retirada da sonda em 2–3 dias).",
   "orient": "- Tansulosina pode causar tontura ao levantar; levantar devagar.\n- Solicitar PSA, EAS, creatinina e USG de vias urinárias; encaminhar ao urologista.",
   "rev": [
+   "Corrigido (2026-10-17): critério da finasterida pela AUA (próstata > 30 mL, PSA > 1,5 ng/mL ou aumentada ao toque) e redução do PSA pela metade (bula Proscar); citação da AUA completa, com a emenda de 2023.",
    "Preenchido: seção estava vazia."
   ],
   "fontes": [
-   "Lerner LB et al. AUA Guideline: Management of LUTS attributed to BPH (J Urol 2021)."
+   "Lerner LB et al. Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline Part I e Part II (J Urol 2021;206:806 e 818; emenda 2023). https://www.auanet.org/guidelines-and-quality/guidelines/benign-prostatic-hyperplasia-(bph)-guideline",
+   "Bula Proscar (finasterida 5 mg, Organon, Anvisa): o PSA cai cerca de 50%."
   ]
  },
  {
@@ -959,17 +967,23 @@ const BASE = [
   "cat": "uro",
   "cid": "N39.0",
   "sin": "infeccao urinaria disuria ardor urinar cistite pielonefrite",
-  "casa": "# Cistite não complicada (mulher, não gestante):\nUso oral\n1) Nitrofurantoína 100mg --------------------- 20 cp\nTomar 1 cp VO de 6/6h por 5 dias.\nOu\n1) Fosfomicina 3g (Monuril) ------------------ 1 envelope\nDissolver em 1 copo de água e tomar à noite, com a bexiga vazia, dose única.\n2) Fenazopiridina 200mg ---------------------- 6 cp\nTomar 1 cp VO de 8/8h por 2 dias (urina fica alaranjada).\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h por 3 dias.\n\n# Gestante: Cefalexina 500mg 1 cp VO de 6/6h por 7 dias (ou fosfomicina).\n\n# Pielonefrite ambulatorial:\n1) Ciprofloxacino 500mg ---------------------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.",
+  "casa": "# Cistite não complicada (mulher, não gestante):\nUso oral\n1) Nitrofurantoína 100mg --------------------- 20 cp\nTomar 1 cp VO de 6/6h por 5 dias.\nOu\n1) Fosfomicina 3g (Monuril) ------------------ 1 envelope\nDissolver em 1 copo de água e tomar à noite, com a bexiga vazia, dose única.\n2) Fenazopiridina 200mg ---------------------- 6 cp\nTomar 1 cp VO de 8/8h por 2 dias (urina fica alaranjada).\n3) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias (só se dengue descartada; não usar na gestação nem na doença renal).\n\n# Gestante (colher urocultura antes; considerar repetir 1 a 2 semanas após o fim):\nUso oral\n1) Cefalexina 500mg --------------------------- 28 cáps\nTomar 1 cáps VO de 6/6h por 7 dias.\nOu\n1) Fosfomicina 3g (Monuril) ------------------ 1 envelope\nDissolver em meio copo de água (50 a 75 mL) e tomar à noite, com a bexiga vazia, dose única.\n(Nitrofurantoína: evitar no 1º trimestre se houver alternativa e nunca a partir de 38 semanas. Gestante com febre ou dor lombar: pielonefrite, internar.)\n\n# Pielonefrite ambulatorial (não gestante; após a 1ª dose de ceftriaxona e a urocultura):\n1) Ciprofloxacino 500mg ---------------------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre (máximo 8 cp por dia).",
   "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n2) Pielonefrite: Ceftriaxona 1 g IM (reconstituir com o diluente de lidocaína da apresentação IM) ou EV (em 10 mL de AD, lenta, ou em 100 mL de SF em 30 min), 1ª dose na unidade, e seguir com VO. Colher urocultura antes.\n* Internar se: sepse, vômitos, gestante com pielonefrite, obstrução, sem melhora em 48–72h.",
   "orient": "- Aumentar ingestão de água; não segurar a urina.\n- Retorno se febre, dor lombar ou vômitos.\n- Homem com ITU: tratar por 7 dias e considerar prostatite.\n- CID: cistite N30.0 | pielonefrite N10.",
   "rev": [
+   "Corrigido (2026-10-17): ibuprofeno só se dengue descartada (MS, Dengue, 2024); gestante com receita própria (cefalexina 28 cáps ou fosfomicina) e urocultura antes (ACOG 2023); pielonefrite \"não gestante\" e dipirona com máximo de 8 cp/dia (IDSA 2025; bula Novalgina); alertas de rim da nitrofurantoína (bula < 60, Beers < 30), da fosfomicina (< 10) e da fenazopiridina (bulas).",
    "Ajustado: ciprofloxacino reservado para pielonefrite (evitar na cistite simples).",
    "Corrigido: ceftriaxona dose única não trata pielonefrite; é 1ª dose seguida de VO por 7 dias.",
    "Ajustado: nitrofurantoína 7 → 5 dias; adicionada conduta para gestante.",
    "Adicionado: vias IM e EV com diluição (manual de diluição de injetáveis do PA de Joinville 2018 e guias farmacêuticos hospitalares)."
   ],
   "fontes": [
-   "Gupta K et al. IDSA/ESCMID Guidelines: Acute Uncomplicated Cystitis and Pyelonephritis in Women (Clin Infect Dis 2011)."
+   "Gupta K et al. IDSA/ESCMID Guidelines: Acute Uncomplicated Cystitis and Pyelonephritis in Women (Clin Infect Dis 2011).",
+   "Trautner BW et al. IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections (Clin Infect Dis 2026;82 Supl 3): pielonefrite com fluoroquinolona por 5–7 dias ou outro antibiótico por 7 dias; nitrofurantoína e fosfomicina não servem para pielonefrite. https://www.idsociety.org/practice-guideline/complicated-urinary-tract-infections/",
+   "ACOG Clinical Consensus No. 4: Urinary Tract Infections in Pregnant Individuals (Obstet Gynecol 2023;142:435; PMID 37473414; doi 10.1097/AOG.0000000000005269): cefalexina, fosfomicina ou nitrofurantoína; urocultura; repetir a cultura 1 a 2 semanas após o fim é opcional.",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue.",
+   "Bula Novalgina (dipirona 500 mg, Anvisa): máximo 4 g/dia.",
+   "Bula Pyridium (fenazopiridina, Anvisa): contraindicada na insuficiência renal; no máximo 2 dias junto com o antibiótico; cautela na deficiência de G6PD."
   ]
  },
  {
@@ -1199,14 +1213,20 @@ const BASE = [
   "cat": "uro",
   "cid": "N41.0",
   "sin": "prostata dor perineal",
-  "casa": "Uso oral\n1) Ciprofloxacino 500mg ---------------------- 56 cp\nTomar 1 cp VO de 12/12h por 28 dias.\nOu\n1) Sulfametoxazol + Trimetoprima 800/160mg --- 56 cp\nTomar 1 cp VO de 12/12h por 28 dias.\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
-  "unidade": "",
+  "casa": "Uso oral\n1) Ciprofloxacino 500mg ---------------------- 28 cp\nTomar 1 cp VO de 12/12h por 14 dias; reavaliar com a urocultura e manter até 28 dias se ainda houver sintomas.\nOu\n1) Sulfametoxazol + Trimetoprima 800/160mg --- 28 cp\nTomar 1 cp VO de 12/12h por 14 dias; reavaliar com a urocultura e manter até 28 dias se ainda houver sintomas.\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por até 5 dias (só se dengue descartada; não usar na doença renal).\n\n# Homem < 35 anos com relação sexual sem preservativo (gonococo e clamídia):\n1) Ceftriaxona 500mg IM ----------------------- dose única na unidade\n2) Doxiciclina 100mg ------------------------- 20 cp\nTomar 1 cp VO de 12/12h por 10 dias.\n(Tratar a parceria; ver item IST.)",
+  "unidade": "1) Colher urocultura (e hemocultura se febre alta) antes do antibiótico. Toque retal só suave; não massagear a próstata.\n2) 1ª dose na unidade: ciprofloxacino 500 mg VO, ou ceftriaxona 1 g IM ou EV (em 10 mL de AD, lenta, ou em 100 mL de SF em 30 min) se vômitos ou doença mais grave.\n3) Internar se sepse, retenção urinária, vômitos que impedem a via oral ou sem melhora em 48 h (suspeitar de abscesso: USG transretal ou TC). Retenção: aliviar a obstrução (cistostomia ou sonda uretral fina; a melhor via não está definida).",
   "orient": "- Colher urocultura antes. Não fazer toque prostático vigoroso (risco de bacteremia).\n- Internar se febre alta, sepse ou retenção urinária.",
   "rev": [
+   "Corrigido (2026-10-17): antibiótico por 14 dias, estendendo até 28 se ainda houver sintomas (decisão do médico; AFP 2016; IDSA 2025; Harrison 22ª ed., cap. 140); ibuprofeno só se dengue descartada (MS, Dengue, 2024); unidade preenchida com culturas, 1ª dose e critérios de internação (AFP 2016); esquema para homem < 35 anos com risco de IST: ceftriaxona 500 mg IM + doxiciclina por 10 dias (PCDT IST 2022; AFP 2016).",
    "Adicionado: SMX-TMP como alternativa e cuidados."
   ],
   "fontes": [
-   "EAU Guidelines on Urological Infections, 2024."
+   "EAU Guidelines on Urological Infections, 2024.",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 140: prostatite aguda com fluoroquinolona ou SMX-TMP por 2 a 4 semanas, após urocultura e hemocultura.",
+   "Trautner BW et al. IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections (Clin Infect Dis 2026;82 Supl 3:i79): suspeita de prostatite, 10–14 dias.",
+   "Coker TJ, Dierfeldt DM. Acute Bacterial Prostatitis: Diagnosis and Management (Am Fam Physician 2016;93:114): 10 a 14 dias nos casos leves, estendendo 2 semanas se ainda houver sintomas, e 4 semanas nos graves; internação se falha ambulatorial, sem via oral, sepse ou retenção; retenção aliviada por cistostomia ou sonda uretral (melhor via não definida); homem < 35 anos sexualmente ativo: cobrir gonococo e clamídia (cefalosporina + doxiciclina 100 mg de 12/12h por 10 dias). https://www.aafp.org/pubs/afp/issues/2016/0115/p114.html",
+   "Ministério da Saúde. PCDT Atenção Integral às Pessoas com IST, 2022: gonorreia com ceftriaxona 500 mg IM em dose única.",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."
   ]
  },
  {

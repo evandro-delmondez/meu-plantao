@@ -603,5 +603,59 @@ colica: {
     "Bula Tramal (tramadol, Anvisa): sonolência, evitar dirigir."
   ]
 },
+"dor-abdominal": {
+  titulo: "Dor de barriga",
+  oque: "O exame de hoje não mostrou sinal de doença grave, e muitas dores de barriga melhoram sozinhas em poucos dias. Algumas doenças, porém, só se mostram com o passar das horas: por isso, fique atento aos sinais abaixo.",
+  cuidados: [
+    "Tome os remédios como está na sua receita.",
+    "Não tome anti-inflamatório por conta própria: ele irrita o estômago e, se for dengue, aumenta o risco de sangramento.",
+    "Coma pouco e comidas leves. Beba água em pequenos goles, várias vezes ao dia.",
+    "Evite bebida alcoólica até melhorar.",
+    "Faça os exames que foram pedidos e mostre o resultado no posto de saúde.",
+    "Procure o posto de saúde se a dor continuar por mais de alguns dias ou voltar várias vezes."
+  ],
+  volte: [
+    "A dor piora, fica contínua ou muda de lugar, por exemplo do umbigo para o lado direito de baixo da barriga.",
+    "A barriga fica dura, inchada ou dói muito ao encostar ou ao andar.",
+    "Vômitos que não param, ou vômito com sangue ou parecido com borra de café.",
+    "Febre. Se você teve febre nos últimos dias, dor de barriga forte e contínua pode ser sinal de alarme da dengue.",
+    "Não consegue soltar gases nem evacuar.",
+    "Fezes pretas, como piche, ou com sangue.",
+    "Tontura forte, desmaio, palidez ou suor frio.",
+    "Mulher: sangramento pela vagina, ou dor com a menstruação atrasada."
+  ],
+  fontes: [
+    "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024, cap. 25, Dor abdominal: sinais de alarme (peritonite, instabilidade, idoso, gestante), beta-hCG, reavaliação.",
+    "Cartwright SL, Knudson MP. Evaluation of acute abdominal pain in adults (Am Fam Physician 2008;77:971): dor que migra, peritonite, obstrução, sangramento, gravidez ectópica.",
+    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: dor abdominal intensa e contínua é sinal de alarme; anti-inflamatório contraindicado na suspeita de dengue.",
+    "NHS. Stomach ache (revisado em 26/05/2023): a maioria passa em poucos dias; procurar atendimento se piora, persiste ou volta; emergência se dor súbita ou forte, dor ao tocar a barriga, vômito com sangue ou borra de café, fezes pretas ou com sangue, não consegue evacuar nem soltar gases, desmaio. https://www.nhs.uk/symptoms/stomach-ache/"
+  ]
+},
+entorse: {
+  titulo: "Torção do tornozelo (entorse)",
+  oque: "É uma lesão dos ligamentos, que seguram os ossos do tornozelo. Pelo exame, não há sinal de osso quebrado, e a maioria melhora em cerca de 2 semanas, mas pode levar algumas semanas para voltar ao normal.",
+  cuidados: [
+    "Tome e use os remédios como está na sua receita.",
+    "Nos primeiros dias, ponha gelo enrolado num pano por 15 a 20 minutos, várias vezes ao dia. Não coloque o gelo direto na pele.",
+    "Sempre que estiver sentado ou deitado, deixe o pé elevado, apoiado em travesseiros.",
+    "Use a tornozeleira ou a faixa como foi orientado. Pise e caminhe aos poucos, até onde a dor deixar: o movimento ajuda a recuperar.",
+    "Faça desde cedo os exercícios leves de mexer o pé, como foi ensinado.",
+    "Nos primeiros 2 dias, evite calor no local (banho quente, bolsa quente), bebida alcoólica e massagem. Evite esporte e esforço forte até o tornozelo melhorar.",
+    "Procure o posto de saúde se a dor ou a sensação de tornozelo frouxo continuarem depois de 3 a 5 dias."
+  ],
+  volte: [
+    "Pé frio, roxo, azulado ou muito pálido.",
+    "Dormência ou formigamento no pé ou nos dedos.",
+    "Não consegue apoiar o pé no chão nem dar 4 passos, mesmo mancando.",
+    "A dor piora muito ou o inchaço aumenta, mesmo com gelo e o pé elevado.",
+    "O tornozelo fica torto ou com formato diferente."
+  ],
+  fontes: [
+    "Vuurberg G et al. Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline (Br J Sports Med 2018;52:956): tratamento funcional com órtese e carga conforme tolerância melhor que imobilização; exercícios precoces; reexame em 3 a 5 dias. https://doi.org/10.1136/bjsports-2017-098106",
+    "Stiell IG et al. Decision rules for the use of radiography in acute ankle injuries (JAMA 1993;269:1127): incapacidade de dar 4 passos. Bachmann LM et al. (BMJ 2003;326:417): regra de Ottawa.",
+    "NHS. Sprains and strains (revisado em 23/04/2024): gelo por até 20 min a cada 2 a 3 h, elevar em travesseiro, evitar calor, álcool e massagem nos primeiros dias; melhora em cerca de 2 semanas; emergência se deformidade, dormência ou formigamento, pele azulada ou fria; procurar atendimento se não consegue apoiar ou o inchaço piora. https://www.nhs.uk/conditions/sprains-and-strains/",
+    "NICE CKS. Sprains and strains (versão vigente, consultada em 10/2026; data da revisão a confirmar): proteção, gelo, elevação; evitar calor, álcool, corrida e massagem nas primeiras 72 h. https://cks.nice.org.uk/topics/sprains-strains/"
+  ]
+},
 };
 if (typeof module!=="undefined") module.exports={ALTA};

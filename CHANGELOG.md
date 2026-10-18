@@ -1,5 +1,15 @@
 # Histórico de versões
 
+## 1.12.6 — 2026-10-17
+- **Revisão geral, lote 5 (Gineco/Obstetrícia, Endócrino e Outros), aprovada pelo médico e conferida — conclui a revisão das 98 prescrições:**
+  - cetoacidose: potássio só entre 3,5 e 5,0 (abaixo de 3,5, sem insulina), insulina em bomba na moderada e grave (consenso ADA/EASD/JBDS 2024);
+  - "unidades" por extenso em toda prescrição de insulina e sulfato de magnésio por extenso (ISMP);
+  - hipertireoidismo: propiltiouracil fora da receita de casa; crise tireotóxica na unidade, com doses e intervalos da ATA 2016; tiamazol 15 mg;
+  - hiperglicemia com a escala de correção da SBD 2026 e insulina regular 30 min antes da refeição;
+  - hipoglicemia por sulfonilureia igual ao cartão de intoxicação;
+  - IST pelo PCDT 2022 (link correto), sífilis com intervalos da NT 14/2023 e neurossífilis, DIP com critérios de internação, metronidazol coerente entre abas;
+  - sangramento uterino com ácido tranexâmico 1 g EV e suas contraindicações; dismenorreia sem codeína; candidíase com restrição ao fluconazol na lactante; hipercalemia pela UK Kidney Association 2026.
+
 ## 1.12.5 — 2026-10-17
 - **Revisão geral, lote 6 (Cardio, Emergência e Toxico/Infecto), aprovada pelo médico e conferida:** tenecteplase com metade da dose a partir de 75 anos também na conduta do IAM e na calculadora (ESC 2023; STREAM-2); FA com janela de 24 h para cardioversão (ESC 2024) e doses de amiodarona e digoxina; procainamida e digoxina com "confirme se a unidade tem"; TEP pela AHA/ACC 2026, com apixabana para 30 dias e trombólise na PCR por TEP com a ressalva da dose; edema agudo de pulmão pela ESC 2026; dengue com PA diferencial ≤ 20 mmHg em todo o painel; teto de 1.000 mL no bolus da anafilaxia na calculadora; reação alérgica grave sem hidrocortisona 500 mg e com corticoide com fonte; PEP pelo PCDT 2024; tétano com imunização passiva nas situações especiais; intubação e sepse alinhadas ao checklist e ao cartão.
 

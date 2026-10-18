@@ -11,6 +11,7 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 5. Atualizar a data acima para daqui a 3 meses.
 
 ## Histórico
+- 2026-10-17 (v1.12.6) — revisão geral, lote 5 (15 condutas), relatórios `.rascunhos/revisao-lote5.md`, `.rascunhos/edicao-lote5.md`, `.rascunhos/conferencia-lote5.md` (4 ajustes aplicados). Revisão geral das 98 prescrições concluída.
 - 2026-10-17 (v1.12.5) — revisão geral, lote 6 (13 condutas corrigidas), relatórios `.rascunhos/revisao-lote6.md`, `.rascunhos/edicao-lote6.md`, `.rascunhos/conferencia-lote6.md` (4 ajustes aplicados).
 - 2026-10-17 (v1.12.4) — revisão geral, lote 4 (13 condutas corrigidas), relatórios `.rascunhos/revisao-lote4.md`, `.rascunhos/edicao-lote4.md`, `.rascunhos/conferencia-lote4.md` (sem obrigatórios). Parkland pela ABA 2023/ATLS 11; pediatria de 3 mL a conferir no texto do ATLS 11.
 - 2026-10-17 (v1.12.3) — revisão geral, lote 3 (15 condutas corrigidas), relatórios `.rascunhos/revisao-lote3.md`, `.rascunhos/edicao-lote3.md`, `.rascunhos/conferencia-lote3.md` (3 ajustes aplicados).

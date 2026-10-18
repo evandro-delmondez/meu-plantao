@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.13.0 — 2026-10-17
+- **Sinais vitais que avisam sozinhos** (Fechar o atendimento): campos de O2 suplementar e consciência; **NEWS2 calculado na hora** (RCP 2017) com aviso no topo da conduta — 0–4 baixo; 5–6 ou um parâmetro com 3 pontos, resposta urgente, "não é verde"; ≥ 7, emergência — e linha na evolução; não usado em menores de 16 anos e gestantes. Alertas isolados: SpO2 < 92% em ar ambiente, PA ≥ 180/110 (Diretriz Brasileira de Hipertensão 2025, com aviso se a receita tem anti-inflamatório), febre > 37,8 °C com FC > 90 (triagem de sepse, ILAS). A evolução descreve confusão e O2 suplementar quando marcados.
+- **Pneumonia: gravidade pelo CRB-65** (sem ureia), calculado com idade e sinais vitais, texto único por faixa na conduta, no escore e na queixa (NICE NG250; BTS; SBPT) e 1ª dose EV para quem fica (ATS/IDSA 2019).
+- **Alta para o paciente em mais 8 condutas:** cefaleia, lombalgia, TCE leve, vertigem, infecção urinária, cólica, dor abdominal e entorse.
+- **Condutas corrigidas (aprovadas pelo médico):** dor abdominal com orientação de retorno e de dengue; entorse com ibuprofeno com ressalvas e sinais de retorno; lombalgia com anti-inflamatório como 1ª opção (NICE NG59); TCE com esporte de contato só após 3 semanas.
+- Conferido por agentes independentes.
+
 ## 1.12.6 — 2026-10-17
 - **Revisão geral, lote 5 (Gineco/Obstetrícia, Endócrino e Outros), aprovada pelo médico e conferida — conclui a revisão das 98 prescrições:**
   - cetoacidose: potássio só entre 3,5 e 5,0 (abaixo de 3,5, sem insulina), insulina em bomba na moderada e grave (consenso ADA/EASD/JBDS 2024);

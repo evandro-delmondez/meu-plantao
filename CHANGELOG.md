@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.13.1 — 2026-10-18
+- Correção: a barra de atalhos da conduta (Alarmes, Receita, Checklist, Fechar, Alta) ficava escondida atrás do cabeçalho fixo ao rolar e aparecia como um retângulo solto; agora gruda logo abaixo do cabeçalho, em qualquer tamanho de tela.
+
 ## 1.13.0 — 2026-10-17
 - **Sinais vitais que avisam sozinhos** (Fechar o atendimento): campos de O2 suplementar e consciência; **NEWS2 calculado na hora** (RCP 2017) com aviso no topo da conduta — 0–4 baixo; 5–6 ou um parâmetro com 3 pontos, resposta urgente, "não é verde"; ≥ 7, emergência — e linha na evolução; não usado em menores de 16 anos e gestantes. Alertas isolados: SpO2 < 92% em ar ambiente, PA ≥ 180/110 (Diretriz Brasileira de Hipertensão 2025, com aviso se a receita tem anti-inflamatório), febre > 37,8 °C com FC > 90 (triagem de sepse, ILAS). A evolução descreve confusão e O2 suplementar quando marcados.
 - **Pneumonia: gravidade pelo CRB-65** (sem ureia), calculado com idade e sinais vitais, texto único por faixa na conduta, no escore e na queixa (NICE NG250; BTS; SBPT) e 1ª dose EV para quem fica (ATS/IDSA 2019).

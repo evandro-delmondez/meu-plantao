@@ -524,10 +524,10 @@ body.sheet-on{overflow:hidden}
 .rxbloco .rxc{--c:var(--warn)}
 
 /* navegação na conduta: atalhos fixos e alvos de toque de 44 px */
-.atalhosconduta{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;padding:8px 2px;margin:0 0 8px;background:var(--bg);scrollbar-width:none}
+.atalhosconduta{position:sticky;top:var(--topo,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:8px 2px;margin:0 0 8px;background:var(--bg);scrollbar-width:none}
 .atalhosconduta::-webkit-scrollbar{display:none}
 .atalhosconduta .chip{flex:none;min-height:36px;padding:6px 14px;font-size:13.5px;--c:var(--accent)}
-#detail .sec{scroll-margin-top:60px}
+#detail .sec{scroll-margin-top:calc(var(--topo,0px) + 60px)}
 details.sec>summary.sec-h{cursor:pointer;list-style:none}
 details.sec>summary.sec-h::after{content:"▸";margin-left:auto;color:var(--muted)}
 details.sec[open]>summary.sec-h::after{content:"▾"}

@@ -49,3 +49,11 @@ test("conduta: atalhos fixos levam à seção, secundário recolhido", async ({ 
   await expect(page.locator('#detail .atalhosconduta [data-ir="agora"]')).toBeVisible();
   expect(erros).toEqual([]);
 });
+
+test("barra de atalhos gruda abaixo do cabeçalho, sem ficar escondida atrás dele", async ({ page }) => {
+  await abrir(page); await aba(page, "prescricoes");
+  await conduta(page, "amigdalite");
+  await page.evaluate(() => window.scrollTo(0, 2500));
+  const [barTop, hdrBottom] = await page.evaluate(() => [document.querySelector("#detail .atalhosconduta").getBoundingClientRect().top, document.querySelector("header.top").getBoundingClientRect().bottom]);
+  expect(barTop).toBeGreaterThanOrEqual(hdrBottom - 2);
+});

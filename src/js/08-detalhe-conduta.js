@@ -130,6 +130,8 @@ function renderDilu(it){
   return `<details class="sec dilu"><summary class="sec-h"><h3>Preparo dos injetáveis (IM e EV)</h3></summary><ul>${hits.map(d=>`<li><b>${esc(d.nome)}:</b> ${esc(d.txt)}</li>`).join("")}</ul><p class="note" style="padding:0 16px 12px">Fontes: ${linkify(DILFONTE)}; guias farmacêuticos do Hospital São Camilo e Sírio-Libanês; bulas. Confira a apresentação disponível no seu serviço.</p></details>`;
 }
 function fullText(it){return [cur(it,"casa"),cur(it,"unidade")?("Na unidade:\n"+cur(it,"unidade")):"",cur(it,"orient")?("Orientações:\n"+cur(it,"orient")):""].filter(Boolean).join("\n\n")}
+function atalhoTopo(){const h=document.querySelector("header.top");if(h)document.documentElement.style.setProperty("--topo",(getComputedStyle(h).position==="sticky"||getComputedStyle(h).position==="fixed"?Math.ceil(h.getBoundingClientRect().height):0)+"px")}
+addEventListener("resize",()=>atalhoTopo());
 function renderDetail(){
   const el=$("#detail"); const it=getItem(ui.sel)||(newTmp&&newTmp.id===ui.sel?newTmp:null);
   if(!it){el.innerHTML=`<div class="empty">Escolha uma prescrição na lista.</div>`;return}
@@ -187,6 +189,8 @@ function renderDetail(){
   bindAgora(it);
   bindAtend(it);
   bindRxMontar(it);
+  // a barra de atalhos gruda logo abaixo do cabeçalho fixo do painel (cuja altura muda com a tela)
+  atalhoTopo();
   // atalhos: só aparecem as seções que existem nesta conduta
   $$("#detail .atalhosconduta [data-ir]").forEach(b=>{const alvo=$(`#detail .sec.${b.dataset.ir}`);if(!alvo){b.remove();return}
     b.onclick=()=>{if(alvo.tagName==="DETAILS")alvo.open=true;alvo.scrollIntoView({block:"start"})}});

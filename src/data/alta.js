@@ -427,5 +427,93 @@ constipacao: {
     "Bula do óleo mineral (Anvisa; ex.: Rioquímica): evitar em acamados, dificuldade para engolir, náuseas, vômitos, dor abdominal, gravidez e refluxo; não administrar junto com alimentos; risco de pneumonia lipoídica por aspiração; laxante por no máximo 1 semana sem orientação médica."
   ]
 },
+/* Rascunho ALTA, lote 2 (2026-10-17): cefaleia, lombalgia, TCE leve, vertigem, infecção urinária, cólica, dor abdominal, entorse.
+   Não conferido. Relatório: .rascunhos/altas-2.md */
+cefaleia: {
+  titulo: "Dor de cabeça",
+  oque: "A maioria das dores de cabeça não é grave: vem de tensão, cansaço, fome, falta de sono ou enxaqueca. Costuma melhorar em algumas horas ou poucos dias.",
+  cuidados: [
+    "Tome os remédios como está na sua receita.",
+    "Se tiver febre, não tome anti-inflamatório por conta própria: se for dengue, aumenta o risco de sangramento.",
+    "Beba bastante água, não fique muito tempo sem comer e procure dormir bem.",
+    "Na crise, descanse num lugar calmo, com pouca luz e pouco barulho.",
+    "Evite bebida alcoólica e muito tempo seguido olhando telas.",
+    "Não tome remédio para dor de cabeça em mais de 10 dias por mês: o excesso de remédio também causa dor de cabeça.",
+    "Se as crises são frequentes, procure o posto de saúde para acompanhar."
+  ],
+  volte: [
+    "A pior dor de cabeça da sua vida, ou uma dor muito forte que começa de repente, como uma pancada.",
+    "Febre com pescoço duro, ou manchas na pele que não somem ao apertar.",
+    "Fraqueza, dormência ou formigamento de um lado do corpo, boca torta ou fala enrolada.",
+    "Confusão, sonolência difícil de acordar, desmaio ou convulsão.",
+    "Perda ou mudança da visão, visão dupla, ou olho vermelho e muito dolorido.",
+    "Dor que piora a cada dia ou que acorda você durante a noite.",
+    "Vômitos que não param.",
+    "Dor de cabeça depois de uma batida na cabeça."
+  ],
+  fontes: [
+    "Speciali JG et al. Protocolo Nacional para Diagnóstico e Manejo das Cefaleias nas Unidades de Urgência do Brasil, 2018. Academia Brasileira de Neurologia e Sociedade Brasileira de Cefaleia: sinais de alerta; seguimento na unidade básica.",
+    "Do TP et al. Red and orange flags for secondary headaches in clinical practice: SNNOOP10 list (Neurology 2019;92:134): início súbito, febre, sinais neurológicos, padrão progressivo, piora noturna, após trauma. https://doi.org/10.1212/WNL.0000000000006697",
+    "NICE CG150. Headaches in over 12s: diagnosis and management (atualizada 2021): cefaleia por uso excessivo de analgésico (analgésico simples em 15 dias ou mais, ou combinados em 10 dias ou mais por mês). https://www.nice.org.uk/guidance/cg150",
+    "NHS. Headaches (revisado em 17/04/2024): água, descanso, refeições regulares, evitar álcool e telas; pronto-socorro se início súbito e forte, fraqueza, fala, confusão, perda de visão, febre com pescoço duro, manchas que não somem, trauma recente. https://www.nhs.uk/conditions/headaches/",
+    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."
+  ]
+},
+lombalgia: {
+  titulo: "Dor nas costas ou dor muscular",
+  oque: "Na maioria das vezes a dor vem de músculos e ligamentos, sem lesão grave na coluna. Costuma melhorar bastante em poucas semanas.",
+  cuidados: [
+    "Tome os remédios como está na sua receita. Alguns podem dar sono: se for o seu caso, não dirija.",
+    "Continue se movimentando e volte às atividades do dia a dia aos poucos. Ficar deitado na cama por muitos dias atrasa a melhora.",
+    "Calor no local alivia: bolsa de água morna enrolada numa toalha, para não queimar a pele.",
+    "Caminhar e fazer alongamentos leves ajudam a recuperar.",
+    "Se tiver febre ou dor no corpo todo, não tome anti-inflamatório por conta própria: se for dengue, aumenta o risco de sangramento.",
+    "Procure o posto de saúde se a dor não melhorar em algumas semanas, se você já teve câncer ou se está perdendo peso sem explicação."
+  ],
+  volte: [
+    "Fraqueza, dormência ou formigamento nas pernas, ou fraqueza que vai piorando.",
+    "Dormência na região entre as pernas, em volta dos genitais ou do ânus.",
+    "Não consegue urinar, ou perde o controle da urina ou das fezes.",
+    "Febre ou calafrios junto com a dor nas costas.",
+    "Dor muito forte que começa de repente ou piora rápido.",
+    "Dor no peito ou falta de ar.",
+    "Dor depois de uma queda ou acidente."
+  ],
+  fontes: [
+    "NICE NG59. Low back pain and sciatica in over 16s: assessment and management, 2016 (atualizada 2020): manter-se ativo e voltar às atividades; sinais de alerta (síndrome da cauda equina, infecção, câncer, fratura). https://www.nice.org.uk/guidance/ng59",
+    "Qaseem A et al. ACP Guideline: Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (Ann Intern Med 2017;166:514): calor superficial; a maioria melhora com o tempo.",
+    "NHS. Back pain (revisado em 05/03/2026): manter-se ativo, não ficar muito tempo na cama, calor ou gelo enrolado em toalha, alongamentos; pronto-socorro se fraqueza ou dormência nas pernas, dormência em volta dos genitais ou do ânus, alteração para urinar ou evacuar, dor no peito, após acidente; febre ou dor súbita e forte. https://www.nhs.uk/conditions/back-pain/",
+    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."
+  ]
+},
+tce: {
+  titulo: "Batida na cabeça (traumatismo leve)",
+  oque: "Você bateu a cabeça, mas o exame não mostrou sinal de lesão grave. Dor de cabeça leve, tontura e cansaço podem durar até 2 semanas e costumam passar sozinhos.",
+  cuidados: [
+    "Nas primeiras 24 horas, um adulto precisa ficar junto com você o tempo todo, para chamar ajuda se aparecer algum dos sinais abaixo.",
+    "Tome os remédios como está na sua receita.",
+    "Gelo enrolado num pano no local da batida alivia o inchaço. Use por alguns minutos, várias vezes ao dia.",
+    "Descanse. Pode dormir normalmente.",
+    "Não beba álcool, não use drogas e não tome remédio para dormir ou calmante sem orientação do médico.",
+    "Não dirija até estar totalmente recuperado. Volte ao trabalho ou à escola aos poucos. Esporte de contato, como futebol ou luta, só depois de pelo menos 3 semanas e sem nenhum sintoma.",
+    "Procure o posto de saúde se os sintomas durarem mais de 2 semanas."
+  ],
+  volte: [
+    "Dor de cabeça que piora, mesmo com o remédio.",
+    "Vomitou mais de uma vez.",
+    "Sonolência difícil de acordar, confusão ou comportamento diferente do normal.",
+    "Desmaio ou convulsão.",
+    "Fraqueza, dormência ou formigamento em braço ou perna, ou dificuldade para andar.",
+    "Fala enrolada, visão dupla ou embaçada.",
+    "Sai líquido claro ou sangue pelo nariz ou pelo ouvido.",
+    "Uma pupila (a bolinha preta do olho) fica maior que a outra."
+  ],
+  fontes: [
+    "NICE NG232. Head injury: assessment and early management, 2023, seção de alta: orientação escrita, adulto responsável junto nas primeiras 24 h, sinais para retorno. https://www.nice.org.uk/guidance/ng232",
+    "NHS. Head injury and concussion (revisado em 29/05/2025): gelo enrolado em pano, descanso, dormir normalmente, adulto junto por pelo menos 24 h; evitar álcool, drogas e remédio para dormir, não dirigir até recuperar, esporte de contato só após 3 semanas; sintomas até 2 semanas; sinais de emergência. https://www.nhs.uk/conditions/head-injury-and-concussion/",
+    "Valente JH et al. ACEP Clinical Policy: Mild Traumatic Brain Injury (Ann Emerg Med 2023;81:e63): orientação de alta e retorno. https://pubmed.ncbi.nlm.nih.gov/37085214/",
+    "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024, cap. 63, Traumatismo cranioencefálico: sinais de alerta na alta."
+  ]
+},
 };
 if (typeof module!=="undefined") module.exports={ALTA};

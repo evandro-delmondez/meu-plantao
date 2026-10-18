@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.13.2 — 2026-10-18
+- Correção: a barra de atalhos da conduta deixa de flutuar sobre o texto ao rolar (no celular ela cobria a conduta como um retângulo solto); fica fixa no topo da conduta, logo abaixo do cabeçalho dela.
+
 ## 1.13.1 — 2026-10-18
 - Correção: a barra de atalhos da conduta (Alarmes, Receita, Checklist, Fechar, Alta) ficava escondida atrás do cabeçalho fixo ao rolar e aparecia como um retângulo solto; agora gruda logo abaixo do cabeçalho, em qualquer tamanho de tela.
 

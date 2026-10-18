@@ -50,10 +50,10 @@ test("conduta: atalhos fixos levam à seção, secundário recolhido", async ({ 
   expect(erros).toEqual([]);
 });
 
-test("barra de atalhos gruda abaixo do cabeçalho, sem ficar escondida atrás dele", async ({ page }) => {
+test("barra de atalhos fica no topo da conduta e não flutua sobre o texto", async ({ page }) => {
   await abrir(page); await aba(page, "prescricoes");
   await conduta(page, "amigdalite");
+  expect(await page.evaluate(() => getComputedStyle(document.querySelector("#detail .atalhosconduta")).position)).not.toBe("sticky");
   await page.evaluate(() => window.scrollTo(0, 2500));
-  const [barTop, hdrBottom] = await page.evaluate(() => [document.querySelector("#detail .atalhosconduta").getBoundingClientRect().top, document.querySelector("header.top").getBoundingClientRect().bottom]);
-  expect(barTop).toBeGreaterThanOrEqual(hdrBottom - 2);
+  expect(await page.evaluate(() => document.querySelector("#detail .atalhosconduta").getBoundingClientRect().bottom)).toBeLessThan(0);   // rolou junto com a página
 });

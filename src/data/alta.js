@@ -434,7 +434,7 @@ cefaleia: {
   oque: "A maioria das dores de cabeça não é grave: vem de tensão, cansaço, fome, falta de sono ou enxaqueca. Costuma melhorar em algumas horas ou poucos dias.",
   cuidados: [
     "Tome os remédios como está na sua receita.",
-    "Se tiver febre, não tome anti-inflamatório por conta própria: se for dengue, aumenta o risco de sangramento.",
+    "Se aparecer febre, não tome anti-inflamatório, nem o que está na receita, até ser examinado de novo: se for dengue, aumenta o risco de sangramento.",
     "Beba bastante água, não fique muito tempo sem comer e procure dormir bem.",
     "Na crise, descanse num lugar calmo, com pouca luz e pouco barulho.",
     "Evite bebida alcoólica e muito tempo seguido olhando telas.",
@@ -467,7 +467,7 @@ lombalgia: {
     "Continue se movimentando e volte às atividades do dia a dia aos poucos. Ficar deitado na cama por muitos dias atrasa a melhora.",
     "Calor no local alivia: bolsa de água morna enrolada numa toalha, para não queimar a pele.",
     "Caminhar e fazer alongamentos leves ajudam a recuperar.",
-    "Se tiver febre ou dor no corpo todo, não tome anti-inflamatório por conta própria: se for dengue, aumenta o risco de sangramento.",
+    "Se aparecer febre ou dor no corpo todo, não tome anti-inflamatório, nem o que está na receita, até ser examinado de novo: se for dengue, aumenta o risco de sangramento.",
     "Procure o posto de saúde se a dor não melhorar em algumas semanas, se você já teve câncer ou se está perdendo peso sem explicação."
   ],
   volte: [
@@ -504,7 +504,7 @@ tce: {
     "Sonolência difícil de acordar, confusão ou comportamento diferente do normal.",
     "Desmaio ou convulsão.",
     "Fraqueza, dormência ou formigamento em braço ou perna, ou dificuldade para andar.",
-    "Fala enrolada, visão dupla ou embaçada.",
+    "Fala enrolada, visão dupla ou embaçada, ou dificuldade para ouvir.",
     "Sai líquido claro ou sangue pelo nariz ou pelo ouvido.",
     "Uma pupila (a bolinha preta do olho) fica maior que a outra."
   ],
@@ -520,7 +520,7 @@ vertigem: {
   oque: "É a sensação de que tudo está girando, quase sempre vinda do labirinto, que fica dentro do ouvido. Costuma melhorar em alguns dias a poucas semanas.",
   cuidados: [
     "Tome os remédios como está na sua receita. O remédio para tontura dá sono: não dirija nem mexa em máquinas enquanto estiver tomando.",
-    "Use o remédio para tontura só pelos dias da receita. Usado por muito tempo, ele atrasa a recuperação do labirinto.",
+    "O remédio para tontura que dá sono deve ser usado só pelos dias da receita: usado por muito tempo, ele atrasa a recuperação do labirinto.",
     "Na crise, deite-se parado num quarto calmo e escuro. Se a tontura vier de repente, sente-se logo para não cair.",
     "Mexa a cabeça devagar. Para sair da cama, sente-se primeiro na beirada por um minuto e só depois levante.",
     "Evite se curvar para pegar coisas no chão (agache) e esticar o pescoço para pegar coisas no alto.",
@@ -553,7 +553,7 @@ itu: {
     "Não segure a urina: vá ao banheiro sempre que tiver vontade.",
     "Evite café e bebida alcoólica enquanto estiver com ardência.",
     "Se a receita tem remédio para a ardência, a urina pode ficar laranja. Isso é esperado.",
-    "Se tiver febre, não tome anti-inflamatório por conta própria: se for dengue, aumenta o risco de sangramento."
+    "Se aparecer febre, não tome anti-inflamatório, nem o que está na receita, até ser examinado de novo: se for dengue, aumenta o risco de sangramento."
   ],
   volte: [
     "Febre, calafrios ou tremedeira. Se você já saiu daqui com febre, volte se ela não melhorar em 2 dias de antibiótico.",
@@ -566,7 +566,7 @@ itu: {
   ],
   fontes: [
     "Gupta K et al. IDSA/ESCMID International Clinical Practice Guidelines for Acute Uncomplicated Cystitis and Pyelonephritis in Women (Clin Infect Dis 2011;52:e103): tratamento completo; reavaliar se não melhora.",
-    "Trautner BW et al. IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections (Clin Infect Dis 2026;82 Supl 3): pielonefrite e sinais de gravidade. https://www.idsociety.org/practice-guideline/complicated-urinary-tract-infections/",
+    "Trautner BW et al. IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections (Clin Infect Dis 2025, publicado online em 17/07/2025; doi:10.1093/cid/ciaf462): pielonefrite e sinais de gravidade. https://www.idsociety.org/practice-guideline/complicated-urinary-tract-infections/",
     "ACOG Clinical Consensus No. 4: Urinary Tract Infections in Pregnant Individuals (Obstet Gynecol 2023;142:435): gestante com febre ou dor lombar tem pielonefrite e precisa de internação.",
     "NICE NG109. Urinary tract infection (lower): antimicrobial prescribing, 2018: beber líquidos suficientes; reavaliar se piora ou sintomas de pielonefrite (febre, dor lombar, náusea ou vômitos). https://www.nice.org.uk/guidance/ng109",
     "NHS. Urinary tract infections (revisado em 11/07/2025): beber o suficiente para a urina ficar clara, evitar café e álcool; procurar atendimento se febre ou tremedeira, dor nas costas abaixo das costelas, sangue na urina, sem melhora em 48 h; emergência se confusão ou sonolência. https://www.nhs.uk/conditions/urinary-tract-infections-utis/",
@@ -638,7 +638,7 @@ entorse: {
     "Tome e use os remédios como está na sua receita.",
     "Nos primeiros dias, ponha gelo enrolado num pano por 15 a 20 minutos, várias vezes ao dia. Não coloque o gelo direto na pele.",
     "Sempre que estiver sentado ou deitado, deixe o pé elevado, apoiado em travesseiros.",
-    "Use a tornozeleira ou a faixa como foi orientado. Pise e caminhe aos poucos, até onde a dor deixar: o movimento ajuda a recuperar.",
+    "Use a tornozeleira ou a faixa como foi orientado. Nos primeiros 1 a 2 dias, poupe o pé; depois pise e caminhe aos poucos, até onde a dor deixar: o movimento ajuda a recuperar.",
     "Faça desde cedo os exercícios leves de mexer o pé, como foi ensinado.",
     "Nos primeiros 2 dias, evite calor no local (banho quente, bolsa quente), bebida alcoólica e massagem. Evite esporte e esforço forte até o tornozelo melhorar.",
     "Procure o posto de saúde se a dor ou a sensação de tornozelo frouxo continuarem depois de 3 a 5 dias."

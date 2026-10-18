@@ -562,10 +562,11 @@ const BASE = [
   "cat": "dor",
   "cid": "M54.5",
   "sin": "dor nas costas lombar muscular mialgia contratura",
-  "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).\nOu\n1) Paracetamol 750mg ------------------------- 20 cp\nTomar 1 cp VO de 6/6h se dor (no máximo 4 cp por dia).\n2) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\nOu\n2) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n3) Ciclobenzaprina 5mg ----------------------- 10 cp\nTomar 1 cp VO à noite por até 10 dias. Pode dar sono: não dirigir. Evitar em idosos.\n4) Tramadol 50mg ----------------------------- 10 cp\nTomar 1 cp VO de 8/8h somente se dor intensa que não melhora com os anteriores, por até 5 dias (no máximo 3 cp por dia).",
+  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias (só se dengue descartada; não usar na gestação, na doença renal nem com úlcera).\nOu\n1) Diclofenaco de sódio 50mg ----------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias (só se dengue descartada; não usar na gestação, na doença renal nem com úlcera).\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor, junto com o anti-inflamatório ou sozinha se ele for contraindicado (no máximo 8 cp por dia).\nOu\n2) Paracetamol 750mg ------------------------- 20 cp\nTomar 1 cp VO de 6/6h se dor, junto com o anti-inflamatório ou sozinho se ele for contraindicado (no máximo 4 cp por dia).\n3) Ciclobenzaprina 5mg ----------------------- 10 cp\nTomar 1 cp VO à noite por até 10 dias. Pode dar sono: não dirigir. Evitar em idosos.\n4) Tramadol 50mg ----------------------------- 10 cp\nTomar 1 cp VO de 8/8h somente se dor intensa que não melhora com os anteriores, por até 5 dias (no máximo 3 cp por dia).",
   "unidade": "1) Cetoprofeno 100 mg IM (ampola 50 mg/mL, 2 mL) ou EV (apresentação própria para EV, em 100 mL de SF em 20–30 min)\n   + Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.",
   "orient": "- Manter-se ativo, evitar repouso absoluto; calor local.\n- Retorno imediato se: perda de força nas pernas, alteração urinária/fecal, anestesia em sela, febre, trauma, câncer prévio, perda de peso.\n- CID dorsalgia M54.9 | mialgia M79.1.\n- Dor no corpo com febre: pensar em dengue e não usar anti-inflamatório (ibuprofeno, diclofenaco, cetoprofeno) até descartá-la.",
   "rev": [
+   "Corrigido (2026-10-17): anti-inflamatório (ibuprofeno ou diclofenaco) passa a item 1, com ressalva de dengue, gestação, doença renal e úlcera; dipirona ou paracetamol viram item 2, junto com o anti-inflamatório ou sozinhos se ele for contraindicado (NICE NG59, rec. 1.2.13–1.2.14: não oferecer paracetamol isolado; ACP 2017; MS Dengue 2024).",
    "Corrigido (2026-10-17): teto da dipirona (8 cp por dia), do paracetamol (4 cp por dia) e do tramadol (3 cp por dia, até 5 dias); ciclobenzaprina com alerta de sono e no idoso; dexametasona retirada (sem benefício, ACP 2017; NICE NG59); alerta de dengue na mialgia (CDC 2022; Beers 2023; MS Dengue 2024).",
    "Ajustado: tramadol somente se dor intensa (não fixo por 5 dias).",
    "Adicionado: sinais de alarme (bandeiras vermelhas).",
@@ -1898,13 +1899,15 @@ const BASE = [
   "sin": "abdome agudo apendicite dor na barriga",
   "casa": "",
   "unidade": "1) Sinais de alarme: instabilidade, peritonite, dor desproporcional ao exame (isquemia mesentérica), idoso, imunossuprimido, gestante. Febre nos últimos 7 dias com dor abdominal intensa e contínua: dengue com sinal de alarme (grupo C) até prova em contrário; não usar anti-inflamatório.\n2) Beta-hCG em toda mulher em idade fértil.\n3) ECG em idosos/dor epigástrica (SCA pode se apresentar como dor abdominal).\n4) Analgesia precoce não atrasa nem mascara o diagnóstico: dipirona 1 g EV lenta (no máximo 1 mL/min, paciente deitado). Se intensa: morfina 0,05 mg/kg (cerca de 2,5 a 5 mg) EV lenta, repetir a cada 20 min até controlar a dor (diluir 10 mg em 9 mL = 1 mg/mL). Idoso e doente renal: começar com metade.\n5) Exames e imagem conforme a hipótese (USG, TC).",
-  "orient": "",
+  "orient": "- Alta só com dor controlada, exame sem peritonite e sinais vitais normais; beta-hCG negativo na mulher em idade fértil.\n- Retorno imediato se: dor que piora, fica contínua ou migra (fossa ilíaca direita), abdome rígido, vômitos persistentes ou com sangue, febre, parada de gases e fezes, melena ou enterorragia, síncope; sangramento vaginal ou atraso menstrual.\n- Febre nos últimos 7 dias com dor abdominal intensa e contínua: dengue com sinal de alarme; não usar anti-inflamatório.",
   "fontes": [
    "Manterola C, Vial M, Moraga J, Astudillo P. Analgesia in patients with acute abdominal pain (Cochrane Database Syst Rev 2011;CD005660): opioides não aumentaram erro diagnóstico.",
    "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. 25, Dor abdominal (sinais de alarme, beta-hCG, ECG, morfina 0,05 mg/kg a cada 20 min).",
-   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024."
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024.",
+   "Cartwright SL, Knudson MP. Evaluation of acute abdominal pain in adults (Am Fam Physician 2008;77:971): dor que migra, peritonite, obstrução, sangramento, gravidez ectópica."
   ],
   "rev": [
+   "Corrigido (2026-10-17): orientação de alta e de retorno (dor que piora, fica contínua ou migra, abdome rígido, vômitos, febre, parada de gases e fezes, sangramento, síncope, sangramento vaginal ou atraso menstrual) e alerta de dengue (HC-FMUSP 18ª ed., cap. 25; Cartwright & Knudson, AFP 2008; MS Dengue 2024).",
    "Corrigido (2026-10-17): morfina 0,1 → 0,05 mg/kg EV a cada 20 min, com metade no idoso e no doente renal; dipirona EV lenta (HC-FMUSP 18ª ed., cap. 25; fichas morfina e dipirona); febre com dor abdominal intensa entra como alarme de dengue (MS, Dengue, 6ª ed., 2024).",
    "Item novo."
   ]
@@ -1917,15 +1920,17 @@ const BASE = [
   "sin": "traumatismo cranioencefalico concussao batida cabeca queda",
   "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor de cabeça (no máximo 8 cp por dia).",
   "unidade": "Regra canadense de TC de crânio (adulto ≥ 16 anos, Glasgow 13–15 com perda de consciência, amnésia ou desorientação testemunhada).\nTC indicada se qualquer um:\nAlto risco (lesão neurocirúrgica):\n- Glasgow < 15 duas horas após o trauma\n- Suspeita de fratura aberta ou com afundamento\n- Sinal de fratura de base de crânio (hemotímpano, olhos de guaxinim, rinorreia/otorreia liquórica, sinal de Battle)\n- Vômitos ≥ 2 episódios\n- Idade ≥ 65 anos\nMédio risco (lesão na TC):\n- Amnésia retrógrada ≥ 30 min\n- Mecanismo perigoso (atropelamento, ejeção do veículo, queda > 1 m ou > 5 degraus)\n\nA regra não se aplica (exclusões): < 16 anos, uso de anticoagulante ou coagulopatia, convulsão pós-trauma, fratura aberta evidente. Anticoagulado (varfarina, rivaroxabana, apixabana, dabigatrana, heparina) ou com coagulopatia: fazer TC, mesmo sem outro critério (idealmente em até 8 h). Convulsão ou fratura aberta: TC.\nCriança: usar a regra PECARN.",
-  "orient": "- Alta com um adulto que fique junto nas primeiras 24 h; retorno imediato se piora da dor de cabeça, vômitos repetidos, sonolência difícil de acordar, confusão, convulsão, fraqueza, alteração da fala ou da visão, ou saída de líquido claro pelo nariz ou ouvido.\n- Evitar álcool, calmantes e esporte de contato até melhorar; voltar às atividades aos poucos.",
+  "orient": "- Alta com um adulto que fique junto nas primeiras 24 h; retorno imediato se piora da dor de cabeça, vômitos repetidos, sonolência difícil de acordar, confusão, convulsão, fraqueza, alteração da fala ou da visão, ou saída de líquido claro pelo nariz ou ouvido.\n- Evitar álcool e calmantes até melhorar; esporte de contato só após pelo menos 3 semanas e sem sintomas; voltar às atividades aos poucos.",
   "fontes": [
    "Stiell IG et al. The Canadian CT Head Rule for patients with minor head injury (Lancet 2001;357:1391). https://pubmed.ncbi.nlm.nih.gov/11356436/",
    "Valente JH et al. Clinical Policy: Critical Issues in the Management of Adult Patients Presenting to the Emergency Department With Mild Traumatic Brain Injury — ACEP (Ann Emerg Med 2023;81:e63). https://pubmed.ncbi.nlm.nih.gov/37085214/",
    "NICE NG232. Head injury: assessment and early management, 2023 (TC em até 8 h para anticoagulado, exceto AAS isolado; alta com adulto responsável nas primeiras 24 h e sinais para retorno).",
    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 63, Traumatismo cranioencefálico.",
-   "Ficha dipirona: máximo de 4 g por dia (EMA 2024)."
+   "Ficha dipirona: máximo de 4 g por dia (EMA 2024).",
+   "NHS. Head injury and concussion (revisado em 29/05/2025): não praticar esporte de contato por pelo menos 3 semanas. https://www.nhs.uk/conditions/head-injury-and-concussion/"
   ],
   "rev": [
+   "Corrigido (2026-10-17): esporte de contato só após pelo menos 3 semanas e sem sintomas (NHS Head injury and concussion 2025; NICE NG232 2023).",
    "Corrigido (2026-10-17): TC para todo anticoagulado ou com coagulopatia, mesmo sem outro critério (antes: baixo limiar); teto da dipirona (8 cp por dia); adulto junto nas primeiras 24 h e o que evitar; fontes completas (NICE NG232 2023; ACEP 2023; HC-FMUSP 18ª ed.).",
    "Item novo."
   ]
@@ -1936,16 +1941,19 @@ const BASE = [
   "cat": "dor",
   "cid": "S93.4",
   "sin": "torcao pe tornozelo trauma musculoesqueletico",
-  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 5 dias.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).\n\nUso tópico (alternativa ao AINE oral)\n3) Diclofenaco dietilamônio gel -------------- 1 bisnaga\nAplicar no local 3 a 4x ao dia por até 7 dias.",
+  "casa": "Uso oral\n1) Ibuprofeno 600mg -------------------------- 15 cp\nTomar 1 cp VO de 8/8h, após as refeições, por até 5 dias (só se dengue descartada; não usar na gestação nem na doença renal).\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).\n\nUso tópico (alternativa ao AINE oral)\n3) Diclofenaco dietilamônio gel -------------- 1 bisnaga\nAplicar no local 3 a 4x ao dia por até 7 dias.",
   "unidade": "Regras de Ottawa — RX indicado se dor maleolar/mediopé E qualquer um:\n- Dor à palpação dos 6 cm distais da borda posterior ou ponta do maléolo lateral ou medial.\n- Dor à palpação da base do 5º metatarso ou do navicular.\n- Incapacidade de dar 4 passos (logo após o trauma e na emergência).",
-  "orient": "- Gelo 15–20 min várias vezes ao dia nos primeiros dias; elevação do membro.\n- Tratamento funcional (tornozeleira/órtese e carga conforme tolerância) é preferível à imobilização rígida.\n- Iniciar exercícios de mobilidade e propriocepção precocemente.",
+  "orient": "- Gelo 15–20 min várias vezes ao dia nos primeiros dias; elevação do membro.\n- Tratamento funcional (tornozeleira/órtese e carga conforme tolerância) é preferível à imobilização rígida: poupar o pé nos primeiros 1 a 2 dias e depois apoiar aos poucos, conforme a dor.\n- Iniciar exercícios de mobilidade e propriocepção precocemente.\n- Retorno se pé frio, pálido ou arroxeado, dormência, piora importante da dor ou do inchaço, ou incapacidade de apoiar; reavaliar em 3 a 5 dias se dor ou instabilidade persistirem.",
   "fontes": [
    "Bachmann LM et al. Accuracy of Ottawa ankle rules to exclude fractures: systematic review (BMJ 2003;326:417). https://www.ncbi.nlm.nih.gov/books/NBK69576/",
    "Stiell IG et al. Decision rules for the use of radiography in acute ankle injuries: refinement and prospective validation (JAMA 1993;269:1127).",
    "Vuurberg G et al. Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline (Br J Sports Med 2018;52(15):956): tratamento funcional melhor que imobilização; AINE por curto período para dor e edema; reexame em 3–5 dias. https://doi.org/10.1136/bjsports-2017-098106",
-   "Ficha dipirona: máximo de 4 g por dia (EMA 2024)."
+   "Ficha dipirona: máximo de 4 g por dia (EMA 2024).",
+   "NHS. Sprains and strains (revisado em 23/04/2024): emergência se dormência ou formigamento, pele azulada ou fria, deformidade; procurar atendimento se não consegue apoiar ou o inchaço piora. https://www.nhs.uk/conditions/sprains-and-strains/",
+   "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."
   ],
   "rev": [
+   "Corrigido (2026-10-17): ibuprofeno por até 5 dias com ressalva de dengue, gestação e doença renal (MS Dengue 2024; padrão das demais condutas); orientação de poupar o pé 1 a 2 dias e depois apoiar aos poucos, e sinais de retorno (Vuurberg BJSM 2018; NHS Sprains and strains 2024).",
    "Corrigido (2026-10-17): teto da dipirona (8 cp por dia); fontes completas (Ottawa, Stiell 1993; Vuurberg 2018; ficha dipirona).",
    "Item novo."
   ]

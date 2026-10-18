@@ -732,7 +732,7 @@
   ],
   "renal": "Sem ajuste em IR leve a moderada. Hemodiálise: removido na diálise — considerar dose suplementar após a sessão (bula FDA).",
   "hepatica": "Child-Pugh C: reduzir dose em 50%.",
-  "gestacao": "PCDT IST 2022 e CDC 2021: pode ser usado em qualquer trimestre na vaginose e na tricomoníase (1ª opção, inclusive gestantes). A bula FDA desaconselha o esquema de dose única de 2 g no 1º trimestre.",
+  "gestacao": "PCDT IST 2022 (quadros 34 e 35) e CDC 2021: pode ser usado em qualquer trimestre, na vaginose e na tricomoníase. A bula FDA é mais restritiva: não tratar tricomoníase no 1º trimestre e não usar o esquema de 1 dia (2 g) na gestação; o CDC 2021 prefere 500 mg 12/12h por 7 dias na gestante com tricomoníase. Divergência: o PCDT IST 2022 (quadro 35) usa 2 g dose única inclusive na gestante.",
   "lactacao": "Concentração no leite semelhante à sérica; pode ordenhar e descartar por 24h após o término (bula FDA).",
   "contraindicacoes": [
    "Hipersensibilidade a nitroimidazóis.",
@@ -747,8 +747,8 @@
   "fontes": [
    "FDA label Metronidazole tablets (DailyMed)",
    "FDA label Metronidazole injection (DailyMed)",
-   "Ministério da Saúde — PCDT Atenção Integral às Pessoas com IST, 2022, quadro 34 (vaginose, inclusive na gestação e na lactação). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
-   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — metronidazol em qualquer trimestre.",
+   "Ministério da Saúde — PCDT Atenção Integral às Pessoas com IST, 2022, quadros 34 e 35 (vaginose e tricomoníase, inclusive na gestação e na lactação). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
+   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — metronidazol em qualquer trimestre; tricomoníase na gestante: 500 mg 12/12h por 7 dias.",
    "FDA label Flagyl (DailyMed)",
    "Guia Farmacêutico Hospital Sírio-Libanês — Metronidazol",
    "RENAME 2024"

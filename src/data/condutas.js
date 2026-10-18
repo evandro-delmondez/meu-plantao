@@ -643,9 +643,10 @@ const BASE = [
   "cid": "R73.9",
   "sin": "glicemia alta diabetes dm insulina",
   "casa": "",
-  "unidade": "Insulina regular SC (ou análogo rápido) conforme a glicemia capilar, pela escala de correção da SBD 2026. Coluna usual; entre parênteses, sensível (idoso, frágil, IMC < 19, disfunção de órgão) e resistente (IMC > 33, corticoide, hiperglicemia persistente). A diretriz orienta aplicar até 15 min antes da refeição.\n141–180 mg/dL: 1 unidade (sensível 0; resistente 2 unidades)\n181–220 mg/dL: 2 unidades (sensível 1; resistente 4)\n221–260 mg/dL: 3 unidades (sensível 1; resistente 6)\n261–300 mg/dL: 4 unidades (sensível 2; resistente 8)\n301–340 mg/dL: 5 unidades (sensível 2; resistente 10)\n341–380 mg/dL: 6 unidades (sensível 3; resistente 12)\n381–420 mg/dL: 7 unidades (sensível 3; resistente 14)\n> 420 mg/dL: 8 unidades (sensível 4; resistente 16) e avisar o médico\n\n* Se glicemia > 250 com vômitos, dor abdominal, taquipneia ou rebaixamento: investigar CAD/EHH (gasometria, cetonúria, eletrólitos). Não tratar só com escala SC.",
+  "unidade": "Insulina regular SC (ou análogo rápido) conforme a glicemia capilar, pela escala de correção da SBD 2026. Coluna usual; entre parênteses, sensível (idoso, frágil, IMC < 19, disfunção de órgão) e resistente (IMC > 33, corticoide, hiperglicemia persistente). Insulina regular 30 min antes da refeição; análogo rápido até 15 min antes; em dieta zero ou contínua, a cada 4–6 h.\n141–180 mg/dL: 1 unidade (sensível 0; resistente 2 unidades)\n181–220 mg/dL: 2 unidades (sensível 1; resistente 4)\n221–260 mg/dL: 3 unidades (sensível 1; resistente 6)\n261–300 mg/dL: 4 unidades (sensível 2; resistente 8)\n301–340 mg/dL: 5 unidades (sensível 2; resistente 10)\n341–380 mg/dL: 6 unidades (sensível 3; resistente 12)\n381–420 mg/dL: 7 unidades (sensível 3; resistente 14)\n> 420 mg/dL: 8 unidades (sensível 4; resistente 16) e avisar o médico\n\n* Se glicemia > 250 com vômitos, dor abdominal, taquipneia ou rebaixamento: investigar CAD/EHH (gasometria, cetonúria, eletrólitos). Não tratar só com escala SC.",
   "orient": "- Escala isolada de insulina é desencorajada no paciente internado (ADA 2026; SBD 2026): serve só para correção pontual de hiperglicemia ocasional; hiperglicemia persistente (2 ou mais glicemias > 180 mg/dL em 24 h) pede insulina basal.\n- Revisar adesão e ajustar a medicação de uso contínuo com o clínico.\n- CID: DM2 descompensado E11.9.",
   "rev": [
+   "Corrigido (2026-10-17): horário da aplicação: insulina regular 30 min antes da refeição, análogo rápido até 15 min antes, dieta zero ou contínua a cada 4–6 h (SBD 2026, tabela 3 e quadro 2).",
    "Corrigido (2026-10-17): \"UI\" → \"unidades\" (ISMP); escala trocada pela publicada na diretriz da SBD 2026 (tabela 3, colunas usual, sensível e resistente); ADA 2026 e consenso de crises hiperglicêmicas 2024 nas fontes (SBD 2026; ADA 2026; ISMP Brasil 2015).",
    "Adicionado: alerta para cetoacidose/estado hiperosmolar."
   ],
@@ -664,8 +665,9 @@ const BASE = [
   "sin": "glicemia baixa hipo",
   "casa": "",
   "unidade": "Glicemia < 70 mg/dL:\n\n# Consciente e capaz de engolir:\n15–20g de carboidrato VO (1 copo de suco ou 1 colher de sopa de açúcar em água). Repetir a glicemia em 15 min.\n\n# Rebaixado ou sem via oral:\n1) Tiamina 100mg EV (se etilismo ou desnutrição), junto com a glicose — não atrasar a glicose.\n2) Glicose 50% 40–50 mL EV em veia calibrosa (4–5 amp de 10 mL)\n   Ou Glicose 10% 150–250 mL EV.\n3) Repetir a glicemia em 15 min e manter soro glicosado 10% se necessário.",
-  "orient": "- Após recuperação, alimentar o paciente.\n- Hipoglicemia por sulfonilureia (glibenclamida, gliclazida, glimepirida), insulina de ação longa ou doença renal crônica: observar 12 a 24 h com glicemia capilar de hora em hora. Sulfonilureia com hipoglicemia que volta: octreotide (ver cartão de intoxicação).",
+  "orient": "- Após recuperação, alimentar o paciente.\n- Hipoglicemia por sulfonilureia (glibenclamida, gliclazida, glimepirida), insulina de ação longa ou doença renal crônica: observar 12 a 24 h com glicemia capilar de hora em hora.\n- Sulfonilureia: depois da glicose EV, octreotide 50 mcg SC ou EV e 50 mcg a cada 6 h (uso fora da bula; ver cartão de intoxicação); liberar só 12 h após suspender a glicose EV e o octreotide.",
   "rev": [
+   "Corrigido (2026-10-17): sulfonilureia igual ao cartão de intoxicação: octreotide 50 mcg logo após a glicose EV e depois de 6/6h; liberar 12 h após suspender glicose EV e octreotide (Klein-Schwartz 2016; Glatstein 2012).",
    "Corrigido (2026-10-17): ADA 2026; tempo de observação de 12 a 24 h; octreotide coerente com o cartão de intoxicação (ADA 2026; HC-FMUSP 18ª ed., cap. 88; Klein-Schwartz 2016).",
    "Corrigido: tiamina junto com a glicose, sem atrasá-la (Schabelman 2012), em vez de antes.",
    "Unificado: as duas seções de hipoglicemia do modelo.",
@@ -675,7 +677,8 @@ const BASE = [
   "fontes": [
    "American Diabetes Association. Standards of Care in Diabetes—2026, seção 6, Glycemic Goals and Hypoglycemia (Diabetes Care 2026;49 Suppl 1) — 15–20 g de glicose VO, repetir em 15 min; glucagon se não puder engolir.",
    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 88, Hipoglicemia (glicose EV 15–20 g, até 50 g; glucagon 1–2 mg IM sem acesso; tiamina junto; observar 12–24 h com glicemia de hora em hora se risco de recorrência).",
-   "Klein-Schwartz W et al. Treatment of sulfonylurea and insulin overdose (Br J Clin Pharmacol 2016;81:496) — octreotide na hipoglicemia por sulfonilureia."
+   "Klein-Schwartz W, Stassinos GL, Isbister GK. Treatment of sulfonylurea and insulin overdose (Br J Clin Pharmacol 2016;81:496) — glicose EV e depois octreotide; observar 12 h após suspender glicose e octreotide.",
+   "Glatstein M, Scolnik D, Bentur Y. Octreotide for the treatment of sulfonylurea poisoning (Clin Toxicol 2012;50:795) — adulto 50 mcg SC ou EV, seguido de 50 mcg a cada 6 h."
   ]
  },
  {
@@ -981,15 +984,16 @@ const BASE = [
   "cid": "E05.9",
   "sin": "tireoide graves tireotoxicose",
   "casa": "(Iniciar o antitireoidiano só com TSH suprimido, T4 livre alto e causa provável de Graves ou bócio tóxico; tireoidite — dor na tireoide, pós-parto, amiodarona — trata-se só com betabloqueador.)\nUso oral\n1) Tiamazol 5mg (Tapazol) -------------------- 45 cp\nTomar 3 cp (15 mg) VO 1 vez ao dia e retornar em 15 dias para reavaliação.\nOu (gestante no 1º trimestre)\n1) Propiltiouracil 100mg (Propil) ------------ 45 cp\nTomar 1 cp VO de 8/8h e retornar em 15 dias para reavaliação.\n2) Propranolol 40mg -------------------------- 45 cp\nTomar 1 cp VO de 8/8h (se taquicardia/tremor; evitar em asma).",
-  "unidade": "Crise tireotóxica (febre, agitação ou confusão, taquicardia intensa ou FA, insuficiência cardíaca, vômitos ou icterícia; Burch-Wartofsky ≥ 45): não é caso de alta. Propranolol 40–80 mg VO, propiltiouracil 600 mg VO ou por sonda de ataque, hidrocortisona 100 mg EV e vaga de UTI; iodo só 1 h depois do propiltiouracil.",
+  "unidade": "Crise tireotóxica (febre, agitação ou confusão, taquicardia intensa ou FA, insuficiência cardíaca, vômitos ou icterícia; Burch-Wartofsky ≥ 45): não é caso de alta. Propranolol 40–80 mg VO a cada 4–6 h; propiltiouracil 600 mg VO ou por sonda de ataque e depois 200–250 mg a cada 4 h; hidrocortisona 300 mg EV de ataque e 100 mg EV a cada 8 h; vaga de UTI; iodo só 1 h depois do propiltiouracil.",
   "orient": "- Suspender e procurar atendimento se febre, dor de garganta ou feridas na boca (risco de agranulocitose), ou se pele ou olhos amarelos, urina escura ou dor na barriga (risco de lesão do fígado, sobretudo com o propiltiouracil).\n- Solicitar TSH, T4 livre, hemograma e TGO/TGP; encaminhar ao endocrinologista.",
   "rev": [
+   "Corrigido (2026-10-17): crise tireotóxica com intervalos e manutenção: propranolol a cada 4–6 h; propiltiouracil 200–250 mg de 4/4h após o ataque; hidrocortisona 300 mg de ataque e 100 mg de 8/8h (ATA 2016, tempestade tireoidiana; HC-FMUSP 18ª ed., cap. 90).",
    "Corrigido (2026-10-17): crise tireotóxica fora da receita de casa e com conduta de UTI na unidade; tiamazol 15 mg em dose única diária e só com diagnóstico confirmado; alerta de hepatotoxicidade (ATA 2016; SBEM 2013; HC-FMUSP 18ª ed., cap. 90).",
    "Corrigido (importante): propiltiouracil 5mg não existe; apresentação é 100mg.",
    "Adicionado: indicação do PTU, alerta de agranulocitose e exames."
   ],
   "fontes": [
-   "Ross DS et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis (Thyroid 2016;26:1343) — confirmar a causa antes do antitireoidiano; metimazol em dose única diária (10–20 mg se T4 livre 1,5–2 vezes o limite); alerta escrito de agranulocitose e hepatotoxicidade; tempestade tireoidiana.",
+   "Ross DS et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis (Thyroid 2016;26:1343) — confirmar a causa antes do antitireoidiano; metimazol em dose única diária (10–20 mg se T4 livre 1,5–2 vezes o limite); alerta escrito de agranulocitose e hepatotoxicidade; tempestade tireoidiana: propranolol 60–80 mg a cada 4 h, propiltiouracil 500–1.000 mg de ataque e 250 mg a cada 4 h, hidrocortisona 300 mg de ataque e 100 mg a cada 8 h.",
    "Maia AL et al. Consenso brasileiro para o diagnóstico e tratamento do hipertireoidismo: recomendações do Departamento de Tireoide da SBEM (Arq Bras Endocrinol Metab 2013;57:205).",
    "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024 — cap. 90, Crise tireotóxica (UTI; propiltiouracil 600–1.000 mg de ataque; propranolol 40–80 mg VO; hidrocortisona; iodo 1–3 h após o antitireoidiano).",
    "FDA. Propylthiouracil — bula, alerta em tarja: lesão hepática grave."

@@ -515,5 +515,93 @@ tce: {
     "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024, cap. 63, Traumatismo cranioencefálico: sinais de alerta na alta."
   ]
 },
+vertigem: {
+  titulo: "Tontura que gira (labirintite ou vertigem)",
+  oque: "É a sensação de que tudo está girando, quase sempre vinda do labirinto, que fica dentro do ouvido. Costuma melhorar em alguns dias a poucas semanas.",
+  cuidados: [
+    "Tome os remédios como está na sua receita. O remédio para tontura dá sono: não dirija nem mexa em máquinas enquanto estiver tomando.",
+    "Use o remédio para tontura só pelos dias da receita. Usado por muito tempo, ele atrasa a recuperação do labirinto.",
+    "Na crise, deite-se parado num quarto calmo e escuro. Se a tontura vier de repente, sente-se logo para não cair.",
+    "Mexa a cabeça devagar. Para sair da cama, sente-se primeiro na beirada por um minuto e só depois levante.",
+    "Evite se curvar para pegar coisas no chão (agache) e esticar o pescoço para pegar coisas no alto.",
+    "Deixe uma luz acesa se for levantar à noite e tire do caminho tapetes e objetos que façam tropeçar.",
+    "Depois que a crise melhorar, volte a se movimentar aos poucos: isso ajuda o labirinto a se acostumar."
+  ],
+  volte: [
+    "Não consegue ficar em pé ou andar, mesmo apoiado.",
+    "Visão dupla, fala enrolada ou dificuldade para engolir.",
+    "Fraqueza, dormência ou formigamento no rosto, num braço ou numa perna.",
+    "Dor de cabeça forte e repentina, ou dor forte na nuca.",
+    "Perda da audição de repente.",
+    "Vômitos que não param e não deixam você beber água nem tomar o remédio.",
+    "Febre alta junto com a tontura."
+  ],
+  fontes: [
+    "Edlow JA et al. GRACE-3: Acute dizziness and vertigo in the emergency department (Acad Emerg Med 2023;30:442): sinais de AVC; supressor vestibular por poucos dias, pois atrasa a compensação; reabilitação vestibular. https://doi.org/10.1111/acem.14728",
+    "Bhattacharyya N et al. AAO-HNS Clinical Practice Guideline: Benign Paroxysmal Positional Vertigo (Update) (Otolaryngol Head Neck Surg 2017;156:S1): não usar supressor vestibular de rotina; risco de queda.",
+    "NHS. Vertigo (revisado em 02/05/2023): deitar no escuro na crise, mexer a cabeça devagar, sentar ao ficar tonto, luz à noite, sentar na beirada antes de levantar, não se curvar nem esticar o pescoço; pronto-socorro se visão dupla, perda de audição, fala alterada, fraqueza ou dormência; procurar atendimento se dor de cabeça forte, vômitos ou febre alta. https://www.nhs.uk/conditions/vertigo/",
+    "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71:2052): anti-histamínico de 1ª geração e benzodiazepínico aumentam sonolência e quedas no idoso."
+  ]
+},
+itu: {
+  titulo: "Infecção urinária",
+  oque: "É uma infecção da urina causada por bactéria, quase sempre na bexiga; às vezes sobe até o rim e dá febre e dor nas costas. Com o antibiótico, a melhora costuma começar em 1 a 2 dias.",
+  cuidados: [
+    "Tome os remédios como está na sua receita.",
+    "Tome o antibiótico até o último dia da receita, mesmo que melhore antes.",
+    "Beba bastante água ao longo do dia, até a urina ficar clarinha, se o seu médico não pediu para limitar os líquidos.",
+    "Não segure a urina: vá ao banheiro sempre que tiver vontade.",
+    "Evite café e bebida alcoólica enquanto estiver com ardência.",
+    "Se a receita tem remédio para a ardência, a urina pode ficar laranja. Isso é esperado.",
+    "Se tiver febre, não tome anti-inflamatório por conta própria: se for dengue, aumenta o risco de sangramento."
+  ],
+  volte: [
+    "Febre, calafrios ou tremedeira. Se você já saiu daqui com febre, volte se ela não melhorar em 2 dias de antibiótico.",
+    "Dor nas costas, logo abaixo das costelas, ou dor de um lado da barriga.",
+    "Vômitos que não deixam você tomar o remédio.",
+    "Confusão, muita sonolência, tontura forte ou desmaio.",
+    "A ardência não melhorou depois de 2 dias de antibiótico, ou piorou.",
+    "Sangue na urina.",
+    "Se você está grávida: febre, dor nas costas, dor ou endurecimento da barriga, ou sangramento pela vagina."
+  ],
+  fontes: [
+    "Gupta K et al. IDSA/ESCMID International Clinical Practice Guidelines for Acute Uncomplicated Cystitis and Pyelonephritis in Women (Clin Infect Dis 2011;52:e103): tratamento completo; reavaliar se não melhora.",
+    "Trautner BW et al. IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections (Clin Infect Dis 2026;82 Supl 3): pielonefrite e sinais de gravidade. https://www.idsociety.org/practice-guideline/complicated-urinary-tract-infections/",
+    "ACOG Clinical Consensus No. 4: Urinary Tract Infections in Pregnant Individuals (Obstet Gynecol 2023;142:435): gestante com febre ou dor lombar tem pielonefrite e precisa de internação.",
+    "NICE NG109. Urinary tract infection (lower): antimicrobial prescribing, 2018: beber líquidos suficientes; reavaliar se piora ou sintomas de pielonefrite (febre, dor lombar, náusea ou vômitos). https://www.nice.org.uk/guidance/ng109",
+    "NHS. Urinary tract infections (revisado em 11/07/2025): beber o suficiente para a urina ficar clara, evitar café e álcool; procurar atendimento se febre ou tremedeira, dor nas costas abaixo das costelas, sangue na urina, sem melhora em 48 h; emergência se confusão ou sonolência. https://www.nhs.uk/conditions/urinary-tract-infections-utis/",
+    "Bula Pyridium (fenazopiridina, Anvisa): urina alaranjada.",
+    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."
+  ]
+},
+colica: {
+  titulo: "Cólica de rim ou de vesícula (pedra)",
+  oque: "É uma dor forte, que vem em ondas, causada por uma pedra no caminho da urina ou na vesícula, a bolsa da bile que fica embaixo do fígado. A pedra pequena no caminho da urina costuma sair sozinha pela urina em alguns dias ou semanas.",
+  cuidados: [
+    "Tome os remédios como está na sua receita. Alguns podem dar sono: se for o seu caso, não dirija.",
+    "Não tome outros remédios para dor por conta própria. Se aparecer febre, volte ao pronto-socorro.",
+    "Pedra no rim: beba bastante água, de 2,5 a 3 litros por dia, se o seu médico não pediu para limitar os líquidos. A urina deve ficar clarinha.",
+    "Pedra no rim: evite refrigerante, bebidas com cafeína e bebida alcoólica.",
+    "Pedra na vesícula: prefira comidas com pouca gordura e evite frituras e os alimentos que provocam a dor.",
+    "Pedra na vesícula: faça o ultrassom pedido e leve o resultado ao posto de saúde, para marcar a avaliação com o cirurgião.",
+    "Pedra no rim: procure o posto de saúde para acompanhar e saber se a pedra saiu."
+  ],
+  volte: [
+    "Febre, calafrios ou tremedeira.",
+    "Urina muito pouco ou não consegue urinar.",
+    "A dor não passa com os remédios da receita, ou a dor de vesícula dura mais de 6 horas.",
+    "Vômitos que não param e não deixam você beber água nem tomar os remédios.",
+    "Olhos ou pele amarelados, urina escura como café ou fezes claras.",
+    "Tontura forte, desmaio ou confusão."
+  ],
+  fontes: [
+    "EAU Guidelines on Urolithiasis, 2026: a maioria dos cálculos pequenos sai espontaneamente; descompressão urgente se obstrução com infecção (febre) ou rim único obstruído; hidratação. https://uroweb.org/guidelines/urolithiasis",
+    "NHS. Kidney stones (revisado em 17/09/2026): beber 2,5 a 3 litros de água por dia, evitar refrigerante, cafeína e álcool, urina clara; atendimento urgente se dor intensa ou febre e tremedeira. https://www.nhs.uk/conditions/kidney-stones/",
+    "NHS. Gallstones (revisado em 11/08/2025): dieta com pouca gordura enquanto aguarda a cirurgia; emergência se dor súbita e forte, febre alta ou calafrios, pele ou olhos amarelados. https://www.nhs.uk/conditions/gallstones/",
+    "Gallaher JR, Charles A. Acute Cholecystitis: A Review (JAMA 2022;327:965): dor biliar que dura mais de 4 a 6 horas ou com febre sugere colecistite.",
+    "Kiriyama S et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (J Hepatobiliary Pancreat Sci 2018;25:17): febre, icterícia e dor.",
+    "Bula Tramal (tramadol, Anvisa): sonolência, evitar dirigir."
+  ]
+},
 };
 if (typeof module!=="undefined") module.exports={ALTA};

@@ -242,7 +242,7 @@ const QUEIXAS = [
   alarme: [
     { t: "SpO2 < 90%, FR > 30, uso de musculatura acessória, fala só em palavras, cianose, confusão ou sonolência", acao: "Insuficiência respiratória: sala de emergência, oxigênio, monitor e gasometria; preparar ventilação não invasiva ou intubação." },
     { t: "Asma sem conseguir falar, beber ou deitar, FR > 30, uso de musculatura acessória, SpO2 < 92% em ar ambiente, pico de fluxo < 50% ou murmúrio muito diminuído; ou sonolência, confusão, cianose ou tórax silencioso", acao: "Crise grave: tratar já na sala de emergência (ver asma); oxigênio só se SpO2 < 92%, alvo 92–95%. Sonolência, confusão, cianose ou tórax silencioso: ameaça à vida, chamar UTI ou anestesia. Com anafilaxia: adrenalina IM primeiro." },
-    { t: "Pneumonia com confusão, FR ≥ 30, PAS < 90 ou PAD ≤ 60, acometimento multilobar ou hipoxemia", acao: "CURB-65 (sem ureia, CRB-65): 2, internação curta ou observação; 3 ou mais, internar e avaliar UTI. Choque com vasopressor ou necessidade de ventilação: UTI. Ver pneumonia." },
+    { t: "Pneumonia com confusão, FR ≥ 30, PAS < 90 ou PAD ≤ 60, acometimento multilobar ou hipoxemia", acao: "Sem ureia: CRB-65 0: baixo risco, tratamento em casa; CRB-65 1–2: risco intermediário, observação ou internação por julgamento clínico; CRB-65 3–4: alto risco, internação urgente e avaliar UTI. Com ureia: CURB-65 0–1: baixo risco, tratamento em casa; CURB-65 2: risco intermediário, observação ou internação curta; CURB-65 3–5: alto risco, internar e avaliar UTI. SpO2 < 92% em ar ambiente também pesa para ficar. Choque com vasopressor ou necessidade de ventilação: UTI. Ver pneumonia." },
     { t: "DPOC com piora da falta de ar e SpO2 baixa, sonolência ou confusão", acao: "Exacerbação grave com possível retenção de CO2: oxigênio controlado (alvo 88–92%), gasometria; ventilação não invasiva se acidose respiratória. Ver DPOC." },
     { t: "Ortopneia, estertores, edema de pernas, jugulares ingurgitadas ou PA muito alta", acao: "Insuficiência cardíaca descompensada ou edema agudo de pulmão: sentar, oxigênio, ECG e troponina (procurar SCA ou arritmia como gatilho). Ver edema agudo de pulmão." },
     { t: "Dispneia súbita com dor pleurítica, taquicardia, hemoptise ou fator de risco para trombose", acao: "Suspeita de TEP: Wells ou Genebra, PERC se baixa probabilidade, D-dímero ou angiotomografia. Ver TEP." },
@@ -269,9 +269,10 @@ const QUEIXAS = [
     { rot: "Insuficiência cardíaca ou edema agudo de pulmão", conduta: "eap" },
     { rot: "TEP", conduta: "tep" }
   ],
-  escores: ["CURB-65 (pneumonia)", "Gravidade da crise de asma (GINA)", "Wells ou Genebra e PERC (TEP)", "NEWS2"],
+  escores: ["CRB-65 (pneumonia, sem ureia)", "CURB-65 (pneumonia)", "Gravidade da crise de asma (GINA)", "Wells ou Genebra e PERC (TEP)", "NEWS2"],
   fontes: [
-    "NICE NG250. Pneumonia: diagnosis and management, 2025 (rec. 1.2.3 e 1.2.9): CURB-65 e CRB-65.",
+    "NICE NG250. Pneumonia: diagnosis and management, 2025 (box 1 e 2; rec. 1.2.3 e 1.2.9): CRB-65 e CURB-65.",
+    "Royal College of Physicians. National Early Warning Score (NEWS) 2, 2017 — SpO2 ≤ 91% em ar ambiente soma 3 pontos.",
     "Leigh-Smith S, Harris T. Tension pneumothorax — time for a re-think? (Emerg Med J 2005;22:8).",
     "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia — ATS/IDSA (Am J Respir Crit Care Med 2019;200:e45) — critérios de gravidade.",
     "Lim WS et al. Defining community acquired pneumonia severity on presentation to hospital: CURB-65 (Thorax 2003;58:377) e Corrêa RA et al. Recomendações da SBPT para PAC em adultos imunocompetentes (J Bras Pneumol 2018;44:405).",

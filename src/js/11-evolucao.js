@@ -2,6 +2,8 @@
 const evIds=["evHma","evAlergia","evAp","evMuc","svPa","svFc","svFr","svSat","svTax","svHgt"];
 let evManual=false;
 let evChk=null; // linhas do checklist da conduta ({id,hma,ex}); só na memória
+let evSv=[];     // NEWS2 e CRB-65 do "Fechar o atendimento" (só durante a montagem do texto)
+let evEstado={}; // consciência e O2 do "Fechar o atendimento" (idem)
 function buildEv(){
   const it=getItem($("#evCond").value);
   const v=id=>$("#"+id).value.trim();
@@ -20,7 +22,7 @@ function buildEv(){
   L.push("MUC: "+(v("evMuc")||"não informado"));
   L.push("");
   const sv=[["PA",v("svPa"),"mmHg"],["FC",v("svFc"),"bpm"],["FR",v("svFr"),"irpm"],["SatO2",v("svSat"),"%"],["Tax",v("svTax"),"°C"],["HGT",v("svHgt"),"mg/dL"]].filter(x=>x[1]);
-  if(sv.length){L.push("SSVV: "+sv.map(x=>`${x[0]} ${x[1]}${x[2]==="%"?"%":" "+x[2]}`).join(" | "));L.push("")}
+  if(sv.length||evSv.length){if(sv.length)L.push("SSVV: "+sv.map(x=>`${x[0]} ${x[1]}${x[2]==="%"?"%":" "+x[2]}`).join(" | "));evSv.forEach(x=>L.push(x));L.push("")}
   // o modelo de exame diz "afebril"; com temperatura de febre informada, não pode contradizer (febre ≥ 37,8 °C, Ministério da Saúde)
   const tax=parseFloat(v("svTax").replace(",","."));
   let exm=exameAtual($("#evExame").value);
@@ -28,6 +30,10 @@ function buildEv(){
   // taquipneia informada não pode sair como "eupneico" (FR adulto > 20 irpm)
   const fr=parseFloat(v("svFr").replace(",","."));
   if(fr>20) exm=exm.replace(/\beupneic([oa])\b/g,"taquipneic$1");
+  // consciência alterada e O2 suplementar informados não podem sair como "lúcido e orientado" e "em ar ambiente"
+  const CONF="com alteração aguda da consciência (descrever orientação e Glasgow)";
+  if(evEstado.cons==="C") exm=exm.replace(/lúcid([oa]) e orientad[oa] no tempo e no espaço/g,(m,g)=>`confus${g}, ${CONF}`).replace(/\bLOTE\b/g,`confuso(a), ${CONF}`).replace(/Glasgow 15,?\s*/g,"");
+  if(evEstado.o2==="o2") exm=exm.replace(/em ar ambiente/g,"em O2 suplementar");
   L.push(exm);
   if(ck&&ck.ex.length){L.push("");ck.ex.forEach(x=>L.push(x))}
   if(evScores.length){L.push("");L.push("Escores:");evScores.forEach(x=>L.push("- "+x))}

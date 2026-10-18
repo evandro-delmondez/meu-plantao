@@ -42,7 +42,7 @@ const ALTA_ITEM={
  dengue:["Classificar o grupo e registrar; grupo B só após hemograma.","Sem sinais de alarme: dor abdominal, vômitos persistentes, sangramento de mucosa, hipotensão postural, letargia.","Retorno no 1º dia sem febre."],
  asma:["Reavaliar 1h após o tratamento: fala frases completas, sem uso de musculatura acessória, SatO2 ≥ 94–95%.","Técnica do espaçador conferida; corticoide oral prescrito."],
  dpoc:["SatO2 no alvo (88–92%) em ar ambiente ou no O2 domiciliar habitual; sem sonolência."],
- pac:["CURB-65 0–1 e SatO2 adequada; consegue tomar VO; reavaliação em 48–72h marcada."],
+ pac:["CRB-65 0 (ou 1 por julgamento clínico) ou CURB-65 0–1; SpO2 ≥ 92% em ar ambiente e NEWS2 sem resposta urgente; consegue tomar VO; reavaliação em 48–72h marcada."],
  itu:["Pielonefrite: sem sepse, sem vômitos, tolera VO, não gestante; 1ª dose do antibiótico feita."],
  colica:["Dor controlada após analgesia; sem febre (febre + obstrução = urgência urológica); diurese preservada."],
  tce:["Regra canadense aplicada e registrada; Glasgow 15; acompanhante presente nas próximas 24h."],
@@ -155,14 +155,84 @@ function pedEmerg(p,m){
   ];
 }
 
+/* ===== NEWS2 (Royal College of Physicians, 2017; escala 1 de SpO2) =====
+   Faixas únicas: servem ao escore da aba Cálculos e ao aviso automático do "Fechar o atendimento".
+   Cada faixa: [limite superior inclusivo, pontos, rótulo]. */
+const NEWS2_SRC="Royal College of Physicians. National Early Warning Score (NEWS) 2: standardising the assessment of acute-illness severity in the NHS. Londres: RCP, 2017 — tabela de pontuação (escala 1 de SpO2) e resposta clínica (0–4 baixo; 3 em um parâmetro ou 5–6 resposta urgente; 7 ou mais resposta de emergência; NEWS2 de 5 ou mais com infecção: pensar em sepse).";
+const NEWS2_FX={
+ fr:[[8,3,"≤ 8"],[11,1,"9–11"],[20,0,"12–20"],[24,2,"21–24"],[Infinity,3,"≥ 25"]],
+ sat:[[91,3,"≤ 91"],[93,2,"92–93"],[95,1,"94–95"],[Infinity,0,"≥ 96"]],
+ pas:[[90,3,"≤ 90"],[100,2,"91–100"],[110,1,"101–110"],[219,0,"111–219"],[Infinity,3,"≥ 220"]],
+ fc:[[40,3,"≤ 40"],[50,1,"41–50"],[90,0,"51–90"],[110,1,"91–110"],[130,2,"111–130"],[Infinity,3,"≥ 131"]],
+ t:[[35,3,"≤ 35,0"],[36,1,"35,1–36,0"],[38,0,"36,1–38,0"],[39,1,"38,1–39,0"],[Infinity,2,"≥ 39,1"]]
+};
+const news2Opcoes=k=>NEWS2_FX[k].map(([,p,r])=>[r,p]);
+const news2Pts=(k,v)=>NEWS2_FX[k].find(([mx])=>v<=mx)[1];
+// sv: {fr,sat,pas,fc,t} em número (ou null); o2: true/false/null; cons: true = alerta, false = confusão nova, voz, dor ou sem resposta, null = não informado
+function news2Calc(sv){
+ const pts={},faltam=[];
+ for(const k of ["fr","sat","pas","fc","t"]){const v=sv[k];if(v==null||!isFinite(v)){faltam.push(k);continue}pts[k]=news2Pts(k,v)}
+ if(sv.o2==null) faltam.push("o2"); else pts.o2=sv.o2?2:0;
+ if(sv.cons==null) faltam.push("cons"); else pts.cons=sv.cons?0:3;
+ const total=Object.values(pts).reduce((a,b)=>a+b,0);
+ return {pts,faltam,total,tem3:Object.values(pts).some(p=>p===3)};
+}
+function news2Resposta(total,tem3){
+ if(total>=7) return {nivel:"emergencia",txt:"7 ou mais: alto risco, resposta de emergência — sala de emergência, monitorização contínua e equipe com competência em via aérea e cuidados críticos; não é verde."};
+ if(total>=5) return {nivel:"urgente",txt:"5–6: risco médio, resposta urgente — avaliação médica imediata e sinais vitais no mínimo de hora em hora; com infecção, pensar em sepse; não é verde."};
+ if(tem3) return {nivel:"urgente",txt:"Parâmetro com 3 pontos: resposta urgente — avaliação médica imediata do parâmetro alterado; não é verde."};
+ return {nivel:"baixo",txt:"0–4: baixo risco — avaliação clínica de rotina e reavaliação dos sinais vitais antes da alta."};
+}
+
+/* ===== Gravidade da pneumonia: texto único para conduta, escore e queixa ===== */
+const PAC_GRAV_SRC=[
+ "NICE NG250. Pneumonia: diagnosis and management, 2025 — box 1 (CRB-65: 0 baixo, < 1%; 1–2 intermediário, 1–10%; 3–4 alto, > 10%), rec. 1.2.3 (julgamento clínico; com 2 ou mais, considerar o hospital), box 2 e rec. 1.2.9 (CURB-65: 0–1 baixo; 2 intermediário; 3–5 alto, internar e avaliar UTI). https://www.nice.org.uk/guidance/ng250",
+ "British Thoracic Society. Guidelines for the management of community acquired pneumonia in adults, update 2009 (Lim WS et al. Thorax 2009;64 Suppl 3:iii1) — rec. 44–46: CRB-65 0 em casa; 1–2 considerar avaliação hospitalar, sobretudo 2; 3 ou mais, internação urgente.",
+ "Corrêa RA et al. Recomendações para o manejo da pneumonia adquirida na comunidade 2018, SBPT (J Bras Pneumol 2018;44:405) — CURB-65 e CRB-65, ureia > 50 mg/dL; internado não grave: betalactâmico (ceftriaxona) + macrolídeo, ou quinolona respiratória.",
+ "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia, ATS/IDSA (Am J Respir Crit Care Med 2019;200:e45) — PAC grave: 1 critério maior (choque com vasopressor ou ventilação mecânica) ou 3 menores (FR ≥ 30, PaO2/FiO2 ≤ 250, multilobar, confusão, ureia elevada, leucócitos < 4.000, plaquetas < 100.000, temperatura < 36 °C, hipotensão que exige volume agressivo); internado não grave: ceftriaxona 1–2 g 1x/dia + azitromicina 500 mg 1x/dia ou claritromicina 500 mg 12/12h, ou levofloxacino 750 mg 1x/dia.",
+ "Jones BE et al. Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline (Am J Respir Crit Care Med 2026;212:24–44; publicado em jul/2025) — atualiza pontos específicos; não muda o esquema empírico do internado não grave. https://doi.org/10.1164/rccm.202507-1692ST",
+ "Royal College of Physicians. NEWS2, 2017 — SpO2 ≤ 91% em ar ambiente soma 3 pontos (resposta urgente); NICE NG250 (glossário): saturação muito baixa ou várias comorbidades podem tornar moderada ou grave uma pneumonia de escore baixo.",
+ "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 43 — PAC (CRB-65; ceftriaxona 1–2 g/dia EV + azitromicina ou claritromicina no internado)."
+];
+const PAC_JULGAMENTO="O escore não substitui o julgamento clínico: SpO2 < 92% em ar ambiente, comorbidade descompensada, gestação, vômitos ou falta de apoio em casa também pesam para ficar.";
+// "curto" é a frase que aparece igual na conduta "pac" e na queixa "tosse-dispneia" (há teste para isso)
+const CRB65_FX=[
+ {max:0,nivel:"baixo",curto:"CRB-65 0: baixo risco, tratamento em casa",txt:"0: baixo risco (mortalidade < 1%) — tratamento em casa, com orientação de retorno."},
+ {max:2,nivel:"intermediario",curto:"CRB-65 1–2: risco intermediário, observação ou internação por julgamento clínico",txt:"1–2: risco intermediário (mortalidade 1–10%) — considerar observação ou internação por julgamento clínico; com 2, a tendência é ficar."},
+ {max:4,nivel:"alto",curto:"CRB-65 3–4: alto risco, internação urgente e avaliar UTI",txt:"3–4: alto risco (mortalidade > 10%) — internação urgente; avaliar UTI se critério de PAC grave da ATS/IDSA 2019 (1 maior: choque com vasopressor ou ventilação mecânica; ou 3 menores)."}
+];
+const CURB65_FX=[
+ {max:1,nivel:"baixo",curto:"CURB-65 0–1: baixo risco, tratamento em casa",txt:"0–1: baixo risco (mortalidade < 3%) — tratamento em casa, com orientação de retorno."},
+ {max:2,nivel:"intermediario",curto:"CURB-65 2: risco intermediário, observação ou internação curta",txt:"2: risco intermediário (mortalidade 3–15%) — observação ou internação curta, por julgamento clínico."},
+ {max:5,nivel:"alto",curto:"CURB-65 3–5: alto risco, internar e avaliar UTI",txt:"3–5: alto risco (mortalidade > 15%) — internar; avaliar UTI se critério de PAC grave da ATS/IDSA 2019 (1 maior: choque com vasopressor ou ventilação mecânica; ou 3 menores)."}
+];
+const pacFaixa=(fx,s)=>fx.find(f=>s<=f.max)||fx[fx.length-1];
+// 1ª dose EV para quem fica (ATS/IDSA 2019; SBPT 2018; HC-FMUSP 18ª ed., cap. 43)
+const PAC_EV="Se internar: 1ª dose EV na unidade — ceftriaxona 1 g EV 1x ao dia (até 2 g) + azitromicina 500 mg EV 1x ao dia (ou claritromicina 500 mg EV de 12/12h). Alergia grave a betalactâmico: levofloxacino 750 mg EV 1x ao dia.";
+
+/* ===== Alertas isolados pelos sinais vitais (aviso do "Fechar o atendimento") ===== */
+const SVAL={
+ sat:{lim:92,src:"Royal College of Physicians. NEWS2, 2017 — SpO2 ≤ 91% em ar ambiente = 3 pontos (resposta urgente); O'Driscoll BR et al. BTS guideline for oxygen use in adults in healthcare and emergency settings (Thorax 2017;72 Suppl 1:ii1) — alvo de 94–98%, ou 88–92% se risco de retenção de CO2; GINA 2026 — SpO2 < 92% em ar ambiente na asma é crise grave.",
+  txt:"Hipoxemia: oxigênio com alvo de 94–98% (88–92% se risco de retenção de CO2, como na DPOC), procurar a causa e reavaliar antes de liberar."},
+ pa:{pas:180,pad:110,src:"Brandão AA et al. Diretriz Brasileira de Hipertensão Arterial – 2025, SBC/SBH/SBN (Arq Bras Cardiol 2025;122(9):e20250624) — cap. 11: PAS ≥ 180 e/ou PAD ≥ 110 mmHg com lesão de órgão-alvo aguda é emergência; sem ela, elevação importante da PA (antes urgência), com ajuste oral e reavaliação em 1–7 dias, alvo < 160/100; pseudocrise provocada por dor ou ansiedade; item 2.3.9: anti-inflamatórios não esteroidais elevam a PA ou dificultam o controle. https://www.scielo.br/j/abc/a/BXT7Vk4B9VKQnJFsJhgJ4Hn/?lang=pt",
+  txt:"Procurar lesão de órgão-alvo aguda: dor no peito, falta de ar, déficit neurológico, confusão, alteração visual (com ela, é emergência hipertensiva). Sem lesão aguda: tratar a dor ou a ansiedade e medir de novo; ajustar a medicação oral sem baixar rápido, alvo < 160/100 e reavaliação em 1–7 dias.",
+  aine:"Esta receita tem AINE, que eleva a PA: prefira outro analgésico ou reveja a escolha.",
+  aineRe:/ibuprofeno|diclofenaco|cetoprofeno|ácido mefenâmico|naproxeno|nimesulida|profenid|cetorolaco|tenoxicam|piroxicam|meloxicam|celecoxibe|etoricoxibe/i},
+ febre:{tax:37.8,fc:90,src:"Instituto Latino-Americano de Sepse (ILAS). Protocolo gerenciado de sepse no adulto, revisão de julho de 2026 — SIRS como triagem: temperatura axilar > 37,8 °C, FC > 90 bpm, FR > 20; disfunção orgânica: PAS < 90 ou PAM < 65, O2 para manter SpO2 > 90%, rebaixamento, oligúria, lactato. Ministério da Saúde: febre a partir de 37,8 °C. https://ilas.org.br/wp-content/uploads/2022/02/Protocolo-de-tratamento-da-sepse-adulto-Revisao-julho-2026.pdf",
+  txt:"Febre com taquicardia: procurar o foco e sinais de disfunção orgânica (PAS < 90, FR > 20, confusão, SpO2 baixa, oligúria); infecção com disfunção: abrir o protocolo de sepse."}
+};
+
 /* ===== Escores clínicos ===== */
 const SC=[
 {id:"heart",nome:"HEART (dor torácica)",src:"Six AJ et al. Neth Heart J 2008; Backus BE et al. Int J Cardiol 2013.",
  campos:[["h","História",[["Pouco suspeita",0],["Moderadamente suspeita",1],["Muito suspeita",2]]],["e","ECG",[["Normal",0],["Alteração inespecífica da repolarização",1],["Infradesnível de ST significativo",2]]],["a","Idade",[["< 45",0],["45–64",1],["≥ 65",2]]],["r","Fatores de risco",[["Nenhum",0],["1–2 fatores",1],["≥ 3 fatores ou doença aterosclerótica",2]]],["t","Troponina",[["≤ limite normal",0],["1–3× o limite",1],["> 3× o limite",2]]]],
  interp:s=>s<=3?"Baixo risco (0–3): eventos em 6 semanas ~1–2%; candidato a alta com seguimento.":s<=6?"Risco moderado (4–6): observação e investigação.":"Alto risco (7–10): conduta invasiva precoce."},
-{id:"curb",nome:"CURB-65 (pneumonia)",src:"Lim WS et al. Thorax 2003.",
+{id:"curb",nome:"CURB-65 (pneumonia)",src:"Lim WS et al. Thorax 2003;58:377; NICE NG250, 2025 (box 2 e rec. 1.2.9); Corrêa RA et al. SBPT 2018 (J Bras Pneumol 2018;44:405) — ureia > 50 mg/dL.",
  bin:[["Confusão mental nova",1],["Ureia > 50 mg/dL",1],["FR ≥ 30 irpm",1],["PAS < 90 ou PAD ≤ 60 mmHg",1],["Idade ≥ 65 anos",1]],
- interp:s=>s<=1?"0–1: tratamento ambulatorial.":s===2?"2: considerar internação curta ou ambulatorial supervisionado.":"≥ 3: internar; 4–5 avaliar UTI."},
+ interp:s=>pacFaixa(CURB65_FX,s).txt+" "+PAC_JULGAMENTO},
+{id:"crb",nome:"CRB-65 (pneumonia, sem ureia)",src:"NICE NG250. Pneumonia: diagnosis and management, 2025 (box 1 e rec. 1.2.3); British Thoracic Society. CAP in adults, 2009 (rec. 44–46); Lim WS et al. Thorax 2003;58:377.",
+ bin:[["Confusão mental nova",1],["FR ≥ 30 irpm",1],["PAS < 90 ou PAD ≤ 60 mmHg",1],["Idade ≥ 65 anos",1]],
+ interp:s=>pacFaixa(CRB65_FX,s).txt+" "+PAC_JULGAMENTO},
 {id:"wellsTep",nome:"Wells (TEP)",src:"Wells PS et al. Thromb Haemost 2000; ESC 2019.",
  bin:[["Sinais clínicos de TVP",3],["TEP é o diagnóstico mais provável",3],["FC > 100 bpm",1.5],["Imobilização ≥ 3 dias ou cirurgia nas últimas 4 semanas",1.5],["TVP/TEP prévio",1.5],["Hemoptise",1],["Câncer ativo",1]],
  interp:s=>s<=4?"≤ 4: TEP improvável → D-dímero (ajustado à idade se > 50 anos).":"> 4: TEP provável → angio-TC."},
@@ -216,8 +286,8 @@ const SC=[
 {id:"glasgow",nome:"Escala de coma de Glasgow",src:"Teasdale G, Jennett B. Lancet 1974; atualização 2014 (Glasgow com resposta pupilar).",
  campos:[["o","Abertura ocular",[["Espontânea",4],["Ao som",3],["À pressão",2],["Nenhuma",1]]],["v","Resposta verbal",[["Orientado",5],["Confuso",4],["Palavras",3],["Sons",2],["Nenhuma",1]]],["m","Resposta motora",[["Obedece comandos",6],["Localiza",5],["Flexão normal",4],["Flexão anormal",3],["Extensão",2],["Nenhuma",1]]]],
  interp:s=>s<=8?"≤ 8: grave — considerar via aérea definitiva.":s<=12?"9–12: moderado.":"13–15: leve."},
-{id:"news2",nome:"NEWS2",src:"Royal College of Physicians. National Early Warning Score 2, 2017.",
- campos:[["fr","FR",[["12–20",0],["9–11",1],["21–24",2],["≤ 8",3],["≥ 25",3]]],["sat","SatO2 (escala 1)",[["≥ 96",0],["94–95",1],["92–93",2],["≤ 91",3]]],["o2","Ar ou O2",[["Ar ambiente",0],["Em O2",2]]],["pas","PAS",[["111–219",0],["101–110",1],["91–100",2],["≤ 90",3],["≥ 220",3]]],["fc","FC",[["51–90",0],["41–50",1],["91–110",1],["111–130",2],["≤ 40",3],["≥ 131",3]]],["cons","Consciência",[["Alerta",0],["Confusão nova, voz, dor ou não responde",3]]],["t","Temperatura",[["36,1–38,0",0],["35,1–36,0",1],["38,1–39,0",1],["≥ 39,1",2],["≤ 35,0",3]]]],
- interp:s=>s>=7?"≥ 7: alto risco — avaliação de emergência contínua.":s>=5?"5–6: risco médio — avaliação médica urgente.":"0–4: baixo (qualquer parâmetro = 3 também exige avaliação urgente)."}
+{id:"news2",nome:"NEWS2",src:NEWS2_SRC,
+ campos:[["fr","FR",news2Opcoes("fr")],["sat","SatO2 (escala 1)",news2Opcoes("sat")],["o2","Ar ou O2",[["Ar ambiente",0],["Em O2",2]]],["pas","PAS",news2Opcoes("pas")],["fc","FC",news2Opcoes("fc")],["cons","Consciência",[["Alerta",0],["Confusão nova, voz, dor ou não responde",3]]],["t","Temperatura",news2Opcoes("t")]],
+ interp:s=>news2Resposta(s,false).txt+(s<5?" Qualquer parâmetro com 3 pontos também pede resposta urgente.":"")}
 ];
-if (typeof module!=="undefined") module.exports={RENAL,cockcroft,ALTA_GERAL,ALTA_ITEM,dengueCalc,pedEmerg,SC};
+if (typeof module!=="undefined") module.exports={RENAL,cockcroft,ALTA_GERAL,ALTA_ITEM,dengueCalc,pedEmerg,SC,NEWS2_FX,news2Calc,news2Resposta,CRB65_FX,CURB65_FX,pacFaixa,PAC_EV,SVAL};

@@ -538,3 +538,29 @@ details.sec[open]>summary.sec-h::after{content:"▾"}
   .agmais summary{display:inline-block;padding:10px 4px}
   .atd .check input,.atdck input,.atdat input[type=checkbox]{width:22px;height:22px}
 }
+
+/* sinais vitais: aviso automático (NEWS2 e alertas isolados) e gravidade da pneumonia */
+.sec.svaviso{--c:var(--warn);border-left:4px solid var(--c);background:color-mix(in srgb,var(--c) 7%,var(--surface))}
+.sec.svaviso[data-nv="baixo"]{--c:var(--ok)}
+.sec.svaviso[data-nv="emergencia"]{--c:var(--bad)}
+.sec.svaviso h3{color:var(--c)}
+.svlista{margin:0;padding:0 16px 10px 34px;font-size:14px}
+.svlista li{margin:4px 0}
+.svlista li[data-nv="urgente"] b{color:var(--warn)} .svlista li[data-nv="emergencia"] b{color:var(--bad)} .svlista li[data-nv="baixo"] b{color:var(--ok)}
+.svaviso .alsrc,.crb .alsrc{padding:0 16px 10px;font-size:12.5px;color:var(--muted)}
+.svaviso .alsrc summary,.crb .alsrc summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
+.svnews{margin:0;font-size:13.5px;font-weight:700;padding:6px 10px;border-radius:8px;background:var(--surface-2);border-left:4px solid var(--ok)}
+.svnews[data-nv="urgente"]{border-left-color:var(--warn)} .svnews[data-nv="emergencia"]{border-left-color:var(--bad)}
+.sec.crb{--c:var(--sky);border-left:4px solid var(--c)}
+.crbbody{padding:0 16px 8px;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.crbck{min-height:44px}
+.crbck input{width:22px;height:22px}
+.crbitens{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:6px}
+.crbitens li{border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--surface-2);overflow-wrap:anywhere}
+.crbitens li[data-on="true"]{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 10%,var(--surface))}
+.crbitens li[data-on="falta"] b{color:var(--muted)}
+.crbres{margin:0;padding:8px 10px;border-radius:8px;border-left:4px solid var(--ok);background:var(--surface-2)}
+.crbres[data-nv="intermediario"]{border-left-color:var(--warn)} .crbres[data-nv="alto"]{border-left-color:var(--bad)}
+.crbev{margin:0;padding:8px 10px;border-radius:8px;background:color-mix(in srgb,var(--red) 7%,var(--surface));font-size:13.5px}
+.crbbody p.note{margin:0}
+.atdnews select.inp{min-height:44px}

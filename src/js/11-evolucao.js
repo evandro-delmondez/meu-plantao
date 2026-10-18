@@ -2,6 +2,7 @@
 const evIds=["evHma","evAlergia","evAp","evMuc","svPa","svFc","svFr","svSat","svTax","svHgt"];
 let evManual=false;
 let evChk=null; // linhas do checklist da conduta ({id,hma,ex}); só na memória
+let evSv=[];     // NEWS2 e CRB-65 do "Fechar o atendimento" (só durante a montagem do texto)
 function buildEv(){
   const it=getItem($("#evCond").value);
   const v=id=>$("#"+id).value.trim();
@@ -20,7 +21,7 @@ function buildEv(){
   L.push("MUC: "+(v("evMuc")||"não informado"));
   L.push("");
   const sv=[["PA",v("svPa"),"mmHg"],["FC",v("svFc"),"bpm"],["FR",v("svFr"),"irpm"],["SatO2",v("svSat"),"%"],["Tax",v("svTax"),"°C"],["HGT",v("svHgt"),"mg/dL"]].filter(x=>x[1]);
-  if(sv.length){L.push("SSVV: "+sv.map(x=>`${x[0]} ${x[1]}${x[2]==="%"?"%":" "+x[2]}`).join(" | "));L.push("")}
+  if(sv.length||evSv.length){if(sv.length)L.push("SSVV: "+sv.map(x=>`${x[0]} ${x[1]}${x[2]==="%"?"%":" "+x[2]}`).join(" | "));evSv.forEach(x=>L.push(x));L.push("")}
   // o modelo de exame diz "afebril"; com temperatura de febre informada, não pode contradizer (febre ≥ 37,8 °C, Ministério da Saúde)
   const tax=parseFloat(v("svTax").replace(",","."));
   let exm=exameAtual($("#evExame").value);

@@ -1097,7 +1097,7 @@ const BASE = [
   ],
   "fontes": [
    "Gupta K et al. IDSA/ESCMID Guidelines: Acute Uncomplicated Cystitis and Pyelonephritis in Women (Clin Infect Dis 2011).",
-   "Trautner BW et al. IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections (Clin Infect Dis 2026;82 Supl 3): pielonefrite com fluoroquinolona por 5–7 dias ou outro antibiótico por 7 dias; nitrofurantoína e fosfomicina não servem para pielonefrite. https://www.idsociety.org/practice-guideline/complicated-urinary-tract-infections/",
+   "Trautner BW et al. IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections (Clin Infect Dis, publicado online em 17/07/2025; doi:10.1093/cid/ciaf462): pielonefrite com fluoroquinolona por 5–7 dias ou outro antibiótico por 7 dias; nitrofurantoína e fosfomicina não servem para pielonefrite. https://www.idsociety.org/practice-guideline/complicated-urinary-tract-infections/",
    "ACOG Clinical Consensus No. 4: Urinary Tract Infections in Pregnant Individuals (Obstet Gynecol 2023;142:435; PMID 37473414; doi 10.1097/AOG.0000000000005269): cefalexina, fosfomicina ou nitrofurantoína; urocultura; repetir a cultura 1 a 2 semanas após o fim é opcional.",
    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue.",
    "Bula Novalgina (dipirona 500 mg, Anvisa): máximo 4 g/dia.",
@@ -1369,7 +1369,7 @@ const BASE = [
   "fontes": [
    "EAU Guidelines on Urological Infections, 2024.",
    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 140: prostatite aguda com fluoroquinolona ou SMX-TMP por 2 a 4 semanas, após urocultura e hemocultura.",
-   "Trautner BW et al. IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections (Clin Infect Dis 2026;82 Supl 3:i79): suspeita de prostatite, 10–14 dias.",
+   "Trautner BW et al. IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections (Clin Infect Dis, publicado online em 17/07/2025; doi:10.1093/cid/ciaf462): suspeita de prostatite, 10–14 dias.",
    "Coker TJ, Dierfeldt DM. Acute Bacterial Prostatitis: Diagnosis and Management (Am Fam Physician 2016;93:114): 10 a 14 dias nos casos leves, estendendo 2 semanas se ainda houver sintomas, e 4 semanas nos graves; internação se falha ambulatorial, sem via oral, sepse ou retenção; retenção aliviada por cistostomia ou sonda uretral (melhor via não definida); homem < 35 anos sexualmente ativo: cobrir gonococo e clamídia (cefalosporina + doxiciclina 100 mg de 12/12h por 10 dias). https://www.aafp.org/pubs/afp/issues/2016/0115/p114.html",
    "Ministério da Saúde. PCDT Atenção Integral às Pessoas com IST, 2022: gonorreia com ceftriaxona 500 mg IM em dose única.",
    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."

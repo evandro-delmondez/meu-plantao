@@ -15,8 +15,12 @@ function renderAlarme(it){
 const atdNum=k=>{const v=parseFloat(String(atd[k]||"").replace(",","."));return isFinite(v)?v:null};
 function atdPA(){const m=String(atd.pa||"").match(/(\d{2,3})\s*[x×\/]\s*(\d{2,3})/i);return m?{pas:+m[1],pad:+m[2]}:{pas:null,pad:null}}
 const NEWS2_ROT={fr:"FR",sat:"SpO2",o2:"O2",pas:"PAS",fc:"FC",cons:"consciência",t:"temperatura"};
+// NEWS2 não validado em menores de 16 anos e gestantes (RCP 2017)
+const atdIdade=()=>{const v=parseFloat(String(pac.idade||"").replace(",","."));return v>0?v:null};
+const news2Invalido=()=>{const i=atdIdade();return (i!=null&&i<16)||!!pac.gest};
 // null enquanto nenhum sinal vital do NEWS2 foi digitado
 function atdNews(){
+  if(news2Invalido()) return null;
   const {pas}=atdPA(), sv={fr:atdNum("fr"),sat:atdNum("sat"),pas,fc:atdNum("fc"),t:atdNum("tax"),o2:atd.o2?atd.o2==="o2":null,cons:atd.cons?atd.cons==="A":null};
   if(["fr","sat","pas","fc","t"].every(k=>sv[k]==null)) return null;
   const r=news2Calc(sv); return Object.assign(r,news2Resposta(r.total,r.tem3));
@@ -40,22 +44,23 @@ function atdCrb(){
 const crbLinha=c=>`CRB-65${c.faltam.length?" parcial":""}: ${c.total}${c.faltam.length?` (faltam: ${c.faltam.map(x=>x.rot).join(", ")})`:""} — ${c.fx.txt.split(" — ")[0]}.`;
 function svAlertas(it){
   const out=[], n=atdNews(), sat=atdNum("sat"), {pas,pad}=atdPA(), tax=atdNum("tax"), fc=atdNum("fc");
+  if(news2Invalido()&&["fr","sat","fc","tax","pa"].some(k=>String(atd[k]||"").trim())) out.push({nv:"info",h:"NEWS2",t:NEWS2_NAO_VALIDADO});
   if(n) out.push({nv:n.nivel,h:`NEWS2${n.faltam.length?" parcial":""} ${n.total}`,t:n.txt+(n.faltam.length?` Faltam: ${n.faltam.map(k=>NEWS2_ROT[k]).join(", ")} (o total pode subir).`:"")});
   if(sat!=null&&sat<SVAL.sat.lim&&atd.o2!=="o2") out.push({nv:"urgente",h:`SpO2 ${String(sat).replace(".",",")}% ${atd.o2==="ar"?"em ar ambiente":"(confirme se em ar ambiente)"}`,t:SVAL.sat.txt});
   if(pas!=null&&(pas>=SVAL.pa.pas||pad>=SVAL.pa.pad)){const txt=cur(it,"casa")+"\n"+cur(it,"unidade");out.push({nv:"urgente",h:`PA ${pas}x${pad} (≥ 180/110)`,t:SVAL.pa.txt+(SVAL.pa.aineRe.test(txt)?" "+SVAL.pa.aine:"")})}
-  if(tax!=null&&tax>=SVAL.febre.tax&&fc!=null&&fc>SVAL.febre.fc) out.push({nv:"urgente",h:`Tax ${String(tax).replace(".",",")} °C com FC ${fc}`,t:SVAL.febre.txt});
+  if(tax!=null&&tax>SVAL.febre.tax&&fc!=null&&fc>SVAL.febre.fc&&!(atdIdade()!=null&&atdIdade()<SVAL.febre.idadeMin)) out.push({nv:"urgente",h:`Tax ${String(tax).replace(".",",")} °C com FC ${fc}`,t:SVAL.febre.txt});
   return out;
 }
 function renderSvAviso(){return `<div class="sec svaviso" id="atdAviso" hidden></div>`}
 function atdAvisoAtualiza(it){
   const box=$("#atdAviso"); if(!box) return;
+  const ln=$("#atdNews"); if(ln){const n=atdNews(),inv=news2Invalido();ln.hidden=!n&&!(inv&&["fr","sat","fc","tax","pa"].some(k=>String(atd[k]||"").trim()));ln.textContent=n?newsLinha(n):inv?NEWS2_NAO_VALIDADO:"";ln.dataset.nv=n?n.nivel:"info"}
   const al=svAlertas(it); box.hidden=!al.length; if(!al.length){box.innerHTML="";return}
-  const pior=al.some(a=>a.nv==="emergencia")?"emergencia":al.some(a=>a.nv==="urgente")?"urgente":"baixo";
+  const pior=al.some(a=>a.nv==="emergencia")?"emergencia":al.some(a=>a.nv==="urgente")?"urgente":al.some(a=>a.nv==="baixo")?"baixo":"info";
   box.dataset.nv=pior;
   box.innerHTML=`<div class="sec-h"><h3>Sinais vitais</h3><span class="alsum">aviso automático pelo que foi digitado em "Fechar o atendimento"</span></div>
     <ul class="svlista">${al.map(a=>`<li data-nv="${a.nv}"><b>${esc(a.h)}:</b> ${esc(a.t)}</li>`).join("")}</ul>
     <details class="alsrc"><summary>Fontes</summary><ol>${[NEWS2_SRC,SVAL.sat.src,SVAL.pa.src,SVAL.febre.src].map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details>`;
-  const ln=$("#atdNews"); if(ln){const n=atdNews();ln.hidden=!n;ln.textContent=n?newsLinha(n):"";if(n)ln.dataset.nv=n.nivel}
 }
 // bloco de gravidade da pneumonia (só na conduta "pac")
 function renderCrb(it){
@@ -100,7 +105,8 @@ function atdTextos(it){
   const l=chkLinhas(it); evChk=l.n?{id:it.id,hma:l.hma,ex:l.ex}:null;
   $("#evNega").checked=false;   // "Nega…" só sai do checklist marcado com −
   const n=atdNews(); evSv=[n?newsLinha(n):"",it.id==="pac"&&(n||pac.idade)?crbLinha(atdCrb()):""].filter(Boolean);
-  const ev=buildEv(); evSv=[];
+  evEstado={cons:atd.cons,o2:atd.o2};
+  const ev=buildEv(); evSv=[]; evEstado={};
   let at="";
   if(atd.tipo!=="nenhum"&&(atd.tipo==="comparecimento"||parseInt(atd.dias,10)>0)){
     const sx=ui.sexo,tp=ui.tipo; ui.sexo=pac.sexo; ui.tipo=atd.tipo;

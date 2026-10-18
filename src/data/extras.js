@@ -42,7 +42,7 @@ const ALTA_ITEM={
  dengue:["Classificar o grupo e registrar; grupo B só após hemograma.","Sem sinais de alarme: dor abdominal, vômitos persistentes, sangramento de mucosa, hipotensão postural, letargia.","Retorno no 1º dia sem febre."],
  asma:["Reavaliar 1h após o tratamento: fala frases completas, sem uso de musculatura acessória, SatO2 ≥ 94–95%.","Técnica do espaçador conferida; corticoide oral prescrito."],
  dpoc:["SatO2 no alvo (88–92%) em ar ambiente ou no O2 domiciliar habitual; sem sonolência."],
- pac:["CRB-65 0 (ou 1 por julgamento clínico) ou CURB-65 0–1; SpO2 ≥ 92% em ar ambiente e NEWS2 sem resposta urgente; consegue tomar VO; reavaliação em 48–72h marcada."],
+ pac:["CRB-65 0 ou CURB-65 0–1 (CRB-65 1 ou mais: considerar avaliação hospitalar, NICE NG250); SpO2 ≥ 92% em ar ambiente e NEWS2 sem resposta urgente; consegue tomar VO; reavaliação em 48–72h marcada."],
  itu:["Pielonefrite: sem sepse, sem vômitos, tolera VO, não gestante; 1ª dose do antibiótico feita."],
  colica:["Dor controlada após analgesia; sem febre (febre + obstrução = urgência urológica); diurese preservada."],
  tce:["Regra canadense aplicada e registrada; Glasgow 15; acompanhante presente nas próximas 24h."],
@@ -158,7 +158,7 @@ function pedEmerg(p,m){
 /* ===== NEWS2 (Royal College of Physicians, 2017; escala 1 de SpO2) =====
    Faixas únicas: servem ao escore da aba Cálculos e ao aviso automático do "Fechar o atendimento".
    Cada faixa: [limite superior inclusivo, pontos, rótulo]. */
-const NEWS2_SRC="Royal College of Physicians. National Early Warning Score (NEWS) 2: standardising the assessment of acute-illness severity in the NHS. Londres: RCP, 2017 — tabela de pontuação (escala 1 de SpO2) e resposta clínica (0–4 baixo; 3 em um parâmetro ou 5–6 resposta urgente; 7 ou mais resposta de emergência; NEWS2 de 5 ou mais com infecção: pensar em sepse).";
+const NEWS2_SRC="Royal College of Physicians. National Early Warning Score (NEWS) 2: standardising the assessment of acute-illness severity in the NHS. Londres: RCP, 2017 — não validado em menores de 16 anos e gestantes; tabela de pontuação (escala 1 de SpO2) e resposta clínica (0–4 baixo; 3 em um parâmetro: risco baixo-médio, resposta urgente; 5–6 resposta urgente; 7 ou mais resposta de emergência; NEWS2 de 5 ou mais com infecção: pensar em sepse).";
 const NEWS2_FX={
  fr:[[8,3,"≤ 8"],[11,1,"9–11"],[20,0,"12–20"],[24,2,"21–24"],[Infinity,3,"≥ 25"]],
  sat:[[91,3,"≤ 91"],[93,2,"92–93"],[95,1,"94–95"],[Infinity,0,"≥ 96"]],
@@ -177,10 +177,12 @@ function news2Calc(sv){
  const total=Object.values(pts).reduce((a,b)=>a+b,0);
  return {pts,faltam,total,tem3:Object.values(pts).some(p=>p===3)};
 }
+// RCP 2017: o NEWS2 não é validado em menores de 16 anos nem na gestação
+const NEWS2_NAO_VALIDADO="NEWS2 não validado em menores de 16 anos e gestantes; use escore próprio.";
 function news2Resposta(total,tem3){
  if(total>=7) return {nivel:"emergencia",txt:"7 ou mais: alto risco, resposta de emergência — sala de emergência, monitorização contínua e equipe com competência em via aérea e cuidados críticos; não é verde."};
  if(total>=5) return {nivel:"urgente",txt:"5–6: risco médio, resposta urgente — avaliação médica imediata e sinais vitais no mínimo de hora em hora; com infecção, pensar em sepse; não é verde."};
- if(tem3) return {nivel:"urgente",txt:"Parâmetro com 3 pontos: resposta urgente — avaliação médica imediata do parâmetro alterado; não é verde."};
+ if(tem3) return {nivel:"urgente",txt:"Parâmetro com 3 pontos: risco baixo-médio, resposta urgente — avaliação médica imediata do parâmetro alterado; não é verde."};
  return {nivel:"baixo",txt:"0–4: baixo risco — avaliação clínica de rotina e reavaliação dos sinais vitais antes da alta."};
 }
 
@@ -212,13 +214,13 @@ const PAC_EV="Se internar: 1ª dose EV na unidade — ceftriaxona 1 g EV 1x ao d
 
 /* ===== Alertas isolados pelos sinais vitais (aviso do "Fechar o atendimento") ===== */
 const SVAL={
- sat:{lim:92,src:"Royal College of Physicians. NEWS2, 2017 — SpO2 ≤ 91% em ar ambiente = 3 pontos (resposta urgente); O'Driscoll BR et al. BTS guideline for oxygen use in adults in healthcare and emergency settings (Thorax 2017;72 Suppl 1:ii1) — alvo de 94–98%, ou 88–92% se risco de retenção de CO2; GINA 2026 — SpO2 < 92% em ar ambiente na asma é crise grave.",
+ sat:{lim:92,src:"Royal College of Physicians. NEWS2, 2017 — SpO2 ≤ 91% em ar ambiente = 3 pontos (resposta urgente); O'Driscoll BR et al. BTS guideline for oxygen use in adults in healthcare and emergency settings (Thorax 2017;72 Suppl 1:ii1) — alvo de 94–98%, ou 88–92% se risco de retenção de CO2.",
   txt:"Hipoxemia: oxigênio com alvo de 94–98% (88–92% se risco de retenção de CO2, como na DPOC), procurar a causa e reavaliar antes de liberar."},
  pa:{pas:180,pad:110,src:"Brandão AA et al. Diretriz Brasileira de Hipertensão Arterial – 2025, SBC/SBH/SBN (Arq Bras Cardiol 2025;122(9):e20250624) — cap. 11: PAS ≥ 180 e/ou PAD ≥ 110 mmHg com lesão de órgão-alvo aguda é emergência; sem ela, elevação importante da PA (antes urgência), com ajuste oral e reavaliação em 1–7 dias, alvo < 160/100; pseudocrise provocada por dor ou ansiedade; item 2.3.9: anti-inflamatórios não esteroidais elevam a PA ou dificultam o controle. https://www.scielo.br/j/abc/a/BXT7Vk4B9VKQnJFsJhgJ4Hn/?lang=pt",
   txt:"Procurar lesão de órgão-alvo aguda: dor no peito, falta de ar, déficit neurológico, confusão, alteração visual (com ela, é emergência hipertensiva). Sem lesão aguda: tratar a dor ou a ansiedade e medir de novo; ajustar a medicação oral sem baixar rápido, alvo < 160/100 e reavaliação em 1–7 dias.",
   aine:"Esta receita tem AINE, que eleva a PA: prefira outro analgésico ou reveja a escolha.",
   aineRe:/ibuprofeno|diclofenaco|cetoprofeno|ácido mefenâmico|naproxeno|nimesulida|profenid|cetorolaco|tenoxicam|piroxicam|meloxicam|celecoxibe|etoricoxibe/i},
- febre:{tax:37.8,fc:90,src:"Instituto Latino-Americano de Sepse (ILAS). Protocolo gerenciado de sepse no adulto, revisão de julho de 2026 — SIRS como triagem: temperatura axilar > 37,8 °C, FC > 90 bpm, FR > 20; disfunção orgânica: PAS < 90 ou PAM < 65, O2 para manter SpO2 > 90%, rebaixamento, oligúria, lactato. Ministério da Saúde: febre a partir de 37,8 °C. https://ilas.org.br/wp-content/uploads/2022/02/Protocolo-de-tratamento-da-sepse-adulto-Revisao-julho-2026.pdf",
+ febre:{tax:37.8,fc:90,idadeMin:16,src:"Instituto Latino-Americano de Sepse (ILAS). Protocolo gerenciado de sepse no adulto, revisão de julho de 2026 — SIRS como triagem: temperatura axilar > 37,8 °C, FC > 90 bpm, FR > 20; disfunção orgânica: PAS < 90 ou PAM < 65, O2 para manter SpO2 > 90%, rebaixamento, oligúria, lactato (critérios do adulto). https://ilas.org.br/wp-content/uploads/2022/02/Protocolo-de-tratamento-da-sepse-adulto-Revisao-julho-2026.pdf",
   txt:"Febre com taquicardia: procurar o foco e sinais de disfunção orgânica (PAS < 90, FR > 20, confusão, SpO2 baixa, oligúria); infecção com disfunção: abrir o protocolo de sepse."}
 };
 
@@ -290,4 +292,4 @@ const SC=[
  campos:[["fr","FR",news2Opcoes("fr")],["sat","SatO2 (escala 1)",news2Opcoes("sat")],["o2","Ar ou O2",[["Ar ambiente",0],["Em O2",2]]],["pas","PAS",news2Opcoes("pas")],["fc","FC",news2Opcoes("fc")],["cons","Consciência",[["Alerta",0],["Confusão nova, voz, dor ou não responde",3]]],["t","Temperatura",news2Opcoes("t")]],
  interp:s=>news2Resposta(s,false).txt+(s<5?" Qualquer parâmetro com 3 pontos também pede resposta urgente.":"")}
 ];
-if (typeof module!=="undefined") module.exports={RENAL,cockcroft,ALTA_GERAL,ALTA_ITEM,dengueCalc,pedEmerg,SC,NEWS2_FX,news2Calc,news2Resposta,CRB65_FX,CURB65_FX,pacFaixa,PAC_EV,SVAL};
+if (typeof module!=="undefined") module.exports={RENAL,cockcroft,ALTA_GERAL,ALTA_ITEM,dengueCalc,pedEmerg,SC,NEWS2_FX,NEWS2_NAO_VALIDADO,news2Calc,news2Resposta,CRB65_FX,CURB65_FX,pacFaixa,PAC_EV,SVAL};

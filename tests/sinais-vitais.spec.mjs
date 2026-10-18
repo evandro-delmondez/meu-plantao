@@ -137,3 +137,38 @@ test("Novo paciente limpa sinais vitais, NEWS2 e CRB-65; nada vai para o localSt
   await expect(page.locator("#atdEv")).not.toHaveValue(/NEWS2/);
   expect(erros).toEqual([]);
 });
+
+test("evolução respeita consciência alterada e O2 suplementar", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  await conduta(page, "pac");
+  await campo(page, "fr").fill("22");
+  let t = await page.locator("#atdEv").inputValue();
+  expect(t).toMatch(/lúcido e orientado no tempo e no espaço/);
+  expect(t).toMatch(/em ar ambiente/);
+  await campo(page, "cons").selectOption("C");
+  await campo(page, "o2").selectOption("o2");
+  t = await page.locator("#atdEv").inputValue();
+  expect(t).toContain("confuso, com alteração aguda da consciência (descrever orientação e Glasgow)");
+  expect(t).not.toMatch(/lúcid[oa] e orientad|Glasgow 15/);
+  expect(t).toContain("em O2 suplementar");
+  expect(t).not.toContain("em ar ambiente");
+  expect(erros).toEqual([]);
+});
+
+test("NEWS2 não aparece em menores de 16 anos nem em gestantes", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  await conduta(page, "pac");
+  await idade(page, "12");
+  await campo(page, "fr").fill("30"); await campo(page, "sat").fill("95"); await campo(page, "fc").fill("120"); await campo(page, "tax").fill("38,6");
+  const aviso = page.locator("#atdAviso");
+  await expect(aviso).toContainText("NEWS2 não validado em menores de 16 anos e gestantes; use escore próprio");
+  await expect(aviso).not.toContainText(/NEWS2 (parcial )?\d/);
+  await expect(aviso).not.toContainText("Tax 38,6 °C com FC 120");     // critérios de sepse do adulto
+  await expect(page.locator("#atdEv")).not.toHaveValue(/NEWS2:/);
+  // gestante adulta
+  await idade(page, "28");
+  await page.locator("#pcGest").check();
+  await expect(page.locator("#atdAviso")).toContainText("NEWS2 não validado");
+  await expect(page.locator("#atdNews")).toHaveText("NEWS2 não validado em menores de 16 anos e gestantes; use escore próprio.");
+  expect(erros).toEqual([]);
+});

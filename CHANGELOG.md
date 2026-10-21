@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.14.0 — 2026-10-21
+- **Meu hospital** (aba nova em Condutas): traz os protocolos do hospital onde você trabalha a partir do seu repositório privado no GitHub (chave só de leitura) ou de um arquivo. O pacote fica só no aparelho, fora do backup e da nuvem, e se atualiza sozinho ao abrir o site; botão "Apagar do aparelho". O site não contém conteúdo de nenhum hospital (formato em `docs/FORMATO-HOSPITAL.md`).
+- Com o pacote carregado: "Onde estou hoje" ganha o botão do hospital, com o nome e a cor do pacote; condutas e queixas ligadas ao protocolo mostram "Ver no protocolo do hospital", que abre a seção certa por cima, sem perder a conduta; busca nos protocolos.
+- **Critérios de internação do hospital**: escolha a doença ou o grupo, marque os critérios por toque e a prioridade, e copie a justificativa pronta para o relatório, com as frases que o hospital proíbe em destaque. As marcações são do paciente: só na memória, e "Novo paciente" limpa.
+
 ## 1.13.2 — 2026-10-18
 - Correção: a barra de atalhos da conduta deixa de flutuar sobre o texto ao rolar (no celular ela cobria a conduta como um retângulo solto); fica fixa no topo da conduta, logo abaixo do cabeçalho dela.
 

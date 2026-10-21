@@ -100,10 +100,11 @@ function renderInicio(){
 $("#hRed").onclick=()=>setSec("sala");
 /* rede pública × particular (v1.4) */
 const RENAME_FONTE="Ministério da Saúde. Relação Nacional de Medicamentos Essenciais — RENAME 2024.";
-function setRede(r){ui.rede=ui.rede===r?null:r;saveUI();renderRede();if(ui.tab==="prescricoes")renderDetail();if(ui.tab==="medicacoes")renderMedList()}
+function setRede(r){ui.rede=ui.rede===r?null:r;saveUI();renderRede();if(ui.tab==="prescricoes"||ui.tab==="queixas")setTab(ui.tab);if(ui.tab==="prescricoes")renderDetail();if(ui.tab==="medicacoes")renderMedList()}
 function renderRede(){
   $$("[data-rede]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.rede===ui.rede));
-  $("#hRedeNota").textContent=ui.rede==="publica"?"As condutas destacam os remédios da RENAME (disponíveis no SUS).":ui.rede==="particular"?"As condutas mostram a RENAME só como informação.":"Escolha para ajustar os destaques de disponibilidade.";
+  const hp=typeof hospPac==="function"&&hospPac(), hb=$("#hRedeHosp"); hb.hidden=!hp; if(hp) hb.textContent=hp.curto||hp.nome;
+  $("#hRedeNota").textContent=ui.rede==="hospital"&&hp?`Protocolos de ${hp.curto||hp.nome} em destaque nas condutas.`:ui.rede==="publica"?"As condutas destacam os remédios da RENAME (disponíveis no SUS).":ui.rede==="particular"?"As condutas mostram a RENAME só como informação.":"Escolha para ajustar os destaques de disponibilidade.";
 }
 $$("[data-rede]").forEach(b=>b.onclick=()=>setRede(b.dataset.rede));
 renderRede();

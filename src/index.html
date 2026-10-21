@@ -30,6 +30,7 @@
       <button role="tab" data-tab="prescricoes" data-sec="condutas" aria-selected="false">Prescrições</button>
       <button role="tab" data-tab="queixas" data-sec="condutas" aria-selected="false">Por queixa</button>
       <button role="tab" data-tab="feridas" data-sec="condutas" aria-selected="false">Feridas e mordeduras</button>
+      <button role="tab" data-tab="hospital" data-sec="condutas" aria-selected="false">Meu hospital</button>
       <button role="tab" data-tab="medicacoes" data-sec="remedios" aria-selected="false">Fichas</button>
       <button role="tab" data-tab="pediatria" data-sec="remedios" aria-selected="false">Pediatria por peso</button>
       <button role="tab" data-tab="sala" data-sec="sala" aria-selected="false">Visão geral</button>
@@ -57,7 +58,7 @@
     </div>
     <div id="gres" class="gres" hidden></div>
     <div id="hbody">
-      <div class="panel hrede"><span class="lbl">Onde estou hoje:</span><div class="seg" role="group" aria-label="Rede de atendimento"><button data-rede="publica" aria-pressed="false">UPA pública (SUS)</button><button data-rede="particular" aria-pressed="false">Particular</button></div><span class="note" id="hRedeNota"></span></div>
+      <div class="panel hrede"><span class="lbl">Onde estou hoje:</span><div class="seg" role="group" aria-label="Rede de atendimento"><button data-rede="publica" aria-pressed="false">UPA pública (SUS)</button><button data-rede="particular" aria-pressed="false">Particular</button><button data-rede="hospital" aria-pressed="false" id="hRedeHosp" hidden>Meu hospital</button></div><span class="note" id="hRedeNota"></span></div>
       <button class="hred" id="hRed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span><b>Sala vermelha</b><small>Condutas de emergência, doses por peso e emergência pediátrica</small></span><i aria-hidden="true">→</i></button>
       <div class="hcols">
         <div class="panel hbox"><h2>★ Favoritos</h2><div class="hchips" id="hFav"></div></div>
@@ -239,6 +240,14 @@
 
   <!-- ATESTADO -->
   <!-- QUEIXAS -->
+  <section id="tab-hospital" hidden>
+    <div class="panel card">
+      <h2>Meu hospital</h2>
+      <p class="note">Os protocolos do hospital onde você trabalha, trazidos do seu repositório privado. Ficam só neste aparelho.</p>
+    </div>
+    <div id="hospCorpo"></div>
+  </section>
+
   <section id="tab-queixas" hidden>
     <div class="panel card">
       <h2>Por queixa</h2>

@@ -565,3 +565,29 @@ details.sec[open]>summary.sec-h::after{content:"▾"}
 .crbbody p.note{margin:0}
 .atdnews select.inp{min-height:44px}
 .sec.svaviso[data-nv="info"]{--c:var(--slate)} .svnews[data-nv="info"]{border-left-color:var(--slate)}
+/* Meu hospital (pacote privado; a cor vem do pacote em --hosp) */
+.hospat{border-left:4px solid var(--hosp,var(--teal))}
+.hospat h3{color:var(--hosp,var(--teal))}
+.hospbtns{display:flex;flex-wrap:wrap;gap:8px;padding:10px 14px}
+.btn.hospbtn{border-color:var(--hosp,var(--teal));color:var(--hosp,var(--teal));min-height:44px;text-align:left}
+[data-rede="hospital"][aria-pressed="true"]{background:var(--hosp,var(--teal))!important;color:#fff!important}
+[data-tab="hospital"]{--c:var(--hosp,var(--teal))}
+.hosphead{display:grid;gap:10px}
+.hosphead input[type=search]{width:100%}
+.hospdoc .hospsec{padding:4px 14px 10px}
+.hospdoc .hosph{margin:10px 0 6px;color:var(--hosp,var(--teal))}
+.hospdoc p,.hospdoc li{overflow-wrap:anywhere}
+.hosptab{overflow-x:auto;margin:6px 0}
+.hosptab table{border-collapse:collapse;font-size:14px;min-width:100%}
+.hosptab th,.hosptab td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.hospform{display:grid;gap:10px;padding:10px 14px}
+.hospform label{display:grid;gap:4px;font-weight:600}
+.hospform input{width:100%}
+.hospselo{margin-right:auto;align-self:center;font-weight:700;color:var(--hosp,var(--teal))}
+.hospint{padding-bottom:12px}
+.hospint>*:not(.sec-h){margin-left:14px;margin-right:14px}
+.hospint select,.hospint textarea{width:calc(100% - 28px)}
+.hichk{display:grid;gap:6px;margin:8px 14px}
+.hichk label{display:flex;gap:8px;align-items:flex-start;min-height:36px}
+.hosputi{color:var(--bad);font-weight:700}
+.hospaviso{border:1.5px solid var(--bad);border-radius:10px;padding:8px 10px;margin-top:10px}

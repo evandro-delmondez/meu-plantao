@@ -156,7 +156,8 @@ function renderDetail(){
     <p class="note dnote">Os textos são editáveis para este paciente. ${changed?"":"Nada vira padrão sem você pedir."}</p>
     <div id="sessBar" class="sessbar" ${changed?"":"hidden"}><span>Você alterou o texto desta prescrição.</span><button class="btn sm primary" id="sessSave">Salvar como meu padrão</button><button class="btn sm" id="sessUndo">Descartar alterações</button></div>
   </div>
-  <nav class="atalhosconduta" aria-label="Ir para">${[["agora","Agora"],["alarmetopo","Alarmes"],["crb","Gravidade"],["casa","Receita"],["chk","Checklist"],["atend","Fechar"],["altapac","Alta"]].map(([c,r])=>`<button class="chip" data-ir="${c}">${r}</button>`).join("")}</nav>
+  <nav class="atalhosconduta" aria-label="Ir para">${[["hospat","Hospital"],["agora","Agora"],["alarmetopo","Alarmes"],["crb","Gravidade"],["casa","Receita"],["chk","Checklist"],["atend","Fechar"],["altapac","Alta"]].map(([c,r])=>`<button class="chip" data-ir="${c}">${r}</button>`).join("")}</nav>
+  ${hospAtalhos(it.id)}
   ${renderAgora(it)}
   ${renderSvAviso()}
   ${renderAlarme(it)}
@@ -195,6 +196,7 @@ function renderDetail(){
   $$("#detail .atalhosconduta [data-ir]").forEach(b=>{const alvo=$(`#detail .sec.${b.dataset.ir}`);if(!alvo){b.remove();return}
     b.onclick=()=>{if(alvo.tagName==="DETAILS")alvo.open=true;alvo.scrollIntoView({block:"start"})}});
   bindAltaPac(it);
+  bindHospAtalhos($("#detail .hospat"));
   growAll();
   $("#toEv").onclick=()=>{$("#evCond").value=it.id;evManual=false;setTab("evolucao")};
   linkMeds(el);

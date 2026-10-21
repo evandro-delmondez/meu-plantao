@@ -30,6 +30,7 @@
       <button role="tab" data-tab="prescricoes" data-sec="condutas" aria-selected="false">Prescrições</button>
       <button role="tab" data-tab="queixas" data-sec="condutas" aria-selected="false">Por queixa</button>
       <button role="tab" data-tab="feridas" data-sec="condutas" aria-selected="false">Feridas e mordeduras</button>
+      <button role="tab" data-tab="hospital" data-sec="condutas" aria-selected="false" hidden>Meu hospital</button>
       <button role="tab" data-tab="medicacoes" data-sec="remedios" aria-selected="false">Fichas</button>
       <button role="tab" data-tab="pediatria" data-sec="remedios" aria-selected="false">Pediatria por peso</button>
       <button role="tab" data-tab="sala" data-sec="sala" aria-selected="false">Visão geral</button>
@@ -159,6 +160,12 @@
   </section>
 
   <!-- PROTOCOLOS EM FLUXO -->
+  <section id="tab-hospital" hidden>
+    <p class="disc" id="hoAviso"></p>
+    <input type="search" id="hoBusca" class="ho-busca" placeholder="Buscar no material do hospital (ex.: rota 2, piperacilina, glosa)" aria-label="Buscar no material do hospital">
+    <div class="chips" id="hoLista"></div>
+    <div id="hoDocs"></div>
+  </section>
   <section id="tab-protocolos" hidden>
     <p class="disc">Protocolos passo a passo. Apoio à decisão: adapte ao paciente e ao protocolo do seu serviço.</p>
     <div class="chips" id="prLista"></div>

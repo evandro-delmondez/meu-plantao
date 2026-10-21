@@ -34,6 +34,8 @@ const data = [
   stripModule(r("src/data/alta.js")),
   "const MEDS=" + JSON.stringify(meds) + ";",
   `const APP_VERSION=${JSON.stringify(pkg.version)};`,
+  // material institucional privado: só entra no painel do Claude, nunca no site nem na cópia de colegas (ver abaixo)
+  "const INST=null/*__INST__*/;",
 ].join("\n");
 
 // ---------- página base ----------
@@ -92,12 +94,25 @@ if("serviceWorker" in navigator && (location.protocol==="https:"||location.hostn
 `;
 const site = head + local + tail;
 
+// ---------- material institucional privado (aba "Meu hospital") ----------
+// Vem de um arquivo FORA deste repositório público (ex.: repositório privado plantao-hsls),
+// indicado em INST_FILE. Entra só no painel do Claude (artefato privado). Site e colegas ficam sem.
+const INST_MARK = "null/*__INST__*/";
+if (!page.includes(INST_MARK) || !local.includes(INST_MARK)) throw new Error("Marcador do material institucional não encontrado");
+let painel = page;
+if (process.env.INST_FILE) {
+  const inst = JSON.parse(readFileSync(process.env.INST_FILE, "utf8"));
+  if (!inst || !Array.isArray(inst.docs) || !inst.docs.length) throw new Error("INST_FILE sem documentos");
+  painel = page.replace(INST_MARK, () => JSON.stringify(inst).replace(/<\/(script)/gi, "<\\/$1"));
+  console.log(`material institucional: ${inst.docs.length} documento(s) só no painel do Claude`);
+}
+
 // ---------- escrita ----------
 const dist = join(root, "dist");
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(join(dist, "site"), { recursive: true });
 mkdirSync(join(dist, "claude"), { recursive: true });
-writeFileSync(join(dist, "claude/painel.html"), page);
+writeFileSync(join(dist, "claude/painel.html"), painel);
 writeFileSync(join(dist, "claude/colegas.html"), local);
 writeFileSync(join(dist, "site/index.html"), site);
 // página pública da alta (aberta pelo QR code no celular do paciente): só a orientação, nenhum dado do paciente

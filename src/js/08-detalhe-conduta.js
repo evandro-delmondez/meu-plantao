@@ -1,11 +1,15 @@
 /* ---------- detail ---------- */
 const sess={}; // edições temporárias da prescrição: id -> {casa,unidade,orient}
 // receita: edição à mão > escolhas por toque (08-receita.js) > texto da conduta
-const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="casa"&&rxTemMontar(it))return rxOut[it.id]??rxMonta(it);return rxTxt(it[f]||"")};
+// no modo hospital, "Na unidade" vem do protocolo do hospital (a versão do app fica recolhida logo abaixo)
+const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="unidade"&&hospUnid(it.id)!=null)return hospUnid(it.id);if(f==="casa"&&rxTemMontar(it))return rxOut[it.id]??rxMonta(it);return rxTxt(it[f]||"")};
 function section(it,cls,title,f,copyLabel){
   const text=cur(it,f);
   if(!text.trim()&&!(sess[it.id]&&sess[it.id][f]!=null)) return "";
-  return `<div class="sec ${cls}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div>${f==="casa"?renderRxMontar(it):""}<textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${f!=="orient"?fichasDoTexto(text):""}</div>`;
+  const hu=f==="unidade"&&hospUnid(it.id)!=null, hc=hu&&hospCond(it.id);
+  if(hu) title=`${title} — protocolo de ${esc(hospPac().curto||hospPac().nome)}`;
+  const appv=hu&&it.unidade?`<details class="appver"><summary>Versão do app (fontes no fim da conduta)</summary><pre>${esc(rxTxt(it.unidade))}</pre></details>`:"";
+  return `<div class="sec ${cls}${hu?" hospunid":""}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div>${f==="casa"?renderRxMontar(it):""}<textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${hu&&hc.ref?`<p class="note">${esc(hc.ref)}</p>`:""}${f!=="orient"?fichasDoTexto(text):""}${appv}</div>`;
 }
 const isNew=it=>!!(it.rev&&it.rev.length===1&&it.rev[0]==="Item novo.");
 function linkify(f){const m=f.match(/https?:\/\/\S+/);if(!m)return esc(f);const u=m[0].replace(/[.,)]+$/,"");const i=f.indexOf(u);return esc(f.slice(0,i))+`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,60))}${u.length>68?"…":""}</a>`+esc(f.slice(i+u.length))}
@@ -158,6 +162,8 @@ function renderDetail(){
   </div>
   <nav class="atalhosconduta" aria-label="Ir para">${[["hospat","Hospital"],["agora","Agora"],["alarmetopo","Alarmes"],["crb","Gravidade"],["casa","Receita"],["chk","Checklist"],["atend","Fechar"],["altapac","Alta"]].map(([c,r])=>`<button class="chip" data-ir="${c}">${r}</button>`).join("")}</nav>
   ${hospAtalhos(it.id)}
+  ${hospRegrasHTML(it.id)}
+  ${hospDivHTML(it.id)}
   ${renderAgora(it)}
   ${renderSvAviso()}
   ${renderAlarme(it)}
@@ -204,7 +210,7 @@ function renderDetail(){
   $("#edBtn").onclick=()=>{editing=true;renderDetail()};
   $("#backBtn").onclick=()=>{$("#tab-prescricoes").classList.remove("show-detail")};
   $("#sessUndo").onclick=()=>{delete sess[it.id];renderDetail();toast("Alterações descartadas")};
-  $("#sessSave").onclick=()=>{const s=sess[it.id];const base={nome:it.nome,cat:it.cat,cid:it.cid,sin:it.sin,casa:it.casa,unidade:it.unidade,orient:it.orient};if(it.custom&&it.fontes)base.fontes=it.fontes;Object.assign(base,s);writeOverride(it.id,base);delete sess[it.id];renderList();renderDetail();fillSelects();toast("Salvo como seu padrão")};
+  $("#sessSave").onclick=()=>{const s=sess[it.id];const base={nome:it.nome,cat:it.cat,cid:it.cid,sin:it.sin,casa:it.casa,unidade:it.unidade,orient:it.orient};if(it.custom&&it.fontes)base.fontes=it.fontes;Object.assign(base,s);if(hospUnid(it.id)!=null){base.unidade=it.unidade;if(s.unidade!=null)toast("A conduta do hospital não vira padrão: fica só o resto")}writeOverride(it.id,base);delete sess[it.id];renderList();renderDetail();fillSelects();toast("Salvo como seu padrão")};
 }
 function renderEditor(it){
   const el=$("#detail");

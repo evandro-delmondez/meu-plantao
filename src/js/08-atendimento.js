@@ -101,7 +101,7 @@ function atdTextos(it){
   Object.entries(ATD_EV).forEach(([k,id])=>$("#"+id).value=atd[k]);
   $("#evCond").value=it.id;
   $("#evExame").value=atd.exame||atdExamePadrao();
-  $("#evUnid").checked=atd.unid; $("#evCasa").checked=atd.casa; $("#evOri").checked=atd.ori; $("#evDestino").value=atd.destino??atdDestinoPadrao(it);
+  $("#evUnid").checked=atd.unid; $("#evCasa").checked=atd.casa; $("#evOri").checked=atd.ori; fillDestino(); $("#evDestino").value=atd.destino??atdDestinoPadrao(it);
   const l=chkLinhas(it); evChk=l.n?{id:it.id,hma:l.hma,ex:l.ex}:null;
   $("#evNega").checked=false;   // "Nega…" só sai do checklist marcado com −
   const n=atdNews(); evSv=[n?newsLinha(n):"",it.id==="pac"&&(n||pac.idade)?crbLinha(atdCrb()):""].filter(Boolean);
@@ -128,14 +128,14 @@ function renderAtend(it){
       <label class="f">Consciência<select class="inp" data-atd="cons">${[["","— informar —"],["A","Alerta"],["C","Confusão nova, voz, dor ou sem resposta"]].map(([v,r])=>`<option value="${v}" ${atd.cons===v?"selected":""}>${r}</option>`).join("")}</select></label></div>
     <p class="svnews" id="atdNews" hidden></p>
     <label class="f">Exame físico<select class="inp" data-atd="exame">${model.exames.map(e=>`<option value="${esc(e.id)}" ${e.id===ex?"selected":""}>${esc(e.nome)}</option>`).join("")}</select></label>
-    <div class="atdck">${ck("casa","Receita")}${ck("unid","Conduta na unidade")}${ck("ori","Orientações")}<label class="f">Destino<select class="inp" data-atd="destino">${[["","— não incluir —"],["alta","Alta com orientações"],["observacao","Observação"],["internacao","Internação"],["transferencia","Transferência"]].map(([v,r])=>`<option value="${v}" ${(atd.destino??atdDestinoPadrao(it))===v?"selected":""}>${r}</option>`).join("")}</select></label></div>
+    <div class="atdck">${ck("casa","Receita")}${ck("unid","Conduta na unidade")}${ck("ori","Orientações")}<label class="f">Destino<select class="inp" data-atd="destino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${v}" ${(atd.destino??atdDestinoPadrao(it))===v?"selected":""}>${r}</option>`).join("")}</select></label></div>
     <p class="note">O checklist "Não esquecer" marcado acima entra sozinho na evolução.</p>
     <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">
       <option value="atestado" ${atd.tipo==="atestado"?"selected":""}>Atestado</option><option value="comparecimento" ${atd.tipo==="comparecimento"?"selected":""}>Comparecimento</option><option value="nenhum" ${atd.tipo==="nenhum"?"selected":""}>Nenhum</option></select></label>
       ${atd.tipo==="atestado"?inp("dias","Dias","atddias","0"):atd.tipo==="comparecimento"?inp("hora","Período","","ex.: 14h às 16h"):""}
       ${atd.tipo!=="nenhum"&&it.cid?ck("aut",`CID ${esc(it.cid)} autorizado`):""}</div>
     <div class="atdout"><div class="sec-h"><h4>Evolução</h4><button class="btn sm primary" id="atdCpEv">Copiar evolução</button></div>
-      <textarea class="out-edit" id="atdEv" spellcheck="false" aria-label="Evolução"></textarea>
+      <textarea class="out-edit" id="atdEv" spellcheck="false" aria-label="Evolução"></textarea><div class="hospev" id="atdEvHosp"></div>
       <p class="note" id="atdEvMan" hidden>Você editou o texto. <button class="btn sm" id="atdEvRe">Refazer</button></p></div>
     <div class="atdout" id="atdAtW"><div class="sec-h"><h4 id="atdAtT">Atestado</h4><button class="btn sm primary" id="atdCpAt">Copiar</button></div>
       <textarea class="out-edit" id="atdAt" spellcheck="false" aria-label="Atestado"></textarea></div>
@@ -148,7 +148,7 @@ function atdAtualiza(it){
   if(atd.evMan==null){e.value=ev} $("#atdEvMan").hidden=atd.evMan==null;
   $("#atdAtW").hidden=!at&&atd.atMan==null; $("#atdAtT").textContent=atd.tipo==="comparecimento"?"Declaração de comparecimento":"Atestado";
   if(atd.atMan==null) a.value=at;
-  grow(e); grow(a);
+  grow(e); grow(a); $("#atdEvHosp").innerHTML=hospEvAviso(e.value);
   atdAvisoAtualiza(it); crbAtualiza();
 }
 function bindAtend(it){
@@ -163,7 +163,7 @@ function bindAtend(it){
       atdAtualiza(it);
     });
   });
-  $("#atdEv").addEventListener("input",()=>{atd.evMan=$("#atdEv").value;$("#atdEvMan").hidden=false;grow($("#atdEv"))});
+  $("#atdEv").addEventListener("input",()=>{atd.evMan=$("#atdEv").value;$("#atdEvMan").hidden=false;grow($("#atdEv"));$("#atdEvHosp").innerHTML=hospEvAviso(atd.evMan)});
   $("#atdAt").addEventListener("input",()=>{atd.atMan=$("#atdAt").value;grow($("#atdAt"))});
   $("#atdEvRe").onclick=()=>{atd.evMan=null;atd.atMan=null;atdAtualiza(it)};
   $("#atdCpEv").onclick=e=>copy($("#atdEv").value,e.currentTarget);

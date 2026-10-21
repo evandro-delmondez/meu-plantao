@@ -18,7 +18,7 @@ function hospAplica(){
   const p=hospPac();
   document.documentElement.style.setProperty("--hosp",p?p.cor:"var(--teal)");
   if(!p&&ui.rede==="hospital"){ui.rede=null;saveUI()}
-  renderRede(); if(ui.tab==="hospital") renderHospital();
+  renderRede(); fillDestino(); if(ui.tab==="hospital") renderHospital();
 }
 async function hospBaixar(silencioso){
   const c=hosp.cfg||{};
@@ -41,6 +41,40 @@ function hospImportar(txt){
 function hospApagar(){
   try{localStorage.removeItem(HOSP_LS)}catch(e){}
   hosp={}; Object.keys(hospInt).forEach(k=>delete hospInt[k]); hospAplica(); toast("Apagado deste aparelho");
+}
+/* ---------- modo hospital ("Onde estou hoje" = hospital): o pacote pode trazer a conduta na unidade, divergências,
+   regras por conduta, lembretes da evolução e os desfechos do hospital. Sem pacote ou fora do modo, o app é o de sempre. */
+const hospCond=id=>hospAtivo()&&(hospPac().condutas||{})[id]||null;
+const hospUnid=id=>{const c=hospCond(id);return c&&typeof c.unidade==="string"?c.unidade:null};
+const hospLista=(lista,id)=>(Array.isArray(lista)?lista:[]).filter(x=>x&&Array.isArray(x.condutas)&&(x.condutas.includes(id)||x.condutas.includes("*")));
+const DESTINOS_APP=[["alta","Alta com orientações","- Alta com orientações e sinais de retorno."],["observacao","Observação","- Mantido em observação para reavaliação."],["internacao","Internação","- Indicada internação."],["transferencia","Transferência","- Solicitada transferência pela regulação."]];
+function destinos(){const d=hospAtivo()&&hospPac().desfechos;return Array.isArray(d)&&d.length?d.filter(x=>x&&x.id&&x.rot).map(x=>[x.id,x.rot,x.txt||"- "+x.rot+"."]):DESTINOS_APP}
+function fillDestino(){
+  const s=$("#evDestino"); if(!s) return; const v=s.value;
+  s.innerHTML=`<option value="">— não incluir —</option>`+destinos().map(([id,r])=>`<option value="${esc(id)}">${esc(r)}</option>`).join("");
+  s.value=destinos().some(d=>d[0]===v)?v:"";
+}
+// divergências: aparecem com o pacote carregado (em qualquer modo), as duas versões lado a lado, até o médico decidir
+function hospDivHTML(id){
+  const p=hospPac(); if(!p) return "";
+  const dv=hospLista(p.divergencias,id); if(!dv.length) return "";
+  const lado=(rot,x)=>`<div class="hdlado"><span class="hdrot">${esc(rot)}</span><p>${esc(x&&x.txt)}</p><p class="note">Fonte: ${esc(x&&x.fonte)}</p></div>`;
+  return `<div class="sec hospdiv"><div class="sec-h"><h3>Hospital × app: você decide</h3><span class="alsum">${dv.length} ponto(s)</span></div>
+    ${dv.map(d=>`<div class="hditem"><h4>${esc(d.tema)}</h4><div class="hdlados">${lado(p.curto||p.nome,d.hospital)}${lado("Meu Plantão",d.app)}</div>${d.decisao?`<p class="hddec"><b>Sua decisão:</b> ${esc(d.decisao)}</p>`:""}</div>`).join("")}</div>`;
+}
+// regras do hospital para esta conduta (só no modo hospital)
+function hospRegrasHTML(id){
+  if(!hospAtivo()) return "";
+  const r=hospLista(hospPac().regras,id); if(!r.length) return "";
+  return `<div class="sec hospregras"><div class="sec-h"><h3>Regras de ${esc(hospPac().curto||hospPac().nome)}</h3></div><ul class="qlist">${r.map(x=>`<li>${esc(x.txt)}${x.ref?` <span class="note">(${esc(x.ref)})</span>`:""}</li>`).join("")}</ul></div>`;
+}
+// evolução: lembretes do hospital e frases proibidas encontradas no texto
+function hospEvAviso(txt){
+  if(!hospAtivo()) return "";
+  const p=hospPac(), proib=(p.internacao?.proibidas||[]).filter(f=>hospNorm(txt).includes(hospNorm(f)));
+  const lem=p.evolucao?.lembretes||[];
+  return (proib.length?`<p class="hospproib"><b>Tire do texto:</b> ${proib.map(f=>"“"+esc(f)+"”").join(", ")}${p.evolucao?.proibidasMotivo?` — ${esc(p.evolucao.proibidasMotivo)}`:""}</p>`:"")
+    +(lem.length?`<details class="hosplem"><summary>Lembretes de ${esc(p.curto||p.nome)} para o prontuário</summary><ul>${lem.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></details>`:"");
 }
 /* texto do pacote: markdown simples (títulos ###, listas, tabelas, **negrito**), sempre escapado */
 function hospMd(s){
@@ -84,11 +118,12 @@ function renderHospital(){
   el.innerHTML=`<div class="panel card hosphead"><div><b>${esc(p.nome)}</b><span class="note"> · versão ${esc(p.versao||"?")} · baixado em ${new Date(hosp.em||0).toLocaleDateString("pt-BR")}</span></div>
       ${p.aviso?`<p class="note">${esc(p.aviso)}</p>`:""}
       <input id="hospQ" type="search" placeholder="Buscar nos protocolos do hospital" value="${esc(hospBusca)}" aria-label="Buscar nos protocolos do hospital">
-      <div class="chips" id="hospDocs">${docs.map(d=>`<button class="chip" data-hdoc="${esc(d.id)}" aria-pressed="${q.length<2&&d.id===hospSel}">${esc(d.titulo)}</button>`).join("")}${p.internacao?`<button class="chip" id="hospIntBtn">Internação</button>`:""}</div></div>
+      <div class="chips" id="hospDocs">${docs.map(d=>`<button class="chip" data-hdoc="${esc(d.id)}" aria-pressed="${q.length<2&&d.id===hospSel}">${esc(d.titulo)}</button>`).join("")}${p.internacao?`<button class="chip" id="hospIntBtn">Internação</button>`:""}${(p.divergencias||[]).length?`<button class="chip" id="hospDivBtn">Hospital × app</button>`:""}</div></div>
     <div id="hospDoc">${corpo}</div>${cfg}`;
   $$("#hospDocs [data-hdoc]").forEach(b=>b.onclick=()=>{hospSel=b.dataset.hdoc;hospBusca="";renderHospital();window.scrollTo({top:0})});
   $$("#hospDoc [data-hd]").forEach(b=>b.onclick=()=>abrirHospDoc(b.dataset.hd,b.dataset.hs));
   if($("#hospIntBtn")) $("#hospIntBtn").onclick=()=>abrirHospInt();
+  if($("#hospDivBtn")) $("#hospDivBtn").onclick=()=>hospSheet([...new Set((p.divergencias||[]).flatMap(d=>d.condutas||[]))].map(id=>hospDivHTML(id)).filter((x,i,a)=>a.indexOf(x)===i).join("")||"","Hospital × app");
   const qi=$("#hospQ"); qi.oninput=()=>{hospBusca=qi.value;const pos=qi.selectionStart;renderHospital();const n=$("#hospQ");n.focus();n.setSelectionRange(pos,pos)};
   linkMeds($("#hospDoc")); bindHospCfg();
 }
@@ -170,5 +205,6 @@ function bindHospAtalhos(box){
 // ao carregar: só a cor e o seletor (as abas ainda não existem; o Início desenha o seletor depois)
 document.documentElement.style.setProperty("--hosp",hospPac()?hospPac().cor:"var(--teal)");
 if(!hospPac()&&ui.rede==="hospital") ui.rede=null;
+fillDestino();
 // abre o site: se há chave, busca a versão nova em segundo plano (sem conexão, fica a última baixada)
 if(hosp.cfg&&hosp.cfg.chave&&navigator.onLine!==false) hospBaixar(true);

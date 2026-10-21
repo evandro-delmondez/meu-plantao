@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## 1.15.0 — 2026-10-21
+- **Modo hospital** ("Onde estou hoje" no botão do hospital, com o pacote carregado):
+  - onde o pacote traz a conduta na unidade do hospital, ela vira a principal (com a referência do protocolo) e a versão do app fica recolhida logo abaixo; copiar, evolução e "Fechar o atendimento" usam a do hospital; o texto do hospital nunca vira "meu padrão" (que vai para backup e nuvem);
+  - **Hospital × app: você decide** — divergências entre o protocolo do hospital e a fonte do app, lado a lado, cada uma com a sua fonte (aparecem sempre que o pacote está carregado; lista completa na aba Meu hospital);
+  - regras do hospital por conduta e por queixa;
+  - evolução: lembretes do hospital para o prontuário e aviso quando o texto tem frase que o hospital proíbe;
+  - seletor de destino com os desfechos do hospital (volta aos 4 de sempre fora do modo).
+
 ## 1.14.0 — 2026-10-21
 - **Meu hospital** (aba nova em Condutas): traz os protocolos do hospital onde você trabalha a partir do seu repositório privado no GitHub (chave só de leitura) ou de um arquivo. O pacote fica só no aparelho, fora do backup e da nuvem, e se atualiza sozinho ao abrir o site; botão "Apagar do aparelho". O site não contém conteúdo de nenhum hospital (formato em `docs/FORMATO-HOSPITAL.md`).
 - Com o pacote carregado: "Onde estou hoje" ganha o botão do hospital, com o nome e a cor do pacote; condutas e queixas ligadas ao protocolo mostram "Ver no protocolo do hospital", que abre a seção certa por cima, sem perder a conduta; busca nos protocolos.

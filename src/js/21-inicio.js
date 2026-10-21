@@ -100,7 +100,7 @@ function renderInicio(){
 $("#hRed").onclick=()=>setSec("sala");
 /* rede pública × particular (v1.4) */
 const RENAME_FONTE="Ministério da Saúde. Relação Nacional de Medicamentos Essenciais — RENAME 2024.";
-function setRede(r){ui.rede=ui.rede===r?null:r;saveUI();renderRede();if(ui.tab==="prescricoes"||ui.tab==="queixas")setTab(ui.tab);if(ui.tab==="prescricoes")renderDetail();if(ui.tab==="medicacoes")renderMedList()}
+function setRede(r){ui.rede=ui.rede===r?null:r;saveUI();renderRede();fillDestino();if(ui.tab==="evolucao")renderEv();if(ui.tab==="prescricoes"||ui.tab==="queixas")setTab(ui.tab);if(ui.tab==="prescricoes")renderDetail();if(ui.tab==="medicacoes")renderMedList()}
 function renderRede(){
   $$("[data-rede]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.rede===ui.rede));
   const hp=typeof hospPac==="function"&&hospPac(), hb=$("#hRedeHosp"); hb.hidden=!hp; if(hp) hb.textContent=hp.curto||hp.nome;

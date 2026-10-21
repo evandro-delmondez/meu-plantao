@@ -47,17 +47,16 @@ function buildEv(){
     if($("#evCasa").checked&&cur(it,"casa")) {L.push("");L.push("Prescrição domiciliar:");L.push(cur(it,"casa"))}
     if($("#evOri").checked&&cur(it,"orient")) {L.push("");L.push("Orientações:");L.push(cur(it,"orient"))}
   }
-  const DESTINO={alta:"- Alta com orientações e sinais de retorno.",observacao:"- Mantido em observação para reavaliação.",internacao:"- Indicada internação.",transferencia:"- Solicitada transferência pela regulação."};
-  const dest=DESTINO[$("#evDestino").value]; if(dest){L.push("");L.push(dest)}
+  const dest=(destinos().find(d=>d[0]===$("#evDestino").value)||[])[2]; if(dest){L.push("");L.push(dest)}
   return L.join("\n");
 }
 function renderEv(force){
   if(evManual&&!force) {$("#evManualNote").hidden=false;return}
   evManual=false; $("#evManualNote").hidden=true;
-  $("#evOut").value=buildEv(); grow($("#evOut"));
+  $("#evOut").value=buildEv(); grow($("#evOut")); $("#evHosp").innerHTML=hospEvAviso($("#evOut").value);
 }
 ["evCond","evExame","evNega","evCasa","evUnid","evOri","evDestino",...evIds].forEach(id=>{$("#"+id).addEventListener("input",()=>renderEv());$("#"+id).addEventListener("change",()=>renderEv())});
-$("#evOut").addEventListener("input",()=>{evManual=true;grow($("#evOut"));$("#evManualNote").hidden=false});
+$("#evOut").addEventListener("input",()=>{evManual=true;grow($("#evOut"));$("#evManualNote").hidden=false;$("#evHosp").innerHTML=hospEvAviso($("#evOut").value)});
 $("#evRegen").onclick=()=>renderEv(true);
 $("#evCopy").onclick=e=>copy($("#evOut").value,e.currentTarget);
 $("#evClear").onclick=()=>{evScores=[];evChk=null;evIds.forEach(id=>$("#"+id).value="");renderEv(true);toast("Campos limpos")};

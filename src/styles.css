@@ -591,3 +591,22 @@ details.sec[open]>summary.sec-h::after{content:"▾"}
 .hichk label{display:flex;gap:8px;align-items:flex-start;min-height:36px}
 .hosputi{color:var(--bad);font-weight:700}
 .hospaviso{border:1.5px solid var(--bad);border-radius:10px;padding:8px 10px;margin-top:10px}
+.hospunid{border-left:4px solid var(--hosp,var(--teal))}
+.hospunid h3{color:var(--hosp,var(--teal))}
+.appver{margin:8px 14px 12px}
+.appver summary{cursor:pointer;font-weight:600;color:var(--muted);min-height:32px}
+.appver pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:14px;background:var(--surface-2);border-radius:8px;padding:8px 10px;margin:6px 0 0}
+.hospdiv{border:2px dashed var(--warn)}
+.hospdiv h3{color:var(--warn)}
+.hditem{padding:6px 14px 10px}
+.hditem h4{margin:6px 0}
+.hdlados{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:600px){.hdlados{grid-template-columns:1fr}}
+.hdlado{border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--surface-2)}
+.hdlado p{margin:4px 0;overflow-wrap:anywhere}
+.hdrot{font-weight:700;font-size:13px}
+.hdlado:first-child .hdrot{color:var(--hosp,var(--teal))}
+.hospregras{border-left:4px solid var(--hosp,var(--teal))}
+.hospproib{color:var(--bad);border:1.5px solid var(--bad);border-radius:10px;padding:8px 10px;margin:8px 0}
+.hosplem{margin:6px 0}
+.hosplem summary{cursor:pointer;font-weight:600;color:var(--hosp,var(--teal));min-height:32px}

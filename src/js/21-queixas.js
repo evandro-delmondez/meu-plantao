@@ -8,7 +8,7 @@ function renderQueixas(){
   const caminho=c=>c.conduta&&getItem(c.conduta)
     ?`<button class="qcam" data-qc="${esc(c.conduta)}"><span>${esc(c.rot)}</span><span class="qir">abrir →</span></button>`
     :`<div class="qcam semlink"><span>${esc(c.rot)}</span></div>`;
-  $("#qCorpo").innerHTML=`${hospAtalhos("q:"+q.id)}
+  $("#qCorpo").innerHTML=`${hospAtalhos("q:"+q.id)}${hospRegrasHTML("q:"+q.id)}
     <div class="sec alarmetopo qalarme"><div class="sec-h"><h3>Sinais de alarme: não é verde</h3></div>
       <ul class="qal">${q.alarme.map(a=>`<li><b>${esc(a.t)}</b><span>${esc(a.acao)}</span></li>`).join("")}</ul></div>
     ${(q.perguntar||[]).length?`<div class="sec"><div class="sec-h"><h3>Perguntar e examinar</h3></div><ul class="qlist">${q.perguntar.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`:""}

@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.19.0 — 2026-10-22
+- **Mais de uma queixa no mesmo paciente**: no Atendimento, "Adicionar outra conduta" (até 3). Junta sinais de alarme, checklists (um por conduta), sistemas do exame, diagnósticos com os CIDs, na unidade, receita e orientações, sem repetir o mesmo remédio e renumerando.
+- **Editar padrões** (botão no topo do Atendimento): checklist e sinais de alarme de cada conduta, texto de cada sistema do exame, na unidade, receita e orientações, opções da reavaliação, do "orientado sobre", objetivos e perguntas da internação — um item por linha, com "↺ original". Vale para os próximos atendimentos.
+- **Nuvem no GitHub para o site** (Documentos → Backup → Nuvem: seus padrões): suas condutas editadas, modelos, padrões do Atendimento e favoritos vão para um repositório privado seu e voltam em qualquer aparelho; junta pelo mais recente; não leva dado de paciente. O indicador do topo mostra "Salvo na nuvem".
+
 ## 1.18.0 — 2026-10-21
 - **Atender** virou botão principal da navegação (2º lugar), com Atendimento e Pacientes; Sala vermelha foi para o fim da barra.
 - Na conduta, **Atender →** fica no topo, acima dos sinais de alarme (saiu o cartão do fim da conduta).

@@ -139,3 +139,62 @@ test("exame físico direcionado: liga e desliga sistemas; modelo completo contin
   await expect(saida(page, "exame")).toHaveValue(/Membros inferiores:/);
   expect(erros).toEqual([]);
 });
+
+test("mais de uma queixa: gripe + enxaqueca juntam diagnósticos, checklists, exame e receita sem repetir remédio", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await page.selectOption("#atAdd", "enxaqueca");
+  await expect(page.locator("#atCorpo [data-atrem]")).toHaveText(/Enxaqueca/);
+  const diag = await saida(page, "diag").inputValue();
+  expect(diag).toMatch(/^Hipóteses diagnósticas:\n- Síndrome gripal.*\(CID J11\.1\)\n- Enxaqueca.*\(CID G43/);
+  await expect(page.locator("#atCorpo .cidbig")).toHaveCount(2);
+  // um checklist por conduta, cada um funcionando
+  await expect(page.locator("#atCorpo #atChk1 .ck").first()).toBeVisible();
+  await page.locator('#atCorpo #atChk1 [data-ck="hist0"][data-val="+"]').click();
+  await expect(saida(page, "hda")).toHaveValue(/Presença de /);
+  // exame: sistemas das duas (respiratório da gripe e neurológico da enxaqueca)
+  const ex = await saida(page, "exame").inputValue();
+  expect(ex).toMatch(/^Respiratório:/m); expect(ex).toMatch(/^Neurológico:/m);
+  // receita: itens das duas, sem repetir o mesmo remédio, renumerados
+  const trat = await saida(page, "trat").inputValue();
+  const rx = trat.split("Prescrição domiciliar:")[1].split("Orientações:")[0];
+  const nomes = [...rx.matchAll(/^\s*\d+\)\s*([A-Za-zÀ-ÿ-]+)/gm)].map((m) => m[1].toLowerCase());
+  expect(nomes.length).toBeGreaterThan(1);
+  expect(new Set(nomes).size).toBe(nomes.length);
+  const nums = [...rx.matchAll(/^\s*(\d+)\)/gm)].map((m) => +m[1]);
+  expect(nums).toEqual(nums.map((_, i) => i + 1));
+  // tirar a adicional volta ao diagnóstico único
+  await page.locator("#atCorpo [data-atrem]").click();
+  await expect(saida(page, "diag")).toHaveValue(/^Hipótese diagnóstica: Síndrome gripal/);
+  expect(erros).toEqual([]);
+});
+
+test("Editar padrões: checklist, listas da alta, sistema do exame e na unidade viram padrão e continuam após recarregar", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "amigdalite");
+  await page.click("#atEdita");
+  const hist = page.locator('#atCorpo [data-edc="amigdalite|hist"]');
+  await hist.fill((await hist.inputValue()) + "\nrouquidão (item do médico)");
+  const reav = page.locator('#atCorpo [data-edl="reav"]');
+  await reav.fill((await reav.inputValue()) + "\ncom exames laboratoriais sem alterações");
+  await page.locator('#atCorpo [data-eds="cab"]').fill("Cabeça e orofaringe: texto do médico.");
+  const un = page.locator('#atCorpo [data-edt="amigdalite|unidade"]');
+  await un.fill((await un.inputValue()) + "\n9) Remédio do médico 1 ampola IM.");
+  await page.click("#atEdSalva");
+  await expect(page.locator("#atEdita")).toBeVisible();
+  await page.reload();
+  await atender(page, "amigdalite");
+  await expect(page.locator("#atCorpo .ck", { hasText: "rouquidão (item do médico)" })).toHaveCount(1);
+  await expect(page.locator('#atCorpo [data-atchip="reav"]', { hasText: "com exames laboratoriais sem alterações" })).toHaveCount(1);
+  await expect(saida(page, "exame")).toHaveValue(/Cabeça e orofaringe: texto do médico\./);
+  await expect(page.locator("#atCorpo .unlista")).toContainText("Remédio do médico 1 ampola IM.");
+  const ls = await page.evaluate(() => localStorage.getItem("rxp_model_v1") + localStorage.getItem("rxp_overrides_v1"));
+  expect(ls).toContain("rouquidão (item do médico)");
+  expect(ls).toContain("Remédio do médico 1 ampola IM.");
+  // voltar ao original
+  await page.click("#atEdita");
+  await page.locator('#atCorpo [data-edc="amigdalite|hist"]').locator("xpath=..").locator("[data-edorig]").click();
+  await page.click("#atEdSalva");
+  await expect(page.locator("#atCorpo .ck", { hasText: "rouquidão (item do médico)" })).toHaveCount(0);
+  expect(erros).toEqual([]);
+});

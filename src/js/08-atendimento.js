@@ -1,7 +1,7 @@
 /* ---------- atendimento em 1 tela (porta): sinais de alarme no topo e "Fechar o atendimento" na conduta ---------- */
 // tudo do paciente fica só na memória da aba (regra 5); "Novo paciente" limpa
 const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",tax:"",hgt:"",o2:"",cons:"",
-  exModelo:"sis",sis:null,exLivre:"",diag:"",unid:false,casa:true,ori:true,destino:null,
+  extras:[],exModelo:"sis",sis:null,exLivre:"",diag:"",unid:false,casa:true,ori:true,destino:null,
   reav:{},reavTxt:"",altaOri:{},alarOff:{},altaLivre:"",compreende:false,
   intern:{local:"",motivo:"",obj:{},objLivre:"",lab:"",laudos:"",feito:"",parecer:""},
   tipo:"atestado",dias:"",aut:false,hora:"",man:{}});
@@ -11,9 +11,11 @@ const PAC_LS="mph_pacientes_v1", PAC_DIAS=7;
 let atPac=null;        // id do paciente da lista que está no Atendimento
 let pacDb=null;        // {pacs:[…], cont:{"AAAA-MM-DD":n}, apagados:{id:quando}}
 
+// checklist da conduta com as edições do médico (Atendimento → Editar padrões), salvas no modelo
+function chkDe(id){const b=CHECK[id], m=model.chk&&model.chk[id]; if(!b&&!m) return null; return Object.assign({fontes:[]},b||{},m||{})}
 // sinais de alarme do checklist, em destaque antes da receita
 function renderAlarme(it){
-  const c=CHECK[it.id]; if(!c||!(c.alarme||[]).length) return "";
+  const c=chkDe(it.id); if(!c||!(c.alarme||[]).length) return "";
   return `<div class="sec alarmetopo"><div class="sec-h"><h3>Sinais de alarme</h3><span class="alsum">reavaliar a classificação antes de liberar</span></div>
     <ul class="alarmelista">${c.alarme.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`;
 }

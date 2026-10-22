@@ -109,6 +109,8 @@ function rxTxt(t){
 
 function setSync(s,t){const el=$("#sync");el.dataset.s=s;$("#syncTxt").textContent=t}
 function refreshSync(){
+  // no site: a nuvem é o repositório do GitHub (01-nuvem-github.js)
+  if(dbState!=="ok"&&gsAtivo()) return setSync(gs.erro?"pend":/salvar|Sincronizando/.test(gsEstado)?"pend":"ok",gs.erro?"Nuvem com erro (Backup)":/salvar|Sincronizando/.test(gsEstado)?"Salvando na nuvem…":"Salvo na nuvem");
   if(dbState==="loading") return setSync("local","Conectando…");
   if(dbState==="none") return setSync("local","Salvo só neste aparelho");
   if(pending.size) return setSync("pend",pending.size+" alteração(ões) sincronizando…");
@@ -135,11 +137,11 @@ async function flush(){
 }
 function writeOverride(id,obj){
   obj.updatedAt=Date.now();
-  overrides[id]=obj; pending.add(id); persistLocal(); refreshSync(); flush();
+  overrides[id]=obj; pending.add(id); persistLocal(); refreshSync(); flush(); gsAgenda();
 }
 
 /* model (exam/conduct) */
 async function saveModel(){
-  model.v=4; model.updatedAt=Date.now(); lsSet(LS.model,model);
+  model.v=4; model.updatedAt=Date.now(); lsSet(LS.model,model); gsAgenda();
   if(db){try{await db.doc("config/modelo").set(model)}catch(e){}}
 }

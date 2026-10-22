@@ -662,3 +662,13 @@ button.cid{cursor:pointer;border:1px solid var(--line);background:var(--surface)
 input.segredo{-webkit-text-security:disc;text-security:disc}
 .atlistas textarea{min-height:76px}
 .btn.atenderbtn{background:var(--green);border-color:var(--green);color:#fff;font-size:16px;padding-inline:18px}
+.atextras{display:grid;gap:6px;padding:0 2px 10px}
+.atadd{width:auto;max-width:100%}
+.atcond{margin:10px 0 4px;color:var(--accent)}
+.atcids{display:flex;flex-wrap:wrap;gap:8px}
+.ateditbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end;margin:0 0 8px}
+.ateditbar .note{flex-basis:100%;text-align:right;margin:0}
+.atedg{display:grid;gap:8px;border:1.5px dashed var(--accent);border-radius:12px;padding:10px}
+.ated{display:grid;gap:4px}
+.atedh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ated textarea{width:100%}

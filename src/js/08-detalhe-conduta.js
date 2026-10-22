@@ -79,7 +79,7 @@ const chk={}; // id da conduta -> {"hist0":"+", "ex2":"-", …}
 const CHK_GRUPOS=[["hist","Anamnese"],["ant","Antecedentes"],["ex","Exame físico dirigido"],["alarme","Sinais de alarme"]];
 const semParenteses=t=>t.replace(/\s*\([^)]*\)/g,"").trim();
 function chkLinhas(it){
-  const c=CHECK[it.id], st=chk[it.id]||{};
+  const c=chkDe(it.id), st=chk[it.id]||{};
   if(!c) return {hma:[],ex:[],n:0};
   const sel=(g,v)=>(c[g]||[]).filter((t,i)=>st[g+i]===v).map(semParenteses);
   const hma=[], ex=[];
@@ -98,16 +98,16 @@ function chkLinhas(it){
   return {hma,ex,n:Object.keys(st).length};
 }
 function renderChecklist(it){
-  const c=CHECK[it.id]; if(!c) return "";
+  const c=chkDe(it.id); if(!c) return "";
   const st=chk[it.id]||{};
   const grupos=CHK_GRUPOS.map(([g,nome])=>`<div class="ckg ckg-${g}"><h4>${nome}</h4><ul>${(c[g]||[]).map((t,i)=>{const k=g+i,v=st[k]||"";return `<li class="ck" data-v="${v==="+"?"pos":v==="-"?"neg":""}"><span class="ckt">${esc(t)}</span><span class="ckb"><button data-ck="${k}" data-val="+" aria-pressed="${v==="+"}" aria-label="${esc(t)}: presente" title="Presente">+</button><button data-ck="${k}" data-val="-" aria-pressed="${v==="-"}" aria-label="${esc(t)}: ausente" title="Ausente">−</button></span></li>`}).join("")}</ul></div>`).join("");
   return `<div class="sec chk"><div class="sec-h"><h3>Não esquecer</h3><span class="alsum">+ presente · − ausente</span></div>
   <div class="ckgrid">${grupos}</div>
   <div class="actions ckact"><button class="btn sm primary" id="ckEv">Levar para o Atendimento</button><button class="btn sm" id="ckCopy">Copiar</button><button class="btn sm" id="ckClear">Limpar marcações</button></div>
-  <details class="alsrc"><summary>Fontes do checklist</summary><ol>${c.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></div>`;
+  <details class="alsrc"><summary>Fontes do checklist</summary><ol>${(c.fontes||[]).map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></div>`;
 }
 function bindChecklist(it,root="#detail",refaz=renderDetail){
-  if(!CHECK[it.id]) return;
+  if(!chkDe(it.id)) return;
   const R=$(root), q=sel=>R.querySelector(sel);
   R.querySelectorAll("[data-ck]").forEach(b=>b.onclick=()=>{
     const st=chk[it.id]=chk[it.id]||{}; const k=b.dataset.ck;
@@ -116,11 +116,11 @@ function bindChecklist(it,root="#detail",refaz=renderDetail){
     // "alergia a penicilina" no checklist liga o mesmo alerta de Dados do paciente e do perfil (um só estado)
     if(/alergia[^,]*penicilina/i.test(li.querySelector(".ckt").textContent)&&!/gestante/i.test(li.querySelector(".ckt").textContent)){pac.pnc=st[k]==="+";if(!pac.pnc)ui.perfil=(ui.perfil||[]).filter(x=>x!=="pnc");refaz();return}
     li.querySelectorAll("[data-ck]").forEach(x=>x.setAttribute("aria-pressed",st[k]===x.dataset.val));
-    if(root==="#atCorpo") atAtualiza();
+    if(root!=="#detail") atAtualiza();
   });
   q("#ckCopy").onclick=e=>{const l=chkLinhas(it);const t=[...l.hma,...l.ex].join("\n");if(!t){toast("Marque algum item com + ou −");return}copy(t,e.currentTarget)};
   q("#ckClear").onclick=()=>{delete chk[it.id];refaz();toast("Marcações limpas")};
-  const ev=q("#ckEv"); if(ev){ if(root==="#atCorpo") ev.remove(); else ev.onclick=()=>{atAbrir(it.id);toast("Checklist no Atendimento")} }
+  const ev=q("#ckEv"); if(ev){ if(root!=="#detail") ev.remove(); else ev.onclick=()=>{atAbrir(it.id);toast("Checklist no Atendimento")} }
 }
 // palavra inteira: "citalopram" não pode disparar em "escitalopram", nem "omeprazol" em "esomeprazol"
 const qtRe=QT_RISCO.map(q=>({q,re:new RegExp("(^|[^a-z0-9])("+(q.termos||[]).map(x=>norm(x).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")(?![a-z0-9])")}));

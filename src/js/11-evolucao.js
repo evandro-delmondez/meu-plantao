@@ -22,7 +22,25 @@ const SIS_OPC=[["geral","Geral — masculino"],["geral-f","Geral — feminino"],
 const sisPadrao=k=>{const f=k==="geral-f";return EX_SIS.find(x=>x[0]===(f?"geral":k))[2](f)};
 const sisTexto=(k,f)=>{const ch=k==="geral"&&f?"geral-f":k;return (model.sis&&model.sis[ch])||sisPadrao(ch)};
 const atSisPadrao=it=>it?(EX_SIS_COND[it.id]||EX_SIS_CAT[it.cat]||["cv","resp"]):["cv","resp"];
-const atSis=it=>atd.sis||atSisPadrao(it);
+// mais de uma queixa no mesmo paciente: a conduta principal + até 2 adicionais
+const atConds=()=>[atItem(),...(atd.extras||[]).map(getItem)].filter(Boolean).filter((c,i,a)=>a.findIndex(x=>x.id===c.id)===i);
+const atSis=it=>atd.sis||[...new Set((atConds().length?atConds():[it]).flatMap(atSisPadrao))];
+// junta os textos das condutas sem repetir o mesmo remédio (pelo nome no início do item) e renumera
+function atJunta(f){
+  const tx=atConds().map(c=>cur(c,f)).filter(t=>t&&t.trim());
+  if(tx.length<2) return tx[0]||"";
+  const vistos=new Set(), out=[]; let n=0, pula=false;
+  const chave=l=>norm(l.replace(/^\s*\d+\)\s*/,"")).split(/[\s,(]+/).slice(0,1).join(" ");
+  for(const t of tx){ if(out.length) out.push("");
+    for(const l of t.split("\n")){
+      if(/^\s*\d+\)\s/.test(l)){const k=chave(l);pula=vistos.has(k);if(!pula){vistos.add(k);out.push(l.replace(/^(\s*)\d+\)/,(m,e)=>`${e}${++n})`))}continue}
+      if(!l.trim()){pula=false;out.push(l);continue}
+      if(pula) continue;
+      if(f==="orient"&&out.includes(l)) continue;
+      out.push(l);
+    }}
+  return out.join("\n").replace(/\n{3,}/g,"\n\n").trim();
+}
 // lista em português: "a, b e c"
 const ptLista=a=>a.length<2?(a[0]||""):a.slice(0,-1).join(", ")+" e "+a[a.length-1];
 // a alta registra o que foi explicado (proteção do médico e do paciente)
@@ -30,6 +48,9 @@ const AT_ORI=[["dx","o diagnóstico"],["med","a medicação prescrita (posologia
 const AT_REAV=[["melhora","com melhora após a medicação na unidade"],["estavel","clinicamente estável"],["semmelhora","sem melhora após a medicação"],["exames","com os exames abaixo"]];
 const AT_LOCAL=[["","— escolher —"],["enfermaria","enfermaria ou apartamento"],["semi","semi-intensiva"],["uti","UTI"]];
 const AT_OBJ=[["atb","antibioticoterapia EV"],["suporte","suporte clínico e hidratação EV"],["dor","controle álgico"],["monit","monitorização"],["o2","oxigenoterapia"],["invest","investigação diagnóstica"],["espec","avaliação e conduta da especialidade"]];
+const AT_PADRAO=()=>({reav:AT_REAV,ori:AT_ORI,obj:AT_OBJ,perg:AT_PERGUNTAS.map((t,i)=>["p"+i,t])});
+// lista do médico (Editar padrões) ou a padrão; cada item é [chave, texto]
+const atL=nome=>{const m=model.atl&&model.atl[nome];return Array.isArray(m)&&m.length?m.map((t,i)=>["u"+i,t]):AT_PADRAO()[nome]};
 const AT_PERGUNTAS=["Por que não dá para tratar em casa ou na observação?","Qual critério de gravidade ou de risco o paciente tem (sinal vital, exame, escore)?","O que será feito na internação que exige leito?","Qual o risco se ele receber alta agora?","O que o médico que recebe precisa saber: o plano inicial, o que falta investigar, o parecer pedido?"];
 
 function atItem(){return getItem($("#evCond").value)}
@@ -43,7 +64,7 @@ const atItens=t=>String(t||"").split("\n").map(x=>x.replace(/^\s*[-•#*]\s*/,""
 const atLista=(rot,itens)=>itens.length?`${rot}:\n${itens.map(x=>"- "+x).join("\n")}`:`${rot}: não informado`;
 function atHda(it){
   const L=[]; if(atd.hma.trim()) L.push(atd.hma.trim());
-  if(it) chkLinhas(it).hma.forEach(x=>L.push(x));
+  atConds().forEach(c=>chkLinhas(c).hma.forEach(x=>L.push(x)));
   const alerg=atItens(atd.alergia); if(perfisAtivos().has("pnc")&&!alerg.some(x=>/penicilin/i.test(x))) alerg.push("penicilina");
   L.push(atLista("HPP",atItens(atd.ap)));
   L.push(atLista("Medicamentos em uso",atItens(atd.muc)));
@@ -58,7 +79,7 @@ function atExameBase(it){
 function atExame(it){
   const L=[], sv=atSv(); if(sv) L.push(sv);
   const n=atdNews(); if(n) L.push(newsLinha(n));
-  if(it&&it.id==="pac"&&(n||pac.idade)) L.push(crbLinha(atdCrb()));
+  if(atConds().some(c=>c.id==="pac")&&(n||pac.idade)) L.push(crbLinha(atdCrb()));
   let exm=atExameBase(it);
   // o modelo diz "afebril" e "eupneico": não pode contradizer febre (≥ 37,8 °C, Ministério da Saúde) nem FR > 20 irpm
   const tax=atdNum("tax"), fr=atdNum("fr");
@@ -70,26 +91,34 @@ function atExame(it){
   if(atd.o2==="o2") exm=exm.replace(/em ar ambiente/g,"em O2 suplementar");
   L.push((L.length?"Exame físico:\n":"")+exm.replace(/^Exame físico:\n/,""));
   if(atd.exLivre.trim()) L.push(atd.exLivre.trim());
-  if(it) chkLinhas(it).ex.forEach(x=>L.push(x));
+  atConds().forEach(c=>chkLinhas(c).ex.forEach(x=>L.push(x)));
   if(evScores.length){L.push("Escores:");evScores.forEach(x=>L.push("- "+x))}
   return L.join("\n");
 }
-const atDiag=it=>it?`Hipótese diagnóstica: ${it.nome}${it.cid?` (CID ${it.cid})`:""}${atd.diag.trim()?`\n${atd.diag.trim()}`:""}`:atd.diag.trim();
+const atHip=c=>`${c.nome}${c.cid?` (CID ${c.cid})`:""}`;
+function atDiag(it){
+  const cs=atConds(), extra=atd.diag.trim();
+  if(!cs.length) return extra;
+  const h=cs.length>1?`Hipóteses diagnósticas:\n${cs.map(c=>"- "+atHip(c)).join("\n")}`:`Hipótese diagnóstica: ${atHip(cs[0])}`;
+  return h+(extra?`\n${extra}`:"");
+}
 function atTrat(it){
   const L=[model.conduta];
   if(it){
-    if(atd.unid&&cur(it,"unidade")) L.push("","Na unidade:",cur(it,"unidade"));
-    if(atd.casa&&cur(it,"casa")) L.push("","Prescrição domiciliar:",cur(it,"casa"));
-    if(atd.ori&&cur(it,"orient")) L.push("","Orientações:",cur(it,"orient"));
+    const u=atJunta("unidade"), c=atJunta("casa"), o=atJunta("orient");
+    if(atd.unid&&u) L.push("","Na unidade:",u);
+    if(atd.casa&&c) L.push("","Prescrição domiciliar:",c);
+    if(atd.ori&&o) L.push("","Orientações:",o);
   }
   return L.join("\n");
 }
-const atVolte=it=>it?((CHECK[it.id]&&CHECK[it.id].alarme)||(ALTA[it.id]&&ALTA[it.id].volte)||[]):[];
+const atVolte1=c=>(chkDe(c.id)&&chkDe(c.id).alarme)||(ALTA[c.id]&&ALTA[c.id].volte)||[];
+const atVolte=()=>[...new Set(atConds().flatMap(atVolte1))];
 function atAlta(it){
   const L=[];
-  const rv=AT_REAV.filter(([k])=>atd.reav[k]).map(([,t])=>t);
+  const rv=atL("reav").filter(([k])=>atd.reav[k]).map(([,t])=>t);
   if(rv.length||atd.reavTxt.trim()) L.push(`- Paciente reavaliado${rv.length?", "+ptLista(rv):""}${atd.reavTxt.trim()?`: ${atd.reavTxt.trim()}`:"."}`.replace(/\.\.$/,"."));
-  const ori=AT_ORI.filter(([k])=>atd.altaOri[k]!==false).map(([,t])=>t);
+  const ori=atL("ori").filter(([k])=>atd.altaOri[k]!==false).map(([,t])=>t);
   if(ori.length) L.push(`- Paciente orientado sobre ${ptLista(ori)}.`);
   const vt=atVolte(it).filter((x,i)=>!atd.alarOff[i]).map(x=>semParenteses(x).replace(/\.$/,""));
   if(vt.length) L.push(`- Orientados os sinais de alarme, com retorno imediato ao pronto-socorro em caso de: ${vt.join("; ")}.`);
@@ -102,7 +131,7 @@ function atIntern(it){
   const I=atd.intern, L=[];
   const loc=(AT_LOCAL.find(x=>x[0]===I.local)||[])[1];
   L.push(`Solicito internação${loc?` em ${loc}`:""}.`);
-  if(it) L.push(`Hipótese diagnóstica: ${it.nome}${it.cid?` (CID ${it.cid})`:""}.`);
+  if(atConds().length) L.push(atConds().length>1?`Hipóteses diagnósticas: ${atConds().map(atHip).join("; ")}.`:`Hipótese diagnóstica: ${atHip(atConds()[0])}.`);
   if(atd.hma.trim()) L.push(`História: ${atd.hma.trim()}`);
   if(atItens(atd.ap).length) L.push(atLista("HPP",atItens(atd.ap)));
   const sv=atSv(); if(sv) L.push(sv);
@@ -111,7 +140,7 @@ function atIntern(it){
   if(I.feito.trim()) L.push(`Conduta no PS: ${I.feito.trim()}`);
   if(I.parecer.trim()) L.push(`Parecer: ${I.parecer.trim()}`);
   L.push(`Justificativa: ${I.motivo.trim()||"___"}`);
-  const ob=AT_OBJ.filter(([k])=>I.obj[k]).map(([,t])=>t);
+  const ob=atL("obj").filter(([k])=>I.obj[k]).map(([,t])=>t);
   if(ob.length||I.objLivre.trim()) L.push(`Objetivo da internação: ${[...ob,I.objLivre.trim()].filter(Boolean).join("; ")}.`);
   return L.join("\n");
 }
@@ -125,6 +154,32 @@ const AT_CAMPOS=[["hda","História (HDA)",atHda],["exame","Exame físico",atExam
 const atTexto=(k,it)=>atd.man[k]!=null?atd.man[k]:AT_CAMPOS.find(c=>c[0]===k)[2](it);
 // evolução completa (copiar tudo): campos na ordem do prontuário, sem o pedido de internação nem o atestado
 function buildEv(){const it=atItem();return ["hda","exame","diag","trat","alta"].map(k=>atTexto(k,it)).filter(x=>x.trim()).join("\n\n")}
+
+/* ---- Editar padrões: tudo o que é fixo no Atendimento vira texto editável, um item por linha ----
+   Salva no modelo (backup e nuvem) e nas condutas como "meu padrão": vale para os próximos atendimentos. */
+let atEdit=false;
+const linhas=t=>String(t||"").split("\n").map(x=>x.trim()).filter(Boolean);
+function edTa(attr,rot,valor,orig){
+  return `<div class="ated"><div class="atedh"><span class="lbl">${esc(rot)}</span><button class="btn sm" type="button" data-edorig="${esc(orig)}" title="Voltar ao texto original">↺ original</button></div><textarea class="inp" ${attr} rows="${Math.min(10,Math.max(2,String(valor).split("\n").length+1))}" spellcheck="false">${esc(valor)}</textarea></div>`;
+}
+const edLista=(nome,rot)=>edTa(`data-edl="${nome}"`,rot+" (um por linha)",atL(nome).map(x=>x[1]).join("\n"),AT_PADRAO()[nome].map(x=>x[1]).join("\n"));
+function edChk(c){
+  const atual=chkDe(c.id), base=CHECK[c.id]||{}; if(!atual) return "";
+  return `<div class="atedg"><b>${esc(c.nome)}: checklist</b>${CHK_GRUPOS.map(([g,n])=>edTa(`data-edc="${esc(c.id)}|${g}"`,n,(atual[g]||[]).join("\n"),(base[g]||[]).join("\n"))).join("")}</div>`;
+}
+const edTxt=(c,f,rot)=>{const b=baseById[c.id]||c;return edTa(`data-edt="${esc(c.id)}|${f}"`,`${c.nome}: ${rot}`,rxTxt(c[f]||""),rxTxt(b[f]||""))};
+function atSalvaPadroes(){
+  const box=$("#atCorpo"); let n=0;
+  model.atl=Object.assign({},model.atl); model.chk=Object.assign({},model.chk); model.sis=Object.assign({},model.sis);
+  box.querySelectorAll("[data-edl]").forEach(t=>{const k=t.dataset.edl,v=linhas(t.value),d=AT_PADRAO()[k].map(x=>x[1]);if(!v.length||v.join("\n")===d.join("\n"))delete model.atl[k];else model.atl[k]=v;n++});
+  box.querySelectorAll("[data-edc]").forEach(t=>{const [id,g]=t.dataset.edc.split("|"),v=linhas(t.value),b=(CHECK[id]||{})[g]||[];const m=Object.assign({},model.chk[id]);if(v.join("\n")===b.join("\n"))delete m[g];else m[g]=v;if(Object.keys(m).length)model.chk[id]=m;else delete model.chk[id];n++});
+  box.querySelectorAll("[data-eds]").forEach(t=>{const k=t.dataset.eds,v=t.value.trim();if(!v||v===sisPadrao(k))delete model.sis[k];else model.sis[k]=v;n++});
+  // textos da conduta viram "meu padrão" (como "Salvar como meu padrão" na conduta)
+  const porId={};
+  box.querySelectorAll("[data-edt]").forEach(t=>{const [id,f]=t.dataset.edt.split("|");const it=getItem(id);if(!it||t.value===rxTxt(it[f]||""))return;(porId[id]=porId[id]||{})[f]=t.value});
+  for(const id in porId){const it=getItem(id);const base={nome:it.nome,cat:it.cat,cid:it.cid,sin:it.sin,casa:it.casa,unidade:it.unidade,orient:it.orient};if(it.custom&&it.fontes)base.fontes=it.fontes;Object.assign(base,porId[id]);writeOverride(id,base);delete sess[id];n++}
+  saveModel(); atEdit=false; renderList(); fillSelects(); renderEv(); toast("Padrões salvos: valem nos próximos atendimentos");
+}
 
 /* ---- tela ---- */
 function atSaida(k,rot){
@@ -144,13 +199,19 @@ function renderEv(){
   const ex=atd.exModelo||"sis", sis=new Set(atSis(it));
   const destAtual=atd.destino??atdDestinoPadrao(it||{});
   const volte=atVolte(it);
-  const unid=it?cur(it,"unidade"):"";
+  const cs=atConds();
+  const unidH=cs.map(c=>{const u=cur(c,"unidade");return u?`${cs.length>1?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${unidLista(u)}`:""}).join("");
+  const outras=(atd.extras||[]).map(getItem).filter(Boolean);
   el.innerHTML=`
-  ${it?renderAlarme(it):""}
+  <div class="ateditbar">${atEdit?`<span class="note">Editando os padrões: um item por linha. Vale para os próximos atendimentos.</span><button class="btn primary" id="atEdSalva">Salvar como padrão</button><button class="btn" id="atEdSai">Cancelar</button>`:`<button class="btn sm" id="atEdita">✎ Editar padrões</button>`}</div>
+  ${it?`<div class="atextras"><span class="lbl">Outras queixas no mesmo paciente</span><div class="chips">${outras.map(c=>`<button class="chip" data-atrem="${esc(c.id)}" aria-pressed="true">✓ ${esc(c.nome)} ✕</button>`).join("")}
+    ${outras.length<2?`<select class="inp atadd" id="atAdd" aria-label="Adicionar outra conduta"><option value="">+ Adicionar outra conduta</option>${allItems().filter(x=>!cs.some(c=>c.id===x.id)).map(x=>`<option value="${esc(x.id)}">${esc(x.nome)}</option>`).join("")}</select>`:""}</div></div>`:""}
+  ${cs.map(renderAlarme).join("")}
   <div class="sec atsec" id="atHdaSec"><div class="sec-h"><h3>1. História</h3></div><div class="atbody">
     ${ta("hma","Queixa e história da doença atual","ex.: dor de garganta há 2 dias, sem tosse")}
     <div class="atdgrid atlistas">${ta("ap","HPP (doenças, cirurgias, internações)","um por linha\nex.: hipertensão arterial\ncolecistectomia em 2019")}${ta("muc","Medicamentos em uso","um por linha\nex.: losartana 50 mg 1x ao dia")}${ta("alergia","Alergias","um por linha, ou escreva nega")}</div>
-    ${it?renderChecklist(it):""}
+    ${cs.map((c,i)=>`<div id="atChk${i}">${cs.length>1&&chkDe(c.id)?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${renderChecklist(c)}</div>`).join("")}
+    ${atEdit?cs.map(edChk).join(""):""}
     ${atSaida("hda","História (HDA)")}</div></div>
   <div class="sec atsec"><div class="sec-h"><h3>2. Exame físico</h3></div><div class="atbody">
     <div class="atdsv">${inp("pa","PA","120x80")}${inp("fc","FC","",1)}${inp("fr","FR","",1)}${inp("sat","Sat O2","",1)}${inp("tax","Temp.","",1)}${inp("hgt","Glicemia","",1)}</div>
@@ -159,24 +220,27 @@ function renderEv(){
       <label class="f">Modelo<select class="inp" data-atd="exModelo"><option value="sis" ${ex==="sis"?"selected":""}>Por sistemas (direcionado)</option>${model.exames.map(e=>`<option value="${esc(e.id)}" ${e.id===ex?"selected":""}>Completo: ${esc(e.nome)}</option>`).join("")}</select></label></div>
     <p class="svnews" id="atNews" hidden></p>
     <div class="sec svaviso" id="atAviso" hidden></div>
-    ${it&&it.id==="pac"?`<p class="svnews crbres" id="atCrb"></p>`:""}
+    ${cs.some(c=>c.id==="pac")?`<p class="svnews crbres" id="atCrb"></p>`:""}
     ${ex==="sis"?`<div class="chips atsis">${EX_SIS.filter(([k])=>k!=="geral").map(([k,r])=>chip("sis",k,r,sis.has(k))).join("")}</div><p class="note">Sai o estado geral e só os sistemas marcados. Sexo em "Dados do paciente".</p>`:""}
+    ${atEdit&&ex==="sis"?`<div class="atedg"><b>Texto de cada sistema</b>${[["geral",pac.sexo==="F"?"geral-f":"geral"],...[...sis].map(k=>[k,k])].map(([k,ch])=>edTa(`data-eds="${ch}"`,(SIS_OPC.find(x=>x[0]===ch)||[0,ch])[1],sisTexto(k,ch==="geral-f"),sisPadrao(ch))).join("")}</div>`:""}
     ${ta("exLivre","Achados (o que estiver alterado)","ex.: estertores crepitantes em base direita")}
     ${atSaida("exame","Exame físico")}</div></div>
-  ${unid?`<div class="sec atsec"><div class="sec-h"><h3>3. Na unidade</h3><span class="alsum">para selecionar no prontuário</span></div><div class="atbody">${unidLista(unid)}</div></div>`:""}
+  ${unidH?`<div class="sec atsec"><div class="sec-h"><h3>3. Na unidade</h3><span class="alsum">para selecionar no prontuário</span></div><div class="atbody">${unidH}${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")).join(""):""}</div></div>`:atEdit&&cs.length?`<div class="sec atsec"><div class="sec-h"><h3>3. Na unidade</h3></div><div class="atbody">${cs.map(c=>edTxt(c,"unidade","na unidade")).join("")}</div></div>`:""}
   <div class="sec atsec"><div class="sec-h"><h3>4. Diagnóstico</h3></div><div class="atbody">
-    ${it&&it.cid?`<button class="cidbig" data-cpcid="${esc(it.cid)}" title="Copiar o CID">CID ${esc(it.cid)} <span>copiar</span></button>`:""}
+    <div class="atcids">${cs.filter(c=>c.cid).map(c=>`<button class="cidbig" data-cpcid="${esc(c.cid)}" title="Copiar o CID de ${esc(c.nome)}">CID ${esc(c.cid)} <span>copiar</span></button>`).join("")}</div>
     ${ta("diag","Outras hipóteses ou complemento","ex.: diagnóstico diferencial com…")}
     ${atSaida("diag","Diagnóstico")}</div></div>
   <div class="sec atsec"><div class="sec-h"><h3>5. Conduta</h3></div><div class="atbody">
     <div class="atdck">${[["casa","Receita"],["unid","Conduta na unidade"],["ori","Orientações"]].map(([k,r])=>`<label class="check"><input type="checkbox" data-atd="${k}" ${atd[k]?"checked":""}> ${r}</label>`).join("")}</div>
+    ${atEdit?cs.map(c=>edTxt(c,"casa","receita")+edTxt(c,"orient","orientações")).join(""):""}
     ${atSaida("trat","Conduta")}
-    ${it&&cur(it,"casa")?`<div class="actions"><button class="btn" id="atCpRx">Copiar só a receita</button></div>`:""}</div></div>
+    ${atJunta("casa")?`<div class="actions"><button class="btn" id="atCpRx">Copiar só a receita</button></div>`:""}</div></div>
   <div class="sec atsec"><div class="sec-h"><h3>6. Reavaliação e alta</h3></div><div class="atbody">
-    <span class="lbl">Reavaliação</span><div class="chips">${AT_REAV.map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
+    <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
     ${ta("reavTxt","Como estava na reavaliação (exames, resposta)","ex.: hemograma sem leucocitose; TC sem coleção")}
-    <span class="lbl">Orientado sobre</span><div class="chips">${AT_ORI.map(([k,r])=>chip("ori",k,r.split(" (")[0],atd.altaOri[k]!==false)).join("")}</div>
+    <span class="lbl">Orientado sobre</span><div class="chips">${atL("ori").map(([k,r])=>chip("ori",k,r.split(" (")[0],atd.altaOri[k]!==false)).join("")}</div>
     ${volte.length?`<span class="lbl">Sinais de alarme explicados (toque para tirar)</span><div class="chips atvolte">${volte.map((x,i)=>chip("volte",i,semParenteses(x),!atd.alarOff[i])).join("")}</div>`:""}
+    ${atEdit?edLista("reav","Reavaliação")+edLista("ori","Orientado sobre")+`<p class="note">Os sinais de alarme da alta são os do checklist (edite na História).</p>`:""}
     ${ta("altaLivre","Outras orientações dadas (uma por linha)","ex.: retornar em 48 h para reavaliação")}
     <div class="atdgrid"><label class="check"><input type="checkbox" data-atd="compreende" ${atd.compreende?"checked":""}> Compreendeu e concorda</label>
       <label class="f">Destino<select class="inp" data-atd="destino" id="evDestino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${esc(v)}" ${destAtual===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label></div>
@@ -188,9 +252,10 @@ function renderEv(){
     <div id="atAtW">${atSaida("atest","Atestado")}</div></div></div>
   <details class="sec atsec atintern" ${/intern/.test(destAtual)||atd.intern.local?"open":""}><summary class="sec-h"><h3>7. Pedido de internação</h3><span class="alsum">apartamento, semi-intensiva ou UTI</span></summary><div class="atbody">
     <label class="f">Onde<select class="inp" data-atd="intern.local">${AT_LOCAL.map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${r}</option>`).join("")}</select></label>
-    <div class="atperg"><b>Para escrever a justificativa, responda:</b><ul>${AT_PERGUNTAS.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
+    <div class="atperg"><b>Para escrever a justificativa, responda:</b><ul>${atL("perg").map(([,p])=>`<li>${esc(p)}</li>`).join("")}</ul></div>
     ${ta("motivo","Justificativa (motivo da internação)","ex.: pneumonia com SpO2 89% em ar ambiente e CURB-65 3","intern")}
-    <span class="lbl">Objetivo</span><div class="chips">${AT_OBJ.map(([k,r])=>chip("obj",k,r,atd.intern.obj[k])).join("")}</div>
+    <span class="lbl">Objetivo</span><div class="chips">${atL("obj").map(([k,r])=>chip("obj",k,r,atd.intern.obj[k])).join("")}</div>
+    ${atEdit?edLista("obj","Objetivos")+edLista("perg","Perguntas da justificativa"):""}
     ${ta("objLivre","Outro objetivo","","intern")}
     ${ta("lab","Exames laboratoriais relevantes (alterados primeiro)","ex.: leucócitos 18.000; PCR 25; creatinina 1,8","intern")}
     ${ta("laudos","Laudos de imagem","ex.: TC de tórax: consolidação em lobo inferior direito","intern")}
@@ -239,11 +304,17 @@ function bindEv(it){
   box.querySelectorAll("[data-atout]").forEach(ta=>ta.addEventListener("input",()=>{atd.man[ta.dataset.atout]=ta.value;grow(ta);$(`#atCorpo [data-atman="${ta.dataset.atout}"]`).hidden=false}));
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];atAtualiza()});
   box.querySelectorAll("[data-atcp]").forEach(b=>b.onclick=()=>{const t=$(`#atCorpo [data-atout="${b.dataset.atcp}"]`).value;if(!t.trim()){toast("Campo vazio");return}copy(t,b)});
-  const cid=box.querySelector("[data-cpcid]"); if(cid) cid.onclick=()=>copy(cid.dataset.cpcid,cid);
-  if($("#atCpRx")) $("#atCpRx").onclick=e=>copy(cur(it,"casa"),e.currentTarget);
+  box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));
+  if($("#atCpRx")) $("#atCpRx").onclick=e=>copy(atJunta("casa"),e.currentTarget);
+  box.querySelectorAll("[data-atrem]").forEach(b=>b.onclick=()=>{atd.extras=atd.extras.filter(x=>x!==b.dataset.atrem);atd.sis=null;atd.alarOff={};renderEv()});
+  if($("#atAdd")) $("#atAdd").onchange=e=>{const v=e.target.value;if(!v)return;atd.extras=[...(atd.extras||[]),v].slice(0,2);atd.sis=null;atd.alarOff={};renderEv()};
   if($("#atCrit")) $("#atCrit").onclick=()=>abrirHospInt((hospPac().internacao.doencas||[]).find(d=>(d.condutas||[]).includes(it&&it.id))?.id);
   $("#atCpTudo").onclick=e=>copy(buildEv(),e.currentTarget);
-  if(it) bindChecklist(it,"#atCorpo",()=>{renderEv();renderDetail()});
+  if($("#atEdita")) $("#atEdita").onclick=()=>{atEdit=true;renderEv()};
+  if($("#atEdSai")) $("#atEdSai").onclick=()=>{atEdit=false;renderEv()};
+  if($("#atEdSalva")) $("#atEdSalva").onclick=atSalvaPadroes;
+  box.querySelectorAll("[data-edorig]").forEach(b=>b.onclick=()=>{const t=b.closest(".ated").querySelector("textarea");t.value=b.dataset.edorig;grow(t)});
+  atConds().forEach((c,i)=>bindChecklist(c,"#atChk"+i,()=>{renderEv();renderDetail()}));
   linkMeds(box);
   atAtualiza();
 }

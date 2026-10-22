@@ -101,7 +101,7 @@ async function githubFalso(context, store) {
     const r = route.request(), h = { "access-control-allow-origin": "*", "access-control-allow-headers": "*", "access-control-allow-methods": "GET,PUT,OPTIONS", "content-type": "application/json" };
     if (r.method() === "OPTIONS") return route.fulfill({ status: 204, headers: h });
     if (r.headers().authorization !== "Bearer chave-escrita-ficticia") return route.fulfill({ status: 401, headers: h, body: "{}" });
-    if (r.method() === "GET" && !r.url().includes("/contents/")) return route.fulfill({ status: 200, headers: h, body: JSON.stringify({ private: true }) });
+    if (r.method() === "GET" && !r.url().includes("/contents/")) return route.fulfill({ status: 200, headers: h, body: JSON.stringify({ private: !r.url().endsWith("/meu-plantao") }) });
     if (r.method() === "GET") return store.content ? route.fulfill({ status: 200, headers: h, body: JSON.stringify({ sha: store.sha, content: store.content }) }) : route.fulfill({ status: 404, headers: h, body: "{}" });
     const b = JSON.parse(r.postData());
     if (store.sha && b.sha !== store.sha) return route.fulfill({ status: 409, headers: h, body: "{}" });
@@ -161,7 +161,7 @@ test("chave recusada mostra o motivo do GitHub; Trocar a chave mantém a senha e
   await page.fill("#psRepo", "usuario/plantao-lista");
   await page.fill("#psChave", "chave-errada"); await page.fill("#psSenha", "senha-do-plantao-1");
   await page.click("#psLiga");
-  await expect(page.locator("#psEstado")).toContainText("Chave recusada pelo GitHub (401;");
+  await expect(page.locator("#psEstado")).toContainText("Chave recusada pelo GitHub");
   await ligar(page, "senha-do-plantao-1");
   await expect(page.locator("#psEstado")).toContainText("Sincronizado");
   // a chave vence: o aparelho continua ligado, e só a chave é trocada
@@ -192,4 +192,19 @@ test("a chave do Meu hospital colada na lista é barrada; campos de chave não s
   await aba(page, "hospital");
   expect(await page.getAttribute("#hospChave", "type")).toBe("text");
   expect(erros).toEqual([]);
+});
+
+test("lista: repositório público (ex.: o do site) é recusado, sem gravar nada", async ({ browser }) => {
+  const store = { n: 0 };
+  const ctx = await browser.newContext(); await githubFalso(ctx, store);
+  const page = await ctx.newPage(); const erros = await abrir(page);
+  await aba(page, "pacientes");
+  await page.locator(".pcsync summary").click();
+  await page.fill("#psRepo", "usuario/meu-plantao");
+  await page.fill("#psChave", "chave-escrita-ficticia"); await page.fill("#psSenha", "senha-do-plantao-1");
+  await page.click("#psLiga");
+  await expect(page.locator("#psEstado")).toContainText("é público");
+  expect(store.n).toBe(0);
+  expect(erros).toEqual([]);
+  await ctx.close();
 });

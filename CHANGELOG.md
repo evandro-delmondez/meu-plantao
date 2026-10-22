@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.22.3 — 2026-10-22
+- Sincronização da lista e nuvem dos padrões: só aceitam repositório **privado**. O site confere antes de ligar e recusa repositório público (como o do próprio site) ou que a chave não enxerga, dizendo o motivo; "Testar a chave" também avisa se o repositório configurado é público.
+
 ## 1.22.2 — 2026-10-22
 - **Dipirona 1 g é o padrão** em todas as receitas (1 cp por tomada, metade dos comprimidos na caixa e limite diário de 4 cp); a troca agora pega todas as grafias ("500 mg", "1 a 2 cp", limite "máximo 8 cp"). Modelos salvos com 500 mg viram 1 g uma vez; quem escolher 500 mg em Meus modelos continua com 500 mg.
 - Atendimento pela queixa: os **caminhos** vêm primeiro, logo abaixo do título; ao escolher um caminho, a tela volta ao topo.

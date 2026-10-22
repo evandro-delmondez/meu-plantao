@@ -72,6 +72,13 @@ function psyncJunta(loc,rem){
   for(const p of pacs){const n=pacs.filter(x=>x.dia===p.dia).length;cont[p.dia]=Math.max(cont[p.dia]||0,n)}
   return {pacs,cont,apagados:ap};
 }
+// só repositório privado: a lista (mesmo cifrada) e os padrões nunca vão para um repositório público
+async function repoPrivado(repo,chave){
+  const r=await fetch(`https://api.github.com/repos/${repo}`,{cache:"no-store",headers:{Authorization:"Bearer "+chave,Accept:"application/vnd.github+json"}});
+  if(r.status===404) return "naoacha";
+  if(!r.ok) return "chave";
+  return (await r.json()).private===false?"publico":"ok";
+}
 let psyncRodando=false, psyncDeNovo=false;
 async function pacSync(){
   if(!psyncAtivo()) return;
@@ -103,7 +110,7 @@ async function psyncTesta(){
   const out=[];
   try{
     const r=await fetch(`https://api.github.com/repos/${psync.repo}`,{cache:"no-store",headers:psyncHdr()});
-    if(r.ok){const j=await r.json();out.push(`1) Repositório ${psync.repo}: encontrado${j.private?" (privado)":""}.`)}
+    if(r.ok){const j=await r.json();out.push(`1) Repositório ${psync.repo}: encontrado${j.private?" (privado)":""}.`);if(j.private===false)out.push(`Atenção: ${psync.repo} é público. Desligue e use um repositório privado (ex.: plantao-lista).`)}
     else out.push(`1) Repositório ${psync.repo}: ${r.status===404?"a chave não enxerga este repositório (não está selecionado no token, ou o nome está diferente)":r.status===401?"chave inválida ou incompleta":"recusado ("+r.status+")"}.`);
     const c=await fetch(psyncUrl(),{cache:"no-store",headers:psyncHdr()});
     const falta=c.headers.get("x-accepted-github-permissions")||"";
@@ -133,6 +140,8 @@ function bindPacSync(){
     if(typeof hosp!=="undefined"&&hosp.cfg&&hosp.cfg.chave&&hosp.cfg.chave===chave){psyncEstado="Essa é a chave do Meu hospital (só lê o repositório do hospital). Cole a chave da lista.";psyncMostra();return}
     liga.disabled=true; psyncEstado="Conferindo…"; psyncMostra();
     try{
+      const rp=await repoPrivado(repo,chave);
+      if(rp!=="ok"){psyncEstado=rp==="publico"?`${repo} é público: use um repositório privado (ex.: seu-usuario/plantao-lista).`:rp==="naoacha"?`A chave não enxerga ${repo}: confira o nome e se ele está selecionado no token.`:"Chave recusada pelo GitHub.";psyncMostra();liga.disabled=false;return}
       psync={repo,arq:"lista.json",chave};
       const {f}=await psyncLe();
       // o sal vem do arquivo que já existe (outro aparelho); se é o primeiro, cria um

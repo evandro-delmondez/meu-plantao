@@ -8,6 +8,7 @@ async function githubFalso(context, store) {
     if (r.method() === "OPTIONS") return route.fulfill({ status: 204, headers: h });
     if (r.headers().authorization !== "Bearer chave-modelos-ficticia") return route.fulfill({ status: 401, headers: h, body: JSON.stringify({ message: "Bad credentials" }) });
     const p = new URL(r.url()).pathname, f = store[p];
+    if (r.method() === "GET" && !p.includes("/contents/")) return route.fulfill({ status: 200, headers: h, body: JSON.stringify({ private: !p.endsWith("/publico") }) });
     if (r.method() === "GET") return f ? route.fulfill({ status: 200, headers: h, body: JSON.stringify({ sha: f.sha, content: f.content }) }) : route.fulfill({ status: 404, headers: h, body: "{}" });
     const b = JSON.parse(r.postData());
     if (f && b.sha !== f.sha) return route.fulfill({ status: 409, headers: h, body: "{}" });
@@ -66,7 +67,7 @@ test("chave errada: mensagem com o motivo; nada é perdido no aparelho", async (
   await page.fill("#gsRepo", "usuario/plantao-modelos");
   await page.fill("#gsChave", "errada");
   await page.click("#gsLiga");
-  await expect(page.locator("#gsEstado")).toContainText("Chave recusada pelo GitHub (401: Bad credentials");
+  await expect(page.locator("#gsEstado")).toContainText("Chave recusada pelo GitHub");
   expect(erros).toEqual([]);
 });
 
@@ -85,6 +86,7 @@ async function gistsFalsos(context, mem) {
     // nuvem dos padrões
     const p = u.pathname, f = mem[p];
     if (r.headers().authorization !== "Bearer chave-modelos-ficticia") return route.fulfill({ status: 401, headers: h, body: "{}" });
+    if (r.method() === "GET" && !p.includes("/contents/")) return route.fulfill({ status: 200, headers: h, body: JSON.stringify({ private: true }) });
     if (r.method() === "GET") return f ? route.fulfill({ status: 200, headers: h, body: JSON.stringify({ sha: f.sha, content: f.content }) }) : route.fulfill({ status: 404, headers: h, body: "{}" });
     mem[p] = { content: JSON.parse(r.postData()).content, sha: "s" + Math.random() };
     return route.fulfill({ status: 200, headers: h, body: "{}" });
@@ -119,4 +121,16 @@ test("senha de acesso: cria num computador, entra no outro só com usuário e se
   expect(await pb.evaluate(() => localStorage.getItem("mph_nuvem_v1"))).toBeNull();
   expect([...ea, ...eb]).toEqual([]);
   await a.close(); await b.close();
+});
+
+test("repositório público é recusado (a nuvem só grava em repositório privado)", async ({ page, context }) => {
+  await githubFalso(context, {});
+  const erros = await abrir(page);
+  await aba(page, "backup");
+  await page.fill("#gsRepo", "usuario/publico");
+  await page.fill("#gsChave", "chave-modelos-ficticia");
+  await page.click("#gsLiga");
+  await expect(page.locator("#gsEstado")).toContainText("é público");
+  expect(await page.evaluate(() => localStorage.getItem("mph_nuvem_v1"))).toBeNull();
+  expect(erros).toEqual([]);
 });

@@ -79,7 +79,9 @@ function renderGs(){
     if($("#gsMesma")&&$("#gsMesma").checked) chave=psync.chave;
     if(!/^[\w.-]+\/[\w.-]+$/.test(repo)||!chave){toast("Preencha repositório e chave");return}
     if(typeof hosp!=="undefined"&&hosp.cfg&&hosp.cfg.chave===chave){gsEstado="Essa é a chave do Meu hospital (só lê o repositório do hospital).";gsMostra();return}
-    gs={repo,chave}; lsSet(GS_LS,gs); liga.disabled=true; await gsSync(); renderGs();
+    liga.disabled=true; const rp=await repoPrivado(repo,chave);
+    if(rp!=="ok"){gsEstado=rp==="publico"?`${repo} é público: use um repositório privado (ex.: plantao-modelos).`:rp==="naoacha"?`A chave não enxerga ${repo}: confira o nome e se ele está selecionado no token.`:"Chave recusada pelo GitHub.";gsMostra();liga.disabled=false;return}
+    gs={repo,chave}; lsSet(GS_LS,gs); await gsSync(); renderGs();
   };
   if($("#gsAgora")) $("#gsAgora").onclick=()=>gsSync();
   if($("#gsTroca")) $("#gsTroca").onclick=()=>{const c=(prompt("Cole a chave nova do GitHub")||"").trim();if(!c)return;gs.chave=c;lsSet(GS_LS,gs);gsSync()};

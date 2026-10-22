@@ -15,7 +15,9 @@ test("CIATox: Disque-Intoxicação a um toque e CIATox local salvo no aparelho, 
   await expect(page.locator('#detail .ciatox a[href="tel:1935217555"]')).toContainText("CIATox Teste");
   await page.reload(); await aba(page, "prescricoes");
   await page.evaluate(() => document.querySelector('#list .item[data-id="intoxicacao"]').click());
-  await expect(page.locator('#detail .ciatox a[href="tel:1935217555"]')).toBeVisible();
+  await expect(page.locator("#detail h2")).toHaveText(/Intoxica/);
+  // a conduta pode ser redesenhada logo depois de abrir (troca de aba): espera o número salvo aparecer
+  await expect(page.locator('#detail .ciatox a[href="tel:1935217555"]')).toBeVisible({ timeout: 10000 });
   expect(JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_ui_v1"))).sel).toBeTruthy();
   expect(erros).toEqual([]);
 });

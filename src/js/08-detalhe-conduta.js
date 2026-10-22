@@ -190,6 +190,7 @@ function renderDetail(){
   ${renderAgora(it)}
   ${renderSvAviso()}
   ${renderAlarme(it)}
+  ${exHTML(it.id)}
   ${renderCrb(it)}
   ${renderPac(it)}
   ${renderAlertas(it)}

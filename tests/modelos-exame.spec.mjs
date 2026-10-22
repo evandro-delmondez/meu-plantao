@@ -48,3 +48,24 @@ test("atualização troca o modelo antigo não editado e preserva o editado", as
   await expect(page.locator("#mdConduta")).toHaveValue("Minha conduta");
   expect(erros).toEqual([]);
 });
+
+test("texto de cada sistema do exame é editável em Meus modelos, vale no Atendimento e continua após recarregar", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "modelos");
+  await page.selectOption("#mdSisSel", "cab");
+  await expect(page.locator("#mdSisTxt")).toHaveValue(/^Cabeça e orofaringe:/);
+  await page.fill("#mdSisTxt", "Cabeça e orofaringe: meu texto de oroscopia normal.");
+  await page.click("#mdSisSave");
+  await page.reload();
+  await aba(page, "prescricoes");
+  await page.evaluate(() => document.querySelector('#list .item[data-id="amigdalite"]').click());
+  await page.evaluate(() => document.querySelector("#atdIr").click());
+  await expect(page.locator('#atCorpo [data-atout="exame"]')).toHaveValue(/Cabeça e orofaringe: meu texto de oroscopia normal\./);
+  expect(await page.evaluate(() => localStorage.getItem("rxp_model_v1"))).toContain("meu texto de oroscopia");
+  // voltar ao original
+  await aba(page, "modelos");
+  await page.selectOption("#mdSisSel", "cab");
+  await page.click("#mdSisReset");
+  await expect(page.locator("#mdSisTxt")).toHaveValue(/mucosas úmidas/);
+  expect(erros).toEqual([]);
+});

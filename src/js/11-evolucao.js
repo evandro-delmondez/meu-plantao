@@ -17,6 +17,10 @@ const EX_SIS_COND={cefaleia:["neuro","cab"],enxaqueca:["neuro","cab"],salvas:["n
   lombalgia:["msk","neuro"],entorse:["msk"],gota:["msk"],"gota-manut":["msk"],dengue:["cv","resp","abd","pele"],sepse:["cab","cv","resp","abd","neuro","pele"],hda:["cv","abd"],
   "dor-abdominal":["abd","cv"],tep:["cv","resp","mmii"],eap:["cv","resp","mmii"],ivc:["mmii","pele"],erisipela:["pele","mmii"],conjuntivite:["cab"],cinetose:["neuro"]};
 const EX_SIS_CAT={resp:["cab","cv","resp"],orl:["cab"],gi:["abd"],uro:["abd"],gu:["abd"],cardio:["cv","resp","mmii"],dor:["neuro","msk"],pele:["pele"],psi:["neuro"],endo:["cv","neuro"],toxinf:["cv","resp","neuro"],emerg:["cv","resp","neuro"]};
+// texto de cada sistema: o do médico (Meus modelos, salvo no modelo) ou o padrão; o geral tem versão feminina
+const SIS_OPC=[["geral","Geral — masculino"],["geral-f","Geral — feminino"],...EX_SIS.filter(([k])=>k!=="geral").map(([k,r])=>[k,r])];
+const sisPadrao=k=>{const f=k==="geral-f";return EX_SIS.find(x=>x[0]===(f?"geral":k))[2](f)};
+const sisTexto=(k,f)=>{const ch=k==="geral"&&f?"geral-f":k;return (model.sis&&model.sis[ch])||sisPadrao(ch)};
 const atSisPadrao=it=>it?(EX_SIS_COND[it.id]||EX_SIS_CAT[it.cat]||["cv","resp"]):["cv","resp"];
 const atSis=it=>atd.sis||atSisPadrao(it);
 // lista em português: "a, b e c"
@@ -47,7 +51,7 @@ function atHda(it){
 function atExameBase(it){
   if(atd.exModelo&&atd.exModelo!=="sis") return exameAtual(atd.exModelo);
   const f=pac.sexo==="F", on=new Set(atSis(it));
-  return EX_SIS.filter(([k])=>k==="geral"||on.has(k)).map(([k,,t])=>t(f)).join("\n");
+  return EX_SIS.filter(([k])=>k==="geral"||on.has(k)).map(([k])=>sisTexto(k,f)).join("\n");
 }
 function atExame(it){
   const L=[], sv=atSv(); if(sv) L.push(sv);

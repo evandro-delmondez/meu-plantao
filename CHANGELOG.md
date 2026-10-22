@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.17.3 — 2026-10-21
+- Meus modelos: **Exame por sistemas** — o texto de cada sistema (geral masculino e feminino, cabeça e orofaringe, cardiovascular, respiratório, abdome, neurológico, musculoesquelético, membros inferiores, pele) pode ser trocado pelo seu, vale no Atendimento e vai com o backup e a nuvem; "Voltar ao original" desfaz.
+
 ## 1.17.2 — 2026-10-21
 - Correção: os campos de chave do GitHub (Meu hospital e Sincronizar) eram campos de senha, e o navegador preenchia o da lista com a chave do hospital, que o GitHub recusava (403). Agora o navegador não guarda nem preenche essas chaves, e o site avisa se a chave do hospital for colada na lista.
 

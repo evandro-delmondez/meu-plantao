@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.17.0 — 2026-10-21
+- **Pacientes do plantão** (aba nova em Documentos), por decisão do médico (exceção registrada à regra de não salvar dado de paciente): nome no topo do Atendimento põe o paciente na lista, que grava sozinha o que foi digitado; etapas separadas — exame (qual, pendente → pronto), medicação, reavaliação com hora, parecer (especialidade) — e desfecho (alta, observação, internação e onde, transferência, evasão); aviso amarelo com 2 h sem reavaliar e vermelho com 3 h sem desfecho; tocar no nome reabre o Atendimento dele.
+- **Passagem de plantão**: mensagem pronta para o grupo com nome, hipótese, pendências, se sabe da troca, médico que assume e consultório.
+- Só no aparelho, numa chave própria (fora do backup e da nuvem do painel); apaga sozinha em 7 dias; a contagem de pacientes por dia fica, sem nome.
+- **Sincronização entre aparelhos, cifrada**: a lista é cifrada no aparelho (AES-GCM com chave derivada da senha por PBKDF2-SHA-256) antes de ir para um repositório privado; a senha não sai do aparelho; mudanças nos dois aparelhos se juntam campo a campo.
+
 ## 1.16.0 — 2026-10-21
 - **Atendimento** (a antiga aba Evolução): uma tela só, na ordem do prontuário, com cópia por campo — História (HDA), Exame físico, Na unidade, Diagnóstico, Conduta, Reavaliação e alta, Pedido de internação e Atestado; "Copiar tudo" junta história, exame, diagnóstico, conduta e alta. Campo editado à mão não é sobrescrito ("Refazer" volta ao automático).
 - A conduta ganha "Atender este paciente →" no lugar do "Fechar o atendimento"; sinais vitais, NEWS2, CRB-65 e alertas continuam valendo nas duas telas.

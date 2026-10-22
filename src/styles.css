@@ -631,3 +631,30 @@ button.cid{cursor:pointer;border:1px solid var(--line);background:var(--surface)
 .unintro{margin:8px 14px 0}
 .unedit{margin:0 14px 10px}
 .unedit summary{cursor:pointer;color:var(--muted);font-weight:600;min-height:32px}
+/* Pacientes do plantão */
+.pchead{display:grid;gap:10px}
+.pctopo{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px}
+.pctopo h2{margin:0}
+.pcconta b{font-size:22px}
+.pcnovo{display:flex;gap:8px}
+.pcnovo input{flex:1;min-width:0}
+.pclista{display:grid;gap:10px;margin:10px 0}
+.pcitem{background:var(--surface);border:1.5px solid var(--line);border-left:5px solid var(--line);border-radius:14px;padding:10px 12px;display:grid;gap:6px}
+.pcitem[data-av="amarelo"]{border-left-color:var(--amber)}
+.pcitem[data-av="vermelho"]{border-left-color:var(--bad)}
+.pcitem[data-atual]{box-shadow:0 0 0 2px var(--accent)}
+.pclinha{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pcnome{all:unset;cursor:pointer;font-weight:800;font-size:17px;overflow-wrap:anywhere}
+.pcav{font-weight:700;font-size:13px;padding:2px 8px;border-radius:99px;background:var(--amber);color:#fff}
+.pcitem[data-av="vermelho"] .pcav{background:var(--bad)}
+.pchip{margin:0}
+.pcets{gap:6px}
+.pcetw{display:inline-flex;gap:4px;align-items:center;flex-wrap:wrap}
+.pcet{min-height:40px}
+.pcet[data-st="on"]{border-color:var(--amber)}
+.pcet[data-st="ok"]{border-color:var(--ok)}
+.pcin{width:150px;min-height:36px}
+.pcdesf{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pcdesf select{width:auto;min-width:0}
+.pcpass summary h3,.pchead+details summary h3{display:inline;margin:0}
+.pcpass textarea{width:100%;margin-top:8px}

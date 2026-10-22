@@ -6,6 +6,10 @@ const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",ta
   intern:{local:"",motivo:"",obj:{},objLivre:"",lab:"",laudos:"",feito:"",parecer:""},
   tipo:"atestado",dias:"",aut:false,hora:"",man:{}});
 let atd=ATD_VAZIO();
+// lista de pacientes do plantão (exceção à regra 5 decidida pelo médico; 27-pacientes.js): chave própria, 7 dias
+const PAC_LS="mph_pacientes_v1", PAC_DIAS=7;
+let atPac=null;        // id do paciente da lista que está no Atendimento
+let pacDb=null;        // {pacs:[…], cont:{"AAAA-MM-DD":n}, apagados:{id:quando}}
 
 // sinais de alarme do checklist, em destaque antes da receita
 function renderAlarme(it){

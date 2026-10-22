@@ -39,6 +39,7 @@
       <button role="tab" data-tab="iot" data-sec="sala" aria-selected="false">Intubação e ventilação</button>
       <button role="tab" data-tab="protocolos" data-sec="sala" aria-selected="false">Protocolos</button>
       <button role="tab" data-tab="evolucao" data-sec="documentos" aria-selected="false">Atendimento</button>
+      <button role="tab" data-tab="pacientes" data-sec="documentos" aria-selected="false">Pacientes</button>
       <button role="tab" data-tab="atestado" data-sec="documentos" aria-selected="false">Atestado</button>
       <button role="tab" data-tab="modelos" data-sec="documentos" aria-selected="false">Meus modelos</button>
       <button role="tab" data-tab="escores" data-sec="calculos" aria-selected="false">Escores</button>
@@ -192,12 +193,18 @@
   </section>
 
   <!-- EVOLUÇÃO -->
+  <section id="tab-pacientes" hidden>
+    <div id="pcCorpo"></div>
+  </section>
+
   <section id="tab-evolucao" hidden>
     <div class="panel card attopo">
       <h2>Atendimento</h2>
       <p class="note">Na ordem do prontuário: cada campo tem o seu botão de copiar.</p>
+      <label class="f">Paciente<input class="inp" id="atNome" placeholder="Nome (põe na lista do plantão)" autocomplete="off" spellcheck="false"></label>
+      <p class="note" id="atNaLista"></p>
       <label class="f">Conduta (hipótese)<select class="inp" id="evCond"></select></label>
-      <div class="actions"><button class="btn sm" id="atVerConduta">Ver a conduta</button><button class="btn sm" id="atNovo">Novo paciente</button></div>
+      <div class="actions"><button class="btn sm" id="atVerConduta">Ver a conduta</button><button class="btn sm" id="atLista">Lista do plantão</button><button class="btn sm" id="atNovo">Novo paciente</button></div>
     </div>
     <div id="atCorpo"></div>
   </section>

@@ -130,6 +130,7 @@ function renderEv(){
   const el=$("#atCorpo"); if(!el) return;
   // só existe na tela enquanto a aba está aberta (o checklist e os campos não se repetem em outra aba)
   if(ui.tab!=="evolucao"){el.innerHTML="";return}
+  pacNomeAtualiza();
   const it=atItem();
   const inp=(k,rot,ph="",num)=>`<label class="f">${rot}<input class="inp" data-atd="${k}" value="${esc(atd[k])}" placeholder="${ph}"${num?' inputmode="decimal"':""}></label>`;
   const ta=(k,rot,ph="",obj)=>{const v=obj?atd[obj][k]:atd[k];return `<label class="f atdfull">${rot}<textarea class="inp" data-atd="${obj?obj+".":""}${k}" rows="2" placeholder="${ph}">${esc(v)}</textarea></label>`};
@@ -196,7 +197,7 @@ function renderEv(){
   bindEv(it);
 }
 function atAtualiza(){
-  const it=atItem();
+  const it=atItem(); pacSnapLogo();
   AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`);if(!ta)return;if(atd.man[k]==null)ta.value=atTexto(k,it);grow(ta);$(`#atCorpo [data-atman="${k}"]`).hidden=atd.man[k]==null});
   const w=$("#atAtW"); if(w) w.hidden=!atTexto("atest",it);
   // NEWS2 e alertas dos sinais vitais (mesmas regras da conduta)
@@ -242,6 +243,7 @@ function bindEv(it){
 }
 // abre o Atendimento já com a conduta escolhida
 function atAbrir(id){if(id&&$("#evCond").value!==id){$("#evCond").value=id;atd.sis=null}setTab("evolucao");window.scrollTo({top:0})}
-$("#evCond").addEventListener("change",()=>{atd.sis=null;atd.alarOff={};renderEv()});
+$("#evCond").addEventListener("change",()=>{atd.sis=null;atd.alarOff={};renderEv();pacSnap()});
 $("#atVerConduta").onclick=()=>{const it=atItem();if(it)abrirConduta(it.id);else setTab("prescricoes")};
 bindNovoPaciente($("#atNovo"));
+$("#atLista").onclick=()=>{pacSnap();setTab("pacientes")};

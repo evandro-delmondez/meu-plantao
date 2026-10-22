@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.24.0 — 2026-10-22
+- **Queixas novas na porta: Lombalgia e Dor musculoesquelética** — sinais de alarme (cauda equina com RM em até 4 h, aneurisma de aorta, infecção, compressão medular por metástase, fratura; artrite séptica, síndrome compartimental, isquemia aguda, TVP, fasciíte necrosante, fratura exposta, trauma cervical, arterite de células gigantes, entre outros), o que perguntar, caminhos até a conduta, escores (Ottawa, Canadian C-spine, NEXUS) e exames.
+- **Exames e encaminhamento em mais 24 condutas**: gripe, faringite, otite média, otite externa, conjuntivite, epistaxe, rinite, tosse, dispepsia, náuseas, constipação, hemorroida, prostatite, dismenorreia, vaginose, candidíase, cervicite, DIP, urticária, abscesso, herpes-zóster, hiperglicemia, hipoglicemia e ansiedade. No total, 52 queixas e condutas e 685 itens, cada um com fonte; divergências lado a lado.
+- Escritos com as fontes abertas online e conferidos por um segundo agente, item a item (3 erros críticos corrigidos nas queixas novas; itens sem fonte retirados).
+
 ## 1.23.0 — 2026-10-22
 - **Atendimento no formato do MV**: 1. HDA e antecedentes (com um espaço entre a história e os antecedentes) · 2. Exame físico · 3. Hipótese diagnóstica · 4. Conduta · 5. Prescrição (na unidade, receituário, atestado) · 6. Reavaliação e alta · 7. Pedido de internação (com um espaço entre os tópicos).
 - **Exame físico sempre por sistemas**, com botões Masculino × Feminino e Adulto × Pediátrico × Gestante (textos próprios de cada perfil); **Cabeça e pescoço** separado de **Orofaringe**; ligar ou desligar um sistema atualiza o texto na hora, mesmo depois de editado à mão (era o defeito relatado).

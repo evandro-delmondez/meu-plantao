@@ -3,7 +3,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 const arqs = process.argv.slice(2);
 const norm = (t) => t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[–—]/g, "-");
-const QUEIXAS = ["cefaleia", "tontura-sincope", "dor-abdominal", "dor-toracica", "febre", "tosse-dispneia"];
+const QUEIXAS = ["cefaleia", "tontura-sincope", "dor-abdominal", "dor-toracica", "febre", "tosse-dispneia", "lombalgia", "dor-musculoesqueletica"];
 const out = {}, problemas = [];
 for (const a of arqs) {
   const queixas = /queixas/.test(a);

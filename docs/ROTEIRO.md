@@ -32,8 +32,8 @@ Atualizado em 2026-10-22 (versão 1.22.3). Decisões: `docs/DECISOES.md`. Diverg
 5. Visual: o médico aponta o que ainda polui.
 
 **Conteúdo clínico (com fonte e conferência)**
-6. Exames e encaminhamento para as demais condutas da porta (feito: 6 queixas e 20 condutas).
-7. Queixas novas: lombalgia, dor musculoesquelética e outras.
+6. Exames e encaminhamento para as demais condutas (feito: 8 queixas e 44 condutas, 1.24.0); rever a conduta pac pela atualização ATS 2026.
+7. ~~Queixas lombalgia e dor musculoesquelética~~ (1.24.0); outras queixas; conduta de cervicalgia/torcicolo.
 8. Condutas novas: síncope, pericardite, pneumotórax, chikungunya, febre maculosa, meningite, odontalgia.
 9. Condições que faltam: olho vermelho e corpo estranho, paralisia facial, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e overdose de opioide, zika, varicela, COVID-19, fraturas e imobilização, cervicalgia, tendinite e bursite.
 10. Fichas que faltam: sumatriptano, colchicina, alopurinol, ciclobenzaprina, tiamina, clopidogrel, aciclovir, valaciclovir, ivermectina, permetrina, anti-hipertensivos orais, furosemida, isossorbida, broncodilatadores, antifúngicos, cetirizina e hidroxizina, levotiroxina e metimazol, tópicos.

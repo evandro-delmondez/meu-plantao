@@ -41,3 +41,15 @@ test("conduta mostra exames recolhidos e, quando há, as divergências entre fon
   await expect(ex.locator(".exg-pedir")).toContainText("Teste rápido");
   expect(erros).toEqual([]);
 });
+
+test("queixas novas: lombalgia e dor musculoesquelética, com alarmes, caminhos e exames", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "queixas");
+  for (const [id, alarme] of [["lombalgia", /cauda equina|micção|sela/i], ["dor-musculoesqueletica", /artrite séptica|compartimental/i]]) {
+    await page.click(`#qLista [data-q="${id}"]`);
+    await expect(page.locator("#qCorpo .qal")).toContainText(alarme);
+    await expect(page.locator("#qCorpo .sec.exames .exg-encaminhar li").first()).toBeVisible();
+    expect(await page.locator("#qCorpo").innerText()).not.toMatch(RUIM);
+  }
+  expect(await semRolagemLateral(page)).toBe(true);
+  expect(erros).toEqual([]);
+});

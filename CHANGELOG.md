@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.20.0 — 2026-10-22
+- **Senha de acesso** (Documentos → Backup): num computador já configurado, crie uma frase de acesso; as chaves (hospital, lista, padrões) vão cifradas (AES-GCM, PBKDF2 com 600 mil iterações) para um gist seu, ilegível sem a senha. Em outro computador: **Entrar** com o usuário do GitHub e a frase — tudo liga e sincroniza sozinho. "Sair deste computador" apaga as chaves, o pacote do hospital e a lista de pacientes do aparelho.
+
 ## 1.19.0 — 2026-10-22
 - **Mais de uma queixa no mesmo paciente**: no Atendimento, "Adicionar outra conduta" (até 3). Junta sinais de alarme, checklists (um por conduta), sistemas do exame, diagnósticos com os CIDs, na unidade, receita e orientações, sem repetir o mesmo remédio e renumerando.
 - **Editar padrões** (botão no topo do Atendimento): checklist e sinais de alarme de cada conduta, texto de cada sistema do exame, na unidade, receita e orientações, opções da reavaliação, do "orientado sobre", objetivos e perguntas da internação — um item por linha, com "↺ original". Vale para os próximos atendimentos.

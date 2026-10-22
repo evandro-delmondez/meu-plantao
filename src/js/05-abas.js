@@ -14,7 +14,7 @@ function setTab(t){
   TABS.forEach(x=>$("#tab-"+x).hidden=x!==t);
   if(t==="inicio") renderInicio(); if(t==="sala") renderSala(); if(t==="bic") renderBic(); if(t==="pcr") renderPcr(); if(t==="protocolos") renderProtocolo(); if(t==="contas") renderContas(); if(t==="eletrolitos") renderEletrolitos(); if(t==="iot") renderIot();
   renderEv(); if(t==="pacientes") renderPacientes(); if(t==="atestado") renderAt(); if(t==="calculadora") renderCalc(); if(t==="pediatria") setPMode(ui.pmode||"rx"); if(t==="modelos"){renderModelos();renderOrg()} if(t==="feridas") renderFer(); if(t==="queixas") renderQueixas(); if(t==="prescricoes"&&!editing) renderDetail(); if(t==="hospital") renderHospital(); if(t==="medicacoes") renderMedTab();
-  if(t==="escores") renderScores(); if(t==="backup"){renderHidden();renderGs()} growAll();
+  if(t==="escores") renderScores(); if(t==="backup"){renderHidden();renderAcesso($("#acCaixa"));renderGs()} growAll();
   try{history.replaceState(null,"","#"+t)}catch(e){}
 }
 function setSec(sec){

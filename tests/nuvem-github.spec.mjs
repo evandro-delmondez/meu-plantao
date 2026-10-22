@@ -69,3 +69,54 @@ test("chave errada: mensagem com o motivo; nada é perdido no aparelho", async (
   await expect(page.locator("#gsEstado")).toContainText("Chave recusada pelo GitHub (401: Bad credentials");
   expect(erros).toEqual([]);
 });
+
+// gists falsos: lista pública por usuário e leitura sem chave; criar exige a chave
+async function gistsFalsos(context, mem) {
+  await context.route("https://api.github.com/**", async (route) => {
+    const r = route.request(), u = new URL(r.url()), h = { "access-control-allow-origin": "*", "access-control-allow-headers": "*", "access-control-allow-methods": "GET,POST,PATCH,PUT,OPTIONS", "content-type": "application/json" };
+    if (r.method() === "OPTIONS") return route.fulfill({ status: 204, headers: h });
+    if (u.pathname === "/users/medico-teste/gists") return route.fulfill({ status: 200, headers: h, body: JSON.stringify(mem.gist ? [{ id: "g1", files: { "meu-plantao-acesso.json": {} } }] : []) });
+    if (u.pathname === "/gists/g1" && r.method() === "GET") return route.fulfill({ status: 200, headers: h, body: JSON.stringify({ files: { "meu-plantao-acesso.json": { content: mem.gist } } }) });
+    if (u.pathname.startsWith("/gists")) {
+      if (r.headers().authorization !== "Bearer chave-modelos-ficticia") return route.fulfill({ status: 403, headers: h, body: JSON.stringify({ message: "Resource not accessible by personal access token" }) });
+      mem.gist = JSON.parse(r.postData()).files["meu-plantao-acesso.json"].content;
+      return route.fulfill({ status: 201, headers: h, body: JSON.stringify({ id: "g1", owner: { login: "medico-teste" } }) });
+    }
+    // nuvem dos padrões
+    const p = u.pathname, f = mem[p];
+    if (r.headers().authorization !== "Bearer chave-modelos-ficticia") return route.fulfill({ status: 401, headers: h, body: "{}" });
+    if (r.method() === "GET") return f ? route.fulfill({ status: 200, headers: h, body: JSON.stringify({ sha: f.sha, content: f.content }) }) : route.fulfill({ status: 404, headers: h, body: "{}" });
+    mem[p] = { content: JSON.parse(r.postData()).content, sha: "s" + Math.random() };
+    return route.fulfill({ status: 200, headers: h, body: "{}" });
+  });
+}
+
+test("senha de acesso: cria num computador, entra no outro só com usuário e senha; senha errada não entra; sair apaga as chaves", async ({ browser }) => {
+  const mem = {};
+  const a = await browser.newContext(), b = await browser.newContext();
+  await gistsFalsos(a, mem); await gistsFalsos(b, mem);
+  const pa = await a.newPage(), pb = await b.newPage();
+  const ea = await abrir(pa), eb = await abrir(pb);
+  await ligar(pa);
+  await aba(pa, "backup");
+  await pa.fill("#acSenha", "curta"); await pa.fill("#acSenha2", "curta"); await pa.click("#acCria");
+  await expect(pa.locator("#acEstado")).toContainText("pelo menos 12");
+  await pa.fill("#acSenha", "minha frase de acesso longa"); await pa.fill("#acSenha2", "minha frase de acesso longa"); await pa.click("#acCria");
+  await expect(pa.locator("#acEstado")).toContainText("Pronto: a senha de acesso liga seus padrões", { timeout: 20000 });
+  expect(mem.gist).not.toContain("chave-modelos-ficticia");
+  // outro computador
+  await aba(pb, "backup");
+  await pb.fill("#acUser", "medico-teste"); await pb.fill("#acSenhaE", "senha errada qualquer"); await pb.click("#acEntra");
+  await expect(pb.locator("#acEstado")).toContainText("Senha de acesso incorreta", { timeout: 20000 });
+  await pb.fill("#acSenhaE", "minha frase de acesso longa"); await pb.click("#acEntra");
+  await expect(pb.locator("#acEstado")).toContainText("seus padrões ligados", { timeout: 20000 });
+  expect(await pb.evaluate(() => JSON.parse(localStorage.getItem("mph_nuvem_v1")).repo)).toBe("usuario/plantao-modelos");
+  expect(await pb.evaluate(() => Object.values(localStorage).join(" "))).not.toContain("minha frase de acesso longa");
+  // sair
+  await expect(pb.locator("#acSai")).toBeVisible({ timeout: 5000 });
+  pb.once("dialog", (d) => d.accept());
+  await pb.click("#acSai");
+  expect(await pb.evaluate(() => localStorage.getItem("mph_nuvem_v1"))).toBeNull();
+  expect([...ea, ...eb]).toEqual([]);
+  await a.close(); await b.close();
+});

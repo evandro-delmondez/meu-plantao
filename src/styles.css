@@ -610,3 +610,24 @@ details.sec[open]>summary.sec-h::after{content:"▾"}
 .hospproib{color:var(--bad);border:1.5px solid var(--bad);border-radius:10px;padding:8px 10px;margin:8px 0}
 .hosplem{margin:6px 0}
 .hosplem summary{cursor:pointer;font-weight:600;color:var(--hosp,var(--teal));min-height:32px}
+/* Atendimento (tela única do prontuário) */
+.atbody{padding:10px 14px 14px;display:grid;gap:10px}
+.atsec>.sec-h h3{font-size:17px}
+.atout{border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--surface-2)}
+.atout .sec-h{padding:0 0 6px;border:0;background:none}
+.atout textarea{width:100%}
+.atsis .chip,.atvolte .chip{min-height:40px}
+.atperg{border-left:4px solid var(--accent);padding:6px 10px;background:var(--surface-2);border-radius:8px}
+.atperg ul{margin:4px 0 0;padding-left:20px}
+.cidbig{justify-self:start;font:700 22px/1.2 ui-monospace,Menlo,monospace;padding:10px 16px;border-radius:12px;border:2px solid var(--accent);background:var(--surface);color:var(--ink);min-height:48px;cursor:pointer}
+.cidbig span{font:600 13px system-ui,sans-serif;color:var(--muted);margin-left:8px}
+button.cid{cursor:pointer;border:1px solid var(--line);background:var(--surface)}
+.attudo{align-items:center}
+.unlista{margin:0;padding:10px 14px 4px 34px;display:grid;gap:8px}
+.unlista li{display:grid;gap:2px}
+.unt{font-weight:700}
+.unsub{font-size:14px;color:var(--muted);overflow-wrap:anywhere}
+.unsub.unou{color:var(--ink);font-weight:600}
+.unintro{margin:8px 14px 0}
+.unedit{margin:0 14px 10px}
+.unedit summary{cursor:pointer;color:var(--muted);font-weight:600;min-height:32px}

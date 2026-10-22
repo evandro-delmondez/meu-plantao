@@ -13,7 +13,7 @@ function setTab(t){
   document.body.dataset.sec=sec;
   TABS.forEach(x=>$("#tab-"+x).hidden=x!==t);
   if(t==="inicio") renderInicio(); if(t==="sala") renderSala(); if(t==="bic") renderBic(); if(t==="pcr") renderPcr(); if(t==="protocolos") renderProtocolo(); if(t==="contas") renderContas(); if(t==="eletrolitos") renderEletrolitos(); if(t==="iot") renderIot();
-  if(t==="evolucao") renderEv(); if(t==="atestado") renderAt(); if(t==="calculadora") renderCalc(); if(t==="pediatria") setPMode(ui.pmode||"rx"); if(t==="modelos"){renderModelos();renderOrg()} if(t==="feridas") renderFer(); if(t==="queixas") renderQueixas(); if(t==="hospital") renderHospital(); if(t==="medicacoes") renderMedTab();
+  renderEv(); if(t==="atestado") renderAt(); if(t==="calculadora") renderCalc(); if(t==="pediatria") setPMode(ui.pmode||"rx"); if(t==="modelos"){renderModelos();renderOrg()} if(t==="feridas") renderFer(); if(t==="queixas") renderQueixas(); if(t==="prescricoes"&&!editing) renderDetail(); if(t==="hospital") renderHospital(); if(t==="medicacoes") renderMedTab();
   if(t==="escores") renderScores(); if(t==="backup") renderHidden(); growAll();
   try{history.replaceState(null,"","#"+t)}catch(e){}
 }

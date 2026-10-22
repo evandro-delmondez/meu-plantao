@@ -1,5 +1,15 @@
 # Histórico de versões
 
+## 1.16.0 — 2026-10-21
+- **Atendimento** (a antiga aba Evolução): uma tela só, na ordem do prontuário, com cópia por campo — História (HDA), Exame físico, Na unidade, Diagnóstico, Conduta, Reavaliação e alta, Pedido de internação e Atestado; "Copiar tudo" junta história, exame, diagnóstico, conduta e alta. Campo editado à mão não é sobrescrito ("Refazer" volta ao automático).
+- A conduta ganha "Atender este paciente →" no lugar do "Fechar o atendimento"; sinais vitais, NEWS2, CRB-65 e alertas continuam valendo nas duas telas.
+- **Checklist "Não esquecer"** escreve "Presença de tosse, expectoração purulenta e dispneia. Nega dor torácica pleurítica e confusão mental." e "Ao exame, presença de …"; fica também dentro do Atendimento.
+- **Exame físico direcionado**: por sistemas (geral, cabeça e orofaringe — novo —, cardiovascular, respiratório, abdome, neurológico, musculoesquelético, membros inferiores, pele), já ligados conforme a conduta; sai só o que está ligado; campo para os achados alterados. Os modelos completos continuam disponíveis.
+- **Na unidade em lista** (um item por linha, detalhes embaixo), para olhar e selecionar no prontuário; o texto continua editável em "Editar o texto".
+- **CID em destaque**, com cópia num toque (na conduta e no Atendimento).
+- **Alta em tópicos**: reavaliação (melhora após medicação, exames), o que foi orientado, os sinais de alarme explicados (da alta leiga da conduta; toque para tirar), "compreendeu e concorda" e o destino, sem repetir a prescrição.
+- **Pedido de internação**: enfermaria/apartamento, semi-intensiva ou UTI; justificativa, objetivo, exames laboratoriais e laudos relevantes, o que já foi feito no PS e parecer, com perguntas que ajudam a escrever a justificativa.
+
 ## 1.15.0 — 2026-10-21
 - **Modo hospital** ("Onde estou hoje" no botão do hospital, com o pacote carregado):
   - onde o pacote traz a conduta na unidade do hospital, ela vira a principal (com a referência do protocolo) e a versão do app fica recolhida logo abaixo; copiar, evolução e "Fechar o atendimento" usam a do hospital; o texto do hospital nunca vira "meu padrão" (que vai para backup e nuvem);

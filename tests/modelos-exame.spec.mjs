@@ -13,11 +13,12 @@ Pele: sem alterações evidentes.`;
 
 test("modelos de exame vêm por extenso, com versões masculina e feminina", async ({ page }) => {
   const erros = await abrir(page); await aba(page, "evolucao");
-  const opcoes = await page.$$eval("#evExame option", (o) => o.map((x) => x.textContent));
-  expect(opcoes).toEqual(["Adulto — masculino", "Adulto — feminino", "Pediátrico — masculino", "Pediátrico — feminino", "Gestante"]);
-  for (const v of await page.$$eval("#evExame option", (o) => o.map((x) => x.value))) {
-    await page.selectOption("#evExame", v);
-    const t = await page.inputValue("#evOut");
+  const sel = '#atCorpo [data-atd="exModelo"]';
+  const opcoes = await page.$$eval(sel + " option", (o) => o.map((x) => x.textContent));
+  expect(opcoes).toEqual(["Por sistemas (direcionado)", "Completo: Adulto — masculino", "Completo: Adulto — feminino", "Completo: Pediátrico — masculino", "Completo: Pediátrico — feminino", "Completo: Gestante"]);
+  for (const v of (await page.$$eval(sel + " option", (o) => o.map((x) => x.value))).filter((x) => x !== "sis")) {
+    await page.selectOption(sel, v);
+    const t = await page.inputValue('#atCorpo [data-atout="exame"]');
     expect(t, v).not.toMatch(SIGLAS);
     if (v.endsWith("-f") || v === "gestante") { expect(t, v).toContain("corada"); expect(t, v).not.toMatch(/\bcorado\b/); }
     else expect(t, v).toMatch(/\bcorado\b/);

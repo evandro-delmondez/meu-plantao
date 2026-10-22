@@ -3,13 +3,24 @@ const sess={}; // edições temporárias da prescrição: id -> {casa,unidade,or
 // receita: edição à mão > escolhas por toque (08-receita.js) > texto da conduta
 // no modo hospital, "Na unidade" vem do protocolo do hospital (a versão do app fica recolhida logo abaixo)
 const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="unidade"&&hospUnid(it.id)!=null)return hospUnid(it.id);if(f==="casa"&&rxTemMontar(it))return rxOut[it.id]??rxMonta(it);return rxTxt(it[f]||"")};
+// "Na unidade" em lista: um item por remédio ou medida, com os detalhes embaixo (para olhar e selecionar no prontuário)
+function unidLista(t){
+  const itens=[], intro=[]; let cur_=null;
+  for(const l of String(t||"").split("\n")){
+    if(!l.trim()){cur_=null;continue}
+    const m=l.match(/^\s*(?:\d+\)|-)\s+(.*)/);
+    if(m&&!/^\s{2,}/.test(l)){cur_={t:m[1],sub:[]};itens.push(cur_);continue}
+    if(cur_) cur_.sub.push(l.trim()); else intro.push(l.trim());
+  }
+  return `${intro.map(x=>`<p class="note unintro">${esc(x)}</p>`).join("")}<ol class="unlista">${itens.map(x=>`<li><span class="unt">${esc(x.t)}</span>${x.sub.map(y=>`<span class="unsub${/^Ou\b/.test(y)?" unou":""}">${esc(y)}</span>`).join("")}</li>`).join("")}</ol>`;
+}
 function section(it,cls,title,f,copyLabel){
   const text=cur(it,f);
   if(!text.trim()&&!(sess[it.id]&&sess[it.id][f]!=null)) return "";
   const hu=f==="unidade"&&hospUnid(it.id)!=null, hc=hu&&hospCond(it.id);
   if(hu) title=`${title} — protocolo de ${esc(hospPac().curto||hospPac().nome)}`;
   const appv=hu&&it.unidade?`<details class="appver"><summary>Versão do app (fontes no fim da conduta)</summary><pre>${esc(rxTxt(it.unidade))}</pre></details>`:"";
-  return `<div class="sec ${cls}${hu?" hospunid":""}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div>${f==="casa"?renderRxMontar(it):""}<textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${hu&&hc.ref?`<p class="note">${esc(hc.ref)}</p>`:""}${f!=="orient"?fichasDoTexto(text):""}${appv}</div>`;
+  return `<div class="sec ${cls}${hu?" hospunid":""}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div>${f==="casa"?renderRxMontar(it):""}${f==="unidade"?`<div class="unbox">${unidLista(text)}</div><details class="unedit"><summary>Editar o texto</summary>`:""}<textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${f==="unidade"?"</details>":""}${hu&&hc.ref?`<p class="note">${esc(hc.ref)}</p>`:""}${f!=="orient"?fichasDoTexto(text):""}${appv}</div>`;
 }
 const isNew=it=>!!(it.rev&&it.rev.length===1&&it.rev[0]==="Item novo.");
 function linkify(f){const m=f.match(/https?:\/\/\S+/);if(!m)return esc(f);const u=m[0].replace(/[.,)]+$/,"");const i=f.indexOf(u);return esc(f.slice(0,i))+`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,60))}${u.length>68?"…":""}</a>`+esc(f.slice(i+u.length))}
@@ -71,15 +82,18 @@ function chkLinhas(it){
   const c=CHECK[it.id], st=chk[it.id]||{};
   if(!c) return {hma:[],ex:[],n:0};
   const sel=(g,v)=>(c[g]||[]).filter((t,i)=>st[g+i]===v).map(semParenteses);
-  const hma=[], ex=[]; const j=a=>a.join("; ")+".";
+  const hma=[], ex=[];
   const hp=sel("hist","+"), hn=sel("hist","-"), ap=sel("ant","+"), an=sel("ant","-"), ep=sel("ex","+"), en=sel("ex","-"), sp=sel("alarme","+"), sn=sel("alarme","-");
-  if(hp.length) hma.push("Refere: "+j(hp));
-  if(hn.length) hma.push("Nega: "+j(hn));
-  if(ap.length) hma.push("Antecedentes: "+j(ap));
-  if(an.length) hma.push("Sem antecedente de: "+j(an));
-  if(ep.length||en.length) ex.push("Exame dirigido: "+j([...ep.map(t=>t+": presente"),...en.map(t=>t+": ausente")]));
-  if(sp.length) ex.push("Sinais de alarme presentes: "+j(sp));
-  if(sn.length) ex.push("Sem sinais de alarme: "+j(sn));
+  // "Presença de tosse, expectoração purulenta e dispneia. Nega dor torácica pleurítica e confusão mental."
+  const fr=(pre,a)=>pre+ptLista(a)+".";
+  if(hp.length) hma.push(fr("Presença de ",hp));
+  if(hn.length) hma.push(fr("Nega ",hn));
+  if(ap.length) hma.push(fr("Antecedentes: ",ap));
+  if(an.length) hma.push(fr("Nega antecedente de ",an));
+  if(ep.length) ex.push(fr("Ao exame, presença de ",ep));
+  if(en.length) ex.push(fr("Ao exame, ausência de ",en));
+  if(sp.length) ex.push(fr("Sinais de alarme presentes: ",sp));
+  if(sn.length) ex.push(fr("Sem sinais de alarme: ",sn));
   return {hma,ex,n:Object.keys(st).length};
 }
 function renderChecklist(it){
@@ -88,30 +102,24 @@ function renderChecklist(it){
   const grupos=CHK_GRUPOS.map(([g,nome])=>`<div class="ckg ckg-${g}"><h4>${nome}</h4><ul>${(c[g]||[]).map((t,i)=>{const k=g+i,v=st[k]||"";return `<li class="ck" data-v="${v==="+"?"pos":v==="-"?"neg":""}"><span class="ckt">${esc(t)}</span><span class="ckb"><button data-ck="${k}" data-val="+" aria-pressed="${v==="+"}" aria-label="${esc(t)}: presente" title="Presente">+</button><button data-ck="${k}" data-val="-" aria-pressed="${v==="-"}" aria-label="${esc(t)}: ausente" title="Ausente">−</button></span></li>`}).join("")}</ul></div>`).join("");
   return `<div class="sec chk"><div class="sec-h"><h3>Não esquecer</h3><span class="alsum">+ presente · − ausente</span></div>
   <div class="ckgrid">${grupos}</div>
-  <div class="actions ckact"><button class="btn sm primary" id="ckEv">Levar para a evolução</button><button class="btn sm" id="ckCopy">Copiar</button><button class="btn sm" id="ckClear">Limpar marcações</button></div>
+  <div class="actions ckact"><button class="btn sm primary" id="ckEv">Levar para o Atendimento</button><button class="btn sm" id="ckCopy">Copiar</button><button class="btn sm" id="ckClear">Limpar marcações</button></div>
   <details class="alsrc"><summary>Fontes do checklist</summary><ol>${c.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details></div>`;
 }
-function bindChecklist(it){
+function bindChecklist(it,root="#detail",refaz=renderDetail){
   if(!CHECK[it.id]) return;
-  $$("#detail [data-ck]").forEach(b=>b.onclick=()=>{
+  const R=$(root), q=sel=>R.querySelector(sel);
+  R.querySelectorAll("[data-ck]").forEach(b=>b.onclick=()=>{
     const st=chk[it.id]=chk[it.id]||{}; const k=b.dataset.ck;
     if(st[k]===b.dataset.val) delete st[k]; else st[k]=b.dataset.val;
     const li=b.closest(".ck"); li.dataset.v=st[k]==="+"?"pos":st[k]==="-"?"neg":"";
     // "alergia a penicilina" no checklist liga o mesmo alerta de Dados do paciente e do perfil (um só estado)
-    if(/alergia[^,]*penicilina/i.test(li.querySelector(".ckt").textContent)&&!/gestante/i.test(li.querySelector(".ckt").textContent)){pac.pnc=st[k]==="+";if(!pac.pnc)ui.perfil=(ui.perfil||[]).filter(x=>x!=="pnc");renderDetail();return}
+    if(/alergia[^,]*penicilina/i.test(li.querySelector(".ckt").textContent)&&!/gestante/i.test(li.querySelector(".ckt").textContent)){pac.pnc=st[k]==="+";if(!pac.pnc)ui.perfil=(ui.perfil||[]).filter(x=>x!=="pnc");refaz();return}
     li.querySelectorAll("[data-ck]").forEach(x=>x.setAttribute("aria-pressed",st[k]===x.dataset.val));
+    if(root==="#atCorpo") atAtualiza();
   });
-  $("#ckCopy").onclick=e=>{const l=chkLinhas(it);const t=[...l.hma,...l.ex].join("\n");if(!t){toast("Marque algum item com + ou −");return}copy(t,e.currentTarget)};
-  $("#ckClear").onclick=()=>{delete chk[it.id];renderDetail();toast("Marcações limpas")};
-  $("#ckEv").onclick=()=>{
-    const l=chkLinhas(it);
-    if(!l.n){toast("Marque algum item com + ou −");return}
-    evChk={id:it.id,hma:l.hma,ex:l.ex};
-    // o checklist já documenta os negativos; o "Nega outros sintomas. Nega febre." fixo poderia contradizer
-    $("#evNega").checked=false;
-    $("#evCond").value=it.id; evManual=false; setTab("evolucao"); window.scrollTo({top:0});
-    toast("Checklist levado para a evolução");
-  };
+  q("#ckCopy").onclick=e=>{const l=chkLinhas(it);const t=[...l.hma,...l.ex].join("\n");if(!t){toast("Marque algum item com + ou −");return}copy(t,e.currentTarget)};
+  q("#ckClear").onclick=()=>{delete chk[it.id];refaz();toast("Marcações limpas")};
+  const ev=q("#ckEv"); if(ev){ if(root==="#atCorpo") ev.remove(); else ev.onclick=()=>{atAbrir(it.id);toast("Checklist no Atendimento")} }
 }
 // palavra inteira: "citalopram" não pode disparar em "escitalopram", nem "omeprazol" em "esomeprazol"
 const qtRe=QT_RISCO.map(q=>({q,re:new RegExp("(^|[^a-z0-9])("+(q.termos||[]).map(x=>norm(x).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")(?![a-z0-9])")}));
@@ -146,13 +154,13 @@ function renderDetail(){
   <div class="dh">
     <div class="dtop"><button class="btn sm back" id="backBtn">← Lista</button><span class="cat" style="--c:var(--${c.cor})"><span class="dot"></span>${esc(c.nome)}</span></div>
     <h2>${esc(it.nome)}</h2>
-    <div class="meta">${it.cid?`<span class="cid">CID ${esc(it.cid)}</span>`:""}
+    <div class="meta">${it.cid?`<button class="cid" data-cpcid="${esc(it.cid)}" title="Copiar o CID">CID ${esc(it.cid)} ⧉</button>`:""}
       ${it.custom?`<span class="badge mine">Criada por você</span>`:it.edited?`<span class="badge mine">Editada por você</span>`:""}
       ${isNew(it)?`<span class="badge new">Novo</span>`:(!it.custom&&it.rev&&it.rev.length?`<span class="badge">${it.rev.length} ajuste(s) na revisão</span>`:"")}
       ${it.evid?`<span class="badge">Evidência limitada</span>`:""}</div>
     <div class="abar">
       <button class="btn primary" id="cpAll">Copiar tudo</button>
-      <button class="btn" id="toEv">Evolução</button>
+      <button class="btn" id="toEv">Atender</button>
       ${it.cid?`<button class="btn" id="toAt">Atestado</button>`:""}
       <button class="favbtn" id="favBtn" aria-pressed="${uso.favs.includes(it.id)}" title="Fixar no topo da lista e no Início" aria-label="Favorito">${uso.favs.includes(it.id)?"★":"☆"}</button>
       <button class="btn edbtn" id="edBtn" title="Editar nome, CID e fontes" aria-label="Editar nome, CID e fontes">✎<span> Editar</span></button>
@@ -183,7 +191,8 @@ function renderDetail(){
   ${it.evid?`<div class="sec evid"><div class="sec-h"><h3>Nível de evidência</h3></div><p>${esc(it.evid)}</p></div>`:""}
   ${(it.fontes&&it.fontes.length)?`<details class="sec fontes" id="secFontes"><summary class="sec-h"><h3>Fontes</h3></summary><ol>${it.fontes.map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details>`:""}
   ${(!it.custom&&!isNew(it)&&it.rev&&it.rev.length)?`<details class="sec rev"><summary class="sec-h"><h3>O que mudou em relação ao seu modelo</h3></summary><ul>${it.rev.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></details>`:""}`;
-  el.querySelectorAll("textarea.rx-edit").forEach(ta=>{grow(ta);ta.addEventListener("input",()=>{grow(ta);sess[it.id]=sess[it.id]||{};sess[it.id][ta.dataset.f]=ta.value;$("#sessBar").hidden=false;})});
+  el.querySelectorAll(".unedit").forEach(d=>d.addEventListener("toggle",()=>growAll()));
+  el.querySelectorAll("textarea.rx-edit").forEach(ta=>{grow(ta);ta.addEventListener("input",()=>{grow(ta);if(ta.dataset.f==="unidade"){const b=ta.closest(".sec").querySelector(".unbox");if(b)b.innerHTML=unidLista(ta.value)}sess[it.id]=sess[it.id]||{};sess[it.id][ta.dataset.f]=ta.value;$("#sessBar").hidden=false;})});
   el.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>{const f=b.dataset.copy;const t=cur(it,f);copy(f==="unidade"?"Na unidade:\n"+t:f==="orient"?"Orientações:\n"+t:t,b)});
   el.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{const g=b.dataset.perfil;const p=new Set(ui.perfil||[]);const liga=!perfisAtivos().has(g);liga?p.add(g):p.delete(g);ui.perfil=[...p];if(g==="pnc")pac.pnc=liga;if(g==="gest")pac.gest=liga&&pac.gest;saveUI();renderDetail()});
   $("#cpAll").onclick=e=>{copy(fullText(it),e.currentTarget)};
@@ -204,7 +213,8 @@ function renderDetail(){
   bindAltaPac(it);
   bindHospAtalhos($("#detail .hospat"));
   growAll();
-  $("#toEv").onclick=()=>{$("#evCond").value=it.id;evManual=false;setTab("evolucao")};
+  $("#toEv").onclick=()=>atAbrir(it.id);
+  const cidb=$("#detail .cid[data-cpcid]"); if(cidb) cidb.onclick=()=>copy(cidb.dataset.cpcid,cidb);
   linkMeds(el);
   if($("#toAt")) $("#toAt").onclick=()=>{$("#atCid").value=it.cid;atManual=false;setTab("atestado")};
   $("#edBtn").onclick=()=>{editing=true;renderDetail()};

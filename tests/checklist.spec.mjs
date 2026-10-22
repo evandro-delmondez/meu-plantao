@@ -26,21 +26,21 @@ test("marcações viram texto na evolução e não ficam salvas no aparelho", as
   // tocar de novo no mesmo botão desmarca
   await page.click('[data-ck="ant1"][data-val="+"]'); await page.click('[data-ck="ant1"][data-val="+"]');
   await expect(page.locator('[data-ck="ant1"][data-val="+"]')).toHaveAttribute("aria-pressed", "false");
-  await page.click("#ckEv");
+  await page.click("#detail #ckEv");
   await expect(page.locator("#tab-evolucao")).toBeVisible();
-  const ev = await page.inputValue("#evOut");
-  expect(ev).toContain("Refere: febre > 38 °C.");
-  expect(ev).toContain("Nega: tosse.");
-  expect(ev).toContain("Exame dirigido: exsudato ou aumento das amígdalas: presente.");
+  const hda = await page.inputValue('#atCorpo [data-atout="hda"]'), exf = await page.inputValue('#atCorpo [data-atout="exame"]');
+  const ev = hda + "\n" + exf;
+  expect(hda).toContain("Presença de febre > 38 °C.");
+  expect(hda).toContain("Nega tosse.");
+  expect(exf).toContain("Ao exame, presença de exsudato ou aumento das amígdalas.");
   expect(ev).toContain("Sem sinais de alarme: trismo, voz abafada ou desvio da úvula.");
   expect(ev).not.toContain("febre reumática");
   expect(ev).not.toContain("Nega outros sintomas. Nega febre.");
-  // o checklist entra antes do exame físico (anamnese) e depois dele (exame dirigido)
-  expect(ev.indexOf("Refere:")).toBeLessThan(ev.indexOf("Exame físico"));
-  expect(ev.indexOf("Exame dirigido:")).toBeGreaterThan(ev.indexOf("Exame físico"));
-  // outra condição na evolução não leva o checklist da amigdalite
+  // a história vai no campo História e o exame dirigido no Exame físico, depois do exame geral
+  expect(exf.indexOf("Ao exame, presença")).toBeGreaterThan(exf.indexOf("Bom estado geral"));
+  // outra condição no Atendimento não leva o checklist da amigdalite
   await page.selectOption("#evCond", "itu");
-  expect(await page.inputValue("#evOut")).not.toContain("Refere: febre");
+  expect(await page.inputValue('#atCorpo [data-atout="hda"]')).not.toContain("Presença de febre");
   await page.waitForTimeout(600);
   const salvo = await page.evaluate(() => Object.keys(localStorage).map((k) => localStorage.getItem(k)).join("\n"));
   expect(salvo).not.toContain("febre > 38");
@@ -53,6 +53,7 @@ test("limpar desfaz as marcações; sem marcação não leva nada", async ({ pag
   await page.click('[data-ck="alarme0"][data-val="+"]');
   await page.click("#ckClear");
   await expect(page.locator('#detail [data-ck][aria-pressed="true"]')).toHaveCount(0);
-  await page.click("#ckEv");
-  await expect(page.locator("#tab-prescricoes")).toBeVisible();
+  await page.click("#detail #ckEv");
+  await expect(page.locator("#tab-evolucao")).toBeVisible();
+  expect(await page.inputValue('#atCorpo [data-atout="hda"]')).not.toMatch(/Presença de|Nega /);
 });

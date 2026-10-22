@@ -4,9 +4,9 @@ function novoPaciente(){
   // conduta, atendimento, checklist e edições temporárias da receita
   atd=ATD_VAZIO(); Object.assign(pac,{idade:"",sexo:"M",peso:"",cr:"",gest:false,pnc:false}); ui.perfil=[];
   [chk,sess,scState,contasVal,rxSel,rxOut,hospInt].forEach(o=>Object.keys(o).forEach(k=>delete o[k]));
-  evChk=null; evScores=[]; Object.assign(dc,{peso:"",grupo:"AB",crianca:false});
+  evScores=[]; Object.assign(dc,{peso:"",grupo:"AB",crianca:false});
   // evolução e atestado
-  evIds.forEach(id=>$("#"+id).value=""); evManual=false; $("#evOut").value="";
+  if(ui.tab==="evolucao") renderEv();
   $("#atDias").value="1"; $("#atCid").value=""; $("#atAut").checked=false; $("#atHora").value=""; atManual=false;
   // pesos das calculadoras, pediatria, fichas e bomba
   ui.peso=""; $("#peso").value=""; calcScq="";

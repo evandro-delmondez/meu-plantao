@@ -12,10 +12,10 @@ test("campos da receita mostram o texto inteiro sem precisar clicar", async ({ p
   const alturas = await page.$$eval("textarea.rx-edit", (t) => t.filter((x) => x.offsetParent).map((x) => x.scrollHeight - x.clientHeight));
   for (const d of alturas) expect(d).toBeLessThanOrEqual(2);
 });
-test("evolução e atestado geram texto", async ({ page }) => {
+test("atendimento e atestado geram texto", async ({ page }) => {
   await abrir(page); await aba(page, "evolucao");
-  await page.fill("#evHma", "Dor de garganta\nhá 2 dias"); await page.dispatchEvent("#evHma", "input");
-  await expect(page.locator("#evOut")).toHaveValue(/há 2 dias/);
+  await page.fill('#atCorpo [data-atd="hma"]', "Dor de garganta\nhá 2 dias");
+  await expect(page.locator('#atCorpo [data-atout="hda"]')).toHaveValue(/há 2 dias/);
   await aba(page, "atestado"); await page.fill("#atDias", "3"); await page.dispatchEvent("#atDias", "input");
   await expect(page.locator("#atOut")).toHaveValue(/03 \(três\) dias/);
 });

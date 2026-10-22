@@ -162,18 +162,20 @@ test("modo hospital: conduta do hospital em primeiro, versão do app recolhida, 
   await expect(page.locator("#detail .appver pre")).toContainText("30 mL/kg");
   await expect(page.locator("#detail .hospregras")).toContainText("regra fictícia do hospital");
   // fechar o atendimento: desfechos do hospital e lembretes
-  const sel = page.locator('#detail [data-atd="destino"]');
+  await page.evaluate(() => document.querySelector("#atdIr").click());
+  const sel = page.locator('#atCorpo [data-atd="destino"]');
   await expect(sel.locator("option")).toHaveText(["— não incluir —", "Alta fictícia", "Evasão fictícia"]);
-  await page.locator('#detail [data-atd="unid"]').check();
+  await page.locator('#atCorpo [data-atd="unid"]').check();
   await sel.selectOption("evasao-ficticia");
-  await expect(page.locator("#atdEv")).toHaveValue(/- Evasão fictícia registrada\./);
-  await expect(page.locator("#atdEv")).toHaveValue(/Remédio quimera/);
-  await expect(page.locator("#atdEvHosp")).toContainText("lembrete fictício da evolução");
-  await page.fill("#atdEv", "Paciente encaminhado: frase proibida fictícia.");
-  await page.dispatchEvent("#atdEv", "input");
-  await expect(page.locator("#atdEvHosp .hospproib")).toContainText("frase proibida fictícia");
+  await expect(page.locator('#atCorpo [data-atout="alta"]')).toHaveValue(/- Evasão fictícia registrada\./);
+  await expect(page.locator('#atCorpo [data-atout="trat"]')).toHaveValue(/Remédio quimera/);
+  await expect(page.locator("#atHosp")).toContainText("lembrete fictício da evolução");
+  await page.fill('#atCorpo [data-atd="hma"]', "Paciente encaminhado: frase proibida fictícia.");
+  await expect(page.locator("#atHosp .hospproib")).toContainText("frase proibida fictícia");
+  await page.evaluate(() => document.querySelector('.tabs [data-tab="prescricoes"]').click());
   // editar a conduta do hospital e salvar como padrão não grava o texto do hospital
   const ta = page.locator('#detail textarea[data-f="unidade"]');
+  await page.locator("#detail .hospunid .unedit summary").click();
   await ta.fill("1) Remédio quimera 2 g EV fictício."); await ta.dispatchEvent("input");
   await page.click("#sessSave");
   const ov = await page.evaluate(() => localStorage.getItem("rxp_overrides_v1") || "");
@@ -183,6 +185,6 @@ test("modo hospital: conduta do hospital em primeiro, versão do app recolhida, 
   await expect(page.locator("#qCorpo .hospregras")).toContainText("regra fictícia");
   await aba(page, "inicio"); await page.click('[data-rede="publica"]');
   await aba(page, "evolucao");
-  await expect(page.locator("#evDestino option")).toHaveText(["— não incluir —", "Alta com orientações", "Observação", "Internação", "Transferência"]);
+  await expect(page.locator('#atCorpo [data-atd="destino"] option')).toHaveText(["— não incluir —", "Alta com orientações", "Observação", "Internação", "Transferência"]);
   expect(erros).toEqual([]);
 });

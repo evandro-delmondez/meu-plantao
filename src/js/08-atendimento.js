@@ -1,8 +1,11 @@
 /* ---------- atendimento em 1 tela (porta): sinais de alarme no topo e "Fechar o atendimento" na conduta ---------- */
 // tudo do paciente fica só na memória da aba (regra 5); "Novo paciente" limpa
-const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",tax:"",hgt:"",o2:"",cons:"",exame:"",unid:false,casa:true,ori:true,destino:null,tipo:"atestado",dias:"",aut:false,hora:"",evMan:null,atMan:null});
+const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",tax:"",hgt:"",o2:"",cons:"",
+  exModelo:"sis",sis:null,exLivre:"",diag:"",unid:false,casa:true,ori:true,destino:null,
+  reav:{},reavTxt:"",altaOri:{},alarOff:{},altaLivre:"",compreende:false,
+  intern:{local:"",motivo:"",obj:{},objLivre:"",lab:"",laudos:"",feito:"",parecer:""},
+  tipo:"atestado",dias:"",aut:false,hora:"",man:{}});
 let atd=ATD_VAZIO();
-const ATD_EV={hma:"evHma",alergia:"evAlergia",ap:"evAp",muc:"evMuc",pa:"svPa",fc:"svFc",fr:"svFr",sat:"svSat",tax:"svTax",hgt:"svHgt"};
 
 // sinais de alarme do checklist, em destaque antes da receita
 function renderAlarme(it){
@@ -52,13 +55,13 @@ function svAlertas(it){
   return out;
 }
 function renderSvAviso(){return `<div class="sec svaviso" id="atdAviso" hidden></div>`}
-function atdAvisoAtualiza(it){
-  const box=$("#atdAviso"); if(!box) return;
-  const ln=$("#atdNews"); if(ln){const n=atdNews(),inv=news2Invalido();ln.hidden=!n&&!(inv&&["fr","sat","fc","tax","pa"].some(k=>String(atd[k]||"").trim()));ln.textContent=n?newsLinha(n):inv?NEWS2_NAO_VALIDADO:"";ln.dataset.nv=n?n.nivel:"info"}
+function atdAvisoAtualiza(it,boxSel="#atdAviso",newsSel="#atdNews"){
+  const box=$(boxSel); if(!box) return;
+  const ln=$(newsSel); if(ln){const n=atdNews(),inv=news2Invalido();ln.hidden=!n&&!(inv&&["fr","sat","fc","tax","pa"].some(k=>String(atd[k]||"").trim()));ln.textContent=n?newsLinha(n):inv?NEWS2_NAO_VALIDADO:"";ln.dataset.nv=n?n.nivel:"info"}
   const al=svAlertas(it); box.hidden=!al.length; if(!al.length){box.innerHTML="";return}
   const pior=al.some(a=>a.nv==="emergencia")?"emergencia":al.some(a=>a.nv==="urgente")?"urgente":al.some(a=>a.nv==="baixo")?"baixo":"info";
   box.dataset.nv=pior;
-  box.innerHTML=`<div class="sec-h"><h3>Sinais vitais</h3><span class="alsum">aviso automático pelo que foi digitado em "Fechar o atendimento"</span></div>
+  box.innerHTML=`<div class="sec-h"><h3>Sinais vitais</h3><span class="alsum">aviso automático pelo que foi digitado no Atendimento</span></div>
     <ul class="svlista">${al.map(a=>`<li data-nv="${a.nv}"><b>${esc(a.h)}:</b> ${esc(a.t)}</li>`).join("")}</ul>
     <details class="alsrc"><summary>Fontes</summary><ol>${[NEWS2_SRC,SVAL.sat.src,SVAL.pa.src,SVAL.febre.src].map(f=>`<li>${linkify(f)}</li>`).join("")}</ol></details>`;
 }
@@ -76,13 +79,13 @@ function crbAtualiza(){
   const c=atdCrb(), sat=atdNum("sat");
   el.innerHTML=`<ul class="crbitens">${c.it.map(x=>`<li data-on="${x.val==null?"falta":x.val}"><span>${esc(x.rot)}</span> <b>${x.val==null?"falta":x.val?"+1":"0"}</b>${x.mostra?` <span class="note">(${esc(x.mostra)})</span>`:""}</li>`).join("")}</ul>
   <p class="crbres" data-nv="${c.fx.nivel}"><b id="crbTotal">CRB-65: ${c.total}${c.faltam.length?" (parcial)":""}</b> — ${esc(c.fx.txt)}</p>
-  ${c.faltam.length?`<p class="note">Faltam: ${esc(c.faltam.map(x=>x.rot).join(", "))}. Idade em "Dados do paciente"; FR, PA e consciência em "Fechar o atendimento".</p>`:""}
+  ${c.faltam.length?`<p class="note">Faltam: ${esc(c.faltam.map(x=>x.rot).join(", "))}. Idade em "Dados do paciente"; FR, PA e consciência na aba Atendimento.</p>`:""}
   <p class="note">${esc(PAC_JULGAMENTO)}${sat!=null&&sat<SVAL.sat.lim&&atd.o2!=="o2"?` <b>SpO2 ${String(sat).replace(".",",")}%: pesa para ficar.</b>`:""}</p>`;
   const ck=$("#crbConf"); if(ck) ck.checked=atd.cons==="C";
 }
 function bindCrb(it){
   const ck=$("#crbConf"); if(!ck) return;
-  ck.addEventListener("change",()=>{atd.cons=ck.checked?"C":"A";const s=$('#detail [data-atd="cons"]');if(s)s.value=atd.cons;atdAtualiza(it)});
+  ck.addEventListener("change",()=>{atd.cons=ck.checked?"C":"A";atdAvisoAtualiza(it);crbAtualiza()});
 }
 
 // modelo de exame físico conforme sexo, idade e gestação informados
@@ -96,81 +99,16 @@ function atdExamePadrao(){
 }
 // destino padrão: alta na porta; nas emergências (sala vermelha, cartão Agora), sem padrão
 const atdDestinoPadrao=it=>it.cat==="emerg"||AGORA[it.id]?"":"alta";
-// monta evolução e atestado com o mesmo motor das abas Evolução e Atestado
-function atdTextos(it){
-  Object.entries(ATD_EV).forEach(([k,id])=>$("#"+id).value=atd[k]);
-  $("#evCond").value=it.id;
-  $("#evExame").value=atd.exame||atdExamePadrao();
-  $("#evUnid").checked=atd.unid; $("#evCasa").checked=atd.casa; $("#evOri").checked=atd.ori; fillDestino(); $("#evDestino").value=atd.destino??atdDestinoPadrao(it);
-  const l=chkLinhas(it); evChk=l.n?{id:it.id,hma:l.hma,ex:l.ex}:null;
-  $("#evNega").checked=false;   // "Nega…" só sai do checklist marcado com −
-  const n=atdNews(); evSv=[n?newsLinha(n):"",it.id==="pac"&&(n||pac.idade)?crbLinha(atdCrb()):""].filter(Boolean);
-  evEstado={cons:atd.cons,o2:atd.o2};
-  const ev=buildEv(); evSv=[]; evEstado={};
-  let at="";
-  if(atd.tipo!=="nenhum"&&(atd.tipo==="comparecimento"||parseInt(atd.dias,10)>0)){
-    const sx=ui.sexo,tp=ui.tipo; ui.sexo=pac.sexo; ui.tipo=atd.tipo;
-    $("#atCid").value=it.cid||""; $("#atAut").checked=atd.aut; $("#atDias").value=atd.dias||"1"; $("#atHora").value=atd.hora;
-    at=buildAt(); ui.sexo=sx; ui.tipo=tp;
-  }
-  return {ev,at};
-}
+// na conduta: cartão que leva ao Atendimento (a tela única do prontuário), com o que já foi digitado
 function renderAtend(it){
-  const inp=(k,rot,cls="",ph="")=>`<label class="f ${cls}">${rot}<input class="inp" data-atd="${k}" value="${esc(atd[k])}" placeholder="${ph}"${["pa","fc","fr","sat","tax","hgt"].includes(k)?' inputmode="decimal"':""}></label>`;
-  const ck=(k,rot)=>`<label class="check"><input type="checkbox" data-atd="${k}" ${atd[k]?"checked":""}> ${rot}</label>`;
-  const ex=atd.exame||atdExamePadrao();
-  return `<div class="sec atend"><div class="sec-h"><h3>Fechar o atendimento</h3><button class="btn sm" id="atdNovo" title="Limpa os dados deste paciente">Novo paciente</button></div>
-  <div class="atdbody">
-    <label class="f atdfull">Queixa e história<textarea class="inp" data-atd="hma" rows="2" placeholder="ex.: dor de garganta há 2 dias, sem tosse">${esc(atd.hma)}</textarea></label>
-    <div class="atdgrid">${inp("alergia","Alergias","","ex.: dipirona; ou escreva nega")}${inp("ap","Antecedentes","","ex.: hipertensão, diabetes")}${inp("muc","Medicamentos em uso","","ex.: losartana 50 mg")}</div>
-    <div class="atdsv">${inp("pa","PA","","120x80")}${inp("fc","FC")}${inp("fr","FR")}${inp("sat","Sat O2")}${inp("tax","Temp.")}${inp("hgt","Glicemia")}</div>
-    <div class="atdgrid atdnews"><label class="f">Oxigênio<select class="inp" data-atd="o2">${[["","— informar —"],["ar","Ar ambiente"],["o2","Em O2 suplementar"]].map(([v,r])=>`<option value="${v}" ${atd.o2===v?"selected":""}>${r}</option>`).join("")}</select></label>
-      <label class="f">Consciência<select class="inp" data-atd="cons">${[["","— informar —"],["A","Alerta"],["C","Confusão nova, voz, dor ou sem resposta"]].map(([v,r])=>`<option value="${v}" ${atd.cons===v?"selected":""}>${r}</option>`).join("")}</select></label></div>
-    <p class="svnews" id="atdNews" hidden></p>
-    <label class="f">Exame físico<select class="inp" data-atd="exame">${model.exames.map(e=>`<option value="${esc(e.id)}" ${e.id===ex?"selected":""}>${esc(e.nome)}</option>`).join("")}</select></label>
-    <div class="atdck">${ck("casa","Receita")}${ck("unid","Conduta na unidade")}${ck("ori","Orientações")}<label class="f">Destino<select class="inp" data-atd="destino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${v}" ${(atd.destino??atdDestinoPadrao(it))===v?"selected":""}>${r}</option>`).join("")}</select></label></div>
-    <p class="note">O checklist "Não esquecer" marcado acima entra sozinho na evolução.</p>
-    <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">
-      <option value="atestado" ${atd.tipo==="atestado"?"selected":""}>Atestado</option><option value="comparecimento" ${atd.tipo==="comparecimento"?"selected":""}>Comparecimento</option><option value="nenhum" ${atd.tipo==="nenhum"?"selected":""}>Nenhum</option></select></label>
-      ${atd.tipo==="atestado"?inp("dias","Dias","atddias","0"):atd.tipo==="comparecimento"?inp("hora","Período","","ex.: 14h às 16h"):""}
-      ${atd.tipo!=="nenhum"&&it.cid?ck("aut",`CID ${esc(it.cid)} autorizado`):""}</div>
-    <div class="atdout"><div class="sec-h"><h4>Evolução</h4><button class="btn sm primary" id="atdCpEv">Copiar evolução</button></div>
-      <textarea class="out-edit" id="atdEv" spellcheck="false" aria-label="Evolução"></textarea><div class="hospev" id="atdEvHosp"></div>
-      <p class="note" id="atdEvMan" hidden>Você editou o texto. <button class="btn sm" id="atdEvRe">Refazer</button></p></div>
-    <div class="atdout" id="atdAtW"><div class="sec-h"><h4 id="atdAtT">Atestado</h4><button class="btn sm primary" id="atdCpAt">Copiar</button></div>
-      <textarea class="out-edit" id="atdAt" spellcheck="false" aria-label="Atestado"></textarea></div>
-    <div class="actions"><button class="btn" id="atdCpRx">Copiar receita</button><button class="btn" id="atdCpTudo">Copiar tudo</button></div>
-  </div></div>`;
-}
-function atdAtualiza(it){
-  const {ev,at}=atdTextos(it);
-  const e=$("#atdEv"),a=$("#atdAt"); if(!e) return;
-  if(atd.evMan==null){e.value=ev} $("#atdEvMan").hidden=atd.evMan==null;
-  $("#atdAtW").hidden=!at&&atd.atMan==null; $("#atdAtT").textContent=atd.tipo==="comparecimento"?"Declaração de comparecimento":"Atestado";
-  if(atd.atMan==null) a.value=at;
-  grow(e); grow(a); $("#atdEvHosp").innerHTML=hospEvAviso(e.value);
-  atdAvisoAtualiza(it); crbAtualiza();
+  const sv=atSv(), feito=[atd.hma.trim()&&"história",sv&&"sinais vitais",Object.keys(chk[it.id]||{}).length&&"checklist"].filter(Boolean);
+  return `<div class="sec atend"><div class="sec-h"><h3>Atender</h3><span class="alsum">história, exame, CID, alta e internação, com cópia por campo</span></div>
+  <div class="atdbody"><p class="note">${feito.length?`Já preenchido: ${esc(ptLista(feito))}.`:"Sinais vitais, história e exame físico ficam na aba Atendimento."}${sv?` ${esc(sv)}`:""}</p>
+    <div class="actions"><button class="btn primary" id="atdIr">Atender este paciente →</button><button class="btn" id="atdNovo" title="Limpa os dados deste paciente">Novo paciente</button></div></div></div>`;
 }
 function bindAtend(it){
-  const box=$("#detail .sec.atend"); if(!box) return;
-  if(atd.evMan!=null) $("#atdEv").value=atd.evMan;
-  if(atd.atMan!=null) $("#atdAt").value=atd.atMan;
-  box.querySelectorAll("[data-atd]").forEach(el=>{
-    const k=el.dataset.atd, ev=el.type==="checkbox"||el.tagName==="SELECT"?"change":"input";
-    el.addEventListener(ev,()=>{
-      atd[k]=el.type==="checkbox"?el.checked:el.value;
-      if(k==="tipo"){renderDetail();return}   // troca os campos do documento
-      atdAtualiza(it);
-    });
-  });
-  $("#atdEv").addEventListener("input",()=>{atd.evMan=$("#atdEv").value;$("#atdEvMan").hidden=false;grow($("#atdEv"));$("#atdEvHosp").innerHTML=hospEvAviso(atd.evMan)});
-  $("#atdAt").addEventListener("input",()=>{atd.atMan=$("#atdAt").value;grow($("#atdAt"))});
-  $("#atdEvRe").onclick=()=>{atd.evMan=null;atd.atMan=null;atdAtualiza(it)};
-  $("#atdCpEv").onclick=e=>copy($("#atdEv").value,e.currentTarget);
-  $("#atdCpAt").onclick=e=>copy($("#atdAt").value,e.currentTarget);
-  $("#atdCpRx").onclick=e=>{const t=cur(it,"casa");if(!t.trim()){toast("Esta conduta não tem receita domiciliar");return}copy(t,e.currentTarget)};
-  $("#atdCpTudo").onclick=e=>copy([$("#atdEv").value,$("#atdAtW").hidden?"":$("#atdAt").value].filter(Boolean).join("\n\n"),e.currentTarget);
+  if(!$("#atdIr")) return;
+  $("#atdIr").onclick=()=>atAbrir(it.id);
   bindNovoPaciente($("#atdNovo"));
-  bindCrb(it);
-  atdAtualiza(it);
+  bindCrb(it); atdAvisoAtualiza(it); crbAtualiza();
 }

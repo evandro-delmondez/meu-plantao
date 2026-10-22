@@ -16,7 +16,9 @@ test("receita por toque: só o escolhido vai para a receita, renumerada, e Novo 
   t = await receita(page);
   expect(t).not.toMatch(/Amoxicilina|Ibuprofeno/);
   expect(t).toMatch(/^4\) Azitromicina/m);                   // renumerada
-  expect(await page.locator("#atdEv").inputValue()).toMatch(/Azitromicina/);
+  await page.evaluate(() => document.querySelector("#atdIr").click());
+  expect(await page.locator('#atCorpo [data-atout="trat"]').inputValue()).toMatch(/Azitromicina/);
+  await page.evaluate(() => document.querySelector('.tabs [data-tab="prescricoes"]').click());
   await page.click("#novoPac"); await page.click("#novoPac");
   expect(await receita(page)).toMatch(/Amoxicilina/);
   expect(erros).toEqual([]);

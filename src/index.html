@@ -38,7 +38,7 @@
       <button role="tab" data-tab="bic" data-sec="sala" aria-selected="false">Bomba de infusão</button>
       <button role="tab" data-tab="iot" data-sec="sala" aria-selected="false">Intubação e ventilação</button>
       <button role="tab" data-tab="protocolos" data-sec="sala" aria-selected="false">Protocolos</button>
-      <button role="tab" data-tab="evolucao" data-sec="documentos" aria-selected="false">Evolução</button>
+      <button role="tab" data-tab="evolucao" data-sec="documentos" aria-selected="false">Atendimento</button>
       <button role="tab" data-tab="atestado" data-sec="documentos" aria-selected="false">Atestado</button>
       <button role="tab" data-tab="modelos" data-sec="documentos" aria-selected="false">Meus modelos</button>
       <button role="tab" data-tab="escores" data-sec="calculos" aria-selected="false">Escores</button>
@@ -193,49 +193,13 @@
 
   <!-- EVOLUÇÃO -->
   <section id="tab-evolucao" hidden>
-    <div class="two">
-      <div class="panel card">
-        <h2>Montador de evolução</h2>
-        <label class="f">Condição (HD)
-          <select class="inp" id="evCond"></select>
-        </label>
-        <label class="f">QP + HMA
-          <textarea class="inp" id="evHma" rows="4" placeholder="Paciente refere…"></textarea>
-        </label>
-        <div class="checks">
-          <label class="check"><input type="checkbox" id="evNega"> "Nega outros sintomas." (só se perguntou)</label>
-        </div>
-        <div class="row">
-          <label class="f">Alergias<textarea class="inp" id="evAlergia" rows="2" placeholder="Nega"></textarea></label>
-          <label class="f">AP (comorbidades)<textarea class="inp" id="evAp" rows="3" placeholder="Nega (Enter para nova linha)"></textarea></label>
-          <label class="f">MUC (uso contínuo)<textarea class="inp" id="evMuc" rows="3" placeholder="Nega (Enter para nova linha)"></textarea></label>
-        </div>
-        <label class="f">Modelo de exame físico
-          <select class="inp" id="evExame"></select>
-        </label>
-        <div class="row">
-          <label class="f">PA<input class="inp" id="svPa" placeholder="120x80"></label>
-          <label class="f">FC<input class="inp" id="svFc" inputmode="numeric"></label>
-          <label class="f">FR<input class="inp" id="svFr" inputmode="numeric"></label>
-          <label class="f">SatO2 %<input class="inp" id="svSat" inputmode="numeric"></label>
-          <label class="f">Tax °C<input class="inp" id="svTax" inputmode="decimal"></label>
-          <label class="f">HGT<input class="inp" id="svHgt" inputmode="numeric"></label>
-        </div>
-        <div class="checks">
-          <label class="check"><input type="checkbox" id="evCasa" checked> Incluir prescrição domiciliar</label>
-          <label class="check"><input type="checkbox" id="evUnid"> Incluir conduta na unidade</label>
-          <label class="check"><input type="checkbox" id="evOri" checked> Incluir orientações</label>
-          <label class="f">Destino<select class="inp" id="evDestino"><option value="">— não incluir —</option><option value="alta" selected>Alta com orientações</option><option value="observacao">Observação</option><option value="internacao">Internação</option><option value="transferencia">Transferência</option></select></label>
-        </div>
-        <p class="note">Modelos de exame físico e conduta: aba Meus modelos.</p>
-      </div>
-      <div class="panel card out">
-        <div class="brand"><h2>Texto para o prontuário</h2><button class="btn primary" id="evCopy">Copiar evolução</button></div>
-        <textarea class="out-edit" id="evOut" spellcheck="false" aria-label="Texto da evolução"></textarea><div class="hospev" id="evHosp"></div>
-        <p class="warnline" id="evManualNote" hidden>Você editou o texto; mudanças nos campos não o sobrescrevem. <button class="btn sm" id="evRegen">Regerar a partir dos campos</button></p>
-        <button class="btn" id="evClear">Limpar campos do paciente</button>
-      </div>
+    <div class="panel card attopo">
+      <h2>Atendimento</h2>
+      <p class="note">Na ordem do prontuário: cada campo tem o seu botão de copiar.</p>
+      <label class="f">Conduta (hipótese)<select class="inp" id="evCond"></select></label>
+      <div class="actions"><button class="btn sm" id="atVerConduta">Ver a conduta</button><button class="btn sm" id="atNovo">Novo paciente</button></div>
     </div>
+    <div id="atCorpo"></div>
   </section>
 
   <!-- ATESTADO -->

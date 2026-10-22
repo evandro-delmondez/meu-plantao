@@ -104,6 +104,7 @@ function atDiag(it){
 }
 function atTrat(it){
   const L=[model.conduta];
+  const sol=atItens(atd.exSol); if(sol.length) L.push("","Exames solicitados:",...sol.map(x=>"- "+x));
   if(it){
     const u=atJunta("unidade"), c=atJunta("casa"), o=atJunta("orient");
     if(atd.unid&&u) L.push("","Na unidade:",u);
@@ -225,6 +226,7 @@ function renderEv(){
     ${atEdit&&ex==="sis"?`<div class="atedg"><b>Texto de cada sistema</b>${[["geral",pac.sexo==="F"?"geral-f":"geral"],...[...sis].map(k=>[k,k])].map(([k,ch])=>edTa(`data-eds="${ch}"`,(SIS_OPC.find(x=>x[0]===ch)||[0,ch])[1],sisTexto(k,ch==="geral-f"),sisPadrao(ch))).join("")}</div>`:""}
     ${ta("exLivre","Achados (o que estiver alterado)","ex.: estertores crepitantes em base direita")}
     ${atSaida("exame","Exame físico")}</div></div>
+  ${(()=>{const ks=[...(atd.queixa?["q:"+atd.queixa]:[]),...cs.map(c=>c.id)].filter(exDe);return `<div class="sec atsec"><div class="sec-h"><h3>Exames</h3></div><div class="atbody">${ks.map(k=>exHTML(k,{titulo:k.startsWith("q:")?"Pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Pela conduta: "+((getItem(k)||{}).nome||"")})).join("")}${ta("exSol","Exames solicitados","um por linha\nex.: hemograma\nTC de abdome com contraste")}</div></div>`})()}
   ${unidH?`<div class="sec atsec"><div class="sec-h"><h3>3. Na unidade</h3><span class="alsum">para selecionar no prontuário</span></div><div class="atbody">${unidH}${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")).join(""):""}</div></div>`:atEdit&&cs.length?`<div class="sec atsec"><div class="sec-h"><h3>3. Na unidade</h3></div><div class="atbody">${cs.map(c=>edTxt(c,"unidade","na unidade")).join("")}</div></div>`:""}
   <div class="sec atsec"><div class="sec-h"><h3>4. Diagnóstico</h3></div><div class="atbody">
     <div class="atcids">${cs.filter(c=>c.cid).map(c=>`<button class="cidbig" data-cpcid="${esc(c.cid)}" title="Copiar o CID de ${esc(c.nome)}">CID ${esc(c.cid)} <span>copiar</span></button>`).join("")}</div>

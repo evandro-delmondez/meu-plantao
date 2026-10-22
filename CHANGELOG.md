@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.21.0 — 2026-10-22
+- **Exames e encaminhamento na porta** — 6 queixas (cefaleia, tontura/síncope, dor abdominal, dor torácica, febre, tosse/dispneia) e 20 condutas (PAC, ITU, cólica renal, dor abdominal, cefaleia, enxaqueca, vertigem, lombalgia, gastroenterite, dengue, amigdalite, sinusite, asma, DPOC, hipertensão, TCE, entorse, erisipela, gota, hemorragia digestiva alta), 353 itens em quatro grupos: **Encaminhar** (sala vermelha e especialidades), **Pedir quando** (inclusive TC com ou sem contraste, angio-TC, US, RX e regras de decisão), **Não pedir** e **Divergências entre fontes** (as duas versões, para o médico decidir). Cada item com o número da fonte; referências conferidas uma a uma no PubMed e nos sites oficiais (versões vigentes: AHA/ASA AVC 2026, SSC 2026, GINA 2026, GOLD 2026, AAO-HNS 2025, ACEP 2019/2023/2025, ACR Appropriateness, MS dengue 2024, entre outras).
+- Aparecem aberto na queixa, recolhido na conduta e na seção **Exames** do Atendimento, que ganhou o campo **Exames solicitados** (entra na conduta, um por linha).
+
 ## 1.20.0 — 2026-10-22
 - **Senha de acesso** (Documentos → Backup): num computador já configurado, crie uma frase de acesso; as chaves (hospital, lista, padrões) vão cifradas (AES-GCM, PBKDF2 com 600 mil iterações) para um gist seu, ilegível sem a senha. Em outro computador: **Entrar** com o usuário do GitHub e a frase — tudo liga e sincroniza sozinho. "Sair deste computador" apaga as chaves, o pacote do hospital e a lista de pacientes do aparelho.
 

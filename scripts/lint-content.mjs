@@ -13,10 +13,10 @@ const err = (m) => erros.push(m), warn = (m) => avisos.push(m);
 // carrega os arquivos de dados num contexto isolado
 const ctx = {};
 vm.createContext(ctx);
-const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js", "checklists.js", "calculadora.js", "infusao.js", "protocolos.js", "eletrolitos.js", "agora.js", "queixas.js", "alta.js"]
+const fontesDados = ["condutas.js", "regras.js", "pediatria.js", "extras.js", "checklists.js", "calculadora.js", "infusao.js", "protocolos.js", "eletrolitos.js", "agora.js", "queixas.js", "alta.js", "exames.js"]
   .map((f) => readFileSync(join(root, "src/data", f), "utf8").replace(/^if \(typeof module.*$/gm, "")).join("\n");
-vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,INFUSAO,IOT_FONTES,PROTOCOLOS,ELETROLITOS,QT_RISCO,QT_FONTES,AGORA,QUEIXAS,ALTA};", ctx);
-const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES, PROTOCOLOS, ELETROLITOS, QT_RISCO, QT_FONTES, AGORA, QUEIXAS, ALTA } = ctx.__dados;
+vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,INFUSAO,IOT_FONTES,PROTOCOLOS,ELETROLITOS,QT_RISCO,QT_FONTES,AGORA,QUEIXAS,ALTA,EXAMES};", ctx);
+const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES, PROTOCOLOS, ELETROLITOS, QT_RISCO, QT_FONTES, AGORA, QUEIXAS, ALTA, EXAMES } = ctx.__dados;
 
 const CAPS = /[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{12,}/;          // trecho longo em maiúsculas
 const RUIM = /\bundefined\b|\bNaN\b|\[object Object\]/;
@@ -164,6 +164,22 @@ for (const [id, a] of Object.entries(ALTA || {})) {
   if (!a.titulo || !a.oque || !(a.cuidados || []).length || !(a.volte || []).length) err(`${onde}: falta título, "oque", cuidados ou "volte"`);
   if (!Array.isArray(a.fontes) || !a.fontes.length) err(`${onde}: sem fontes`);
   verTexto(onde, a);
+}
+
+// ---------- exames e encaminhamento ----------
+for (const [k, e] of Object.entries(EXAMES || {})) {
+  const onde = `exames "${k}"`;
+  if (k.startsWith("q:") ? !qids.has(k.slice(2)) : !ids.has(k)) err(`${onde}: queixa ou conduta não existe`);
+  if (!Array.isArray(e.fontes) || !e.fontes.length) err(`${onde}: sem fontes`);
+  let n = 0;
+  for (const g of ["encaminhar", "pedir", "naoPedir", "div"]) for (const x of e[g] || []) {
+    n++;
+    if (!x.t || x.t.length > 200) err(`${onde}: item de "${g}" vazio ou com mais de 200 caracteres`);
+    if (!Array.isArray(x.f) || !x.f.length || x.f.some((i) => !(i >= 1 && i <= (e.fontes || []).length))) err(`${onde}: item de "${g}" sem fonte válida: ${(x.t || "").slice(0, 50)}`);
+    if (/\ba confirmar\b/i.test(x.t)) err(`${onde}: item ainda "a confirmar"`);
+  }
+  if (!n) err(`${onde}: sem itens`);
+  verTexto(onde, e);
 }
 
 // ---------- escores ----------

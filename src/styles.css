@@ -733,3 +733,6 @@ details.panel>summary{cursor:pointer}
 .atsegs{display:flex;flex-wrap:wrap;gap:8px}
 .atsegs .seg button[disabled]{opacity:.45;cursor:default}
 .atunid{display:grid;gap:4px}
+.rxaviso{margin:10px 14px 0;padding:8px 12px;border:1.5px solid var(--warn);border-radius:10px;background:color-mix(in srgb,var(--warn) 8%,var(--surface));font-size:14px}
+.rxaviso ul{margin:4px 0 0;padding-left:18px}
+.atbody .rxaviso{margin:0}

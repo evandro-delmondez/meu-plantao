@@ -26,6 +26,11 @@ const textoDe = (o) => JSON.stringify(o).replace(/https?:\/\/[^"\s]+/g, "");  //
 if (!Array.isArray(BASE) || BASE.length < 50) err("condutas: BASE não carregou");
 const ids = new Set();
 for (const it of BASE || []) {
+  if (it.avisoRx != null && (!Array.isArray(it.avisoRx) || it.avisoRx.some((x) => typeof x !== "string" || !x.trim() || x.length > 160))) err(`conduta "${it.id}": avisoRx deve ser lista de frases de até 160 caracteres`);
+  // texto do paciente: nada de nota para o médico (ela vai em avisoRx)
+  for (const [f, re] of [["casa", /\((só se|se dengue|alergia a penicilina|alternativa|profilaxia de|ponte até|suspeita de|após hemograma|alta após)/i], ["orient", /^\s*-?\s*(Orientar|Explicar|Reforçar|Considerar|Encaminhar|Avaliar)\b/im]])
+    // rótulos de alternativa ("Ou (alergia a penicilina)") e títulos "#" são só para o médico escolher: não vão ao paciente
+    if (re.test((it[f] || "").split("\n").filter((l) => !/^\s*(Ou\b|#)/.test(l)).join("\n"))) warn(`conduta "${it.id}": ${f} parece ter nota para o médico`);
   const onde = `conduta "${it.id}"`;
   if (ids.has(it.id)) err(`${onde}: id repetido`); ids.add(it.id);
   for (const k of ["id", "nome", "cat"]) if (!it[k]) err(`${onde}: falta "${k}"`);

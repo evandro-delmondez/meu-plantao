@@ -59,3 +59,22 @@ test("barra de atalhos fica no topo da conduta e não flutua sobre o texto", asy
   await page.evaluate(() => window.scrollTo(0, 2500));
   expect(await page.evaluate(() => document.querySelector("#detail .atalhosconduta").getBoundingClientRect().bottom)).toBeLessThan(0);   // rolou junto com a página
 });
+
+test("receita e orientações sem nota para o médico; o aviso aparece só na tela, acima da receita", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  const NOTA = /\((só se|se dengue|alergia a penicilina|alternativa|profilaxia de|ponte até|suspeita de|após hemograma|alta após)/i;
+  const ids = await page.evaluate(() => [...new Set([...document.querySelectorAll("#list .item")].map((b) => b.dataset.id))]);
+  for (const id of ids) {
+    const t = await page.evaluate((i) => { document.querySelector(`#list .item[data-id="${i}"]`).click(); const q = (f) => document.querySelector(`#detail textarea[data-f="${f}"]`)?.value || ""; return { casa: q("casa"), orient: q("orient") }; }, id);
+    expect(t.casa, id).not.toMatch(NOTA);
+    expect(t.casa, id).not.toMatch(/^\s*(Gestante|Criança|CID)\b/m);
+    expect(t.orient, id).not.toMatch(/^\s*-?\s*(Orientar|Explicar|Reforçar|Considerar|Encaminhar|Avaliar)\b/m);
+  }
+  // gripe: o aviso do ibuprofeno é para o médico (na tela) e o paciente recebe a orientação sobre dengue
+  await page.evaluate(() => document.querySelector('#list .item[data-id="gripe"]').click());
+  await expect(page.locator("#detail .rxaviso")).toContainText(/dengue/i);
+  await expect(page.locator('#detail textarea[data-f="orient"]')).toHaveValue(/até que a dengue seja descartada/);
+  await page.evaluate(() => document.querySelector("#atdIr").click());
+  expect(await page.locator('#atCorpo [data-atout="rx"]').inputValue()).not.toMatch(/Para você|descartar dengue\./);
+  expect(erros).toEqual([]);
+});

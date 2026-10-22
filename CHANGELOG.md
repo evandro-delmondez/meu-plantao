@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.25.0 — 2026-10-22
+- **Receita e orientações só com o que o paciente deve ler** (91 condutas): saíram da receita as notas para o médico, como "(só se dengue descartada)", "(alergia a penicilina)", "(alternativa…)" e linhas de gestante, criança ou CID; ficaram dose, horário, duração, limite diário, nome comercial e modo de usar. As orientações foram reescritas em linguagem simples e formal, dirigidas ao paciente ("Beba…", "Volte ao pronto-socorro se…"), sem "Orientar…" ou "Explicar…".
+- **Aviso para o médico** ("Para você, não vai na receita"), acima da receita na conduta e na prescrição do Atendimento, com o que saiu do texto do paciente; nunca entra no que é copiado.
+- Conferência independente das 91 condutas: nenhuma dose, horário ou duração mudou (verificador automático); 7 ajustes importantes aplicados (dengue em linguagem do paciente; erisipela: não parar o antibiótico sem melhora; gripe e tosse: alerta de dengue com ibuprofeno; prostatite: tratar a parceria; urticária: não suspender AAS do cardiologista; sífilis: paracetamol; insônia: não parar calmante de repente) e outros menores.
+- Proteção extra: linha de nota que sobrar na receita (Gestante, Criança, CID ou só entre parênteses) nunca vai para o paciente; o lint e um teste avisam se uma nota para o médico voltar ao texto do paciente.
+
 ## 1.24.0 — 2026-10-22
 - **Queixas novas na porta: Lombalgia e Dor musculoesquelética** — sinais de alarme (cauda equina com RM em até 4 h, aneurisma de aorta, infecção, compressão medular por metástase, fratura; artrite séptica, síndrome compartimental, isquemia aguda, TVP, fasciíte necrosante, fratura exposta, trauma cervical, arterite de células gigantes, entre outros), o que perguntar, caminhos até a conduta, escores (Ottawa, Canadian C-spine, NEXUS) e exames.
 - **Exames e encaminhamento em mais 24 condutas**: gripe, faringite, otite média, otite externa, conjuntivite, epistaxe, rinite, tosse, dispepsia, náuseas, constipação, hemorroida, prostatite, dismenorreia, vaginose, candidíase, cervicite, DIP, urticária, abscesso, herpes-zóster, hiperglicemia, hipoglicemia e ansiedade. No total, 52 queixas e condutas e 685 itens, cada um com fonte; divergências lado a lado.

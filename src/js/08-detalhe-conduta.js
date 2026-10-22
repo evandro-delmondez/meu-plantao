@@ -2,7 +2,11 @@
 const sess={}; // edições temporárias da prescrição: id -> {casa,unidade,orient}
 // receita: edição à mão > escolhas por toque (08-receita.js) > texto da conduta
 // no modo hospital, "Na unidade" vem do protocolo do hospital (a versão do app fica recolhida logo abaixo)
-const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="unidade"&&hospUnid(it.id)!=null)return hospUnid(it.id);if(f==="casa"&&rxTemMontar(it))return rxOut[it.id]??rxMonta(it);return rxTxt(it[f]||"")};
+// receita: nota para o médico (linha "Gestante…", "Criança…", "CID…" ou só entre parênteses) nunca vai para o paciente
+const rxLimpa=t=>String(t||"").split("\n").filter(l=>!RX_NOTA.test(l)).join("\n");
+const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="unidade"&&hospUnid(it.id)!=null)return hospUnid(it.id);if(f==="casa"&&rxTemMontar(it))return rxOut[it.id]??rxMonta(it);if(f==="casa")return rxLimpa(rxTxt(it.casa||""));return rxTxt(it[f]||"")};
+// avisos para o médico sobre a receita (ex.: "Ibuprofeno só depois de descartar dengue"): na tela, nunca no texto copiado
+const rxAvisoHTML=c=>(c&&Array.isArray(c.avisoRx)&&c.avisoRx.length)?`<div class="rxaviso" role="note"><b>Para você, não vai na receita:</b><ul>${c.avisoRx.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`:"";
 // "Na unidade" em lista: um item por remédio ou medida, com os detalhes embaixo (para olhar e selecionar no prontuário)
 function unidLista(t){
   const itens=[], intro=[]; let cur_=null;
@@ -20,7 +24,7 @@ function section(it,cls,title,f,copyLabel){
   const hu=f==="unidade"&&hospUnid(it.id)!=null, hc=hu&&hospCond(it.id);
   if(hu) title=`${title} — protocolo de ${esc(hospPac().curto||hospPac().nome)}`;
   const appv=hu&&it.unidade?`<details class="appver"><summary>Versão do app (fontes no fim da conduta)</summary><pre>${esc(rxTxt(it.unidade))}</pre></details>`:"";
-  return `<div class="sec ${cls}${hu?" hospunid":""}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div>${f==="casa"?renderRxMontar(it):""}${f==="unidade"?`<div class="unbox">${unidLista(text)}</div><details class="unedit"><summary>Editar o texto</summary>`:""}<textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${f==="unidade"?"</details>":""}${hu&&hc.ref?`<p class="note">${esc(hc.ref)}</p>`:""}${f!=="orient"?fichasDoTexto(text):""}${appv}</div>`;
+  return `<div class="sec ${cls}${hu?" hospunid":""}"><div class="sec-h"><h3>${title}</h3><button class="btn sm" data-copy="${f}">${copyLabel}</button></div>${f==="casa"?rxAvisoHTML(it)+renderRxMontar(it):""}${f==="unidade"?`<div class="unbox">${unidLista(text)}</div><details class="unedit"><summary>Editar o texto</summary>`:""}<textarea class="rx-edit" data-f="${f}" spellcheck="false" aria-label="${title}">${esc(text)}</textarea>${f==="unidade"?"</details>":""}${hu&&hc.ref?`<p class="note">${esc(hc.ref)}</p>`:""}${f!=="orient"?fichasDoTexto(text):""}${appv}</div>`;
 }
 const isNew=it=>!!(it.rev&&it.rev.length===1&&it.rev[0]==="Item novo.");
 function linkify(f){const m=f.match(/https?:\/\/\S+/);if(!m)return esc(f);const u=m[0].replace(/[.,)]+$/,"");const i=f.indexOf(u);return esc(f.slice(0,i))+`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https?:\/\//,"").slice(0,60))}${u.length>68?"…":""}</a>`+esc(f.slice(i+u.length))}

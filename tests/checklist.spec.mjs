@@ -19,6 +19,7 @@ test("todas as condutas têm checklist completo, com fontes", async ({ page }) =
 test("marcações viram texto na evolução e não ficam salvas no aparelho", async ({ page }) => {
   const erros = await abrir(page); await aba(page, "prescricoes");
   await page.fill("#q", "amigdalite"); await page.click("#list .item >> nth=0");
+  await page.evaluate(() => document.querySelectorAll("#detail details.sec").forEach((d) => { d.open = true; }));
   await page.click('[data-ck="hist0"][data-val="+"]');
   await page.click('[data-ck="hist1"][data-val="-"]');
   await page.click('[data-ck="ex0"][data-val="+"]');
@@ -50,9 +51,11 @@ test("marcações viram texto na evolução e não ficam salvas no aparelho", as
 test("limpar desfaz as marcações; sem marcação não leva nada", async ({ page }) => {
   await abrir(page); await aba(page, "prescricoes");
   await page.fill("#q", "dengue"); await page.click("#list .item >> nth=0");
+  await page.evaluate(() => document.querySelectorAll("#detail details.sec").forEach((d) => { d.open = true; }));
   await page.click('[data-ck="alarme0"][data-val="+"]');
   await page.click("#ckClear");
   await expect(page.locator('#detail [data-ck][aria-pressed="true"]')).toHaveCount(0);
+  await page.evaluate(() => document.querySelectorAll("#detail details.sec").forEach((d) => { d.open = true; }));
   await page.click("#detail #ckEv");
   await expect(page.locator("#tab-evolucao")).toBeVisible();
   expect(await page.inputValue('#atCorpo [data-atout="hda"]')).not.toMatch(/Presença de|Nega /);

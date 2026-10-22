@@ -91,13 +91,42 @@ const SEC_INFO={
  calculos:{t:"Cálculos",d:"Escores clínicos e doses por peso.",cor:"violet"},
 };
 function renderInicio(){
+  renderNovoAtend();
   chipsHome($("#hFav"),uso.favs.map(id=>itemRecente("c:"+id)),"Toque na ☆ de uma conduta para fixá-la aqui.");
-  chipsHome($("#hRec"),(uso.rec||[]).map(itemRecente),"As condutas, fichas e escores que você abrir aparecem aqui.");
-  $("#hSecs").innerHTML=Object.entries(SEC_INFO).map(([k,v])=>`<button class="hsec panel" data-hs="${k}" style="--c:var(--${v.cor})"><b>${v.t}</b><small>${v.d}</small></button>`).join("");
-  $$("#hSecs [data-hs]").forEach(b=>b.onclick=()=>setSec(b.dataset.hs));
+  const top=Object.entries(uso.counts||{}).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([id])=>itemRecente("c:"+id));
+  chipsHome($("#hTop"),top,"As condutas que você mais abrir aparecem aqui.");
+  chipsHome($("#hRec"),(uso.rec||[]).slice(0,10).map(itemRecente),"As condutas, fichas e escores que você abrir aparecem aqui.");
+  // pacientes sem desfecho, com os avisos de 2 h e 3 h
+  const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");
+  $("#hPacsBox").hidden=!ab.length;
+  $("#hPacs").innerHTML=ab.map(p=>{const av=pacAviso(p);return `<button class="hpac" data-hp="${p.id}" data-av="${av?av.nv:""}"><b>${esc(p.nome)}</b><span>${esc(pacHip(p)||"sem hipótese")} · ${pacHora(p.criado)}${av?` · ${esc(av.txt)}`:""}</span></button>`}).join("");
+  $$("#hPacs [data-hp]").forEach(b=>b.onclick=()=>pacAbrir(b.dataset.hp));
+  // sem nenhuma chave neste computador: oferece Entrar
+  const box=$("#acInicio"), cfg=psyncAtivo()||gsAtivo()||(hosp.cfg&&hosp.cfg.chave);
+  box.hidden=!!cfg; if(!cfg) renderAcesso(box);
   renderBusca();
 }
-$("#hRed").onclick=()=>setSec("sala");
+$("#hPacsTodos").onclick=()=>setTab("pacientes");
+/* novo atendimento pela queixa da triagem ou pela conduta: abre o Atendimento já no caminho */
+function renderNovoAtend(){
+  const el=$("#hNovo");
+  el.innerHTML=`<h2>Novo atendimento</h2>
+    <input class="inp" id="naNome" placeholder="Nome do paciente (opcional; põe na lista do plantão)" autocomplete="off" spellcheck="false" aria-label="Nome do paciente">
+    <span class="lbl">Queixa da triagem</span>
+    <div class="chips">${QUEIXAS.map(q=>`<button class="chip" data-naq="${esc(q.id)}">${esc(q.nome)}</button>`).join("")}</div>
+    <span class="lbl">Ou a conduta</span>
+    <input class="inp" id="naCond" list="naConds" placeholder="Buscar conduta: pneumonia, ITU, cólica…" autocomplete="off" aria-label="Conduta">
+    <datalist id="naConds">${allItems().map(i=>`<option value="${esc(i.nome)}">`).join("")}</datalist>`;
+  const comeca=(cond,queixa)=>{
+    const nome=$("#naNome").value.trim();
+    novoPacienteSilencioso();
+    if(nome){const p=pacNovo(nome);atPac=p.id}
+    atd.queixa=queixa||null; $("#evCond").value=cond||""; if(cond) ui.sel=cond;
+    setTab("evolucao"); window.scrollTo({top:0}); if(atPac) pacSnap();
+  };
+  el.querySelectorAll("[data-naq]").forEach(b=>b.onclick=()=>comeca("",b.dataset.naq));
+  $("#naCond").onchange=e=>{const v=norm(e.target.value);const it=allItems().find(i=>norm(i.nome)===v)||allItems().find(i=>norm(i.nome).includes(v));if(it)comeca(it.id,null)};
+}
 /* rede pública × particular (v1.4) */
 const RENAME_FONTE="Ministério da Saúde. Relação Nacional de Medicamentos Essenciais — RENAME 2024.";
 function setRede(r){ui.rede=ui.rede===r?null:r;saveUI();renderRede();fillDestino();if(ui.tab==="evolucao")renderEv();if(ui.tab==="prescricoes"||ui.tab==="queixas")setTab(ui.tab);if(ui.tab==="prescricoes")renderDetail();if(ui.tab==="medicacoes")renderMedList()}

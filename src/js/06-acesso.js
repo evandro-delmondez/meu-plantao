@@ -54,6 +54,7 @@ function acessoSair(){
 }
 function renderAcesso(el){
   if(!el) return;
+  for(const o of ["#acCaixa","#acInicio"]){const x=$(o);if(x&&x!==el)x.innerHTML=""}   // um formulário só na página
   const ligado=psyncAtivo()||gsAtivo()||(hosp.cfg&&hosp.cfg.chave), g=acessoGuardado();
   el.innerHTML=ligado?`<h2>Senha de acesso</h2>
     <p class="note">Para entrar em outro computador só com o seu usuário do GitHub e uma senha. As chaves vão cifradas; sem a senha, ninguém lê.</p>

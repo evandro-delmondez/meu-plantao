@@ -60,13 +60,15 @@
     </div>
     <div id="gres" class="gres" hidden></div>
     <div id="hbody">
-      <div class="panel hrede"><span class="lbl">Onde estou hoje:</span><div class="seg" role="group" aria-label="Rede de atendimento"><button data-rede="publica" aria-pressed="false">UPA pública (SUS)</button><button data-rede="particular" aria-pressed="false">Particular</button><button data-rede="hospital" aria-pressed="false" id="hRedeHosp" hidden>Meu hospital</button></div><span class="note" id="hRedeNota"></span></div>
-      <button class="hred" id="hRed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span><b>Sala vermelha</b><small>Condutas de emergência, doses por peso e emergência pediátrica</small></span><i aria-hidden="true">→</i></button>
+      <div class="panel hnovo" id="hNovo"></div>
+      <div class="panel hbox" id="hPacsBox" hidden><div class="hboxh"><h2>Pacientes em aberto</h2><button class="btn sm" id="hPacsTodos">Ver lista</button></div><div id="hPacs"></div></div>
       <div class="hcols">
         <div class="panel hbox"><h2>★ Favoritos</h2><div class="hchips" id="hFav"></div></div>
-        <div class="panel hbox"><h2>Abertos recentemente</h2><div class="hchips" id="hRec"></div></div>
+        <div class="panel hbox"><h2>Mais usadas</h2><div class="hchips" id="hTop"></div></div>
       </div>
-      <div class="hsecs" id="hSecs"></div>
+      <div class="panel hbox"><h2>Recentes</h2><div class="hchips" id="hRec"></div></div>
+      <div class="panel hrede"><span class="lbl">Onde estou hoje:</span><div class="seg" role="group" aria-label="Rede de atendimento"><button data-rede="publica" aria-pressed="false">UPA pública (SUS)</button><button data-rede="particular" aria-pressed="false">Particular</button><button data-rede="hospital" aria-pressed="false" id="hRedeHosp" hidden>Meu hospital</button></div><span class="note" id="hRedeNota"></span></div>
+      <div class="panel hbox" id="acInicio" hidden></div>
     </div>
   </section>
 

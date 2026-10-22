@@ -181,6 +181,16 @@ function atSalvaPadroes(){
   saveModel(); atEdit=false; renderList(); fillSelects(); renderEv(); toast("Padrões salvos: valem nos próximos atendimentos");
 }
 
+// atendimento começado pela queixa da triagem: alarmes, o que perguntar e os caminhos até a conduta
+function atQueixaHTML(temConduta){
+  const q=atd.queixa&&QUEIXAS.find(x=>x.id===atd.queixa); if(!q) return "";
+  const cam=(q.caminhos||[]).filter(c=>c.conduta&&getItem(c.conduta));
+  return `<details class="sec atqueixa" ${temConduta?"":"open"}><summary class="sec-h"><h3>Queixa: ${esc(q.nome)}</h3><span class="alsum">${temConduta?"ver alarmes e caminhos":"escolha o caminho"}</span></summary><div class="atbody">
+    <ul class="qal">${q.alarme.map(a=>`<li><b>${esc(a.t)}</b><span>${esc(a.acao)}</span></li>`).join("")}</ul>
+    ${(q.perguntar||[]).length?`<details><summary class="lbl">Perguntar e examinar</summary><ul class="qlist">${q.perguntar.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></details>`:""}
+    <span class="lbl">Caminhos</span><div class="qcams">${cam.map(c=>`<button class="qcam" data-atcam="${esc(c.conduta)}" aria-pressed="${$("#evCond").value===c.conduta}"><span>${esc(c.rot)}</span><span class="qir">${$("#evCond").value===c.conduta?"✓":"usar →"}</span></button>`).join("")}</div></div></details>`;
+}
+
 /* ---- tela ---- */
 function atSaida(k,rot){
   return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
@@ -206,6 +216,7 @@ function renderEv(){
   <div class="ateditbar">${atEdit?`<span class="note">Editando os padrões: um item por linha. Vale para os próximos atendimentos.</span><button class="btn primary" id="atEdSalva">Salvar como padrão</button><button class="btn" id="atEdSai">Cancelar</button>`:`<button class="btn sm" id="atEdita">✎ Editar padrões</button>`}</div>
   ${it?`<div class="atextras"><span class="lbl">Outras queixas no mesmo paciente</span><div class="chips">${outras.map(c=>`<button class="chip" data-atrem="${esc(c.id)}" aria-pressed="true">✓ ${esc(c.nome)} ✕</button>`).join("")}
     ${outras.length<2?`<select class="inp atadd" id="atAdd" aria-label="Adicionar outra conduta"><option value="">+ Adicionar outra conduta</option>${allItems().filter(x=>!cs.some(c=>c.id===x.id)).map(x=>`<option value="${esc(x.id)}">${esc(x.nome)}</option>`).join("")}</select>`:""}</div></div>`:""}
+  ${atQueixaHTML(!!it)}
   ${cs.map(renderAlarme).join("")}
   <div class="sec atsec" id="atHdaSec"><div class="sec-h"><h3>1. História</h3></div><div class="atbody">
     ${ta("hma","Queixa e história da doença atual","ex.: dor de garganta há 2 dias, sem tosse")}
@@ -310,6 +321,7 @@ function bindEv(it){
   if($("#atAdd")) $("#atAdd").onchange=e=>{const v=e.target.value;if(!v)return;atd.extras=[...(atd.extras||[]),v].slice(0,2);atd.sis=null;atd.alarOff={};renderEv()};
   if($("#atCrit")) $("#atCrit").onclick=()=>abrirHospInt((hospPac().internacao.doencas||[]).find(d=>(d.condutas||[]).includes(it&&it.id))?.id);
   $("#atCpTudo").onclick=e=>copy(buildEv(),e.currentTarget);
+  box.querySelectorAll("[data-atcam]").forEach(b=>b.onclick=()=>{$("#evCond").value=b.dataset.atcam;ui.sel=b.dataset.atcam;atd.sis=null;atd.alarOff={};renderEv();pacSnap()});
   if($("#atEdita")) $("#atEdita").onclick=()=>{atEdit=true;renderEv()};
   if($("#atEdSai")) $("#atEdSai").onclick=()=>{atEdit=false;renderEv()};
   if($("#atEdSalva")) $("#atEdSalva").onclick=atSalvaPadroes;

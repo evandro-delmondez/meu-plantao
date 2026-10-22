@@ -672,3 +672,36 @@ input.segredo{-webkit-text-security:disc;text-security:disc}
 .ated{display:grid;gap:4px}
 .atedh{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .ated textarea{width:100%}
+.hnovo{display:grid;gap:10px;padding:16px}
+.hnovo h2{margin:0;font-size:20px}
+.hboxh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+#hPacs{display:grid;gap:6px}
+.hpac{all:unset;cursor:pointer;display:grid;gap:2px;padding:8px 10px;border-radius:10px;border-left:4px solid var(--line);background:var(--surface-2)}
+.hpac[data-av="amarelo"]{border-left-color:var(--amber)} .hpac[data-av="vermelho"]{border-left-color:var(--bad)}
+.hpac span{font-size:13px;color:var(--muted)}
+
+/* ===== Minimalista claro (2026-10-22): fundo branco, uma cor de destaque, cor da categoria só como ponto,
+   menos caixas, bordas finas, sem sombras, mais espaço. Os tokens de cor continuam valendo (tema escuro). ===== */
+:root{--bg:#F6F7F9;--line:#E6E8EE;--shadow:none}
+:root[data-theme="dark"]{--bg:#0E1117;--line:#252B38}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0E1117;--line:#252B38}}
+body{font-size:15.5px}
+.panel{border-color:var(--line);box-shadow:none;border-radius:14px}
+.sec{border-color:var(--line);border-radius:12px;background:var(--surface)}
+.sec-h{background:transparent;border-bottom:1px solid var(--line);padding:12px 14px}
+.sec-h h3{color:var(--ink);font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+.sec-h h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+details.sec>summary.sec-h{border-bottom:0;cursor:pointer;list-style:none}
+details.sec>summary.sec-h::-webkit-details-marker{display:none}
+details.sec[open]>summary.sec-h{border-bottom:1px solid var(--line)}
+details.sec>summary.sec-h::after{content:"›";font-size:20px;color:var(--muted);transition:transform .15s;margin-left:auto}
+details.sec[open]>summary.sec-h::after{transform:rotate(90deg)}
+.sec.pac summary h3::before,.sec.pac[open] summary h3::before{content:"";display:block}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:600}
+.chip[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.card h2{font-size:20px;font-weight:700}
+.alarmetopo{border-left:3px solid var(--red)}
+.alarmetopo .sec-h h3{color:var(--red)}
+.cat .dot{width:8px;height:8px}
+.dnote{display:none}
+.btn{border-radius:10px}

@@ -145,6 +145,20 @@ function renderDilu(it){
 function fullText(it){return [cur(it,"casa"),cur(it,"unidade")?("Na unidade:\n"+cur(it,"unidade")):"",cur(it,"orient")?("Orientações:\n"+cur(it,"orient")):""].filter(Boolean).join("\n\n")}
 function atalhoTopo(){const h=document.querySelector("header.top");if(h)document.documentElement.style.setProperty("--topo",(getComputedStyle(h).position==="sticky"||getComputedStyle(h).position==="fixed"?Math.ceil(h.getBoundingClientRect().height):0)+"px")}
 addEventListener("resize",()=>atalhoTopo());
+// minimalista: na conduta ficam abertos receita, na unidade e os avisos; o resto vira linha que abre com um toque
+// (os nós são movidos, não recriados: os botões continuam ligados)
+const SEC_ABERTAS=["casa","unidade","crb","agora","hospat","hospunid","svaviso","hospdiv","sessbar"];
+function recolherSecundario(el){
+  el.querySelectorAll(":scope > div.sec").forEach(sec=>{
+    if(SEC_ABERTAS.some(c=>sec.classList.contains(c))) return;
+    if(sec.classList.contains("alertas")&&sec.classList.contains("hot")) return;   // perfil ligado com alerta: fica à vista
+    const h=sec.querySelector(":scope > .sec-h"); if(!h) return;
+    const d=document.createElement("details"); d.className=sec.className; if(sec.id) d.id=sec.id; if(sec.hidden) d.hidden=true;
+    const s=document.createElement("summary"); s.className=h.className; while(h.firstChild) s.append(h.firstChild);
+    h.remove(); d.append(s); while(sec.firstChild) d.append(sec.firstChild);
+    sec.replaceWith(d);
+  });
+}
 function renderDetail(){
   const el=$("#detail"); const it=getItem(ui.sel)||(newTmp&&newTmp.id===ui.sel?newTmp:null);
   if(!it){el.innerHTML=`<div class="empty">Escolha uma prescrição na lista.</div>`;return}
@@ -210,9 +224,10 @@ function renderDetail(){
   atalhoTopo();
   // atalhos: só aparecem as seções que existem nesta conduta
   $$("#detail .atalhosconduta [data-ir]").forEach(b=>{const alvo=$(`#detail .sec.${b.dataset.ir}`);if(!alvo){b.remove();return}
-    b.onclick=()=>{if(alvo.tagName==="DETAILS")alvo.open=true;alvo.scrollIntoView({block:"start"})}});
+    b.onclick=()=>{const a=$(`#detail .sec.${b.dataset.ir}`)||alvo;if(a.tagName==="DETAILS")a.open=true;a.scrollIntoView({block:"start"})}});
   bindAltaPac(it);
   bindHospAtalhos($("#detail .hospat"));
+  recolherSecundario(el);
   growAll();
   const cidb=$("#detail .cid[data-cpcid]"); if(cidb) cidb.onclick=()=>copy(cidb.dataset.cpcid,cidb);
   linkMeds(el);

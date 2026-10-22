@@ -76,6 +76,7 @@ test("alertas ficam acima da receita e só o perfil ligado abre os detalhes", as
   await expect(page.locator(".sec.alertas.hot > .algrid .al.on h4")).toHaveText(["Gestante"]);
   await page.click('[data-perfil="gest"]');
   await expect(page.locator(".sec.alertas > .algrid")).toHaveCount(0);
+  await page.locator("#detail details.sec.fichas > summary").click();
   await expect(page.locator(".sec.fichas [data-med]").first()).toBeVisible();
   expect(erros).toEqual([]);
 });

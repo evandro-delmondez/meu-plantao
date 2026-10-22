@@ -10,6 +10,8 @@ const saida = (page, k) => page.locator(`#atCorpo [data-atout="${k}"]`);
 test("porta: alarmes no topo da conduta; Atendimento em 1 tela com cópia por campo, sem salvar dado do paciente", async ({ page }) => {
   const erros = await abrir(page); await aba(page, "prescricoes");
   await conduta(page, "amigdalite");
+  await expect(page.locator("#detail details.sec.alarmetopo")).not.toHaveAttribute("open", "");   // recolhido: só a linha
+  await page.evaluate(() => document.querySelectorAll("#detail details.sec").forEach((d) => { d.open = true; }));
   await expect(page.locator("#detail .sec.alarmetopo li").first()).toBeVisible();
   expect(await page.evaluate(() => { const a = document.querySelector("#detail .alarmetopo"), r = document.querySelector("#detail .sec.casa"); return !!(a.compareDocumentPosition(r) & Node.DOCUMENT_POSITION_FOLLOWING); })).toBe(true);
   await page.evaluate(() => document.querySelector("#atdIr").click());

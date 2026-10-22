@@ -25,15 +25,17 @@ test("porta: alarmes no topo da conduta; Atendimento em 1 tela com cópia por ca
   const ex = await saida(page, "exame").inputValue();
   expect(ex).toContain("Tax 38,2 °C");
   expect(ex).not.toMatch(/\bafebril\b/);          // exame não contradiz a febre informada
-  expect(ex).toMatch(/Cabeça e orofaringe:/);     // amigdalite liga cabeça e orofaringe
+  expect(ex).toMatch(/^Cabeça e pescoço:/m); expect(ex).toMatch(/^Orofaringe:/m);   // amigdalite liga os dois, separados
   expect(ex).not.toMatch(/^Abdome:/m);            // sistema não ligado não sai
-  await expect(saida(page, "diag")).toHaveValue(/Hipótese diagnóstica: Amigdalite.*CID J03/);
-  await expect(saida(page, "trat")).toHaveValue(/Prescrição domiciliar:/);
+  await expect(saida(page, "diag")).toHaveValue(/^Amigdalite/);
+  expect(await saida(page, "diag").inputValue()).not.toMatch(/Hipótese|CID/);       // o CID é escolhido em outra parte do prontuário
+  await expect(saida(page, "trat")).toHaveValue(/^- Explico ao paciente o quadro clínico/);
+  await expect(saida(page, "rx")).toHaveValue(/Amoxicilina|Dipirona/);
   await expect(page.locator("#atCorpo .cidbig")).toContainText("J03");
   await campo(page, "ap").fill("hipertensão arterial\ncolecistectomia em 2019");
   await campo(page, "muc").fill("- losartana 50 mg");
   await expect(saida(page, "hda")).toHaveValue(/HPP:\n- hipertensão arterial\n- colecistectomia em 2019\nMedicamentos em uso:\n- losartana 50 mg/);
-  for (const k of ["hda", "exame", "diag", "trat", "alta"]) expect(await saida(page, k).inputValue()).not.toMatch(RUIM);
+  for (const k of ["hda", "exame", "diag", "trat", "rx", "alta"]) expect(await saida(page, k).inputValue()).not.toMatch(RUIM);
   // atestado
   await campo(page, "dias").fill("2");
   await expect(saida(page, "atest")).toHaveValue(/02 \(dois\) dias/);
@@ -98,7 +100,7 @@ test("alta em tópicos e pedido de internação com justificativa, sem repetir a
   const alta = await saida(page, "alta").inputValue();
   expect(alta).toMatch(/^- Paciente reavaliado, com melhora após a medicação na unidade: RX com consolidação/m);
   expect(alta).toMatch(/- Paciente orientado sobre o diagnóstico, a medicação prescrita/);
-  expect(alta).toMatch(/- Orientados os sinais de alarme, com retorno imediato ao pronto-socorro em caso de: /);
+  expect(alta).toMatch(/- Oriento quanto aos sinais de alarme e à necessidade de retorno imediato em caso de piora: /);
   expect(alta).toMatch(/- Paciente compreendeu e concorda com as orientações\./);
   expect(alta).not.toMatch(/Prescrição domiciliar|Amoxicilina/);
   // tirar um sinal de alarme da lista
@@ -112,7 +114,9 @@ test("alta em tópicos e pedido de internação com justificativa, sem repetir a
   await page.locator('#atCorpo [data-atchip="obj"][data-k="atb"]').click();
   await campo(page, "intern.lab").fill("leucócitos 19.000");
   const int = await saida(page, "intern").inputValue();
-  expect(int).toMatch(/^Solicito internação em UTI\./);
+  expect(int).toMatch(/^Solicito internação em UTI\.\n\n/);                        // um espaço entre os tópicos
+  await campo(page, "hma").fill("tosse há 4 dias");
+  await expect(saida(page, "hda")).toHaveValue(/^tosse há 4 dias(\n[^\n]+)*\n\nHPP:/);   // e entre a HDA e os antecedentes
   expect(int).toMatch(/Justificativa: SpO2 88%/);
   expect(int).toMatch(/Objetivo da internação: antibioticoterapia EV\./);
   expect(int).toMatch(/Exames laboratoriais relevantes: leucócitos 19\.000/);
@@ -137,8 +141,18 @@ test("exame físico direcionado: liga e desliga sistemas; modelo completo contin
   expect(ex).toMatch(/^Respiratório:/m);
   await page.locator('#atCorpo [data-atchip="sis"][data-k="abd"]').click();
   expect(await saida(page, "exame").inputValue()).not.toMatch(/^Abdome:/m);
-  await campo(page, "exModelo").selectOption("adulto");
-  await expect(saida(page, "exame")).toHaveValue(/Membros inferiores:/);
+  // sexo e perfil por botões: o texto do exame acompanha
+  await page.click('#atCorpo [data-atseg="exSexo"][data-v="F"]');
+  await expect(saida(page, "exame")).toHaveValue(/\bcorada\b/);
+  await page.click('#atCorpo [data-atseg="exPerfil"][data-v="gest"]');
+  await page.locator('#atCorpo [data-atchip="sis"][data-k="abd"]').click();
+  await expect(saida(page, "exame")).toHaveValue(/Abdome: gravídico/);
+  await page.click('#atCorpo [data-atseg="exPerfil"][data-v="ped"]');
+  await expect(saida(page, "exame")).toHaveValue(/ativa e reativa/);
+  // editar o exame à mão e depois ligar um sistema: o sistema entra no texto
+  await saida(page, "exame").fill("texto meu do exame"); await saida(page, "exame").dispatchEvent("input");
+  await page.locator('#atCorpo [data-atchip="sis"][data-k="pele"]').click();
+  await expect(saida(page, "exame")).toHaveValue(/^Pele:/m);
   expect(erros).toEqual([]);
 });
 
@@ -148,7 +162,7 @@ test("mais de uma queixa: gripe + enxaqueca juntam diagnósticos, checklists, ex
   await page.selectOption("#atAdd", "enxaqueca");
   await expect(page.locator("#atCorpo [data-atrem]")).toHaveText(/Enxaqueca/);
   const diag = await saida(page, "diag").inputValue();
-  expect(diag).toMatch(/^Hipóteses diagnósticas:\n- Síndrome gripal.*\(CID J11\.1\)\n- Enxaqueca.*\(CID G43/);
+  expect(diag).toMatch(/^Síndrome gripal[^\n]*\nEnxaqueca/);
   await expect(page.locator("#atCorpo .cidbig")).toHaveCount(2);
   // um checklist por conduta, cada um funcionando
   await expect(page.locator("#atCorpo #atChk1 .ck").first()).toBeVisible();
@@ -158,8 +172,7 @@ test("mais de uma queixa: gripe + enxaqueca juntam diagnósticos, checklists, ex
   const ex = await saida(page, "exame").inputValue();
   expect(ex).toMatch(/^Respiratório:/m); expect(ex).toMatch(/^Neurológico:/m);
   // receita: itens das duas, sem repetir o mesmo remédio, renumerados
-  const trat = await saida(page, "trat").inputValue();
-  const rx = trat.split("Prescrição domiciliar:")[1].split("Orientações:")[0];
+  const rx = (await saida(page, "rx").inputValue()).split("Orientações:")[0];
   const nomes = [...rx.matchAll(/^\s*\d+\)\s*([A-Za-zÀ-ÿ-]+)/gm)].map((m) => m[1].toLowerCase());
   expect(nomes.length).toBeGreaterThan(1);
   expect(new Set(nomes).size).toBe(nomes.length);
@@ -167,7 +180,8 @@ test("mais de uma queixa: gripe + enxaqueca juntam diagnósticos, checklists, ex
   expect(nums).toEqual(nums.map((_, i) => i + 1));
   // tirar a adicional volta ao diagnóstico único
   await page.locator("#atCorpo [data-atrem]").click();
-  await expect(saida(page, "diag")).toHaveValue(/^Hipótese diagnóstica: Síndrome gripal/);
+  await expect(saida(page, "diag")).toHaveValue(/^Síndrome gripal/);
+  await expect(saida(page, "diag")).not.toHaveValue(/Enxaqueca/);
   expect(erros).toEqual([]);
 });
 
@@ -179,7 +193,7 @@ test("Editar padrões: checklist, listas da alta, sistema do exame e na unidade 
   await hist.fill((await hist.inputValue()) + "\nrouquidão (item do médico)");
   const reav = page.locator('#atCorpo [data-edl="reav"]');
   await reav.fill((await reav.inputValue()) + "\ncom exames laboratoriais sem alterações");
-  await page.locator('#atCorpo [data-eds="cab"]').fill("Cabeça e orofaringe: texto do médico.");
+  await page.locator('#atCorpo [data-eds="oro"]').fill("Orofaringe: texto do médico.");
   const un = page.locator('#atCorpo [data-edt="amigdalite|unidade"]');
   await un.fill((await un.inputValue()) + "\n9) Remédio do médico 1 ampola IM.");
   await page.click("#atEdSalva");
@@ -188,7 +202,7 @@ test("Editar padrões: checklist, listas da alta, sistema do exame e na unidade 
   await atender(page, "amigdalite");
   await expect(page.locator("#atCorpo .ck", { hasText: "rouquidão (item do médico)" })).toHaveCount(1);
   await expect(page.locator('#atCorpo [data-atchip="reav"]', { hasText: "com exames laboratoriais sem alterações" })).toHaveCount(1);
-  await expect(saida(page, "exame")).toHaveValue(/Cabeça e orofaringe: texto do médico\./);
+  await expect(saida(page, "exame")).toHaveValue(/Orofaringe: texto do médico\./);
   await expect(page.locator("#atCorpo .unlista")).toContainText("Remédio do médico 1 ampola IM.");
   const ls = await page.evaluate(() => localStorage.getItem("rxp_model_v1") + localStorage.getItem("rxp_overrides_v1"));
   expect(ls).toContain("rouquidão (item do médico)");

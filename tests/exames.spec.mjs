@@ -19,8 +19,15 @@ test("Atendimento: exames solicitados entram na conduta, um por linha", async ({
   const erros = await abrir(page); await aba(page, "prescricoes");
   await page.evaluate(() => document.querySelector('#list .item[data-id="itu"]').click());
   await page.evaluate(() => document.querySelector("#atdIr").click());
-  await page.locator('#atCorpo [data-atd="exSol"]').fill("hemograma\nurocultura");
-  await expect(page.locator('#atCorpo [data-atout="trat"]')).toHaveValue(/Exames solicitados:\n- hemograma\n- urocultura/);
+  await page.locator('#atCorpo [data-atd="exLab"]').fill("hemograma\nurocultura");
+  await page.locator('#atCorpo [data-atd="exImg"]').fill("US de rins e vias urinárias");
+  await expect(page.locator('#atCorpo [data-atout="trat"]')).toHaveValue(/- Solicito exames laboratoriais: hemograma, urocultura\.\n- Solicito exames de imagem: US de rins e vias urinárias\./);
+  // itens da conduta por toque: medicação na unidade traz os nomes da prescrição
+  await page.click('#atCorpo [data-atchip="cond"][data-k="med"]');
+  await expect(page.locator('#atCorpo [data-atout="trat"]')).toHaveValue(/- Prescrevo medicação na unidade\.\n- Solicito exames laboratoriais/);
+  // só entram os remédios que o médico marca (não as alternativas da conduta)
+  await page.click('#atCorpo [data-atchip="medsel"][data-k="ceftriaxona"]');
+  await expect(page.locator('#atCorpo [data-atout="trat"]')).toHaveValue(/- Prescrevo medicação na unidade: ceftriaxona\.\n/);
   expect(erros).toEqual([]);
 });
 

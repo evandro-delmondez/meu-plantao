@@ -95,7 +95,7 @@ function renderPacientes(){
       <div class="note pchip">${esc(pacHip(p)||"sem hipótese ainda")}</div>
       <div class="chips pcets">${PAC_ETAPAS.map(([k,r])=>et(p,k,r)).join("")}</div>
       <div class="pcdesf"><select class="inp" data-pd="tipo" aria-label="Desfecho">${PAC_DESF.map(([v,r])=>`<option value="${v}" ${p.desf.tipo===v?"selected":""}>${r}</option>`).join("")}</select>
-        ${p.desf.tipo==="internacao"?`<select class="inp" data-pd="onde" aria-label="Onde">${PAC_ONDE.map(([v,r])=>`<option value="${v}" ${p.desf.onde===v?"selected":""}>${r}</option>`).join("")}</select>`:""}
+        ${p.desf.tipo==="internacao"?`<select class="inp" data-pd="onde" aria-label="Onde">${(typeof atLocais==="function"?[["","onde?"],...atLocais().slice(1)]:PAC_ONDE).map(([v,r])=>`<option value="${v}" ${p.desf.onde===v?"selected":""}>${r}</option>`).join("")}</select>`:""}
         <label class="check"><input type="checkbox" data-psabe ${p.sabe?"checked":""}> sabe da troca</label>
         <button class="btn sm" data-pabrir>Abrir atendimento</button><button class="btn sm danger" data-papagar>Apagar</button></div></div>`}).join(""):`<div class="panel card"><p class="note">Nenhum paciente ainda. Digite o nome acima ou no topo do Atendimento.</p></div>`}</div>
     <details class="panel card pcpass"><summary><h3>Passagem de plantão</h3></summary>

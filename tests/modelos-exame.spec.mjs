@@ -13,15 +13,14 @@ Pele: sem alterações evidentes.`;
 
 test("modelos de exame vêm por extenso, com versões masculina e feminina", async ({ page }) => {
   const erros = await abrir(page); await aba(page, "evolucao");
-  const sel = '#atCorpo [data-atd="exModelo"]';
-  const opcoes = await page.$$eval(sel + " option", (o) => o.map((x) => x.textContent));
-  expect(opcoes).toEqual(["Por sistemas (direcionado)", "Completo: Adulto — masculino", "Completo: Adulto — feminino", "Completo: Pediátrico — masculino", "Completo: Pediátrico — feminino", "Completo: Gestante"]);
-  for (const v of (await page.$$eval(sel + " option", (o) => o.map((x) => x.value))).filter((x) => x !== "sis")) {
-    await page.selectOption(sel, v);
+  // exame sempre por sistemas: sexo e perfil por botões, todos por extenso e com o gênero certo
+  for (const [sx, pf] of [["M", "adulto"], ["F", "adulto"], ["M", "ped"], ["F", "ped"], ["F", "gest"]]) {
+    await page.click(`#atCorpo [data-atseg="exPerfil"][data-v="${pf}"]`);
+    if (pf !== "gest") await page.click(`#atCorpo [data-atseg="exSexo"][data-v="${sx}"]`);
     const t = await page.inputValue('#atCorpo [data-atout="exame"]');
-    expect(t, v).not.toMatch(SIGLAS);
-    if (v.endsWith("-f") || v === "gestante") { expect(t, v).toContain("corada"); expect(t, v).not.toMatch(/\bcorado\b/); }
-    else expect(t, v).toMatch(/\bcorado\b/);
+    expect(t, sx + pf).not.toMatch(SIGLAS);
+    if (sx === "F") { expect(t, sx + pf).toContain("corada"); expect(t, sx + pf).not.toMatch(/\bcorado\b/); }
+    else expect(t, sx + pf).toMatch(/\bcorado\b/);
   }
   expect(erros).toEqual([]);
 });
@@ -52,19 +51,19 @@ test("atualização troca o modelo antigo não editado e preserva o editado", as
 test("texto de cada sistema do exame é editável em Meus modelos, vale no Atendimento e continua após recarregar", async ({ page }) => {
   const erros = await abrir(page);
   await aba(page, "modelos");
-  await page.selectOption("#mdSisSel", "cab");
-  await expect(page.locator("#mdSisTxt")).toHaveValue(/^Cabeça e orofaringe:/);
-  await page.fill("#mdSisTxt", "Cabeça e orofaringe: meu texto de oroscopia normal.");
+  await page.selectOption("#mdSisSel", "oro");
+  await expect(page.locator("#mdSisTxt")).toHaveValue(/^Orofaringe:/);
+  await page.fill("#mdSisTxt", "Orofaringe: meu texto de oroscopia normal.");
   await page.click("#mdSisSave");
   await page.reload();
   await aba(page, "prescricoes");
   await page.evaluate(() => document.querySelector('#list .item[data-id="amigdalite"]').click());
   await page.evaluate(() => document.querySelector("#atdIr").click());
-  await expect(page.locator('#atCorpo [data-atout="exame"]')).toHaveValue(/Cabeça e orofaringe: meu texto de oroscopia normal\./);
+  await expect(page.locator('#atCorpo [data-atout="exame"]')).toHaveValue(/Orofaringe: meu texto de oroscopia normal\./);
   expect(await page.evaluate(() => localStorage.getItem("rxp_model_v1"))).toContain("meu texto de oroscopia");
   // voltar ao original
   await aba(page, "modelos");
-  await page.selectOption("#mdSisSel", "cab");
+  await page.selectOption("#mdSisSel", "oro");
   await page.click("#mdSisReset");
   await expect(page.locator("#mdSisTxt")).toHaveValue(/mucosas úmidas/);
   expect(erros).toEqual([]);

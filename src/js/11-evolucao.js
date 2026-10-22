@@ -1,26 +1,52 @@
 /* ---------- Atendimento (aba "evolucao"): uma tela na ordem do prontuário, cada campo com a sua cópia ----------
    Tudo do paciente fica no objeto atd (08-atendimento.js), só na memória (regra 5); "Novo paciente" limpa.
-   Campos: História (HDA) · Exame físico · Diagnóstico · Conduta · Reavaliação e alta · Internação · Atestado. */
-// exame físico por sistemas (sai só o geral e os sistemas ligados); f = feminino
-const EX_SIS=[
- ["geral","Geral",f=>`Bom estado geral, ${f?"corada, hidratada, acianótica, anictérica e afebril; eupneica":"corado, hidratado, acianótico, anictérico e afebril; eupneico"} em ar ambiente; ${f?"lúcida e orientada":"lúcido e orientado"} no tempo e no espaço.`],
- ["cab","Cabeça e orofaringe",()=>"Cabeça e orofaringe: mucosas úmidas; orofaringe sem hiperemia, exsudato ou abaulamento; amígdalas sem hipertrofia; sem linfonodomegalia cervical palpável; otoscopia com membranas timpânicas íntegras e translúcidas."],
- ["cv","Cardiovascular",()=>"Cardiovascular: ritmo cardíaco regular em dois tempos, bulhas normofonéticas, sem sopros audíveis."],
- ["resp","Respiratório",()=>"Respiratório: murmúrio vesicular presente bilateralmente, sem ruídos adventícios; sem sinais de esforço respiratório."],
- ["abd","Abdome",()=>"Abdome: flácido, ruídos hidroaéreos presentes, indolor à palpação superficial e profunda; sinal de Murphy negativo, descompressão brusca negativa, punho-percussão lombar negativa."],
- ["neuro","Neurológico",()=>"Neurológico: Glasgow 15, sem sinais meníngeos ou déficits focais; pupilas isocóricas e fotorreagentes; sem paralisia facial ou dos membros."],
- ["msk","Musculoesquelético",()=>"Musculoesquelético: sem deformidades, edema ou crepitação; mobilidade preservada; sem dor à palpação da coluna e das articulações."],
- ["mmii","Membros inferiores",()=>"Membros inferiores: sem edemas, sem sinais de trombose venosa profunda, panturrilhas livres, boa perfusão periférica."],
- ["pele","Pele",()=>"Pele: sem lesões, exantemas ou petéquias."]];
+   Campos, como no prontuário: HDA e antecedentes · Exame físico · Hipótese diagnóstica · Conduta; depois a prescrição
+   (na unidade, receituário, atestado), a reavaliação e alta e o pedido de internação. */
+// exame físico sempre por sistemas: sai o geral e os sistemas ligados, no texto do perfil (adulto, pediátrico, gestante)
+// e do sexo escolhidos no Atendimento; f = feminino
+const EX_SIS=[["geral","Geral"],["cp","Cabeça e pescoço"],["oro","Orofaringe"],["cv","Cardiovascular"],["resp","Respiratório"],["abd","Abdome"],["neuro","Neurológico"],["msk","Musculoesquelético"],["mmii","Membros inferiores"],["pele","Pele"]];
+const EX_PERFIS=[["adulto","Adulto"],["ped","Pediátrico"],["gest","Gestante"]];
+const EX_TXT={
+ adulto:{
+  geral:f=>`Bom estado geral, ${f?"corada, hidratada, acianótica, anictérica e afebril; eupneica":"corado, hidratado, acianótico, anictérico e afebril; eupneico"} em ar ambiente; ${f?"lúcida e orientada":"lúcido e orientado"} no tempo e no espaço.`,
+  cp:()=>"Cabeça e pescoço: sem linfonodomegalia cervical palpável; otoscopia com membranas timpânicas íntegras e translúcidas.",
+  oro:()=>"Orofaringe: mucosas úmidas; sem hiperemia, exsudato ou abaulamento; amígdalas sem hipertrofia.",
+  cv:()=>"Cardiovascular: ritmo cardíaco regular em dois tempos, bulhas normofonéticas, sem sopros audíveis.",
+  resp:()=>"Respiratório: murmúrio vesicular presente bilateralmente, sem ruídos adventícios; sem sinais de esforço respiratório.",
+  abd:()=>"Abdome: flácido, ruídos hidroaéreos presentes, indolor à palpação superficial e profunda; sinal de Murphy negativo, descompressão brusca negativa, punho-percussão lombar negativa.",
+  neuro:()=>"Neurológico: Glasgow 15, sem sinais meníngeos ou déficits focais; pupilas isocóricas e fotorreagentes; sem paralisia facial ou dos membros.",
+  msk:()=>"Musculoesquelético: sem deformidades, edema ou crepitação; mobilidade preservada; sem dor à palpação da coluna e das articulações.",
+  mmii:()=>"Membros inferiores: sem edemas, sem sinais de trombose venosa profunda, panturrilhas livres, boa perfusão periférica.",
+  pele:()=>"Pele: sem lesões, exantemas ou petéquias."},
+ ped:{
+  geral:f=>`Bom estado geral, ${f?"ativa e reativa, corada, hidratada, acianótica, anictérica":"ativo e reativo, corado, hidratado, acianótico, anictérico"} e afebril; ${f?"eupneica":"eupneico"} em ar ambiente.`,
+  cp:()=>"Cabeça e pescoço: fontanela anterior normotensa (lactente); sem linfonodomegalia cervical; otoscopia com membranas timpânicas íntegras e translúcidas.",
+  oro:()=>"Orofaringe: sem hiperemia ou exsudato.",
+  cv:()=>"Cardiovascular: ritmo cardíaco regular em dois tempos, bulhas normofonéticas, sem sopros; tempo de enchimento capilar menor que 2 segundos.",
+  resp:()=>"Respiratório: murmúrio vesicular presente bilateralmente, sem ruídos adventícios; sem tiragens ou batimento de asa nasal.",
+  abd:()=>"Abdome: flácido, indolor, sem visceromegalias.",
+  pele:()=>"Pele: sem exantemas ou petéquias."},
+ gest:{
+  geral:()=>"Bom estado geral, corada, hidratada, acianótica, anictérica e afebril; eupneica em ar ambiente; lúcida e orientada no tempo e no espaço.",
+  abd:()=>"Abdome: gravídico, útero compatível com a idade gestacional, indolor. Batimentos cardíacos fetais: ___ bpm. Dinâmica uterina ausente.",
+  mmii:()=>"Membros inferiores: sem edemas, panturrilhas livres."}
+};
+// chave do texto no modelo do médico: "geral" e "geral-f" no adulto (como antes), "ped:…" e "gest:…" nos outros perfis
+const sisCh=(k,perfil,f)=>(perfil&&perfil!=="adulto"?perfil+":":"")+(k==="geral"&&f&&perfil!=="gest"?"geral-f":k);
+function sisPadrao(ch){
+  const [perfil,kk]=ch.includes(":")?ch.split(":"):["adulto",ch], f=kk==="geral-f", k=f?"geral":kk;
+  return ((EX_TXT[perfil]||{})[k]||EX_TXT.adulto[k])(f);
+}
+const sisTexto=ch=>(model.sis&&model.sis[ch])||sisPadrao(ch);
+const SIS_OPC=EX_PERFIS.flatMap(([p,pr])=>[...(p==="gest"?[["geral","Geral"]]:[["geral","Geral — masculino"],["geral-f","Geral — feminino"]]),...EX_SIS.filter(([k])=>k!=="geral").map(([k,r])=>[k,r])].map(([k,r])=>[(p==="adulto"?"":p+":")+k,`${pr}: ${r}`]));
 // sistemas que já vêm ligados: pela conduta, senão pela categoria
-const EX_SIS_COND={cefaleia:["neuro","cab"],enxaqueca:["neuro","cab"],salvas:["neuro","cab"],vertigem:["neuro","cab","cv"],convulsao:["neuro"],avc:["neuro","cv"],tce:["neuro","cab"],
-  lombalgia:["msk","neuro"],entorse:["msk"],gota:["msk"],"gota-manut":["msk"],dengue:["cv","resp","abd","pele"],sepse:["cab","cv","resp","abd","neuro","pele"],hda:["cv","abd"],
-  "dor-abdominal":["abd","cv"],tep:["cv","resp","mmii"],eap:["cv","resp","mmii"],ivc:["mmii","pele"],erisipela:["pele","mmii"],conjuntivite:["cab"],cinetose:["neuro"]};
-const EX_SIS_CAT={resp:["cab","cv","resp"],orl:["cab"],gi:["abd"],uro:["abd"],gu:["abd"],cardio:["cv","resp","mmii"],dor:["neuro","msk"],pele:["pele"],psi:["neuro"],endo:["cv","neuro"],toxinf:["cv","resp","neuro"],emerg:["cv","resp","neuro"]};
-// texto de cada sistema: o do médico (Meus modelos, salvo no modelo) ou o padrão; o geral tem versão feminina
-const SIS_OPC=[["geral","Geral — masculino"],["geral-f","Geral — feminino"],...EX_SIS.filter(([k])=>k!=="geral").map(([k,r])=>[k,r])];
-const sisPadrao=k=>{const f=k==="geral-f";return EX_SIS.find(x=>x[0]===(f?"geral":k))[2](f)};
-const sisTexto=(k,f)=>{const ch=k==="geral"&&f?"geral-f":k;return (model.sis&&model.sis[ch])||sisPadrao(ch)};
+const EX_SIS_COND={cefaleia:["neuro","cp"],enxaqueca:["neuro","cp"],salvas:["neuro","cp"],vertigem:["neuro","cp","cv"],convulsao:["neuro"],avc:["neuro","cv"],tce:["neuro","cp"],
+  lombalgia:["msk","neuro"],entorse:["msk"],gota:["msk"],"gota-manut":["msk"],dengue:["cv","resp","abd","pele"],sepse:["cp","oro","cv","resp","abd","neuro","pele"],hda:["cv","abd"],
+  "dor-abdominal":["abd","cv"],tep:["cv","resp","mmii"],eap:["cv","resp","mmii"],ivc:["mmii","pele"],erisipela:["pele","mmii"],conjuntivite:["cp"],cinetose:["neuro"],amigdalite:["cp","oro"],faringite:["cp","oro"],oma:["cp","oro"],"otite-externa":["cp"],sinusite:["cp","oro"],gripe:["oro","cv","resp"]};
+const EX_SIS_CAT={resp:["oro","cv","resp"],orl:["cp","oro"],gi:["abd"],uro:["abd"],gu:["abd"],cardio:["cv","resp","mmii"],dor:["neuro","msk"],pele:["pele"],psi:["neuro"],endo:["cv","neuro"],toxinf:["cv","resp","neuro"],emerg:["cv","resp","neuro"]};
+// perfil e sexo do exame: o que o médico escolheu no Atendimento, senão os Dados do paciente
+const atPerfil=()=>atd.exPerfil||(pac.gest?"gest":(parseFloat(String(pac.idade||"").replace(",","."))>0&&parseFloat(String(pac.idade).replace(",","."))<12?"ped":"adulto"));
+const atFem=()=>atPerfil()==="gest"||(atd.exSexo||pac.sexo)==="F";
 const atSisPadrao=it=>it?(EX_SIS_COND[it.id]||EX_SIS_CAT[it.cat]||["cv","resp"]):["cv","resp"];
 // mais de uma queixa no mesmo paciente: a conduta principal + até 2 adicionais
 const atConds=()=>[atItem(),...(atd.extras||[]).map(getItem)].filter(Boolean).filter((c,i,a)=>a.findIndex(x=>x.id===c.id)===i);
@@ -45,10 +71,14 @@ function atJunta(f){
 const ptLista=a=>a.length<2?(a[0]||""):a.slice(0,-1).join(", ")+" e "+a[a.length-1];
 // a alta registra o que foi explicado (proteção do médico e do paciente)
 const AT_ORI=[["dx","o diagnóstico"],["med","a medicação prescrita (posologia, forma de uso e efeitos adversos)"],["evol","a evolução esperada"],["rep","repouso e hidratação"],["seg","o seguimento ambulatorial"]];
-const AT_REAV=[["melhora","com melhora após a medicação na unidade"],["estavel","clinicamente estável"],["semmelhora","sem melhora após a medicação"],["exames","com os exames abaixo"]];
-const AT_LOCAL=[["","— escolher —"],["enfermaria","enfermaria ou apartamento"],["semi","semi-intensiva"],["uti","UTI"]];
+const AT_REAV=[["melhora","com melhora após a medicação na unidade"],["estavel","clinicamente estável"],["semmelhora","sem melhora após a medicação"],["exames","com os seguintes resultados de exames"]];
+// nomes dos leitos: o hospital do pacote pode chamar a semi-intensiva de outro jeito (internacao.locais)
+const atLocais=()=>{const n=(typeof hospAtivo==="function"&&hospAtivo()&&hospPac().internacao&&hospPac().internacao.locais)||{};return [["","— escolher —"],["enfermaria",n.enfermaria||"enfermaria ou apartamento"],["semi",n.semi||"semi-intensiva"],["uti",n.uti||"UTI"]]};
+// conduta (campo Conduta do prontuário): o que foi feito, em itens que o médico marca; o detalhe vai na prescrição
+const AT_COND=()=>[["explico",(String(model.conduta||"").split("\n")[0]||"").replace(/^\s*-\s*/,"")||"Explico ao paciente o quadro clínico, as hipóteses diagnósticas e a conduta proposta, confirmando a compreensão das orientações."],
+  ["med","Prescrevo medicação na unidade"],["sint","Prescrevo sintomáticos para uso domiciliar."],["atb","Prescrevo antibioticoterapia domiciliar."],["reav","Reavaliação após a medicação e o resultado dos exames."],["atest","Forneço atestado médico."]];
 const AT_OBJ=[["atb","antibioticoterapia EV"],["suporte","suporte clínico e hidratação EV"],["dor","controle álgico"],["monit","monitorização"],["o2","oxigenoterapia"],["invest","investigação diagnóstica"],["espec","avaliação e conduta da especialidade"]];
-const AT_PADRAO=()=>({reav:AT_REAV,ori:AT_ORI,obj:AT_OBJ,perg:AT_PERGUNTAS.map((t,i)=>["p"+i,t])});
+const AT_PADRAO=()=>({reav:AT_REAV,ori:AT_ORI,obj:AT_OBJ,perg:AT_PERGUNTAS.map((t,i)=>["p"+i,t]),cond:AT_COND()});
 // lista do médico (Editar padrões) ou a padrão; cada item é [chave, texto]
 const atL=nome=>{const m=model.atl&&model.atl[nome];return Array.isArray(m)&&m.length?m.map((t,i)=>["u"+i,t]):AT_PADRAO()[nome]};
 const AT_PERGUNTAS=["Por que não dá para tratar em casa ou na observação?","Qual critério de gravidade ou de risco o paciente tem (sinal vital, exame, escore)?","O que será feito na internação que exige leito?","Qual o risco se ele receber alta agora?","O que o médico que recebe precisa saber: o plano inicial, o que falta investigar, o parecer pedido?"];
@@ -66,15 +96,15 @@ function atHda(it){
   const L=[]; if(atd.hma.trim()) L.push(atd.hma.trim());
   atConds().forEach(c=>chkLinhas(c).hma.forEach(x=>L.push(x)));
   const alerg=atItens(atd.alergia); if(perfisAtivos().has("pnc")&&!alerg.some(x=>/penicilin/i.test(x))) alerg.push("penicilina");
+  if(L.length) L.push("");   // espaço entre a história e os antecedentes
   L.push(atLista("HPP",atItens(atd.ap)));
   L.push(atLista("Medicamentos em uso",atItens(atd.muc)));
   L.push(atLista("Alergias",alerg));
   return L.join("\n");
 }
 function atExameBase(it){
-  if(atd.exModelo&&atd.exModelo!=="sis") return exameAtual(atd.exModelo);
-  const f=pac.sexo==="F", on=new Set(atSis(it));
-  return EX_SIS.filter(([k])=>k==="geral"||on.has(k)).map(([k])=>sisTexto(k,f)).join("\n");
+  const pf=atPerfil(), f=atFem(), on=new Set(atSis(it));
+  return EX_SIS.filter(([k])=>k==="geral"||on.has(k)).map(([k])=>sisTexto(sisCh(k,pf,f))).join("\n");
 }
 function atExame(it){
   const L=[], sv=atSv(); if(sv) L.push(sv);
@@ -96,23 +126,42 @@ function atExame(it){
   return L.join("\n");
 }
 const atHip=c=>`${c.nome}${c.cid?` (CID ${c.cid})`:""}`;
+// hipótese diagnóstica: só os nomes (o CID é escolhido em outra parte do prontuário)
 function atDiag(it){
   const cs=atConds(), extra=atd.diag.trim();
-  if(!cs.length) return extra;
-  const h=cs.length>1?`Hipóteses diagnósticas:\n${cs.map(c=>"- "+atHip(c)).join("\n")}`:`Hipótese diagnóstica: ${atHip(cs[0])}`;
-  return h+(extra?`\n${extra}`:"");
+  return [...cs.map(c=>c.nome),...(extra?[extra]:[])].join("\n");
 }
-function atTrat(it){
-  const L=[model.conduta];
-  const sol=atItens(atd.exSol); if(sol.length) L.push("","Exames solicitados:",...sol.map(x=>"- "+x));
-  if(it){
-    const u=atJunta("unidade"), c=atJunta("casa"), o=atJunta("orient");
-    if(atd.unid&&u) L.push("","Na unidade:",u);
-    if(atd.casa&&c) L.push("","Prescrição domiciliar:",c);
-    if(atd.ori&&o) L.push("","Orientações:",o);
+// nomes dos itens da prescrição na unidade (ex.: "Dipirona 1 g EV"), para a linha da conduta
+// remédios da prescrição na unidade, pelos nomes das fichas do app (na ordem em que aparecem; sem adivinhar o texto)
+function atNomesUnid(){
+  const t=norm(atJunta("unidade")), achados=[];
+  for(const m of (typeof MEDS!=="undefined"?MEDS:[])){
+    const nome=String(m.nome||"").replace(/\s*\(.*$/,"").trim(); if(!nome) continue;
+    const i=t.search(new RegExp("(^|[^a-z])"+norm(nome).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![a-z])"));
+    if(i>=0&&!achados.some(a=>a.n===nome.toLowerCase())) achados.push({i,n:nome.toLowerCase()});
   }
+  return achados.sort((a,b)=>a.i-b.i).map(a=>a.n);
+}
+const atCondOn=k=>k==="explico"?atd.cond[k]!==false:!!atd.cond[k];
+function atTrat(it){
+  const L=[], pos={};
+  for(const [k,t] of atL("cond")){
+    if(!atCondOn(k)) continue;
+    if(k==="med"){const n=atNomesUnid().filter(x=>atd.medSel[x]);L.push(`- ${t.replace(/\.$/,"")}${n.length?": "+ptLista(n):""}.`)}
+    else L.push("- "+t);
+    pos[k]=L.length;
+  }
+  // exames solicitados logo depois da medicação na unidade (ou da explicação ao paciente)
+  const lab=atItens(atd.exLab||atd.exSol||""), img=atItens(atd.exImg), ex=[];
+  if(lab.length) ex.push(`- Solicito exames laboratoriais: ${lab.join(", ")}.`);
+  if(img.length) ex.push(`- Solicito exames de imagem: ${img.join(", ")}.`);
+  L.splice(pos.med??pos.explico??0,0,...ex);
+  atItens(atd.condLivre).forEach(x=>L.push("- "+x));
   return L.join("\n");
 }
+// prescrição: na unidade e receituário (com as orientações), para copiar na prescrição e no receituário do prontuário
+const atPrescUnid=()=>atJunta("unidade");
+function atReceita(){const c=atJunta("casa"), o=atJunta("orient");return [c,o?"Orientações:\n"+o:""].filter(Boolean).join("\n\n")}
 const atVolte1=c=>(chkDe(c.id)&&chkDe(c.id).alarme)||(ALTA[c.id]&&ALTA[c.id].volte)||[];
 const atVolte=()=>[...new Set(atConds().flatMap(atVolte1))];
 function atAlta(it){
@@ -122,7 +171,8 @@ function atAlta(it){
   const ori=atL("ori").filter(([k])=>atd.altaOri[k]!==false).map(([,t])=>t);
   if(ori.length) L.push(`- Paciente orientado sobre ${ptLista(ori)}.`);
   const vt=atVolte(it).filter((x,i)=>!atd.alarOff[i]).map(x=>semParenteses(x).replace(/\.$/,""));
-  if(vt.length) L.push(`- Orientados os sinais de alarme, com retorno imediato ao pronto-socorro em caso de: ${vt.join("; ")}.`);
+  if(vt.length) L.push(`- Oriento quanto aos sinais de alarme e à necessidade de retorno imediato em caso de piora: ${vt.join("; ")}.`);
+  else L.push("- Oriento quanto aos sinais de alarme e à necessidade de retorno imediato em caso de piora.");
   if(atd.altaLivre.trim()) L.push(...atd.altaLivre.trim().split("\n").map(x=>/^\s*-/.test(x)?x:"- "+x));
   if(atd.compreende) L.push("- Paciente compreendeu e concorda com as orientações.");
   const dest=(destinos().find(d=>d[0]===(atd.destino??atdDestinoPadrao(it||{})))||[])[2]; if(dest) L.push(dest);
@@ -130,7 +180,7 @@ function atAlta(it){
 }
 function atIntern(it){
   const I=atd.intern, L=[];
-  const loc=(AT_LOCAL.find(x=>x[0]===I.local)||[])[1];
+  const loc=(atLocais().find(x=>x[0]===I.local)||[])[1];
   L.push(`Solicito internação${loc?` em ${loc}`:""}.`);
   if(atConds().length) L.push(atConds().length>1?`Hipóteses diagnósticas: ${atConds().map(atHip).join("; ")}.`:`Hipótese diagnóstica: ${atHip(atConds()[0])}.`);
   if(atd.hma.trim()) L.push(`História: ${atd.hma.trim()}`);
@@ -143,7 +193,7 @@ function atIntern(it){
   L.push(`Justificativa: ${I.motivo.trim()||"___"}`);
   const ob=atL("obj").filter(([k])=>I.obj[k]).map(([,t])=>t);
   if(ob.length||I.objLivre.trim()) L.push(`Objetivo da internação: ${[...ob,I.objLivre.trim()].filter(Boolean).join("; ")}.`);
-  return L.join("\n");
+  return L.join("\n\n");   // um espaço entre os tópicos
 }
 function atAtestado(it){
   if(atd.tipo==="nenhum"||!(atd.tipo==="comparecimento"||parseInt(atd.dias,10)>0)) return "";
@@ -151,7 +201,7 @@ function atAtestado(it){
   $("#atCid").value=it&&it.cid||""; $("#atAut").checked=atd.aut; $("#atDias").value=atd.dias||"1"; $("#atHora").value=atd.hora;
   const t=buildAt(); ui.sexo=sx; ui.tipo=tp; return t;
 }
-const AT_CAMPOS=[["hda","História (HDA)",atHda],["exame","Exame físico",atExame],["diag","Diagnóstico",atDiag],["trat","Conduta",atTrat],["alta","Reavaliação e alta",atAlta],["intern","Pedido de internação",atIntern],["atest","Atestado",atAtestado]];
+const AT_CAMPOS=[["hda","HDA e antecedentes",atHda],["exame","Exame físico",atExame],["diag","Hipótese diagnóstica",atDiag],["trat","Conduta",atTrat],["punid","Prescrição na unidade",atPrescUnid],["rx","Receituário",atReceita],["alta","Reavaliação e alta",atAlta],["intern","Pedido de internação",atIntern],["atest","Atestado",atAtestado]];
 const atTexto=(k,it)=>atd.man[k]!=null?atd.man[k]:AT_CAMPOS.find(c=>c[0]===k)[2](it);
 // evolução completa (copiar tudo): campos na ordem do prontuário, sem o pedido de internação nem o atestado
 function buildEv(){const it=atItem();return ["hda","exame","diag","trat","alta"].map(k=>atTexto(k,it)).filter(x=>x.trim()).join("\n\n")}
@@ -163,7 +213,7 @@ const linhas=t=>String(t||"").split("\n").map(x=>x.trim()).filter(Boolean);
 function edTa(attr,rot,valor,orig){
   return `<div class="ated"><div class="atedh"><span class="lbl">${esc(rot)}</span><button class="btn sm" type="button" data-edorig="${esc(orig)}" title="Voltar ao texto original">↺ original</button></div><textarea class="inp" ${attr} rows="${Math.min(10,Math.max(2,String(valor).split("\n").length+1))}" spellcheck="false">${esc(valor)}</textarea></div>`;
 }
-const edLista=(nome,rot)=>edTa(`data-edl="${nome}"`,rot+" (um por linha)",atL(nome).map(x=>x[1]).join("\n"),AT_PADRAO()[nome].map(x=>x[1]).join("\n"));
+const edLista=(nome,rot)=>edTa(`data-edl="${nome}"`,rot,atL(nome).map(x=>x[1]).join("\n"),AT_PADRAO()[nome].map(x=>x[1]).join("\n"));
 function edChk(c){
   const atual=chkDe(c.id), base=CHECK[c.id]||{}; if(!atual) return "";
   return `<div class="atedg"><b>${esc(c.nome)}: checklist</b>${CHK_GRUPOS.map(([g,n])=>edTa(`data-edc="${esc(c.id)}|${g}"`,n,(atual[g]||[]).join("\n"),(base[g]||[]).join("\n"))).join("")}</div>`;
@@ -209,65 +259,73 @@ function renderEv(){
   const inp=(k,rot,ph="",num)=>`<label class="f">${rot}<input class="inp" data-atd="${k}" value="${esc(atd[k])}" placeholder="${ph}"${num?' inputmode="decimal"':""}></label>`;
   const ta=(k,rot,ph="",obj)=>{const v=obj?atd[obj][k]:atd[k];return `<label class="f atdfull">${rot}<textarea class="inp" data-atd="${obj?obj+".":""}${k}" rows="2" placeholder="${ph}">${esc(v)}</textarea></label>`};
   const chip=(grupo,k,rot,on)=>`<button class="chip" data-atchip="${grupo}" data-k="${esc(String(k))}" aria-pressed="${!!on}">${on?"✓ ":""}${esc(rot)}</button>`;
-  const ex=atd.exModelo||"sis", sis=new Set(atSis(it));
+  const pf=atPerfil(), sis=new Set(atSis(it));
+  const ks=[...(atd.queixa?["q:"+atd.queixa]:[]),...atConds().map(c=>c.id)].filter(k=>typeof exDe==="function"&&exDe(k));
   const destAtual=atd.destino??atdDestinoPadrao(it||{});
   const volte=atVolte(it);
   const cs=atConds();
   const unidH=cs.map(c=>{const u=cur(c,"unidade");return u?`${cs.length>1?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${unidLista(u)}`:""}).join("");
   const outras=(atd.extras||[]).map(getItem).filter(Boolean);
   el.innerHTML=`
-  <div class="ateditbar">${atEdit?`<span class="note">Editando os padrões: um item por linha. Vale para os próximos atendimentos.</span><button class="btn primary" id="atEdSalva">Salvar como padrão</button><button class="btn" id="atEdSai">Cancelar</button>`:`<button class="btn sm" id="atEdita">✎ Editar padrões</button>`}</div>
+  <div class="ateditbar">${atEdit?`<span class="note">Editando os padrões. Vale para os próximos atendimentos.</span><button class="btn primary" id="atEdSalva">Salvar como padrão</button><button class="btn" id="atEdSai">Cancelar</button>`:`<button class="btn sm" id="atEdita">✎ Editar padrões</button>`}</div>
   ${it?`<div class="atextras"><span class="lbl">Outras queixas no mesmo paciente</span><div class="chips">${outras.map(c=>`<button class="chip" data-atrem="${esc(c.id)}" aria-pressed="true" style="--c:var(--${(CATS[c.cat]||CATS.outros).cor})">✓ ${esc(c.nome)} ✕</button>`).join("")}
     ${outras.length<2?`<select class="inp atadd" id="atAdd" aria-label="Adicionar outra conduta"><option value="">+ Adicionar outra conduta</option>${allItems().filter(x=>!cs.some(c=>c.id===x.id)).map(x=>`<option value="${esc(x.id)}">${esc(x.nome)}</option>`).join("")}</select>`:""}</div></div>`:""}
   ${cs.length?`<div class="atconds">${cs.map(c=>{const k=CATS[c.cat]||CATS.outros;return `<span class="cat" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}${c.cid?` · ${esc(c.cid)}`:""}</span>`}).join("")}</div>`:""}
   ${atQueixaHTML(!!it)}
   ${cs.map(renderAlarme).join("")}
-  <div class="sec atsec" id="atHdaSec"><div class="sec-h"><h3>1. História</h3></div><div class="atbody">
+  <div class="sec atsec" id="atHdaSec"><div class="sec-h"><h3>1. HDA e antecedentes</h3></div><div class="atbody">
     ${ta("hma","Queixa e história da doença atual","ex.: dor de garganta há 2 dias, sem tosse")}
-    <div class="atdgrid atlistas">${ta("ap","HPP (doenças, cirurgias, internações)","um por linha\nex.: hipertensão arterial\ncolecistectomia em 2019")}${ta("muc","Medicamentos em uso","um por linha\nex.: losartana 50 mg 1x ao dia")}${ta("alergia","Alergias","um por linha, ou escreva nega")}</div>
+    <div class="atdgrid atlistas">${ta("ap","HPP (doenças, cirurgias, internações)","ex.: hipertensão arterial\ncolecistectomia em 2019")}${ta("muc","Medicamentos em uso","ex.: losartana 50 mg 1x ao dia")}${ta("alergia","Alergias","ex.: dipirona; ou nega")}</div>
     ${cs.map((c,i)=>`<div id="atChk${i}">${cs.length>1&&chkDe(c.id)?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${renderChecklist(c)}</div>`).join("")}
     ${atEdit?cs.map(edChk).join(""):""}
-    ${atSaida("hda","História (HDA)")}</div></div>
+    ${atSaida("hda","HDA e antecedentes")}</div></div>
   <div class="sec atsec"><div class="sec-h"><h3>2. Exame físico</h3></div><div class="atbody">
     <div class="atdsv">${inp("pa","PA","120x80")}${inp("fc","FC","",1)}${inp("fr","FR","",1)}${inp("sat","Sat O2","",1)}${inp("tax","Temp.","",1)}${inp("hgt","Glicemia","",1)}</div>
     <div class="atdgrid atdnews"><label class="f">Oxigênio<select class="inp" data-atd="o2">${[["","— informar —"],["ar","Ar ambiente"],["o2","Em O2 suplementar"]].map(([v,r])=>`<option value="${v}" ${atd.o2===v?"selected":""}>${r}</option>`).join("")}</select></label>
-      <label class="f">Consciência<select class="inp" data-atd="cons">${[["","— informar —"],["A","Alerta"],["C","Confusão nova, voz, dor ou sem resposta"]].map(([v,r])=>`<option value="${v}" ${atd.cons===v?"selected":""}>${r}</option>`).join("")}</select></label>
-      <label class="f">Modelo<select class="inp" data-atd="exModelo"><option value="sis" ${ex==="sis"?"selected":""}>Por sistemas (direcionado)</option>${model.exames.map(e=>`<option value="${esc(e.id)}" ${e.id===ex?"selected":""}>Completo: ${esc(e.nome)}</option>`).join("")}</select></label></div>
+      <label class="f">Consciência<select class="inp" data-atd="cons">${[["","— informar —"],["A","Alerta"],["C","Confusão nova, voz, dor ou sem resposta"]].map(([v,r])=>`<option value="${v}" ${atd.cons===v?"selected":""}>${r}</option>`).join("")}</select></label></div>
     <p class="svnews" id="atNews" hidden></p>
     <div class="sec svaviso" id="atAviso" hidden></div>
     ${cs.some(c=>c.id==="pac")?`<p class="svnews crbres" id="atCrb"></p>`:""}
-    ${ex==="sis"?`<div class="chips atsis">${EX_SIS.filter(([k])=>k!=="geral").map(([k,r])=>chip("sis",k,r,sis.has(k))).join("")}</div><p class="note">Sai o estado geral e só os sistemas marcados. Sexo em "Dados do paciente".</p>`:""}
-    ${atEdit&&ex==="sis"?`<div class="atedg"><b>Texto de cada sistema</b>${[["geral",pac.sexo==="F"?"geral-f":"geral"],...[...sis].map(k=>[k,k])].map(([k,ch])=>edTa(`data-eds="${ch}"`,(SIS_OPC.find(x=>x[0]===ch)||[0,ch])[1],sisTexto(k,ch==="geral-f"),sisPadrao(ch))).join("")}</div>`:""}
+    <div class="atsegs"><div class="seg" role="group" aria-label="Sexo">${[["M","Masculino"],["F","Feminino"]].map(([v,r])=>`<button data-atseg="exSexo" data-v="${v}" aria-pressed="${(atd.exSexo||pac.sexo)===v&&pf!=="gest"}" ${pf==="gest"?"disabled":""}>${r}</button>`).join("")}</div>
+      <div class="seg" role="group" aria-label="Perfil">${EX_PERFIS.map(([v,r])=>`<button data-atseg="exPerfil" data-v="${v}" aria-pressed="${pf===v}">${r}</button>`).join("")}</div></div>
+    <div class="chips atsis">${EX_SIS.filter(([k])=>k!=="geral").map(([k,r])=>chip("sis",k,r,sis.has(k))).join("")}</div>
+    ${atEdit?`<div class="atedg"><b>Texto de cada sistema (${esc((EX_PERFIS.find(x=>x[0]===pf)||[])[1])})</b>${["geral",...sis].map(k=>{const ch=sisCh(k,pf,atFem());return edTa(`data-eds="${ch}"`,(SIS_OPC.find(x=>x[0]===ch)||[0,ch])[1],sisTexto(ch),sisPadrao(ch))}).join("")}</div>`:""}
     ${ta("exLivre","Achados (o que estiver alterado)","ex.: estertores crepitantes em base direita")}
     ${atSaida("exame","Exame físico")}</div></div>
-  ${(()=>{const ks=[...(atd.queixa?["q:"+atd.queixa]:[]),...cs.map(c=>c.id)].filter(exDe);return `<div class="sec atsec"><div class="sec-h"><h3>Exames</h3></div><div class="atbody">${ks.map(k=>exHTML(k,{titulo:k.startsWith("q:")?"Pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Pela conduta: "+((getItem(k)||{}).nome||"")})).join("")}${ta("exSol","Exames solicitados","um por linha\nex.: hemograma\nTC de abdome com contraste")}</div></div>`})()}
-  ${unidH?`<div class="sec atsec"><div class="sec-h"><h3>3. Na unidade</h3><span class="alsum">para selecionar no prontuário</span></div><div class="atbody">${unidH}${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")).join(""):""}</div></div>`:atEdit&&cs.length?`<div class="sec atsec"><div class="sec-h"><h3>3. Na unidade</h3></div><div class="atbody">${cs.map(c=>edTxt(c,"unidade","na unidade")).join("")}</div></div>`:""}
-  <div class="sec atsec"><div class="sec-h"><h3>4. Diagnóstico</h3></div><div class="atbody">
+  <div class="sec atsec"><div class="sec-h"><h3>3. Hipótese diagnóstica</h3></div><div class="atbody">
     <div class="atcids">${cs.filter(c=>c.cid).map(c=>`<button class="cidbig" data-cpcid="${esc(c.cid)}" title="Copiar o CID de ${esc(c.nome)}">CID ${esc(c.cid)} <span>copiar</span></button>`).join("")}</div>
     ${ta("diag","Outras hipóteses ou complemento","ex.: diagnóstico diferencial com…")}
-    ${atSaida("diag","Diagnóstico")}</div></div>
-  <div class="sec atsec"><div class="sec-h"><h3>5. Conduta</h3></div><div class="atbody">
-    <div class="atdck">${[["casa","Receita"],["unid","Conduta na unidade"],["ori","Orientações"]].map(([k,r])=>`<label class="check"><input type="checkbox" data-atd="${k}" ${atd[k]?"checked":""}> ${r}</label>`).join("")}</div>
-    ${atEdit?cs.map(c=>edTxt(c,"casa","receita")+edTxt(c,"orient","orientações")).join(""):""}
-    ${atSaida("trat","Conduta")}
-    ${atJunta("casa")?`<div class="actions"><button class="btn" id="atCpRx">Copiar só a receita</button></div>`:""}</div></div>
-  <div class="sec atsec"><div class="sec-h"><h3>6. Reavaliação e alta</h3></div><div class="atbody">
-    <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
-    ${ta("reavTxt","Como estava na reavaliação (exames, resposta)","ex.: hemograma sem leucocitose; TC sem coleção")}
-    <span class="lbl">Orientado sobre</span><div class="chips">${atL("ori").map(([k,r])=>chip("ori",k,r.split(" (")[0],atd.altaOri[k]!==false)).join("")}</div>
-    ${volte.length?`<span class="lbl">Sinais de alarme explicados (toque para tirar)</span><div class="chips atvolte">${volte.map((x,i)=>chip("volte",i,semParenteses(x),!atd.alarOff[i])).join("")}</div>`:""}
-    ${atEdit?edLista("reav","Reavaliação")+edLista("ori","Orientado sobre")+`<p class="note">Os sinais de alarme da alta são os do checklist (edite na História).</p>`:""}
-    ${ta("altaLivre","Outras orientações dadas (uma por linha)","ex.: retornar em 48 h para reavaliação")}
-    <div class="atdgrid"><label class="check"><input type="checkbox" data-atd="compreende" ${atd.compreende?"checked":""}> Compreendeu e concorda</label>
-      <label class="f">Destino<select class="inp" data-atd="destino" id="evDestino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${esc(v)}" ${destAtual===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label></div>
-    ${atSaida("alta","Reavaliação e alta")}
-    <div class="hospev" id="atHosp"></div>
+    ${atSaida("diag","Hipótese diagnóstica")}</div></div>
+  <div class="sec atsec"><div class="sec-h"><h3>4. Conduta</h3></div><div class="atbody">
+    <div class="chips atcond">${atL("cond").map(([k,r])=>chip("cond",k,k==="explico"?"Explico o quadro e a conduta":r.replace(/\.$/,""),atCondOn(k))).join("")}</div>
+    ${atCondOn("med")&&atNomesUnid().length?`<span class="lbl">Quais remédios (toque nos que foram feitos)</span><div class="chips atmeds">${atNomesUnid().map(n=>chip("medsel",n,n,atd.medSel[n])).join("")}</div>`:""}
+    ${ks.length?`<div class="atexs">${ks.map(k=>exHTML(k,{titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
+    <div class="atdgrid">${ta("exLab","Exames laboratoriais","ex.: hemograma\nPCR\nureia e creatinina")}${ta("exImg","Exames de imagem","ex.: TC de abdome com contraste")}</div>
+    ${ta("condLivre","Outras condutas","ex.: solicito parecer da Cirurgia Geral")}
+    ${atEdit?edLista("cond","Itens da conduta"):""}
+    ${atSaida("trat","Conduta")}</div></div>
+  <div class="sec atsec"><div class="sec-h"><h3>5. Prescrição</h3><span class="alsum">na unidade · receituário · atestado</span></div><div class="atbody">
+    ${unidH?`<div class="atunid"><span class="lbl">Na unidade (para selecionar no prontuário)</span>${unidH}</div>`:""}
+    ${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")+edTxt(c,"casa","receita")+edTxt(c,"orient","orientações")).join(""):""}
+    ${unidH?atSaida("punid","Prescrição na unidade"):""}
+    ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}
     <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">${[["atestado","Atestado"],["comparecimento","Comparecimento"],["nenhum","Nenhum"]].map(([v,r])=>`<option value="${v}" ${atd.tipo===v?"selected":""}>${r}</option>`).join("")}</select></label>
       ${atd.tipo==="atestado"?inp("dias","Dias","0",1):atd.tipo==="comparecimento"?inp("hora","Período","ex.: 14h às 16h"):""}
       ${atd.tipo!=="nenhum"&&it&&it.cid?`<label class="check"><input type="checkbox" data-atd="aut" ${atd.aut?"checked":""}> CID ${esc(it.cid)} autorizado</label>`:""}</div>
     <div id="atAtW">${atSaida("atest","Atestado")}</div></div></div>
-  <details class="sec atsec atintern" ${/intern/.test(destAtual)||atd.intern.local?"open":""}><summary class="sec-h"><h3>7. Pedido de internação</h3><span class="alsum">apartamento, semi-intensiva ou UTI</span></summary><div class="atbody">
-    <label class="f">Onde<select class="inp" data-atd="intern.local">${AT_LOCAL.map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${r}</option>`).join("")}</select></label>
+  <div class="sec atsec"><div class="sec-h"><h3>6. Reavaliação e alta</h3></div><div class="atbody">
+    <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
+    ${ta("reavTxt","Resultados de exames e resposta ao tratamento","ex.: hemograma sem leucocitose; TC sem coleção")}
+    <span class="lbl">Orientado sobre</span><div class="chips">${atL("ori").map(([k,r])=>chip("ori",k,r.split(" (")[0],atd.altaOri[k]!==false)).join("")}</div>
+    ${volte.length?`<span class="lbl">Sinais de alarme explicados (toque para tirar)</span><div class="chips atvolte">${volte.map((x,i)=>chip("volte",i,semParenteses(x),!atd.alarOff[i])).join("")}</div>`:""}
+    ${atEdit?edLista("reav","Reavaliação")+edLista("ori","Orientado sobre")+`<p class="note">Os sinais de alarme da alta são os do checklist (edite na HDA).</p>`:""}
+    ${ta("altaLivre","Outras orientações dadas","ex.: retornar em 48 h para reavaliação")}
+    <div class="atdgrid"><label class="check"><input type="checkbox" data-atd="compreende" ${atd.compreende?"checked":""}> Compreendeu e concorda</label>
+      <label class="f">Destino<select class="inp" data-atd="destino" id="evDestino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${esc(v)}" ${destAtual===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label></div>
+    ${atSaida("alta","Reavaliação e alta")}
+    <div class="hospev" id="atHosp"></div></div></div>
+  <details class="sec atsec atintern" ${/intern/.test(destAtual)||atd.intern.local?"open":""}><summary class="sec-h"><h3>7. Pedido de internação</h3><span class="alsum">${esc(atLocais().slice(1).map(x=>x[1]).join(", "))}</span></summary><div class="atbody">
+    <label class="f">Onde<select class="inp" data-atd="intern.local">${atLocais().map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label>
     <div class="atperg"><b>Para escrever a justificativa, responda:</b><ul>${atL("perg").map(([,p])=>`<li>${esc(p)}</li>`).join("")}</ul></div>
     ${ta("motivo","Justificativa (motivo da internação)","ex.: pneumonia com SpO2 89% em ar ambiente e CURB-65 3","intern")}
     <span class="lbl">Objetivo</span><div class="chips">${atL("obj").map(([k,r])=>chip("obj",k,r,atd.intern.obj[k])).join("")}</div>
@@ -280,7 +338,7 @@ function renderEv(){
     ${typeof hospPac==="function"&&hospPac()&&hospPac().internacao?`<button class="btn hospbtn" id="atCrit">Critérios de internação do hospital</button>`:""}
     ${atSaida("intern","Pedido de internação")}
     <div class="hospev" id="atHospInt"></div></div></details>
-  <div class="actions attudo"><button class="btn primary" id="atCpTudo">Copiar tudo</button><span class="note">História, exame, diagnóstico, conduta e alta, nessa ordem.</span></div>`;
+  <div class="actions attudo"><button class="btn primary" id="atCpTudo">Copiar tudo</button></div>`;
   bindEv(it);
 }
 function atAtualiza(){
@@ -301,27 +359,30 @@ function bindEv(it){
     el.addEventListener(ev,()=>{
       const v=el.type==="checkbox"?el.checked:el.value;
       if(o) atd[o][k]=v; else atd[k]=v;
-      if(!o&&(k==="exModelo"||k==="tipo"||(k==="destino"&&/intern/.test(v)))){renderEv();return}
+      if(!o&&(k==="tipo"||(k==="destino"&&/intern/.test(v)))){renderEv();return}
       if(el.tagName==="TEXTAREA") grow(el);
       atAtualiza();
     });
   });
   box.querySelectorAll("[data-atchip]").forEach(b=>b.onclick=()=>{
     const g=b.dataset.atchip, k=b.dataset.k;
-    if(g==="sis"){const s=new Set(atSis(it));s.has(k)?s.delete(k):s.add(k);atd.sis=EX_SIS.map(x=>x[0]).filter(x=>s.has(x))}
+    if(g==="sis"){const s=new Set(atSis(it));s.has(k)?s.delete(k):s.add(k);atd.sis=EX_SIS.map(x=>x[0]).filter(x=>s.has(x));delete atd.man.exame}
+    if(g==="cond"){atd.cond[k]=!atCondOn(k);if(k==="med"){renderEv();return}}
+    if(g==="medsel") atd.medSel[k]=!atd.medSel[k];
     if(g==="reav") atd.reav[k]=!atd.reav[k];
     if(g==="ori") atd.altaOri[k]=atd.altaOri[k]===false;
     if(g==="volte") atd.alarOff[k]=!atd.alarOff[k];
     if(g==="obj") atd.intern.obj[k]=!atd.intern.obj[k];
-    const on=g==="ori"?atd.altaOri[k]!==false:g==="volte"?!atd.alarOff[k]:g==="sis"?atSis(it).includes(k):g==="obj"?atd.intern.obj[k]:atd.reav[k];
+    const on=g==="ori"?atd.altaOri[k]!==false:g==="volte"?!atd.alarOff[k]:g==="sis"?atSis(it).includes(k):g==="obj"?atd.intern.obj[k]:g==="cond"?atCondOn(k):g==="medsel"?!!atd.medSel[k]:atd.reav[k];
     b.setAttribute("aria-pressed",!!on); b.textContent=(on?"✓ ":"")+b.textContent.replace(/^✓ /,"");
     atAtualiza();
   });
+  // sexo e perfil do exame: refazem o texto do exame (o que foi editado à mão nele é trocado)
+  box.querySelectorAll("[data-atseg]").forEach(b=>b.onclick=()=>{atd[b.dataset.atseg]=b.dataset.v;delete atd.man.exame;renderEv()});
   box.querySelectorAll("[data-atout]").forEach(ta=>ta.addEventListener("input",()=>{atd.man[ta.dataset.atout]=ta.value;grow(ta);$(`#atCorpo [data-atman="${ta.dataset.atout}"]`).hidden=false}));
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];atAtualiza()});
   box.querySelectorAll("[data-atcp]").forEach(b=>b.onclick=()=>{const t=$(`#atCorpo [data-atout="${b.dataset.atcp}"]`).value;if(!t.trim()){toast("Campo vazio");return}copy(t,b)});
   box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));
-  if($("#atCpRx")) $("#atCpRx").onclick=e=>copy(atJunta("casa"),e.currentTarget);
   box.querySelectorAll("[data-atrem]").forEach(b=>b.onclick=()=>{atd.extras=atd.extras.filter(x=>x!==b.dataset.atrem);atd.sis=null;atd.alarOff={};renderEv()});
   if($("#atAdd")) $("#atAdd").onchange=e=>{const v=e.target.value;if(!v)return;atd.extras=[...(atd.extras||[]),v].slice(0,2);atd.sis=null;atd.alarOff={};renderEv()};
   if($("#atCrit")) $("#atCrit").onclick=()=>abrirHospInt((hospPac().internacao.doencas||[]).find(d=>(d.condutas||[]).includes(it&&it.id))?.id);

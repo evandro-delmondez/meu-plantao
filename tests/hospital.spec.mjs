@@ -12,7 +12,7 @@ const PACOTE = {
     { id: "dt", titulo: "Protocolo fictício de dor torácica", secoes: [{ id: "rota", titulo: "Rota fictícia", md: "Rota quimera." }] }],
   atalhos: { sepse: [{ doc: "sep", secao: "tabela" }], "q:dor-toracica": [{ doc: "dt", secao: "rota" }] },
   internacao: {
-    nota: "Critérios fictícios.", ref: "Anexo fictício",
+    nota: "Critérios fictícios.", ref: "Anexo fictício", locais: { semi: "Leito fictício B" },
     prioridades: [{ n: 1, txt: "prioridade fictícia", destino: "UTI fictícia" }],
     doencas: [{ id: "sep", nome: "Sepse fictícia", condutas: ["sepse"], itens: ["critério alfa", "critério beta"] }],
     grupos: [{ id: "g1", nome: "Grupo fictício", itens: ["critério gama"] }],
@@ -165,10 +165,10 @@ test("modo hospital: conduta do hospital em primeiro, versão do app recolhida, 
   await page.evaluate(() => document.querySelector("#atdIr").click());
   const sel = page.locator('#atCorpo [data-atd="destino"]');
   await expect(sel.locator("option")).toHaveText(["— não incluir —", "Alta fictícia", "Evasão fictícia"]);
-  await page.locator('#atCorpo [data-atd="unid"]').check();
   await sel.selectOption("evasao-ficticia");
   await expect(page.locator('#atCorpo [data-atout="alta"]')).toHaveValue(/- Evasão fictícia registrada\./);
-  await expect(page.locator('#atCorpo [data-atout="trat"]')).toHaveValue(/Remédio quimera/);
+  await expect(page.locator('#atCorpo [data-atout="punid"]')).toHaveValue(/Remédio quimera/);
+  await expect(page.locator('#atCorpo [data-atd="intern.local"] option[value="semi"]')).toHaveText("Leito fictício B");   // nome do leito no hospital
   await expect(page.locator("#atHosp")).toContainText("lembrete fictício da evolução");
   await page.fill('#atCorpo [data-atd="hma"]', "Paciente encaminhado: frase proibida fictícia.");
   await expect(page.locator("#atHosp .hospproib")).toContainText("frase proibida fictícia");

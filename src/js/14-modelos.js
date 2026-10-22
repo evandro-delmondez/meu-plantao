@@ -11,7 +11,7 @@ function renderModelos(){
   $$("[data-dip]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.dip===model.prefs.dipirona));
   const ss=$("#mdSisSel"), sv=ss.value||"geral";
   ss.innerHTML=SIS_OPC.map(([k,r])=>`<option value="${k}">${esc(r)}${model.sis&&model.sis[k]?" (seu texto)":""}</option>`).join(""); ss.value=sv;
-  $("#mdSisTxt").value=sisTexto(sv==="geral-f"?"geral":sv,sv==="geral-f");
+  $("#mdSisTxt").value=sisTexto(sv);
   $$("#tab-modelos textarea").forEach(grow);
 }
 $("#mdExSel").addEventListener("change",()=>{const e=model.exames.find(x=>x.id===$("#mdExSel").value);$("#mdExNome").value=e.nome;$("#mdExTxt").value=e.texto;grow($("#mdExTxt"))});
@@ -20,7 +20,7 @@ $("#mdExSave").onclick=()=>{const e=model.exames.find(x=>x.id===$("#mdExSel").va
 $("#mdExNew").onclick=()=>{const id="ex-"+Date.now().toString(36);model.exames.push({id,nome:"Novo modelo",texto:"Exame físico:\n"});renderModelos();$("#mdExSel").value=id;$("#mdExSel").dispatchEvent(new Event("change"));commitModel("Modelo criado — edite e salve")};
 $("#mdExDefault").onclick=()=>{model.exameSel=$("#mdExSel").value;commitModel("Definido como padrão")};
 $("#mdExDel").onclick=()=>{if(model.exames.length<2){toast("Mantenha pelo menos um modelo");return}const id=$("#mdExSel").value;$("#mdExConfirm").innerHTML=`<div class="confirm">Excluir este modelo de exame?<button class="btn sm danger" id="mdExYes">Confirmar</button><button class="btn sm" id="mdExNo">Cancelar</button></div>`;$("#mdExYes").onclick=()=>{model.exames=model.exames.filter(e=>e.id!==id);if(model.exameSel===id)model.exameSel=model.exames[0].id;$("#mdExConfirm").innerHTML="";$("#mdExSel").value="";commitModel("Modelo excluído")};$("#mdExNo").onclick=()=>$("#mdExConfirm").innerHTML=""};
-$("#mdSisSel").addEventListener("change",()=>{const k=$("#mdSisSel").value;$("#mdSisTxt").value=sisTexto(k==="geral-f"?"geral":k,k==="geral-f");grow($("#mdSisTxt"))});
+$("#mdSisSel").addEventListener("change",()=>{const k=$("#mdSisSel").value;$("#mdSisTxt").value=sisTexto(k);grow($("#mdSisTxt"))});
 $("#mdSisSave").onclick=()=>{const k=$("#mdSisSel").value,t=$("#mdSisTxt").value.trim();model.sis=Object.assign({},model.sis);if(!t||t===sisPadrao(k))delete model.sis[k];else model.sis[k]=t;commitModel("Texto do sistema salvo")};
 $("#mdSisReset").onclick=()=>{const k=$("#mdSisSel").value;if(model.sis)delete model.sis[k];commitModel("Sistema de volta ao original")};
 $("#mdCondSave").onclick=()=>{model.conduta=$("#mdConduta").value;commitModel("Conduta padrão salva")};

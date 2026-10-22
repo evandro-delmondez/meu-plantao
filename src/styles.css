@@ -730,3 +730,6 @@ h2 .info>.note{position:absolute;z-index:20;left:0;top:calc(100% + 6px);width:mi
 /* títulos de quadros recolhidos ficam ao lado da setinha */
 .panel>summary h2,.panel>summary h3,details.panel>summary h3,details.panel>summary h2{display:inline;margin:0}
 details.panel>summary{cursor:pointer}
+.atsegs{display:flex;flex-wrap:wrap;gap:8px}
+.atsegs .seg button[disabled]{opacity:.45;cursor:default}
+.atunid{display:grid;gap:4px}

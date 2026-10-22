@@ -1,5 +1,14 @@
 # Histórico de versões
 
+## 1.23.0 — 2026-10-22
+- **Atendimento no formato do MV**: 1. HDA e antecedentes (com um espaço entre a história e os antecedentes) · 2. Exame físico · 3. Hipótese diagnóstica · 4. Conduta · 5. Prescrição (na unidade, receituário, atestado) · 6. Reavaliação e alta · 7. Pedido de internação (com um espaço entre os tópicos).
+- **Exame físico sempre por sistemas**, com botões Masculino × Feminino e Adulto × Pediátrico × Gestante (textos próprios de cada perfil); **Cabeça e pescoço** separado de **Orofaringe**; ligar ou desligar um sistema atualiza o texto na hora, mesmo depois de editado à mão (era o defeito relatado).
+- **Hipótese diagnóstica** só com os nomes, sem "Hipótese diagnóstica" e sem CID no texto (o CID continua no botão de copiar).
+- **Conduta em itens por toque**: explico o quadro e a conduta; prescrevo medicação na unidade (com os remédios que você marcar); exames laboratoriais e de imagem (campos próprios, viram "Solicito exames…"); sintomáticos e antibiótico para casa; reavaliação; atestado; outras condutas. "Oriento quanto aos sinais de alarme…" passou para a alta. Os exames sugeridos ficam na Conduta.
+- Prescrição: campos para copiar a **prescrição na unidade** e o **receituário** (com as orientações).
+- Reavaliação: "com os seguintes resultados de exames: …". Caixas de texto sem "um por linha", só com exemplos.
+- Pedido de internação: nomes dos leitos do hospital do pacote (no Santa Lúcia, a semi-intensiva é **UTI B**); também na lista de pacientes.
+
 ## 1.22.3 — 2026-10-22
 - Sincronização da lista e nuvem dos padrões: só aceitam repositório **privado**. O site confere antes de ligar e recusa repositório público (como o do próprio site) ou que a chave não enxerga, dizendo o motivo; "Testar a chave" também avisa se o repositório configurado é público.
 

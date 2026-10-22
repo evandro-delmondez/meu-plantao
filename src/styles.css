@@ -722,3 +722,11 @@ details.sec[open]>summary.sec-h::after{transform:rotate(90deg)}
 .nares .item .nm{flex:1;font-weight:600}
 .nares .cidm{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
 .atconds{display:flex;flex-wrap:wrap;gap:6px 12px;margin:0 0 10px;font-weight:700}
+/* "ⓘ": a descrição da tela fica escondida até o médico tocar */
+h2 .info{display:inline-block;position:relative;margin-left:6px;font:400 14px var(--f-body);vertical-align:middle}
+h2 .info>summary{list-style:none;cursor:pointer;color:var(--muted);font-size:15px;line-height:1}
+h2 .info>summary::-webkit-details-marker{display:none}
+h2 .info>.note{position:absolute;z-index:20;left:0;top:calc(100% + 6px);width:min(320px,80vw);margin:0;padding:8px 10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);font-weight:400}
+/* títulos de quadros recolhidos ficam ao lado da setinha */
+.panel>summary h2,.panel>summary h3,details.panel>summary h3,details.panel>summary h2{display:inline;margin:0}
+details.panel>summary{cursor:pointer}

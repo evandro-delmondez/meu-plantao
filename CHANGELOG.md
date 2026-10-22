@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.22.2 — 2026-10-22
+- **Dipirona 1 g é o padrão** em todas as receitas (1 cp por tomada, metade dos comprimidos na caixa e limite diário de 4 cp); a troca agora pega todas as grafias ("500 mg", "1 a 2 cp", limite "máximo 8 cp"). Modelos salvos com 500 mg viram 1 g uma vez; quem escolher 500 mg em Meus modelos continua com 500 mg.
+- Atendimento pela queixa: os **caminhos** vêm primeiro, logo abaixo do título; ao escolher um caminho, a tela volta ao topo.
+- Menos texto: as descrições logo abaixo dos títulos ficam escondidas num "ⓘ" ao lado do título; nos quadros recolhidos (Pacientes por dia, Sincronizar), o título fica ao lado da setinha.
+
 ## 1.22.1 — 2026-10-22
 - Início → Novo atendimento: a busca de conduta funciona como na lista de Condutas (palavra-chave, sinônimos, CID, área), com os resultados na cor da categoria, e os filtros pelas grandes áreas; Enter abre a primeira.
 - Atendimento: a conduta (e as adicionais) aparecem com a cor da categoria.

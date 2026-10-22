@@ -10,7 +10,7 @@ test("nome no Atendimento põe na lista; etapas, desfecho e passagem; volta ao a
   await page.evaluate(() => document.querySelector('#list .item[data-id="pac"]').click());
   await page.evaluate(() => document.querySelector("#atdIr").click());
   await page.fill("#atNome", "Maria Teste da Silva"); await page.dispatchEvent("#atNome", "change");
-  await expect(page.locator("#atNaLista")).toContainText("Na lista do plantão");
+  await expect(page.locator("#atNaLista")).toContainText("Na lista desde");
   await campo(page, "hma").fill("tosse há 5 dias");
   await campo(page, "fr").fill("26");
   await page.waitForTimeout(800);

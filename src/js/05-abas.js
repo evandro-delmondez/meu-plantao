@@ -4,6 +4,15 @@ const TABS=["inicio","prescricoes","queixas","feridas","hospital","medicacoes","
 const SECOES={inicio:["inicio"],condutas:["prescricoes","queixas","feridas","hospital"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],atender:["evolucao","pacientes"],documentos:["atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
 const secDe=t=>Object.keys(SECOES).find(s=>SECOES[s].includes(t))||"inicio";
 const ultimaAba={}; // última aba aberta em cada seção (só nesta sessão)
+/* descrição logo abaixo de um título: fica escondida num "ⓘ" ao lado dele (o médico abre se quiser) */
+function infoNotas(raiz=document){
+  raiz.querySelectorAll("h2:not([id])+p.note:not([id])").forEach(n=>{   // título ou texto com id muda sozinho: fica como está
+    const h=n.previousElementSibling; if(!h||h.querySelector(".info")) return;
+    const d=document.createElement("details"); d.className="info";
+    d.innerHTML=`<summary aria-label="Sobre esta tela" title="Sobre esta tela">ⓘ</summary>`; d.append(n); h.append(d);
+  });
+}
+new MutationObserver(()=>{clearTimeout(infoNotas._t);infoNotas._t=setTimeout(infoNotas,30)}).observe(document.body,{childList:true,subtree:true});
 function setTab(t){
   if(!TABS.includes(t)) t="inicio";
   ui.tab=t; const sec=secDe(t); ultimaAba[sec]=t;

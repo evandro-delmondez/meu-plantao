@@ -86,13 +86,18 @@ const DEFAULT_MODEL={
 - Prescrevo medicação conforme abaixo.
 - Oriento quanto aos sinais de alarme e à necessidade de retorno imediato em caso de piora.`,
  atestado:Object.assign({},AT_DEF),
- prefs:{dipirona:"500"}
+ prefs:{dipirona:"1g",dipV:2}
 };
 const clone=o=>JSON.parse(JSON.stringify(o));
 const looksCaps=t=>{const L=(t||'').replace(/[^A-Za-zÀ-ÿ]/g,'');return L.length>40&&L===L.toUpperCase()};
 function migrateModel(m){
   m=m?clone(m):{};
-  if(m.v===3||m.v===4) { const d=clone(DEFAULT_MODEL); return atualizarExames(Object.assign(d,m,{atestado:Object.assign({},AT_DEF,m.atestado||{}),prefs:Object.assign({},d.prefs,m.prefs||{})})); }
+  if(m.v===3||m.v===4) {
+    // dipirona: 1 g passou a ser o padrão (2026-10-22, pedido do médico). Modelo salvo antes disso com "500" vira "1g"
+    // uma vez (dipV); quem escolher 500 mg depois continua com 500.
+    const pf=Object.assign({},m.prefs||{}); if(pf.dipV!==2){if(pf.dipirona!=="1g")pf.dipirona="1g";pf.dipV=2}
+    const d=clone(DEFAULT_MODEL); return atualizarExames(Object.assign(d,m,{atestado:Object.assign({},AT_DEF,m.atestado||{}),prefs:Object.assign({},d.prefs,pf)}));
+  }
   const out=clone(DEFAULT_MODEL);
   if(m.exame && !(!m.custom && looksCaps(m.exame))) out.exames[0].texto=m.exame;
   if(m.conduta && !(!m.custom && looksCaps(m.conduta))) out.conduta=m.conduta;
@@ -104,7 +109,10 @@ const exameAtual=id=>(model.exames.find(e=>e.id===(id||model.exameSel))||model.e
 /* dipirona 500 mg ou 1 g */
 function rxTxt(t){
   if(!t||model.prefs.dipirona!=="1g") return t||"";
-  return t.replace(/Dipirona 500mg (-+) *(\d+) cp\nTomar 2 cp VO/g,(m,d,n)=>`Dipirona 1g ${d} ${Math.ceil(n/2)} cp\nTomar 1 cp VO`);
+  // cada item de dipirona 500 mg (qualquer grafia) vira 1 g: metade dos comprimidos na caixa, 1 cp por tomada e
+  // o limite diário de comprimidos pela metade (8 cp de 500 mg = 4 cp de 1 g)
+  return t.replace(/(Dipirona )500 ?mg( *-+ *)(\d+) cp(\n\s*)Tomar (?:1 a )?2 cp VO([^\n]*)/g,(m,a,d,n,sp,resto)=>
+    `${a}1g${d.replace(/-+/,x=>x+"---")}${Math.ceil(n/2)} cp${sp}Tomar 1 cp VO${resto.replace(/(máximo |máx\. )8 cp/,"$14 cp")}`);
 }
 
 function setSync(s,t){const el=$("#sync");el.dataset.s=s;$("#syncTxt").textContent=t}

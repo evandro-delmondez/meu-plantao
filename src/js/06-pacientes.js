@@ -88,7 +88,6 @@ function renderPacientes(){
     const tk=k==="exame"?"txt":k==="parecer"?"esp":null;
     return `<span class="pcetw"><button class="chip pcet" data-pe="${k}" data-st="${st}" aria-pressed="${!!e.on}" title="toque: pedido → pronto → desligar">${st==="ok"?"✓ ":st==="on"?"⏳ ":"+ "}${rot}${st==="ok"?" pronto":st==="on"?" pendente":""}</button>${tk&&e.on?`<input class="inp pcin" data-ptxt="${k}" value="${esc(e[tk])}" placeholder="${k==="exame"?"qual exame?":"especialidade"}" aria-label="${k==="exame"?"Qual exame":"Especialidade do parecer"}">`:""}</span>`};
   el.innerHTML=`<div class="panel card pchead"><div class="pctopo"><h2>Pacientes do plantão</h2><span class="pcconta"><b>${db.cont[hoje]||0}</b> hoje · ${abertos} sem desfecho</span></div>
-      <p class="note">Só neste aparelho; apaga sozinha em ${PAC_DIAS} dias. A contagem por dia fica, sem nome.</p>
       <div class="pcnovo"><input class="inp" id="pcNome" placeholder="Nome do paciente" autocomplete="off" spellcheck="false" aria-label="Nome do paciente"><button class="btn primary" id="pcAdd">Novo paciente</button></div>
       <div class="seg pcver" role="group" aria-label="Mostrar"><button data-pcver="hoje" aria-pressed="${pcVer==="hoje"}">Hoje e em aberto</button><button data-pcver="todos" aria-pressed="${pcVer==="todos"}">Últimos ${PAC_DIAS} dias</button></div></div>
     <div class="pclista">${lista.length?lista.map(p=>{const av=pacAviso(p,agora);return `<div class="pcitem" data-pid="${p.id}" data-av="${av?av.nv:""}" ${atPac===p.id?'data-atual="1"':""}>
@@ -140,7 +139,7 @@ function pacPassAtualiza(){const ta=$("#pcPassTxt");if(!ta)return;ta.value=pacPa
 // relógio: o aviso de 2 h e 3 h muda sozinho
 setInterval(()=>{if(ui.tab==="pacientes"&&!document.activeElement?.closest?.("#pcCorpo input,#pcCorpo select"))renderPacientes()},60000);
 /* ---- ligação com o Atendimento: nome no topo e gravação automática ---- */
-function pacNomeAtualiza(){const i=$("#atNome");if(!i)return;const p=atPac&&pacDe(atPac);i.value=p?p.nome:"";$("#atNaLista").textContent=p?`Na lista do plantão desde ${pacHora(p.criado)} · grava sozinho`:"Digite o nome para pôr na lista do plantão"}
+function pacNomeAtualiza(){const i=$("#atNome");if(!i)return;const p=atPac&&pacDe(atPac);i.value=p?p.nome:"";$("#atNaLista").textContent=p?`Na lista desde ${pacHora(p.criado)}`:""}
 $("#atNome").addEventListener("change",()=>{
   const n=$("#atNome").value.trim(); if(!n) return;
   if(atPac&&pacDe(atPac)){pacDe(atPac).nome=n;pacToca(pacDe(atPac),"nome");pacGrava()} else {const p=pacNovo(n);atPac=p.id}

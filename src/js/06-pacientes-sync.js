@@ -27,7 +27,13 @@ async function psyncDecifra(f){
 const psyncUrl=()=>`https://api.github.com/repos/${psync.repo}/contents/${psync.arq||"lista.json"}`;
 // motivo da recusa, como o GitHub responde (sem a chave), para o médico saber o que ajustar
 let psyncMotivo="";
-async function psyncFalha(r){let m="";try{m=(await r.json()).message||""}catch(e){}psyncMotivo=`${r.status}${m?": "+m:""}`;return new Error(r.status===401||r.status===403||r.status===404?"chave":"rede")}
+async function psyncFalha(r){
+  let m="";try{m=(await r.json()).message||""}catch(e){}
+  // o GitHub diz qual permissão faltou (ex.: contents=write); mostrar o repositório ajuda a achar o engano
+  const falta=r.headers.get("x-accepted-github-permissions")||"";
+  psyncMotivo=`${r.status}${m?": "+m:""}; repositório ${psync.repo}${falta?`; o GitHub pede ${falta}`:""}`;
+  return new Error(r.status===401||r.status===403||r.status===404?"chave":"rede");
+}
 const psyncHdr=()=>({Authorization:"Bearer "+psync.chave,Accept:"application/vnd.github+json"});
 // lê o arquivo remoto: {sha, f (cifrado)} ou {sha:null} se ainda não existe
 async function psyncLe(){
@@ -92,12 +98,25 @@ async function pacSync(){
   if(psyncDeNovo){psyncDeNovo=false;return pacSync()}
   psyncMostra();
 }
+// teste em 2 passos, sem gravar nada: a chave enxerga o repositório? pode ler o conteúdo?
+async function psyncTesta(){
+  const out=[];
+  try{
+    const r=await fetch(`https://api.github.com/repos/${psync.repo}`,{cache:"no-store",headers:psyncHdr()});
+    if(r.ok){const j=await r.json();out.push(`1) Repositório ${psync.repo}: encontrado${j.private?" (privado)":""}.`)}
+    else out.push(`1) Repositório ${psync.repo}: ${r.status===404?"a chave não enxerga este repositório (não está selecionado no token, ou o nome está diferente)":r.status===401?"chave inválida ou incompleta":"recusado ("+r.status+")"}.`);
+    const c=await fetch(psyncUrl(),{cache:"no-store",headers:psyncHdr()});
+    const falta=c.headers.get("x-accepted-github-permissions")||"";
+    out.push(`2) Conteúdo: ${c.ok?"leitura ok":c.status===404?"leitura ok (arquivo ainda não existe)":"sem permissão ("+c.status+(falta?", o GitHub pede "+falta:"")+")"}.`);
+  }catch(e){out.push("Sem conexão.")}
+  psyncEstado=out.join(" "); psyncMostra();
+}
 let psyncT=null; function pacSyncAgenda(){if(!psyncAtivo())return;clearTimeout(psyncT);psyncT=setTimeout(pacSync,2500)}
 function psyncMostra(){const el=$("#psEstado");if(el)el.textContent=psyncEstado||(psyncAtivo()?"Ligada":"Desligada")}
 function renderPacSync(){
   return `<details class="panel card pcsync" ${psyncAtivo()||psync.erro?"open":""}><summary><h3>Sincronizar entre aparelhos</h3> <span class="note" id="psEstado"></span></summary>
     <p class="note">A lista é cifrada neste aparelho com a sua senha antes de sair; o repositório guarda só o arquivo cifrado. Use a mesma senha nos dois aparelhos. Sem a senha, ninguém lê, nem o GitHub; se esquecer, a cópia sincronizada não tem recuperação.</p>
-    ${psyncAtivo()?`<p><b>Ligada</b> · ${esc(psync.repo)}</p><div class="actions"><button class="btn" id="psAgora">Sincronizar agora</button><button class="btn" id="psTroca">Trocar a chave</button><button class="btn danger" id="psDesliga">Desligar neste aparelho</button></div>`:`
+    ${psyncAtivo()?`<p><b>Ligada</b> · ${esc(psync.repo)}</p><div class="actions"><button class="btn" id="psAgora">Sincronizar agora</button><button class="btn" id="psTroca">Trocar a chave</button><button class="btn" id="psTesta">Testar a chave</button><button class="btn danger" id="psDesliga">Desligar neste aparelho</button></div>`:`
     <div class="hospform"><label>Repositório privado (dono/nome)<input id="psRepo" autocomplete="off" spellcheck="false" placeholder="usuario/plantao-lista" value="${esc(psync.repo||"")}"></label>
       <label>Chave do GitHub (leitura e escrita só nesse repositório)<input id="psChave" class="segredo" type="text" name="ps-token-lista" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="github_pat_…"></label>
       <label>Senha da lista (a mesma nos dois aparelhos)<input id="psSenha" type="password" autocomplete="new-password"></label>
@@ -124,6 +143,7 @@ function bindPacSync(){
     }catch(e){psync={repo};psyncKey=null;psyncEstado=e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}). ${/^403/.test(psyncMotivo)?"A chave é válida, mas não pode gravar neste repositório: confira se não é a chave do hospital (o navegador pode ter preenchido sozinho) e a permissão Contents: Read and write.":"Confira a chave colada."}`:e.message==="senha"?"Senha diferente da usada no outro aparelho":"Sem conexão";psyncMostra();liga.disabled=false}
   };
   if($("#psAgora")) $("#psAgora").onclick=()=>pacSync();
+  if($("#psTesta")) $("#psTesta").onclick=psyncTesta;
   // chave nova (venceu ou foi gerada de novo): a senha e a lista continuam
   if($("#psTroca")) $("#psTroca").onclick=()=>{const c=(prompt("Cole a chave nova do GitHub")||"").trim();if(!c)return;psync.chave=c;psync.erro="";lsSet(PSYNC_LS,psync);pacSync()};
   if($("#psDesliga")) $("#psDesliga").onclick=()=>{try{localStorage.removeItem(PSYNC_LS)}catch(e){}psync={};psyncKey=null;psyncEstado="";renderPacientes();toast("Sincronização desligada neste aparelho")};

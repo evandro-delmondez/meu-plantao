@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.17.4 — 2026-10-21
+- Sincronização da lista: a mensagem de recusa mostra o repositório usado e, quando o GitHub informa, a permissão que falta; botão "Testar a chave" (sem gravar nada) diz se a chave enxerga o repositório e se pode ler o conteúdo.
+
 ## 1.17.3 — 2026-10-21
 - Meus modelos: **Exame por sistemas** — o texto de cada sistema (geral masculino e feminino, cabeça e orofaringe, cardiovascular, respiratório, abdome, neurológico, musculoesquelético, membros inferiores, pele) pode ser trocado pelo seu, vale no Atendimento e vai com o backup e a nuvem; "Voltar ao original" desfaz.
 

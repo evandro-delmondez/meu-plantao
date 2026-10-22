@@ -108,6 +108,7 @@ function renderInicio(){
 }
 $("#hPacsTodos").onclick=()=>setTab("pacientes");
 /* novo atendimento pela queixa da triagem ou pela conduta: abre o Atendimento já no caminho */
+let naCat=null;   // grande área escolhida no Novo atendimento (só nesta sessão)
 function renderNovoAtend(){
   const el=$("#hNovo");
   el.innerHTML=`<h2>Novo atendimento</h2>
@@ -115,8 +116,9 @@ function renderNovoAtend(){
     <span class="lbl">Queixa da triagem</span>
     <div class="chips">${QUEIXAS.map(q=>`<button class="chip" data-naq="${esc(q.id)}">${esc(q.nome)}</button>`).join("")}</div>
     <span class="lbl">Ou a conduta</span>
-    <input class="inp" id="naCond" list="naConds" placeholder="Buscar conduta: pneumonia, ITU, cólica…" autocomplete="off" aria-label="Conduta">
-    <datalist id="naConds">${allItems().map(i=>`<option value="${esc(i.nome)}">`).join("")}</datalist>`;
+    <input class="inp" id="naCond" type="search" placeholder="Buscar conduta: pneumonia, ITU, J03, cólica…" autocomplete="off" aria-label="Buscar conduta">
+    <div class="chips nacats">${Object.entries(CATS).map(([k,v])=>`<button class="chip" data-nacat="${k}" aria-pressed="${naCat===k}" style="--c:var(--${v.cor})"><span class="dot"></span>${esc(v.nome)}</button>`).join("")}</div>
+    <div class="nares" id="naRes"></div>`;
   const comeca=(cond,queixa)=>{
     const nome=$("#naNome").value.trim();
     novoPacienteSilencioso();
@@ -125,7 +127,18 @@ function renderNovoAtend(){
     setTab("evolucao"); window.scrollTo({top:0}); if(atPac) pacSnap();
   };
   el.querySelectorAll("[data-naq]").forEach(b=>b.onclick=()=>comeca("",b.dataset.naq));
-  $("#naCond").onchange=e=>{const v=norm(e.target.value);const it=allItems().find(i=>norm(i.nome)===v)||allItems().find(i=>norm(i.nome).includes(v));if(it)comeca(it.id,null)};
+  // resultados como na lista de condutas: mesma busca (nome, sinônimos, CID, área) e a cor da categoria
+  const lista=()=>{
+    const q=norm($("#naCond").value.trim());
+    let its=allItems().filter(i=>!naCat||i.cat===naCat).map(i=>[i,score(i,q)]).filter(x=>x[1]>0);
+    if(q) its.sort((a,b)=>b[1]-a[1]); else its=sortOrg(its.map(x=>x[0])).map(i=>[i,1]);
+    $("#naRes").innerHTML=(q||naCat)?(its.length?its.slice(0,40).map(([i])=>{const c=CATS[i.cat]||CATS.outros;return `<button class="item" data-naid="${i.id}" style="--c:var(--${c.cor})"><span class="dot"></span><span class="nm">${esc(i.nome)}</span>${i.cid?`<span class="cidm">${esc(i.cid)}</span>`:""}</button>`}).join(""):`<p class="note">Nada encontrado.</p>`):"";
+    $$("#naRes [data-naid]").forEach(b=>b.onclick=()=>comeca(b.dataset.naid,null));
+  };
+  $("#naCond").oninput=lista;
+  $("#naCond").onkeydown=e=>{if(e.key==="Enter"){const b=$("#naRes [data-naid]");if(b)b.click()}};
+  el.querySelectorAll("[data-nacat]").forEach(b=>b.onclick=()=>{naCat=naCat===b.dataset.nacat?null:b.dataset.nacat;el.querySelectorAll("[data-nacat]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.nacat===naCat));lista()});
+  lista();
 }
 /* rede pública × particular (v1.4) */
 const RENAME_FONTE="Ministério da Saúde. Relação Nacional de Medicamentos Essenciais — RENAME 2024.";

@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.22.1 — 2026-10-22
+- Início → Novo atendimento: a busca de conduta funciona como na lista de Condutas (palavra-chave, sinônimos, CID, área), com os resultados na cor da categoria, e os filtros pelas grandes áreas; Enter abre a primeira.
+- Atendimento: a conduta (e as adicionais) aparecem com a cor da categoria.
+- Onde estou hoje: só UPA pública e o hospital do pacote (saiu "Particular"; quem tinha "Particular" salvo fica sem escolha).
+
 ## 1.22.0 — 2026-10-22
 - **Visual minimalista claro**: fundo quase branco, bordas finas, sem sombras, a cor da categoria só como um ponto ao lado do título, botões e chips neutros (a cor aparece só no selecionado).
 - **Conduta mais limpa**: ficam abertos receita e na unidade (e os avisos de segurança: sinais vitais, perfil com alerta, CRB-65, protocolo do hospital); o resto (alarmes, checklist, dados do paciente, exames, orientações, fichas, alta, fontes) vira uma linha que abre com um toque. Os atalhos do topo abrem a seção.

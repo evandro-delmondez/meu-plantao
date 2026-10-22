@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { abrir, aba } from "./util.mjs";
 
-test("UPA pública × particular: selo RENAME na conduta, filtro nas fichas e preferência salva", async ({ page }) => {
+test("UPA pública: selo RENAME na conduta, filtro nas fichas e preferência salva", async ({ page }) => {
   const erros = await abrir(page);
   await expect(page.locator("#hRedeNota")).toContainText("Escolha");
   await page.click('[data-rede="publica"]');
@@ -15,7 +15,8 @@ test("UPA pública × particular: selo RENAME na conduta, filtro nas fichas e pr
   // preferência sobrevive ao recarregar (não é dado de paciente)
   await page.reload(); await aba(page, "inicio");
   await expect(page.locator('[data-rede="publica"]')).toHaveAttribute("aria-pressed", "true");
-  await page.click('[data-rede="particular"]');
+  await expect(page.locator('[data-rede="particular"]')).toHaveCount(0);   // só UPA pública e o hospital do pacote
+  await page.click('[data-rede="publica"]');                                 // tocar de novo desliga
   await aba(page, "prescricoes"); await page.fill("#q", "amigdalite"); await page.click("#list .item >> nth=0");
   await expect(page.locator(".sec.fichas")).not.toHaveClass(/pub/);
   // filtro só RENAME nas fichas
@@ -25,6 +26,6 @@ test("UPA pública × particular: selo RENAME na conduta, filtro nas fichas e pr
   const soRename = await page.locator("#mlist .item").count();
   expect(soRename).toBeGreaterThan(0); expect(soRename).toBeLessThan(total);
   const ui = await page.evaluate(() => JSON.parse(localStorage.getItem("rxp_ui_v1")));
-  expect(ui.rede).toBe("particular");
+  expect(ui.rede).toBe(null);
   expect(erros).toEqual([]);
 });

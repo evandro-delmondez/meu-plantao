@@ -713,3 +713,12 @@ details.sec[open]>summary.sec-h::after{transform:rotate(90deg)}
 .exf{color:var(--muted);font-size:11px}
 .exg-div{border:1.5px dashed var(--warn);border-radius:10px;padding:8px 10px}
 .exg-div h4{color:var(--warn)}
+.nacats .chip .dot,.atconds .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:middle}
+.nacats .chip[aria-pressed="true"] .dot{background:#fff}
+.nares{display:grid;gap:2px}
+.nares .item{display:flex;align-items:center;gap:8px;text-align:left;border:0;background:none;padding:9px 8px;border-radius:10px;cursor:pointer}
+.nares .item:hover{background:var(--surface-2)}
+.nares .item .dot{width:9px;height:9px;border-radius:50%;background:var(--c);flex:none}
+.nares .item .nm{flex:1;font-weight:600}
+.nares .cidm{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.atconds{display:flex;flex-wrap:wrap;gap:6px 12px;margin:0 0 10px;font-weight:700}

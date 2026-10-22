@@ -3,7 +3,8 @@
 // Versões antigas salvavam esses campos em rxp_ui_v1; eles são ignorados ao carregar e apagados no próximo saveUI.
 const ui=Object.assign({tab:"inicio",sel:"amigdalite",cat:null,modo:"adulto",tipo:"atestado",ped:"febre"},lsGet(LS.ui,{}));
 Object.assign(ui,{peso:"",sexo:"M",perfil:[],pdPeso:"",pdAnos:"",pdMeses:""});
-// rede: "publica" | "particular" | null — preferência de quem usa o painel (onde está trabalhando hoje)
+// rede: "publica" | "hospital" | null — onde o médico está hoje; "particular" saiu (2026-10-22): vira null
+if(ui.rede==="particular") ui.rede=null;
 // ciatox: telefone do CIATox local salvo por quem usa o painel (não é dado de paciente); versões antigas não têm o campo
 if(!ui.ciatox||typeof ui.ciatox!=="object") ui.ciatox={nome:"",tel:""};
 const saveUI=()=>lsSet(LS.ui,{sel:ui.sel,cat:ui.cat,modo:ui.modo,ped:ui.ped,pmode:ui.pmode,score:ui.score,rede:ui.rede||null,ciatox:ui.ciatox});

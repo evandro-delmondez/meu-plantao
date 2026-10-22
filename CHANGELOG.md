@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.22.0 — 2026-10-22
+- **Visual minimalista claro**: fundo quase branco, bordas finas, sem sombras, a cor da categoria só como um ponto ao lado do título, botões e chips neutros (a cor aparece só no selecionado).
+- **Conduta mais limpa**: ficam abertos receita e na unidade (e os avisos de segurança: sinais vitais, perfil com alerta, CRB-65, protocolo do hospital); o resto (alarmes, checklist, dados do paciente, exames, orientações, fichas, alta, fontes) vira uma linha que abre com um toque. Os atalhos do topo abrem a seção.
+- **Início novo**: caixa **Novo atendimento** — nome do paciente (opcional) e a **queixa da triagem** ou a **conduta**, abrindo direto o Atendimento; **Pacientes em aberto** com os avisos de 2 h e 3 h; **Favoritos**, **Mais usadas** e **Recentes**; **Onde estou hoje**; **Entrar** quando o computador ainda não está configurado.
+- **Atendimento pela queixa**: alarmes, o que perguntar e os caminhos até a conduta; os exames da queixa aparecem na seção Exames.
+
 ## 1.21.0 — 2026-10-22
 - **Exames e encaminhamento na porta** — 6 queixas (cefaleia, tontura/síncope, dor abdominal, dor torácica, febre, tosse/dispneia) e 20 condutas (PAC, ITU, cólica renal, dor abdominal, cefaleia, enxaqueca, vertigem, lombalgia, gastroenterite, dengue, amigdalite, sinusite, asma, DPOC, hipertensão, TCE, entorse, erisipela, gota, hemorragia digestiva alta), 353 itens em quatro grupos: **Encaminhar** (sala vermelha e especialidades), **Pedir quando** (inclusive TC com ou sem contraste, angio-TC, US, RX e regras de decisão), **Não pedir** e **Divergências entre fontes** (as duas versões, para o médico decidir). Cada item com o número da fonte; referências conferidas uma a uma no PubMed e nos sites oficiais (versões vigentes: AHA/ASA AVC 2026, SSC 2026, GINA 2026, GOLD 2026, AAO-HNS 2025, ACEP 2019/2023/2025, ACR Appropriateness, MS dengue 2024, entre outras).
 - Aparecem aberto na queixa, recolhido na conduta e na seção **Exames** do Atendimento, que ganhou o campo **Exames solicitados** (entra na conduta, um por linha).

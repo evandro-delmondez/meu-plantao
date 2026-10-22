@@ -25,20 +25,24 @@ async function psyncDecifra(f){
   return JSON.parse(new TextDecoder().decode(pt));
 }
 const psyncUrl=()=>`https://api.github.com/repos/${psync.repo}/contents/${psync.arq||"lista.json"}`;
+// motivo da recusa, como o GitHub responde (sem a chave), para o médico saber o que ajustar
+let psyncMotivo="";
+async function psyncFalha(r){let m="";try{m=(await r.json()).message||""}catch(e){}psyncMotivo=`${r.status}${m?": "+m:""}`;return new Error(r.status===401||r.status===403||r.status===404?"chave":"rede")}
 const psyncHdr=()=>({Authorization:"Bearer "+psync.chave,Accept:"application/vnd.github+json"});
 // lê o arquivo remoto: {sha, f (cifrado)} ou {sha:null} se ainda não existe
 async function psyncLe(){
   const r=await fetch(psyncUrl(),{cache:"no-store",headers:psyncHdr()});
   if(r.status===404) return {sha:null,f:null};
-  if(!r.ok) throw new Error(r.status===401||r.status===403?"chave":"rede");
+  if(!r.ok) throw await psyncFalha(r);
   const j=await r.json();
   return {sha:j.sha,f:JSON.parse(new TextDecoder().decode(unb64(j.content.replace(/\n/g,""))))};
 }
 async function psyncEscreve(f,sha){
   const corpo=b64(new TextEncoder().encode(JSON.stringify(f)));
   const r=await fetch(psyncUrl(),{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},psyncHdr()),body:JSON.stringify({message:"lista cifrada",content:corpo,...(sha?{sha}:{})})});
-  if(r.status===409||r.status===422) throw new Error("conflito");
-  if(!r.ok) throw new Error(r.status===401||r.status===403?"chave":"rede");
+  if(r.status===409) throw new Error("conflito");
+  if(r.status===422){let m="";try{m=(await r.clone().json()).message||""}catch(e){}if(/sha/i.test(m))throw new Error("conflito")}
+  if(!r.ok) throw await psyncFalha(r);
 }
 // junta campo a campo (fica o que mudou por último em qualquer aparelho); apagado num aparelho some nos dois;
 // contagem do dia pelo maior valor visto
@@ -81,7 +85,7 @@ async function pacSync(){
     if(ui.tab==="pacientes"&&!document.activeElement?.closest?.("#pcCorpo input,#pcCorpo select,#pcCorpo textarea")) renderPacientes();
   }catch(e){
     psync.erro=e.message; lsSet(PSYNC_LS,psync);
-    psyncEstado=e.message==="senha"?"Senha diferente da usada no outro aparelho: nada foi enviado":e.message==="chave"?"Chave recusada: confira a permissão de escrita no repositório":"Sem conexão: sincroniza quando voltar";
+    psyncEstado=e.message==="senha"?"Senha diferente da usada no outro aparelho: nada foi enviado":e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}). Confira o repositório e a permissão Contents: Read and write`:"Sem conexão: sincroniza quando voltar";
   }
   psyncRodando=false;
   // houve mudança durante a sincronização: roda de novo antes de dizer "sincronizado"
@@ -93,7 +97,7 @@ function psyncMostra(){const el=$("#psEstado");if(el)el.textContent=psyncEstado|
 function renderPacSync(){
   return `<details class="panel card pcsync" ${psyncAtivo()||psync.erro?"open":""}><summary><h3>Sincronizar entre aparelhos</h3> <span class="note" id="psEstado"></span></summary>
     <p class="note">A lista é cifrada neste aparelho com a sua senha antes de sair; o repositório guarda só o arquivo cifrado. Use a mesma senha nos dois aparelhos. Sem a senha, ninguém lê, nem o GitHub; se esquecer, a cópia sincronizada não tem recuperação.</p>
-    ${psyncAtivo()?`<p><b>Ligada</b> · ${esc(psync.repo)}</p><div class="actions"><button class="btn" id="psAgora">Sincronizar agora</button><button class="btn danger" id="psDesliga">Desligar neste aparelho</button></div>`:`
+    ${psyncAtivo()?`<p><b>Ligada</b> · ${esc(psync.repo)}</p><div class="actions"><button class="btn" id="psAgora">Sincronizar agora</button><button class="btn" id="psTroca">Trocar a chave</button><button class="btn danger" id="psDesliga">Desligar neste aparelho</button></div>`:`
     <div class="hospform"><label>Repositório privado (dono/nome)<input id="psRepo" autocomplete="off" spellcheck="false" placeholder="usuario/plantao-lista" value="${esc(psync.repo||"")}"></label>
       <label>Chave do GitHub (leitura e escrita só nesse repositório)<input id="psChave" type="password" autocomplete="off" spellcheck="false"></label>
       <label>Senha da lista (a mesma nos dois aparelhos)<input id="psSenha" type="password" autocomplete="new-password"></label>
@@ -115,9 +119,11 @@ function bindPacSync(){
       psync.k=await psyncDeriva(senha,psync.salt); psyncKey=null;
       if(f){try{await psyncDecifra(f)}catch(e){psync={repo};psyncKey=null;psyncEstado="Senha diferente da usada no outro aparelho";psyncMostra();liga.disabled=false;return}}
       lsSet(PSYNC_LS,psync); await pacSync(); renderPacientes();
-    }catch(e){psync={repo};psyncKey=null;psyncEstado=e.message==="chave"?"Chave recusada: confira a permissão do repositório":"Sem conexão";psyncMostra();liga.disabled=false}
+    }catch(e){psync={repo};psyncKey=null;psyncEstado=e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}). Confira o repositório e a permissão Contents: Read and write`:e.message==="senha"?"Senha diferente da usada no outro aparelho":"Sem conexão";psyncMostra();liga.disabled=false}
   };
   if($("#psAgora")) $("#psAgora").onclick=()=>pacSync();
+  // chave nova (venceu ou foi gerada de novo): a senha e a lista continuam
+  if($("#psTroca")) $("#psTroca").onclick=()=>{const c=(prompt("Cole a chave nova do GitHub")||"").trim();if(!c)return;psync.chave=c;psync.erro="";lsSet(PSYNC_LS,psync);pacSync()};
   if($("#psDesliga")) $("#psDesliga").onclick=()=>{try{localStorage.removeItem(PSYNC_LS)}catch(e){}psync={};psyncKey=null;psyncEstado="";renderPacientes();toast("Sincronização desligada neste aparelho")};
 }
 // ao abrir o site e ao voltar para ele, traz o que o outro aparelho mudou

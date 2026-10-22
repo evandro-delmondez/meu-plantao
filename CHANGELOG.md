@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.17.1 — 2026-10-21
+- Sincronização da lista: quando o GitHub recusa a chave, aparece o motivo que ele deu (ex.: "403: Resource not accessible by personal access token"); botão "Trocar a chave" para quando a chave vence ou é gerada de novo, sem desligar e sem pedir a senha outra vez.
+
 ## 1.17.0 — 2026-10-21
 - **Pacientes do plantão** (aba nova em Documentos), por decisão do médico (exceção registrada à regra de não salvar dado de paciente): nome no topo do Atendimento põe o paciente na lista, que grava sozinha o que foi digitado; etapas separadas — exame (qual, pendente → pronto), medicação, reavaliação com hora, parecer (especialidade) — e desfecho (alta, observação, internação e onde, transferência, evasão); aviso amarelo com 2 h sem reavaliar e vermelho com 3 h sem desfecho; tocar no nome reabre o Atendimento dele.
 - **Passagem de plantão**: mensagem pronta para o grupo com nome, hipótese, pendências, se sabe da troca, médico que assume e consultório.

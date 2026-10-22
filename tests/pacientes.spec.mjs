@@ -150,3 +150,26 @@ test("sincronização cifrada: o outro aparelho recebe a lista; o repositório s
   expect([...ea, ...eb, ...ec]).toEqual([]);
   await a.close(); await b.close(); await c.close();
 });
+
+test("chave recusada mostra o motivo do GitHub; Trocar a chave mantém a senha e volta a sincronizar", async ({ browser }) => {
+  const store = { n: 0 };
+  const ctx = await browser.newContext(); await githubFalso(ctx, store);
+  const page = await ctx.newPage(); const erros = await abrir(page);
+  await aba(page, "pacientes");
+  await page.locator(".pcsync summary").click();
+  await page.fill("#psRepo", "usuario/plantao-lista");
+  await page.fill("#psChave", "chave-errada"); await page.fill("#psSenha", "senha-do-plantao-1");
+  await page.click("#psLiga");
+  await expect(page.locator("#psEstado")).toContainText("Chave recusada pelo GitHub (401)");
+  await ligar(page, "senha-do-plantao-1");
+  await expect(page.locator("#psEstado")).toContainText("Sincronizado");
+  // a chave vence: o aparelho continua ligado, e só a chave é trocada
+  await page.evaluate(() => { const s = JSON.parse(localStorage.getItem("mph_pacsync_v1")); s.chave = "chave-vencida"; localStorage.setItem("mph_pacsync_v1", JSON.stringify(s)); });
+  await page.reload(); await aba(page, "pacientes");
+  await expect(page.locator("#psEstado")).toContainText("Chave recusada");
+  page.once("dialog", (d) => d.accept("chave-escrita-ficticia"));
+  await page.click("#psTroca");
+  await expect(page.locator("#psEstado")).toContainText("Sincronizado");
+  expect(erros).toEqual([]);
+  await ctx.close();
+});

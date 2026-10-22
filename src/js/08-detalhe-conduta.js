@@ -92,8 +92,9 @@ function chkLinhas(it){
   if(an.length) hma.push(fr("Nega antecedente de ",an));
   if(ep.length) ex.push(fr("Ao exame, presença de ",ep));
   if(en.length) ex.push(fr("Ao exame, ausência de ",en));
-  if(sp.length) ex.push(fr("Sinais de alarme presentes: ",sp));
-  if(sn.length) ex.push(fr("Sem sinais de alarme: ",sn));
+  // sinais de alarme são da anamnese (vão na HDA)
+  if(sp.length) hma.push(fr("Sinais de alarme presentes: ",sp));
+  if(sn.length) hma.push(fr("Nega sinais de alarme: ",sn));
   return {hma,ex,n:Object.keys(st).length};
 }
 function renderChecklist(it){
@@ -159,8 +160,8 @@ function renderDetail(){
       ${isNew(it)?`<span class="badge new">Novo</span>`:(!it.custom&&it.rev&&it.rev.length?`<span class="badge">${it.rev.length} ajuste(s) na revisão</span>`:"")}
       ${it.evid?`<span class="badge">Evidência limitada</span>`:""}</div>
     <div class="abar">
-      <button class="btn primary" id="cpAll">Copiar tudo</button>
-      <button class="btn" id="toEv">Atender</button>
+      <button class="btn primary atenderbtn" id="atdIr">Atender →</button>
+      <button class="btn" id="cpAll">Copiar tudo</button>
       ${it.cid?`<button class="btn" id="toAt">Atestado</button>`:""}
       <button class="favbtn" id="favBtn" aria-pressed="${uso.favs.includes(it.id)}" title="Fixar no topo da lista e no Início" aria-label="Favorito">${uso.favs.includes(it.id)?"★":"☆"}</button>
       <button class="btn edbtn" id="edBtn" title="Editar nome, CID e fontes" aria-label="Editar nome, CID e fontes">✎<span> Editar</span></button>
@@ -168,7 +169,7 @@ function renderDetail(){
     <p class="note dnote">Os textos são editáveis para este paciente. ${changed?"":"Nada vira padrão sem você pedir."}</p>
     <div id="sessBar" class="sessbar" ${changed?"":"hidden"}><span>Você alterou o texto desta prescrição.</span><button class="btn sm primary" id="sessSave">Salvar como meu padrão</button><button class="btn sm" id="sessUndo">Descartar alterações</button></div>
   </div>
-  <nav class="atalhosconduta" aria-label="Ir para">${[["hospat","Hospital"],["agora","Agora"],["alarmetopo","Alarmes"],["crb","Gravidade"],["casa","Receita"],["chk","Checklist"],["atend","Fechar"],["altapac","Alta"]].map(([c,r])=>`<button class="chip" data-ir="${c}">${r}</button>`).join("")}</nav>
+  <nav class="atalhosconduta" aria-label="Ir para">${[["hospat","Hospital"],["agora","Agora"],["alarmetopo","Alarmes"],["crb","Gravidade"],["casa","Receita"],["chk","Checklist"],["altapac","Alta"]].map(([c,r])=>`<button class="chip" data-ir="${c}">${r}</button>`).join("")}</nav>
   ${hospAtalhos(it.id)}
   ${hospRegrasHTML(it.id)}
   ${hospDivHTML(it.id)}
@@ -213,7 +214,6 @@ function renderDetail(){
   bindAltaPac(it);
   bindHospAtalhos($("#detail .hospat"));
   growAll();
-  $("#toEv").onclick=()=>atAbrir(it.id);
   const cidb=$("#detail .cid[data-cpcid]"); if(cidb) cidb.onclick=()=>copy(cidb.dataset.cpcid,cidb);
   linkMeds(el);
   if($("#toAt")) $("#toAt").onclick=()=>{$("#atCid").value=it.cid;atManual=false;setTab("atestado")};

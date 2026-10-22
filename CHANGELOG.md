@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.18.0 — 2026-10-21
+- **Atender** virou botão principal da navegação (2º lugar), com Atendimento e Pacientes; Sala vermelha foi para o fim da barra.
+- Na conduta, **Atender →** fica no topo, acima dos sinais de alarme (saiu o cartão do fim da conduta).
+- Atendimento: **HPP** (história patológica pregressa: doenças, cirurgias, internações) no lugar de "Comorbidades"; HPP, medicamentos em uso e alergias aceitam Enter e saem em lista com traço.
+- Sinais de alarme do checklist vão para a HDA ("Nega sinais de alarme: …").
+- Alta em linguagem formal de prontuário: os sinais de alarme orientados vêm do checklist técnico ("Orientados os sinais de alarme, com retorno imediato ao pronto-socorro em caso de: …"); a versão leiga continua só na folha e no QR do paciente.
+
 ## 1.17.4 — 2026-10-21
 - Sincronização da lista: a mensagem de recusa mostra o repositório usado e, quando o GitHub informa, a permissão que falta; botão "Testar a chave" (sem gravar nada) diz se a chave enxerga o repositório e se pode ler o conteúdo.
 

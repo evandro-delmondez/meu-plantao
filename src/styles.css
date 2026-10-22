@@ -660,3 +660,5 @@ button.cid{cursor:pointer;border:1px solid var(--line);background:var(--surface)
 .pcpass textarea{width:100%;margin-top:8px}
 /* chaves do GitHub: escondidas na tela, sem o navegador guardar nem preencher como senha */
 input.segredo{-webkit-text-security:disc;text-security:disc}
+.atlistas textarea{min-height:76px}
+.btn.atenderbtn{background:var(--green);border-color:var(--green);color:#fff;font-size:16px;padding-inline:18px}

@@ -103,16 +103,10 @@ function atdExamePadrao(){
 }
 // destino padrão: alta na porta; nas emergências (sala vermelha, cartão Agora), sem padrão
 const atdDestinoPadrao=it=>it.cat==="emerg"||AGORA[it.id]?"":"alta";
-// na conduta: cartão que leva ao Atendimento (a tela única do prontuário), com o que já foi digitado
-function renderAtend(it){
-  const sv=atSv(), feito=[atd.hma.trim()&&"história",sv&&"sinais vitais",Object.keys(chk[it.id]||{}).length&&"checklist"].filter(Boolean);
-  return `<div class="sec atend"><div class="sec-h"><h3>Atender</h3><span class="alsum">história, exame, CID, alta e internação, com cópia por campo</span></div>
-  <div class="atdbody"><p class="note">${feito.length?`Já preenchido: ${esc(ptLista(feito))}.`:"Sinais vitais, história e exame físico ficam na aba Atendimento."}${sv?` ${esc(sv)}`:""}</p>
-    <div class="actions"><button class="btn primary" id="atdIr">Atender este paciente →</button><button class="btn" id="atdNovo" title="Limpa os dados deste paciente">Novo paciente</button></div></div></div>`;
-}
+// na conduta, o botão "Atender →" fica no topo (barra de ações); aqui só os avisos e o CRB-65
+function renderAtend(it){return ""}
 function bindAtend(it){
   if(!$("#atdIr")) return;
   $("#atdIr").onclick=()=>atAbrir(it.id);
-  bindNovoPaciente($("#atdNovo"));
   bindCrb(it); atdAvisoAtualiza(it); crbAtualiza();
 }

@@ -38,14 +38,16 @@ function atSv(){
   return sv.length?"SSVV: "+sv.map(x=>`${x[0]} ${String(x[1]).trim()}${x[2]==="%"?"%":" "+x[2]}`).join(" | "):"";
 }
 /* ---- textos de cada campo ---- */
+// lista digitada com Enter (ou "- ") sai com traço; campo vazio não vira "nega": só se documenta o que foi perguntado
+const atItens=t=>String(t||"").split("\n").map(x=>x.replace(/^\s*[-•#*]\s*/,"").trim()).filter(Boolean);
+const atLista=(rot,itens)=>itens.length?`${rot}:\n${itens.map(x=>"- "+x).join("\n")}`:`${rot}: não informado`;
 function atHda(it){
   const L=[]; if(atd.hma.trim()) L.push(atd.hma.trim());
   if(it) chkLinhas(it).hma.forEach(x=>L.push(x));
-  // campo vazio não vira "nega": só se documenta o que foi perguntado
-  let alerg=atd.alergia.trim(); if(perfisAtivos().has("pnc")&&!/penicilin/i.test(alerg)) alerg=[alerg,"penicilina"].filter(Boolean).join("; ");
-  L.push("Alergias: "+(alerg||"não informado"));
-  L.push("Comorbidades: "+(atd.ap.trim()||"não informado"));
-  L.push("Medicamentos em uso: "+(atd.muc.trim()||"não informado"));
+  const alerg=atItens(atd.alergia); if(perfisAtivos().has("pnc")&&!alerg.some(x=>/penicilin/i.test(x))) alerg.push("penicilina");
+  L.push(atLista("HPP",atItens(atd.ap)));
+  L.push(atLista("Medicamentos em uso",atItens(atd.muc)));
+  L.push(atLista("Alergias",alerg));
   return L.join("\n");
 }
 function atExameBase(it){
@@ -82,15 +84,15 @@ function atTrat(it){
   }
   return L.join("\n");
 }
-const atVolte=it=>it?((ALTA[it.id]&&ALTA[it.id].volte)||(CHECK[it.id]&&CHECK[it.id].alarme)||[]):[];
+const atVolte=it=>it?((CHECK[it.id]&&CHECK[it.id].alarme)||(ALTA[it.id]&&ALTA[it.id].volte)||[]):[];
 function atAlta(it){
   const L=[];
   const rv=AT_REAV.filter(([k])=>atd.reav[k]).map(([,t])=>t);
   if(rv.length||atd.reavTxt.trim()) L.push(`- Paciente reavaliado${rv.length?", "+ptLista(rv):""}${atd.reavTxt.trim()?`: ${atd.reavTxt.trim()}`:"."}`.replace(/\.\.$/,"."));
   const ori=AT_ORI.filter(([k])=>atd.altaOri[k]!==false).map(([,t])=>t);
-  if(ori.length) L.push(`- Orientado sobre ${ptLista(ori)}.`);
+  if(ori.length) L.push(`- Paciente orientado sobre ${ptLista(ori)}.`);
   const vt=atVolte(it).filter((x,i)=>!atd.alarOff[i]).map(x=>semParenteses(x).replace(/\.$/,""));
-  if(vt.length) L.push(`- Explicados os sinais de alarme, com orientação de retorno imediato se: ${vt.join("; ")}.`);
+  if(vt.length) L.push(`- Orientados os sinais de alarme, com retorno imediato ao pronto-socorro em caso de: ${vt.join("; ")}.`);
   if(atd.altaLivre.trim()) L.push(...atd.altaLivre.trim().split("\n").map(x=>/^\s*-/.test(x)?x:"- "+x));
   if(atd.compreende) L.push("- Paciente compreendeu e concorda com as orientações.");
   const dest=(destinos().find(d=>d[0]===(atd.destino??atdDestinoPadrao(it||{})))||[])[2]; if(dest) L.push(dest);
@@ -102,7 +104,7 @@ function atIntern(it){
   L.push(`Solicito internação${loc?` em ${loc}`:""}.`);
   if(it) L.push(`Hipótese diagnóstica: ${it.nome}${it.cid?` (CID ${it.cid})`:""}.`);
   if(atd.hma.trim()) L.push(`História: ${atd.hma.trim()}`);
-  if(atd.ap.trim()) L.push(`Comorbidades: ${atd.ap.trim()}`);
+  if(atItens(atd.ap).length) L.push(atLista("HPP",atItens(atd.ap)));
   const sv=atSv(); if(sv) L.push(sv);
   if(I.lab.trim()) L.push(`Exames laboratoriais relevantes: ${I.lab.trim()}`);
   if(I.laudos.trim()) L.push(`Laudos de imagem: ${I.laudos.trim()}`);
@@ -147,7 +149,7 @@ function renderEv(){
   ${it?renderAlarme(it):""}
   <div class="sec atsec" id="atHdaSec"><div class="sec-h"><h3>1. História</h3></div><div class="atbody">
     ${ta("hma","Queixa e história da doença atual","ex.: dor de garganta há 2 dias, sem tosse")}
-    <div class="atdgrid">${inp("alergia","Alergias","ex.: dipirona; ou escreva nega")}${inp("ap","Comorbidades","ex.: hipertensão, diabetes")}${inp("muc","Medicamentos em uso","ex.: losartana 50 mg")}</div>
+    <div class="atdgrid atlistas">${ta("ap","HPP (doenças, cirurgias, internações)","um por linha\nex.: hipertensão arterial\ncolecistectomia em 2019")}${ta("muc","Medicamentos em uso","um por linha\nex.: losartana 50 mg 1x ao dia")}${ta("alergia","Alergias","um por linha, ou escreva nega")}</div>
     ${it?renderChecklist(it):""}
     ${atSaida("hda","História (HDA)")}</div></div>
   <div class="sec atsec"><div class="sec-h"><h3>2. Exame físico</h3></div><div class="atbody">

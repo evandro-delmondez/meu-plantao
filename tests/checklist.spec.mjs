@@ -33,7 +33,7 @@ test("marcações viram texto na evolução e não ficam salvas no aparelho", as
   expect(hda).toContain("Presença de febre > 38 °C.");
   expect(hda).toContain("Nega tosse.");
   expect(exf).toContain("Ao exame, presença de exsudato ou aumento das amígdalas.");
-  expect(ev).toContain("Sem sinais de alarme: trismo, voz abafada ou desvio da úvula.");
+  expect(hda).toContain("Nega sinais de alarme: trismo, voz abafada ou desvio da úvula.");
   expect(ev).not.toContain("febre reumática");
   expect(ev).not.toContain("Nega outros sintomas. Nega febre.");
   // a história vai no campo História e o exame dirigido no Exame físico, depois do exame geral

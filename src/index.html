@@ -9,11 +9,12 @@
 
 <nav class="secnav" id="secnav" aria-label="Seções">
   <button data-sec="inicio" style="--c:var(--accent)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span>Início</span></button>
+  <button data-sec="atender" style="--c:var(--green)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v3a4 4 0 0 0 8 0v-2"/><circle cx="18" cy="12" r="2"/></svg><span>Atender</span></button>
   <button data-sec="condutas" style="--c:var(--sky)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg><span>Condutas</span></button>
   <button data-sec="remedios" style="--c:var(--pink)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="m8.5 8.5 7 7"/></svg><span>Remédios</span></button>
-  <button data-sec="sala" style="--c:var(--red)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Sala vermelha</span></button>
   <button data-sec="documentos" style="--c:var(--teal)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Documentos</span></button>
   <button data-sec="calculos" style="--c:var(--violet)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg><span>Cálculos</span></button>
+  <button data-sec="sala" style="--c:var(--red)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Sala vermelha</span></button>
 </nav>
 <div class="wrap">
   <header class="top">
@@ -38,8 +39,8 @@
       <button role="tab" data-tab="bic" data-sec="sala" aria-selected="false">Bomba de infusão</button>
       <button role="tab" data-tab="iot" data-sec="sala" aria-selected="false">Intubação e ventilação</button>
       <button role="tab" data-tab="protocolos" data-sec="sala" aria-selected="false">Protocolos</button>
-      <button role="tab" data-tab="evolucao" data-sec="documentos" aria-selected="false">Atendimento</button>
-      <button role="tab" data-tab="pacientes" data-sec="documentos" aria-selected="false">Pacientes</button>
+      <button role="tab" data-tab="evolucao" data-sec="atender" aria-selected="false">Atendimento</button>
+      <button role="tab" data-tab="pacientes" data-sec="atender" aria-selected="false">Pacientes</button>
       <button role="tab" data-tab="atestado" data-sec="documentos" aria-selected="false">Atestado</button>
       <button role="tab" data-tab="modelos" data-sec="documentos" aria-selected="false">Meus modelos</button>
       <button role="tab" data-tab="escores" data-sec="calculos" aria-selected="false">Escores</button>

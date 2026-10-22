@@ -28,6 +28,9 @@ test("porta: alarmes no topo da conduta; Atendimento em 1 tela com cópia por ca
   await expect(saida(page, "diag")).toHaveValue(/Hipótese diagnóstica: Amigdalite.*CID J03/);
   await expect(saida(page, "trat")).toHaveValue(/Prescrição domiciliar:/);
   await expect(page.locator("#atCorpo .cidbig")).toContainText("J03");
+  await campo(page, "ap").fill("hipertensão arterial\ncolecistectomia em 2019");
+  await campo(page, "muc").fill("- losartana 50 mg");
+  await expect(saida(page, "hda")).toHaveValue(/HPP:\n- hipertensão arterial\n- colecistectomia em 2019\nMedicamentos em uso:\n- losartana 50 mg/);
   for (const k of ["hda", "exame", "diag", "trat", "alta"]) expect(await saida(page, k).inputValue()).not.toMatch(RUIM);
   // atestado
   await campo(page, "dias").fill("2");
@@ -71,11 +74,12 @@ test("Atendimento não contradiz o paciente: febre, taquipneia, alergia e destin
   expect(hda).not.toMatch(/Nega febre|Nega outros sintomas/);
   expect(ex).toMatch(/taquipneic/); expect(ex).not.toMatch(/\beupneic/);
   expect(hda).toMatch(/Alergias: não informado/);
+  expect(hda).toMatch(/HPP: não informado/);
   await expect(saida(page, "alta")).toHaveValue(/Alta com orientações/);
   // alergia marcada no checklist liga o alerta e entra na história
   const item = page.locator("#atCorpo .ck", { hasText: /alergia a penicilina/ }).first();
   await item.locator('[data-val="+"]').click();
-  await expect(saida(page, "hda")).toHaveValue(/Alergias: penicilina/);
+  await expect(saida(page, "hda")).toHaveValue(/Alergias:\n- penicilina/);
   await expect(page.locator('#detail [data-perfil="pnc"]')).toHaveAttribute("aria-pressed", "true");
   // emergência: sem destino padrão
   await atender(page, "sepse");
@@ -91,8 +95,8 @@ test("alta em tópicos e pedido de internação com justificativa, sem repetir a
   await campo(page, "compreende").check();
   const alta = await saida(page, "alta").inputValue();
   expect(alta).toMatch(/^- Paciente reavaliado, com melhora após a medicação na unidade: RX com consolidação/m);
-  expect(alta).toMatch(/- Orientado sobre o diagnóstico, a medicação prescrita/);
-  expect(alta).toMatch(/- Explicados os sinais de alarme, com orientação de retorno imediato se: /);
+  expect(alta).toMatch(/- Paciente orientado sobre o diagnóstico, a medicação prescrita/);
+  expect(alta).toMatch(/- Orientados os sinais de alarme, com retorno imediato ao pronto-socorro em caso de: /);
   expect(alta).toMatch(/- Paciente compreendeu e concorda com as orientações\./);
   expect(alta).not.toMatch(/Prescrição domiciliar|Amoxicilina/);
   // tirar um sinal de alarme da lista

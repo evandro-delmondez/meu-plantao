@@ -42,10 +42,10 @@ test("conduta: atalhos fixos levam à seção, secundário recolhido", async ({ 
   const erros = await abrir(page); await aba(page, "prescricoes");
   await conduta(page, "amigdalite");
   const bar = page.locator("#detail .atalhosconduta");
-  await expect(bar.locator('[data-ir="atend"]')).toBeVisible();
+  await expect(bar.locator('[data-ir="chk"]')).toBeVisible();
   await expect(bar.locator('[data-ir="agora"]')).toHaveCount(0);          // só aparecem as seções que existem
-  await bar.locator('[data-ir="atend"]').click();
-  await expect(page.locator("#detail .sec.atend")).toBeInViewport();
+  await bar.locator('[data-ir="chk"]').click();
+  await expect(page.locator("#detail .sec.chk")).toBeInViewport();
   expect(await page.locator("#secFontes").evaluate((d) => d.open)).toBe(false);
   await conduta(page, "sepse");
   await expect(page.locator('#detail .atalhosconduta [data-ir="agora"]')).toBeVisible();

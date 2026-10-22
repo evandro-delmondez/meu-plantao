@@ -1,7 +1,7 @@
 /* ---------- seções e abas ---------- */
 const TABS=["inicio","prescricoes","queixas","feridas","hospital","medicacoes","pediatria","sala","pcr","bic","iot","protocolos","evolucao","pacientes","atestado","modelos","backup","escores","calculadora","contas","eletrolitos"];
 // cada aba pertence a uma seção da barra de navegação
-const SECOES={inicio:["inicio"],condutas:["prescricoes","queixas","feridas","hospital"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],documentos:["evolucao","pacientes","atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
+const SECOES={inicio:["inicio"],condutas:["prescricoes","queixas","feridas","hospital"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],atender:["evolucao","pacientes"],documentos:["atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
 const secDe=t=>Object.keys(SECOES).find(s=>SECOES[s].includes(t))||"inicio";
 const ultimaAba={}; // última aba aberta em cada seção (só nesta sessão)
 function setTab(t){

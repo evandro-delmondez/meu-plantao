@@ -85,7 +85,7 @@ async function pacSync(){
     if(ui.tab==="pacientes"&&!document.activeElement?.closest?.("#pcCorpo input,#pcCorpo select,#pcCorpo textarea")) renderPacientes();
   }catch(e){
     psync.erro=e.message; lsSet(PSYNC_LS,psync);
-    psyncEstado=e.message==="senha"?"Senha diferente da usada no outro aparelho: nada foi enviado":e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}). Confira o repositório e a permissão Contents: Read and write`:"Sem conexão: sincroniza quando voltar";
+    psyncEstado=e.message==="senha"?"Senha diferente da usada no outro aparelho: nada foi enviado":e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}). ${/^403/.test(psyncMotivo)?"A chave não pode gravar neste repositório: use Trocar a chave e cole a chave da lista.":"Use Trocar a chave."}`:"Sem conexão: sincroniza quando voltar";
   }
   psyncRodando=false;
   // houve mudança durante a sincronização: roda de novo antes de dizer "sincronizado"
@@ -99,7 +99,7 @@ function renderPacSync(){
     <p class="note">A lista é cifrada neste aparelho com a sua senha antes de sair; o repositório guarda só o arquivo cifrado. Use a mesma senha nos dois aparelhos. Sem a senha, ninguém lê, nem o GitHub; se esquecer, a cópia sincronizada não tem recuperação.</p>
     ${psyncAtivo()?`<p><b>Ligada</b> · ${esc(psync.repo)}</p><div class="actions"><button class="btn" id="psAgora">Sincronizar agora</button><button class="btn" id="psTroca">Trocar a chave</button><button class="btn danger" id="psDesliga">Desligar neste aparelho</button></div>`:`
     <div class="hospform"><label>Repositório privado (dono/nome)<input id="psRepo" autocomplete="off" spellcheck="false" placeholder="usuario/plantao-lista" value="${esc(psync.repo||"")}"></label>
-      <label>Chave do GitHub (leitura e escrita só nesse repositório)<input id="psChave" type="password" autocomplete="off" spellcheck="false"></label>
+      <label>Chave do GitHub (leitura e escrita só nesse repositório)<input id="psChave" class="segredo" type="text" name="ps-token-lista" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="github_pat_…"></label>
       <label>Senha da lista (a mesma nos dois aparelhos)<input id="psSenha" type="password" autocomplete="new-password"></label>
       <div class="actions"><button class="btn primary" id="psLiga">Ligar a sincronização</button></div></div>`}</details>`;
 }
@@ -110,6 +110,8 @@ function bindPacSync(){
     const repo=$("#psRepo").value.trim(), chave=$("#psChave").value.trim(), senha=$("#psSenha").value;
     if(!/^[\w.-]+\/[\w.-]+$/.test(repo)||!chave){toast("Preencha repositório e chave");return}
     if(senha.length<8){toast("Senha com pelo menos 8 caracteres");return}
+    // a chave do Meu hospital só lê o outro repositório: colada aqui, o GitHub recusa (403)
+    if(typeof hosp!=="undefined"&&hosp.cfg&&hosp.cfg.chave&&hosp.cfg.chave===chave){psyncEstado="Essa é a chave do Meu hospital (só lê o repositório do hospital). Cole a chave da lista.";psyncMostra();return}
     liga.disabled=true; psyncEstado="Conferindo…"; psyncMostra();
     try{
       psync={repo,arq:"lista.json",chave};
@@ -119,7 +121,7 @@ function bindPacSync(){
       psync.k=await psyncDeriva(senha,psync.salt); psyncKey=null;
       if(f){try{await psyncDecifra(f)}catch(e){psync={repo};psyncKey=null;psyncEstado="Senha diferente da usada no outro aparelho";psyncMostra();liga.disabled=false;return}}
       lsSet(PSYNC_LS,psync); await pacSync(); renderPacientes();
-    }catch(e){psync={repo};psyncKey=null;psyncEstado=e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}). Confira o repositório e a permissão Contents: Read and write`:e.message==="senha"?"Senha diferente da usada no outro aparelho":"Sem conexão";psyncMostra();liga.disabled=false}
+    }catch(e){psync={repo};psyncKey=null;psyncEstado=e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}). ${/^403/.test(psyncMotivo)?"A chave é válida, mas não pode gravar neste repositório: confira se não é a chave do hospital (o navegador pode ter preenchido sozinho) e a permissão Contents: Read and write.":"Confira a chave colada."}`:e.message==="senha"?"Senha diferente da usada no outro aparelho":"Sem conexão";psyncMostra();liga.disabled=false}
   };
   if($("#psAgora")) $("#psAgora").onclick=()=>pacSync();
   // chave nova (venceu ou foi gerada de novo): a senha e a lista continuam

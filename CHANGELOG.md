@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.17.2 — 2026-10-21
+- Correção: os campos de chave do GitHub (Meu hospital e Sincronizar) eram campos de senha, e o navegador preenchia o da lista com a chave do hospital, que o GitHub recusava (403). Agora o navegador não guarda nem preenche essas chaves, e o site avisa se a chave do hospital for colada na lista.
+
 ## 1.17.1 — 2026-10-21
 - Sincronização da lista: quando o GitHub recusa a chave, aparece o motivo que ele deu (ex.: "403: Resource not accessible by personal access token"); botão "Trocar a chave" para quando a chave vence ou é gerada de novo, sem desligar e sem pedir a senha outra vez.
 

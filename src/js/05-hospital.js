@@ -103,7 +103,7 @@ function renderHospital(){
       <p class="note">O pacote fica só neste aparelho. Nada vai para o site, para o backup ou para a nuvem do painel. Use só em aparelho com login próprio.</p>
       <label>Repositório privado (dono/nome)<input id="hospRepo" autocomplete="off" spellcheck="false" placeholder="usuario/repositorio" value="${esc(c.repo||"")}"></label>
       <label>Arquivo do pacote<input id="hospArq" autocomplete="off" spellcheck="false" placeholder="hospital.json" value="${esc(c.arq||"hospital.json")}"></label>
-      <label>Chave de leitura do GitHub<input id="hospChave" type="password" autocomplete="off" spellcheck="false" placeholder="${c.chave?"guardada neste aparelho":"cole aqui"}"></label>
+      <label>Chave de leitura do GitHub<input id="hospChave" class="segredo" type="text" name="ps-token-hospital" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="${c.chave?"guardada neste aparelho":"cole aqui"}"></label>
       <div class="actions"><button class="btn primary" id="hospBaixar">Baixar do repositório</button><label class="btn" for="hospArquivo">Importar arquivo</label><input type="file" id="hospArquivo" accept=".json,application/json" hidden></div>
       ${p||c.chave?`<button class="btn danger" id="hospApagar">Apagar do aparelho (pacote e chave)</button>`:""}
     </div></details>`;

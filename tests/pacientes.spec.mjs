@@ -173,3 +173,19 @@ test("chave recusada mostra o motivo do GitHub; Trocar a chave mantém a senha e
   expect(erros).toEqual([]);
   await ctx.close();
 });
+
+test("a chave do Meu hospital colada na lista é barrada; campos de chave não são de senha (o navegador não preenche)", async ({ page }) => {
+  const erros = await abrir(page);
+  await page.evaluate(() => localStorage.setItem("mph_hospital_v1", JSON.stringify({ cfg: { repo: "usuario/privado", arq: "hospital.json", chave: "chave-do-hospital" } })));
+  await page.reload();
+  await aba(page, "pacientes");
+  await page.locator(".pcsync summary").click();
+  expect(await page.getAttribute("#psChave", "type")).toBe("text");
+  await page.fill("#psRepo", "usuario/plantao-lista");
+  await page.fill("#psChave", "chave-do-hospital"); await page.fill("#psSenha", "senha-do-plantao-1");
+  await page.click("#psLiga");
+  await expect(page.locator("#psEstado")).toContainText("Essa é a chave do Meu hospital");
+  await aba(page, "hospital");
+  expect(await page.getAttribute("#hospChave", "type")).toBe("text");
+  expect(erros).toEqual([]);
+});

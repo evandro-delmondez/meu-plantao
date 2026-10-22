@@ -658,3 +658,5 @@ button.cid{cursor:pointer;border:1px solid var(--line);background:var(--surface)
 .pcdesf select{width:auto;min-width:0}
 .pcpass summary h3,.pchead+details summary h3{display:inline;margin:0}
 .pcpass textarea{width:100%;margin-top:8px}
+/* chaves do GitHub: escondidas na tela, sem o navegador guardar nem preencher como senha */
+input.segredo{-webkit-text-security:disc;text-security:disc}

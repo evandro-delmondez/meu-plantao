@@ -18,31 +18,34 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
-- **Atendimento, ajustes de 2026-10-21:** ~~HPP em lista, alarmes na HDA, alta formal, Atender no topo e na navegação~~ (1.18.0); ~~mesclar até 3 condutas, Editar padrões, nuvem dos padrões no GitHub~~ (1.19.0). Falta: deixar a tela mais limpa e objetiva (revisar com o médico o que recolher).
-- **Atendimento no fluxo do MV (2026-10-21, `DECISOES.md`):** ~~tela única, HDA "Presença de… Nega…", exame por sistemas com cabeça e orofaringe, Na unidade em lista, CID em destaque, alta em tópicos, pedido de internação~~ (1.16.0). ~~(a) lista de pacientes com sincronização cifrada~~ (1.17.0). ~~(b) exames e (c) encaminhamento: 6 queixas e 20 condutas~~ (1.21.0); faltam as demais condutas da porta e as decisões do médico nas 10 divergências (`docs/REVISAO.md`); (d) ajustar os campos ao modelo real do MV quando o médico trouxer; ~~(e) editar o texto de cada sistema do exame em Meus modelos~~ (1.17.3).
-- **Meu hospital (2026-10-21, decisão em `DECISOES.md`):** ~~(1) gaveta genérica~~ e ~~(2) script do pacote no repositório privado~~ (1.14.0). ~~(3) modo hospital~~ (1.15.0; doses do pacote conferidas). Faltam: decisões do médico nas divergências (registrar no pacote, campo `decisao`); confirmar os pontos em aberto com a coordenação do hospital; (4) evolução por campos (História, Exame físico, Diagnóstico com CID, Tratamento) com cópia por campo — ajustar ao modelo real do prontuário quando o médico trouxer.
-- **Simulação de plantão (2026-10-09, `.rascunhos/simulacao-plantao.md`):** bugs e navegação corrigidos na 1.11.0. Feito na 1.13.0: alertas pelos sinais vitais, NEWS2 e CRB-65. Ficam, com conferência: chips "álcool?" na agitação e agitação na lista da Sala vermelha; conduta de dor de dente; alarmes cruzados (dor epigástrica em diabético → ECG); sinônimos leigos por conduta na busca; ficha da amoxicilina com a faixa da otite (80–90 mg/kg/dia).
-- **Auditoria de segurança (2026-10-09, `.rascunhos/auditoria-seguranca.md`):** 2 críticos corrigidos na 1.10.1 (noradrenalina mcg/min × mcg/kg/min na bomba; paracetamol pediátrico em gotas). Importantes a corrigir na revisão geral: peso padrão de 70 kg e troca adulto/pediátrico sem aviso, sem alerta de peso implausível; tenecteplase ≥ 75 anos divergente entre conduta `sca`/calculadora e cartão/protocolo/ficha; "U"/"UI" em textos copiáveis (ISMP); tetos ausentes (amoxicilina OMA na calculadora, `max_mg` dos antibióticos nas fichas, glicose 10% pediátrica) e ibuprofeno pediátrico 400 × 200 mg; KCl em "mg" no `ped_calc`; alertas de gestante faltando (hidroxizina, itraconazol, rivaroxabana/apixabana, valproato, fenobarbital) e "sem alerta específico" soando como liberação; sem perfil criança nas condutas de adulto; sem alergia a dipirona, AINE e sulfa; edição pessoal antiga esconde revisão nova; hidratação calculada da dengue pode virar "meu padrão"; AINE sem ressalva de dengue em cefaleia, oma, abscesso, itu e cólica; fenobarbital da ficha acima de 60 mg/min; teste automático que compare doses entre abas.
-- **Pedidos de 2026-10-09 (em ordem):** auditoria de segurança; intoxicações e antídotos (cartão Agora + naloxona, flumazenil, N-acetilcisteína com nomograma, carvão ativado, CIATox a um toque); simulação de plantão no celular; revisão geral das 98 prescrições por categoria.
-- **Porta (prioridade desde 2026-10-08):**
-  1. ~~atendimento em 1 tela e sinais de alarme no topo~~ (1.9.0);
-  2. ~~entrada por queixa, 1º lote (6)~~ (1.10.0); faltam lombalgia, dor musculoesquelética e outras queixas;
-  3. ~~alta segura, 1º lote (15)~~ (1.10.0); faltam as demais condutas da porta;
-  - condutas sugeridas pelas queixas: síncope, pericardite, pneumotórax, chikungunya, febre maculosa, meningite; atualizar asma (GINA 2026), dpoc (GOLD 2026), eap (ESC 2026 — conferir o texto integral), gripe (título do Guia de Influenza 2023), dengue (PA diferencial ≤ 20); citação da ureia no CURB-65 da calculadora;
-  4. condições frequentes que faltam (lista abaixo) e revisão das condutas mais usadas na porta.
-Atualizado em 2026-10-05 (versão 1.7.0). Decisões já tomadas: `docs/DECISOES.md`.
-- **Visão "copiloto" (aprovada em 2026-10-05), em fatias:**
-  1. ~~páginas conectadas~~ (1.7.0);
-  2. cartão "Agora": 1ª leva (convulsão, agitação, anafilaxia, sepse, IAM, AVC, PCR) em 1.8.0; faltam as outras 11 emergências da sala vermelha e a hiponatremia grave sintomática;
-  3. confiança visível: ano da fonte, data e selo de conferência em cada item, página de Fontes e aviso de revisão vencida;
-  4. modo transporte/pré-hospitalar (protocolos SAMU 192, sedação do agitado, checklist de transferência).
-- **Fichas que faltam** (aprovar escopo antes): anti-hipertensivos orais, furosemida, AAS e clopidogrel, isossorbida, broncodilatadores, aciclovir e oseltamivir, antifúngicos, albendazol/ivermectina/permetrina, cetirizina e hidroxizina, haloperidol, relaxantes musculares, sumatriptana, colchicina, tiamina, antídotos (naloxona, flumazenil, N-acetilcisteína), levotiroxina e metimazol, tópicos.
-- **Condições frequentes que faltam** (só com aprovação): odontalgia, olho vermelho e corpo estranho, paralisia facial, síncope, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e overdose de opioide, chikungunya e zika, varicela, COVID-19, pneumotórax, pericardite, fraturas e imobilização, cervicalgia, tendinite e bursite.
-- ~~Revisão geral das 98 prescrições~~ (1.12.1 a 1.12.6). Pendências levantadas: altas leigas fora da porta; fichas de sumatriptano, colchicina, alopurinol, ciclobenzaprina, tiamina, clopidogrel, aciclovir, valaciclovir, ivermectina e permetrina; troca global de "UI" por "unidades" (heparina, ocitocina, vasopressina); conferir no ATLS 11 o Parkland pediátrico.
-- **Divergências registradas, sem mudança:** glucagon (RCUK × AAAAI); valproato em 10 × 60 min; biperideno VO infantil (1–2 mg por dia × por tomada).
-- **Noradrenalina no cartão da sepse:** mostrar a vazão inicial em mL/h por diluição (sugestão do conferente).
-- **Opcionais:** escore MACOCHA; sugestões não bloqueantes dos conferentes (Holbrook 2012, teto de glicose ISPAD, bula do Metalyse, PALS 2025).
-- **Endereço mais prático:** domínio próprio (registro.br, cerca de R$ 40/ano) ou meu-plantao.pages.dev. Adiado em 2026-09-27.
+Atualizado em 2026-10-22 (versão 1.22.3). Decisões: `docs/DECISOES.md`. Divergências registradas: `docs/REVISAO.md`.
+
+**Feito em 2026-10-22:** sincronização da lista, nuvem dos padrões, hospital e senha de acesso ligados pelo médico.
+
+**Decisões do médico**
+1. Divergências hospital × app (dengue 20 × 10 mL/kg; AVC alteplase × tenecteplase; PA pós-trombólise; lactato; acesso da noradrenalina; tenecteplase ≥ 75 anos) — registrar no pacote (campo `decisao`).
+2. Divergências dos exames (10, `docs/REVISAO.md` 2026-10-22) e a opcional (antibiótico na PAC com vírus positivo).
+3. Pontos para a coordenação do hospital (`plantao-hsls/docs/divergencias.md`).
+
+**Atendimento e MV**
+4. Modelo real do MV (print dos campos) para ajustar os botões de copiar.
+5. Visual: o médico aponta o que ainda polui.
+
+**Conteúdo clínico (com fonte e conferência)**
+6. Exames e encaminhamento para as demais condutas da porta (feito: 6 queixas e 20 condutas).
+7. Queixas novas: lombalgia, dor musculoesquelética e outras.
+8. Condutas novas: síncope, pericardite, pneumotórax, chikungunya, febre maculosa, meningite, odontalgia.
+9. Condições que faltam: olho vermelho e corpo estranho, paralisia facial, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e overdose de opioide, zika, varicela, COVID-19, fraturas e imobilização, cervicalgia, tendinite e bursite.
+10. Fichas que faltam: sumatriptano, colchicina, alopurinol, ciclobenzaprina, tiamina, clopidogrel, aciclovir, valaciclovir, ivermectina, permetrina, anti-hipertensivos orais, furosemida, isossorbida, broncodilatadores, antifúngicos, cetirizina e hidroxizina, levotiroxina e metimazol, tópicos.
+11. Altas leigas das condutas que ainda não têm.
+12. Atualizações: EAP (ESC 2026), título do guia de influenza, ureia no CURB-65 da calculadora, Parkland pediátrico (ATLS 11), máximo do MART (bula do Vannair).
+13. Segurança (auditoria de 2026-10-09): peso implausível; "UI" → "unidades" (heparina, ocitocina, vasopressina); tetos de dose em fichas; alertas de gestante (hidroxizina, itraconazol, rivaroxabana, apixabana, valproato, fenobarbital); alergia a dipirona, AINE e sulfa; teste que compare doses entre abas.
+14. Da simulação: "álcool?" na agitação; alarme cruzado (epigástrica em diabético → ECG); sinônimos leigos na busca; faixa da otite na ficha da amoxicilina.
+
+**Sala vermelha e extras (baixa prioridade: o médico atende a porta)**
+15. Cartão Agora nas outras 11 emergências e na hiponatremia grave; vazão inicial da noradrenalina em mL/h no cartão da sepse.
+16. Confiança visível (selo, data, página de Fontes); modo transporte (SAMU); domínio próprio (adiado).
+17. Divergências antigas sem mudança: glucagon (RCUK × AAAAI); valproato 10 × 60 min; biperideno VO infantil. Opcionais dos conferentes: MACOCHA, Holbrook 2012, teto de glicose ISPAD, bula do Metalyse, PALS 2025.
 
 ## Ideias em espera
 - **Clínica:**

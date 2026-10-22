@@ -89,7 +89,7 @@ test("dados de uso salvos antes da v1.2 (sem recentes) continuam funcionando", a
 
 test("sala vermelha lista as condutas de emergência e os atalhos", async ({ page }) => {
   const erros = await abrir(page);
-  await page.click("#hRed");
+  await page.click('#secnav [data-sec="sala"]');
   await expect(page.locator("#tab-sala")).toBeVisible();
   expect(await page.locator("#salaConds .item").count()).toBeGreaterThan(5);
   expect(await page.locator("#tab-sala").innerText()).not.toMatch(RUIM);

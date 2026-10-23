@@ -15,7 +15,12 @@ const problemas = [];
 for (const [id, p] of Object.entries(patch)) {
   const c = porId[id];
   if (!c) { problemas.push(`${id}: conduta não existe`); continue; }
-  if (p.casa != null) {
+  if (p.casa != null && p.modo === "acrescentar") {
+    // modo acrescentar (alternativas novas): toda linha da receita antiga continua igual, exceto a da lavagem nasal
+    const nova = new Set(p.casa.split("\n").map((l) => l.trim()));
+    for (const l of String(c.casa).split("\n")) if (l.trim() && !nova.has(l.trim()) && !/lavagem|soro fisiol|narina|nasal/i.test(l)) problemas.push(`${id}: linha da receita sumiu ou mudou: ${l.trim().slice(0, 90)}`);
+    if (!Array.isArray(p.fontes_novas) || !p.fontes_novas.length) problemas.push(`${id}: acrescentou remédio sem fonte (fontes_novas)`);
+  } else if (p.casa != null) {
     // número que some fora dos parênteses só pode ter ido para o aviso ao médico (frase de nota tirada)
     const a = nums(semPar(c.casa)), b = nums(semPar(p.casa)), aviso = nums((p.avisoRx || c.avisoRx || []).join(" ")), sobra = [...b];
     for (const n of a) { const k = sobra.indexOf(n); if (k >= 0) { sobra.splice(k, 1); continue; } if (!aviso.includes(n)) problemas.push(`${id}: o número ${n} saiu da receita e não está no aviso ao médico`); }
@@ -44,6 +49,13 @@ for (const [id, p] of Object.entries(patch)) {
     const re = new RegExp(`("${f}": )"(?:[^"\\\\]|\\\\.)*"`);
     if (!re.test(bloco)) throw new Error(`${id}: campo ${f} não achado`);
     bloco = bloco.replace(re, (m, a) => a + lit(p[f]));
+  }
+  if (Array.isArray(p.fontes_novas) && p.fontes_novas.length) {
+    const m = bloco.match(/"fontes": \[([\s\S]*?)\n  \]/);
+    if (!m) throw new Error(`${id}: fontes não achadas`);
+    const atuais = JSON.parse("[" + m[1] + "]"), novas = p.fontes_novas.filter((f) => !atuais.includes(f));
+    // acrescenta no fim da lista, no mesmo formato (uma fonte por linha)
+    if (novas.length) bloco = bloco.replace(m[0], m[0].replace(/\n  \]$/, novas.map((f) => ",\n   " + JSON.stringify(f)).join("") + "\n  ]"));
   }
   if (p.avisoRx && p.avisoRx.length) {
     bloco = bloco.replace(/\n\s*"avisoRx": \[[^\]]*\],?/, "");

@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.27.0 — 2026-10-23
+- **Anti-inflamatórios alternativos** nas 18 condutas com AINE: além do ibuprofeno, escolha por toque entre cetoprofeno 100 mg, naproxeno 500 mg 12/12h, diclofenaco 50 mg 8/8h (potássico na enxaqueca e na dismenorreia) e, só onde não há febre, nimesulida 100 mg 12/12h — cada um com a duração e a quantidade da conduta (gota: dose de crise). Avisos para o médico: dengue, gestação, doença renal; diclofenaco na doença cardiovascular; nimesulida sem associar a paracetamol.
+- **Lavagem nasal com 50 mL em cada narina** (rinite, gripe, sinusite, tosse), com frascos de 500 mL suficientes para o uso do dia (decisão do médico; não há diretriz que fixe o volume).
+- **Lombalgia: relaxantes como alternativa** — ciclobenzaprina 5 mg 8/8h ou 10 mg 12/12h e tiocolchicosídeo (Coltrax) 4 mg, 2 cp 12/12h, no máximo 7 dias; alerta do tiocolchicosídeo no perfil gestante. Aviso de ciclobenzaprina com tramadol.
+- Conferência independente das doses contra as bulas (Anvisa, fabricante, EMA, SmPC): 1 crítico corrigido (Dorflex retirado: somava dipirona à dipirona já prescrita) e 5 importantes.
+
 ## 1.26.0 — 2026-10-22
 - **Alergia a dipirona** (novo perfil, nos Dados do paciente, nos Alertas da conduta, ou sozinho quando "dipirona" é escrita em Alergias no Atendimento): na receita do paciente, cada dipirona oral vira **paracetamol 750 mg, 1 cp de 6/6 h, no máximo 4 cp por dia** (mesmo número de tomadas); se a receita já tem paracetamol, a dipirona só sai. Aviso para o médico acima da receita e alerta na unidade (não usar dipirona injetável; se também reagiu a AAS/AINE, evitar todo AINE; hepatopatia grave ou etilismo: evitar paracetamol). Dose conferida contra a bula do paracetamol e da dipirona e a EAACI/ENDA.
 - **Receituário com escolha por toque no Atendimento**, como na conduta (o estado é o mesmo nas duas telas); a escolha por toque agora vale para toda receita com 2 ou mais remédios, para tirar ou pôr cada um.

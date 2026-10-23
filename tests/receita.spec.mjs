@@ -11,10 +11,10 @@ test("receita por toque: só o escolhido vai para a receita, renumerada, e Novo 
   expect(t.match(/Amoxicilina/g).length).toBe(1);           // uma opção só, não as 8
   expect(t).not.toMatch(/^Ou\b|^#/m);
   await page.locator("#detail .rxc", { hasText: "Se alergia a penicilina" }).click();
-  await page.locator("#detail .rxc.rxsem").first().click();  // sem amoxicilina
-  await page.locator("#detail .rxc", { hasText: "Ibuprofeno" }).click();
+  await page.locator("#detail .rxlin", { hasText: "Amoxicilina" }).locator(".rxsem").click();   // sem amoxicilina
+  await page.locator("#detail .rxlin", { hasText: "Ibuprofeno" }).locator(".rxsem").click();    // sem anti-inflamatório
   t = await receita(page);
-  expect(t).not.toMatch(/Amoxicilina|Ibuprofeno/);
+  expect(t).not.toMatch(/Amoxicilina|Ibuprofeno|Cetoprofeno|Naproxeno|Diclofenaco/);
   expect(t).toMatch(/^4\) Azitromicina/m);                   // renumerada
   await page.evaluate(() => document.querySelector("#atdIr").click());
   expect(await page.locator('#atCorpo [data-atout="rx"]').inputValue()).toMatch(/Azitromicina/);
@@ -115,5 +115,18 @@ test("alergia a dipirona: receita troca por paracetamol, aviso para o médico e 
   await page.evaluate(() => document.querySelector("#atdIr").click());
   await page.locator('#atCorpo [data-atd="alergia"]').fill("dipirona");
   await expect(page.locator('#atCorpo [data-atout="rx"]')).not.toHaveValue(/dipirona/i);
+  expect(erros).toEqual([]);
+});
+
+test("anti-inflamatório: escolher a alternativa troca só o item, com dose e duração da conduta", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  await conduta(page, "lombalgia");
+  const linha = page.locator("#detail .rxlin", { hasText: "Ibuprofeno" });
+  await linha.locator(".rxc", { hasText: "Naproxeno" }).click();
+  const t = await receita(page);
+  expect(t).toMatch(/Naproxeno 500mg[^\n]*\n[^\n]*12\/12h/);
+  expect(t).not.toMatch(/Ibuprofeno/);
+  expect(t).not.toMatch(/Dorflex|orfenadrina/i);
+  await expect(page.locator("#detail .rxaviso")).toContainText(/cardiovascular/);
   expect(erros).toEqual([]);
 });

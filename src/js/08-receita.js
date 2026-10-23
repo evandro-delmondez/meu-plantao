@@ -26,8 +26,8 @@ function rxRotulo(op){
   const freq=(op.linhas.slice(1).join(" ").match(/(\d+\/\d+ ?h|\d+x ao dia|dose única|1x por semana)/i)||[])[1];
   return nome+(freq?` · ${freq}`:op.ou?` · ${op.ou.replace(/[()]/g,"")}`:"");
 }
-// só condutas com alternativas ou blocos opcionais ganham a montagem
-function rxTemMontar(it){const b=rxParse(rxTxt(it.casa||""));return b.length>1||b.some(x=>x.partes.some(p=>p.tipo==="slot"&&p.ops.length>1))}
+// receita com alternativas, blocos opcionais ou 2 ou mais remédios: o médico escolhe por toque o que vai
+function rxTemMontar(it){const b=rxParse(rxTxt(it.casa||""));return b.length>1||b.some(x=>x.partes.some(p=>p.tipo==="slot"&&p.ops.length>1))||b.reduce((n,x)=>n+x.partes.filter(p=>p.tipo==="slot").length,0)>=2}
 // o primeiro bloco com remédio é a receita principal (às vezes ele próprio tem título "#"): vem ligado; os demais, desligados
 const rxPrimeiro=blocos=>blocos.findIndex(b=>b.partes.some(p=>p.tipo==="slot"));
 const rxAtivo=(blocos,st,bi)=>st.b[bi]??(bi===0||bi===rxPrimeiro(blocos));
@@ -70,10 +70,11 @@ function renderRxMontar(it){
   });
   return `<div class="rxmontar"><span class="lbl">Montar a receita (toque para escolher; só o escolhido vai para a receita e a evolução):</span>${linhas.map(x=>Array.isArray(x)?`<div class="rxlin">${x.join("")}</div>`:x).join("")}</div>`;
 }
-function bindRxMontar(it){
-  const box=$("#detail .rxmontar"); if(!box) return;
+// a mesma escolha por toque serve na conduta e no Atendimento (receituário): o estado é um só, por conduta
+function bindRxMontar(it,box=$("#detail .rxmontar"),refaz=renderDetail){
+  if(!box) return;
   const st=rxEstado(it.id);
-  const aplica=()=>{rxOut[it.id]=rxMonta(it); if(sess[it.id]) delete sess[it.id].casa; renderDetail()};
+  const aplica=()=>{rxOut[it.id]=rxMonta(it); if(sess[it.id]) delete sess[it.id].casa; refaz()};
   box.querySelectorAll("[data-rxs]").forEach(b=>b.onclick=()=>{st.s[b.dataset.rxs]=+b.dataset.rxv;aplica()});
   box.querySelectorAll("[data-rxb]").forEach(b=>b.onclick=()=>{const i=+b.dataset.rxb;st.b[i]=!rxAtivo(rxParse(rxTxt(it.casa||"")),st,i);aplica()});
 }

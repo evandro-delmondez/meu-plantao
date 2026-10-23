@@ -4,6 +4,7 @@ beers:"American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 20
 fdaNsaid:"FDA Drug Safety Communication (out/2020): evitar AINE a partir de 20 semanas de gestação. https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic",
 acog717:"ACOG Committee Opinion 717: Sulfonamides, Nitrofurantoin, and Risk of Birth Defects (2017). https://pubmed.ncbi.nlm.nih.gov/28832488/",
 fdaFlu:"FDA Drug Safety Communication (2016): fluconazol oral na gestação. https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-fda-review-study-examining-use-oral-fluconazole-diflucan-pregnancy",
+bulaParacetamol:"Bula do paracetamol 750 mg registrada na Anvisa (Tylenol, Kenvue): adulto, até 1 g por dose e 4 g por dia; evitar na hepatopatia grave e no etilismo. Bula da dipirona (Novalgina): contraindicada na hipersensibilidade a pirazolonas e em quem teve broncoespasmo, urticária ou angioedema com AAS ou AINE. Kowalski ML et al. EAACI/ENDA, Allergy 2013;68:1219 (PMID 24117484).",
 aaaai:"Khan DA et al. Drug allergy: A 2022 practice parameter update (J Allergy Clin Immunol 2022). https://www.jacionline.org/article/S0091-6749(22)01186-1/fulltext",
 ata:"Ross DS et al. 2016 ATA Guidelines for Hyperthyroidism (Thyroid 2016).",
 fdaFq:"FDA Drug Safety Communications (2016 e 2018): fluoroquinolonas — tendinopatia, neuropatia, efeitos no SNC, hipoglicemia e aneurisma de aorta, maior risco em idosos.",
@@ -109,6 +110,8 @@ const PNCTXT={
  cefx:["Cefalexina compartilha a cadeia lateral da amoxicilina/ampicilina. Reação antiga e não anafilática: pode usar. Anafilaxia: preferir não betalactâmico ou cefalosporina de cadeia diferente.","aaaai"],
  cefo:["Cadeia lateral diferente das penicilinas: pode ser usada na alergia não anafilática; na anafilaxia, cefalosporina não relacionada também pode ser considerada.","aaaai"]
 };
+// alergia a dipirona: não usar dipirona (nem injetável); a receita troca por paracetamol 750 mg (texto a conferir)
+const DIPTXT=["Alergia a dipirona: não usar dipirona, inclusive injetável. Alternativa: paracetamol VO até 750 mg/dose. Se também reagiu a AAS/AINE, evitar todo AINE.","bulaParacetamol"];
 /* Alertas específicos da conduta (além dos medicamentos) */
 const ITEM_ALERTS={
  dengue:{gest:["Gestante com dengue é classificada no mínimo como grupo B (condição especial): hemograma obrigatório.","ms"],idoso:["Idoso com dengue é condição especial (grupo B no mínimo).","ms"]},

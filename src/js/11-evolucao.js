@@ -308,6 +308,7 @@ function renderEv(){
     ${unidH?`<div class="atunid"><span class="lbl">Na unidade (para selecionar no prontuário)</span>${unidH}</div>`:""}
     ${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")+edTxt(c,"casa","receita")+edTxt(c,"orient","orientações")).join(""):""}
     ${unidH?atSaida("punid","Prescrição na unidade"):""}
+    ${cs.map(c=>{const m=renderRxMontar(c);return m?`<div class="atrx" data-rxc="${esc(c.id)}">${cs.length>1?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${m}</div>`:""}).join("")}
     ${cs.map(rxAvisoHTML).join("")}
     ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}
     <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">${[["atestado","Atestado"],["comparecimento","Comparecimento"],["nenhum","Nenhum"]].map(([v,r])=>`<option value="${v}" ${atd.tipo===v?"selected":""}>${r}</option>`).join("")}</select></label>
@@ -395,6 +396,8 @@ function bindEv(it){
   if($("#atEdSalva")) $("#atEdSalva").onclick=atSalvaPadroes;
   box.querySelectorAll("[data-edorig]").forEach(b=>b.onclick=()=>{const t=b.closest(".ated").querySelector("textarea");t.value=b.dataset.edorig;grow(t)});
   atConds().forEach((c,i)=>bindChecklist(c,"#atChk"+i,()=>{renderEv();renderDetail()}));
+  // receituário: escolher alternativas e tirar ou pôr remédios por toque, como na conduta
+  box.querySelectorAll(".atrx[data-rxc]").forEach(w=>{const c=getItem(w.dataset.rxc);if(c)bindRxMontar(c,w.querySelector(".rxmontar"),()=>{const y=window.scrollY;renderEv();renderDetail();window.scrollTo(0,y)})});
   linkMeds(box);
   atAtualiza();
 }

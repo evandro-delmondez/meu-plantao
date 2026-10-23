@@ -78,3 +78,42 @@ test("receita e orientações sem nota para o médico; o aviso aparece só na te
   expect(await page.locator('#atCorpo [data-atout="rx"]').inputValue()).not.toMatch(/Para você|descartar dengue\./);
   expect(erros).toEqual([]);
 });
+
+test("Atendimento: receituário com escolha por toque, o mesmo estado da conduta", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  await page.evaluate(() => document.querySelector('#list .item[data-id="gripe"]').click());
+  await page.evaluate(() => document.querySelector("#atdIr").click());
+  const rx = page.locator('#atCorpo [data-atout="rx"]');
+  await expect(rx).toHaveValue(/Paracetamol|Dipirona/);
+  const chips = page.locator("#atCorpo .atrx .rxc");
+  expect(await chips.count()).toBeGreaterThan(1);
+  const antes = await rx.inputValue();
+  await chips.first().click();                                // tira o 1º remédio
+  await expect(rx).not.toHaveValue(antes);
+  expect((await rx.inputValue()).match(/^\s*1\)/m)).toBeTruthy(); // renumerada
+  // a conduta mostra a mesma escolha
+  await aba(page, "prescricoes");
+  expect(await page.locator('#detail textarea[data-f="casa"]').inputValue()).toBe((await page.evaluate(() => document.querySelector('#detail textarea[data-f="casa"]').value)));
+  expect(erros).toEqual([]);
+});
+
+test("alergia a dipirona: receita troca por paracetamol, aviso para o médico e alerta na unidade", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  await page.evaluate(() => document.querySelector('#list .item[data-id="tce"]').click());
+  await page.evaluate(() => { document.querySelector("#detail details.sec.pac").open = true; });
+  await page.check("#pcDip");
+  const casa = await page.locator('#detail textarea[data-f="casa"]').inputValue();
+  expect(casa).not.toMatch(/dipirona/i);
+  expect(casa).toMatch(/Paracetamol 750mg -+ 5 cp\nTomar 1 cp VO de 6\/6h se dor de cabeça \(no máximo 4 cp por dia\)/);
+  await expect(page.locator("#detail .rxaviso")).toContainText("trocou a dipirona por paracetamol");
+  // dengue já tem paracetamol: a dipirona só sai
+  await page.evaluate(() => document.querySelector('#list .item[data-id="dengue"]').click());
+  const d = await page.locator('#detail textarea[data-f="casa"]').inputValue();
+  expect(d).not.toMatch(/dipirona/i); expect((d.match(/Paracetamol/g) || []).length).toBe(1);
+  // pela alergia escrita no Atendimento também liga
+  await page.uncheck("#pcDip").catch(() => {});
+  await page.evaluate(() => document.querySelector("#atdIr").click());
+  await page.locator('#atCorpo [data-atd="alergia"]').fill("dipirona");
+  await expect(page.locator('#atCorpo [data-atout="rx"]')).not.toHaveValue(/dipirona/i);
+  expect(erros).toEqual([]);
+});

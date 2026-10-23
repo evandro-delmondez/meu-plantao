@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.26.0 — 2026-10-22
+- **Alergia a dipirona** (novo perfil, nos Dados do paciente, nos Alertas da conduta, ou sozinho quando "dipirona" é escrita em Alergias no Atendimento): na receita do paciente, cada dipirona oral vira **paracetamol 750 mg, 1 cp de 6/6 h, no máximo 4 cp por dia** (mesmo número de tomadas); se a receita já tem paracetamol, a dipirona só sai. Aviso para o médico acima da receita e alerta na unidade (não usar dipirona injetável; se também reagiu a AAS/AINE, evitar todo AINE; hepatopatia grave ou etilismo: evitar paracetamol). Dose conferida contra a bula do paracetamol e da dipirona e a EAACI/ENDA.
+- **Receituário com escolha por toque no Atendimento**, como na conduta (o estado é o mesmo nas duas telas); a escolha por toque agora vale para toda receita com 2 ou mais remédios, para tirar ou pôr cada um.
+
 ## 1.25.0 — 2026-10-22
 - **Receita e orientações só com o que o paciente deve ler** (91 condutas): saíram da receita as notas para o médico, como "(só se dengue descartada)", "(alergia a penicilina)", "(alternativa…)" e linhas de gestante, criança ou CID; ficaram dose, horário, duração, limite diário, nome comercial e modo de usar. As orientações foram reescritas em linguagem simples e formal, dirigidas ao paciente ("Beba…", "Volte ao pronto-socorro se…"), sem "Orientar…" ou "Explicar…".
 - **Aviso para o médico** ("Para você, não vai na receita"), acima da receita na conduta e na prescrição do Atendimento, com o que saiu do texto do paciente; nunca entra no que é copiado.

@@ -4,9 +4,30 @@ const sess={}; // edições temporárias da prescrição: id -> {casa,unidade,or
 // no modo hospital, "Na unidade" vem do protocolo do hospital (a versão do app fica recolhida logo abaixo)
 // receita: nota para o médico (linha "Gestante…", "Criança…", "CID…" ou só entre parênteses) nunca vai para o paciente
 const rxLimpa=t=>String(t||"").split("\n").filter(l=>!RX_NOTA.test(l)).join("\n");
-const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="unidade"&&hospUnid(it.id)!=null)return hospUnid(it.id);if(f==="casa"&&rxTemMontar(it))return rxOut[it.id]??rxMonta(it);if(f==="casa")return rxLimpa(rxTxt(it.casa||""));return rxTxt(it[f]||"")};
+// alergia a dipirona (perfil): na receita do paciente, a dipirona oral vira paracetamol; se já há paracetamol, só sai
+const DIP_PARA={nome:"Paracetamol 750mg",tomar:"Tomar 1 cp VO",max:"no máximo 4 cp por dia"};
+function rxSemDipirona(t){
+  if(!/dipirona/i.test(t)) return t;
+  if(/^\s*\d+\)\s*Paracetamol/im.test(t)){
+    t=t.replace(/^[ \t]*\d+\)\s*Dipirona[^\n]*(?:\n(?![ \t]*\d+\)|[ \t]*$|[ \t]*Ou\b)[^\n]*)*\n?/gim,"").replace(/se febre persistir/gi,"se dor ou febre").replace(/\s*\(?intercalar com a dipirona;?\s*/gi," (").replace(/\(\s*\)/g,"").replace(/ \(([^)]*)\)/g," ($1)");
+    let n=0; return t.replace(/^(\s*)\d+\)/gm,(m,e)=>`${e}${++n})`).replace(/\(\s+/g,"(").replace(/ +\./g,".");
+  }
+  return t.replace(/Dipirona (?:500 ?mg|1 ?g)( *-+ *)(\d+) cp(\n\s*)Tomar (?:1 a )?(\d) cp VO([^\n]*)/gi,(m,d,n,sp,cps,resto)=>{
+    const tomadas=Math.ceil(+n/(+cps||1));
+    resto=/m[áa]x/i.test(resto)?resto.replace(/\((?:no )?m[áa]x(?:imo|\.)\s*[\d,]+\s*(?:cp|g)(?:\s*por dia|\/dia)?\)/i,`(${DIP_PARA.max})`):resto.replace(/\.?\s*$/,` (${DIP_PARA.max}).`);
+    return `${DIP_PARA.nome}${d}${tomadas} cp${sp}${DIP_PARA.tomar}${resto}`;
+  });
+}
+const rxAlergia=t=>perfisAtivos().has("dip")?rxSemDipirona(t):t;
+const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="unidade"&&hospUnid(it.id)!=null)return hospUnid(it.id);if(f==="casa"&&rxTemMontar(it))return rxAlergia(rxOut[it.id]??rxMonta(it));if(f==="casa")return rxAlergia(rxLimpa(rxTxt(it.casa||"")));return rxTxt(it[f]||"")};
 // avisos para o médico sobre a receita (ex.: "Ibuprofeno só depois de descartar dengue"): na tela, nunca no texto copiado
-const rxAvisoHTML=c=>(c&&Array.isArray(c.avisoRx)&&c.avisoRx.length)?`<div class="rxaviso" role="note"><b>Para você, não vai na receita:</b><ul>${c.avisoRx.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`:"";
+function rxAvisoHTML(c){
+  if(!c) return "";
+  const l=[...(Array.isArray(c.avisoRx)?c.avisoRx:[])];
+  // alergia a dipirona: diz o que foi trocado e avisa se ainda sobrou dipirona (ex.: associação)
+  if(perfisAtivos().has("dip")&&/dipirona/i.test(c.casa||"")){l.unshift(/dipirona/i.test(cur(c,"casa"))?"Alergia a dipirona: a receita ainda cita dipirona (em associação ou texto livre). Troque à mão.":/^\s*\d+\)\s*Paracetamol/im.test(rxLimpa(rxTxt(c.casa||"")))?"Alergia a dipirona: a dipirona saiu da receita (o paracetamol já estava nela).":"Alergia a dipirona: a receita trocou a dipirona por paracetamol 750 mg. Hepatopatia grave ou etilismo: evitar paracetamol (bula).")}
+  return l.length?`<div class="rxaviso" role="note"><b>Para você, não vai na receita:</b><ul>${l.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`:"";
+}
 // "Na unidade" em lista: um item por remédio ou medida, com os detalhes embaixo (para olhar e selecionar no prontuário)
 function unidLista(t){
   const itens=[], intro=[]; let cur_=null;
@@ -34,32 +55,33 @@ window.addEventListener("resize",growAll);
 try{document.fonts&&document.fonts.ready.then(growAll)}catch(e){}
 
 /* dados do paciente (só na memória desta aba; não são salvos) */
-const pac={idade:"",sexo:"M",peso:"",cr:"",gest:false,pnc:false};
+const pac={idade:"",sexo:"M",peso:"",cr:"",gest:false,pnc:false,dip:false};
 function clcr(){const i=parseFloat(pac.idade),p=parseFloat(String(pac.peso).replace(",",".")),c=parseFloat(String(pac.cr).replace(",","."));if(!(i>0&&p>0&&c>0))return null;return cockcroft(i,p,c,pac.sexo==="F")}
-function perfisAtivos(){const s=new Set(ui.perfil||[]);if(parseFloat(pac.idade)>=65)s.add("idoso");const c=clcr();if(c!=null&&c<60)s.add("renal");if(pac.gest)s.add("gest");if(pac.pnc)s.add("pnc");return s}
+function perfisAtivos(){const s=new Set(ui.perfil||[]);if(parseFloat(pac.idade)>=65)s.add("idoso");const c=clcr();if(c!=null&&c<60)s.add("renal");if(pac.gest)s.add("gest");if(pac.pnc)s.add("pnc");if(pac.dip||(typeof atd!=="undefined"&&/dipirona|metamizol|novalgina/i.test(atd.alergia||"")))s.add("dip");return s}
 function renalAjustes(it){const c=clcr();if(c==null)return null;const txt=cur(it,"casa")+"\n"+cur(it,"unidade");const out=[];for(const r of RENAL){if(!r.re.test(txt))continue;const f=r.f.find(([mx])=>c<mx);out.push({nome:r.nome,msg:f?f[1]:"Sem ajuste nesta faixa de ClCr.",src:r.src})}return {c,out}}
 function renderPac(it){
   const c=clcr();
-  return `<details class="sec pac" ${pac.idade||pac.cr||pac.gest||pac.pnc?"open":""}><summary class="sec-h" style="cursor:pointer"><h3>Dados do paciente</h3><span class="alsum">idade, peso e creatinina para ajuste de dose</span></summary>
+  return `<details class="sec pac" ${pac.idade||pac.cr||pac.gest||pac.pnc||pac.dip?"open":""}><summary class="sec-h" style="cursor:pointer"><h3>Dados do paciente</h3><span class="alsum">idade, peso e creatinina para ajuste de dose</span></summary>
   <div class="pacgrid">
     <label class="f">Idade<input class="inp" id="pcIdade" inputmode="numeric" value="${esc(pac.idade)}"></label>
     <label class="f">Sexo<select class="inp" id="pcSexo"><option value="M" ${pac.sexo==="M"?"selected":""}>Masculino</option><option value="F" ${pac.sexo==="F"?"selected":""}>Feminino</option></select></label>
     <label class="f">Peso (kg)<input class="inp" id="pcPeso" inputmode="decimal" value="${esc(pac.peso)}"></label>
     <label class="f">Creatinina (mg/dL)<input class="inp" id="pcCr" inputmode="decimal" value="${esc(pac.cr)}"></label>
   </div>
-  <div class="pacres"><label class="check"><input type="checkbox" id="pcGest" ${pac.gest?"checked":""}> Gestante</label> <label class="check"><input type="checkbox" id="pcPnc" ${pac.pnc?"checked":""}> Alergia a penicilina</label>
+  <div class="pacres"><label class="check"><input type="checkbox" id="pcGest" ${pac.gest?"checked":""}> Gestante</label> <label class="check"><input type="checkbox" id="pcPnc" ${pac.pnc?"checked":""}> Alergia a penicilina</label> <label class="check"><input type="checkbox" id="pcDip" ${pac.dip?"checked":""}> Alergia a dipirona</label>
   <p>${c!=null?`ClCr estimado (Cockcroft-Gault): <b>${Math.round(c)} mL/min</b>. Idade ≥ 65 marca "idoso" e ClCr < 60 marca "insuficiência renal" automaticamente.`:"Preencha idade, sexo, peso e creatinina para estimar o ClCr e ajustar as doses."}</p>
   <p class="note">Esses dados ficam só nesta aba e somem ao fechar a página.</p></div></details>`;
 }
-const PERFIS=[["gest","Gestante"],["idoso","Idoso"],["renal","Insuficiência renal"],["pnc","Alergia a penicilina"]];
-const PERFIL_CURTO={gest:"Gestante",idoso:"Idoso",renal:"Rim",pnc:"Alergia à penicilina"};
+const PERFIS=[["gest","Gestante"],["idoso","Idoso"],["renal","Insuficiência renal"],["pnc","Alergia a penicilina"],["dip","Alergia a dipirona"]];
+const PERFIL_CURTO={gest:"Gestante",idoso:"Idoso",renal:"Rim",pnc:"Alergia à penicilina",dip:"Alergia à dipirona"};
 function alertasDe(it){
   const txt=cur(it,"casa")+"\n"+cur(it,"unidade");
-  const out={gest:[],idoso:[],renal:[],pnc:[]}; const usadas=new Set();
+  const out={gest:[],idoso:[],renal:[],pnc:[],dip:[]}; const usadas=new Set();
   const add=(g,nome,[msg,src])=>{out[g].push({nome,msg,src});usadas.add(src)};
   for(const r of RULES){ if(r.re.test(txt)) for(const g of ["gest","idoso","renal"]) if(r[g]) add(g,r.nome,r[g]); }
   const ia=ITEM_ALERTS[it.id]; if(ia) for(const g in ia) add(g,"Esta conduta",ia[g]);
   for(const k of ["pen","cefx","cefo"]) if(PNC[k].test(txt)) add("pnc",{pen:"Penicilinas",cefx:"Cefalexina",cefo:"Outras cefalosporinas"}[k],PNCTXT[k]);
+  if(/dipirona|metamizol/i.test((it.casa||"")+"\n"+cur(it,"unidade"))) add("dip","Dipirona",DIPTXT);
   return {out,usadas:[...usadas]};
 }
 function renderAlertas(it){
@@ -217,9 +239,9 @@ function renderDetail(){
   el.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{const g=b.dataset.perfil;const p=new Set(ui.perfil||[]);const liga=!perfisAtivos().has(g);liga?p.add(g):p.delete(g);ui.perfil=[...p];if(g==="pnc")pac.pnc=liga;if(g==="gest")pac.gest=liga&&pac.gest;saveUI();renderDetail()});
   $("#cpAll").onclick=e=>{copy(fullText(it),e.currentTarget)};
   $("#favBtn").onclick=()=>toggleFav(it.id);
-  const pcUp=()=>{pac.idade=$("#pcIdade").value;pac.sexo=$("#pcSexo").value;pac.peso=$("#pcPeso").value;pac.cr=$("#pcCr").value;pac.gest=$("#pcGest").checked;pac.pnc=$("#pcPnc").checked;const a=document.activeElement&&document.activeElement.id;renderDetail();if(a&&$("#"+a)){const e=$("#"+a);e.focus();if(e.setSelectionRange&&e.type!=="checkbox"&&e.tagName==="INPUT")try{e.setSelectionRange(e.value.length,e.value.length)}catch(x){}}};
+  const pcUp=()=>{pac.idade=$("#pcIdade").value;pac.sexo=$("#pcSexo").value;pac.peso=$("#pcPeso").value;pac.cr=$("#pcCr").value;pac.gest=$("#pcGest").checked;pac.pnc=$("#pcPnc").checked;pac.dip=$("#pcDip").checked;const a=document.activeElement&&document.activeElement.id;renderDetail();if(a&&$("#"+a)){const e=$("#"+a);e.focus();if(e.setSelectionRange&&e.type!=="checkbox"&&e.tagName==="INPUT")try{e.setSelectionRange(e.value.length,e.value.length)}catch(x){}}};
   ["pcIdade","pcPeso","pcCr"].forEach(id=>$("#"+id).addEventListener("change",pcUp));
-  ["pcSexo","pcGest","pcPnc"].forEach(id=>$("#"+id).addEventListener("change",pcUp));
+  ["pcSexo","pcGest","pcPnc","pcDip"].forEach(id=>$("#"+id).addEventListener("change",pcUp));
   if(it.id==="dengue") bindDengueCalc(it);
   bindChecklist(it);
   bindAgora(it);

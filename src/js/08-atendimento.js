@@ -1,7 +1,7 @@
 /* ---------- atendimento em 1 tela (porta): sinais de alarme no topo e "Fechar o atendimento" na conduta ---------- */
 // tudo do paciente fica só na memória da aba (regra 5); "Novo paciente" limpa
 const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",tax:"",hgt:"",o2:"",cons:"",
-  queixa:null,extras:[],exLab:"",exImg:"",condLivre:"",cond:{},medSel:{},exSexo:null,exPerfil:null,sis:null,exLivre:"",diag:"",destino:null,
+  queixa:null,extras:[],exLab:"",exImg:"",condLivre:"",cond:{},medSel:{},visto:{},decisao:null,exSexo:null,exPerfil:null,sis:null,exLivre:"",diag:"",destino:null,
   reav:{},reavTxt:"",altaOri:{},alarOff:{},altaLivre:"",compreende:false,
   intern:{local:"",motivo:"",obj:{},objLivre:"",lab:"",laudos:"",feito:"",parecer:""},
   tipo:"atestado",dias:"",aut:false,hora:"",man:{}});

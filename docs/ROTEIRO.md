@@ -28,7 +28,7 @@ Atualizado em 2026-10-22 (versão 1.22.3). Decisões: `docs/DECISOES.md`. Diverg
 3. Pontos para a coordenação do hospital (`plantao-hsls/docs/divergencias.md`).
 
 **Atendimento e MV**
-4. Modelo real do MV (print dos campos) para ajustar os botões de copiar.
+4. Modelo real do MV (print dos campos) para ajustar os botões de copiar; print da lista de exames do MV para usar os nomes do hospital no "+ pedir".
 5. Visual: o médico aponta o que ainda polui.
 
 **Conteúdo clínico (com fonte e conferência)**

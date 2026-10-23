@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.28.0 — 2026-10-23
+- **Exames no fluxo do prontuário**: no Atendimento, cada exame de "Pedir quando" tem **+ pedir** — vai para "Exames laboratoriais" ou "Exames de imagem" e para a Conduta ("Solicito exames…"); tocar de novo tira. O primeiro bloco de exames já vem aberto; "Não pedir" continua à vista.
+- **Reavaliação guiada**: o que ficou pendente aparece para conferir ("Ver os exames: …", "Ver como ficou depois da medicação") e a **decisão** — alta para casa, observação, internar (para onde) ou transferir — já escolhe o destino da alta.
+- **Lista de pacientes automática**: exames pedidos e medicação na unidade viram etapas pendentes sozinhos; o que foi visto na reavaliação marca como pronto; a decisão grava o desfecho (e o leito). Cada paciente mostra "A fazer: …".
+
 ## 1.27.0 — 2026-10-23
 - **Anti-inflamatórios alternativos** nas 18 condutas com AINE: além do ibuprofeno, escolha por toque entre cetoprofeno 100 mg, naproxeno 500 mg 12/12h, diclofenaco 50 mg 8/8h (potássico na enxaqueca e na dismenorreia) e, só onde não há febre, nimesulida 100 mg 12/12h — cada um com a duração e a quantidade da conduta (gota: dose de crise). Avisos para o médico: dengue, gestação, doença renal; diclofenaco na doença cardiovascular; nimesulida sem associar a paracetamol.
 - **Lavagem nasal com 50 mL em cada narina** (rinite, gripe, sinusite, tosse), com frascos de 500 mL suficientes para o uso do dia (decisão do médico; não há diretriz que fixe o volume).

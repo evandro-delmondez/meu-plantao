@@ -33,7 +33,7 @@ test("nome no Atendimento põe na lista; etapas, desfecho e passagem; volta ao a
   const msg = await page.inputValue("#pcPassTxt");
   expect(msg).toContain("• Maria Teste da Silva");
   expect(msg).toContain("Hipótese: Pneumonia");
-  expect(msg).toContain("exame (RX de tórax) pendente");
+  expect(msg).toContain("ver exames (RX de tórax)");
   expect(msg).toContain("parecer da Cardiologia pendente");
   expect(msg).toContain("Sabe da troca: não");
   expect(msg).toContain("Assume: Dr. Plantonista B · consultório 4");
@@ -207,4 +207,40 @@ test("lista: repositório público (ex.: o do site) é recusado, sem gravar nada
   expect(store.n).toBe(0);
   expect(erros).toEqual([]);
   await ctx.close();
+});
+
+test("o Atendimento alimenta a lista: exames pedidos e medicação viram pendências; a decisão vira o desfecho", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "prescricoes");
+  await page.evaluate(() => document.querySelector('#list .item[data-id="pac"]').click());
+  await page.evaluate(() => document.querySelector("#atdIr").click());
+  await page.fill("#atNome", "Paciente Fluxo Teste"); await page.dispatchEvent("#atNome", "change");
+  // "+ pedir" leva o exame ao campo certo e à conduta
+  const pedir = page.locator("#atCorpo [data-expedir]").first();
+  const nome = await pedir.getAttribute("data-expedir");
+  await pedir.click();
+  const campos = (await page.inputValue('#atCorpo [data-atd="exLab"]')) + (await page.inputValue('#atCorpo [data-atd="exImg"]'));
+  expect(campos).toContain(nome);
+  await expect(page.locator('#atCorpo [data-atout="trat"]')).toHaveValue(/Solicito exames/);
+  await page.click('#atCorpo [data-atchip="cond"][data-k="med"]');
+  await expect(page.locator("#atCorpo .atpend")).toContainText("Ver os exames");
+  await expect(page.locator("#atCorpo .atpend")).toContainText("Ver como ficou depois da medicação");
+  await page.waitForTimeout(800);
+  await aba(page, "pacientes");
+  const it = page.locator("#pcCorpo .pcitem", { hasText: "Paciente Fluxo Teste" });
+  await expect(it.locator(".pcafazer")).toContainText("ver exames");
+  await expect(it.locator(".pcafazer")).toContainText("ver como ficou depois da medicação");
+  // reavaliação: vistos e decisão de internar na UTI
+  await it.locator("[data-pabrir]").first().click();
+  await page.locator('#atCorpo [data-atvisto="ex"]').check();
+  await page.locator('#atCorpo [data-atvisto="med"]').check();
+  await page.click('#atCorpo [data-atdec="internacao"]');
+  await page.locator('#atCorpo .atreav [data-atd="intern.local"]').selectOption("uti");
+  await expect(page.locator('#atCorpo [data-atout="alta"]')).toHaveValue(/internação/i);
+  await page.waitForTimeout(800);
+  await aba(page, "pacientes");
+  await expect(it.locator('[data-pd="tipo"]')).toHaveValue("internacao");
+  await expect(it.locator('[data-pd="onde"]')).toHaveValue("uti");
+  await expect(it.locator('[data-pe="exame"]')).toContainText("pronto");
+  expect(erros).toEqual([]);
 });

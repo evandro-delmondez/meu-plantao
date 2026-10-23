@@ -244,6 +244,22 @@ function atQueixaHTML(temConduta){
     ${(q.perguntar||[]).length?`<details><summary class="lbl">Perguntar e examinar</summary><ul class="qlist">${q.perguntar.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></details>`:""}</div></details>`;
 }
 
+/* ---- reavaliação: o que ficou pendente (exames pedidos, medicação feita) e a decisão; vai para a lista de pacientes ---- */
+const AT_DEC=[["alta","Alta para casa"],["obs","Observação"],["internacao","Internar"],["transferencia","Transferir"]];
+const AT_DEC_DEST={alta:"alta",obs:"observacao",internacao:"internacao",transferencia:"transferencia"};
+function atPendencias(){
+  const o=[], ex=[...atItens(atd.exLab),...atItens(atd.exImg)];
+  if(ex.length) o.push(["ex",`Ver os exames: ${ex.join(", ")}`]);
+  if(atCondOn("med")){const n=atNomesUnid().filter(x=>atd.medSel[x]);o.push(["med",`Ver como ficou depois da medicação${n.length?` (${ptLista(n)})`:""}`])}
+  return o;
+}
+function atReavHTML(){
+  const pend=atPendencias(), dec=atd.decisao;
+  return `<div class="atreav">${pend.length?`<span class="lbl">Na reavaliação, ver:</span><div class="atpend">${pend.map(([k,t])=>`<label class="check"><input type="checkbox" data-atvisto="${k}" ${atd.visto[k]?"checked":""}> ${esc(t)}</label>`).join("")}</div>`:""}
+    <span class="lbl">Decisão</span><div class="seg atdec" role="group" aria-label="Decisão">${AT_DEC.map(([v,r])=>`<button data-atdec="${v}" aria-pressed="${dec===v}">${r}</button>`).join("")}</div>
+    ${dec==="internacao"?`<label class="f">Para onde<select class="inp" data-atd="intern.local">${atLocais().map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label>`:""}</div>`;
+}
+
 /* ---- tela ---- */
 function atSaida(k,rot){
   return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
@@ -299,7 +315,7 @@ function renderEv(){
   <div class="sec atsec"><div class="sec-h"><h3>4. Conduta</h3></div><div class="atbody">
     <div class="chips atcond">${atL("cond").map(([k,r])=>chip("cond",k,k==="explico"?"Explico o quadro e a conduta":r.replace(/\.$/,""),atCondOn(k))).join("")}</div>
     ${atCondOn("med")&&atNomesUnid().length?`<span class="lbl">Quais remédios (toque nos que foram feitos)</span><div class="chips atmeds">${atNomesUnid().map(n=>chip("medsel",n,n,atd.medSel[n])).join("")}</div>`:""}
-    ${ks.length?`<div class="atexs">${ks.map(k=>exHTML(k,{titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
+    ${ks.length?`<div class="atexs">${ks.map((k,i)=>exHTML(k,{pedir:true,aberto:i===0,titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
     <div class="atdgrid">${ta("exLab","Exames laboratoriais","ex.: hemograma\nPCR\nureia e creatinina")}${ta("exImg","Exames de imagem","ex.: TC de abdome com contraste")}</div>
     ${ta("condLivre","Outras condutas","ex.: solicito parecer da Cirurgia Geral")}
     ${atEdit?edLista("cond","Itens da conduta"):""}
@@ -316,6 +332,7 @@ function renderEv(){
       ${atd.tipo!=="nenhum"&&it&&it.cid?`<label class="check"><input type="checkbox" data-atd="aut" ${atd.aut?"checked":""}> CID ${esc(it.cid)} autorizado</label>`:""}</div>
     <div id="atAtW">${atSaida("atest","Atestado")}</div></div></div>
   <div class="sec atsec"><div class="sec-h"><h3>6. Reavaliação e alta</h3></div><div class="atbody">
+    ${atReavHTML()}
     <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
     ${ta("reavTxt","Resultados de exames e resposta ao tratamento","ex.: hemograma sem leucocitose; TC sem coleção")}
     <span class="lbl">Orientado sobre</span><div class="chips">${atL("ori").map(([k,r])=>chip("ori",k,r.split(" (")[0],atd.altaOri[k]!==false)).join("")}</div>
@@ -391,6 +408,19 @@ function bindEv(it){
   $("#atCpTudo").onclick=e=>copy(buildEv(),e.currentTarget);
   // escolher o caminho: a tela volta ao topo do Atendimento, já com a conduta
   box.querySelectorAll("[data-atcam]").forEach(b=>b.onclick=()=>{$("#evCond").value=b.dataset.atcam;ui.sel=b.dataset.atcam;atd.sis=null;atd.alarOff={};renderEv();pacSnap();window.scrollTo({top:0,behavior:"smooth"})});
+  box.querySelectorAll("[data-atvisto]").forEach(c=>c.onchange=()=>{atd.visto[c.dataset.atvisto]=c.checked;atAtualiza()});
+  box.querySelectorAll("[data-atdec]").forEach(b=>b.onclick=()=>{
+    atd.decisao=atd.decisao===b.dataset.atdec?null:b.dataset.atdec;
+    // a decisão escolhe o destino da alta (se o hospital usa outros nomes, fica o primeiro que existir)
+    if(atd.decisao){const d=AT_DEC_DEST[atd.decisao];if(destinos().some(x=>x[0]===d))atd.destino=d}
+    const y=window.scrollY; renderEv(); pacSnap(); window.scrollTo(0,y);
+  });
+  // "+ pedir": o exame vai para o campo de laboratório ou de imagem (e para a Conduta); tocar de novo tira
+  box.querySelectorAll("[data-expedir]").forEach(b=>b.onclick=()=>{
+    const n=b.dataset.expedir, k=exImagem(n)?"exImg":"exLab", l=atItens(atd[k]), i=l.findIndex(y=>norm(y)===norm(n));
+    if(i>=0) l.splice(i,1); else l.push(n);
+    atd[k]=l.join("\n"); const y=window.scrollY; renderEv(); window.scrollTo(0,y);
+  });
   if($("#atEdita")) $("#atEdita").onclick=()=>{atEdit=true;renderEv()};
   if($("#atEdSai")) $("#atEdSai").onclick=()=>{atEdit=false;renderEv()};
   if($("#atEdSalva")) $("#atEdSalva").onclick=atSalvaPadroes;

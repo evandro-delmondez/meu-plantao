@@ -35,7 +35,22 @@ function pacSnap(){
   if(!atPac) return; const p=pacDe(atPac); if(!p) {atPac=null;return}
   const cond=$("#evCond").value;
   p.snap={atd:clone(atd),cond,chk:chk[cond]?clone(chk[cond]):null,sexo:pac.sexo,idade:pac.idade};
-  if(cond) p.cond=cond; pacToca(p,"snap"); pacGrava();
+  if(cond) p.cond=cond; pacToca(p,"snap");
+  pacDoAtendimento(p); pacGrava();
+}
+// o que foi marcado no Atendimento vira etapa da lista: exames pedidos, medicação na unidade, reavaliação e desfecho
+function pacDoAtendimento(p){
+  const ex=[...atItens(atd.exLab),...atItens(atd.exImg)].join(", ");
+  if(ex&&(!p.et.exame.on||p.et.exame.txt!==ex)){if(!p.et.exame.on){p.et.exame.on=true;p.et.exame.ok=false}p.et.exame.txt=ex;pacToca(p,"et.exame")}
+  if(atd.visto.ex&&p.et.exame.on&&!p.et.exame.ok){p.et.exame.ok=true;pacToca(p,"et.exame")}
+  const med=atCondOn("med");
+  if(med&&!p.et.med.on){p.et.med.on=true;p.et.med.ok=false;pacToca(p,"et.med")}
+  if(atd.visto.med&&p.et.med.on&&!p.et.med.ok){p.et.med.ok=true;pacToca(p,"et.med")}
+  if(atd.decisao){
+    const tipo=atd.decisao, onde=tipo==="internacao"?(atd.intern.local||""):"";
+    if(p.desf.tipo!==tipo||p.desf.onde!==onde){p.desf.tipo=tipo;p.desf.onde=onde;p.desf.t=p.desf.t||Date.now();pacToca(p,"desf")}
+    if(!p.et.reav.t){p.et.reav.t=Date.now();pacToca(p,"et.reav")}
+  }
 }
 let pacSnapT=null; const pacSnapLogo=()=>{if(!atPac)return;clearTimeout(pacSnapT);pacSnapT=setTimeout(pacSnap,600)};
 function pacAbrir(id){
@@ -60,8 +75,8 @@ function pacAviso(p,agora=Date.now()){
 const pacHip=p=>{const it=p.cond&&getItem(p.cond);return it?it.nome:""};
 function pacPendencias(p){
   const o=[];
-  if(p.et.exame.on&&!p.et.exame.ok) o.push("exame"+(p.et.exame.txt?` (${p.et.exame.txt})`:"")+" pendente");
-  if(p.et.med.on&&!p.et.med.ok) o.push("em medicação");
+  if(p.et.exame.on&&!p.et.exame.ok) o.push("ver exames"+(p.et.exame.txt?` (${p.et.exame.txt})`:""));
+  if(p.et.med.on&&!p.et.med.ok) o.push("ver como ficou depois da medicação");
   if(p.et.parecer.on&&!p.et.parecer.ok) o.push("parecer"+(p.et.parecer.esp?` da ${p.et.parecer.esp}`:"")+" pendente");
   if(!p.et.reav.t) o.push("aguardando reavaliação");
   return o;
@@ -93,6 +108,7 @@ function renderPacientes(){
     <div class="pclista">${lista.length?lista.map(p=>{const av=pacAviso(p,agora);return `<div class="pcitem" data-pid="${p.id}" data-av="${av?av.nv:""}" ${atPac===p.id?'data-atual="1"':""}>
       <div class="pclinha"><button class="pcnome" data-pabrir>${esc(p.nome)}</button><span class="note">${p.dia!==hoje?esc(p.dia.split("-").reverse().slice(0,2).join("/"))+" ":""}${pacHora(p.criado)} · há ${pacDur(agora-p.criado)}</span>${av?`<span class="pcav">${esc(av.txt)}</span>`:""}</div>
       <div class="note pchip">${esc(pacHip(p)||"sem hipótese ainda")}</div>
+      ${(!p.desf.tipo||p.desf.tipo==="obs")&&pacPendencias(p).length?`<div class="pcafazer"><b>A fazer:</b> ${esc(pacPendencias(p).join(" · "))}${p.et.reav.t&&!p.desf.tipo?" · decidir: alta ou internação":""}</div>`:""}
       <div class="chips pcets">${PAC_ETAPAS.map(([k,r])=>et(p,k,r)).join("")}</div>
       <div class="pcdesf"><select class="inp" data-pd="tipo" aria-label="Desfecho">${PAC_DESF.map(([v,r])=>`<option value="${v}" ${p.desf.tipo===v?"selected":""}>${r}</option>`).join("")}</select>
         ${p.desf.tipo==="internacao"?`<select class="inp" data-pd="onde" aria-label="Onde">${(typeof atLocais==="function"?[["","onde?"],...atLocais().slice(1)]:PAC_ONDE).map(([v,r])=>`<option value="${v}" ${p.desf.onde===v?"selected":""}>${r}</option>`).join("")}</select>`:""}

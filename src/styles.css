@@ -737,3 +737,9 @@ details.panel>summary{cursor:pointer}
 .rxaviso ul{margin:4px 0 0;padding-left:18px}
 .atbody .rxaviso{margin:0}
 .atrx .rxmontar{margin:0}
+.expedir{border:1px solid var(--accent);color:var(--accent);background:var(--surface);border-radius:999px;padding:2px 10px;font-size:12.5px;font-weight:700;cursor:pointer;margin-right:4px;min-height:28px}
+.expedir[aria-pressed="true"]{background:var(--accent);color:#fff}
+.atreav{display:grid;gap:8px;border:1.5px solid var(--accent);border-radius:12px;padding:10px 12px}
+.atpend{display:grid;gap:4px}
+.atdec{flex-wrap:wrap}
+.pcafazer{font-size:14px;background:var(--surface-2);border-radius:8px;padding:6px 8px}

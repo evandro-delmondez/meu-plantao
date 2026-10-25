@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.30.0 — 2026-10-25
+- **HDA em texto corrido a partir de notas soltas**: "dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre" vira "Paciente refere dor lombar há 3 dias, com piora ao levantar e irradiação para membro inferior direito. Tomou dipirona sem melhora. Nega febre." Os negativos das notas se juntam aos do checklist. Nota já redigida fica como está.
+- **Exame por exceção**: em "Só o que estiver alterado", escreva "abd: doloroso em FID" e a linha normal do abdome é trocada pelo achado (vale para geral, cp, oro, cv, ar, abd, neuro, msk, mmii, pele).
+- **Relógio do atendimento** na barra de etapas: começa quando você mexe; amarelo aos 20 min, vermelho ao passar da meta de 25 min. A lista de pacientes mostra a média de hoje (guarda só os minutos, nada do paciente).
+- **Barra de etapas compacta, na mesma linha das abas do topo**, sem criar uma faixa a mais na tela.
+
 ## 1.29.0 — 2026-10-25
 - **Barra de etapas no Atendimento**, fixa no topo: 1 HDA · 2 Exame · 3 HD · 4 Conduta · 5 Prescrição · 6 Alta (· 7 Internação, só se for internar). Cinza = vazia; azul = preenchida, falta copiar; verde ✓ = copiada para o MV. Tocar leva à etapa; a etapa na tela fica destacada.
 - Cada campo mostra **"✓ no MV"** depois de copiado; se você mudar algo depois, o selo some e a etapa volta a azul.

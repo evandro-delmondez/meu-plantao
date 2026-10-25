@@ -60,6 +60,7 @@ function pacAbrir(id){
   atPac=id;
   const s=p.snap;
   if(s){atd=Object.assign(ATD_VAZIO(),s.atd);if(s.cond&&s.chk)chk[s.cond]=s.chk;if(s.sexo)pac.sexo=s.sexo;if(s.idade)pac.idade=s.idade}
+  atd.t0=Date.now();   // reabrir (reavaliação) conta como um novo tempo de atendimento
   const cond=(s&&s.cond)||p.cond||""; $("#evCond").value=cond; if(cond) ui.sel=cond;
   setTab("evolucao"); window.scrollTo({top:0});
 }
@@ -102,7 +103,7 @@ function renderPacientes(){
     const st=!e.on?"":e.ok?"ok":"on";
     const tk=k==="exame"?"txt":k==="parecer"?"esp":null;
     return `<span class="pcetw"><button class="chip pcet" data-pe="${k}" data-st="${st}" aria-pressed="${!!e.on}" title="toque: pedido → pronto → desligar">${st==="ok"?"✓ ":st==="on"?"⏳ ":"+ "}${rot}${st==="ok"?" pronto":st==="on"?" pendente":""}</button>${tk&&e.on?`<input class="inp pcin" data-ptxt="${k}" value="${esc(e[tk])}" placeholder="${k==="exame"?"qual exame?":"especialidade"}" aria-label="${k==="exame"?"Qual exame":"Especialidade do parecer"}">`:""}</span>`};
-  el.innerHTML=`<div class="panel card pchead"><div class="pctopo"><h2>Pacientes do plantão</h2><span class="pcconta"><b>${db.cont[hoje]||0}</b> hoje · ${abertos} sem desfecho</span></div>
+  el.innerHTML=`<div class="panel card pchead"><div class="pctopo"><h2>Pacientes do plantão</h2><span class="pcconta"><b>${db.cont[hoje]||0}</b> hoje · ${abertos} sem desfecho${(m=>m?` · média ${m.media} min por atendimento`:"")(atTempoMedia())}</span></div>
       <div class="pcnovo"><input class="inp" id="pcNome" placeholder="Nome do paciente" autocomplete="off" spellcheck="false" aria-label="Nome do paciente"><button class="btn primary" id="pcAdd">Novo paciente</button></div>
       <div class="seg pcver" role="group" aria-label="Mostrar"><button data-pcver="hoje" aria-pressed="${pcVer==="hoje"}">Hoje e em aberto</button><button data-pcver="todos" aria-pressed="${pcVer==="todos"}">Últimos ${PAC_DIAS} dias</button></div></div>
     <div class="pclista">${lista.length?lista.map(p=>{const av=pacAviso(p,agora);return `<div class="pcitem" data-pid="${p.id}" data-av="${av?av.nv:""}" ${atPac===p.id?'data-atual="1"':""}>

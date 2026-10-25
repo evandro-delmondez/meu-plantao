@@ -3,6 +3,7 @@ const FR_PADRAO=JSON.parse(JSON.stringify(fr));
 function novoPaciente(){
   // conduta, atendimento, checklist e edições temporárias da receita
   if(atPac) pacSnap();
+  atTempoFecha();
   atd=ATD_VAZIO(); atPac=null; atdSessaoApaga(); Object.assign(pac,{idade:"",sexo:"M",peso:"",cr:"",gest:false,pnc:false,dip:false}); ui.perfil=[];
   [chk,sess,scState,contasVal,rxSel,rxOut,hospInt].forEach(o=>Object.keys(o).forEach(k=>delete o[k]));
   evScores=[]; Object.assign(dc,{peso:"",grupo:"AB",crianca:false});

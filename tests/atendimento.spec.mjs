@@ -116,7 +116,7 @@ test("alta em tópicos e pedido de internação com justificativa, sem repetir a
   const int = await saida(page, "intern").inputValue();
   expect(int).toMatch(/^Solicito internação em UTI\.\n\n/);                        // um espaço entre os tópicos
   await campo(page, "hma").fill("tosse há 4 dias");
-  await expect(saida(page, "hda")).toHaveValue(/^tosse há 4 dias(\n[^\n]+)*\n\nHPP:/);   // e entre a HDA e os antecedentes
+  await expect(saida(page, "hda")).toHaveValue(/^Paciente refere tosse há 4 dias\.[^\n]*\n\nHPP:/);   // e entre a HDA e os antecedentes
   expect(int).toMatch(/Justificativa: SpO2 88%/);
   expect(int).toMatch(/Objetivo da internação: antibioticoterapia EV\./);
   expect(int).toMatch(/Exames laboratoriais relevantes: leucócitos 19\.000/);
@@ -283,6 +283,35 @@ test("barra de etapas: vazia, preenchida e copiada para o MV; editar depois de c
   await expect(page.locator('#atCorpo [data-atcopok="hda"]')).toBeHidden();
   await etapa(2).click();
   await expect(page.locator('#atCorpo [data-etapa="2"]')).toBeInViewport();
+  expect(await semRolagemLateral(page)).toBe(true);
+  expect(erros).toEqual([]);
+});
+
+test("prontuário rápido: notas soltas viram HDA corrida, exame por exceção troca a linha do sistema, relógio com meta", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "lombalgia");
+  await expect(page.locator(".top .tabs #atEtapas")).toBeVisible();          // barra na linha das abas do topo
+  await expect(page.locator("#atRelogio")).toBeHidden();
+  await campo(page, "hma").fill("dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre");
+  await expect(saida(page, "hda")).toHaveValue(/^Paciente refere dor lombar há 3 dias, com piora ao levantar e irradiação para membro inferior direito\. Tomou dipirona sem melhora\. Nega febre/);
+  await expect(page.locator("#atRelogio")).toBeVisible();
+  await expect(page.locator("#atRelogio")).toContainText("0 min");
+  // nota já redigida fica como está
+  await campo(page, "hma").fill("Dor lombar há 3 dias. Sem trauma.");
+  await expect(saida(page, "hda")).toHaveValue(/^Dor lombar há 3 dias\. Sem trauma\./);
+  await campo(page, "exLivre").fill("abd: doloroso em FID\nmarcha antálgica");
+  const ex = await saida(page, "exame").inputValue();
+  expect(ex).toMatch(/^Abdome: doloroso em FID\.$/m);
+  expect(ex).not.toMatch(/Abdome: flácido/);
+  expect(ex).toMatch(/^Marcha antálgica\.$/m);
+  // relógio: passa da meta → vermelho; Novo paciente grava o tempo para a média
+  await page.evaluate(() => { const t = Date.now() - 26 * 60000; document.querySelector('[data-atd="hma"]').dispatchEvent(new Event("input")); return t; });
+  await page.locator("#atNovo").click(); await page.locator("#atNovo").click();
+  expect(await page.evaluate(() => JSON.stringify(localStorage.getItem("mph_tempos_v1") || ""))).not.toContain("lombar");
+  await aba(page, "pacientes"); await aba(page, "evolucao");
+  await expect(page.locator(".top .atetapas")).toHaveCount(1);
+  await aba(page, "inicio");
+  await expect(page.locator(".top .atetapas")).toHaveCount(0);              // sai do topo fora do Atendimento
   expect(await semRolagemLateral(page)).toBe(true);
   expect(erros).toEqual([]);
 });

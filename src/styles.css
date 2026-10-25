@@ -747,18 +747,21 @@ details.panel>summary{cursor:pointer}
 /* campo editado à mão que ficou desatualizado: avisa, não troca */
 .note.atvelho{color:var(--warn);border-left:3px solid var(--warn);padding-left:8px;font-weight:600}
 
-/* barra de etapas do Atendimento: fixa abaixo do topo; cinza = vazia, azul = preenchida (falta copiar), verde = copiada */
-.atetapas{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--toph,108px));z-index:15;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;
-  background:var(--bg);padding:6px 0 8px;margin-bottom:8px;border-bottom:1px solid var(--line)}
-.atetapas::-webkit-scrollbar{display:none}
-.atetapas button{flex:1 0 auto;display:flex;align-items:center;gap:5px;justify-content:center;font:inherit;font-size:13px;padding:6px 9px;border-radius:999px;
-  border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;white-space:nowrap}
-.atetapas button b{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;font-size:11px;background:var(--line);color:var(--ink)}
+/* barra de etapas do Atendimento: compacta, na mesma linha das abas do topo (não cria faixa nova);
+   cinza = vazia, azul = preenchida (falta copiar), verde = copiada */
+.tabs .atetapas{display:flex;gap:3px;margin-left:auto;padding-left:10px;align-items:center;flex:0 0 auto}
+.tabs .atetapas button{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:3px 8px 3px 4px;border-radius:999px;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);white-space:nowrap}
+.atetapas button b{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;font-size:10.5px;background:var(--line);color:var(--ink)}
 .atetapas button[data-st="meio"]{color:var(--ink);border-color:var(--accent)}
 .atetapas button[data-st="meio"] b{background:var(--accent);color:var(--accent-ink)}
 .atetapas button[data-st="ok"]{color:var(--ok);border-color:var(--ok)}
 .atetapas button[data-st="ok"] b{background:var(--ok);color:var(--bg);font-size:0}
-.atetapas button[data-st="ok"] b::after{content:"✓";font-size:12px}
-.atetapas button[aria-current]{box-shadow:0 0 0 2px var(--accent) inset;font-weight:600}
-[data-etapa]{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--toph,108px) + 56px)}
+.atetapas button[data-st="ok"] b::after{content:"✓";font-size:11px}
+.atetapas button[aria-current]{box-shadow:0 0 0 1.5px var(--accent) inset;color:var(--ink)}
+@media (max-width:860px){.tabs .atetapas button{font-size:0;gap:0;padding:3px}.tabs .atetapas button b{font-size:10.5px}}
+[data-etapa]{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--toph,108px) + 12px)}
 .atcop{font-size:12px;font-weight:600;color:var(--ok);margin-left:auto;margin-right:6px}
+.atrel{font-size:12px;font-weight:700;color:var(--muted);padding:3px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.atrel[data-nv="perto"]{color:var(--warn);border-color:var(--warn)}
+.atrel[data-nv="passou"]{color:var(--surface);background:var(--bad);border-color:var(--bad)}

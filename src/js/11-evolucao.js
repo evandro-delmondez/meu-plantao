@@ -92,19 +92,59 @@ function atSv(){
 // lista digitada com Enter (ou "- ") sai com traço; campo vazio não vira "nega": só se documenta o que foi perguntado
 const atItens=t=>String(t||"").split("\n").map(x=>x.replace(/^\s*[-•#*]\s*/,"").trim()).filter(Boolean);
 const atLista=(rot,itens)=>itens.length?`${rot}:\n${itens.map(x=>"- "+x).join("\n")}`:`${rot}: não informado`;
+// HDA em texto corrido: as notas soltas ("dor lombar 3d, piora ao levantar, nega febre") viram frases, e os negativos
+// das notas se juntam aos do checklist. Se as notas já estão redigidas (frases com ponto), ficam como estão.
+const AT_ABREV=[[/\bc\//gi,"com "],[/\bs\//gi,"sem "],[/\bp\//gi,"para "],[/\bpct\b/gi,"paciente"],[/\btb\b/gi,"também"],[/\bq\b/gi,"que"],[/\bmmii\b/gi,"membros inferiores"],[/\bmmss\b/gi,"membros superiores"],[/\bmid\b/gi,"membro inferior direito"],[/\bmie\b/gi,"membro inferior esquerdo"],[/\birradia\b/gi,"irradiação"]];
+const AT_TEMPO=[[/^(d|dia|dias)$/i,"dia","dias"],[/^(h|hs|hr|hrs|hora|horas)$/i,"hora","horas"],[/^(sem|semana|semanas)$/i,"semana","semanas"],[/^(mes|mês|meses)$/i,"mês","meses"],[/^(min|minutos?)$/i,"minuto","minutos"]];
+function atTempoTxt(t){
+  return t.replace(/(^|\s)(há\s+)?(\d+)\s*(d|dias?|hs?|hrs?|horas?|sem|semanas?|m[eê]s|meses|min|minutos?)(?![\wÀ-ú])/gi,(m,a,ha,n,u)=>{
+    const r=AT_TEMPO.find(([re])=>re.test(u)); if(!r) return m; return `${a}há ${n} ${n==="1"?r[1]:r[2]}`});
+}
+const atMin=t=>/^[A-ZÀ-Ú]{2,}\b/.test(t)?t:t.charAt(0).toLowerCase()+t.slice(1);
+const atMai=t=>t.charAt(0).toUpperCase()+t.slice(1);
+const AT_NEG=/^(nega(ndo)?|sem|não|nao|n)\s+/i;
+// item que começa com verbo no passado (tomou, iniciou, procurou) vira frase própria; o resto completa a queixa
+const atVerbo=t=>/^(tomou|usou|fez|procurou|iniciou|evoluiu|evolui|apresentou|apresenta|relata|refere|teve|foi|esteve|veio|procura)\b/i.test(t)||/^[a-zà-ú]+(ou|iu)\b/i.test(t);
+function atNotas(txt){
+  const t=String(txt||"").trim(); if(!t) return {prosa:"",neg:[]};
+  if(/[.!?]\s+[A-ZÀ-Ú]/.test(t)||(/[.!?]$/.test(t)&&t.length>60)) return {prosa:t,neg:[],pronto:true};
+  let x=t; AT_ABREV.forEach(([re,v])=>{x=x.replace(re,v)}); x=atTempoTxt(x).replace(/[ \t]{2,}/g," ");
+  const itens=x.split(/\s*(?:[;\n]|,(?!\d))\s*/).map(y=>y.trim().replace(/[.]$/,"")).filter(Boolean);
+  const neg=[], pos=[], frases=[];
+  itens.forEach(i=>{if(AT_NEG.test(i))neg.push(atMin(i.replace(AT_NEG,"")));else if(pos.length&&atVerbo(i))frases.push(atMai(i)+".");else pos.push(atMin(i))});
+  let p="";
+  if(pos.length){const [q,...c]=pos;p=`Paciente refere ${q}`+(c.length?`, com ${ptLista(c)}`:"")+"."}
+  return {prosa:[p,...frases].filter(Boolean).join(" "),neg};
+}
 function atHda(it){
-  const L=[]; if(atd.hma.trim()) L.push(atd.hma.trim());
-  atConds().forEach(c=>chkLinhas(c).hma.forEach(x=>L.push(x)));
+  const n=atNotas(atd.hma), ck=atConds().map(c=>chkLinhas(c));
+  const hp=[...new Set(ck.flatMap(c=>c.raw.hp))], hn=[...new Set([...n.neg,...ck.flatMap(c=>c.raw.hn)])];
+  const F=[]; if(n.prosa) F.push(n.prosa);
+  if(hp.length) F.push(`Presença de ${ptLista(hp)}.`);
+  if(hn.length) F.push(`Nega ${ptLista(hn)}.`);
+  // o resto do checklist (antecedentes, sinais de alarme) segue como frase
+  ck.forEach(c=>c.hma.filter(x=>!/^(Presença de|Nega) /.test(x)||/^Nega (antecedente|sinais)/.test(x)).forEach(x=>F.push(x)));
   const alerg=atItens(atd.alergia); if(perfisAtivos().has("pnc")&&!alerg.some(x=>/penicilin/i.test(x))) alerg.push("penicilina");
-  if(L.length) L.push("");   // espaço entre a história e os antecedentes
+  const L=[]; if(F.length) L.push(F.join(" "),"");   // um parágrafo; espaço antes dos antecedentes
   L.push(atLista("HPP",atItens(atd.ap)));
   L.push(atLista("Medicamentos em uso",atItens(atd.muc)));
   L.push(atLista("Alergias",alerg));
   return L.join("\n");
 }
+// exame por exceção: nos achados, "abd: dor em FID" troca a linha do abdome (e liga o sistema); o resto vai no fim
+const AT_SIS_ALIAS={geral:/^(geral|ectoscopia|estado geral|eg|beg)$/,cp:/^(cp|cabe[cç]a|pesco[cç]o|cabe[cç]a e pesco[cç]o|oto|otoscopia)$/,oro:/^(oro|orofaringe|of|garganta)$/,
+  cv:/^(cv|acv|ac|cardio|cardiovascular|cora[cç][aã]o)$/,resp:/^(resp|ar|ap|pulm[aã]o|pulmonar|respirat[oó]rio)$/,abd:/^(abd|abdome|abdomen|abdômen)$/,
+  neuro:/^(neuro|nrl|neurol[oó]gico)$/,msk:/^(msk|osteo|coluna|locomotor|musculoesquel[eé]tico)$/,mmii:/^(mmii|mi|membros inferiores|extremidades|ext)$/,pele:/^(pele|tegumento)$/};
+function atAchados(){
+  const por={}, resto=[];
+  String(atd.exLivre||"").split("\n").map(l=>l.trim()).filter(Boolean).forEach(l=>{
+    const m=l.match(/^([a-zà-ú ]{1,22}?)\s*:\s*(.+)$/i), k=m&&Object.keys(AT_SIS_ALIAS).find(x=>AT_SIS_ALIAS[x].test(m[1].trim().toLowerCase()));
+    if(k){const v=m[2].trim().replace(/([^.])$/,"$1.");por[k]=por[k]?por[k]+" "+v:v}else resto.push(l)});
+  return {por,resto};
+}
 function atExameBase(it){
-  const pf=atPerfil(), f=atFem(), on=new Set(atSis(it));
-  return EX_SIS.filter(([k])=>k==="geral"||on.has(k)).map(([k])=>sisTexto(sisCh(k,pf,f))).join("\n");
+  const pf=atPerfil(), f=atFem(), on=new Set(atSis(it)), {por}=atAchados();
+  return EX_SIS.filter(([k])=>k==="geral"||on.has(k)||por[k]).map(([k,r])=>por[k]?(k==="geral"?atMai(por[k]):`${r}: ${por[k]}`):sisTexto(sisCh(k,pf,f))).join("\n");
 }
 function atExame(it){
   const L=[], sv=atSv(); if(sv) L.push(sv);
@@ -120,7 +160,7 @@ function atExame(it){
   if(atd.cons==="C") exm=exm.replace(/lúcid([oa]) e orientad[oa] no tempo e no espaço/g,(m,g)=>`confus${g}, ${CONF}`).replace(/\bLOTE\b/g,`confuso(a), ${CONF}`).replace(/Glasgow 15,?\s*/g,"");
   if(atd.o2==="o2") exm=exm.replace(/em ar ambiente/g,"em O2 suplementar");
   L.push((L.length?"Exame físico:\n":"")+exm.replace(/^Exame físico:\n/,""));
-  if(atd.exLivre.trim()) L.push(atd.exLivre.trim());
+  const resto=atAchados().resto; if(resto.length) L.push(resto.map(l=>atMai(l).replace(/([^.])$/,"$1.")).join("\n"));
   atConds().forEach(c=>chkLinhas(c).ex.forEach(x=>L.push(x)));
   if(evScores.length){L.push("Escores:");evScores.forEach(x=>L.push("- "+x))}
   return L.join("\n");
@@ -280,8 +320,18 @@ function atEtapaMexida(n){
     !!atd.decisao||Object.values(atd.reav||{}).some(Boolean)||atTem(atd.reavTxt),
     atTem(atd.intern.motivo)||atTem(atd.intern.local)][n];
 }
+function atRelogio(){
+  const r=$("#atRelogio"); if(!r) return;
+  if(!atd.t0){r.hidden=true;return}
+  const min=Math.floor((Date.now()-atd.t0)/60000), m=atTempoMedia();
+  r.hidden=false; r.textContent=`⏱ ${min} min`; r.dataset.nv=min>=AT_META?"passou":min>=AT_META-5?"perto":"";
+  r.title=`Meta ${AT_META} min${m?` · média de hoje ${m.media} min (${m.n})`:""}`;
+}
+setInterval(()=>{if(ui.tab==="evolucao")atRelogio()},20000);
 function atEtapasAtualiza(){
   const bar=$("#atEtapas"); if(!bar) return;
+  if(!atd.t0&&[1,2,4].some(atEtapaMexida)) atd.t0=Date.now();
+  atRelogio();
   AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`),ok=$(`#atCorpo [data-atcopok="${k}"]`);if(ta&&ok)ok.hidden=!(atd.cop[k]&&atd.cop[k]===ta.value)});
   const inter=atd.decisao==="internacao"||/intern/.test(atd.destino||"")||atTem(atd.intern.motivo);
   for(const [n,,cs] of AT_ETAPAS){
@@ -305,7 +355,7 @@ addEventListener("scroll",()=>{
 function renderEv(){
   const el=$("#atCorpo"); if(!el) return;
   // só existe na tela enquanto a aba está aberta (o checklist e os campos não se repetem em outra aba)
-  if(ui.tab!=="evolucao"){el.innerHTML="";return}
+  if(ui.tab!=="evolucao"){el.innerHTML="";const v=$(".top .atetapas");if(v)v.remove();return}
   const foco=atFocoGuarda();
   pacNomeAtualiza();
   const it=atItem();
@@ -321,14 +371,14 @@ function renderEv(){
   const outras=(atd.extras||[]).map(getItem).filter(Boolean);
   el.innerHTML=`
   <div class="ateditbar">${atEdit?`<span class="note">Editando os padrões. Vale para os próximos atendimentos.</span><button class="btn primary" id="atEdSalva">Salvar como padrão</button><button class="btn" id="atEdSai">Cancelar</button>`:`<button class="btn sm" id="atEdita">✎ Editar padrões</button>`}</div>
-  <nav class="atetapas" id="atEtapas" aria-label="Etapas do atendimento">${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}</nav>
+  <nav class="atetapas" id="atEtapas" aria-label="Etapas do atendimento"><span class="atrel" id="atRelogio" hidden></span>${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}</nav>
   ${it?`<div class="atextras"><span class="lbl">Outras queixas no mesmo paciente</span><div class="chips">${outras.map(c=>`<button class="chip" data-atrem="${esc(c.id)}" aria-pressed="true" style="--c:var(--${(CATS[c.cat]||CATS.outros).cor})">✓ ${esc(c.nome)} ✕</button>`).join("")}
     ${outras.length<2?`<select class="inp atadd" id="atAdd" aria-label="Adicionar outra conduta"><option value="">+ Adicionar outra conduta</option>${allItems().filter(x=>!cs.some(c=>c.id===x.id)).map(x=>`<option value="${esc(x.id)}">${esc(x.nome)}</option>`).join("")}</select>`:""}</div></div>`:""}
   ${cs.length?`<div class="atconds">${cs.map(c=>{const k=CATS[c.cat]||CATS.outros;return `<span class="cat" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}${c.cid?` · ${esc(c.cid)}`:""}</span>`}).join("")}</div>`:""}
   ${atQueixaHTML(!!it)}
   ${cs.map(renderAlarme).join("")}
   <div class="sec atsec" data-etapa="1" id="atHdaSec"><div class="sec-h"><h3>1. HDA e antecedentes</h3></div><div class="atbody">
-    ${ta("hma","Queixa e história da doença atual","ex.: dor de garganta há 2 dias, sem tosse")}
+    ${ta("hma","Queixa e HDA (notas soltas: o texto sai corrido)","ex.: dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre")}
     <div class="atdgrid atlistas">${ta("ap","HPP (doenças, cirurgias, internações)","ex.: hipertensão arterial\ncolecistectomia em 2019")}${ta("muc","Medicamentos em uso","ex.: losartana 50 mg 1x ao dia")}${ta("alergia","Alergias","ex.: dipirona; ou nega")}</div>
     ${cs.map((c,i)=>`<div id="atChk${i}">${cs.length>1&&chkDe(c.id)?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${renderChecklist(c)}</div>`).join("")}
     ${atEdit?cs.map(edChk).join(""):""}
@@ -344,7 +394,7 @@ function renderEv(){
       <div class="seg" role="group" aria-label="Perfil">${EX_PERFIS.map(([v,r])=>`<button data-atseg="exPerfil" data-v="${v}" aria-pressed="${pf===v}">${r}</button>`).join("")}</div></div>
     <div class="chips atsis">${EX_SIS.filter(([k])=>k!=="geral").map(([k,r])=>chip("sis",k,r,sis.has(k))).join("")}</div>
     ${atEdit?`<div class="atedg"><b>Texto de cada sistema (${esc((EX_PERFIS.find(x=>x[0]===pf)||[])[1])})</b>${["geral",...sis].map(k=>{const ch=sisCh(k,pf,atFem());return edTa(`data-eds="${ch}"`,(SIS_OPC.find(x=>x[0]===ch)||[0,ch])[1],sisTexto(ch),sisPadrao(ch))}).join("")}</div>`:""}
-    ${ta("exLivre","Achados (o que estiver alterado)","ex.: estertores crepitantes em base direita")}
+    ${ta("exLivre","Só o que estiver alterado (sistema: achado troca a linha normal)","ex.: abd: dor à palpação em FID, Blumberg positivo\nar: estertores em base direita")}
     ${atSaida("exame","Exame físico")}</div></div>
   <div class="sec atsec" data-etapa="3"><div class="sec-h"><h3>3. Hipótese diagnóstica</h3></div><div class="atbody">
     <div class="atcids">${cs.filter(c=>c.cid).map(c=>`<button class="cidbig" data-cpcid="${esc(c.cid)}" title="Copiar o CID de ${esc(c.nome)}">CID ${esc(c.cid)} <span>copiar</span></button>`).join("")}</div>
@@ -397,6 +447,9 @@ function renderEv(){
     <div class="hospev" id="atHospInt"></div></div></details>
   <div class="actions attudo"><button class="btn primary" id="atCpTudo">Copiar tudo</button></div>`;
   bindEv(it);
+  // a barra de etapas vai para a linha das abas do topo (fica sempre à vista sem ocupar uma faixa a mais)
+  const bar=$("#atCorpo .atetapas"), tabs=$(".top .tabs");
+  if(bar&&tabs){const v=$(".top .atetapas");if(v)v.remove();tabs.appendChild(bar);atEtapasAtualiza()}
   atFocoVolta(foco);
 }
 // redesenhar não tira o cursor do campo em que você está digitando

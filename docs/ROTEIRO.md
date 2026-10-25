@@ -30,11 +30,16 @@ Atualizado em 2026-10-22 (versão 1.22.3). Decisões: `docs/DECISOES.md`. Diverg
 **Atendimento e MV**
 4. Modelo real do MV (print dos campos) para ajustar os botões de copiar; print da lista de exames do MV para usar os nomes do hospital no "+ pedir".
 5. Visual: o médico aponta o que ainda polui.
+5a. (2026-10-25) Redesenho do Atendimento: ~~barra de etapas~~ (1.29.0); quadro "o essencial" em destaque com os porquês num ⓘ; visão única com 2+ queixas; checklist e exames enxutos; avisos num quadro só. Depois: HDA em texto corrido (semiologia, notas soltas + toques; antecedentes em comorbidades, cirurgias, internações), exame só com alterações, atalhos de frase; e botão opcional "Melhorar texto (IA)" com chave da API do médico (exceção à regra 5 a registrar).
+5b. (2026-10-25) Remédio extra na receita a um toque: trazer da ficha de Remédios com posologia e dias (calcula a quantidade), ou colar uma prescrição de fora (ex.: Whitebook) e o app formatar.
+5c. (2026-10-25) Meu hospital dentro de Documentos; busca nos protocolos do hospital fácil de achar (ex.: "reposição de ferro: pode ou não pode").
+5d. (2026-10-25) Cálculos acionados na própria conduta quando necessários (escores e doses por peso ligados).
+5e. (2026-10-25) Lista de pacientes: "passei para outro médico" tira da tela e não conta como meu paciente.
 
 **Conteúdo clínico (com fonte e conferência)**
 6. Exames e encaminhamento para as demais condutas (feito: 8 queixas e 44 condutas, 1.24.0); rever a conduta pac pela atualização ATS 2026.
 7. ~~Queixas lombalgia e dor musculoesquelética~~ (1.24.0); outras queixas; conduta de cervicalgia/torcicolo.
-8. Condutas novas: síncope, pericardite, pneumotórax, chikungunya, febre maculosa, meningite, odontalgia.
+8. Separar TEP e TVP em duas condutas (2026-10-25). Condutas novas: síncope, pericardite, pneumotórax, chikungunya, febre maculosa, meningite, odontalgia.
 9. Condições que faltam: olho vermelho e corpo estranho, paralisia facial, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e overdose de opioide, zika, varicela, COVID-19, fraturas e imobilização, cervicalgia, tendinite e bursite.
 10. Fichas que faltam: sumatriptano, colchicina, alopurinol, ciclobenzaprina, tiamina, clopidogrel, aciclovir, valaciclovir, ivermectina, permetrina, anti-hipertensivos orais, furosemida, isossorbida, broncodilatadores, antifúngicos, cetirizina e hidroxizina, levotiroxina e metimazol, tópicos.
 11. Altas leigas das condutas que ainda não têm.

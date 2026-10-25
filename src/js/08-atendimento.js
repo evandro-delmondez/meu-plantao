@@ -4,7 +4,7 @@ const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",ta
   queixa:null,extras:[],exLab:"",exImg:"",condLivre:"",cond:{},medSel:{},visto:{},decisao:null,exSexo:null,exPerfil:null,sis:null,exLivre:"",diag:"",destino:null,
   reav:{},reavTxt:"",altaOri:{},alarOff:{},altaLivre:"",compreende:false,
   intern:{local:"",motivo:"",obj:{},objLivre:"",lab:"",laudos:"",feito:"",parecer:""},
-  tipo:"atestado",dias:"",aut:false,hora:"",man:{},manBase:{},cop:{}});
+  tipo:"atestado",dias:"",aut:false,hora:"",man:{},manBase:{},cop:{},t0:null});
 let atd=ATD_VAZIO();
 // rede de segurança contra perda de texto: o atendimento em andamento fica no sessionStorage da aba
 // (sobrevive a recarregar a página; some ao fechar a aba ou o navegador, e no "Novo paciente"). Fora do backup e da nuvem.
@@ -23,6 +23,17 @@ function atdSessaoLe(){
 }
 const atdSessaoApaga=()=>{clearTimeout(atdSsT);try{sessionStorage.removeItem(ATD_SS)}catch(e){}};
 addEventListener("pagehide",atdSessaoGrava);
+// relógio do atendimento: de quando você começa a mexer até ir para o próximo paciente (meta: 25 min).
+// Guarda só os minutos por dia (sem nada do paciente), 14 dias, para a média do plantão.
+const TEMPO_LS="mph_tempos_v1", AT_META=25;
+function atTempoFecha(){
+  if(!atd.t0) return; const min=Math.round((Date.now()-atd.t0)/60000); atd.t0=null;
+  if(min<1||min>240) return;
+  const t=lsGet(TEMPO_LS,{})||{}, d=new Date().toISOString().slice(0,10); (t[d]=t[d]||[]).push(min);
+  for(const k of Object.keys(t).sort().slice(0,-14)) delete t[k];
+  lsSet(TEMPO_LS,t);
+}
+function atTempoMedia(){const t=(lsGet(TEMPO_LS,{})||{})[new Date().toISOString().slice(0,10)]||[];return t.length?{media:Math.round(t.reduce((a,b)=>a+b,0)/t.length),n:t.length}:null}
 // lista de pacientes do plantão (exceção à regra 5 decidida pelo médico; 27-pacientes.js): chave própria, 7 dias
 const PAC_LS="mph_pacientes_v1", PAC_DIAS=7;
 let atPac=null;        // id do paciente da lista que está no Atendimento

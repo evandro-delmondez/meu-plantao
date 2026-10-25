@@ -106,7 +106,7 @@ const CHK_GRUPOS=[["hist","Anamnese"],["ant","Antecedentes"],["ex","Exame físic
 const semParenteses=t=>t.replace(/\s*\([^)]*\)/g,"").trim();
 function chkLinhas(it){
   const c=chkDe(it.id), st=chk[it.id]||{};
-  if(!c) return {hma:[],ex:[],n:0};
+  if(!c) return {hma:[],ex:[],n:0,raw:{hp:[],hn:[]}};
   const sel=(g,v)=>(c[g]||[]).filter((t,i)=>st[g+i]===v).map(semParenteses);
   const hma=[], ex=[];
   const hp=sel("hist","+"), hn=sel("hist","-"), ap=sel("ant","+"), an=sel("ant","-"), ep=sel("ex","+"), en=sel("ex","-"), sp=sel("alarme","+"), sn=sel("alarme","-");
@@ -121,7 +121,7 @@ function chkLinhas(it){
   // sinais de alarme são da anamnese (vão na HDA)
   if(sp.length) hma.push(fr("Sinais de alarme presentes: ",sp));
   if(sn.length) hma.push(fr("Nega sinais de alarme: ",sn));
-  return {hma,ex,n:Object.keys(st).length};
+  return {hma,ex,n:Object.keys(st).length,raw:{hp,hn}};
 }
 function renderChecklist(it){
   const c=chkDe(it.id); if(!c) return "";

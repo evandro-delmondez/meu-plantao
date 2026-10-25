@@ -19,7 +19,6 @@ Depois: perfil por unidade (remédios disponíveis, diluições locais, telefone
 
 ## Pendências combinadas
 **Retomar primeiro (2026-10-25, sessão parou no limite de tokens):**
-- Contratura e lombalgia: rascunho pronto (.rascunhos/contratura*.json/.md); falta a conferência independente e as 8 dúvidas para o médico (AINE padrão, celecoxibe sem ataque, ciclobenzaprina 5 mg 8/8h, tiocolchicosídeo + AINE/paracetamol, diazepam, colar cervical, CID e sin).
 - As 14 fichas novas sugeridas (.rascunhos/receita-fichas.json "_novas") precisam virar fichas completas; pendentes levofloxacino 750 e amoxicilina 875 (CMED); ivermectina "doses".
 - A pensar com o médico: cor por classe de remédio na receita; quadro "Para você, não vai na receita".
 Atualizado em 2026-10-22 (versão 1.22.3). Decisões: `docs/DECISOES.md`. Divergências registradas: `docs/REVISAO.md`.

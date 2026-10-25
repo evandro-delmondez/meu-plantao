@@ -486,6 +486,34 @@ lombalgia: {
     "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."
   ]
 },
+contratura: {
+  titulo: "Dor no pescoço, torcicolo ou contratura muscular",
+  oque: "Na maioria das vezes a dor vem de músculos contraídos do pescoço e dos ombros, depois de má postura, esforço ou um movimento brusco. Costuma melhorar em poucos dias a algumas semanas.",
+  cuidados: [
+    "Tome os remédios como está na sua receita. Alguns podem dar sono: se for o seu caso, não dirija e não beba bebida alcoólica.",
+    "Calor no local alivia: bolsa de água morna enrolada numa toalha, para não queimar a pele.",
+    "Continue se movimentando e mexa o pescoço devagar, dentro do limite da dor. Ficar parado piora a rigidez.",
+    "Durma com um travesseiro baixo e firme e evite ficar muito tempo na mesma posição, como olhando o celular ou o computador.",
+    "Se aparecer febre ou dor no corpo todo, não tome o anti-inflamatório da receita até ser examinado de novo: se for dengue, aumenta o risco de sangramento.",
+    "Se a dor não melhorar em algumas semanas ou voltar com frequência, procure o posto de saúde: a fisioterapia pode ajudar."
+  ],
+  volte: [
+    "Fraqueza, dormência ou formigamento nos braços ou nas pernas, ou dificuldade para andar.",
+    "Perda do controle da urina ou das fezes.",
+    "Febre com pescoço duro, dor de cabeça forte, vômitos ou manchas na pele.",
+    "Dor de cabeça muito forte que começa de repente, visão dupla, pálpebra caída, tontura forte, fala enrolada ou boca torta.",
+    "Dor no peito, falta de ar ou suor frio.",
+    "Dor que começou depois de queda, batida ou acidente.",
+    "Dor que piora a cada dia, que não deixa dormir, ou perda de peso sem explicação."
+  ],
+  fontes: [
+    "NHS. Neck pain (revisado em 27/04/2023): paracetamol ou ibuprofeno, travesseiro baixo e firme, calor, manter-se em movimento; procurar o médico se não melhorar em algumas semanas ou se formigamento ou fraqueza no braço. https://www.nhs.uk/conditions/neck-pain/",
+    "Finucane LM et al. International Framework for Red Flags for Potential Serious Spinal Pathologies. J Orthop Sports Phys Ther 2020;50(7):350-372. https://doi.org/10.2519/jospt.2020.9971",
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 19 — Neck Pain: evolução favorável; AINE, paracetamol, calor ou frio; ciclobenzaprina 5–10 mg à noite; fisioterapia com exercício supervisionado; sinais de alarme (mielopatia, câncer, infecção, trauma).",
+    "Blanpied PR et al. Neck Pain: Revision 2017. Clinical Practice Guidelines (APTA/JOSPT). J Orthop Sports Phys Ther 2017;47(7):A1-A83. https://doi.org/10.2519/jospt.2017.0302",
+    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
+  ]
+},
 tce: {
   titulo: "Batida na cabeça (traumatismo leve)",
   oque: "Você bateu a cabeça, mas o exame não mostrou sinal de lesão grave. Dor de cabeça leve, tontura e cansaço podem durar até 2 semanas e costumam passar sozinhos.",

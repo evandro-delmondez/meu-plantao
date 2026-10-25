@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.38.0 — 2026-10-26
+- **Conduta nova: Contratura muscular / Cervicalgia / Torcicolo** (M62.8), no formato por classes: analgésico; relaxante (ciclobenzaprina 10 mg 12/12h padrão, 5 mg como alternativa; tiocolchicosídeo com aviso de fígado; máx. 7 dias); anti-inflamatório (celecoxibe padrão; naproxeno, nimesulida, cetorolaco, ibuprofeno, diclofenaco, cetoprofeno por toque); diazepam só como bloco opcional; calor local e fisioterapia nas orientações; Coltrax IM e cetorolaco IM na unidade. Checklist, alta leiga e exames. Ligada ao caminho de cervicalgia/torcicolo da queixa de dor musculoesquelética.
+- **Lombalgia reorganizada nas mesmas classes**, com ciclobenzaprina 10 mg 12/12h padrão, tramadol e diazepam como blocos opcionais, Coltrax e cetorolaco IM na unidade.
+- Conferência independente contra as bulas (Coltrax, Celebra, Toragesic, Miosan, Valium) e diretrizes (ACP 2017, NICE NG59, Harrison 22ª cap. 19): 0 crítico, 7 importantes corrigidos.
+
 ## 1.37.0 — 2026-10-26
 - **"+ remédio" na receita do Atendimento**: busque o remédio (36 fichas com posologia de receita conferida contra as bulas), toque na posologia, ajuste os dias e a quantidade é calculada; entra na via certa, junto dos outros, numerada em sequência. Avisos para você aparecem só na tela.
 - **Colar de outro guia (ex.: Whitebook)**: cada remédio colado vira item da receita, com o "como usar" embaixo.

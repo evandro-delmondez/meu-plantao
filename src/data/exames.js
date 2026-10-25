@@ -5564,6 +5564,107 @@ const EXAMES = {
    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 39 Trombose venosa profunda (conferência).",
    "NICE NG158 — NICE. Venous thromboembolic diseases: diagnosis, management and thrombophilia testing (NG158, 2020, atualizada 2023): D-dímero com corte ajustado à idade acima de 50 anos na suspeita de TVP. https://www.nice.org.uk/guidance/ng158"
   ]
+ },
+ "contratura": {
+  "encaminhar": [
+   {
+    "t": "Sala de trauma: cervicalgia após trauma com indicação de imagem pela regra canadense; manter a coluna cervical protegida",
+    "f": [
+     5,
+     2
+    ]
+   },
+   {
+    "t": "Neurologia (não liberar): cefaleia súbita, ptose e miose do mesmo lado ou déficit neurológico, suspeita de dissecção de artéria cervical",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Neurocirurgia / Ortopedia de urgência: fraqueza ou parestesia progressiva, alteração da marcha ou esfincteriana (mielopatia)",
+    "f": [
+     3,
+     6
+    ]
+   },
+   {
+    "t": "Internação: febre com dor cervical (espondilodiscite, abscesso epidural) ou febre com rigidez de nuca (meningite)",
+    "f": [
+     6,
+     1
+    ]
+   },
+   {
+    "t": "Fisioterapia (ambulatorial, pela unidade básica): dor persistente ou recorrente sem sinal de alarme",
+    "f": [
+     7,
+     8
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "TC de coluna cervical sem contraste: trauma com indicação pela regra canadense ou NEXUS",
+    "f": [
+     5,
+     2
+    ]
+   },
+   {
+    "t": "RM de coluna cervical com urgência: déficit neurológico, mielopatia, suspeita de infecção ou câncer",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Angiotomografia de crânio e pescoço: suspeita de dissecção de artéria cervical",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Hemograma, VHS e PCR: febre, imunossupressão ou suspeita de infecção ou câncer",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "ECG em até 10 min e troponina: dor no pescoço, ombro ou braço aos esforços ou com dispneia, sudorese ou náusea",
+    "f": [
+     9
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "RX, TC ou RM na cervicalgia aguda sem trauma e sem sinal de alarme",
+    "f": [
+     1,
+     7
+    ]
+   },
+   {
+    "t": "RX de coluna cervical no trauma com regra canadense negativa",
+    "f": [
+     5,
+     10
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ACR 2024 cervical — ACR Appropriateness Criteria Cervical Pain or Cervical Radiculopathy: 2024 Update. J Am Coll Radiol 2025;22(5S):S136-S162. PMID 40409873.",
+   "ACR 2024 trauma — ACR Appropriateness Criteria Acute Spinal Trauma: 2024 Update. J Am Coll Radiol 2025;22(5S):S48-S66. PMID 40409895. https://doi.org/10.1016/j.jacr.2025.02.013",
+   "ACR 2026 mielopatia — ACR Appropriateness Criteria Myelopathy: 2026 Update. J Am Coll Radiol 2026;23(9):1870-1883. PMID 42340276.",
+   "ACR 2025 Horner — ACR Appropriateness Criteria Horner Syndrome. J Am Coll Radiol 2025;22(11S):S550-S577. PMID 41193044 (dissecção cervical).",
+   "Stiell 2001 — Stiell IG et al. The Canadian C-spine rule for radiography in alert and stable trauma patients. JAMA 2001;286(15):1841-1848. PMID 11597285.",
+   "Finucane 2020 — Finucane LM et al. International Framework for Red Flags for Potential Serious Spinal Pathologies. J Orthop Sports Phys Ther 2020;50(7):350-372. https://doi.org/10.2519/jospt.2020.9971",
+   "Blanpied 2017 — Blanpied PR et al. Neck Pain: Revision 2017 (APTA/JOSPT). J Orthop Sports Phys Ther 2017;47(7):A1-A83. https://doi.org/10.2519/jospt.2017.0302",
+   "OPTIMa 2016 — Côté P et al. Management of neck pain and associated disorders: a clinical practice guideline from the OPTIMa Collaboration. Eur Spine J 2016;25(7):2000-2022. https://doi.org/10.1007/s00586-016-4467-7",
+   "Gulati 2021 — Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain. Circulation 2021;144(22):e368-e454. PMID 34709879. https://doi.org/10.1161/CIR.0000000000001029",
+   "Choosing Wisely Canada 2024 — Choosing Wisely Canada, Emergency Medicine (atualizado em setembro de 2024): sem RX cervical com regra canadense negativa. https://choosingwiselycanada.org/recommendation/emergency-medicine/"
+  ]
  }
 };
 if (typeof module!=="undefined") module.exports={EXAMES};

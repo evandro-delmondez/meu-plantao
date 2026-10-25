@@ -366,7 +366,7 @@ const QUEIXAS = [
     { rot: "Ferimento, corte ou mordedura", conduta: "ferida" },
     { rot: "Ferimento com risco de tétano", conduta: "tetano" },
     { rot: "Trauma com batida na cabeça", conduta: "tce" },
-    { rot: "Dor muscular ou torcicolo sem trauma importante e sem sinal de alarme (dor mecânica): analgesia e orientação; sem conduta própria no app ainda" },
+    { rot: "Cervicalgia, torcicolo ou contratura muscular sem trauma importante e sem sinal de alarme (dor mecânica)", conduta: "contratura" },
     { rot: "Perna com edema e dispneia ou dor torácica", conduta: "tep" },
     { rot: "Perna ou panturrilha inchada e dolorosa de um lado (TVP)", conduta: "tvp" },
     { rot: "Dor aguda no ombro: RX como exame inicial; sem fratura, tratamento sintomático e reavaliação ambulatorial" }

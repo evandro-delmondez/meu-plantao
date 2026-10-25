@@ -812,3 +812,5 @@ details.panel>summary{cursor:pointer}
 .atextras .chips{align-items:flex-start}
 .atextras .chips>.chip{flex:0 0 auto;align-self:flex-start;height:auto}
 .pcassume{max-width:170px;padding:6px 10px;font-size:14px}
+.nares:not(:empty){margin:6px 0 10px}
+.atrel[data-nv="parado"]{opacity:.7}

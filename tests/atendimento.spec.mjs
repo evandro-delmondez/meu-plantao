@@ -293,7 +293,7 @@ test("prontuário rápido: notas soltas viram HDA corrida, exame por exceção t
   // barra na linha das abas do topo, que fica fixo em qualquer largura (meia tela inclusive)
   await expect(page.locator(".top .tabs #atEtapas")).toBeVisible();
   expect(await page.locator(".top").evaluate((e) => getComputedStyle(e).position)).toBe("sticky");
-  await expect(page.locator("#atRelogio")).toBeHidden();
+  await expect(page.locator("#atRelogio")).toBeVisible();
   await campo(page, "hma").fill("dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre");
   await expect(saida(page, "hda")).toHaveValue(/^Paciente refere dor lombar há 3 dias, com piora ao levantar e irradiação para membro inferior direito\. Tomou dipirona sem melhora\. Nega febre/);
   await expect(page.locator("#atRelogio")).toBeVisible();

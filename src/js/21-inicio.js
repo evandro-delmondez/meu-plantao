@@ -120,8 +120,8 @@ function renderNovoAtend(){
     <div class="chips">${QUEIXAS.map(q=>`<button class="chip" data-naq="${esc(q.id)}">${esc(q.nome)}</button>`).join("")}</div>
     <span class="lbl">Ou a conduta</span>
     <input class="inp" id="naCond" type="search" placeholder="Buscar conduta: pneumonia, ITU, J03, cólica…" autocomplete="off" aria-label="Buscar conduta">
-    <div class="chips nacats">${Object.entries(CATS).map(([k,v])=>`<button class="chip" data-nacat="${k}" aria-pressed="${naCat===k}" style="--c:var(--${v.cor})"><span class="dot"></span>${esc(v.nome)}</button>`).join("")}</div>
-    <div class="nares" id="naRes"></div>`;
+    <div class="nares" id="naRes"></div>
+    <div class="chips nacats">${Object.entries(CATS).map(([k,v])=>`<button class="chip" data-nacat="${k}" aria-pressed="${naCat===k}" style="--c:var(--${v.cor})"><span class="dot"></span>${esc(v.nome)}</button>`).join("")}</div>`;
   const comeca=(cond,queixa)=>{
     const nome=$("#naNome").value.trim();
     novoPacienteSilencioso();

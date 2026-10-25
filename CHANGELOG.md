@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.33.1 — 2026-10-25
+- **Relógio sempre visível** no Atendimento (0:00 parado; começa quando você escolhe a conduta ou preenche algo). Toque nele para mudar a meta.
+- **Início, Novo atendimento**: os resultados da busca de conduta aparecem logo abaixo da caixa de texto, e as grandes áreas vêm depois.
+
 ## 1.33.0 — 2026-10-25
 - **Passagem de plantão no seu formato**: "Deixo o consultório 3 sem pendências." ou "com pacientes pendentes:", agrupando por quem assume (cada paciente pode ir para um médico, campo "quem assume") e com a ciência da troca corrida ("Caroline e João, cientes da troca; Maria, ainda não ciente da troca"). Sem hipótese nem pendências por paciente.
 - **Topo inteiro fixo na meia tela**: Atendimento, Pacientes, + Paciente, relógio, etapas e "✎ Padrões" (Editar padrões foi para a barra).

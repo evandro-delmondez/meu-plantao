@@ -366,7 +366,7 @@ function atEtapaMexida(n){
 }
 function atRelogio(){
   const r=$("#atRelogio"); if(!r) return;
-  if(!atd.t0){r.hidden=true;return}
+  if(!atd.t0){r.hidden=false;r.textContent="⏱ 0:00";r.dataset.nv="parado";r.title=`Começa quando você escolhe a conduta ou preenche algo · meta ${atMeta()} min (toque para mudar)`;return}
   const seg=Math.max(0,Math.floor((Date.now()-atd.t0)/1000)), min=Math.floor(seg/60), m=atTempoMedia();
   r.hidden=false; r.textContent=`⏱ ${min}:${String(seg%60).padStart(2,"0")}`; const meta=atMeta(); r.dataset.nv=min>=meta?"passou":min>=meta-5?"perto":"";
   r.title=`Meta ${meta} min (toque para mudar)${m?` · média de hoje ${m.media} min (${m.n})`:""}`;
@@ -374,7 +374,7 @@ function atRelogio(){
 setInterval(()=>{if(ui.tab==="evolucao"&&atd.t0)atRelogio()},1000);
 function atEtapasAtualiza(){
   const bar=$("#atEtapas"); if(!bar) return;
-  if(!atd.t0&&[1,2,4].some(atEtapaMexida)) atd.t0=Date.now();
+  if(!atd.t0&&[1,2,3,4].some(atEtapaMexida)) atd.t0=Date.now();
   atRelogio();
   AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`),ok=$(`#atCorpo [data-atcopok="${k}"]`);if(ta&&ok)ok.hidden=!(atd.cop[k]&&atd.cop[k]===ta.value)});
   const inter=atd.decisao==="internacao"||/intern/.test(atd.destino||"")||atTem(atd.intern.motivo);

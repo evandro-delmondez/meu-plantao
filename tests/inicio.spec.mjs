@@ -46,3 +46,12 @@ test("Novo atendimento pela queixa: caminhos no topo do bloco; escolher um camin
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(5);
   expect(erros).toEqual([]);
 });
+
+test("Novo atendimento: resultados da busca de conduta logo abaixo da caixa, antes das grandes áreas", async ({ page }) => {
+  const erros = await abrir(page);
+  await page.fill("#naCond", "pneumonia"); await page.dispatchEvent("#naCond", "input");
+  await expect(page.locator("#naRes [data-naid]").first()).toBeVisible();
+  const y = (s) => page.locator(s).first().evaluate((e) => e.getBoundingClientRect().top);
+  expect(await y("#naRes")).toBeLessThan(await y(".nacats"));
+  expect(erros).toEqual([]);
+});

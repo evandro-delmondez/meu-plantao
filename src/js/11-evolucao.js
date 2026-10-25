@@ -716,7 +716,7 @@ function bindEv(it){
       atd.iaAntes=ta.value; atd.man[k]=out; ta.value=out; grow(ta); atAtualiza();
       dz(`Texto melhorado pela IA: confira antes de copiar. <button class="btn sm" id="atIaDesfaz">Desfazer</button>`);
       $("#atIaDesfaz").onclick=()=>{atd.man.hda=atd.iaAntes;ta.value=atd.iaAntes;grow(ta);atAtualiza();dz("Voltou ao texto anterior.")}}
-    catch(e){dz(e.message==="numeros"?"A IA mudou ou tirou um número do texto: mantive o original.":/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
+    catch(e){dz(e.message==="numeros"?`A IA mudou ou tirou um número do texto${e.det?` (${esc(e.det)})`:""}: mantive o original. Tente de novo.`:/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
     b.disabled=false;
   });
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});

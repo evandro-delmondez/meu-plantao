@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.38.2 — 2026-10-26
+- **IA na HDA**: o prompt pede os números sempre em algarismos, e a trava aceita número por extenso ("três episódios" = "3x"); antes a trava recusava e o texto não mudava. O aviso agora diz qual número sumiu ou apareceu.
+
 ## 1.38.1 — 2026-10-26
 - **Notas soltas da HDA mais espertas** (sem IA): "ha 2d" vira "há 2 dias" sem repetir; "sem apetite" vira inapetência (presente, não negado); "nega diarreia nega disuria" vira "Nega diarreia e disúria."; entende abd, dps, qd, pra, hj, pq, náusea, vômito, disúria, "falta de ar".
 

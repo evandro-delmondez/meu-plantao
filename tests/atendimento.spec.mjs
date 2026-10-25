@@ -514,3 +514,16 @@ test("notas soltas do jeito real: 'ha 2d', 'sem apetite', 'nega x nega y' e abre
   expect(h).toContain("febre 38,2");
   expect(erros).toEqual([]);
 });
+
+test("IA: número por extenso ('três episódios' no lugar de '3x') passa na trava", async ({ page }) => {
+  await page.route("https://api.anthropic.com/**", (route) => route.fulfill({ status: 200, contentType: "application/json",
+    body: JSON.stringify({ content: [{ type: "text", text: "Paciente refere náuseas com três episódios de vômito há 2 dias.\n\nHPP: não informado\nMedicamentos em uso: não informado\nAlergias: não informado" }] }) }));
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await atender(page, "nauseas");
+  await campo(page, "hma").fill("nausea 2d, vomitou 3x");
+  await page.click("#atCorpo [data-atia]");
+  await expect(page.locator("#atIaEst")).toContainText("Texto melhorado pela IA");
+  await expect(saida(page, "hda")).toHaveValue(/três episódios de vômito/);
+  expect(erros).toEqual([]);
+});

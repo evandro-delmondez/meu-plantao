@@ -11,11 +11,15 @@ Corrija ortografia, concordância e abreviações.
 Regras obrigatórias:
 - Não acrescente nenhuma informação, sintoma, número, diagnóstico, hipótese ou interpretação que não esteja no texto.
 - Não retire nenhuma informação, número, negativa, medicamento ou tempo.
+- Escreva todos os números em algarismos, exatamente como estão no texto (ex.: 3x vira "3 episódios", nunca "três"; 38,2 continua 38,2).
 - Mantenha as linhas de antecedentes (HPP, Medicamentos em uso, Alergias) e seus tópicos com hífen exatamente na mesma estrutura, só corrigindo a grafia.
 - Sem markdown, sem aspas, sem comentários: devolva só o texto final.`;
 // o prompt pode ser editado pelo médico (fica nos padrões e vai pela nuvem); a trava dos números vale sempre
 const iaPrompt=()=>{const t=String((model.prefs||{}).iaPrompt||"").trim();return t||IA_SISTEMA};
-const iaNums=t=>(String(t||"").match(/\d+(?:[.,]\d+)?/g)||[]).sort();
+// números por extenso contam como o mesmo número (a IA às vezes escreve "três episódios" no lugar de "3x")
+const IA_EXT={um:1,uma:1,dois:2,duas:2,"três":3,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10,onze:11,doze:12,quinze:15,vinte:20,trinta:30};
+const iaNums=t=>{const s=String(t||"").replace(/\b(um|uma|dois|duas|três|tres|quatro|cinco|seis|sete|oito|nove|dez|onze|doze|quinze|vinte|trinta)\b(?=\s+(vez|vezes|episódio|episódios|dia|dias|hora|horas|semana|semanas|mês|meses|ano|anos|comprimido|comprimidos|gota|gotas|evacuaç|epis))/gi,w=>IA_EXT[w.toLowerCase()]);
+  return (s.match(/\d+(?:[.,]\d+)?/g)||[]).sort()};
 async function iaMelhora(texto){
   const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},
     body:JSON.stringify({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:texto}]})});
@@ -24,7 +28,8 @@ async function iaMelhora(texto){
   if(!out) throw new Error("vazio");
   // trava: todo número do original continua, e nenhum número novo aparece
   const a=iaNums(texto), b=iaNums(out);
-  if(a.join("|")!==b.join("|")) throw new Error("numeros");
+  if(a.join("|")!==b.join("|")){const sobra=[...b];const falta=a.filter(n=>{const k=sobra.indexOf(n);if(k<0)return true;sobra.splice(k,1);return false});
+    const e=new Error("numeros");e.det=[falta.length?`sumiu: ${falta.join(", ")}`:"",sobra.length?`apareceu: ${sobra.join(", ")}`:""].filter(Boolean).join("; ");throw e}
   return out;
 }
 function renderIa(){

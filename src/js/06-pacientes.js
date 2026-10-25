@@ -92,17 +92,18 @@ function pacCiencia(ps){
   if(nao.length) F.push(`${ptLista(nao)}, ${pl(nao,"ainda não ciente","ainda não cientes")} da troca`);
   return F.join("; ");
 }
-function pacPassagem(medico,local){
+function pacPassagem(medico,local,consMed){
   const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs").slice().reverse();
-  const onde=pacConsult(local), cab=`Passagem de plantão — ${new Date().toLocaleDateString("pt-BR")} ${pacHora(Date.now())}`;
-  if(!ab.length) return `${cab}\nDeixo ${onde||"o plantão"} sem pendências.`.replace("Deixo consultório","Deixo o consultório");
-  const grupos=new Map();
-  ab.forEach(p=>{const m=(p.assume||"").trim()||medico||"";if(!grupos.has(m))grupos.set(m,[]);grupos.get(m).push(p)});
-  const L=[cab,`Deixo ${onde?"o "+onde:"o plantão"} com ${ab.length>1?"pacientes pendentes":"paciente pendente"}:`];
-  for(const [m,ps] of grupos) L.push(`- ${m?`Com ${m}: `:"A definir: "}${pacCiencia(ps)}.`);
+  const meu=pacConsult(local), deixo=`Deixo ${meu?"o "+meu:"o plantão"}`;
+  if(!ab.length) return `${deixo} sem pendências.`;
+  const L=[`${deixo} com retornos:`];
+  for(const p of ab){
+    const m=(p.assume||"").trim()||medico||"", c=pacConsult((p.consMed||"").trim()||consMed||"");
+    L.push(`- ${p.nome}, ${p.sabe?"ciente da troca":"ainda não ciente da troca"}${m?`, com ${m}`:""}${c?` no ${c}`:""}.`);
+  }
   return L.join("\n");
 }
-let pcVer="hoje", pcPass={medico:"",local:""};
+let pcVer="hoje", pcPass={medico:"",local:"",consMed:""};
 function renderPacientes(){
   const el=$("#pcCorpo"); if(!el) return;
   const db=pacCarrega(), agora=Date.now(), hoje=pacHoje();
@@ -126,13 +127,14 @@ function renderPacientes(){
       <div class="chips pcets">${PAC_ETAPAS.map(([k,r])=>et(p,k,r)).join("")}</div>
       <div class="pcdesf"><select class="inp" data-pd="tipo" aria-label="Desfecho">${PAC_DESF.map(([v,r])=>`<option value="${v}" ${p.desf.tipo===v?"selected":""}>${r}</option>`).join("")}</select>
         ${p.desf.tipo==="internacao"?`<select class="inp" data-pd="onde" aria-label="Onde">${(typeof atLocais==="function"?[["","onde?"],...atLocais().slice(1)]:PAC_ONDE).map(([v,r])=>`<option value="${v}" ${p.desf.onde===v?"selected":""}>${r}</option>`).join("")}</select>`:""}
-        ${!p.desf.tipo||p.desf.tipo==="obs"?`<input class="inp pcassume" data-passume list="pcMedicos" value="${esc(p.assume||"")}" placeholder="quem assume" aria-label="Médico que assume ${esc(p.nome)}" autocomplete="off">`:""}
+        ${!p.desf.tipo||p.desf.tipo==="obs"?`<input class="inp pcassume" data-passume list="pcMedicos" value="${esc(p.assume||"")}" placeholder="quem assume" aria-label="Médico que assume ${esc(p.nome)}" autocomplete="off"><input class="inp pcassume pccons" data-pconsmed value="${esc(p.consMed||"")}" placeholder="consultório dele" aria-label="Consultório do médico que assume ${esc(p.nome)}" autocomplete="off">`:""}
         <label class="check"><input type="checkbox" data-psabe ${p.sabe?"checked":""}> ciente da troca</label>
         <button class="btn sm" data-pabrir>Abrir atendimento</button>${!p.desf.tipo||p.desf.tipo==="obs"?`<button class="btn sm" data-ppassa>Passei para outro médico</button>`:""}<button class="btn sm danger" data-papagar>Apagar</button></div></div>`}).join(""):`<div class="panel card"><p class="note">Nenhum paciente ainda. Digite o nome acima ou no topo do Atendimento.</p></div>`}</div>
     ${passados.length?`<details class="panel card pcpassados"><summary><h3>Passados a outro médico (${passados.length})</h3></summary><ul class="qlist">${passados.map(p=>`<li data-pid="${p.id}"><b>${esc(p.nome)}</b> · ${esc(pacHip(p)||"sem hipótese")} · ${pacHora(p.desf.t||p.criado)} <button class="btn sm" data-pvolta="${p.id}">Voltar para a lista</button></li>`).join("")}</ul></details>`:""}
     <details class="panel card pcpass"><summary><h3>Passagem de plantão</h3></summary>
-      <p class="note">Cada paciente pode ir para um médico (campo "quem assume" no paciente); sem nome, vai para o médico abaixo.</p>
-      <div class="atdgrid"><label class="f">Médico que assume (os sem nome)<input class="inp" id="pcMed" value="${esc(pcPass.medico)}" list="pcMedicos" autocomplete="off"></label><label class="f">Consultório que você deixa<input class="inp" id="pcLocal" value="${esc(pcPass.local)}" placeholder="ex.: 3" autocomplete="off"></label></div>
+      <label class="f">Consultório que você deixa<input class="inp" id="pcLocal" value="${esc(pcPass.local)}" placeholder="ex.: 3" autocomplete="off"></label>
+      <p class="note">Cada paciente pode ir para um médico (campos "quem assume" e "consultório dele" no paciente); os sem nome vão para o médico abaixo.</p>
+      <div class="atdgrid"><label class="f">Médico que assume<input class="inp" id="pcMed" value="${esc(pcPass.medico)}" list="pcMedicos" autocomplete="off"></label><label class="f">Consultório dele<input class="inp" id="pcConsMed" value="${esc(pcPass.consMed)}" placeholder="ex.: 5" autocomplete="off"></label></div>
       <datalist id="pcMedicos">${[...new Set(db.pacs.map(p=>(p.assume||"").trim()).filter(Boolean))].map(m=>`<option value="${esc(m)}">`).join("")}</datalist>
       <textarea class="out-edit" id="pcPassTxt" spellcheck="false" aria-label="Mensagem de passagem" readonly></textarea>
       <div class="actions"><button class="btn primary" id="pcPassCp">Copiar mensagem</button><button class="btn" id="pcPassTodos">Passei todos (tirar da lista)</button></div></details>
@@ -159,6 +161,7 @@ function bindPacientes(){
     row.querySelectorAll("[data-ptxt]").forEach(i=>i.oninput=()=>{const k=i.dataset.ptxt;p.et[k][k==="exame"?"txt":"esp"]=i.value.trim();pacToca(p,"et."+k);pacGrava();pacPassAtualiza()});
     row.querySelectorAll("[data-pd]").forEach(s=>s.onchange=()=>{p.desf[s.dataset.pd]=s.value;if(s.dataset.pd==="tipo"){p.desf.t=s.value?Date.now():null;if(s.value!=="internacao")p.desf.onde=""}mexe("desf")});
     const pa=row.querySelector("[data-passume]"); if(pa) pa.oninput=()=>{p.assume=pa.value;pacToca(p,"assume");pacGrava();pacPassAtualiza()};
+    const pc=row.querySelector("[data-pconsmed]"); if(pc) pc.oninput=()=>{p.consMed=pc.value;pacToca(p,"consMed");pacGrava();pacPassAtualiza()};
     row.querySelector("[data-psabe]").onchange=e=>{p.sabe=e.target.checked;pacToca(p,"sabe");pacGrava();pacPassAtualiza()};
     const pp=row.querySelector("[data-ppassa]"); if(pp) pp.onclick=()=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();if(atPac===p.id)atPac=null;mexe("desf");toast(`${p.nome}: passado a outro médico (fica em "Passados")`)};
     const ap=row.querySelector("[data-papagar]"); let t=null;
@@ -166,6 +169,7 @@ function bindPacientes(){
   });
   $("#pcMed").oninput=e=>{pcPass.medico=e.target.value;pacPassAtualiza()};
   $("#pcLocal").oninput=e=>{pcPass.local=e.target.value;pacPassAtualiza()};
+  $("#pcConsMed").oninput=e=>{pcPass.consMed=e.target.value;pacPassAtualiza()};
   $$("#pcCorpo [data-pvolta]").forEach(b=>b.onclick=()=>{const p=pacDe(b.dataset.pvolta);if(!p)return;p.desf.tipo="";p.desf.t=null;pacToca(p,"desf");pacGrava();renderPacientes()});
   $("#pcPassTodos").onclick=()=>{const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");if(!ab.length){toast("Nenhum paciente em aberto");return}
     if(!confirm(`Tirar da lista os ${ab.length} paciente(s) em aberto, como passados a outro médico?`))return;
@@ -175,7 +179,7 @@ function bindPacientes(){
   pacPassAtualiza();
   if(typeof bindPacSync==="function") bindPacSync();
 }
-function pacPassAtualiza(){const ta=$("#pcPassTxt");if(!ta)return;ta.value=pacPassagem(pcPass.medico.trim(),pcPass.local.trim());grow(ta)}
+function pacPassAtualiza(){const ta=$("#pcPassTxt");if(!ta)return;ta.value=pacPassagem(pcPass.medico.trim(),pcPass.local.trim(),pcPass.consMed.trim());grow(ta)}
 // relógio: o aviso de 2 h e 3 h muda sozinho
 setInterval(()=>{if(ui.tab==="pacientes"&&!document.activeElement?.closest?.("#pcCorpo input,#pcCorpo select"))renderPacientes()},60000);
 /* ---- ligação com o Atendimento: nome no topo e gravação automática ---- */

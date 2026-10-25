@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.33.2 — 2026-10-25
+- **Passagem de plantão**: sem título nem data. "Deixo o consultório 3 com retornos:" e uma linha por paciente: "Caroline da Costa Freire, ciente da troca, com Dra. Ana no consultório 5." O consultório que você deixa fica em cima; cada paciente tem "quem assume" e "consultório dele" (os sem nome usam o médico e o consultório padrão).
+
 ## 1.33.1 — 2026-10-25
 - **Relógio sempre visível** no Atendimento (0:00 parado; começa quando você escolhe a conduta ou preenche algo). Toque nele para mudar a meta.
 - **Início, Novo atendimento**: os resultados da busca de conduta aparecem logo abaixo da caixa de texto, e as grandes áreas vêm depois.

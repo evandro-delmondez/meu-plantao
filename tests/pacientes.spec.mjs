@@ -32,8 +32,9 @@ test("nome no Atendimento põe na lista; etapas, desfecho e passagem; volta ao a
   await page.fill("#pcMed", "Dr. Plantonista B"); await page.fill("#pcLocal", "4");
   const msg = await page.inputValue("#pcPassTxt");
   // formato do médico: consultório, quem assume e ciência da troca, sem hipótese nem pendências por paciente
-  expect(msg).toContain("Deixo o consultório 4 com paciente pendente:");
-  expect(msg).toContain("- Com Dr. Plantonista B: Maria Teste da Silva, ainda não ciente da troca.");
+  expect(msg).toContain("Deixo o consultório 4 com retornos:");
+  expect(msg).toContain("- Maria Teste da Silva, ainda não ciente da troca, com Dr. Plantonista B.");
+  expect(msg).not.toContain("Passagem de plantão");
   expect(msg).not.toContain("Hipótese");
   await it.locator('[data-pe="exame"]').click();          // pronto
   await expect(it.locator('[data-pe="exame"]')).toContainText("pronto");
@@ -276,13 +277,17 @@ test("passagem: cada paciente com quem assume, ciência da troca corrida; sem pe
   await item(page, "Caroline").locator("[data-passume]").fill("Dr. Ana");
   await item(page, "João").locator("[data-passume]").fill("Dr. Ana");
   await item(page, "Maria").locator("[data-passume]").fill("Dr. Bruno");
+  await item(page, "Maria").locator("[data-pconsmed]").fill("7");
   await item(page, "Caroline").locator("[data-psabe]").check();
   await item(page, "João").locator("[data-psabe]").check();
   if (!(await page.locator(".pcpass").evaluate((d) => d.open))) await page.locator(".pcpass summary").click();
   const msg = await page.inputValue("#pcPassTxt");
-  expect(msg).toContain("Deixo o consultório 3 com pacientes pendentes:");
-  expect(msg).toContain("- Com Dr. Ana: Caroline e João, cientes da troca.");
-  expect(msg).toContain("- Com Dr. Bruno: Maria, ainda não ciente da troca.");
+  expect(msg).toContain("Deixo o consultório 3 com retornos:");
+  expect(msg).toContain("- Caroline, ciente da troca, com Dr. Ana.");
+  expect(msg).toContain("- João, ciente da troca, com Dr. Ana.");
+  expect(msg).toContain("- Maria, ainda não ciente da troca, com Dr. Bruno no consultório 7.");
+  await page.fill("#pcConsMed", "5");
+  await expect(page.locator("#pcPassTxt")).toHaveValue(/- Caroline, ciente da troca, com Dr\. Ana no consultório 5\./);
   expect(erros).toEqual([]);
 });
 

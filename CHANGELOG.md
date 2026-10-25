@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.38.4 — 2026-10-26
+- **IA na HDA**: a HDA vai para a IA entre as marcas <entrada> e </entrada> (funciona com prompts que usam essas marcas); se a IA devolver as marcas, o app tira.
+
 ## 1.38.3 — 2026-10-26
 - **IA na HDA com terminologia médica**: o prompt padrão troca linguagem leiga por termo médico (região periumbilical, fossa ilíaca direita, piora à deambulação, febre aferida, princípio ativo no lugar do nome comercial), segue a ordem da semiologia e traz um exemplo de antes e depois. Continua proibido inventar ou tirar dados.
 

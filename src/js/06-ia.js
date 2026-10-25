@@ -6,7 +6,7 @@ const IA_LS="mph_ia_v1", IA_MODELO="claude-haiku-4-5-20251001";
 let ia=lsGet(IA_LS,null)||{};
 const iaAtiva=()=>!!ia.chave;
 const IA_SISTEMA=`Você é médico emergencista e redige a HDA (história da doença atual) de um prontuário de pronto-socorro no Brasil.
-Reescreva o primeiro parágrafo em português formal, texto corrido, coeso e com terminologia médica, na ordem da semiologia: queixa principal e duração; início; localização; irradiação ou migração; caráter; intensidade; evolução; fatores de melhora e de piora; sintomas associados; tratamentos já feitos e resposta; negativas pertinentes.
+O texto vem entre <entrada> e </entrada>. Reescreva o primeiro parágrafo em português formal, texto corrido, coeso e com terminologia médica, na ordem da semiologia: queixa principal e duração; início; localização; irradiação ou migração; caráter; intensidade; evolução; fatores de melhora e de piora; sintomas associados; tratamentos já feitos e resposta; negativas pertinentes.
 Troque a linguagem leiga pelo termo médico correspondente, por exemplo: umbigo → região periumbilical; "direita embaixo" → fossa ilíaca direita; "boca do estômago" → epigástrio; "piora quando anda" → piora à deambulação; vomitou → episódios de vômito; "sem apetite" → inapetência; "falta de ar" → dispneia; "ardência ao urinar" → disúria; febre com valor → febre aferida de X °C; nome comercial → princípio ativo (ex.: Buscopan → escopolamina; Novalgina → dipirona; Tylenol → paracetamol).
 Corrija ortografia, acentuação, concordância e abreviações.
 Regras obrigatórias:
@@ -26,9 +26,9 @@ const iaNums=t=>{const s=String(t||"").replace(/\b(um|uma|dois|duas|três|tres|q
   return (s.match(/\d+(?:[.,]\d+)?/g)||[]).sort()};
 async function iaMelhora(texto){
   const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},
-    body:JSON.stringify({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:texto}]})});
+    body:JSON.stringify({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]})});
   if(!r.ok){let m="";try{m=(await r.json()).error?.message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}
-  const j=await r.json(); const out=(j.content||[]).map(c=>c.text||"").join("").trim();
+  const j=await r.json(); const out=(j.content||[]).map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
   if(!out) throw new Error("vazio");
   // trava: todo número do original continua, e nenhum número novo aparece
   const a=iaNums(texto), b=iaNums(out);

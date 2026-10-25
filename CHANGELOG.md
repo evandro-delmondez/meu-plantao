@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.37.0 — 2026-10-26
+- **"+ remédio" na receita do Atendimento**: busque o remédio (36 fichas com posologia de receita conferida contra as bulas), toque na posologia, ajuste os dias e a quantidade é calculada; entra na via certa, junto dos outros, numerada em sequência. Avisos para você aparecem só na tela.
+- **Colar de outro guia (ex.: Whitebook)**: cada remédio colado vira item da receita, com o "como usar" embaixo.
+- **"Salvar como opção desta conduta"**: o remédio acrescentado entra como bloco opcional na receita da conduta, nos seus padrões (vai pela nuvem).
+
 ## 1.36.0 — 2026-10-26
 - **Resultados de exames na reavaliação**: cada exame pedido vira siglas (hemograma → Hb, Ht, Leuco, Plaq; PCR; Ur; Cr; Na; K; TGO; TGP; Trop; DD; Lac; INR…) para digitar só o que veio alterado, mais "Laboratoriais sem (outras) alterações". Imagem: "sem alterações" ou o laudo/impressão. Vai para a alta: "Exames laboratoriais: Leuco 15.000; PCR 8,5; demais sem alterações."
 - **Pedido de internação ligado**: com os campos vazios, puxa sozinho os exames alterados, os laudos e o que foi feito no PS (medicação marcada e exames pedidos).

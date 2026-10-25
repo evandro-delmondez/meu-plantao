@@ -53,7 +53,7 @@ const atConds=()=>[atItem(),...(atd.extras||[]).map(getItem)].filter(Boolean).fi
 const atSis=it=>atd.sis||[...new Set((atConds().length?atConds():[it]).flatMap(atSisPadrao))];
 // junta os textos das condutas sem repetir o mesmo remédio (pelo nome no início do item) e renumera
 function atJunta(f){
-  const tx=atConds().map(c=>cur(c,f)).filter(t=>t&&t.trim());
+  const tx=[...atConds().map(c=>cur(c,f)),...(f==="casa"?atRxExtras():[])].filter(t=>t&&t.trim());
   if(tx.length<2) return tx[0]||"";
   if(f==="casa") return atJuntaVias(tx);
   // orientações: uma lista só, sem repetir
@@ -96,6 +96,37 @@ function atJuntaVias(tx){
   for(const v of vias){ if(out.length) out.push(""); out.push(v); let r=null;
     for(const it of porVia[v]){ if(it.rot&&it.rot!==r) out.push(it.rot); r=it.rot; out.push(`${++n}) ${it.l[0]}`,...it.l.slice(1)); } }
   return out.join("\n").trim();
+}
+// "+ remédio": posologia de receita da ficha (campo receita) e dias escolhidos → quantidade calculada; e "colar de fora"
+const AT_VIA={oral:"Uso oral",nasal:"Uso nasal","tópico":"Uso tópico",topico:"Uso tópico","inalatório":"Uso inalatório",inalatorio:"Uso inalatório"};
+const rxPad=(nome,q)=>{const n=`${nome} `;return n+"-".repeat(Math.max(3,46-n.length))+" "+q};
+function atRxLinha(e){
+  const m=MEDS.find(x=>x.id===e.id), p=m&&(m.receita||[])[e.i]; if(!p) return "";
+  const dias=Math.max(1,+e.dias||p.diasPadrao||1);
+  const qtd=p.qtdFixa!=null?p.qtdFixa:p.embalagem!=null?p.embalagem:Math.ceil((p.porTomada||1)*(p.vezesDia||1)*dias*(p.doses||1));
+  const inst=String(p.instrucao||"").replace("{dias}",`${dias} ${dias===1?"dia":"dias"}`);
+  return `${AT_VIA[p.via]||"Uso oral"}\n1) ${rxPad(p.nome,`${qtd} ${p.unidade||"cp"}`)}\n${inst}`;
+}
+// texto colado (Whitebook etc.): cada remédio vira item numerado; linhas de "como usar" ficam embaixo dele
+function atRxCola(t){
+  const L=String(t||"").split("\n").map(x=>x.trim().replace(/^[-•*·]\s*/,"")).filter(Boolean), its=[];
+  const instr=/^(tomar|aplicar|usar|dissolver|pingar|instilar|fazer|inalar|mastigar|colocar|passar|ingerir|administrar)\b/i;
+  for(const l of L){const sem=l.replace(/^\d+\s*[).-]\s*/,"");if(!its.length||(!instr.test(sem)&&(/^\d+\s*[).-]/.test(l)||/\d+\s*(mg|g|mcg|ml|ui|%|gotas)/i.test(sem))))its.push([sem]);else its[its.length-1].push(sem)}
+  return its.map(([a,...r])=>`${atViaDe("",r.join(" "))||"Uso oral"}\n1) ${a}${r.length?"\n"+r.join("\n"):""}`);
+}
+const atRxExtras=()=>[...(atd.rxExtra||[]).map(atRxLinha),...atRxCola(atd.rxCola)].filter(Boolean);
+function atRxMaisHTML(){
+  const ex=atd.rxExtra||[];
+  return `<div class="atrxmais"><span class="lbl">Acrescentar remédio</span>
+    ${ex.map((e,j)=>{const m=MEDS.find(x=>x.id===e.id), p=m&&(m.receita||[])[e.i]; if(!p) return "";
+      return `<div class="atrxx"><b>${esc(p.nome)}</b> <span class="note">${esc(p.rotulo||"")}</span>
+        <label class="atrxd">por <input class="inp" type="number" min="1" max="${p.diasMax||90}" value="${esc(String(e.dias||p.diasPadrao||1))}" data-rxdias="${j}" aria-label="Dias de ${esc(p.nome)}"> dias</label>
+        <button class="btn sm" data-rxsalva="${j}" title="Fica como opção desta conduta nos seus padrões">Salvar como opção desta conduta</button><button class="btn sm danger" data-rxtira="${j}">Tirar</button>
+        ${p.aviso?`<p class="note atrxav">Para você: ${esc(p.aviso)}</p>`:""}</div>`}).join("")}
+    <input class="inp" id="atRxQ" type="text" name="q-remedio-search" autocomplete="off" spellcheck="false" data-1p-ignore data-lpignore="true" placeholder="+ remédio (ex.: dexclorfeniramina, loratadina)" aria-label="Buscar remédio para a receita">
+    <div class="atsug" id="atRxSug"></div>
+    <details class="atrxcola"${atd.rxCola?" open":""}><summary>Colar de outro guia (ex.: Whitebook)</summary>
+      <textarea class="inp" data-atd="rxCola" rows="3" placeholder="cole aqui; cada remédio vira um item da receita">${esc(atd.rxCola||"")}</textarea></details></div>`;
 }
 // lista em português: "a, b e c"
 const ptLista=a=>a.length<2?(a[0]||""):a.slice(0,-1).join(", ")+" e "+a[a.length-1];
@@ -526,6 +557,7 @@ function renderEv(){
     ${ks.length?`<div class="atexs">${ks.map((k,i)=>exHTML(k,{pedir:true,aberto:i===0,titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
     <div class="atdgrid">${ta("exLab","Exames laboratoriais","ex.: hemograma\nPCR\nureia e creatinina")}${ta("exImg","Exames de imagem","ex.: TC de abdome com contraste")}</div>
     ${cs.map(c=>{const m=renderRxMontar(c);return m?`<div class="atrx atbloco" data-rxc="${esc(c.id)}">${atFixo(c)}${m}</div>`:""}).join("")}
+    ${atRxMaisHTML()}
     ${cs.map(rxAvisoHTML).join("")}
     ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}
     <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">${[["atestado","Atestado"],["comparecimento","Comparecimento"],["nenhum","Nenhum"]].map(([v,r])=>`<option value="${v}" ${atd.tipo===v?"selected":""}>${r}</option>`).join("")}</select></label>
@@ -637,6 +669,22 @@ function bindEv(it){
     b.setAttribute("aria-pressed",!!on); b.textContent=(on?"✓ ":"")+b.textContent.replace(/^✓ /,"");
     atAtualiza();
   });
+  // "+ remédio": busca nas fichas com posologia de receita
+  const rq=$("#atRxQ"), rs=$("#atRxSug");
+  if(rq){const mostra=()=>{const t=norm(rq.value.trim()); if(t.length<2){rs.innerHTML="";return}
+      const hits=MEDS.filter(m=>(m.receita||[]).length&&norm([m.nome,(m.marcas||[]).join(" "),m.classe].join(" ")).includes(t)).slice(0,8);
+      rs.innerHTML=hits.flatMap(m=>m.receita.map((p,i)=>`<button class="chip" data-rxadd="${m.id}" data-rxi="${i}">${esc(p.nome)} · ${esc(p.rotulo||"")}</button>`)).join("")||`<span class="note">Sem posologia de receita para isso. Use "Colar de outro guia".</span>`;
+      rs.querySelectorAll("[data-rxadd]").forEach(b=>b.onclick=()=>{const m=MEDS.find(x=>x.id===b.dataset.rxadd),p=m.receita[+b.dataset.rxi];atd.rxExtra=[...(atd.rxExtra||[]),{id:m.id,i:+b.dataset.rxi,dias:p.diasPadrao||1}];const y=window.scrollY;renderEv();window.scrollTo(0,y)})};
+    rq.addEventListener("input",mostra);rq.addEventListener("keydown",e=>{if(e.key==="Enter"){const b=rs.querySelector("[data-rxadd]");if(b){e.preventDefault();b.click()}}})}
+  box.querySelectorAll("[data-rxdias]").forEach(i=>i.oninput=()=>{const e=atd.rxExtra[+i.dataset.rxdias];if(e){e.dias=Math.max(1,+i.value||1);atAtualiza()}});
+  box.querySelectorAll("[data-rxtira]").forEach(b=>b.onclick=()=>{atd.rxExtra.splice(+b.dataset.rxtira,1);const y=window.scrollY;renderEv();window.scrollTo(0,y)});
+  // salvar como opção da conduta: entra como bloco opcional ("# Opção sua") na receita da conduta, nos seus padrões
+  box.querySelectorAll("[data-rxsalva]").forEach(b=>b.onclick=()=>{const e=atd.rxExtra[+b.dataset.rxsalva], it=atItem(); if(!e||!it) return;
+    const m=MEDS.find(x=>x.id===e.id), p=m.receita[e.i], lin=atRxLinha(e).split("\n").slice(1).join("\n");
+    if(!confirm(`Salvar ${p.nome} (${p.rotulo}) como opção da conduta "${it.nome}"? Fica nos seus padrões, como bloco opcional.`)) return;
+    const base=(overrides[it.id]&&!overrides[it.id].deleted&&overrides[it.id].casa!=null)?overrides[it.id].casa:it.casa;
+    overrides[it.id]=Object.assign({},overrides[it.id]||{},{nome:it.nome,cat:it.cat,cid:it.cid,sin:it.sin,unidade:it.unidade,orient:it.orient,casa:`${base}\n\n# Opção sua: ${p.nome}\n${lin.replace(/^1\)/,`${Math.max(0,...[...String(base).matchAll(/^\s*(\d+)\)/gm)].map(x=>+x[1]))+1})`)}`,updatedAt:Date.now()});
+    delete overrides[it.id].restored; persistLocal(); if(typeof gsAgenda==="function") gsAgenda(); toast("Salvo como opção da conduta (Editar padrões para mudar)")});
   // exames digitados à mão: ao sair do campo, só o quadro de resultados é refeito (sem redesenhar a tela e perder texto)
   box.querySelectorAll('[data-atd="exLab"],[data-atd="exImg"]').forEach(t=>t.addEventListener("change",()=>{const r=$("#atResBox");if(r){r.innerHTML=atResHTML();atResBind(r)}}));
   atResBind(box);

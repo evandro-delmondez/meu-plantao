@@ -822,3 +822,6 @@ details.panel>summary{cursor:pointer}
 .atres{margin:4px 0 12px}.atresg{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin:6px 0}
 .atresf{display:flex;align-items:center;gap:6px;font-weight:700;font-size:13px}.atresf span{min-width:44px}.atresf .inp{padding:6px 8px}
 .atimg{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}.atimg .inp{flex:1 1 220px}
+.atrxmais{margin:10px 0;padding:8px 10px;border:1px dashed var(--line);border-radius:12px}
+.atrxx{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}.atrxd{display:inline-flex;gap:4px;align-items:center;font-size:13px}.atrxd .inp{width:64px;padding:4px 6px}
+.atrxav{flex-basis:100%;margin:0;color:var(--warn)}.atrxcola{margin-top:6px}.atrxcola>summary{cursor:pointer;font-weight:600;color:var(--muted)}

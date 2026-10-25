@@ -471,3 +471,32 @@ test("internação puxa exames alterados, laudos e o feito no PS; prompt da IA e
   await expect(page.locator("#iaPromptTxt")).toHaveValue(/semiologia/);
   expect(erros).toEqual([]);
 });
+
+test("+ remédio: busca na ficha, dias calculam a quantidade, entra na via certa; colar de fora vira item; salvar como opção", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await page.fill("#atRxQ", "dexclorfeniramina");
+  const b = page.locator("#atRxSug [data-rxadd]").first();
+  await expect(b).toBeVisible();
+  await b.click();
+  let rx = await saida(page, "rx").inputValue();
+  expect(rx).toMatch(/Dexclorfeniramina/);
+  expect(rx.match(/^Uso oral$/gm)).toHaveLength(1);              // juntou no uso oral da gripe
+  const nums = [...rx.matchAll(/^(\d+)\)/gm)].map((m) => +m[1]);
+  expect(nums).toEqual(nums.map((_, i) => i + 1));
+  // dias mudam a quantidade
+  const antes = rx.match(/Dexclorfeniramina[^\n]*?(\d+) (cp|mL|gotas|fr)/)[1];
+  await page.fill("#atCorpo [data-rxdias]", "10");
+  rx = await saida(page, "rx").inputValue();
+  expect(rx.match(/Dexclorfeniramina[^\n]*?(\d+) (cp|mL|gotas|fr)/)[1]).not.toBe(antes);
+  // colar de fora
+  await page.locator(".atrxcola summary").click();
+  await campo(page, "rxCola").fill("Loratadina 10 mg\nTomar 1 comprimido VO 1x ao dia por 5 dias");
+  await expect(saida(page, "rx")).toHaveValue(/\d+\) Loratadina 10 mg\nTomar 1 comprimido VO 1x ao dia por 5 dias/);
+  // salvar como opção da conduta
+  page.once("dialog", (d) => d.accept());
+  await page.click("#atCorpo [data-rxsalva]");
+  const ov = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_overrides_v1")));
+  expect(ov.gripe.casa).toMatch(/# Opção sua: Dexclorfeniramina/);
+  expect(erros).toEqual([]);
+});

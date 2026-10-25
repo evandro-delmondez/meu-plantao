@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.38.1 — 2026-10-26
+- **Notas soltas da HDA mais espertas** (sem IA): "ha 2d" vira "há 2 dias" sem repetir; "sem apetite" vira inapetência (presente, não negado); "nega diarreia nega disuria" vira "Nega diarreia e disúria."; entende abd, dps, qd, pra, hj, pq, náusea, vômito, disúria, "falta de ar".
+
 ## 1.38.0 — 2026-10-26
 - **Conduta nova: Contratura muscular / Cervicalgia / Torcicolo** (M62.8), no formato por classes: analgésico; relaxante (ciclobenzaprina 10 mg 12/12h padrão, 5 mg como alternativa; tiocolchicosídeo com aviso de fígado; máx. 7 dias); anti-inflamatório (celecoxibe padrão; naproxeno, nimesulida, cetorolaco, ibuprofeno, diclofenaco, cetoprofeno por toque); diazepam só como bloco opcional; calor local e fisioterapia nas orientações; Coltrax IM e cetorolaco IM na unidade. Checklist, alta leiga e exames. Ligada ao caminho de cervicalgia/torcicolo da queixa de dor musculoesquelética.
 - **Lombalgia reorganizada nas mesmas classes**, com ciclobenzaprina 10 mg 12/12h padrão, tramadol e diazepam como blocos opcionais, Coltrax e cetorolaco IM na unidade.

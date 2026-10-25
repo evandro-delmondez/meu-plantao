@@ -500,3 +500,17 @@ test("+ remédio: busca na ficha, dias calculam a quantidade, entra na via certa
   expect(ov.gripe.casa).toMatch(/# Opção sua: Dexclorfeniramina/);
   expect(erros).toEqual([]);
 });
+
+test("notas soltas do jeito real: 'ha 2d', 'sem apetite', 'nega x nega y' e abreviações", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "dor-abdominal");
+  await campo(page, "hma").fill("dor abd ha 2d comecou no umbigo dps foi pra direita embaixo, piora qd anda, nausea 3x vomitou 1x, febre 38,2 ontem a noite, tomou buscopan s/ melhora, nega diarreia nega disuria, sem apetite");
+  const h = await saida(page, "hda").inputValue();
+  expect(h).toMatch(/^Paciente refere dor abdominal há 2 dias começou no umbigo depois foi para direita embaixo/);
+  expect(h).not.toMatch(/ha há/);
+  expect(h).toContain("inapetência");
+  expect(h).toContain("Nega diarreia e disúria.");
+  expect(h).toContain("Tomou buscopan sem melhora.");
+  expect(h).toContain("febre 38,2");
+  expect(erros).toEqual([]);
+});

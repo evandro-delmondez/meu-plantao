@@ -155,10 +155,13 @@ const atItens=t=>String(t||"").split("\n").map(x=>x.replace(/^\s*[-•#*]\s*/,""
 const atLista=(rot,itens)=>itens.length?`${rot}:\n${itens.map(x=>"- "+x).join("\n")}`:`${rot}: não informado`;
 // HDA em texto corrido: as notas soltas ("dor lombar 3d, piora ao levantar, nega febre") viram frases, e os negativos
 // das notas se juntam aos do checklist. Se as notas já estão redigidas (frases com ponto), ficam como estão.
-const AT_ABREV=[[/\bc\//gi,"com "],[/\bs\//gi,"sem "],[/\bp\//gi,"para "],[/\bpct\b/gi,"paciente"],[/\btb\b/gi,"também"],[/\bq\b/gi,"que"],[/\bmmii\b/gi,"membros inferiores"],[/\bmmss\b/gi,"membros superiores"],[/\bmid\b/gi,"membro inferior direito"],[/\bmie\b/gi,"membro inferior esquerdo"],[/\birradia\b/gi,"irradiação"]];
+const AT_ABREV=[[/\bc\//gi,"com "],[/\bs\//gi,"sem "],[/\bp\//gi,"para "],[/\bpct\b/gi,"paciente"],[/\btb\b/gi,"também"],[/\bq\b/gi,"que"],[/\bmmii\b/gi,"membros inferiores"],[/\bmmss\b/gi,"membros superiores"],[/\bmid\b/gi,"membro inferior direito"],[/\bmie\b/gi,"membro inferior esquerdo"],[/\birradia\b/gi,"irradiação"],
+  [/\babd\b/gi,"abdominal"],[/\bdps\b/gi,"depois"],[/\bqd\b/gi,"quando"],[/\bqdo\b/gi,"quando"],[/\bpra\b/gi,"para"],[/\bpro\b/gi,"para o"],[/\bhj\b/gi,"hoje"],[/\bpq\b/gi,"porque"],
+  [/\bha\b(?=\s*\d)/gi,"há"],[/\bnausea(s?)\b/gi,"náusea$1"],[/\bvomito(s?)\b/gi,"vômito$1"],[/\bdisuria\b/gi,"disúria"],[/\bdiarreia\b/gi,"diarreia"],[/\bcomecou\b/gi,"começou"],
+  [/\bsem (apetite|fome)\b/gi,"inapetência"],[/\bfalta de ar\b/gi,"dispneia"]];
 const AT_TEMPO=[[/^(d|dia|dias)$/i,"dia","dias"],[/^(h|hs|hr|hrs|hora|horas)$/i,"hora","horas"],[/^(sem|semana|semanas)$/i,"semana","semanas"],[/^(mes|mês|meses)$/i,"mês","meses"],[/^(min|minutos?)$/i,"minuto","minutos"]];
 function atTempoTxt(t){
-  return t.replace(/(^|\s)(há\s+)?(\d+)\s*(d|dias?|hs?|hrs?|horas?|sem|semanas?|m[eê]s|meses|min|minutos?)(?![\wÀ-ú])/gi,(m,a,ha,n,u)=>{
+  return t.replace(/(^|\s)(h[aá]\s+)?(\d+)\s*(d|dias?|hs?|hrs?|horas?|sem|semanas?|m[eê]s|meses|min|minutos?)(?![\wÀ-ú])/gi,(m,a,ha,n,u)=>{
     const r=AT_TEMPO.find(([re])=>re.test(u)); if(!r) return m; return `${a}há ${n} ${n==="1"?r[1]:r[2]}`});
 }
 const atMin=t=>/^[A-ZÀ-Ú]{2,}\b/.test(t)?t:t.charAt(0).toLowerCase()+t.slice(1);
@@ -170,7 +173,7 @@ function atNotas(txt){
   const t=String(txt||"").trim(); if(!t) return {prosa:"",neg:[]};
   if(/[.!?]\s+[A-ZÀ-Ú]/.test(t)||(/[.!?]$/.test(t)&&t.length>60)) return {prosa:t,neg:[],pronto:true};
   let x=t; AT_ABREV.forEach(([re,v])=>{x=x.replace(re,v)}); x=atTempoTxt(x).replace(/[ \t]{2,}/g," ");
-  const itens=x.split(/\s*(?:[;\n]|,(?!\d))\s*/).map(y=>y.trim().replace(/[.]$/,"")).filter(Boolean);
+  const itens=x.split(/\s*(?:[;\n]|,(?!\d))\s*/).flatMap(y=>y.split(/\s+(?=nega\s)/i)).map(y=>y.trim().replace(/[.]$/,"")).filter(Boolean);
   const neg=[], pos=[], frases=[];
   itens.forEach(i=>{if(AT_NEG.test(i))neg.push(atMin(i.replace(AT_NEG,"")));else if(pos.length&&atVerbo(i))frases.push(atMai(i)+".");else pos.push(atMin(i))});
   let p="";

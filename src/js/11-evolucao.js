@@ -262,10 +262,46 @@ function atReavHTML(){
 
 /* ---- tela ---- */
 function atSaida(k,rot){
-  return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
+  return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><span class="atcop" data-atcopok="${k}" hidden>✓ no MV</span><button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
     <textarea class="out-edit" data-atout="${k}" spellcheck="false" aria-label="${rot}"></textarea>
     <p class="note" data-atman="${k}" hidden><span data-atmanmsg>Você editou este campo.</span> <button class="btn sm" data-atre="${k}">Refazer</button></p></div>`;
 }
+// barra de etapas: vazia, preenchida (falta copiar) ou copiada para o MV (✓); some a 7 se não for internar
+const AT_ETAPAS=[[1,"HDA",["hda"]],[2,"Exame",["exame"]],[3,"HD",["diag"]],[4,"Conduta",["trat"]],[5,"Prescrição",["punid","rx","atest"]],[6,"Alta",["alta"]],[7,"Internação",["intern"]]];
+const atTem=v=>!!String(v||"").trim();
+function atEtapaMexida(n){
+  const ck=atConds().some(c=>chk[c.id]&&Object.keys(chk[c.id]).length);
+  return [null,
+    atTem(atd.hma)||atTem(atd.ap)||atTem(atd.muc)||atTem(atd.alergia)||ck,
+    ["pa","fc","fr","sat","tax","hgt","exLivre"].some(k=>atTem(atd[k]))||!!atd.sis,
+    atConds().length>0||atTem(atd.diag),
+    Object.keys(atd.cond||{}).length>0||atTem(atd.exLab)||atTem(atd.exImg)||atTem(atd.condLivre),
+    atCondOn("med")||atTem(atd.dias),
+    !!atd.decisao||Object.values(atd.reav||{}).some(Boolean)||atTem(atd.reavTxt),
+    atTem(atd.intern.motivo)||atTem(atd.intern.local)][n];
+}
+function atEtapasAtualiza(){
+  const bar=$("#atEtapas"); if(!bar) return;
+  AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`),ok=$(`#atCorpo [data-atcopok="${k}"]`);if(ta&&ok)ok.hidden=!(atd.cop[k]&&atd.cop[k]===ta.value)});
+  const inter=atd.decisao==="internacao"||/intern/.test(atd.destino||"")||atTem(atd.intern.motivo);
+  for(const [n,,cs] of AT_ETAPAS){
+    const b=bar.querySelector(`[data-atir="${n}"]`); if(!b) continue;
+    if(n===7) b.hidden=!inter;
+    const tas=cs.map(k=>$(`#atCorpo [data-atout="${k}"]`)).filter(t=>t&&t.value.trim()&&!t.closest("[hidden]"));
+    const cop=tas.length&&tas.every(t=>atd.cop[t.dataset.atout]===t.value);
+    b.dataset.st=cop?"ok":atEtapaMexida(n)?"meio":"";
+    b.title=cop?"Copiado para o MV":b.dataset.st==="meio"?"Preenchido: falta copiar para o MV":"Ainda vazio";
+  }
+}
+// altura do topo fixo, para a barra de etapas ficar logo abaixo
+try{const tp=$(".top");if(tp&&window.ResizeObserver)new ResizeObserver(()=>document.documentElement.style.setProperty("--toph",tp.offsetHeight+"px")).observe(tp)}catch(e){}
+// marca na barra a etapa que está na tela
+addEventListener("scroll",()=>{
+  const bar=$("#atEtapas"); if(!bar||ui.tab!=="evolucao") return;
+  const lim=bar.getBoundingClientRect().bottom+40; let atual=null;
+  $$("#atCorpo [data-etapa]").forEach(s=>{if(s.getBoundingClientRect().top<=lim)atual=s.dataset.etapa});
+  bar.querySelectorAll("[data-atir]").forEach(b=>b.toggleAttribute("aria-current",b.dataset.atir===atual));
+},{passive:true});
 function renderEv(){
   const el=$("#atCorpo"); if(!el) return;
   // só existe na tela enquanto a aba está aberta (o checklist e os campos não se repetem em outra aba)
@@ -285,18 +321,19 @@ function renderEv(){
   const outras=(atd.extras||[]).map(getItem).filter(Boolean);
   el.innerHTML=`
   <div class="ateditbar">${atEdit?`<span class="note">Editando os padrões. Vale para os próximos atendimentos.</span><button class="btn primary" id="atEdSalva">Salvar como padrão</button><button class="btn" id="atEdSai">Cancelar</button>`:`<button class="btn sm" id="atEdita">✎ Editar padrões</button>`}</div>
+  <nav class="atetapas" id="atEtapas" aria-label="Etapas do atendimento">${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}</nav>
   ${it?`<div class="atextras"><span class="lbl">Outras queixas no mesmo paciente</span><div class="chips">${outras.map(c=>`<button class="chip" data-atrem="${esc(c.id)}" aria-pressed="true" style="--c:var(--${(CATS[c.cat]||CATS.outros).cor})">✓ ${esc(c.nome)} ✕</button>`).join("")}
     ${outras.length<2?`<select class="inp atadd" id="atAdd" aria-label="Adicionar outra conduta"><option value="">+ Adicionar outra conduta</option>${allItems().filter(x=>!cs.some(c=>c.id===x.id)).map(x=>`<option value="${esc(x.id)}">${esc(x.nome)}</option>`).join("")}</select>`:""}</div></div>`:""}
   ${cs.length?`<div class="atconds">${cs.map(c=>{const k=CATS[c.cat]||CATS.outros;return `<span class="cat" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}${c.cid?` · ${esc(c.cid)}`:""}</span>`}).join("")}</div>`:""}
   ${atQueixaHTML(!!it)}
   ${cs.map(renderAlarme).join("")}
-  <div class="sec atsec" id="atHdaSec"><div class="sec-h"><h3>1. HDA e antecedentes</h3></div><div class="atbody">
+  <div class="sec atsec" data-etapa="1" id="atHdaSec"><div class="sec-h"><h3>1. HDA e antecedentes</h3></div><div class="atbody">
     ${ta("hma","Queixa e história da doença atual","ex.: dor de garganta há 2 dias, sem tosse")}
     <div class="atdgrid atlistas">${ta("ap","HPP (doenças, cirurgias, internações)","ex.: hipertensão arterial\ncolecistectomia em 2019")}${ta("muc","Medicamentos em uso","ex.: losartana 50 mg 1x ao dia")}${ta("alergia","Alergias","ex.: dipirona; ou nega")}</div>
     ${cs.map((c,i)=>`<div id="atChk${i}">${cs.length>1&&chkDe(c.id)?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${renderChecklist(c)}</div>`).join("")}
     ${atEdit?cs.map(edChk).join(""):""}
     ${atSaida("hda","HDA e antecedentes")}</div></div>
-  <div class="sec atsec"><div class="sec-h"><h3>2. Exame físico</h3></div><div class="atbody">
+  <div class="sec atsec" data-etapa="2"><div class="sec-h"><h3>2. Exame físico</h3></div><div class="atbody">
     <div class="atdsv">${inp("pa","PA","120x80")}${inp("fc","FC","",1)}${inp("fr","FR","",1)}${inp("sat","Sat O2","",1)}${inp("tax","Temp.","",1)}${inp("hgt","Glicemia","",1)}</div>
     <div class="atdgrid atdnews"><label class="f">Oxigênio<select class="inp" data-atd="o2">${[["","— informar —"],["ar","Ar ambiente"],["o2","Em O2 suplementar"]].map(([v,r])=>`<option value="${v}" ${atd.o2===v?"selected":""}>${r}</option>`).join("")}</select></label>
       <label class="f">Consciência<select class="inp" data-atd="cons">${[["","— informar —"],["A","Alerta"],["C","Confusão nova, voz, dor ou sem resposta"]].map(([v,r])=>`<option value="${v}" ${atd.cons===v?"selected":""}>${r}</option>`).join("")}</select></label></div>
@@ -309,11 +346,11 @@ function renderEv(){
     ${atEdit?`<div class="atedg"><b>Texto de cada sistema (${esc((EX_PERFIS.find(x=>x[0]===pf)||[])[1])})</b>${["geral",...sis].map(k=>{const ch=sisCh(k,pf,atFem());return edTa(`data-eds="${ch}"`,(SIS_OPC.find(x=>x[0]===ch)||[0,ch])[1],sisTexto(ch),sisPadrao(ch))}).join("")}</div>`:""}
     ${ta("exLivre","Achados (o que estiver alterado)","ex.: estertores crepitantes em base direita")}
     ${atSaida("exame","Exame físico")}</div></div>
-  <div class="sec atsec"><div class="sec-h"><h3>3. Hipótese diagnóstica</h3></div><div class="atbody">
+  <div class="sec atsec" data-etapa="3"><div class="sec-h"><h3>3. Hipótese diagnóstica</h3></div><div class="atbody">
     <div class="atcids">${cs.filter(c=>c.cid).map(c=>`<button class="cidbig" data-cpcid="${esc(c.cid)}" title="Copiar o CID de ${esc(c.nome)}">CID ${esc(c.cid)} <span>copiar</span></button>`).join("")}</div>
     ${ta("diag","Outras hipóteses ou complemento","ex.: diagnóstico diferencial com…")}
     ${atSaida("diag","Hipótese diagnóstica")}</div></div>
-  <div class="sec atsec"><div class="sec-h"><h3>4. Conduta</h3></div><div class="atbody">
+  <div class="sec atsec" data-etapa="4"><div class="sec-h"><h3>4. Conduta</h3></div><div class="atbody">
     <div class="chips atcond">${atL("cond").map(([k,r])=>chip("cond",k,k==="explico"?"Explico o quadro e a conduta":r.replace(/\.$/,""),atCondOn(k))).join("")}</div>
     ${atCondOn("med")&&atNomesUnid().length?`<span class="lbl">Quais remédios (toque nos que foram feitos)</span><div class="chips atmeds">${atNomesUnid().map(n=>chip("medsel",n,n,atd.medSel[n])).join("")}</div>`:""}
     ${ks.length?`<div class="atexs">${ks.map((k,i)=>exHTML(k,{pedir:true,aberto:i===0,titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
@@ -321,7 +358,7 @@ function renderEv(){
     ${ta("condLivre","Outras condutas","ex.: solicito parecer da Cirurgia Geral")}
     ${atEdit?edLista("cond","Itens da conduta"):""}
     ${atSaida("trat","Conduta")}</div></div>
-  <div class="sec atsec"><div class="sec-h"><h3>5. Prescrição</h3><span class="alsum">na unidade · receituário · atestado</span></div><div class="atbody">
+  <div class="sec atsec" data-etapa="5"><div class="sec-h"><h3>5. Prescrição</h3><span class="alsum">na unidade · receituário · atestado</span></div><div class="atbody">
     ${unidH?`<div class="atunid"><span class="lbl">Na unidade (para selecionar no prontuário)</span>${unidH}</div>`:""}
     ${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")+edTxt(c,"casa","receita")+edTxt(c,"orient","orientações")).join(""):""}
     ${unidH?atSaida("punid","Prescrição na unidade"):""}
@@ -332,7 +369,7 @@ function renderEv(){
       ${atd.tipo==="atestado"?inp("dias","Dias","0",1):atd.tipo==="comparecimento"?inp("hora","Período","ex.: 14h às 16h"):""}
       ${atd.tipo!=="nenhum"&&it&&it.cid?`<label class="check"><input type="checkbox" data-atd="aut" ${atd.aut?"checked":""}> CID ${esc(it.cid)} autorizado</label>`:""}</div>
     <div id="atAtW">${atSaida("atest","Atestado")}</div></div></div>
-  <div class="sec atsec"><div class="sec-h"><h3>6. Reavaliação e alta</h3></div><div class="atbody">
+  <div class="sec atsec" data-etapa="6"><div class="sec-h"><h3>6. Reavaliação e alta</h3></div><div class="atbody">
     ${atReavHTML()}
     <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
     ${ta("reavTxt","Resultados de exames e resposta ao tratamento","ex.: hemograma sem leucocitose; TC sem coleção")}
@@ -344,7 +381,7 @@ function renderEv(){
       <label class="f">Destino<select class="inp" data-atd="destino" id="evDestino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${esc(v)}" ${destAtual===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label></div>
     ${atSaida("alta","Reavaliação e alta")}
     <div class="hospev" id="atHosp"></div></div></div>
-  <details class="sec atsec atintern" ${/intern/.test(destAtual)||atd.intern.local?"open":""}><summary class="sec-h"><h3>7. Pedido de internação</h3><span class="alsum">${esc(atLocais().slice(1).map(x=>x[1]).join(", "))}</span></summary><div class="atbody">
+  <details class="sec atsec atintern" data-etapa="7" ${/intern/.test(destAtual)||atd.intern.local?"open":""}><summary class="sec-h"><h3>7. Pedido de internação</h3><span class="alsum">${esc(atLocais().slice(1).map(x=>x[1]).join(", "))}</span></summary><div class="atbody">
     <label class="f">Onde<select class="inp" data-atd="intern.local">${atLocais().map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label>
     <div class="atperg"><b>Para escrever a justificativa, responda:</b><ul>${atL("perg").map(([,p])=>`<li>${esc(p)}</li>`).join("")}</ul></div>
     ${ta("motivo","Justificativa (motivo da internação)","ex.: pneumonia com SpO2 89% em ar ambiente e CURB-65 3","intern")}
@@ -398,6 +435,7 @@ function atAtualiza(){
     n.querySelector("[data-atmanmsg]").textContent=velho?"Você mudou algo acima depois de editar este texto. O seu texto foi mantido.":"Você editou este campo.";
     n.querySelector("[data-atre]").textContent=velho?"Refazer com as mudanças":"Refazer"});
   const w=$("#atAtW"); if(w) w.hidden=!atTexto("atest",it);
+  atEtapasAtualiza();
   // NEWS2 e alertas dos sinais vitais (mesmas regras da conduta)
   if(it) atdAvisoAtualiza(it,"#atAviso","#atNews");
   const cb=$("#atCrb"); if(cb){const c=atdCrb();cb.textContent=`CRB-65: ${c.total}${c.faltam.length?" (parcial)":""} — ${c.fx.txt}`;cb.dataset.nv=c.fx.nivel}
@@ -434,12 +472,13 @@ function bindEv(it){
   box.querySelectorAll("[data-atseg]").forEach(b=>b.onclick=()=>{atd[b.dataset.atseg]=b.dataset.v;renderEv()});
   box.querySelectorAll("[data-atout]").forEach(ta=>ta.addEventListener("input",()=>{const k=ta.dataset.atout;if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}atd.man[k]=ta.value;grow(ta);$(`#atCorpo [data-atman="${k}"]`).hidden=false;atdSessaoLogo();pacSnapLogo()}));
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});
-  box.querySelectorAll("[data-atcp]").forEach(b=>b.onclick=()=>{const t=$(`#atCorpo [data-atout="${b.dataset.atcp}"]`).value;if(!t.trim()){toast("Campo vazio");return}copy(t,b)});
+  box.querySelectorAll("[data-atcp]").forEach(b=>b.onclick=()=>{const k=b.dataset.atcp,t=$(`#atCorpo [data-atout="${k}"]`).value;if(!t.trim()){toast("Campo vazio");return}copy(t,b).then(ok=>{if(!ok)return;atd.cop[k]=t;atEtapasAtualiza();atdSessaoLogo();pacSnapLogo()})});
+  box.querySelectorAll("[data-atir]").forEach(b=>b.onclick=()=>{const sec=$(`#atCorpo [data-etapa="${b.dataset.atir}"]`);if(!sec)return;if(sec.tagName==="DETAILS")sec.open=true;sec.scrollIntoView({behavior:"smooth",block:"start"})});
   box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));
   box.querySelectorAll("[data-atrem]").forEach(b=>b.onclick=()=>{atd.extras=atd.extras.filter(x=>x!==b.dataset.atrem);atd.sis=null;atd.alarOff={};renderEv()});
   if($("#atAdd")) $("#atAdd").onchange=e=>{const v=e.target.value;if(!v)return;atd.extras=[...(atd.extras||[]),v].slice(0,2);atd.sis=null;atd.alarOff={};renderEv()};
   if($("#atCrit")) $("#atCrit").onclick=()=>abrirHospInt((hospPac().internacao.doencas||[]).find(d=>(d.condutas||[]).includes(it&&it.id))?.id);
-  $("#atCpTudo").onclick=e=>copy(buildEv(),e.currentTarget);
+  $("#atCpTudo").onclick=async e=>{if(!await copy(buildEv(),e.currentTarget))return;AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`);if(ta&&ta.value.trim())atd.cop[k]=ta.value});atEtapasAtualiza()};
   // escolher o caminho: a tela volta ao topo do Atendimento, já com a conduta
   box.querySelectorAll("[data-atcam]").forEach(b=>b.onclick=()=>{$("#evCond").value=b.dataset.atcam;ui.sel=b.dataset.atcam;atd.sis=null;atd.alarOff={};renderEv();pacSnap();window.scrollTo({top:0,behavior:"smooth"})});
   box.querySelectorAll("[data-atvisto]").forEach(c=>c.onchange=()=>{atd.visto[c.dataset.atvisto]=c.checked;atAtualiza()});

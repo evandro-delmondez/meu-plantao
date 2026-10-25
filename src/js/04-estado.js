@@ -19,4 +19,5 @@ async function copy(text,btn){
   }
   if(ok){toast("Copiado");if(btn){const o=btn.textContent;btn.classList.add("done");btn.textContent="Copiado ✓";setTimeout(()=>{btn.classList.remove("done");btn.textContent=o},1400)}}
   else toast("Não consegui copiar — selecione o texto manualmente");
+  return ok;
 }

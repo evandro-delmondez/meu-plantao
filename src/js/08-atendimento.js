@@ -4,7 +4,7 @@ const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",ta
   queixa:null,extras:[],exLab:"",exImg:"",condLivre:"",cond:{},medSel:{},visto:{},decisao:null,exSexo:null,exPerfil:null,sis:null,exLivre:"",diag:"",destino:null,
   reav:{},reavTxt:"",altaOri:{},alarOff:{},altaLivre:"",compreende:false,
   intern:{local:"",motivo:"",obj:{},objLivre:"",lab:"",laudos:"",feito:"",parecer:""},
-  tipo:"atestado",dias:"",aut:false,hora:"",man:{},manBase:{}});
+  tipo:"atestado",dias:"",aut:false,hora:"",man:{},manBase:{},cop:{}});
 let atd=ATD_VAZIO();
 // rede de segurança contra perda de texto: o atendimento em andamento fica no sessionStorage da aba
 // (sobrevive a recarregar a página; some ao fechar a aba ou o navegador, e no "Novo paciente"). Fora do backup e da nuvem.

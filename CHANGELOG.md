@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.29.0 — 2026-10-25
+- **Barra de etapas no Atendimento**, fixa no topo: 1 HDA · 2 Exame · 3 HD · 4 Conduta · 5 Prescrição · 6 Alta (· 7 Internação, só se for internar). Cinza = vazia; azul = preenchida, falta copiar; verde ✓ = copiada para o MV. Tocar leva à etapa; a etapa na tela fica destacada.
+- Cada campo mostra **"✓ no MV"** depois de copiado; se você mudar algo depois, o selo some e a etapa volta a azul.
+
 ## 1.28.1 — 2026-10-25
 - **Não perde mais texto no Atendimento**: recarregar a página traz de volta o atendimento em andamento (fica só nesta aba; some ao fechar e no "Novo paciente"); a sincronização da nuvem espera você sair do campo para redesenhar; o texto que você editou à mão nunca é trocado sozinho — se mudar algo acima, aparece "Refazer com as mudanças".
 - **CID sem ponto** (M545), como o MV procura.

@@ -265,3 +265,24 @@ test("a nuvem dos padrões chega enquanto digita: o campo não perde o cursor ne
   await expect(campo(page, "ap")).toHaveValue("asma leve");
   expect(erros).toEqual([]);
 });
+
+test("barra de etapas: vazia, preenchida e copiada para o MV; editar depois de copiar pede copiar de novo", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "amigdalite");
+  await page.evaluate(() => { navigator.clipboard.writeText = () => Promise.resolve(); });
+  const etapa = (n) => page.locator(`#atEtapas [data-atir="${n}"]`);
+  await expect(etapa(1)).toHaveAttribute("data-st", "");
+  await expect(etapa(7)).toBeHidden();                         // internação só aparece se for internar
+  await campo(page, "hma").fill("odinofagia há 2 dias");
+  await expect(etapa(1)).toHaveAttribute("data-st", "meio");
+  await page.click('#atCorpo [data-atcp="hda"]');
+  await expect(etapa(1)).toHaveAttribute("data-st", "ok");
+  await expect(page.locator('#atCorpo [data-atcopok="hda"]')).toBeVisible();
+  await campo(page, "hma").fill("odinofagia há 3 dias");      // mudou depois de copiar
+  await expect(etapa(1)).toHaveAttribute("data-st", "meio");
+  await expect(page.locator('#atCorpo [data-atcopok="hda"]')).toBeHidden();
+  await etapa(2).click();
+  await expect(page.locator('#atCorpo [data-etapa="2"]')).toBeInViewport();
+  expect(await semRolagemLateral(page)).toBe(true);
+  expect(erros).toEqual([]);
+});

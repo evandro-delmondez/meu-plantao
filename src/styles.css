@@ -814,3 +814,8 @@ details.panel>summary{cursor:pointer}
 .pcassume{max-width:170px;padding:6px 10px;font-size:14px}
 .nares:not(:empty){margin:6px 0 10px}
 .atrel[data-nv="parado"]{opacity:.7}
+.ateg{margin:8px 0}.ateg .seg{margin:4px 0 6px}
+#atCorpo [data-atchip="eg"][aria-pressed="true"]{--c:var(--bad)}
+.rxlin-c{border-left:3px solid var(--c);padding-left:8px;align-items:center}
+.rxlin-c .chip.rxc{--c:inherit}
+.rxcls{font-size:11.5px;font-weight:700;color:var(--c);min-width:100px}

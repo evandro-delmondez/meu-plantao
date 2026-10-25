@@ -187,6 +187,7 @@ function pacNomeAtualiza(){const i=$("#atNome");if(!i)return;const p=atPac&&pacD
 $("#atNome").addEventListener("change",()=>{
   const n=$("#atNome").value.trim(); if(!n) return;
   if(atPac&&pacDe(atPac)){pacDe(atPac).nome=n;pacToca(pacDe(atPac),"nome");pacGrava()} else {const p=pacNovo(n);atPac=p.id}
+  if(!atd.t0){atd.t0=Date.now();if(typeof atRelogio==="function")atRelogio()}   // o relógio começa ao pôr o nome
   pacSnap(); pacNomeAtualiza();
 });
 // "Novo paciente" sem o toast e sem trocar de aba (usado ao abrir outro paciente da lista)

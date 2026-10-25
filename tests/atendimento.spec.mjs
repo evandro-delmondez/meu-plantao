@@ -396,3 +396,33 @@ test("IA na HDA: sem chave orienta; com chave troca o texto (sem o nome), trava 
   await expect(page.locator('#atCorpo [data-atout="hda"]')).toHaveValue(antes);
   expect(erros).toEqual([]);
 });
+
+test("estado geral por toque, sigla traz o normal para editar, relógio zera e começa no nome, receita por classe", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "lombalgia");
+  // estado geral: vem normal; toque marca o alterado
+  await page.click('#atCorpo [data-ateg="regular"]');
+  await page.click('#atCorpo [data-atchip="eg"][data-k="cor"]');
+  await page.click('#atCorpo [data-atchip="eg"][data-k="hid"]');
+  let ex = await saida(page, "exame").inputValue();
+  expect(ex).toMatch(/^Regular estado geral, hipocorado, desidratado, acianótico/m);
+  // "A:" traz o texto normal do abdome
+  const exl = campo(page, "exLivre");
+  await exl.click(); await page.keyboard.type("A:");
+  await expect(exl).toHaveValue(/^A: flácido, ruídos hidroaéreos presentes/);
+  // relógio: começa ao pôr o nome; 0 zera
+  await page.fill("#atNome", "Paciente Relógio"); await page.dispatchEvent("#atNome", "change");
+  await expect(page.locator("#atRelogio")).not.toHaveAttribute("data-nv", "parado");
+  page.once("dialog", (d) => d.accept("0"));
+  await page.click("#atRelogio");
+  await expect(page.locator("#atRelogio")).toHaveText(/⏱ 0:0\d/);
+  // receita por toque: uma linha por classe, com o nome da classe
+  await expect(page.locator("#atCorpo .rxlin-c .rxcls", { hasText: "Anti-inflamatório" })).toHaveCount(1);
+  await expect(page.locator("#atCorpo .rxlin-c .rxcls", { hasText: "Relaxante muscular" })).toHaveCount(1);
+  // tocar na receita não tira o destaque da etapa em que você está
+  await page.locator('#atEtapas [data-atir="5"]').click();
+  await expect(page.locator('#atCorpo [data-etapa="5"]')).toHaveClass(/atagora/);
+  await page.locator("#atCorpo .atrx .rxlin-c .chip.rxc").first().click();
+  await expect(page.locator('#atCorpo [data-etapa="5"]')).toHaveClass(/atagora/);
+  expect(erros).toEqual([]);
+});

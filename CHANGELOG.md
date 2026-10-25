@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.35.0 — 2026-10-26
+- **Estado geral por toque** no exame físico: Bom, Regular ou Mau estado geral, e Hipocorado, Desidratado, Cianótico, Ictérico, Febril, Taquipneico, Dispneico. Vem tudo normal; toque no que estiver alterado (com o gênero certo).
+- **Sigla + dois pontos já traz o normal**: ao digitar "A:" nos achados, entra o texto normal do abdome para você só alterar o que mudou (vale para G, CP, OF, CV, R, A, N, ME, MI, P).
+- **Relógio**: começa quando você põe o nome do paciente (ou, sem nome, ao preencher) e fecha quando você chama o próximo; toque nele e digite 0 para zerar.
+- **Receita por toque com uma linha por classe**, com a cor e o nome da classe (analgésico, anti-inflamatório, relaxante, antibiótico, antialérgico, antiemético, corticoide, gastro, uso nasal, controlado, antiviral).
+- Corrigido: tocar num remédio fazia sumir o destaque da etapa em que você está (as cores mudavam). O destaque agora muda quando a seção chega ao meio da tela.
+
 ## 1.34.0 — 2026-10-26
 - **TEP e TVP em condutas separadas** (CID I26.9 e I80.2), com checklist, alta leiga, exames e cálculos de cada uma (TEP: Wells, PERC, sPESI; TVP: Wells da TVP). Conferência independente: 1 crítico e 5 importantes corrigidos.
 - **Corrigido na receita**: ao escolher apixabana, a receita podia sair com rivaroxabana 15 mg + apixabana; agora a apixabana troca o esquema inteiro.

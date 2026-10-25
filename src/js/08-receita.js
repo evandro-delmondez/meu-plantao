@@ -50,6 +50,15 @@ function rxMonta(it){
   const par=out.join("\n").split(/\n{2,}/).filter(x=>x.trim()&&(/^\s*\d+\)/m.test(x)||x.trim().length>40));
   return par.join("\n\n");
 }
+// classe do remédio pela primeira palavra do nome: cor e rótulo da linha na receita por toque
+const RX_CLASSES=[["Analgésico","sky",/^(dipirona|paracetamol|metamizol)/],["Anti-inflamatório","orange",/^(ibuprofeno|cetoprofeno|naproxeno|diclofenaco|nimesulida|celecoxibe|cetorolaco|tenoxicam|meloxicam|piroxicam)/],
+  ["Relaxante muscular","violet",/^(ciclobenzaprina|tiocolchicos|carisoprodol|orfenadrina)/],["Antibiótico","red",/^(amoxicilina|azitromicina|cefalexina|ciprofloxacino|levofloxacino|sulfametoxazol|nitrofurantoína|nitrofurantoina|fosfomicina|metronidazol|clindamicina|doxiciclina|claritromicina|cefuroxima|penicilina|benzetacil)/],
+  ["Antialérgico","teal",/^(loratadina|desloratadina|dexclorfeniramina|cetirizina|levocetirizina|fexofenadina|hidroxizina|prometazina)/],["Antiemético","lime",/^(ondansetrona|metoclopramida|bromoprida|dimenidrinato)/],
+  ["Corticoide","pink",/^(prednisona|prednisolona|dexametasona|betametasona|budesonida)/],["Gastro","amber",/^(omeprazol|pantoprazol|esomeprazol|simeticona|escopolamina|hioscina|loperamida|lactulose|sais|soro de reidrata)/],
+  ["Uso nasal","cyan",/^(soro fisiol|cloreto de sódio|budesonida nasal|mometasona)/],["Controlado","rose",/^(tramadol|codeína|codeina|diazepam|clonazepam|alprazolam)/],["Antiviral","indigo",/^(oseltamivir|aciclovir|valaciclovir)/]];
+const rxClasse=nome=>{const n=norm(String(nome||"")).replace(/^\d+\)\s*/,"");return RX_CLASSES.find(([,,re])=>re.test(n))||null};
+// uma linha por remédio/classe, com a cor e o nome da classe
+const rxLinha=(p,miolo)=>{const c=rxClasse(rxRotulo(p.ops[0]));return `<div class="rxlin${c?" rxlin-c":""}"${c?` style="--c:var(--${c[1]})"`:""}>${c?`<span class="rxcls">${c[0]}</span>`:""}${miolo}</div>`};
 function renderRxMontar(it){
   if(sess[it.id]&&sess[it.id].casa!=null) return "";   // editada à mão: não sobrescreve
   if(!rxTemMontar(it)) return "";
@@ -63,9 +72,8 @@ function renderRxMontar(it){
     for(const p of b.partes){
       if(p.tipo!=="slot") continue;
       const k=bi+"-"+si++, e=st.s[k]??0;
-      if(p.ops.length===1){const chip=`<button class="chip rxc" data-rxs="${k}" data-rxv="${e<0?0:-1}" aria-pressed="${e>=0}">${e>=0?"✓":"＋"} ${esc(rxRotulo(p.ops[0]).split(" · ")[0])}</button>`;if(!soltos){soltos=[];linhas.push(soltos)}soltos.push(chip);continue}
-      soltos=null;
-      linhas.push(`<div class="rxlin">${p.ops.map((o,oi)=>`<button class="chip rxc" data-rxs="${k}" data-rxv="${oi}" aria-pressed="${e===oi}">${esc(rxRotulo(o))}</button>`).join("")}<button class="chip rxc rxsem" data-rxs="${k}" data-rxv="-1" aria-pressed="${e<0}">sem</button></div>`);
+      if(p.ops.length===1){const chip=`<button class="chip rxc" data-rxs="${k}" data-rxv="${e<0?0:-1}" aria-pressed="${e>=0}">${e>=0?"✓":"＋"} ${esc(rxRotulo(p.ops[0]).split(" · ")[0])}</button>`;linhas.push(rxLinha(p,chip));continue}
+      linhas.push(rxLinha(p,`${p.ops.map((o,oi)=>`<button class="chip rxc" data-rxs="${k}" data-rxv="${oi}" aria-pressed="${e===oi}">${esc(rxRotulo(o))}</button>`).join("")}<button class="chip rxc rxsem" data-rxs="${k}" data-rxv="-1" aria-pressed="${e<0}">sem</button>`));
     }
   });
   return `<div class="rxmontar"><span class="lbl">Montar a receita (toque para escolher; só o escolhido vai para a receita e a evolução):</span>${linhas.map(x=>Array.isArray(x)?`<div class="rxlin">${x.join("")}</div>`:x).join("")}</div>`;

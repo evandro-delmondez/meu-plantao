@@ -189,6 +189,14 @@ function atExame(it){
   const CONF="com alteração aguda da consciência (descrever orientação e Glasgow)";
   if(atd.cons==="C") exm=exm.replace(/lúcid([oa]) e orientad[oa] no tempo e no espaço/g,(m,g)=>`confus${g}, ${CONF}`).replace(/\bLOTE\b/g,`confuso(a), ${CONF}`).replace(/Glasgow 15,?\s*/g,"");
   if(atd.o2==="o2") exm=exm.replace(/em ar ambiente/g,"em O2 suplementar");
+  const eg=atd.eg||{};
+  if(eg.estado==="regular") exm=exm.replace(/\bBom estado geral/,"Regular estado geral"); else if(eg.estado==="mau") exm=exm.replace(/\bBom estado geral/,"Mau estado geral");
+  if(eg.cor) exm=exm.replace(/\bcorad([oa])\b/,"hipocorad$1");
+  if(eg.hid) exm=exm.replace(/\bhidratad([oa])\b/,"desidratad$1");
+  if(eg.cian) exm=exm.replace(/\bacianótic([oa])\b/,"cianótic$1");
+  if(eg.ict) exm=exm.replace(/\banictéric([oa])\b/,"ictéric$1");
+  if(eg.feb) exm=exm.replace(/\bafebril\b/,"febril");
+  if(eg.disp) exm=exm.replace(/\b(eupneic|taquipneic)([oa])\b/,"dispneic$2"); else if(eg.taqui) exm=exm.replace(/\beupneic([oa])\b/,"taquipneic$1");
   L.push((L.length?"Exame físico:\n":"")+exm.replace(/^Exame físico:\n/,""));
   const resto=atAchados().resto; if(resto.length) L.push(resto.map(l=>atMai(l).replace(/([^.])$/,"$1.")).join("\n"));
   atConds().forEach(c=>chkLinhas(c).ex.forEach(x=>L.push(x)));
@@ -366,7 +374,7 @@ function atEtapaMexida(n){
 }
 function atRelogio(){
   const r=$("#atRelogio"); if(!r) return;
-  if(!atd.t0){r.hidden=false;r.textContent="⏱ 0:00";r.dataset.nv="parado";r.title=`Começa quando você escolhe a conduta ou preenche algo · meta ${atMeta()} min (toque para mudar)`;return}
+  if(!atd.t0){r.hidden=false;r.textContent="⏱ 0:00";r.dataset.nv="parado";r.title=`Começa quando você põe o nome do paciente (ou preenche algo) e fecha ao chamar o próximo · meta ${atMeta()} min (toque para mudar)`;return}
   const seg=Math.max(0,Math.floor((Date.now()-atd.t0)/1000)), min=Math.floor(seg/60), m=atTempoMedia();
   r.hidden=false; r.textContent=`⏱ ${min}:${String(seg%60).padStart(2,"0")}`; const meta=atMeta(); r.dataset.nv=min>=meta?"passou":min>=meta-5?"perto":"";
   r.title=`Meta ${meta} min (toque para mudar)${m?` · média de hoje ${m.media} min (${m.n})`:""}`;
@@ -374,7 +382,7 @@ function atRelogio(){
 setInterval(()=>{if(ui.tab==="evolucao"&&atd.t0)atRelogio()},1000);
 function atEtapasAtualiza(){
   const bar=$("#atEtapas"); if(!bar) return;
-  if(!atd.t0&&[1,2,3,4].some(atEtapaMexida)) atd.t0=Date.now();
+  if(!atd.t0&&(atPac||[1,2,3,4].some(atEtapaMexida))) atd.t0=Date.now();
   atRelogio();
   AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`),ok=$(`#atCorpo [data-atcopok="${k}"]`);if(ta&&ok)ok.hidden=!(atd.cop[k]&&atd.cop[k]===ta.value)});
   const inter=atd.decisao==="internacao"||/intern/.test(atd.destino||"")||atTem(atd.intern.motivo);
@@ -391,14 +399,15 @@ const AT_ESTREITA=matchMedia("(max-width:860px)");
 AT_ESTREITA.addEventListener?.("change",()=>{if(ui.tab==="evolucao"){const y=window.scrollY;renderEv();window.scrollTo(0,y)}});
 // altura do topo fixo, para a barra de etapas ficar logo abaixo
 try{const tp=$(".top");if(tp&&window.ResizeObserver)new ResizeObserver(()=>document.documentElement.style.setProperty("--toph",tp.offsetHeight+"px")).observe(tp)}catch(e){}
-// marca na barra a etapa que está na tela
-addEventListener("scroll",()=>{
+// marca na barra (e na seção) a etapa que está no meio da tela; refeito também depois de cada redesenho
+function atMarcaEtapa(){
   const bar=$("#atEtapas"); if(!bar||ui.tab!=="evolucao") return;
-  const lim=bar.getBoundingClientRect().bottom+40; let atual=null;
-  $$("#atCorpo [data-etapa]").forEach(s=>{if(s.getBoundingClientRect().top<=lim)atual=s.dataset.etapa});
+  const lim=Math.max(bar.getBoundingClientRect().bottom+40,window.innerHeight*0.45); let atual=null;
+  $$("#atCorpo [data-etapa]").forEach(x=>{if(x.getBoundingClientRect().top<=lim)atual=x.dataset.etapa});
   bar.querySelectorAll("[data-atir]").forEach(b=>b.toggleAttribute("aria-current",b.dataset.atir===atual));
   $$("#atCorpo [data-etapa]").forEach(x=>x.classList.toggle("atagora",x.dataset.etapa===atual));
-},{passive:true});
+}
+addEventListener("scroll",atMarcaEtapa,{passive:true});
 function atBuscaCond(q,fora){
   const its=allItems().filter(x=>!fora.includes(x.id)), t=norm(String(q||"").trim());
   if(t.length<2){
@@ -453,6 +462,9 @@ function renderEv(){
     ${cs.some(c=>c.id==="pac")?`<p class="svnews crbres" id="atCrb"></p>`:""}
     <div class="atsegs"><div class="seg" role="group" aria-label="Sexo">${[["M","Masculino"],["F","Feminino"]].map(([v,r])=>`<button data-atseg="exSexo" data-v="${v}" aria-pressed="${(atd.exSexo||pac.sexo)===v&&pf!=="gest"}" ${pf==="gest"?"disabled":""}>${r}</button>`).join("")}</div>
       <div class="seg" role="group" aria-label="Perfil">${EX_PERFIS.map(([v,r])=>`<button data-atseg="exPerfil" data-v="${v}" aria-pressed="${pf===v}">${r}</button>`).join("")}</div></div>
+    <div class="ateg"><span class="lbl">Estado geral (vem normal; toque no que estiver alterado)</span>
+      <div class="seg" role="group" aria-label="Estado geral">${[["bom","Bom"],["regular","Regular"],["mau","Mau"]].map(([v,r])=>`<button data-ateg="${v}" aria-pressed="${((atd.eg||{}).estado||"bom")===v}">${r}</button>`).join("")}</div>
+      <div class="chips">${[["cor","Hipocorado"],["hid","Desidratado"],["cian","Cianótico"],["ict","Ictérico"],["feb","Febril"],["taqui","Taquipneico"],["disp","Dispneico"]].map(([k,r])=>chip("eg",k,r,(atd.eg||{})[k])).join("")}</div></div>
     <div class="chips atsis">${EX_SIS.filter(([k])=>k!=="geral").map(([k,r])=>chip("sis",k,r,sis.has(k))).join("")}</div>
     ${atEdit?`<div class="atedg"><b>Texto de cada sistema (${esc((EX_PERFIS.find(x=>x[0]===pf)||[])[1])})</b>${["geral",...sis].map(k=>{const ch=sisCh(k,pf,atFem());return edTa(`data-eds="${ch}"`,(SIS_OPC.find(x=>x[0]===ch)||[0,ch])[1],sisTexto(ch),sisPadrao(ch))}).join("")}</div>`:""}
     ${ta("exLivre","Só o que estiver alterado — sigla e dois pontos troca a linha normal: G, CP, OF, CV, R, A, N, ME, MI, P","ex.: A: dor à palpação em FID, Blumberg positivo\nR: estertores em base direita")}
@@ -514,6 +526,7 @@ function renderEv(){
   const bar=$("#atCorpo .atetapas"), tabs=$(".top .tabs");
   if(bar&&tabs){const v=$(".top .atetapas");if(v)v.remove();tabs.appendChild(bar);atEtapasAtualiza()}
   atFocoVolta(foco);
+  atMarcaEtapa();
 }
 // redesenhar não tira o cursor do campo em que você está digitando
 function atFocoGuarda(){
@@ -576,13 +589,25 @@ function bindEv(it){
     if(g==="sis"){const s=new Set(atSis(it));s.has(k)?s.delete(k):s.add(k);atd.sis=EX_SIS.map(x=>x[0]).filter(x=>s.has(x))}
     if(g==="cond"){atd.cond[k]=!atCondOn(k);if(k==="med"){renderEv();return}}
     if(g==="medsel") atd.medSel[k]=!atd.medSel[k];
+    if(g==="eg"){atd.eg=atd.eg||{};atd.eg[k]=!atd.eg[k]}
     if(g==="reav") atd.reav[k]=!atd.reav[k];
     if(g==="ori") atd.altaOri[k]=atd.altaOri[k]===false;
     if(g==="volte") atd.alarOff[k]=!atd.alarOff[k];
     if(g==="obj") atd.intern.obj[k]=!atd.intern.obj[k];
-    const on=g==="ori"?atd.altaOri[k]!==false:g==="volte"?!atd.alarOff[k]:g==="sis"?atSis(it).includes(k):g==="obj"?atd.intern.obj[k]:g==="cond"?atCondOn(k):g==="medsel"?!!atd.medSel[k]:atd.reav[k];
+    const on=g==="eg"?!!(atd.eg||{})[k]:g==="ori"?atd.altaOri[k]!==false:g==="volte"?!atd.alarOff[k]:g==="sis"?atSis(it).includes(k):g==="obj"?atd.intern.obj[k]:g==="cond"?atCondOn(k):g==="medsel"?!!atd.medSel[k]:atd.reav[k];
     b.setAttribute("aria-pressed",!!on); b.textContent=(on?"✓ ":"")+b.textContent.replace(/^✓ /,"");
     atAtualiza();
+  });
+  box.querySelectorAll("[data-ateg]").forEach(b=>b.onclick=()=>{atd.eg=Object.assign({},atd.eg,{estado:b.dataset.ateg});box.querySelectorAll("[data-ateg]").forEach(x=>x.setAttribute("aria-pressed",x===b));atAtualiza()});
+  // sigla + dois pontos nos achados ("A:"): já entra o texto normal daquele sistema, para editar só o que está alterado
+  const exl=box.querySelector('[data-atd="exLivre"]');
+  if(exl) exl.addEventListener("input",e=>{
+    if(e.data!==":") return; const pos=exl.selectionStart, v=exl.value, ini=v.lastIndexOf("\n",pos-1)+1, fim=v.indexOf("\n",pos), lin=v.slice(ini,pos);
+    if(fim>=0&&v.slice(pos,fim).trim()||fim<0&&v.slice(pos).trim()) return;
+    const m=lin.match(/^\s*([a-zà-ú ]{1,22}?)\s*:$/i), k=m&&Object.keys(AT_SIS_ALIAS).find(x=>AT_SIS_ALIAS[x].test(m[1].trim().toLowerCase())); if(!k) return;
+    const normal=sisTexto(sisCh(k,atPerfil(),atFem())).replace(k==="geral"?/^$/:/^[^:]{1,40}:\s*/,"");
+    exl.value=v.slice(0,pos)+" "+normal+v.slice(pos); const c=pos+1+normal.length; exl.setSelectionRange(c,c);
+    atd.exLivre=exl.value; grow(exl); atAtualiza();
   });
   // sexo e perfil do exame: refazem o texto do exame (se foi editado à mão, fica e aparece o aviso para refazer)
   box.querySelectorAll("[data-atseg]").forEach(b=>b.onclick=()=>{atd[b.dataset.atseg]=b.dataset.v;renderEv()});
@@ -603,7 +628,8 @@ function bindEv(it){
   });
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});
   box.querySelectorAll("[data-atcp]").forEach(b=>b.onclick=()=>{const k=b.dataset.atcp,t=$(`#atCorpo [data-atout="${k}"]`).value;if(!t.trim()){toast("Campo vazio");return}copy(t,b).then(ok=>{if(!ok)return;atd.cop[k]=t;atEtapasAtualiza();atdSessaoLogo();pacSnapLogo()})});
-  if($("#atRelogio")) $("#atRelogio").onclick=()=>{const v=prompt(`Meta de tempo por atendimento, em minutos.\nO relógio fica amarelo 5 min antes e vermelho ao passar.`,atMeta());if(v==null)return;const n=Math.round(+String(v).replace(",","."));
+  if($("#atRelogio")) $("#atRelogio").onclick=()=>{const v=prompt(`Meta de tempo por atendimento, em minutos (fica amarelo 5 min antes e vermelho ao passar).\nDigite 0 para zerar o relógio agora.`,atMeta());if(v==null)return;const n=Math.round(+String(v).replace(",","."));
+    if(n===0){atd.t0=Date.now();atRelogio();atdSessaoLogo();toast("Relógio zerado");return}
     if(!(n>=5&&n<=180)){toast("Use de 5 a 180 minutos");return}model.prefs=Object.assign({},model.prefs,{meta:n});saveModel();atRelogio();toast(`Meta: ${n} min por atendimento`)};
   box.querySelectorAll("[data-atir]").forEach(b=>b.onclick=()=>{const sec=$(`#atCorpo [data-etapa="${b.dataset.atir}"]`);if(!sec)return;if(sec.tagName==="DETAILS")sec.open=true;sec.scrollIntoView({behavior:"smooth",block:"start"})});
   box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));

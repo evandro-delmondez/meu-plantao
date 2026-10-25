@@ -188,3 +188,16 @@ test("modo hospital: conduta do hospital em primeiro, versão do app recolhida, 
   await expect(page.locator('#atCorpo [data-atd="destino"] option')).toHaveText(["— não incluir —", "Alta com orientações", "Observação", "Internação", "Transferência"]);
   expect(erros).toEqual([]);
 });
+
+test("Meu hospital fica em Documentos e a busca do Início acha o texto dos protocolos", async ({ page }) => {
+  const erros = await abrir(page); const pedidos = []; await rotaGithub(page, pedidos);
+  await baixar(page);
+  expect(await page.locator('.tabs [data-tab="hospital"]').getAttribute("data-sec")).toBe("documentos");
+  await aba(page, "inicio");
+  await page.fill("#gq", "quimera"); await page.dispatchEvent("#gq", "input");
+  const r = page.locator("#tab-inicio").getByText("Rota fictícia").first();
+  await expect(r).toBeVisible();
+  await r.click();
+  await expect(page.locator(".msheet")).toContainText("Rota quimera");
+  expect(erros).toEqual([]);
+});

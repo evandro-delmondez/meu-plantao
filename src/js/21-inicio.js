@@ -29,6 +29,9 @@ function indiceBusca(){
   for(const s of SC) out.push({g:"Escores",cor:"violet",t:s.nome,s:"Escore",h:norm(s.nome+" escore score"),n:norm(s.nome),go:()=>abrirEscore(s.id)});
   for(const p of PEDS) out.push({g:"Pediatria por peso",cor:"sky",t:p.nome,s:"Prescrição pediátrica pelo peso",h:norm(p.nome+" pediatria crianca "+(p.cid||"")),n:norm(p.nome),go:()=>abrirPed(p.id)});
   for(const [modo,grupos] of Object.entries(CALC)) for(const gr of grupos) out.push({g:"Doses por peso",cor:gr.c,t:gr.t+(modo==="ped"?" (pediatria)":""),s:gr.d.map(d=>d.nome.split(/ \d/)[0]).slice(0,4).join(", ")+(gr.d.length>4?"…":""),h:norm(gr.t+" "+gr.d.map(d=>d.nome).join(" ")+(modo==="ped"?" pediatria crianca":" adulto")+" dose peso calculadora"),n:norm(gr.t),go:()=>abrirCalc(modo)});
+  // protocolos do meu hospital (pacote privado no aparelho): título pesa; o texto da seção também é achado
+  const hp=typeof hospPac==="function"&&hospPac();
+  if(hp&&hp.docs) for(const d of hp.docs) for(const sc of d.secoes||[]) out.push({g:hp.curto||hp.nome||"Meu hospital",cor:"teal",t:sc.titulo,s:d.titulo,h:norm(sc.titulo+" "+d.titulo),x:norm(sc.md||""),n:norm(sc.titulo),go:()=>abrirHospDoc(d.id,sc.id)});
   for(const [t,s,h,aba,alvo,fn] of PAGINAS) out.push({g:"Ferramentas",cor:"teal",t,s,h:norm(t+" "+s+" "+h),n:norm(t),go:fn||(()=>abrirAba(aba,alvo))});
   return out;
 }

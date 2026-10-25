@@ -244,3 +244,26 @@ test("o Atendimento alimenta a lista: exames pedidos e medicação viram pendên
   await expect(it.locator('[data-pe="exame"]')).toContainText("pronto");
   expect(erros).toEqual([]);
 });
+
+test("passei para outro médico: sai da lista e da contagem, fica em Passados e pode voltar", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "pacientes");
+  for (const n of ["Ana Passada", "Bruno Fica"]) { await page.fill("#pcNome", n); await page.click("#pcAdd"); await aba(page, "pacientes"); }
+  await expect(page.locator(".pcconta")).toContainText("2 hoje");
+  await item(page, "Ana Passada").locator("[data-ppassa]").click();
+  await expect(item(page, "Ana Passada")).toHaveCount(0);
+  await expect(page.locator(".pcconta")).toContainText("1 hoje");
+  await expect(page.locator(".pcpassados")).toContainText("Ana Passada");
+  expect(await page.locator("#pcPassTxt").inputValue()).not.toContain("Ana Passada");   // não entra na passagem
+  await page.locator(".pcpassados summary").click();
+  await page.click('.pcpassados [data-pvolta]');
+  await expect(item(page, "Ana Passada")).toHaveCount(1);
+  await expect(page.locator(".pcconta")).toContainText("2 hoje");
+  // passar todos de uma vez (fim do plantão)
+  page.once("dialog", (d) => d.accept());
+  await page.locator(".pcpass summary").click();
+  await page.click("#pcPassTodos");
+  await expect(page.locator("#pcCorpo .pcitem")).toHaveCount(0);
+  await expect(page.locator(".pcconta")).toContainText("0 hoje");
+  expect(erros).toEqual([]);
+});

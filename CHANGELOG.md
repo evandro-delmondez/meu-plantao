@@ -1,5 +1,14 @@
 # Histórico de versões
 
+## 1.32.0 — 2026-10-25
+- **"Passei para outro médico"** na lista de pacientes: sai da lista e da contagem de hoje, fica num quadro "Passados" (com "Voltar para a lista") e apaga com os 7 dias. Na passagem de plantão, "Passei todos" tira de uma vez os que estão em aberto.
+- **Meu hospital agora fica em Documentos**, e a busca do Início acha também o texto dos protocolos do hospital (ex.: "ferro").
+- **Cálculos dentro da conduta**: os escores já conferidos ligados a ela aparecem para preencher ali mesmo (pneumonia: CURB-65; TEP: Wells, PERC, sPESI; dor torácica: HEART; HDA: Glasgow-Blatchford; faringite/amigdalite: Centor; FA: CHA₂DS₂-VA e HAS-BLED; dor abdominal: Alvarado; AVC: NIHSS e ABCD²; TCE: Glasgow), com "Pôr no Atendimento".
+- **Roteiro de fala (30 s)** na Alta: o que você tem, o que tomar, quando voltar — montado com a conduta, a receita e os sinais de alarme da alta leiga.
+- **Relógio com segundos** e **meta editável** (toque no relógio; fica nos seus padrões e vai pela nuvem).
+- **Cores das etapas sempre visíveis** e a etapa onde você está fica pintada na cor dela (a seção também ganha destaque); acabou o lilás que cobria as cores.
+- **Siglas no exame por exceção**: G, CP, OF, CV, R, A, N, ME, MI, P seguidas de dois pontos trocam a linha normal do sistema.
+
 ## 1.31.0 — 2026-10-25
 - **Barra de etapas fixa também na meia tela** (e no celular): no modo estreito o topo não fica fixo, então a barra fica presa no alto do Atendimento.
 - **Nome da conduta preso no alto enquanto você está no trecho dela** (checklist e receita), com o CID; com duas condutas, cada uma no seu trecho.

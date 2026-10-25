@@ -25,7 +25,9 @@ const atdSessaoApaga=()=>{clearTimeout(atdSsT);try{sessionStorage.removeItem(ATD
 addEventListener("pagehide",atdSessaoGrava);
 // relógio do atendimento: de quando você começa a mexer até ir para o próximo paciente (meta: 25 min).
 // Guarda só os minutos por dia (sem nada do paciente), 14 dias, para a média do plantão.
-const TEMPO_LS="mph_tempos_v1", AT_META=25;
+const TEMPO_LS="mph_tempos_v1";
+// meta editável (toque no relógio); fica nos padrões do médico e vai pela nuvem
+const atMeta=()=>{const m=+((model.prefs||{}).meta);return m>=5&&m<=180?m:25};
 function atTempoFecha(){
   if(!atd.t0) return; const min=Math.round((Date.now()-atd.t0)/60000); atd.t0=null;
   if(min<1||min>240) return;

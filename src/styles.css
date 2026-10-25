@@ -755,12 +755,7 @@ details.panel>summary{cursor:pointer}
 .atetapas button{display:flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:3px 8px 3px 4px;border-radius:999px;
   border:1px solid var(--line);background:var(--surface);color:var(--muted);white-space:nowrap}
 .atetapas button b{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;font-size:10.5px;background:var(--line);color:var(--ink)}
-.atetapas button[data-st="meio"]{color:var(--ink);border-color:var(--accent)}
-.atetapas button[data-st="meio"] b{background:var(--accent);color:var(--accent-ink)}
-.atetapas button[data-st="ok"]{color:var(--ok);border-color:var(--ok)}
-.atetapas button[data-st="ok"] b{background:var(--ok);color:var(--bg);font-size:0}
 .atetapas button[data-st="ok"] b::after{content:"✓";font-size:11px}
-.atetapas button[aria-current]{box-shadow:0 0 0 1.5px var(--accent) inset;color:var(--ink)}
 @media (max-width:420px){.atetapas button{font-size:0;gap:0;padding:3px}.atetapas button b{font-size:10.5px}}
 [data-etapa]{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--toph,108px) + 12px)}
 @media (max-width:860px){[data-etapa]{scroll-margin-top:52px}}
@@ -779,8 +774,6 @@ details.panel>summary{cursor:pointer}
 #atCorpo [data-etapa="7"],.atetapas [data-atir="7"]{--et:var(--red)}
 #atCorpo .atsec[data-etapa]{border-left:5px solid var(--et);background:color-mix(in srgb,var(--et) 4%,var(--surface))}
 #atCorpo .atsec[data-etapa]>.sec-h h3{font-size:21px;color:var(--et)}
-.atetapas button[data-atir]{border-bottom:2.5px solid var(--et)}
-.atetapas button[data-st=""] b{background:color-mix(in srgb,var(--et) 30%,var(--surface));color:var(--ink)}
 #atCorpo textarea.inp{font-family:inherit;font-size:15px;line-height:1.5;min-height:76px;field-sizing:content}
 #atCorpo textarea.inp[data-atd="hma"]{min-height:120px;font-size:16px}
 #atCorpo textarea.out-edit{font-size:14.5px}
@@ -793,3 +786,23 @@ details.panel>summary{cursor:pointer}
 @media (max-width:860px){.atfixo{top:calc(env(safe-area-inset-top,0px) + 44px)}}
 .atpunid{margin:10px 0}.atpunid>summary{cursor:pointer;font-weight:600;color:var(--muted);padding:6px 0}
 .atbusca{flex:1 1 260px;min-width:220px}.atsug{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.atsug:empty{display:none}
+.atrel{font-variant-numeric:tabular-nums;min-width:62px;text-align:center}
+.scbox{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;background:var(--surface)}
+.scbox-h{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.scres{font-size:14px}
+.scq{margin:6px 0}
+.chip.scop{--c:var(--violet);cursor:pointer;font-weight:600;display:inline-flex;gap:5px;align-items:center}
+.chip.scop input{margin:0}
+.chip.scop:has(input:checked){background:var(--c);color:var(--surface)}
+.chip.scop:has(input:checked) .note{color:inherit}
+.atroteiro{border-left:4px solid var(--pink);background:color-mix(in srgb,var(--pink) 7%,var(--surface));border-radius:10px;padding:8px 12px;margin:8px 0 12px}.atroteiro ol{margin:4px 0 0 18px;padding:0;font-size:15px;line-height:1.5}
+/* barra: cada etapa sempre na sua cor; vazia = clara, preenchida = contorno forte, copiada = ✓, onde você está = pintada */
+.atetapas button[data-atir]{border:1.5px solid color-mix(in srgb,var(--et) 35%,var(--line));color:var(--et);background:color-mix(in srgb,var(--et) 6%,var(--surface))}
+.atetapas button[data-atir] b{background:color-mix(in srgb,var(--et) 25%,var(--surface));color:var(--et)}
+.atetapas button[data-st="meio"],.atetapas button[data-st="ok"]{border-color:var(--et)}
+.atetapas button[data-st="meio"] b,.atetapas button[data-st="ok"] b{background:var(--et);color:var(--surface)}
+.atetapas button[data-st="ok"] b{font-size:0}
+.atetapas button[aria-current]{background:var(--et);border-color:var(--et);color:var(--surface)}
+.atetapas button[aria-current] b{background:var(--surface);color:var(--et)}
+/* a seção onde você está fica destacada na cor dela */
+#atCorpo .atsec[data-etapa].atagora{background:color-mix(in srgb,var(--et) 11%,var(--surface));box-shadow:0 0 0 2px color-mix(in srgb,var(--et) 55%,transparent)}

@@ -297,15 +297,17 @@ test("prontuário rápido: notas soltas viram HDA corrida, exame por exceção t
   await campo(page, "hma").fill("dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre");
   await expect(saida(page, "hda")).toHaveValue(/^Paciente refere dor lombar há 3 dias, com piora ao levantar e irradiação para membro inferior direito\. Tomou dipirona sem melhora\. Nega febre/);
   await expect(page.locator("#atRelogio")).toBeVisible();
-  await expect(page.locator("#atRelogio")).toContainText("0 min");
+  await expect(page.locator("#atRelogio")).toHaveText(/⏱ 0:0\d/);
   // nota já redigida fica como está
   await campo(page, "hma").fill("Dor lombar há 3 dias. Sem trauma.");
   await expect(saida(page, "hda")).toHaveValue(/^Dor lombar há 3 dias\. Sem trauma\./);
-  await campo(page, "exLivre").fill("abd: doloroso em FID\nmarcha antálgica");
+  await campo(page, "exLivre").fill("abd: doloroso em FID\nmarcha antálgica\nR: estertores em base direita\nME: contratura paravertebral");
   const ex = await saida(page, "exame").inputValue();
   expect(ex).toMatch(/^Abdome: doloroso em FID\.$/m);
   expect(ex).not.toMatch(/Abdome: flácido/);
   expect(ex).toMatch(/^Marcha antálgica\.$/m);
+  expect(ex).toMatch(/^Respiratório: estertores em base direita\.$/m);       // siglas curtas: R, ME…
+  expect(ex).toMatch(/^Musculoesquelético: contratura paravertebral\.$/m);
   // relógio: passa da meta → vermelho; Novo paciente grava o tempo para a média
   await page.evaluate(() => { const t = Date.now() - 26 * 60000; document.querySelector('[data-atd="hma"]').dispatchEvent(new Event("input")); return t; });
   await page.locator("#atNovo").click(); await page.locator("#atNovo").click();
@@ -345,3 +347,21 @@ test("duas condutas: receita junta por via sem repetir remédio; nome da conduta
   expect(erros).toEqual([]);
 });
 
+
+test("meta do relógio editável (fica nos padrões), roteiro de fala na alta e etapa atual pintada", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "amigdalite");
+  await campo(page, "hma").fill("odinofagia 2d");
+  page.once("dialog", (d) => d.accept("30"));
+  await page.click("#atRelogio");
+  await expect(page.locator("#atRelogio")).toHaveAttribute("title", /Meta 30 min/);
+  expect(JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1"))).prefs.meta).toBe(30);
+  const rot = page.locator("#atCorpo .atroteiro");
+  await expect(rot).toContainText("O que você tem: amigdalite");
+  await expect(rot).toContainText("O que tomar:");
+  await expect(rot).toContainText("Volte se:");
+  await page.locator('#atEtapas [data-atir="4"]').click();
+  await expect(page.locator('#atEtapas [data-atir="4"]')).toHaveAttribute("aria-current", "");
+  await expect(page.locator('#atCorpo [data-etapa="4"]')).toHaveClass(/atagora/);
+  expect(erros).toEqual([]);
+});

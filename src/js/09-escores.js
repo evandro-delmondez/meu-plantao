@@ -21,3 +21,30 @@ function renderScores(){
   $("#scEv").onclick=()=>{evScores=evScores.filter(x=>!x.startsWith(sc.nome+":"));evScores.push(scTexto(sc));renderEv();toast("Escore adicionado à evolução")};
   $("#scClear").onclick=()=>{scState[sc.id]={};renderScores()};
 }
+/* ---------- cálculos dentro da conduta: os escores (já conferidos) ligados a ela, para preencher ali mesmo ---------- */
+// o estado é o mesmo da aba Escores (scState): preencher aqui aparece lá e vice-versa
+const SC_COND={pac:["curb"],tep:["wellsTep","perc","spesi"],tvp:["wellsTvp"],sca:["heart"],hda:["gbs"],faringite:["centor"],amigdalite:["centor"],fa:["cha","hasbled"],"dor-abdominal":["alvarado"],avc:["nihss","abcd2"],tce:["glasgow"]};
+const scRes=sc=>{const st=scState[sc.id]||{}, n=(sc.campos||[]).filter(([k])=>st[k]!=null).length+(sc.bin||[]).filter((b,i)=>st["b"+i]).length;
+  return n?`<b>${String(scTotal(sc)).replace(".",",")}</b> ponto(s) — ${esc(sc.interp(scTotal(sc)))}`:`<span class="note">preencha para ver o resultado</span>`};
+function renderCalcConduta(it){
+  const scs=(SC_COND[it.id]||[]).map(id=>SC.find(s=>s.id===id)).filter(Boolean); if(!scs.length) return "";
+  const pts=p=>`<span class="note">(${p>0?"+":""}${String(p).replace(".",",")})</span>`;
+  return `<details class="sec scin" open><summary class="sec-h"><h3>Cálculos desta conduta</h3><span class="alsum">${esc(scs.map(s=>s.nome.split(" (")[0]).join(" · "))}</span></summary>
+    ${scs.map(sc=>{const st=scState[sc.id]||{};return `<div class="scbox" data-scin="${sc.id}"><div class="scbox-h"><b>${esc(sc.nome)}</b><span class="scres" data-scres>${scRes(sc)}</span></div>
+      ${(sc.campos||[]).map(([k,lab,opts])=>`<div class="scq"><span class="lbl">${esc(lab)}</span><div class="chips">${opts.map(([t,p],i)=>`<label class="chip scop"><input type="radio" name="sci_${sc.id}_${k}" data-k="${k}" value="${i}" ${st[k]===i?"checked":""}> ${esc(t)} ${pts(p)}</label>`).join("")}</div></div>`).join("")}
+      ${sc.bin?`<div class="chips">${sc.bin.map(([t,p],i)=>`<label class="chip scop"><input type="checkbox" data-b="${i}" ${st["b"+i]?"checked":""}> ${esc(t)} ${pts(p)}</label>`).join("")}</div>`:""}
+      <div class="actions"><button class="btn sm" data-sccp>Copiar</button><button class="btn sm" data-scev>Pôr no Atendimento</button><button class="btn sm" data-sclimpa>Limpar</button></div>
+      <p class="note">Fonte: ${esc(sc.src)}</p></div>`}).join("")}</details>`;
+}
+document.addEventListener("change",e=>{
+  const box=e.target.closest("[data-scin]"); if(!box) return; const sc=SC.find(s=>s.id===box.dataset.scin); if(!sc) return;
+  const st=scState[sc.id]=scState[sc.id]||{};
+  if(e.target.type==="radio") st[e.target.dataset.k]=+e.target.value; else if(e.target.dataset.b!=null) st["b"+e.target.dataset.b]=e.target.checked;
+  box.querySelector("[data-scres]").innerHTML=scRes(sc);
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-sccp],[data-scev],[data-sclimpa]"); if(!b) return; const box=b.closest("[data-scin]"); const sc=box&&SC.find(s=>s.id===box.dataset.scin); if(!sc) return;
+  if(b.hasAttribute("data-sccp")) copy(scTexto(sc),b);
+  if(b.hasAttribute("data-scev")){evScores=evScores.filter(x=>!x.startsWith(sc.nome+":"));evScores.push(scTexto(sc));toast("Escore no exame físico do Atendimento")}
+  if(b.hasAttribute("data-sclimpa")){scState[sc.id]={};box.querySelectorAll("input").forEach(i=>i.checked=false);box.querySelector("[data-scres]").innerHTML=scRes(sc)}
+});

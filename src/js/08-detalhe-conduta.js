@@ -218,6 +218,7 @@ function renderDetail(){
   ${renderAlarme(it)}
   ${exHTML(it.id)}
   ${renderCrb(it)}
+  ${renderCalcConduta(it)}
   ${renderPac(it)}
   ${renderAlertas(it)}
   ${it.id==="dengue"?renderDengueCalc():""}

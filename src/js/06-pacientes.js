@@ -3,7 +3,7 @@
    aparelho (fora das rxp_*, do backup e da nuvem do painel), apaga sozinha após 7 dias; a contagem por dia,
    sem nome, fica para sempre. Ao abrir um paciente, o Atendimento volta com o que foi digitado. */
 const PAC_ETAPAS=[["exame","Exame"],["med","Medicação"],["reav","Reavaliação"],["parecer","Parecer"]];
-const PAC_DESF=[["","— em atendimento —"],["alta","Alta"],["obs","Observação"],["internacao","Internação"],["transferencia","Transferência"],["evasao","Evasão"]];
+const PAC_DESF=[["","— em atendimento —"],["alta","Alta"],["obs","Observação"],["internacao","Internação"],["transferencia","Transferência"],["evasao","Evasão"],["passado","Passei para outro médico"]];
 const PAC_ONDE=[["","onde?"],["enfermaria","apartamento ou enfermaria"],["semi","semi-intensiva"],["uti","UTI"]];
 const PAC_H2=2*3600e3, PAC_H3=3*3600e3;
 const pacHoje=(t=Date.now())=>{const d=new Date(t);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
@@ -95,7 +95,9 @@ let pcVer="hoje", pcPass={medico:"",local:""};
 function renderPacientes(){
   const el=$("#pcCorpo"); if(!el) return;
   const db=pacCarrega(), agora=Date.now(), hoje=pacHoje();
-  const lista=db.pacs.filter(p=>pcVer==="todos"||p.dia===hoje||(!p.desf.tipo||p.desf.tipo==="obs"));
+  // passados a outro médico saem da lista e da contagem (ficam no quadro "Passados" até os 7 dias)
+  const passados=db.pacs.filter(p=>p.desf.tipo==="passado"), npass=d=>passados.filter(p=>p.dia===d).length;
+  const lista=db.pacs.filter(p=>p.desf.tipo!=="passado"&&(pcVer==="todos"||p.dia===hoje||(!p.desf.tipo||p.desf.tipo==="obs")));
   const abertos=db.pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs").length;
   const dias=Object.entries(db.cont).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,14);
   const et=(p,k,rot)=>{const e=p.et[k];
@@ -103,7 +105,7 @@ function renderPacientes(){
     const st=!e.on?"":e.ok?"ok":"on";
     const tk=k==="exame"?"txt":k==="parecer"?"esp":null;
     return `<span class="pcetw"><button class="chip pcet" data-pe="${k}" data-st="${st}" aria-pressed="${!!e.on}" title="toque: pedido → pronto → desligar">${st==="ok"?"✓ ":st==="on"?"⏳ ":"+ "}${rot}${st==="ok"?" pronto":st==="on"?" pendente":""}</button>${tk&&e.on?`<input class="inp pcin" data-ptxt="${k}" value="${esc(e[tk])}" placeholder="${k==="exame"?"qual exame?":"especialidade"}" aria-label="${k==="exame"?"Qual exame":"Especialidade do parecer"}">`:""}</span>`};
-  el.innerHTML=`<div class="panel card pchead"><div class="pctopo"><h2>Pacientes do plantão</h2><span class="pcconta"><b>${db.cont[hoje]||0}</b> hoje · ${abertos} sem desfecho${(m=>m?` · média ${m.media} min por atendimento`:"")(atTempoMedia())}</span></div>
+  el.innerHTML=`<div class="panel card pchead"><div class="pctopo"><h2>Pacientes do plantão</h2><span class="pcconta"><b>${Math.max(0,(db.cont[hoje]||0)-npass(hoje))}</b> hoje · ${abertos} sem desfecho${(m=>m?` · média ${m.media} min por atendimento`:"")(atTempoMedia())}</span></div>
       <div class="pcnovo"><input class="inp" id="pcNome" placeholder="Nome do paciente" autocomplete="off" spellcheck="false" aria-label="Nome do paciente"><button class="btn primary" id="pcAdd">Novo paciente</button></div>
       <div class="seg pcver" role="group" aria-label="Mostrar"><button data-pcver="hoje" aria-pressed="${pcVer==="hoje"}">Hoje e em aberto</button><button data-pcver="todos" aria-pressed="${pcVer==="todos"}">Últimos ${PAC_DIAS} dias</button></div></div>
     <div class="pclista">${lista.length?lista.map(p=>{const av=pacAviso(p,agora);return `<div class="pcitem" data-pid="${p.id}" data-av="${av?av.nv:""}" ${atPac===p.id?'data-atual="1"':""}>
@@ -114,12 +116,13 @@ function renderPacientes(){
       <div class="pcdesf"><select class="inp" data-pd="tipo" aria-label="Desfecho">${PAC_DESF.map(([v,r])=>`<option value="${v}" ${p.desf.tipo===v?"selected":""}>${r}</option>`).join("")}</select>
         ${p.desf.tipo==="internacao"?`<select class="inp" data-pd="onde" aria-label="Onde">${(typeof atLocais==="function"?[["","onde?"],...atLocais().slice(1)]:PAC_ONDE).map(([v,r])=>`<option value="${v}" ${p.desf.onde===v?"selected":""}>${r}</option>`).join("")}</select>`:""}
         <label class="check"><input type="checkbox" data-psabe ${p.sabe?"checked":""}> sabe da troca</label>
-        <button class="btn sm" data-pabrir>Abrir atendimento</button><button class="btn sm danger" data-papagar>Apagar</button></div></div>`}).join(""):`<div class="panel card"><p class="note">Nenhum paciente ainda. Digite o nome acima ou no topo do Atendimento.</p></div>`}</div>
+        <button class="btn sm" data-pabrir>Abrir atendimento</button>${!p.desf.tipo||p.desf.tipo==="obs"?`<button class="btn sm" data-ppassa>Passei para outro médico</button>`:""}<button class="btn sm danger" data-papagar>Apagar</button></div></div>`}).join(""):`<div class="panel card"><p class="note">Nenhum paciente ainda. Digite o nome acima ou no topo do Atendimento.</p></div>`}</div>
+    ${passados.length?`<details class="panel card pcpassados"><summary><h3>Passados a outro médico (${passados.length})</h3></summary><ul class="qlist">${passados.map(p=>`<li data-pid="${p.id}"><b>${esc(p.nome)}</b> · ${esc(pacHip(p)||"sem hipótese")} · ${pacHora(p.desf.t||p.criado)} <button class="btn sm" data-pvolta="${p.id}">Voltar para a lista</button></li>`).join("")}</ul></details>`:""}
     <details class="panel card pcpass"><summary><h3>Passagem de plantão</h3></summary>
       <div class="atdgrid"><label class="f">Médico que assume<input class="inp" id="pcMed" value="${esc(pcPass.medico)}"></label><label class="f">Consultório<input class="inp" id="pcLocal" value="${esc(pcPass.local)}"></label></div>
       <textarea class="out-edit" id="pcPassTxt" spellcheck="false" aria-label="Mensagem de passagem" readonly></textarea>
-      <div class="actions"><button class="btn primary" id="pcPassCp">Copiar mensagem</button></div></details>
-    ${dias.length?`<details class="panel card"><summary><h3>Pacientes por dia</h3></summary><ul class="qlist">${dias.map(([d,n])=>`<li>${esc(d.split("-").reverse().join("/"))}: <b>${n}</b></li>`).join("")}</ul></details>`:""}
+      <div class="actions"><button class="btn primary" id="pcPassCp">Copiar mensagem</button><button class="btn" id="pcPassTodos">Passei todos (tirar da lista)</button></div></details>
+    ${dias.length?`<details class="panel card"><summary><h3>Pacientes por dia</h3></summary><ul class="qlist">${dias.map(([d,n])=>`<li>${esc(d.split("-").reverse().join("/"))}: <b>${Math.max(0,n-npass(d))}</b></li>`).join("")}</ul></details>`:""}
     ${typeof renderPacSync==="function"?renderPacSync():""}`;
   bindPacientes();
 }
@@ -142,11 +145,16 @@ function bindPacientes(){
     row.querySelectorAll("[data-ptxt]").forEach(i=>i.oninput=()=>{const k=i.dataset.ptxt;p.et[k][k==="exame"?"txt":"esp"]=i.value.trim();pacToca(p,"et."+k);pacGrava();pacPassAtualiza()});
     row.querySelectorAll("[data-pd]").forEach(s=>s.onchange=()=>{p.desf[s.dataset.pd]=s.value;if(s.dataset.pd==="tipo"){p.desf.t=s.value?Date.now():null;if(s.value!=="internacao")p.desf.onde=""}mexe("desf")});
     row.querySelector("[data-psabe]").onchange=e=>{p.sabe=e.target.checked;pacToca(p,"sabe");pacGrava();pacPassAtualiza()};
+    const pp=row.querySelector("[data-ppassa]"); if(pp) pp.onclick=()=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();if(atPac===p.id)atPac=null;mexe("desf");toast(`${p.nome}: passado a outro médico (fica em "Passados")`)};
     const ap=row.querySelector("[data-papagar]"); let t=null;
     ap.onclick=()=>{if(!ap.classList.contains("confirma")){ap.classList.add("confirma");ap.textContent="Tocar de novo";t=setTimeout(()=>{ap.classList.remove("confirma");ap.textContent="Apagar"},3000);return}clearTimeout(t);pacApagar(p.id);renderPacientes()};
   });
   $("#pcMed").oninput=e=>{pcPass.medico=e.target.value;pacPassAtualiza()};
   $("#pcLocal").oninput=e=>{pcPass.local=e.target.value;pacPassAtualiza()};
+  $$("#pcCorpo [data-pvolta]").forEach(b=>b.onclick=()=>{const p=pacDe(b.dataset.pvolta);if(!p)return;p.desf.tipo="";p.desf.t=null;pacToca(p,"desf");pacGrava();renderPacientes()});
+  $("#pcPassTodos").onclick=()=>{const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");if(!ab.length){toast("Nenhum paciente em aberto");return}
+    if(!confirm(`Tirar da lista os ${ab.length} paciente(s) em aberto, como passados a outro médico?`))return;
+    ab.forEach(p=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();pacToca(p,"desf");if(atPac===p.id)atPac=null});pacGrava();renderPacientes();toast("Passados a outro médico")};
   $("#pcPassCp").onclick=e=>{const t=$("#pcPassTxt").value;if(!t){toast("Nenhum paciente sem desfecho");return}copy(t,e.currentTarget)};
   $(".pcpass").addEventListener("toggle",()=>{pacPassAtualiza()});
   pacPassAtualiza();

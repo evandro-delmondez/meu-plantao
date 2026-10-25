@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.36.0 — 2026-10-26
+- **Resultados de exames na reavaliação**: cada exame pedido vira siglas (hemograma → Hb, Ht, Leuco, Plaq; PCR; Ur; Cr; Na; K; TGO; TGP; Trop; DD; Lac; INR…) para digitar só o que veio alterado, mais "Laboratoriais sem (outras) alterações". Imagem: "sem alterações" ou o laudo/impressão. Vai para a alta: "Exames laboratoriais: Leuco 15.000; PCR 8,5; demais sem alterações."
+- **Pedido de internação ligado**: com os campos vazios, puxa sozinho os exames alterados, os laudos e o que foi feito no PS (medicação marcada e exames pedidos).
+- **Prompt da IA visível e editável** em Documentos › Backup (caixa "IA na HDA"), com "Restaurar o padrão"; vai pela nuvem.
+- Corrigido: sair do campo de exames redesenhava a tela e podia perder o que você digitava no campo seguinte.
+- No pacote do hospital (privado): semi-intensiva = UTI B; UTI = UTI C (baixe de novo em Meu hospital).
+
 ## 1.35.0 — 2026-10-26
 - **Estado geral por toque** no exame físico: Bom, Regular ou Mau estado geral, e Hipocorado, Desidratado, Cianótico, Ictérico, Febril, Taquipneico, Dispneico. Vem tudo normal; toque no que estiver alterado (com o gênero certo).
 - **Sigla + dois pontos já traz o normal**: ao digitar "A:" nos achados, entra o texto normal do abdome para você só alterar o que mudou (vale para G, CP, OF, CV, R, A, N, ME, MI, P).

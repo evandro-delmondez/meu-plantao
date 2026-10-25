@@ -426,3 +426,48 @@ test("estado geral por toque, sigla traz o normal para editar, relógio zera e c
   await expect(page.locator('#atCorpo [data-etapa="5"]')).toHaveClass(/atagora/);
   expect(erros).toEqual([]);
 });
+
+test("resultados na reavaliação: siglas dos exames pedidos, só o alterado vai para a alta; imagem sem alterações ou laudo", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "dor-abdominal");
+  await page.evaluate(() => { const set = (k, v) => { const t = document.querySelector(`#atCorpo [data-atd="${k}"]`); t.value = v; t.dispatchEvent(new Event("input")); };
+    set("exLab", "hemograma\nPCR\nureia e creatinina"); set("exImg", "TC de abdome com contraste"); });
+  await page.evaluate(() => document.querySelector('#atEtapas [data-atir="6"]').click());
+  // as caixas aparecem depois de redesenhar a etapa (a decisão redesenha)
+  await page.click('#atCorpo [data-atdec="alta"]');
+  for (const sg of ["Hb", "Ht", "Leuco", "Plaq", "PCR", "Ur", "Cr"]) await expect(page.locator(`#atCorpo [data-atres="${sg}"]`)).toHaveCount(1);
+  await page.fill('#atCorpo [data-atres="Leuco"]', "15.000");
+  await page.fill('#atCorpo [data-atres="PCR"]', "8,5");
+  await page.click("#atCorpo [data-atlabok]");
+  await page.click('#atCorpo [data-atimgok="0"]');
+  const alta = await saida(page, "alta").inputValue();
+  expect(alta).toContain("- Exames laboratoriais: Leuco 15.000; PCR 8,5; demais sem alterações.");
+  expect(alta).toContain("- TC de abdome com contraste: sem alterações.");
+  await page.fill('#atCorpo [data-atimg="0"]', "apendicite aguda não complicada");
+  await expect(saida(page, "alta")).toHaveValue(/- TC de abdome com contraste: apendicite aguda não complicada\./);
+  expect(erros).toEqual([]);
+});
+
+test("internação puxa exames alterados, laudos e o feito no PS; prompt da IA editável", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "pac");
+  await page.evaluate(() => { const set = (k, v) => { const t = document.querySelector(`#atCorpo [data-atd="${k}"]`); t.value = v; t.dispatchEvent(new Event("input")); t.dispatchEvent(new Event("change")); };
+    set("exLab", "hemograma"); set("exImg", "RX de tórax"); });
+  await page.fill('#atCorpo [data-atres="Leuco"]', "18.000");
+  await page.fill('#atCorpo [data-atimg="0"]', "consolidação em base direita");
+  await page.click('#atCorpo [data-atdec="internacao"]');
+  const int = await saida(page, "intern").inputValue();
+  expect(int).toContain("Exames laboratoriais relevantes: Leuco 18.000.");
+  expect(int).toContain("Laudos de imagem: RX de tórax: consolidação em base direita.");
+  expect(int).toMatch(/Conduta no PS: Exames solicitados: hemograma, RX de tórax\./);
+  // prompt da IA: aparece, salva e restaura
+  await aba(page, "backup");
+  await page.locator(".iaprompt summary").click();
+  await expect(page.locator("#iaPromptTxt")).toHaveValue(/semiologia/);
+  await page.fill("#iaPromptTxt", "Instrução minha de teste.");
+  await page.click("#iaPromptSalva");
+  expect(JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1"))).prefs.iaPrompt).toBe("Instrução minha de teste.");
+  await page.click("#iaPromptPadrao");
+  await expect(page.locator("#iaPromptTxt")).toHaveValue(/semiologia/);
+  expect(erros).toEqual([]);
+});

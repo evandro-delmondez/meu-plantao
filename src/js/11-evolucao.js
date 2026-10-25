@@ -259,6 +259,7 @@ function atAlta(it){
   const L=[];
   const rv=atL("reav").filter(([k])=>atd.reav[k]).map(([,t])=>t);
   if(rv.length||atd.reavTxt.trim()) L.push(`- Paciente reavaliado${rv.length?", "+ptLista(rv):""}${atd.reavTxt.trim()?`: ${atd.reavTxt.trim()}`:"."}`.replace(/\.\.$/,"."));
+  L.push(...atResultados());
   const ori=atL("ori").filter(([k])=>atd.altaOri[k]!==false).map(([,t])=>t);
   if(ori.length) L.push(`- Paciente orientado sobre ${ptLista(ori)}.`);
   const vt=atVolte(it).filter((x,i)=>!atd.alarOff[i]).map(x=>semParenteses(x).replace(/\.$/,""));
@@ -269,6 +270,13 @@ function atAlta(it){
   const dest=(destinos().find(d=>d[0]===(atd.destino??atdDestinoPadrao(it||{})))||[])[2]; if(dest) L.push(dest);
   return L.join("\n");
 }
+function atInternAuto(){
+  const r=atResultados(), lab=r.filter(l=>/^- Exames laboratoriais/.test(l)).map(l=>l.replace(/^- Exames laboratoriais:?\s*/,"")).join(" ");
+  const laudos=r.filter(l=>!/^- Exames laboratoriais/.test(l)).map(l=>l.slice(2)).join(" ");
+  const med=atCondOn("med")?atNomesUnid().filter(x=>atd.medSel[x]):[], ex=[...atItens(atd.exLab||atd.exSol||""),...atItens(atd.exImg)];
+  const feito=[med.length?`medicação na unidade: ${ptLista(med)}`:"",ex.length?`exames solicitados: ${ex.join(", ")}`:""].filter(Boolean).join("; ");
+  return {lab:lab.replace(/^sem alterações\.$/,"sem alterações."),laudos,feito:feito?feito.charAt(0).toUpperCase()+feito.slice(1)+".":""};
+}
 function atIntern(it){
   const I=atd.intern, L=[];
   const loc=(atLocais().find(x=>x[0]===I.local)||[])[1];
@@ -277,9 +285,11 @@ function atIntern(it){
   if(atd.hma.trim()) L.push(`História: ${atd.hma.trim()}`);
   if(atItens(atd.ap).length) L.push(atLista("HPP",atItens(atd.ap)));
   const sv=atSv(); if(sv) L.push(sv);
-  if(I.lab.trim()) L.push(`Exames laboratoriais relevantes: ${I.lab.trim()}`);
-  if(I.laudos.trim()) L.push(`Laudos de imagem: ${I.laudos.trim()}`);
-  if(I.feito.trim()) L.push(`Conduta no PS: ${I.feito.trim()}`);
+  // campos vazios puxam da reavaliação (exames alterados e laudos) e do que foi marcado no PS
+  const au=atInternAuto(), lab=I.lab.trim()||au.lab, laudos=I.laudos.trim()||au.laudos, feito=I.feito.trim()||au.feito;
+  if(lab) L.push(`Exames laboratoriais relevantes: ${lab}`);
+  if(laudos) L.push(`Laudos de imagem: ${laudos}`);
+  if(feito) L.push(`Conduta no PS: ${feito}`);
   if(I.parecer.trim()) L.push(`Parecer: ${I.parecer.trim()}`);
   L.push(`Justificativa: ${I.motivo.trim()||"___"}`);
   const ob=atL("obj").filter(([k])=>I.obj[k]).map(([,t])=>t);
@@ -344,9 +354,38 @@ function atPendencias(){
   if(atCondOn("med")){const n=atNomesUnid().filter(x=>atd.medSel[x]);o.push(["med",`Ver como ficou depois da medicação${n.length?` (${ptLista(n)})`:""}`])}
   return o;
 }
+// resultados de exames na reavaliação: cada exame pedido vira siglas para digitar só o que veio alterado
+const AT_SIGLAS=[[/hemograma/,["Hb","Ht","Leuco","Plaq"]],[/hepatograma|fun[cç][aã]o hep/,["TGO","TGP","FA","GGT","BT"]],[/fun[cç][aã]o renal/,["Ur","Cr"]],[/eletr[oó]litos/,["Na","K"]],
+  [/\bpcr\b|prote[ií]na c/,["PCR"]],[/ureia/,["Ur"]],[/creatinina/,["Cr"]],[/s[oó]dio/,["Na"]],[/pot[aá]ssio/,["K"]],[/magn[eé]sio/,["Mg"]],[/c[aá]lcio/,["Ca"]],[/glic(emia|ose)/,["Glic"]],
+  [/\btgo\b|\bast\b/,["TGO"]],[/\btgp\b|\balt\b/,["TGP"]],[/bilirrubina/,["BT"]],[/amilase/,["Amil"]],[/lipase/,["Lip"]],[/troponina/,["Trop"]],[/ck-?mb/,["CKMB"]],[/\bcpk\b|\bck\b/,["CK"]],
+  [/d-?d[ií]mero/,["DD"]],[/lactato/,["Lac"]],[/\btap\b|\btp\b|\binr\b|protrombina/,["INR"]],[/ttpa/,["TTPa"]],[/gasometria/,["pH","pCO2","HCO3"]],[/\beas\b|urina (1|tipo)/,["EAS"]],
+  [/beta|hcg/,["BHCG"]],[/procalcitonina/,["PCT"]]];
+function atSiglas(){const out=[];atItens(atd.exLab||atd.exSol||"").forEach(n=>{const t=norm(n);const hits=AT_SIGLAS.filter(([re])=>re.test(t)).flatMap(([,sg])=>sg);(hits.length?hits:[n]).forEach(x=>{if(!out.includes(x))out.push(x)})});return out}
+function atResultados(){
+  const L=[], res=atd.res||{}, sg=atSiglas().filter(x=>String(res[x]||"").trim());
+  if(atd.labOk||sg.length) L.push(`- Exames laboratoriais${sg.length?`: ${sg.map(x=>`${x} ${String(res[x]).trim()}`).join("; ")}${atd.labOk?"; demais sem alterações":""}.`:" sem alterações."}`);
+  atItens(atd.exImg).forEach((n,i)=>{const t=String((atd.img||{})[i]||"").trim();if(t)L.push(`- ${n}: ${t.replace(/([^.])$/,"$1.")}`);else if((atd.imgOk||{})[i])L.push(`- ${n}: sem alterações.`)});
+  return L;
+}
+function atResHTML(){
+  const sg=atSiglas(), img=atItens(atd.exImg); if(!sg.length&&!img.length) return "";
+  const res=atd.res||{};
+  return `<div class="atres"><span class="lbl">Resultados (digite só o que veio alterado)</span>
+    ${sg.length?`<div class="chips"><button class="chip" data-atlabok aria-pressed="${!!atd.labOk}">${atd.labOk?"✓ ":""}Laboratoriais sem (outras) alterações</button></div>
+    <div class="atresg">${sg.map(x=>`<label class="atresf"><span>${esc(x)}</span><input class="inp" data-atres="${esc(x)}" value="${esc(res[x]||"")}" autocomplete="off"></label>`).join("")}</div>`:""}
+    ${img.map((n,i)=>`<div class="atimg"><b>${esc(n)}</b><button class="chip" data-atimgok="${i}" aria-pressed="${!!(atd.imgOk||{})[i]}">${(atd.imgOk||{})[i]?"✓ ":""}sem alterações</button>
+      <input class="inp" data-atimg="${i}" value="${esc((atd.img||{})[i]||"")}" placeholder="laudo ou impressão diagnóstica" autocomplete="off"></div>`).join("")}</div>`;
+}
+function atResBind(box){
+  box.querySelectorAll("[data-atres]").forEach(i=>i.oninput=()=>{atd.res=Object.assign({},atd.res,{[i.dataset.atres]:i.value});atAtualiza()});
+  box.querySelectorAll("[data-atimg]").forEach(i=>i.oninput=()=>{atd.img=Object.assign({},atd.img,{[i.dataset.atimg]:i.value});atAtualiza()});
+  const tg=(b,on,rot)=>{b.setAttribute("aria-pressed",on);b.textContent=(on?"✓ ":"")+rot;atAtualiza()};
+  box.querySelectorAll("[data-atlabok]").forEach(b=>b.onclick=()=>{atd.labOk=!atd.labOk;tg(b,atd.labOk,"Laboratoriais sem (outras) alterações")});
+  box.querySelectorAll("[data-atimgok]").forEach(b=>b.onclick=()=>{atd.imgOk=Object.assign({},atd.imgOk);const k=b.dataset.atimgok;atd.imgOk[k]=!atd.imgOk[k];tg(b,atd.imgOk[k],"sem alterações")});
+}
 function atReavHTML(){
   const pend=atPendencias(), dec=atd.decisao;
-  return `<div class="atreav">${pend.length?`<span class="lbl">Na reavaliação, ver:</span><div class="atpend">${pend.map(([k,t])=>`<label class="check"><input type="checkbox" data-atvisto="${k}" ${atd.visto[k]?"checked":""}> ${esc(t)}</label>`).join("")}</div>`:""}
+  return `<div class="atreav"><div id="atResBox">${atResHTML()}</div>${pend.length?`<span class="lbl">Na reavaliação, ver:</span><div class="atpend">${pend.map(([k,t])=>`<label class="check"><input type="checkbox" data-atvisto="${k}" ${atd.visto[k]?"checked":""}> ${esc(t)}</label>`).join("")}</div>`:""}
     <span class="lbl">Decisão</span><div class="seg atdec" role="group" aria-label="Decisão">${AT_DEC.map(([v,r])=>`<button data-atdec="${v}" aria-pressed="${dec===v}">${r}</button>`).join("")}</div>
     ${dec==="internacao"?`<label class="f">Para onde<select class="inp" data-atd="intern.local">${atLocais().map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label>`:""}</div>`;
 }
@@ -513,9 +552,9 @@ function renderEv(){
     <span class="lbl">Objetivo</span><div class="chips">${atL("obj").map(([k,r])=>chip("obj",k,r,atd.intern.obj[k])).join("")}</div>
     ${atEdit?edLista("obj","Objetivos")+edLista("perg","Perguntas da justificativa"):""}
     ${ta("objLivre","Outro objetivo","","intern")}
-    ${ta("lab","Exames laboratoriais relevantes (alterados primeiro)","ex.: leucócitos 18.000; PCR 25; creatinina 1,8","intern")}
-    ${ta("laudos","Laudos de imagem","ex.: TC de tórax: consolidação em lobo inferior direito","intern")}
-    ${ta("feito","O que já foi feito no PS","ex.: ceftriaxona 1 g EV, 1.000 mL de SF","intern")}
+    ${ta("lab","Exames laboratoriais relevantes (vazio = os alterados da reavaliação)","ex.: leucócitos 18.000; PCR 25; creatinina 1,8","intern")}
+    ${ta("laudos","Laudos de imagem (vazio = os da reavaliação)","ex.: TC de tórax: consolidação em lobo inferior direito","intern")}
+    ${ta("feito","O que já foi feito no PS (vazio = medicação marcada e exames pedidos)","ex.: ceftriaxona 1 g EV, 1.000 mL de SF","intern")}
     ${ta("parecer","Parecer (especialidade, nome, horário, orientação)","ex.: Cirurgia Geral, Dr. Fulano, 14h20: …","intern")}
     ${typeof hospPac==="function"&&hospPac()&&hospPac().internacao?`<button class="btn hospbtn" id="atCrit">Critérios de internação do hospital</button>`:""}
     ${atSaida("intern","Pedido de internação")}
@@ -598,6 +637,9 @@ function bindEv(it){
     b.setAttribute("aria-pressed",!!on); b.textContent=(on?"✓ ":"")+b.textContent.replace(/^✓ /,"");
     atAtualiza();
   });
+  // exames digitados à mão: ao sair do campo, só o quadro de resultados é refeito (sem redesenhar a tela e perder texto)
+  box.querySelectorAll('[data-atd="exLab"],[data-atd="exImg"]').forEach(t=>t.addEventListener("change",()=>{const r=$("#atResBox");if(r){r.innerHTML=atResHTML();atResBind(r)}}));
+  atResBind(box);
   box.querySelectorAll("[data-ateg]").forEach(b=>b.onclick=()=>{atd.eg=Object.assign({},atd.eg,{estado:b.dataset.ateg});box.querySelectorAll("[data-ateg]").forEach(x=>x.setAttribute("aria-pressed",x===b));atAtualiza()});
   // sigla + dois pontos nos achados ("A:"): já entra o texto normal daquele sistema, para editar só o que está alterado
   const exl=box.querySelector('[data-atd="exLivre"]');

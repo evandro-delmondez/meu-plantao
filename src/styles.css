@@ -819,3 +819,6 @@ details.panel>summary{cursor:pointer}
 .rxlin-c{border-left:3px solid var(--c);padding-left:8px;align-items:center}
 .rxlin-c .chip.rxc{--c:inherit}
 .rxcls{font-size:11.5px;font-weight:700;color:var(--c);min-width:100px}
+.atres{margin:4px 0 12px}.atresg{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin:6px 0}
+.atresf{display:flex;align-items:center;gap:6px;font-weight:700;font-size:13px}.atresf span{min-width:44px}.atresf .inp{padding:6px 8px}
+.atimg{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}.atimg .inp{flex:1 1 220px}

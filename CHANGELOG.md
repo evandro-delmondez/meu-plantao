@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.33.0 — 2026-10-25
+- **Passagem de plantão no seu formato**: "Deixo o consultório 3 sem pendências." ou "com pacientes pendentes:", agrupando por quem assume (cada paciente pode ir para um médico, campo "quem assume") e com a ciência da troca corrida ("Caroline e João, cientes da troca; Maria, ainda não ciente da troca"). Sem hipótese nem pendências por paciente.
+- **Topo inteiro fixo na meia tela**: Atendimento, Pacientes, + Paciente, relógio, etapas e "✎ Padrões" (Editar padrões foi para a barra).
+- **IA na HDA (opcional)**: "✨ Melhorar texto (IA)" corrige e dá coesão com o Claude Haiku 4.5, usando a sua chave da Anthropic (Documentos › Backup). Envia só o texto da HDA, sem o nome; se a IA mudar ou tirar um número, mantém o original; tem Desfazer.
+- **Busca de outra conduta**: o Safari não oferece mais cartões de crédito na caixa; a conduta acrescentada não estica mais.
+- **Fichas com posologia de receita** (36 remédios, conferidas contra as bulas), base para o "+ remédio" na receita.
+
 ## 1.32.0 — 2026-10-25
 - **"Passei para outro médico"** na lista de pacientes: sai da lista e da contagem de hoje, fica num quadro "Passados" (com "Voltar para a lista") e apaga com os 7 dias. Na passagem de plantão, "Passei todos" tira de uma vez os que estão em aberto.
 - **Meu hospital agora fica em Documentos**, e a busca do Início acha também o texto dos protocolos do hospital (ex.: "ferro").

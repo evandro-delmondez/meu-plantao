@@ -345,8 +345,9 @@ function atReavHTML(){
 
 /* ---- tela ---- */
 function atSaida(k,rot){
-  return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><span class="atcop" data-atcopok="${k}" hidden>✓ no MV</span><button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
+  return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><span class="atcop" data-atcopok="${k}" hidden>✓ no MV</span>${k==="hda"?`<button class="btn sm" data-atia title="Corrige e dá coesão, sem inventar nem tirar dados">✨ Melhorar texto (IA)</button>`:""}<button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
     <textarea class="out-edit" data-atout="${k}" spellcheck="false" aria-label="${rot}"></textarea>
+    ${k==="hda"?`<p class="note atiaest" id="atIaEst" hidden></p>`:""}
     <p class="note" data-atman="${k}" hidden><span data-atmanmsg>Você editou este campo.</span> <button class="btn sm" data-atre="${k}">Refazer</button></p></div>`;
 }
 // barra de etapas: vazia, preenchida (falta copiar) ou copiada para o MV (✓); some a 7 se não for internar
@@ -431,10 +432,10 @@ function renderEv(){
   const unidH=cs.map(c=>{const u=cur(c,"unidade");return u?`${cs.length>1?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${unidLista(u)}`:""}).join("");
   const outras=(atd.extras||[]).map(getItem).filter(Boolean);
   el.innerHTML=`
-  <div class="ateditbar">${atEdit?`<span class="note">Editando os padrões. Vale para os próximos atendimentos.</span><button class="btn primary" id="atEdSalva">Salvar como padrão</button><button class="btn" id="atEdSai">Cancelar</button>`:`<button class="btn sm" id="atEdita">✎ Editar padrões</button>`}</div>
-  <nav class="atetapas" id="atEtapas" aria-label="Etapas do atendimento"><button class="atrel" id="atRelogio" hidden aria-label="Relógio do atendimento: toque para mudar a meta"></button>${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}</nav>
+  ${atEdit?`<div class="ateditbar"><span class="note">Editando os padrões. Vale para os próximos atendimentos. Salve no alto.</span></div>`:""}
+  <nav class="atetapas" id="atEtapas" aria-label="Etapas do atendimento"><button class="atrel" id="atRelogio" hidden aria-label="Relógio do atendimento: toque para mudar a meta"></button>${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}${atEdit?`<button class="atedn primary" id="atEdSalva">Salvar padrões</button><button class="atedn" id="atEdSai">Cancelar</button>`:`<button class="atedn" id="atEdita" title="Editar os padrões do Atendimento">✎ Padrões</button>`}</nav>
   ${it?`<div class="atextras"><span class="lbl">Outras queixas no mesmo paciente</span><div class="chips">${outras.map(c=>`<button class="chip" data-atrem="${esc(c.id)}" aria-pressed="true" style="--c:var(--${(CATS[c.cat]||CATS.outros).cor})">✓ ${esc(c.nome)} ✕</button>`).join("")}
-    ${outras.length<2?`<div class="atbusca"><input class="inp" id="atAddQ" type="search" autocomplete="off" spellcheck="false" placeholder="+ outra conduta: nome, sinônimo ou CID" aria-label="Buscar outra conduta"><div class="atsug" id="atAddSug"></div></div>`:""}</div></div>`:""}
+    ${outras.length<2?`<div class="atbusca"><input class="inp" id="atAddQ" type="text" name="q-conduta-search" role="searchbox" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-1p-ignore data-lpignore="true" data-form-type="other" placeholder="+ outra conduta (ex.: faringite, J02)" aria-label="Buscar outra conduta"><div class="atsug" id="atAddSug"></div></div>`:""}</div></div>`:""}
   ${cs.length?`<div class="atconds">${cs.map(c=>{const k=CATS[c.cat]||CATS.outros;return `<span class="cat" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}${c.cid?` · ${esc(c.cid)}`:""}</span>`}).join("")}</div>`:""}
   ${atQueixaHTML(!!it)}
   <div class="sec atsec" data-etapa="1" id="atHdaSec"><div class="sec-h"><h3>1. HDA e antecedentes</h3></div><div class="atbody">
@@ -511,8 +512,7 @@ function renderEv(){
   bindEv(it);
   // a barra de etapas vai para a linha das abas do topo (fica sempre à vista sem ocupar uma faixa a mais)
   const bar=$("#atCorpo .atetapas"), tabs=$(".top .tabs");
-  // na tela estreita (meia tela, celular) o topo não fica fixo: a barra fica no Atendimento, fixa no alto
-  if(bar&&tabs){const v=$(".top .atetapas");if(v)v.remove();if(!AT_ESTREITA.matches)tabs.appendChild(bar);atEtapasAtualiza()}
+  if(bar&&tabs){const v=$(".top .atetapas");if(v)v.remove();tabs.appendChild(bar);atEtapasAtualiza()}
   atFocoVolta(foco);
 }
 // redesenhar não tira o cursor do campo em que você está digitando
@@ -587,6 +587,20 @@ function bindEv(it){
   // sexo e perfil do exame: refazem o texto do exame (se foi editado à mão, fica e aparece o aviso para refazer)
   box.querySelectorAll("[data-atseg]").forEach(b=>b.onclick=()=>{atd[b.dataset.atseg]=b.dataset.v;renderEv()});
   box.querySelectorAll("[data-atout]").forEach(ta=>ta.addEventListener("input",()=>{const k=ta.dataset.atout;if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}atd.man[k]=ta.value;grow(ta);$(`#atCorpo [data-atman="${k}"]`).hidden=false;atdSessaoLogo();pacSnapLogo()}));
+  // IA na HDA: troca o texto pelo melhorado (fica como edição sua, com Desfazer); a trava de números está em iaMelhora
+  box.querySelectorAll("[data-atia]").forEach(b=>b.onclick=async()=>{
+    const est=$("#atIaEst"), ta=$('#atCorpo [data-atout="hda"]'), dz=t=>{est.hidden=false;est.innerHTML=t};
+    if(!iaAtiva()){dz(`Ligue a IA em Documentos › Backup (cole a chave da Anthropic).`);return}
+    let tx=ta.value; if(!tx.trim()){toast("HDA vazia");return}
+    const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) nome.split(/\s+/).filter(x=>x.length>2).forEach(n=>{tx=tx.replace(new RegExp(`\\b${n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}\\b`,"gi"),"paciente")});
+    b.disabled=true; dz("Melhorando o texto…");
+    try{const out=await iaMelhora(tx);const k="hda";if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}
+      atd.iaAntes=ta.value; atd.man[k]=out; ta.value=out; grow(ta); atAtualiza();
+      dz(`Texto melhorado pela IA: confira antes de copiar. <button class="btn sm" id="atIaDesfaz">Desfazer</button>`);
+      $("#atIaDesfaz").onclick=()=>{atd.man.hda=atd.iaAntes;ta.value=atd.iaAntes;grow(ta);atAtualiza();dz("Voltou ao texto anterior.")}}
+    catch(e){dz(e.message==="numeros"?"A IA mudou ou tirou um número do texto: mantive o original.":/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
+    b.disabled=false;
+  });
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});
   box.querySelectorAll("[data-atcp]").forEach(b=>b.onclick=()=>{const k=b.dataset.atcp,t=$(`#atCorpo [data-atout="${k}"]`).value;if(!t.trim()){toast("Campo vazio");return}copy(t,b).then(ok=>{if(!ok)return;atd.cop[k]=t;atEtapasAtualiza();atdSessaoLogo();pacSnapLogo()})});
   if($("#atRelogio")) $("#atRelogio").onclick=()=>{const v=prompt(`Meta de tempo por atendimento, em minutos.\nO relógio fica amarelo 5 min antes e vermelho ao passar.`,atMeta());if(v==null)return;const n=Math.round(+String(v).replace(",","."));

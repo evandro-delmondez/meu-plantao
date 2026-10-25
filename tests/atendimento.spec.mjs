@@ -290,9 +290,9 @@ test("barra de etapas: vazia, preenchida e copiada para o MV; editar depois de c
 test("prontuário rápido: notas soltas viram HDA corrida, exame por exceção troca a linha do sistema, relógio com meta", async ({ page }, info) => {
   const erros = await abrir(page);
   await atender(page, "lombalgia");
-  // computador: barra na linha das abas do topo; tela estreita: fixa no alto do Atendimento (o topo não fica fixo)
-  await expect(page.locator(info.project.name === "celular" ? "#atCorpo > #atEtapas" : ".top .tabs #atEtapas")).toBeVisible();
-  if (info.project.name === "celular") expect(await page.locator("#atEtapas").evaluate((e) => getComputedStyle(e).position)).toBe("sticky");
+  // barra na linha das abas do topo, que fica fixo em qualquer largura (meia tela inclusive)
+  await expect(page.locator(".top .tabs #atEtapas")).toBeVisible();
+  expect(await page.locator(".top").evaluate((e) => getComputedStyle(e).position)).toBe("sticky");
   await expect(page.locator("#atRelogio")).toBeHidden();
   await campo(page, "hma").fill("dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre");
   await expect(saida(page, "hda")).toHaveValue(/^Paciente refere dor lombar há 3 dias, com piora ao levantar e irradiação para membro inferior direito\. Tomou dipirona sem melhora\. Nega febre/);
@@ -363,5 +363,36 @@ test("meta do relógio editável (fica nos padrões), roteiro de fala na alta e 
   await page.locator('#atEtapas [data-atir="4"]').click();
   await expect(page.locator('#atEtapas [data-atir="4"]')).toHaveAttribute("aria-current", "");
   await expect(page.locator('#atCorpo [data-etapa="4"]')).toHaveClass(/atagora/);
+  expect(erros).toEqual([]);
+});
+
+test("IA na HDA: sem chave orienta; com chave troca o texto (sem o nome), trava se mudar número, e desfaz", async ({ page }) => {
+  let corpo = null, resposta = "Paciente refere dor de cabeça há 2 dias, sem melhora com dipirona.";
+  await page.route("https://api.anthropic.com/**", async (route) => {
+    corpo = JSON.parse(route.request().postData());
+    route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ content: [{ type: "text", text: resposta }] }) });
+  });
+  const erros = await abrir(page);
+  await atender(page, "cefaleia");
+  await page.fill("#atNome", "Carla Teste"); await page.dispatchEvent("#atNome", "change");
+  await campo(page, "hma").fill("dor de cabeca 2d, Carla tomou dipirona s/ melhora");
+  await page.click("#atCorpo [data-atia]");
+  await expect(page.locator("#atIaEst")).toContainText("Ligue a IA");
+  await page.evaluate(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  await page.reload(); await page.evaluate(() => document.querySelector('.tabs [data-tab="evolucao"]').click());
+  const antes = await page.locator('#atCorpo [data-atout="hda"]').inputValue();
+  resposta = antes.replace(/^[^\n]*/, "Paciente refere dor de cabeça há 2 dias, sem melhora com dipirona.");
+  await page.click("#atCorpo [data-atia]");
+  await expect(page.locator("#atIaEst")).toContainText("Texto melhorado pela IA");
+  expect(corpo.model).toBe("claude-haiku-4-5-20251001");
+  expect(JSON.stringify(corpo.messages)).not.toContain("Carla");                 // o nome não sai do aparelho
+  await expect(page.locator('#atCorpo [data-atout="hda"]')).toHaveValue(/^Paciente refere dor de cabeça há 2 dias, sem melhora com dipirona\./);
+  await page.click("#atIaDesfaz");
+  await expect(page.locator('#atCorpo [data-atout="hda"]')).toHaveValue(antes);
+  // trava: número mudou → mantém o original
+  resposta = antes.replace(/2/g, "3");
+  await page.click("#atCorpo [data-atia]");
+  await expect(page.locator("#atIaEst")).toContainText("mudou ou tirou um número");
+  await expect(page.locator('#atCorpo [data-atout="hda"]')).toHaveValue(antes);
   expect(erros).toEqual([]);
 });

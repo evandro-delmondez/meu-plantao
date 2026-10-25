@@ -410,7 +410,7 @@ details.model summary{cursor:pointer;font-weight:700;color:var(--accent);font-si
   .back{display:inline-flex}
   .two{grid-template-columns:1fr}
   .out{position:static}
-  .top{position:static;padding-block:10px 12px}
+  .top{padding-block:6px 6px;gap:6px}
   .brand h1{font-size:20px}
   .top>.brand{flex-wrap:nowrap}
   .sync{padding:4px 8px}
@@ -758,7 +758,6 @@ details.panel>summary{cursor:pointer}
 .atetapas button[data-st="ok"] b::after{content:"✓";font-size:11px}
 @media (max-width:420px){.atetapas button{font-size:0;gap:0;padding:3px}.atetapas button b{font-size:10.5px}}
 [data-etapa]{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--toph,108px) + 12px)}
-@media (max-width:860px){[data-etapa]{scroll-margin-top:52px}}
 .atcop{font-size:12px;font-weight:600;color:var(--ok);margin-left:auto;margin-right:6px}
 .atrel{font-size:12px;font-weight:700;color:var(--muted);padding:3px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
 .atrel[data-nv="perto"]{color:var(--warn);border-color:var(--warn)}
@@ -783,7 +782,6 @@ details.panel>summary{cursor:pointer}
   border-radius:10px;background:color-mix(in srgb,var(--c) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 40%,transparent);color:var(--ink);font-size:14.5px;font-weight:700}
 .atfixo .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
 .atfixcid{margin-left:auto;font-size:12.5px;font-weight:600;color:var(--muted)}
-@media (max-width:860px){.atfixo{top:calc(env(safe-area-inset-top,0px) + 44px)}}
 .atpunid{margin:10px 0}.atpunid>summary{cursor:pointer;font-weight:600;color:var(--muted);padding:6px 0}
 .atbusca{flex:1 1 260px;min-width:220px}.atsug{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.atsug:empty{display:none}
 .atrel{font-variant-numeric:tabular-nums;min-width:62px;text-align:center}
@@ -806,3 +804,11 @@ details.panel>summary{cursor:pointer}
 .atetapas button[aria-current] b{background:var(--surface);color:var(--et)}
 /* a seção onde você está fica destacada na cor dela */
 #atCorpo .atsec[data-etapa].atagora{background:color-mix(in srgb,var(--et) 11%,var(--surface));box-shadow:0 0 0 2px color-mix(in srgb,var(--et) 55%,transparent)}
+/* tela estreita (meia tela): o topo fica fixo também; a barra de etapas desce para uma linha própria dentro dele */
+@media (max-width:860px){.tabs{flex-wrap:wrap;row-gap:6px}.tabs .atetapas{margin-left:0;padding-left:0;width:100%;overflow-x:auto;scrollbar-width:none}}
+.atetapas .atedn{border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.atetapas .atedn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+/* conduta acrescentada: chip do tamanho do texto, sem esticar com a busca ao lado */
+.atextras .chips{align-items:flex-start}
+.atextras .chips>.chip{flex:0 0 auto;align-self:flex-start;height:auto}
+.pcassume{max-width:170px;padding:6px 10px;font-size:14px}

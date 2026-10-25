@@ -60,6 +60,23 @@
    "RENAME 2024",
    "Drug allergy: 2022 practice parameter update (AAAAI/ACAAI)",
    "Lieberthal AS et al. AAP — The diagnosis and management of acute otitis media. Pediatrics 2013;131:e964."
+  ],
+  "receita": [
+   {
+    "rotulo": "Infecção (padrão)",
+    "nome": "Amoxicilina 500mg",
+    "via": "oral",
+    "unidade": "cáps",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 7,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cáps VO de 8/8h por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Amoxil (amoxicilina) cápsula 500 mg (GSK): 500 mg 8/8h nas infecções graves e do trato respiratório inferior; 500 mg 12/12h ou 250 mg 8/8h nas leves",
+    "aviso": "Antibiótico: receita em 2 vias, validade 10 dias (RDC Anvisa 471/2021)."
+   }
   ]
  },
  {
@@ -123,6 +140,23 @@
    "Bula Clavulin BD suspensão — GSK Brasil (profissional)",
    "RENAME 2024",
    "Drug allergy: 2022 practice parameter update (AAAAI/ACAAI)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Infecção (12/12h)",
+    "nome": "Amoxicilina + Clavulanato 875/125mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 2,
+    "diasPadrao": 7,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 12/12h, no início da refeição, por {dias}.",
+    "embalagem": null,
+    "aviso": "Antibiótico: receita em 2 vias (RDC 471/2021). TFG < 30: não usar 875 mg (bula Clavulin BD).",
+    "fonte": "Bula Anvisa Clavulin BD 875/125 mg (GSK): 1 cp 12/12h"
+   }
   ]
  },
  {
@@ -219,6 +253,23 @@
    "FDA label Keflex (DailyMed)",
    "RENAME 2024",
    "Drug allergy: 2022 practice parameter update (AAAAI/ACAAI)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Pele ou partes moles",
+    "nome": "Cefalexina 500mg",
+    "via": "oral",
+    "unidade": "cáps",
+    "porTomada": 1,
+    "vezesDia": 4,
+    "diasPadrao": 7,
+    "diasMax": 14,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cáps VO de 6/6h por {dias}.",
+    "embalagem": null,
+    "aviso": "Antibiótico: receita em 2 vias (RDC 471/2021). ClCr 30–59: máx. 1 g/dia; 15–29: 250 mg 8/8–12/12h (bula).",
+    "fonte": "Bula Anvisa Keflex 500 mg: até 4 g/dia em 2–4 tomadas; IDSA SSTI 2014: 500 mg 4x/dia"
+   }
   ]
  },
  {
@@ -377,6 +428,39 @@
    "FDA label Zithromax oral e IV (DailyMed)",
    "Bula azitromicina pó para suspensão (BR, profissional)",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "3 dias",
+    "nome": "Azitromicina 500mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 3,
+    "diasMax": 3,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO 1x ao dia por 3 dias.",
+    "embalagem": null,
+    "aviso": "Antibiótico: receita em 2 vias (RDC 471/2021).",
+    "fonte": "Bula Anvisa Zitromax (Pfizer): 500 mg 1x/dia por 3 dias"
+   },
+   {
+    "rotulo": "Dose única 1 g (uretrite/cervicite)",
+    "nome": "Azitromicina 500mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 2,
+    "vezesDia": 1,
+    "diasPadrao": 1,
+    "diasMax": 1,
+    "seNecessario": false,
+    "instrucao": "Tomar 2 cp (1 g) VO juntos, em dose única.",
+    "embalagem": null,
+    "qtdFixa": 2,
+    "aviso": "Antibiótico: receita em 2 vias (RDC 471/2021).",
+    "fonte": "Bula Anvisa Zitromax (Pfizer): uretrite/cervicite 1 g dose única"
+   }
   ]
  },
  {
@@ -428,6 +512,23 @@
   "fontes": [
    "FDA label Clarithromycin tablets (DailyMed)",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "Infecção respiratória",
+    "nome": "Claritromicina 500mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 2,
+    "diasPadrao": 7,
+    "diasMax": 14,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 12/12h por {dias}.",
+    "embalagem": null,
+    "aviso": "Antibiótico: receita em 2 vias. Muitas interações (CYP3A4) e prolonga QT. ClCr < 30: metade da dose.",
+    "fonte": "Bula Anvisa Klaricid 500 mg (Abbott): 250–500 mg 12/12h por 7–14 dias"
+   }
   ]
  },
  {
@@ -497,6 +598,23 @@
    "FDA label Ciprofloxacin injection (DailyMed)",
    "Bula ciprofloxacino solução injetável 2 mg/mL — Fresenius Kabi Brasil",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "ITU ou diarreia infecciosa",
+    "nome": "Ciprofloxacino 500mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 2,
+    "diasPadrao": 7,
+    "diasMax": 14,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 12/12h por {dias}.",
+    "embalagem": null,
+    "aviso": "Antibiótico: receita em 2 vias. Quinolona: só sem alternativa na cistite (FDA/EMA). ClCr 5–29: 250–500 mg 18/18h.",
+    "fonte": "Bula Anvisa Cipro (Bayer): ITU 250–500 mg 12/12h por 7–14 dias; diarreia 500 mg 12/12h"
+   }
   ]
  },
  {
@@ -601,6 +719,37 @@
   "fontes": [
    "FDA label Bactrim/Bactrim DS (DailyMed)",
    "Bula Bactrim suspensão (BR, profissional)"
+  ],
+  "receita": [
+   {
+    "rotulo": "ITU ou pele",
+    "nome": "Sulfametoxazol + Trimetoprima 800/160mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 2,
+    "diasPadrao": 7,
+    "diasMax": 14,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 12/12h por {dias}, com bastante água.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Bactrim F (sulfametoxazol 800 mg + trimetoprima 160 mg, Roche/Ache): 1 cp 12/12h"
+   },
+   {
+    "rotulo": "Pele (abscesso)",
+    "nome": "Sulfametoxazol + Trimetoprima 800/160mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 2,
+    "diasPadrao": 7,
+    "diasMax": 14,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 12/12h por {dias}, com bastante água.",
+    "embalagem": null,
+    "aviso": "Antibiótico: receita em 2 vias. ClCr 15–30: metade da dose; < 15: não usar. Evitar no fim da gestação (bula Bactrim).",
+    "fonte": "Bula Anvisa Bactrim F: 1 cp 12/12h; IDSA SSTI 2014: abscesso 5–10 dias"
+   }
   ]
  },
  {
@@ -657,6 +806,23 @@
    "Bula Macrodantina (BR, profissional)",
    "AGS Beers Criteria 2023 (J Am Geriatr Soc)",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "Cistite",
+    "nome": "Nitrofurantoína 100mg",
+    "via": "oral",
+    "unidade": "cáps",
+    "porTomada": 1,
+    "vezesDia": 4,
+    "diasPadrao": 7,
+    "diasMax": 10,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cáps VO de 6/6h, com alimento, por {dias}.",
+    "embalagem": null,
+    "aviso": "Antibiótico: receita em 2 vias. Contraindicada se ClCr < 60 (bula), a termo, no trabalho de parto e no parto.",
+    "fonte": "Bula Anvisa Macrodantina 100 mg: 100 mg 6/6h por 7–10 dias, com alimento"
+   }
   ]
  },
  {
@@ -697,6 +863,24 @@
   "fontes": [
    "Bula Monuril — Zambon Brasil (profissional)",
    "FDA label Fosfomycin tromethamine (DailyMed)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Cistite (dose única)",
+    "nome": "Fosfomicina trometamol 3g",
+    "via": "oral",
+    "unidade": "sachê",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 1,
+    "diasMax": 1,
+    "seNecessario": false,
+    "instrucao": "Dissolver 1 envelope em meio copo de água e tomar em dose única, à noite, após urinar, de estômago vazio.",
+    "embalagem": null,
+    "qtdFixa": 1,
+    "aviso": "Antibiótico: receita em 2 vias. ClCr < 10 ou hemodiálise: contraindicada (bula Monuril).",
+    "fonte": "Bula Anvisa Monuril 3 g (Zambon): 1 envelope dose única"
+   }
   ]
  },
  {
@@ -752,6 +936,53 @@
    "FDA label Flagyl (DailyMed)",
    "Guia Farmacêutico Hospital Sírio-Libanês — Metronidazol",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "Tricomoníase (dose única)",
+    "nome": "Metronidazol 400mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 5,
+    "vezesDia": 1,
+    "diasPadrao": 1,
+    "diasMax": 1,
+    "seNecessario": false,
+    "instrucao": "Tomar 5 cp (2 g) VO juntos, em dose única, após uma refeição. Não ingerir bebida alcoólica até 3 dias depois.",
+    "embalagem": null,
+    "qtdFixa": 5,
+    "aviso": "Antibiótico: receita em 2 vias. Gestante: o PCDT IST 2022 permite; a bula FDA não recomenda dose única na gestação.",
+    "fonte": "PCDT IST 2022 (MS): metronidazol 400 mg 5 cp dose única; bula FDA Flagyl: 2 g dose única"
+   },
+   {
+    "rotulo": "7 dias (250 mg 8/8h)",
+    "nome": "Metronidazol 250mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 7,
+    "diasMax": 7,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 8/8h por 7 dias, após as refeições. Não ingerir bebida alcoólica durante o uso e até 3 dias depois.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Flagyl (metronidazol) 250 e 400 mg (Sanofi); FDA label Flagyl: tricomoníase 2 g dose única ou 250 mg 8/8h por 7 dias"
+   },
+   {
+    "rotulo": "7 dias (tricomoníase ou vaginose)",
+    "nome": "Metronidazol 250mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 2,
+    "vezesDia": 2,
+    "diasPadrao": 7,
+    "diasMax": 7,
+    "seNecessario": false,
+    "instrucao": "Tomar 2 cp VO de 12/12h por 7 dias, após as refeições. Não ingerir bebida alcoólica durante o uso e até 3 dias depois.",
+    "embalagem": null,
+    "aviso": "Antibiótico: receita em 2 vias.",
+    "fonte": "PCDT IST 2022 (MS, quadros 34 e 35) e CDC STI 2021: metronidazol 500 mg 12/12h por 7 dias"
+   }
   ]
  },
  {
@@ -818,6 +1049,23 @@
    "FDA label Cleocin Phosphate injection (DailyMed)",
    "Bula fosfato de clindamicina — União Química",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "Pele ou dente (alergia a penicilina)",
+    "nome": "Clindamicina 300mg",
+    "via": "oral",
+    "unidade": "cáps",
+    "porTomada": 1,
+    "vezesDia": 4,
+    "diasPadrao": 7,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cáps VO de 6/6h, com um copo de água, por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Dalacin C cápsula 300 mg (Pfizer): 150–300 mg 6/6h; graves 300–450 mg 6/6h",
+    "aviso": "Antibiótico: receita em 2 vias. Diarreia intensa: suspender e procurar atendimento (C. difficile)."
+   }
   ]
  },
  {
@@ -871,6 +1119,23 @@
    "CDC — Clinical Care of Rocky Mountain Spotted Fever",
    "RENAME 2024",
    "AAP — Red Book, Committee on Infectious Diseases (doxiciclina ≤21 dias em qualquer idade)"
+  ],
+  "receita": [
+   {
+    "rotulo": "12/12h",
+    "nome": "Doxiciclina 100mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 2,
+    "diasPadrao": 7,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 12/12h, com um copo de água, sem deitar por 30 min, por {dias}.",
+    "embalagem": null,
+    "aviso": "Antibiótico: receita em 2 vias. Gestação na 2ª metade: mancha os dentes do feto (bula FDA).",
+    "fonte": "Bula Anvisa Vibramicina 100 mg (Pfizer): graves 100 mg 12/12h"
+   }
   ]
  }
 ]

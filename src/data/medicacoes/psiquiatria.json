@@ -172,6 +172,23 @@
    "American Geriatrics Society. 2023 AGS Beers Criteria (J Am Geriatr Soc 2023;71(7):2052–2081)",
    "Pediamécum (Asociación Española de Pediatría) — Biperideno, atualização dez/2020: doses pediátricas (off-label na Espanha), tetos por idade, contraindicações (inclui miastenia grave)",
    "American Psychiatric Association. Practice Guideline for the Treatment of Patients With Schizophrenia, 3ª ed. (2020): anticolinérgico na distonia aguda; via EV na distonia com laringoespasmo"
+  ],
+  "receita": [
+   {
+    "rotulo": "Após distonia aguda",
+    "nome": "Biperideno 2mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 2,
+    "diasPadrao": 2,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 12/12h por 2 dias.",
+    "embalagem": null,
+    "aviso": "Lista C1 (Portaria 344/98; RDC 1.023/2026): Receita de Controle Especial em 2 vias. Evitar no idoso (Beers 2023).",
+    "fonte": "Bula Anvisa Akineton 2 mg: 1–4 mg 1 a 4x/dia; mhGAP 2.0; HC-FMUSP 18ª ed., cap. 101"
+   }
   ]
  }
 ]

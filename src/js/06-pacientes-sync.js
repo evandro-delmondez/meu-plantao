@@ -52,7 +52,7 @@ async function psyncEscreve(f,sha){
 }
 // junta campo a campo (fica o que mudou por último em qualquer aparelho); apagado num aparelho some nos dois;
 // contagem do dia pelo maior valor visto
-const PSYNC_CAMPOS=["nome","snap","sabe","desf","et.exame","et.med","et.reav","et.parecer"];
+const PSYNC_CAMPOS=["nome","snap","sabe","assume","desf","et.exame","et.med","et.reav","et.parecer"];
 const psLe=(o,c)=>c.split(".").reduce((x,k)=>x&&x[k],o);
 const psPoe=(o,c,v)=>{const ks=c.split(".");let x=o;ks.slice(0,-1).forEach(k=>x=x[k]=x[k]||{});x[ks[ks.length-1]]=v};
 function psyncJunta(loc,rem){

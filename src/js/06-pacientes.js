@@ -82,14 +82,25 @@ function pacPendencias(p){
   if(!p.et.reav.t) o.push("aguardando reavaliação");
   return o;
 }
-// mensagem de passagem de plantão: quem ainda não teve desfecho
+// mensagem de passagem de plantão: "Deixo o consultório 3 sem pendências." ou com os pacientes pendentes agrupados por
+// quem assume (cada paciente pode ir para um médico), dizendo de forma corrida quem está ciente da troca
+const pacConsult=l=>{const t=String(l||"").trim();return !t?"":/consult/i.test(t)?t.replace(/^C/,"c"):`consultório ${t}`};
+function pacCiencia(ps){
+  const sim=ps.filter(p=>p.sabe).map(p=>p.nome), nao=ps.filter(p=>!p.sabe).map(p=>p.nome);
+  const pl=(a,s1,s2)=>a.length>1?s2:s1, F=[];
+  if(sim.length) F.push(`${ptLista(sim)}, ${pl(sim,"ciente","cientes")} da troca`);
+  if(nao.length) F.push(`${ptLista(nao)}, ${pl(nao,"ainda não ciente","ainda não cientes")} da troca`);
+  return F.join("; ");
+}
 function pacPassagem(medico,local){
   const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs").slice().reverse();
-  if(!ab.length) return "";
-  return [`Passagem de plantão — ${new Date().toLocaleDateString("pt-BR")} ${pacHora(Date.now())}`,...ab.map(p=>{
-    const pe=pacPendencias(p);
-    return [`• ${p.nome}`,`  Hipótese: ${pacHip(p)||"___"}`,`  Pendências: ${pe.length?pe.join("; "):"nenhuma"}`,`  Sabe da troca: ${p.sabe?"sim":"não"}`,`  Assume: ${medico||"___"}${local?` · ${local}`:""}`].join("\n");
-  })].join("\n\n");
+  const onde=pacConsult(local), cab=`Passagem de plantão — ${new Date().toLocaleDateString("pt-BR")} ${pacHora(Date.now())}`;
+  if(!ab.length) return `${cab}\nDeixo ${onde||"o plantão"} sem pendências.`.replace("Deixo consultório","Deixo o consultório");
+  const grupos=new Map();
+  ab.forEach(p=>{const m=(p.assume||"").trim()||medico||"";if(!grupos.has(m))grupos.set(m,[]);grupos.get(m).push(p)});
+  const L=[cab,`Deixo ${onde?"o "+onde:"o plantão"} com ${ab.length>1?"pacientes pendentes":"paciente pendente"}:`];
+  for(const [m,ps] of grupos) L.push(`- ${m?`Com ${m}: `:"A definir: "}${pacCiencia(ps)}.`);
+  return L.join("\n");
 }
 let pcVer="hoje", pcPass={medico:"",local:""};
 function renderPacientes(){
@@ -115,11 +126,14 @@ function renderPacientes(){
       <div class="chips pcets">${PAC_ETAPAS.map(([k,r])=>et(p,k,r)).join("")}</div>
       <div class="pcdesf"><select class="inp" data-pd="tipo" aria-label="Desfecho">${PAC_DESF.map(([v,r])=>`<option value="${v}" ${p.desf.tipo===v?"selected":""}>${r}</option>`).join("")}</select>
         ${p.desf.tipo==="internacao"?`<select class="inp" data-pd="onde" aria-label="Onde">${(typeof atLocais==="function"?[["","onde?"],...atLocais().slice(1)]:PAC_ONDE).map(([v,r])=>`<option value="${v}" ${p.desf.onde===v?"selected":""}>${r}</option>`).join("")}</select>`:""}
-        <label class="check"><input type="checkbox" data-psabe ${p.sabe?"checked":""}> sabe da troca</label>
+        ${!p.desf.tipo||p.desf.tipo==="obs"?`<input class="inp pcassume" data-passume list="pcMedicos" value="${esc(p.assume||"")}" placeholder="quem assume" aria-label="Médico que assume ${esc(p.nome)}" autocomplete="off">`:""}
+        <label class="check"><input type="checkbox" data-psabe ${p.sabe?"checked":""}> ciente da troca</label>
         <button class="btn sm" data-pabrir>Abrir atendimento</button>${!p.desf.tipo||p.desf.tipo==="obs"?`<button class="btn sm" data-ppassa>Passei para outro médico</button>`:""}<button class="btn sm danger" data-papagar>Apagar</button></div></div>`}).join(""):`<div class="panel card"><p class="note">Nenhum paciente ainda. Digite o nome acima ou no topo do Atendimento.</p></div>`}</div>
     ${passados.length?`<details class="panel card pcpassados"><summary><h3>Passados a outro médico (${passados.length})</h3></summary><ul class="qlist">${passados.map(p=>`<li data-pid="${p.id}"><b>${esc(p.nome)}</b> · ${esc(pacHip(p)||"sem hipótese")} · ${pacHora(p.desf.t||p.criado)} <button class="btn sm" data-pvolta="${p.id}">Voltar para a lista</button></li>`).join("")}</ul></details>`:""}
     <details class="panel card pcpass"><summary><h3>Passagem de plantão</h3></summary>
-      <div class="atdgrid"><label class="f">Médico que assume<input class="inp" id="pcMed" value="${esc(pcPass.medico)}"></label><label class="f">Consultório<input class="inp" id="pcLocal" value="${esc(pcPass.local)}"></label></div>
+      <p class="note">Cada paciente pode ir para um médico (campo "quem assume" no paciente); sem nome, vai para o médico abaixo.</p>
+      <div class="atdgrid"><label class="f">Médico que assume (os sem nome)<input class="inp" id="pcMed" value="${esc(pcPass.medico)}" list="pcMedicos" autocomplete="off"></label><label class="f">Consultório que você deixa<input class="inp" id="pcLocal" value="${esc(pcPass.local)}" placeholder="ex.: 3" autocomplete="off"></label></div>
+      <datalist id="pcMedicos">${[...new Set(db.pacs.map(p=>(p.assume||"").trim()).filter(Boolean))].map(m=>`<option value="${esc(m)}">`).join("")}</datalist>
       <textarea class="out-edit" id="pcPassTxt" spellcheck="false" aria-label="Mensagem de passagem" readonly></textarea>
       <div class="actions"><button class="btn primary" id="pcPassCp">Copiar mensagem</button><button class="btn" id="pcPassTodos">Passei todos (tirar da lista)</button></div></details>
     ${dias.length?`<details class="panel card"><summary><h3>Pacientes por dia</h3></summary><ul class="qlist">${dias.map(([d,n])=>`<li>${esc(d.split("-").reverse().join("/"))}: <b>${Math.max(0,n-npass(d))}</b></li>`).join("")}</ul></details>`:""}
@@ -144,6 +158,7 @@ function bindPacientes(){
     });
     row.querySelectorAll("[data-ptxt]").forEach(i=>i.oninput=()=>{const k=i.dataset.ptxt;p.et[k][k==="exame"?"txt":"esp"]=i.value.trim();pacToca(p,"et."+k);pacGrava();pacPassAtualiza()});
     row.querySelectorAll("[data-pd]").forEach(s=>s.onchange=()=>{p.desf[s.dataset.pd]=s.value;if(s.dataset.pd==="tipo"){p.desf.t=s.value?Date.now():null;if(s.value!=="internacao")p.desf.onde=""}mexe("desf")});
+    const pa=row.querySelector("[data-passume]"); if(pa) pa.oninput=()=>{p.assume=pa.value;pacToca(p,"assume");pacGrava();pacPassAtualiza()};
     row.querySelector("[data-psabe]").onchange=e=>{p.sabe=e.target.checked;pacToca(p,"sabe");pacGrava();pacPassAtualiza()};
     const pp=row.querySelector("[data-ppassa]"); if(pp) pp.onclick=()=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();if(atPac===p.id)atPac=null;mexe("desf");toast(`${p.nome}: passado a outro médico (fica em "Passados")`)};
     const ap=row.querySelector("[data-papagar]"); let t=null;

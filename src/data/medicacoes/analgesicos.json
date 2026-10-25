@@ -7,6 +7,7 @@
   "mecanismo": "Analgésico e antitérmico não opioide, derivado da pirazolona, com fraca ação anti-inflamatória.",
   "apresentacoes": [
    "Comprimido 500 mg",
+   "Comprimido 1 g",
    "Solução oral (gotas) 500 mg/mL",
    "Solução oral 50 mg/mL",
    "Ampola 500 mg/mL (2 mL)"
@@ -66,6 +67,22 @@
    "EMA — Metamizole Article 31 referral, Annex III (2024)",
    "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018",
    "RENAME 2024 (componente básico)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor ou febre",
+    "nome": "Dipirona 1g",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 4,
+    "diasPadrao": 3,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO de 6/6h se dor ou febre (no máximo 4 cp por dia).",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Novalgina comprimido 500 mg e 1 g (Sanofi): ≥ 15 anos, 1 g até 4x/dia https://bula.com.br/novalgina-comprimido/posologia-como-usar ; EMA Metamizole Art. 31 (2024): máx. 4 g/dia"
+   }
   ]
  },
  {
@@ -117,6 +134,22 @@
   "fontes": [
    "Bula ANVISA — Tylenol gotas 200 mg/mL (Janssen)",
    "RENAME 2024 (componente básico)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor ou febre (alergia a dipirona)",
+    "nome": "Paracetamol 750mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 4,
+    "diasPadrao": 3,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO de 6/6h se dor ou febre (no máximo 4 cp por dia).",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Tylenol 750 mg (Kenvue/Janssen): 1 cp de 6/6h, máx. 1 g/dose e 4 g/dia; decisão do painel 2026-10-22 (alergia a dipirona)"
+   }
   ]
  },
  {
@@ -176,6 +209,23 @@
    "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020",
    "RENAME 2024 (componente básico)",
    "Ministério da Saúde — Dengue: diagnóstico e manejo clínico (adulto e criança)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor ou inflamação",
+    "nome": "Ibuprofeno 600mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": 5,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 8/8h, após as refeições, por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Alivium/ibuprofeno 600 mg: 200–800 mg de 6/6 a 8/8h, máx. 3.200 mg/dia",
+    "aviso": "Só após descartar dengue (MS)."
+   }
   ]
  },
  {
@@ -243,6 +293,23 @@
    "Bula ANVISA — Profenid IM solução injetável 100 mg/2 mL (Sanofi)",
    "Bula ANVISA — Profenid IV pó liófilo 100 mg (Sanofi)",
    "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor ou inflamação",
+    "nome": "Cetoprofeno 100mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 2,
+    "diasPadrao": 3,
+    "diasMax": 5,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 12/12h, após as refeições, por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa cetoprofeno 100 mg liberação retardada (Aché; ref. Profenid Entérico): 100 mg 2x/dia, máx. 300 mg/dia https://www.ache.com.br/wp-content/uploads/application/pdf/bula-paciente-cetoprofeno.pdf",
+    "aviso": "Só após descartar dengue (MS)."
+   }
   ]
  },
  {
@@ -295,6 +362,23 @@
    "Bula ANVISA — Cataflam drágeas 50 mg (Novartis)",
    "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018",
    "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor ou inflamação",
+    "nome": "Diclofenaco de sódio 50mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": 5,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 8/8h, após as refeições, por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Voltaren comprimido (Novartis, 11/2025): 100–150 mg/dia em 2–3 tomadas, máx. 150 mg/dia https://www.pro.novartis.com/br-pt/sites/pro_novartis_com_br/files/2025-11/Bula-VOLTAREN-Comprimido-Revestido-Medico.pdf",
+    "aviso": "Só após descartar dengue (MS)."
+   }
   ]
  },
  {
@@ -348,6 +432,24 @@
    "Bula ANVISA — Toragesic solução injetável 30 mg/mL (EMS)",
    "Bula ANVISA — Toragesic comprimido sublingual 10 mg (EMS)",
    "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor moderada a forte",
+    "nome": "Cetorolaco 10mg sublingual",
+    "via": "oral",
+    "viaTexto": "SL",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": 5,
+    "seNecessario": false,
+    "instrucao": "Colocar 1 cp embaixo da língua de 8/8h por {dias}. Não usar por mais de 5 dias.",
+    "embalagem": null,
+    "aviso": "Só após descartar dengue (MS). > 65 anos ou < 50 kg: máx. 40 mg/dia; contraindicado na insuficiência renal moderada a grave (bula SL).",
+    "fonte": "Bula Anvisa Toragesic sublingual 10 mg (EMS): 10 mg de 6/6–8/8h, máx. 60 mg/dia (40 mg se > 65 anos, < 50 kg ou IR), máx. 5 dias"
+   }
   ]
  },
  {
@@ -399,6 +501,23 @@
    "Bula ANVISA — Tenoxicam pó liofilizado injetável 20/40 mg (Eurofarma), bula do profissional",
    "Bula ANVISA — Tilatil comprimidos 20 mg",
    "FDA Drug Safety Communication — NSAIDs ≥ 20 semanas de gestação, 2020"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor ou inflamação",
+    "nome": "Tenoxicam 20mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 5,
+    "diasMax": 7,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO 1x ao dia, após uma refeição, por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Tilatil/tenoxicam 20 mg comprimido: 20 mg 1x/dia",
+    "aviso": "Só após descartar dengue (MS)."
+   }
   ]
  },
  {
@@ -457,6 +576,22 @@
    "Bula ANVISA — Buscopan drágeas e gotas (Boehringer Ingelheim)",
    "Bula ANVISA — Buscopan Composto solução injetável (Boehringer Ingelheim)",
    "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018"
+  ],
+  "receita": [
+   {
+    "rotulo": "Cólica",
+    "nome": "Butilbrometo de escopolamina 10mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO de 8/8h se cólica.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Buscopan drágeas 10 mg (Boehringer/Sanofi): 10–20 mg 3 a 5x/dia"
+   }
   ]
  },
  {
@@ -515,6 +650,23 @@
    "FDA Drug Safety Communication — codeína e tramadol em crianças e lactação, abr/2017",
    "ISMP Brasil — Medicamentos potencialmente perigosos de uso hospitalar",
    "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor forte, se falhar o anterior",
+    "nome": "Tramadol 50mg",
+    "via": "oral",
+    "unidade": "cáps",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": 5,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cáps VO de 8/8h somente se dor forte que não melhore com os outros remédios (no máximo 3 cáps por dia). Pode dar sono; não dirigir.",
+    "embalagem": null,
+    "aviso": "Lista A2 (Portaria SVS/MS 344/98, adendo): Receita de Controle Especial em 2 vias. ClCr < 30: 12/12h, máx. 200 mg/dia; > 75 anos: máx. 300 mg/dia; risco serotoninérgico com ISRS/IRSN.",
+    "fonte": "Bula Anvisa Tramal cápsulas 50 mg (Grünenthal): 50–100 mg a cada 4–6h, máx. 400 mg/dia https://www.drogasil.com.br/bulas/tramal ; Portaria 344/98 Anexo I atualizado (RDC 2025) https://www.legisweb.com.br/legislacao/?id=477344"
+   }
   ]
  },
  {
@@ -566,6 +718,23 @@
    "Bula ANVISA — Tylex (paracetamol + codeína) (Janssen)",
    "FDA Drug Safety Communication — codeína e tramadol em crianças e lactação, abr/2017",
    "ISMP Brasil — Medicamentos potencialmente perigosos de uso hospitalar"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor forte",
+    "nome": "Paracetamol + Codeína 500/30mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 4,
+    "diasPadrao": 3,
+    "diasMax": 5,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO de 6/6h se dor forte (no máximo 4 cp por dia). Não tomar junto com outro remédio que tenha paracetamol.",
+    "embalagem": null,
+    "aviso": "Lista A2 (Portaria SVS/MS 344/98, adendo): Receita de Controle Especial em 2 vias. Somar paracetamol de outras receitas. Contraindicada na IR grave (bula Codein); evitar na amamentação (FDA 2017).",
+    "fonte": "Bula Anvisa Tylex 30 mg (Janssen): 1 cp de 4/4h, máx. 8 cp/dia; Portaria 344/98 Anexo I atualizado https://www.legisweb.com.br/legislacao/?id=477344"
+   }
   ]
  },
  {

@@ -18,6 +18,11 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
+**Retomar primeiro (2026-10-25, sessão parou no limite de tokens):**
+- TEP e TVP separados: redação e conferência prontas (.rascunhos/tep-tvp*.json/.md, tep-tvp-conferencia.md); aplicação parcial guardada em .rascunhos/tep-tvp-aplicacao-parcial.patch e tep-tvp.spec.mjs.parcial (faltavam os exames e o verificar). Corrige bug da receita no ar: apixabana trocava só a 2ª linha da rivaroxabana. CID TVP I80.2.
+- Contratura e lombalgia: rascunho pronto (.rascunhos/contratura*.json/.md); falta a conferência independente e as 8 dúvidas para o médico (AINE padrão, celecoxibe sem ataque, ciclobenzaprina 5 mg 8/8h, tiocolchicosídeo + AINE/paracetamol, diazepam, colar cervical, CID e sin).
+- "+ remédio" na receita do Atendimento (fichas já têm "receita"; falta a interface: busca, posologia, dias → quantidade; colar do Whitebook; "Salvar como opção desta conduta?"). As 14 fichas novas sugeridas (.rascunhos/receita-fichas.json "_novas") precisam virar fichas completas. Pendentes: levofloxacino 750 e amoxicilina 875 (CMED); ivermectina "doses".
+- A pensar com o médico: cor por classe de remédio na receita; quadro "Para você, não vai na receita".
 Atualizado em 2026-10-22 (versão 1.22.3). Decisões: `docs/DECISOES.md`. Divergências registradas: `docs/REVISAO.md`.
 
 **Feito em 2026-10-22:** sincronização da lista, nuvem dos padrões, hospital e senha de acesso ligados pelo médico.

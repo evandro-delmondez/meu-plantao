@@ -223,6 +223,22 @@
    "GINA 2024 Strategy Report",
    "Manual Farmacêutico Einstein — tabela de equivalência de corticosteroides",
    "AGS Beers Criteria 2023"
+  ],
+  "receita": [
+   {
+    "rotulo": "Curto (asma, alergia)",
+    "nome": "Prednisona 20mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 2,
+    "vezesDia": 1,
+    "diasPadrao": 5,
+    "diasMax": 7,
+    "seNecessario": false,
+    "instrucao": "Tomar 2 cp VO pela manhã, após o café, por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Meticorten/prednisona 20 mg: 5–60 mg/dia; GINA 2024: crise de asma 40–50 mg/dia por 5–7 dias, sem desmame"
+   }
   ]
  },
  {
@@ -391,6 +407,23 @@
    "FDA — Updates to labeling for promethazine injection, 27/12/2023",
    "ISMP Brasil — Boletim Medicamentos Potencialmente Perigosos, fev/2019",
    "AGS Beers Criteria 2023"
+  ],
+  "receita": [
+   {
+    "rotulo": "Alergia ou coceira à noite",
+    "nome": "Prometazina 25mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 5,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO à noite se coceira. Causa sono: não dirigir.",
+    "embalagem": null,
+    "aviso": "Não usar no 1º trimestre (bula Fenergan). Evitar no idoso (Beers 2023).",
+    "fonte": "Rótulo FDA prometazina comprimido: alergia, dose média 25 mg ao deitar https://drugcentral.org/label/96b4ab0d-abcf-409a-872e-b69611ebecca/view ; bula Anvisa Fenergan 25 mg: até 150 mg/dia"
+   }
   ]
  },
  {
@@ -436,6 +469,22 @@
   "fontes": [
    "Bula ANVISA — Polaramine solução oral",
    "AGS Beers Criteria 2023"
+  ],
+  "receita": [
+   {
+    "rotulo": "Alergia ou coceira",
+    "nome": "Dexclorfeniramina 2mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 5,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO de 8/8h se coceira ou alergia (no máximo 6 cp por dia). Pode dar sono.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Polaramine comprimido 2 mg (Mantecorp): adultos e > 12 anos 2 mg 3–4x/dia, máx. 12 mg/dia"
+   }
   ]
  },
  {
@@ -477,6 +526,22 @@
   ],
   "fontes": [
    "Bula ANVISA — Claritin (Bayer)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Alergia",
+    "nome": "Loratadina 10mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 7,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO 1x ao dia por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Claritin (loratadina) 10 mg (Bayer/MSD): 10 mg 1x/dia"
+   }
   ]
  },
  {

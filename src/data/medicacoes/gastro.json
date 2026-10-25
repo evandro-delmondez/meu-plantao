@@ -24,7 +24,8 @@
    "Náuseas e vômitos (PONV): 4 mg IM ou EV, dose única (FDA).",
    "Vômitos persistentes na desidratação (plano B, MS): 8 mg.",
    "Quimioterapia: 8 mg VO 1–2 h antes ou 8 mg IM/EV imediatamente antes.",
-   "Máximo: 16 mg por dose EV; 24 mg/dia (guia HSL)."
+   "Máximo: 16 mg por dose EV; 24 mg/dia (guia HSL).",
+   "VO: 4–8 mg de 8/8h se náuseas ou vômitos; máx. 24 mg/dia (bula)."
   ],
   "pediatria": [
    "Vômitos na diarreia aguda (MS, plano B): 6 meses–2 anos: 2 mg (0,2–0,4 mg/kg); > 2–10 anos (até 30 kg): 4 mg; > 10 anos (> 30 kg): 8 mg.",
@@ -72,6 +73,38 @@
    "Guia Farmacêutico Hospital Sírio-Libanês — Ondansetrona",
    "Ministério da Saúde. Manejo do paciente com diarreia: avaliação do estado de hidratação do paciente (cartaz, atualização 2023). https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dda/publicacoes/manejo-do-paciente-com-diarreia-avaliacao-do-estado-de-hidratacao-do-paciente",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "Náuseas (orodispersível)",
+    "nome": "Ondansetrona 8mg (orodispersível)",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Dissolver 1 cp na língua de 8/8h se náuseas ou vômitos.",
+    "embalagem": null,
+    "aviso": "Evitar no 1º trimestre (alerta Anvisa 2019). Prolonga o QT: evitar no QT longo. Máx. 24 mg/dia.",
+    "fonte": "Bula Anvisa ondansetrona 8 mg orodispersível (União Química): 8 mg 3x/dia; máx. 24 mg/dia (guia HSL)"
+   },
+   {
+    "rotulo": "Náuseas (comprimido 4 mg)",
+    "nome": "Ondansetrona 4mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO de 8/8h se náuseas ou vômitos.",
+    "embalagem": null,
+    "aviso": "Evitar no 1º trimestre (alerta Anvisa 2019). Prolonga o QT: evitar no QT longo.",
+    "fonte": "Bula Anvisa ondansetrona; ficha do painel: máx. 24 mg/dia (guia HSL)"
+   }
   ]
  },
  {
@@ -133,6 +166,23 @@
    "FDA label metoclopramide injection (Drugs.com)",
    "Guia Farmacêutico Hospital Sírio-Libanês — Metoclopramida",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "Náuseas",
+    "nome": "Metoclopramida 10mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": 5,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO de 8/8h se náuseas ou vômitos, por no máximo 5 dias.",
+    "embalagem": null,
+    "aviso": "ClCr < 40: metade da dose (bula). Pode causar reação extrapiramidal.",
+    "fonte": "Bula Anvisa Plasil 10 mg: 10 mg até 3x/dia; EMA 2013: máx. 30 mg/dia por até 5 dias"
+   }
   ]
  },
  {
@@ -202,6 +252,22 @@
    "Bula ANVISA — bromoprida solução oral",
    "Guia Farmacêutico Hospital Sírio-Libanês — Bromoprida",
    "RENAME 2024 (não consta)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Náuseas",
+    "nome": "Bromoprida 10mg",
+    "via": "oral",
+    "unidade": "cáps",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cáps VO de 8/8h se náuseas ou vômitos.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Digesan cápsula 10 mg (Sanofi): 10 mg 2–3x/dia; máx. 60 mg/dia (guia HSL)"
+   }
   ]
  },
  {
@@ -272,6 +338,22 @@
    "Bulário Bibliomed — Dramin B6 IM",
    "Guia Farmacêutico Hospital Sírio-Libanês — Dimenidrinato",
    "RENAME 2024 (não consta)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Enjoo ou tontura",
+    "nome": "Dimenidrinato 50mg + Piridoxina 10mg (Dramin B6)",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 4,
+    "diasPadrao": 3,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO de 6/6h se enjoo. Causa sono: não dirigir.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Dramin B6 comprimido (dimenidrinato 50 mg + piridoxina 10 mg, Takeda): ≥ 12 anos 1–2 cp de 4/4h, máx. 400 mg/dia de dimenidrinato"
+   }
   ]
  },
  {
@@ -324,6 +406,36 @@
    "Bula ANVISA — omeprazol sódico injetável (Cristália)",
    "Guia Farmacêutico Hospital Sírio-Libanês — Omeprazol",
    "RENAME 2024 (cápsulas 10 e 20 mg)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Azia ou gastrite",
+    "nome": "Omeprazol 20mg",
+    "via": "oral",
+    "unidade": "cáps",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 28,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cáps VO em jejum, 30 min antes do café da manhã, por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa omeprazol cápsula 20 mg (Losec/genéricos): 20 mg 1x/dia, em jejum; 40 mg/dia na profilaxia"
+   },
+   {
+    "rotulo": "Dose dobrada (40 mg)",
+    "nome": "Omeprazol 20mg",
+    "via": "oral",
+    "unidade": "cáps",
+    "porTomada": 2,
+    "vezesDia": 1,
+    "diasPadrao": 28,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 2 cáps (40 mg) VO em jejum, 30 min antes do café da manhã, por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa omeprazol cápsula 20 mg (Losec/genéricos): 20 mg 1x/dia, em jejum; 40 mg/dia na profilaxia"
+   }
   ]
  },
  {
@@ -369,6 +481,38 @@
   "fontes": [
    "Bula ANVISA — Luftal gotas e comprimidos (BMS)",
    "Guia Farmacêutico Hospital Sírio-Libanês — Simeticona"
+  ],
+  "receita": [
+   {
+    "rotulo": "Gases (comprimido)",
+    "nome": "Simeticona 40mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 1 cp VO de 8/8h, após as refeições, se gases.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Luftal (simeticona) comprimido 40 mg e gotas 75 mg/mL (Reckitt): 40 mg 3x/dia às refeições; 13 gotas 3x/dia; máx. 500 mg/dia"
+   },
+   {
+    "rotulo": "Gases (gotas)",
+    "nome": "Simeticona 75mg/mL gotas",
+    "via": "oral",
+    "unidade": "fr",
+    "porTomada": 13,
+    "vezesDia": 3,
+    "diasPadrao": 3,
+    "diasMax": null,
+    "seNecessario": true,
+    "instrucao": "Tomar 13 gotas (40 mg) VO 3x ao dia, após as refeições, se gases.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Luftal (simeticona) comprimido 40 mg e gotas 75 mg/mL (Reckitt): 40 mg 3x/dia às refeições; 13 gotas 3x/dia; máx. 500 mg/dia",
+    "qtdFixa": 1,
+    "unidadeTomada": "gotas"
+   }
   ]
  },
  {
@@ -416,6 +560,24 @@
    "Guia Farmacêutico Hospital Sírio-Libanês — Loperamida",
    "Ministério da Saúde. Manejo do paciente com diarreia: avaliação do estado de hidratação do paciente (cartaz, atualização 2023). https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dda/publicacoes/manejo-do-paciente-com-diarreia-avaliacao-do-estado-de-hidratacao-do-paciente",
    "RENAME 2024 (não consta)"
+  ],
+  "receita": [
+   {
+    "rotulo": "Diarreia sem sangue e sem febre",
+    "nome": "Loperamida 2mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": null,
+    "diasPadrao": 2,
+    "diasMax": 2,
+    "seNecessario": true,
+    "instrucao": "Tomar 2 cp após a 1ª evacuação líquida e 1 cp após cada nova evacuação líquida (no máximo 8 cp por dia).",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Imosec (loperamida) 2 mg (Janssen): 4 mg no início, depois 2 mg após cada evacuação líquida; máx. 16 mg/dia (8 cp)",
+    "qtdFixa": 12,
+    "aviso": "Não usar com sangue nas fezes ou febre (bula)."
+   }
   ]
  },
  {
@@ -462,6 +624,24 @@
    "Bula ANVISA — Lactulona (Daiichi Sankyo)",
    "Guia Farmacêutico Hospital Sírio-Libanês — Lactulose",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "Intestino preso",
+    "nome": "Lactulose 667mg/mL xarope",
+    "via": "oral",
+    "unidade": "fr",
+    "porTomada": 15,
+    "vezesDia": 1,
+    "diasPadrao": 7,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 15 mL VO 1x ao dia. Se não evacuar em 2 dias, aumentar para 30 mL 1x ao dia. Reduzir se as fezes ficarem líquidas.",
+    "embalagem": null,
+    "qtdFixa": 2,
+    "unidadeTomada": "mL",
+    "fonte": "Bula Anvisa lactulose 667 mg/mL (Lactulona): constipação 15–30 mL/dia"
+   }
   ]
  },
  {
@@ -512,6 +692,23 @@
    "OMS/UNICEF — SRO de osmolaridade reduzida (via GPnotebook)",
    "Bula ANVISA — Reidratante (Catarinense Pharma)",
    "RENAME 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "Diarreia (plano A)",
+    "nome": "Sais de reidratação oral",
+    "via": "oral",
+    "unidade": "sachê",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 5,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Diluir 1 envelope em 1 L de água filtrada e beber aos poucos ao longo do dia, após cada evacuação.",
+    "embalagem": null,
+    "fonte": "Ministério da Saúde — Manejo do paciente com diarreia (cartaz, planos A/B/C): SRO após cada evacuação; envelope dilui em 1 L de água",
+    "qtdFixa": 10
+   }
   ]
  }
 ]

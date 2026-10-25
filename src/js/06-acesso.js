@@ -13,13 +13,14 @@ function acessoPacote(){
   if(hosp.cfg&&hosp.cfg.chave) p.hosp={repo:hosp.cfg.repo,arq:hosp.cfg.arq,chave:hosp.cfg.chave};
   if(psyncAtivo()) p.lista={repo:psync.repo,arq:psync.arq,chave:psync.chave,salt:psync.salt,k:psync.k};
   if(gsAtivo()) p.nuvem={repo:gs.repo,chave:gs.chave};
+  if(typeof iaAtiva==="function"&&iaAtiva()) p.ia={chave:ia.chave};
   return p;
 }
 // qualquer chave ligada serve para gravar o gist, se tiver a permissão Gists: Read and write
 const acessoToken=()=>(gsAtivo()&&gs.chave)||(psyncAtivo()&&psync.chave)||(hosp.cfg&&hosp.cfg.chave)||"";
 async function acessoCriar(senha){
   const p=acessoPacote();
-  if(!p.hosp&&!p.lista&&!p.nuvem) throw new Error("nada");
+  if(!p.hosp&&!p.lista&&!p.nuvem&&!p.ia) throw new Error("nada");
   const salt=crypto.getRandomValues(new Uint8Array(16)), iv=crypto.getRandomValues(new Uint8Array(12));
   const ct=await crypto.subtle.encrypt({name:"AES-GCM",iv},await acessoChave(senha,salt),new TextEncoder().encode(JSON.stringify(p)));
   const arq=JSON.stringify({app:"meu-plantao",v:1,alg:"AES-GCM/PBKDF2-SHA256",iter:ACESSO_ITER,salt:b64(salt),iv:b64(iv),ct:b64(ct)});
@@ -30,7 +31,7 @@ async function acessoCriar(senha){
   if(r.status===404&&g.gist){g.gist=null;lsSet(ACESSO_LS,g);return acessoCriar(senha)}
   if(!r.ok){let m="";try{m=(await r.json()).message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}
   const j=await r.json(); lsSet(ACESSO_LS,Object.assign(g,{gist:j.id,usuario:j.owner&&j.owner.login||g.usuario}));
-  return Object.keys(p).filter(k=>["hosp","lista","nuvem"].includes(k));
+  return Object.keys(p).filter(k=>["hosp","lista","nuvem","ia"].includes(k));
 }
 async function acessoEntrar(usuario,senha){
   const r=await fetch(`https://api.github.com/users/${encodeURIComponent(usuario)}/gists?per_page=100`,{cache:"no-store",headers:{Accept:"application/vnd.github+json"}});
@@ -43,13 +44,14 @@ async function acessoEntrar(usuario,senha){
   if(p.hosp){hosp.cfg=p.hosp;hospSalva();hospBaixar(true)}
   if(p.lista){psync=p.lista;psyncKey=null;lsSet(PSYNC_LS,psync);pacSync()}
   if(p.nuvem){gs=p.nuvem;lsSet(GS_LS,gs);gsSync()}
-  return Object.keys(p).filter(k=>["hosp","lista","nuvem"].includes(k));
+  if(p.ia){ia=p.ia;lsSet(IA_LS,ia)}
+  return Object.keys(p).filter(k=>["hosp","lista","nuvem","ia"].includes(k));
 }
-const ACESSO_NOMES={hosp:"protocolos do hospital",lista:"lista de pacientes",nuvem:"seus padrões"};
+const ACESSO_NOMES={hosp:"protocolos do hospital",lista:"lista de pacientes",nuvem:"seus padrões",ia:"IA na HDA"};
 // sair: apaga deste computador as chaves, o pacote do hospital e a lista de pacientes (os padrões ficam na nuvem)
 function acessoSair(){
-  for(const k of [HOSP_LS,PSYNC_LS,GS_LS,PAC_LS]) try{localStorage.removeItem(k)}catch(e){}
-  hosp={}; psync={}; psyncKey=null; gs={}; pacDb=null; atPac=null;
+  for(const k of [HOSP_LS,PSYNC_LS,GS_LS,PAC_LS,IA_LS]) try{localStorage.removeItem(k)}catch(e){}
+  hosp={}; psync={}; psyncKey=null; gs={}; ia={}; pacDb=null; atPac=null;
   hospAplica(); toast("Saiu deste computador");
 }
 function renderAcesso(el){

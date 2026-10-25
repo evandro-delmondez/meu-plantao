@@ -3,7 +3,7 @@ import { abrir, aba } from "./util.mjs";
 
 test("CIATox: Disque-Intoxicação a um toque e CIATox local salvo no aparelho, sem quebrar dados antigos", async ({ page }) => {
   // dado antigo (sem o campo ciatox) continua carregando
-  await page.addInitScript(() => { if (!sessionStorage.getItem("ok")) { localStorage.setItem("rxp_ui_v1", JSON.stringify({ sel: "amigdalite", modo: "adulto" })); sessionStorage.setItem("ok", "1"); } });
+  await page.addInitScript(() => { if (!localStorage.getItem("teste_ok")) { localStorage.setItem("rxp_ui_v1", JSON.stringify({ sel: "amigdalite", modo: "adulto" })); localStorage.setItem("teste_ok", "1"); } });
   const erros = await abrir(page); await aba(page, "prescricoes");
   await page.evaluate(() => document.querySelector('#list .item[data-id="intoxicacao"]').click());
   const box = page.locator("#detail .ciatox");

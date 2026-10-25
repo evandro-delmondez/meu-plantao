@@ -180,6 +180,11 @@ function atNotas(txt){
   if(pos.length){const [q,...c]=pos;p=`Paciente refere ${q}`+(c.length?`, com ${ptLista(c)}`:"")+"."}
   return {prosa:[p,...frases].filter(Boolean).join(" "),neg};
 }
+function atContradicoes(){
+  const n=atNotas(atd.hma); if(!n.prosa) return [];
+  const pos=norm(n.prosa.replace(/\b(nega|sem|não|nao)\s+[^.,;]*/gi," "));
+  return [...new Set(atConds().flatMap(c=>chkLinhas(c).raw.hn))].filter(x=>{const w=norm(x).split(/[\s,()]+/).find(y=>y.length>=4);return w&&new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g,"")}`).test(pos)});
+}
 function atHda(it){
   const n=atNotas(atd.hma), ck=atConds().map(c=>chkLinhas(c));
   const hp=[...new Set(ck.flatMap(c=>c.raw.hp))], hn=[...new Set([...n.neg,...ck.flatMap(c=>c.raw.hn)])];
@@ -428,7 +433,7 @@ function atReavHTML(){
 function atSaida(k,rot){
   return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><span class="atcop" data-atcopok="${k}" hidden>✓ no MV</span>${k==="hda"?`<button class="btn sm" data-atia title="Corrige e dá coesão, sem inventar nem tirar dados">✨ Melhorar texto (IA)</button>`:""}<button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
     <textarea class="out-edit" data-atout="${k}" spellcheck="false" aria-label="${rot}"></textarea>
-    ${k==="hda"?`<p class="note atiaest" id="atIaEst" hidden></p>`:""}
+    ${k==="hda"?`<p class="note atiaest" id="atIaEst" hidden></p><p class="note atvelho" id="atContra" hidden></p>`:""}
     <p class="note" data-atman="${k}" hidden><span data-atmanmsg>Você editou este campo.</span> <button class="btn sm" data-atre="${k}">Refazer</button></p></div>`;
 }
 // barra de etapas: vazia, preenchida (falta copiar) ou copiada para o MV (✓); some a 7 se não for internar
@@ -638,6 +643,7 @@ function atAtualiza(){
     n.querySelector("[data-atmanmsg]").textContent=velho?"Você mudou algo acima depois de editar este texto. O seu texto foi mantido.":"Você editou este campo.";
     n.querySelector("[data-atre]").textContent=velho?"Refazer com as mudanças":"Refazer"});
   const w=$("#atAtW"); if(w) w.hidden=!atTexto("atest",it);
+  const ct=$("#atContra"); if(ct){const c=atContradicoes();ct.hidden=!c.length;ct.textContent=c.length?`Atenção: ${c.map(x=>`"${x}"`).join(", ")} ${c.length>1?"estão":"está"} nas notas e ${c.length>1?"foram marcados":"foi marcado"} como ausente no checklist. Confira antes de copiar.`:""}
   atEtapasAtualiza();
   // NEWS2 e alertas dos sinais vitais (mesmas regras da conduta)
   if(it) atdAvisoAtualiza(it,"#atAviso","#atNews");

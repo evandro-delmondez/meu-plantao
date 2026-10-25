@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.38.5 — 2026-10-26
+- **HDA avisa contradição**: se um item marcado como ausente no "Não esquecer" aparece escrito nas notas (sem "nega"), surge um aviso amarelo embaixo da HDA para conferir antes de copiar.
+- **Prompt padrão da IA** integra as frases do checklist ("Presença de…", "Nega…", sinais de alarme) ao parágrafo sem repetir, junta as negativas no final e não escolhe entre itens contraditórios.
+
 ## 1.38.4 — 2026-10-26
 - **IA na HDA**: a HDA vai para a IA entre as marcas <entrada> e </entrada> (funciona com prompts que usam essas marcas); se a IA devolver as marcas, o app tira.
 

@@ -527,3 +527,17 @@ test("IA: número por extenso ('três episódios' no lugar de '3x') passa na tra
   await expect(saida(page, "hda")).toHaveValue(/três episódios de vômito/);
   expect(erros).toEqual([]);
 });
+
+test("HDA: avisa quando um item está nas notas e foi marcado como ausente no checklist", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await expect(page.locator("#atContra")).toBeHidden();
+  await campo(page, "hma").fill("tosse seca 2d, coriza");
+  await page.locator('#atCorpo li.ck', { hasText: "Tosse" }).first().locator('[data-val="-"]').click();
+  await expect(page.locator("#atContra")).toBeVisible();
+  await expect(page.locator("#atContra")).toContainText(/tosse/i);
+  // "nega tosse" nas notas não é contradição
+  await campo(page, "hma").fill("coriza, nega tosse");
+  await expect(page.locator("#atContra")).toBeHidden();
+  expect(erros).toEqual([]);
+});

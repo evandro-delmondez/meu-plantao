@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.38.3 — 2026-10-26
+- **IA na HDA com terminologia médica**: o prompt padrão troca linguagem leiga por termo médico (região periumbilical, fossa ilíaca direita, piora à deambulação, febre aferida, princípio ativo no lugar do nome comercial), segue a ordem da semiologia e traz um exemplo de antes e depois. Continua proibido inventar ou tirar dados.
+
 ## 1.38.2 — 2026-10-26
 - **IA na HDA**: o prompt pede os números sempre em algarismos, e a trava aceita número por extenso ("três episódios" = "3x"); antes a trava recusava e o texto não mudava. O aviso agora diz qual número sumiu ou apareceu.
 

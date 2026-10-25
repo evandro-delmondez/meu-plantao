@@ -55,6 +55,9 @@ const atSis=it=>atd.sis||[...new Set((atConds().length?atConds():[it]).flatMap(a
 function atJunta(f){
   const tx=atConds().map(c=>cur(c,f)).filter(t=>t&&t.trim());
   if(tx.length<2) return tx[0]||"";
+  if(f==="casa") return atJuntaVias(tx);
+  // orientações: uma lista só, sem repetir
+  if(f==="orient"){const o=[];tx.forEach(t=>t.split("\n").forEach(l=>{if(l.trim()&&!o.includes(l))o.push(l)}));return o.join("\n")}
   const vistos=new Set(), out=[]; let n=0, pula=false;
   const chave=l=>norm(l.replace(/^\s*\d+\)\s*/,"")).split(/[\s,(]+/).slice(0,1).join(" ");
   for(const t of tx){ if(out.length) out.push("");
@@ -67,6 +70,33 @@ function atJunta(f){
     }}
   return out.join("\n").replace(/\n{3,}/g,"\n\n").trim();
 }
+// receita de 2+ condutas: junta por via (todo o uso oral, depois nasal, tópico…), sem repetir remédio, numerada em sequência.
+// Rótulos que não são via (ex.: "Antibiótico") ficam antes dos seus remédios, dentro da via.
+const atViaDe=(cab,txt)=>{const m=/^uso\s+(.+?):?$/i.exec(cab||"");if(m)return "Uso "+m[1].toLowerCase();
+  if(/narina|nasal/i.test(txt))return "Uso nasal";if(/\bVO\b|tomar|dissolver|mastigar|ingerir/i.test(txt))return "Uso oral";
+  if(/pomada|creme|pele|t[óo]pic|les[ãa]o/i.test(txt))return "Uso tópico";return null};
+function atJuntaVias(tx){
+  const chave=l=>norm(l.replace(/^\s*\d+\)\s*/,"")).split(/[\s,(]+/).slice(0,1).join(" ");
+  const vias=[], porVia={}, vistos=new Set(), soltos=[];
+  for(const t of tx){
+    let via="Uso oral", rot=null, item=null, ant="";
+    for(const l of t.split("\n")){
+      const tr=l.trim();
+      if(/^\d+\)\s/.test(tr)){item={l:[tr.replace(/^\d+\)\s*/,"")],k:chave(tr),via,rot,cabVia:true};
+        item.pula=vistos.has(item.k);if(!item.pula){vistos.add(item.k);(porVia[via]=porVia[via]||(vias.push(via),[])).push(item)}ant=tr;continue}
+      if(!tr){item=null;ant="";continue}
+      if(!item||!ant){ // cabeçalho: via ou rótulo
+        const v=atViaDe(tr,"");if(v&&/^uso\s/i.test(tr)){via=v;rot=null}else rot=tr;ant=tr;item=null;continue}
+      item.l.push(tr); ant=tr;
+      // rótulo que não é via: a via sai da instrução (ex.: "Tomar 1 cp VO")
+      if(item.rot&&item.l.length===2&&!item.pula){const v=atViaDe(item.rot,tr);if(v&&v!==item.via){const a=porVia[item.via];a.splice(a.indexOf(item),1);if(!a.length){delete porVia[item.via];vias.splice(vias.indexOf(item.via),1)}item.via=v;(porVia[v]=porVia[v]||(vias.push(v),[])).push(item)}}
+    }
+  }
+  let n=0; const out=[];
+  for(const v of vias){ if(out.length) out.push(""); out.push(v); let r=null;
+    for(const it of porVia[v]){ if(it.rot&&it.rot!==r) out.push(it.rot); r=it.rot; out.push(`${++n}) ${it.l[0]}`,...it.l.slice(1)); } }
+  return out.join("\n").trim();
+}
 // lista em português: "a, b e c"
 const ptLista=a=>a.length<2?(a[0]||""):a.slice(0,-1).join(", ")+" e "+a[a.length-1];
 // a alta registra o que foi explicado (proteção do médico e do paciente)
@@ -76,7 +106,7 @@ const AT_REAV=[["melhora","com melhora após a medicação na unidade"],["estave
 const atLocais=()=>{const n=(typeof hospAtivo==="function"&&hospAtivo()&&hospPac().internacao&&hospPac().internacao.locais)||{};return [["","— escolher —"],["enfermaria",n.enfermaria||"enfermaria ou apartamento"],["semi",n.semi||"semi-intensiva"],["uti",n.uti||"UTI"]]};
 // conduta (campo Conduta do prontuário): o que foi feito, em itens que o médico marca; o detalhe vai na prescrição
 const AT_COND=()=>[["explico",(String(model.conduta||"").split("\n")[0]||"").replace(/^\s*-\s*/,"")||"Explico ao paciente o quadro clínico, as hipóteses diagnósticas e a conduta proposta, confirmando a compreensão das orientações."],
-  ["med","Prescrevo medicação na unidade"],["sint","Prescrevo sintomáticos para uso domiciliar."],["atb","Prescrevo antibioticoterapia domiciliar."],["reav","Reavaliação após a medicação e o resultado dos exames."],["atest","Forneço atestado médico."]];
+  ["med","Prescrevo medicação na unidade"],["lab","Solicito exames laboratoriais"],["img","Solicito exames de imagem"],["sint","Prescrevo sintomáticos para uso domiciliar."],["atb","Prescrevo antibioticoterapia domiciliar."],["reav","Reavaliação após a medicação e o resultado dos exames."],["atest","Forneço atestado médico."]];
 const AT_OBJ=[["atb","antibioticoterapia EV"],["suporte","suporte clínico e hidratação EV"],["dor","controle álgico"],["monit","monitorização"],["o2","oxigenoterapia"],["invest","investigação diagnóstica"],["espec","avaliação e conduta da especialidade"]];
 const AT_PADRAO=()=>({reav:AT_REAV,ori:AT_ORI,obj:AT_OBJ,perg:AT_PERGUNTAS.map((t,i)=>["p"+i,t]),cond:AT_COND()});
 // lista do médico (Editar padrões) ou a padrão; cada item é [chave, texto]
@@ -182,20 +212,22 @@ function atNomesUnid(){
   }
   return achados.sort((a,b)=>a.i-b.i).map(a=>a.n);
 }
-const atCondOn=k=>k==="explico"?atd.cond[k]!==false:!!atd.cond[k];
+// exames: o item liga sozinho quando há exame pedido na Prescrição (e pode ser desligado)
+const atCondOn=k=>k==="explico"?atd.cond[k]!==false:(k==="lab"||k==="img")?(atd.cond[k]??atItens(k==="lab"?(atd.exLab||atd.exSol||""):atd.exImg).length>0):!!atd.cond[k];
 function atTrat(it){
-  const L=[], pos={};
+  const L=[], pos={}, lab=atItens(atd.exLab||atd.exSol||""), img=atItens(atd.exImg);
   for(const [k,t] of atL("cond")){
     if(!atCondOn(k)) continue;
     if(k==="med"){const n=atNomesUnid().filter(x=>atd.medSel[x]);L.push(`- ${t.replace(/\.$/,"")}${n.length?": "+ptLista(n):""}.`)}
+    else if(k==="lab"||k==="img"){const l=k==="lab"?lab:img;L.push(`- ${t.replace(/\.$/,"")}${l.length?": "+l.join(", "):""}.`)}
     else L.push("- "+t);
     pos[k]=L.length;
   }
-  // exames solicitados logo depois da medicação na unidade (ou da explicação ao paciente)
-  const lab=atItens(atd.exLab||atd.exSol||""), img=atItens(atd.exImg), ex=[];
-  if(lab.length) ex.push(`- Solicito exames laboratoriais: ${lab.join(", ")}.`);
-  if(img.length) ex.push(`- Solicito exames de imagem: ${img.join(", ")}.`);
-  L.splice(pos.med??pos.explico??0,0,...ex);
+  // lista própria (Editar padrões) sem os itens de exames: entram logo depois da medicação na unidade, como antes
+  const ks=new Set(atL("cond").map(([k])=>k)), ex=[];
+  if(!ks.has("lab")&&lab.length) ex.push(`- Solicito exames laboratoriais: ${lab.join(", ")}.`);
+  if(!ks.has("img")&&img.length) ex.push(`- Solicito exames de imagem: ${img.join(", ")}.`);
+  if(ex.length) L.splice(pos.med??pos.explico??0,0,...ex);
   atItens(atd.condLivre).forEach(x=>L.push("- "+x));
   return L.join("\n");
 }
@@ -337,12 +369,14 @@ function atEtapasAtualiza(){
   for(const [n,,cs] of AT_ETAPAS){
     const b=bar.querySelector(`[data-atir="${n}"]`); if(!b) continue;
     if(n===7) b.hidden=!inter;
-    const tas=cs.map(k=>$(`#atCorpo [data-atout="${k}"]`)).filter(t=>t&&t.value.trim()&&!t.closest("[hidden]"));
+    const tas=cs.map(k=>$(`#atCorpo [data-atout="${k}"]`)).filter(t=>t&&t.value.trim()&&!t.closest("[hidden]")&&!t.closest("details:not([open])"));
     const cop=tas.length&&tas.every(t=>atd.cop[t.dataset.atout]===t.value);
     b.dataset.st=cop?"ok":atEtapaMexida(n)?"meio":"";
     b.title=cop?"Copiado para o MV":b.dataset.st==="meio"?"Preenchido: falta copiar para o MV":"Ainda vazio";
   }
 }
+const AT_ESTREITA=matchMedia("(max-width:860px)");
+AT_ESTREITA.addEventListener?.("change",()=>{if(ui.tab==="evolucao"){const y=window.scrollY;renderEv();window.scrollTo(0,y)}});
 // altura do topo fixo, para a barra de etapas ficar logo abaixo
 try{const tp=$(".top");if(tp&&window.ResizeObserver)new ResizeObserver(()=>document.documentElement.style.setProperty("--toph",tp.offsetHeight+"px")).observe(tp)}catch(e){}
 // marca na barra a etapa que está na tela
@@ -352,6 +386,21 @@ addEventListener("scroll",()=>{
   $$("#atCorpo [data-etapa]").forEach(s=>{if(s.getBoundingClientRect().top<=lim)atual=s.dataset.etapa});
   bar.querySelectorAll("[data-atir]").forEach(b=>b.toggleAttribute("aria-current",b.dataset.atir===atual));
 },{passive:true});
+function atBuscaCond(q,fora){
+  const its=allItems().filter(x=>!fora.includes(x.id)), t=norm(String(q||"").trim());
+  if(t.length<2){
+    const byId=Object.fromEntries(its.map(x=>[x.id,x])), cat=(atItem()||{}).cat, out=[];
+    const poe=x=>{if(x&&!out.includes(x))out.push(x)};
+    uso.favs.forEach(id=>poe(byId[id]));
+    Object.entries(uso.counts).sort((a,b)=>b[1]-a[1]).forEach(([id])=>poe(byId[id]));
+    its.filter(x=>x.cat===cat).forEach(poe);
+    return out.slice(0,10);
+  }
+  const ws=t.split(/\s+/), hay=x=>norm([x.nome,x.sin,x.cid,String(x.cid||"").replace(/\./g,""),(CATS[x.cat]||{}).nome].join(" "));
+  return its.filter(x=>ws.every(w=>hay(x).includes(w))).sort((a,b)=>(norm(b.nome).startsWith(t)-norm(a.nome).startsWith(t))||a.nome.localeCompare(b.nome)).slice(0,10);
+}
+// rótulo da conduta que fica preso no alto enquanto você está no trecho dela
+const atFixo=c=>{const k=CATS[c.cat]||CATS.outros;return `<h4 class="atcond atfixo" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}${c.cid?` <span class="atfixcid">CID ${esc(c.cid)}</span>`:""}</h4>`};
 function renderEv(){
   const el=$("#atCorpo"); if(!el) return;
   // só existe na tela enquanto a aba está aberta (o checklist e os campos não se repetem em outra aba)
@@ -373,14 +422,13 @@ function renderEv(){
   <div class="ateditbar">${atEdit?`<span class="note">Editando os padrões. Vale para os próximos atendimentos.</span><button class="btn primary" id="atEdSalva">Salvar como padrão</button><button class="btn" id="atEdSai">Cancelar</button>`:`<button class="btn sm" id="atEdita">✎ Editar padrões</button>`}</div>
   <nav class="atetapas" id="atEtapas" aria-label="Etapas do atendimento"><span class="atrel" id="atRelogio" hidden></span>${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}</nav>
   ${it?`<div class="atextras"><span class="lbl">Outras queixas no mesmo paciente</span><div class="chips">${outras.map(c=>`<button class="chip" data-atrem="${esc(c.id)}" aria-pressed="true" style="--c:var(--${(CATS[c.cat]||CATS.outros).cor})">✓ ${esc(c.nome)} ✕</button>`).join("")}
-    ${outras.length<2?`<select class="inp atadd" id="atAdd" aria-label="Adicionar outra conduta"><option value="">+ Adicionar outra conduta</option>${allItems().filter(x=>!cs.some(c=>c.id===x.id)).map(x=>`<option value="${esc(x.id)}">${esc(x.nome)}</option>`).join("")}</select>`:""}</div></div>`:""}
+    ${outras.length<2?`<div class="atbusca"><input class="inp" id="atAddQ" type="search" autocomplete="off" spellcheck="false" placeholder="+ outra conduta: nome, sinônimo ou CID" aria-label="Buscar outra conduta"><div class="atsug" id="atAddSug"></div></div>`:""}</div></div>`:""}
   ${cs.length?`<div class="atconds">${cs.map(c=>{const k=CATS[c.cat]||CATS.outros;return `<span class="cat" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}${c.cid?` · ${esc(c.cid)}`:""}</span>`}).join("")}</div>`:""}
   ${atQueixaHTML(!!it)}
-  ${cs.map(renderAlarme).join("")}
   <div class="sec atsec" data-etapa="1" id="atHdaSec"><div class="sec-h"><h3>1. HDA e antecedentes</h3></div><div class="atbody">
     ${ta("hma","Queixa e HDA (notas soltas: o texto sai corrido)","ex.: dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre")}
     <div class="atdgrid atlistas">${ta("ap","HPP (doenças, cirurgias, internações)","ex.: hipertensão arterial\ncolecistectomia em 2019")}${ta("muc","Medicamentos em uso","ex.: losartana 50 mg 1x ao dia")}${ta("alergia","Alergias","ex.: dipirona; ou nega")}</div>
-    ${cs.map((c,i)=>`<div id="atChk${i}">${cs.length>1&&chkDe(c.id)?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${renderChecklist(c)}</div>`).join("")}
+    ${cs.map((c,i)=>`<div id="atChk${i}" class="atbloco">${chkDe(c.id)?atFixo(c):""}${renderChecklist(c)}</div>`).join("")}
     ${atEdit?cs.map(edChk).join(""):""}
     ${atSaida("hda","HDA e antecedentes")}</div></div>
   <div class="sec atsec" data-etapa="2"><div class="sec-h"><h3>2. Exame físico</h3></div><div class="atbody">
@@ -409,11 +457,11 @@ function renderEv(){
   <div class="sec atsec" data-etapa="5"><div class="sec-h"><h3>5. Prescrição</h3><span class="alsum">na unidade · exames · receituário · atestado</span></div><div class="atbody">
     ${unidH?`<div class="atunid"><span class="lbl">Na unidade (para selecionar no prontuário)</span>${unidH}</div>`:""}
     ${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")+edTxt(c,"casa","receita")+edTxt(c,"orient","orientações")).join(""):""}
-    ${unidH?atSaida("punid","Prescrição na unidade"):""}
+    ${unidH?`<details class="atpunid"><summary>Texto da prescrição na unidade (para copiar, se precisar)</summary>${atSaida("punid","Prescrição na unidade")}</details>`:""}
     <span class="lbl atexlbl">Solicitar exames</span>
     ${ks.length?`<div class="atexs">${ks.map((k,i)=>exHTML(k,{pedir:true,aberto:i===0,titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
     <div class="atdgrid">${ta("exLab","Exames laboratoriais","ex.: hemograma\nPCR\nureia e creatinina")}${ta("exImg","Exames de imagem","ex.: TC de abdome com contraste")}</div>
-    ${cs.map(c=>{const m=renderRxMontar(c);return m?`<div class="atrx" data-rxc="${esc(c.id)}">${cs.length>1?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${m}</div>`:""}).join("")}
+    ${cs.map(c=>{const m=renderRxMontar(c);return m?`<div class="atrx atbloco" data-rxc="${esc(c.id)}">${atFixo(c)}${m}</div>`:""}).join("")}
     ${cs.map(rxAvisoHTML).join("")}
     ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}
     <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">${[["atestado","Atestado"],["comparecimento","Comparecimento"],["nenhum","Nenhum"]].map(([v,r])=>`<option value="${v}" ${atd.tipo===v?"selected":""}>${r}</option>`).join("")}</select></label>
@@ -450,7 +498,8 @@ function renderEv(){
   bindEv(it);
   // a barra de etapas vai para a linha das abas do topo (fica sempre à vista sem ocupar uma faixa a mais)
   const bar=$("#atCorpo .atetapas"), tabs=$(".top .tabs");
-  if(bar&&tabs){const v=$(".top .atetapas");if(v)v.remove();tabs.appendChild(bar);atEtapasAtualiza()}
+  // na tela estreita (meia tela, celular) o topo não fica fixo: a barra fica no Atendimento, fixa no alto
+  if(bar&&tabs){const v=$(".top .atetapas");if(v)v.remove();if(!AT_ESTREITA.matches)tabs.appendChild(bar);atEtapasAtualiza()}
   atFocoVolta(foco);
 }
 // redesenhar não tira o cursor do campo em que você está digitando
@@ -530,7 +579,12 @@ function bindEv(it){
   box.querySelectorAll("[data-atir]").forEach(b=>b.onclick=()=>{const sec=$(`#atCorpo [data-etapa="${b.dataset.atir}"]`);if(!sec)return;if(sec.tagName==="DETAILS")sec.open=true;sec.scrollIntoView({behavior:"smooth",block:"start"})});
   box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));
   box.querySelectorAll("[data-atrem]").forEach(b=>b.onclick=()=>{atd.extras=atd.extras.filter(x=>x!==b.dataset.atrem);atd.sis=null;atd.alarOff={};renderEv()});
-  if($("#atAdd")) $("#atAdd").onchange=e=>{const v=e.target.value;if(!v)return;atd.extras=[...(atd.extras||[]),v].slice(0,2);atd.sis=null;atd.alarOff={};renderEv()};
+  // busca de outra conduta: sem digitar, mostra favoritas, mais usadas e as da mesma área; digitando, acha por nome, sinônimo ou CID
+  const aq=$("#atAddQ"), as=$("#atAddSug");
+  if(aq){const mostra=()=>{as.innerHTML=atBuscaCond(aq.value,atConds().map(c=>c.id)).map(x=>{const k=CATS[x.cat]||CATS.outros;return `<button class="chip" data-atadd="${esc(x.id)}" style="--c:var(--${k.cor})">${uso.favs.includes(x.id)?"★ ":""}${esc(x.nome)}</button>`}).join("")||`<span class="note">Nada encontrado.</span>`;
+      as.querySelectorAll("[data-atadd]").forEach(b=>b.onclick=()=>{atd.extras=[...(atd.extras||[]),b.dataset.atadd].slice(0,2);atd.sis=null;atd.alarOff={};const y=window.scrollY;renderEv();window.scrollTo(0,y)})};
+    aq.addEventListener("input",mostra); aq.addEventListener("focus",mostra);
+    aq.addEventListener("keydown",e=>{if(e.key==="Enter"){const b=as.querySelector("[data-atadd]");if(b){e.preventDefault();b.click()}}})}
   if($("#atCrit")) $("#atCrit").onclick=()=>abrirHospInt((hospPac().internacao.doencas||[]).find(d=>(d.condutas||[]).includes(it&&it.id))?.id);
   $("#atCpTudo").onclick=async e=>{if(!await copy(buildEv(),e.currentTarget))return;AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`);if(ta&&ta.value.trim())atd.cop[k]=ta.value});atEtapasAtualiza()};
   // escolher o caminho: a tela volta ao topo do Atendimento, já com a conduta

@@ -1,5 +1,15 @@
 # Histórico de versões
 
+## 1.31.0 — 2026-10-25
+- **Barra de etapas fixa também na meia tela** (e no celular): no modo estreito o topo não fica fixo, então a barra fica presa no alto do Atendimento.
+- **Nome da conduta preso no alto enquanto você está no trecho dela** (checklist e receita), com o CID; com duas condutas, cada uma no seu trecho.
+- **Busca de conduta** no lugar da lista alfabética: sem digitar, mostra favoritas, mais usadas e as da mesma área; digitando, acha por nome, sinônimo ou CID (Enter escolhe a primeira).
+- **Receita de duas condutas junta por via**: todo o uso oral junto, depois nasal, tópico…, sem repetir remédio e numerada em sequência (acabou o "Uso oral" solto no fim). Orientações numa lista só, sem repetir.
+- **Conduta só com itens de tocar**: "Solicito exames laboratoriais" e "Solicito exames de imagem" entram como os outros (ligam sozinhos quando há exame pedido na Prescrição).
+- **Prescrição na unidade recolhida** (o texto para copiar fica numa setinha, fechada).
+- Sinais de alarme saem do topo do Atendimento (estão no checklist e na alta); na página da conduta continuam.
+- Corrigido: o "copiar" do CID ficava grande depois de copiar.
+
 ## 1.30.1 — 2026-10-25
 - **Uma cor por etapa** no Atendimento (a mesma do botão da barra), com títulos maiores: HDA azul, Exame verde-água, HD roxo, Conduta âmbar, Prescrição verde, Alta rosa, Internação vermelho.
 - **Caixas de texto maiores** (a da HDA principalmente), que crescem com o texto.

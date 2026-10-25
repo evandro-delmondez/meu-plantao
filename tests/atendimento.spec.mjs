@@ -186,7 +186,7 @@ test("não perde texto: recarregar mantém o atendimento na aba, redesenho da nu
 test("mais de uma queixa: gripe + enxaqueca juntam diagnósticos, checklists, exame e receita sem repetir remédio", async ({ page }) => {
   const erros = await abrir(page);
   await atender(page, "gripe");
-  await page.selectOption("#atAdd", "enxaqueca");
+  await page.fill("#atAddQ", "enxaq"); await page.click('#atAddSug [data-atadd="enxaqueca"]');
   await expect(page.locator("#atCorpo [data-atrem]")).toHaveText(/Enxaqueca/);
   const diag = await saida(page, "diag").inputValue();
   expect(diag).toMatch(/^Síndrome gripal[^\n]*\nEnxaqueca/);
@@ -287,10 +287,12 @@ test("barra de etapas: vazia, preenchida e copiada para o MV; editar depois de c
   expect(erros).toEqual([]);
 });
 
-test("prontuário rápido: notas soltas viram HDA corrida, exame por exceção troca a linha do sistema, relógio com meta", async ({ page }) => {
+test("prontuário rápido: notas soltas viram HDA corrida, exame por exceção troca a linha do sistema, relógio com meta", async ({ page }, info) => {
   const erros = await abrir(page);
   await atender(page, "lombalgia");
-  await expect(page.locator(".top .tabs #atEtapas")).toBeVisible();          // barra na linha das abas do topo
+  // computador: barra na linha das abas do topo; tela estreita: fixa no alto do Atendimento (o topo não fica fixo)
+  await expect(page.locator(info.project.name === "celular" ? "#atCorpo > #atEtapas" : ".top .tabs #atEtapas")).toBeVisible();
+  if (info.project.name === "celular") expect(await page.locator("#atEtapas").evaluate((e) => getComputedStyle(e).position)).toBe("sticky");
   await expect(page.locator("#atRelogio")).toBeHidden();
   await campo(page, "hma").fill("dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre");
   await expect(saida(page, "hda")).toHaveValue(/^Paciente refere dor lombar há 3 dias, com piora ao levantar e irradiação para membro inferior direito\. Tomou dipirona sem melhora\. Nega febre/);
@@ -309,9 +311,37 @@ test("prontuário rápido: notas soltas viram HDA corrida, exame por exceção t
   await page.locator("#atNovo").click(); await page.locator("#atNovo").click();
   expect(await page.evaluate(() => JSON.stringify(localStorage.getItem("mph_tempos_v1") || ""))).not.toContain("lombar");
   await aba(page, "pacientes"); await aba(page, "evolucao");
-  await expect(page.locator(".top .atetapas")).toHaveCount(1);
+  await expect(page.locator(".atetapas")).toHaveCount(1);
   await aba(page, "inicio");
-  await expect(page.locator(".top .atetapas")).toHaveCount(0);              // sai do topo fora do Atendimento
+  await expect(page.locator(".atetapas")).toHaveCount(0);                   // sai do topo fora do Atendimento
   expect(await semRolagemLateral(page)).toBe(true);
   expect(erros).toEqual([]);
 });
+
+test("duas condutas: receita junta por via sem repetir remédio; nome da conduta fixo no trecho dela; exames como itens da conduta", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await page.fill("#atAddQ", "amigdal"); await page.click('#atAddSug [data-atadd="amigdalite"]');
+  const rx = await saida(page, "rx").inputValue();
+  expect(rx.match(/^Uso oral$/gm)).toHaveLength(1);                         // um bloco só de uso oral
+  expect(rx.match(/^Uso nasal$/gm)).toHaveLength(1);
+  expect(rx.indexOf("Amoxicilina")).toBeLessThan(rx.indexOf("Uso nasal"));  // antibiótico oral junto do uso oral
+  expect(rx.match(/Dipirona/g)).toHaveLength(1);
+  const nums = [...rx.matchAll(/^(\d+)\)/gm)].map((m) => +m[1]);
+  expect(nums).toEqual(nums.map((_, i) => i + 1));                          // numerada em sequência
+  expect(await saida(page, "rx").inputValue()).not.toMatch(/\n\n\n/);
+  await expect(page.locator("#atCorpo .atfixo")).not.toHaveCount(0);
+  expect(await page.locator("#atCorpo .atfixo").first().evaluate((e) => getComputedStyle(e).position)).toBe("sticky");
+  await expect(page.locator("#atCorpo .alarmetopo")).toHaveCount(0);       // sinais de alarme ficam no checklist e na alta
+  // exames: "+ pedir" liga "Solicito exames laboratoriais" na conduta
+  await page.evaluate(() => { const t = document.querySelector('#atCorpo [data-atd="exLab"]'); t.value = "hemograma"; t.dispatchEvent(new Event("input")); });
+  await expect(saida(page, "trat")).toHaveValue(/- Solicito exames laboratoriais: hemograma\./);
+  await expect(page.locator('#atCorpo [data-atchip="cond"][data-k="img"]')).toHaveAttribute("aria-pressed", "false");
+  // CID: copiar volta ao tamanho normal (com o "copiar" pequeno)
+  await page.evaluate(() => { navigator.clipboard.writeText = () => Promise.resolve(); });
+  const cid = page.locator("#atCorpo .cidbig").first();
+  await cid.click(); await expect(cid).toContainText("Copiado");
+  await expect(cid.locator("span")).toHaveCount(1, { timeout: 3000 });
+  expect(erros).toEqual([]);
+});
+

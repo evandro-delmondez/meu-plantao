@@ -17,7 +17,8 @@ async function copy(text,btn){
     const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
     try{ok=document.execCommand("copy")}catch(e2){} ta.remove();
   }
-  if(ok){toast("Copiado");if(btn){const o=btn.textContent;btn.classList.add("done");btn.textContent="Copiado ✓";setTimeout(()=>{btn.classList.remove("done");btn.textContent=o},1400)}}
+  // volta ao conteúdo original (com as partes menores, como o "copiar" do CID), não só ao texto
+  if(ok){toast("Copiado");if(btn){const o=btn.dataset.cpOrig??btn.innerHTML;btn.dataset.cpOrig=o;btn.classList.add("done");btn.textContent="Copiado ✓";clearTimeout(btn._cpT);btn._cpT=setTimeout(()=>{btn.classList.remove("done");btn.innerHTML=o;delete btn.dataset.cpOrig},1400)}}
   else toast("Não consegui copiar — selecione o texto manualmente");
   return ok;
 }

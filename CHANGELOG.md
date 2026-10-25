@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.38.6 — 2026-10-26
+- **Prompt padrão da IA é o prompt completo do médico** (tarefa, ordem semiológica, terminologia, medicamentos pelo princípio ativo, correção, itens do checklist, regras, conferência e 2 exemplos). Vale sozinho em qualquer aparelho; quem tinha salvo um prompt próprio usa "Restaurar o padrão".
+
 ## 1.38.5 — 2026-10-26
 - **HDA avisa contradição**: se um item marcado como ausente no "Não esquecer" aparece escrito nas notas (sem "nega"), surge um aviso amarelo embaixo da HDA para conferir antes de copiar.
 - **Prompt padrão da IA** integra as frases do checklist ("Presença de…", "Nega…", sinais de alarme) ao parágrafo sem repetir, junta as negativas no final e não escolhe entre itens contraditórios.

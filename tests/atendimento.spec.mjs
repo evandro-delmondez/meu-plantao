@@ -463,12 +463,12 @@ test("internação puxa exames alterados, laudos e o feito no PS; prompt da IA e
   // prompt da IA: aparece, salva e restaura
   await aba(page, "backup");
   await page.locator(".iaprompt summary").click();
-  await expect(page.locator("#iaPromptTxt")).toHaveValue(/semiologia/);
+  await expect(page.locator("#iaPromptTxt")).toHaveValue(/ITENS DO CHECKLIST/);
   await page.fill("#iaPromptTxt", "Instrução minha de teste.");
   await page.click("#iaPromptSalva");
   expect(JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1"))).prefs.iaPrompt).toBe("Instrução minha de teste.");
   await page.click("#iaPromptPadrao");
-  await expect(page.locator("#iaPromptTxt")).toHaveValue(/semiologia/);
+  await expect(page.locator("#iaPromptTxt")).toHaveValue(/ITENS DO CHECKLIST/);
   expect(erros).toEqual([]);
 });
 

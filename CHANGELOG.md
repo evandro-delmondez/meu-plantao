@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.30.1 — 2026-10-25
+- **Uma cor por etapa** no Atendimento (a mesma do botão da barra), com títulos maiores: HDA azul, Exame verde-água, HD roxo, Conduta âmbar, Prescrição verde, Alta rosa, Internação vermelho.
+- **Caixas de texto maiores** (a da HDA principalmente), que crescem com o texto.
+- **Solicitar exames passou para a Prescrição**, junto da medicação na unidade, como no MV.
+
 ## 1.30.0 — 2026-10-25
 - **HDA em texto corrido a partir de notas soltas**: "dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre" vira "Paciente refere dor lombar há 3 dias, com piora ao levantar e irradiação para membro inferior direito. Tomou dipirona sem melhora. Nega febre." Os negativos das notas se juntam aos do checklist. Nota já redigida fica como está.
 - **Exame por exceção**: em "Só o que estiver alterado", escreva "abd: doloroso em FID" e a linha normal do abdome é trocada pelo achado (vale para geral, cp, oro, cv, ar, abd, neuro, msk, mmii, pele).

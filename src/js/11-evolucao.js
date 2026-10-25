@@ -403,15 +403,16 @@ function renderEv(){
   <div class="sec atsec" data-etapa="4"><div class="sec-h"><h3>4. Conduta</h3></div><div class="atbody">
     <div class="chips atcond">${atL("cond").map(([k,r])=>chip("cond",k,k==="explico"?"Explico o quadro e a conduta":r.replace(/\.$/,""),atCondOn(k))).join("")}</div>
     ${atCondOn("med")&&atNomesUnid().length?`<span class="lbl">Quais remédios (toque nos que foram feitos)</span><div class="chips atmeds">${atNomesUnid().map(n=>chip("medsel",n,n,atd.medSel[n])).join("")}</div>`:""}
-    ${ks.length?`<div class="atexs">${ks.map((k,i)=>exHTML(k,{pedir:true,aberto:i===0,titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
-    <div class="atdgrid">${ta("exLab","Exames laboratoriais","ex.: hemograma\nPCR\nureia e creatinina")}${ta("exImg","Exames de imagem","ex.: TC de abdome com contraste")}</div>
     ${ta("condLivre","Outras condutas","ex.: solicito parecer da Cirurgia Geral")}
     ${atEdit?edLista("cond","Itens da conduta"):""}
     ${atSaida("trat","Conduta")}</div></div>
-  <div class="sec atsec" data-etapa="5"><div class="sec-h"><h3>5. Prescrição</h3><span class="alsum">na unidade · receituário · atestado</span></div><div class="atbody">
+  <div class="sec atsec" data-etapa="5"><div class="sec-h"><h3>5. Prescrição</h3><span class="alsum">na unidade · exames · receituário · atestado</span></div><div class="atbody">
     ${unidH?`<div class="atunid"><span class="lbl">Na unidade (para selecionar no prontuário)</span>${unidH}</div>`:""}
     ${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")+edTxt(c,"casa","receita")+edTxt(c,"orient","orientações")).join(""):""}
     ${unidH?atSaida("punid","Prescrição na unidade"):""}
+    <span class="lbl atexlbl">Solicitar exames</span>
+    ${ks.length?`<div class="atexs">${ks.map((k,i)=>exHTML(k,{pedir:true,aberto:i===0,titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
+    <div class="atdgrid">${ta("exLab","Exames laboratoriais","ex.: hemograma\nPCR\nureia e creatinina")}${ta("exImg","Exames de imagem","ex.: TC de abdome com contraste")}</div>
     ${cs.map(c=>{const m=renderRxMontar(c);return m?`<div class="atrx" data-rxc="${esc(c.id)}">${cs.length>1?`<h4 class="atcond">${esc(c.nome)}</h4>`:""}${m}</div>`:""}).join("")}
     ${cs.map(rxAvisoHTML).join("")}
     ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}

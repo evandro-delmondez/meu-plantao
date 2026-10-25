@@ -765,3 +765,20 @@ details.panel>summary{cursor:pointer}
 .atrel{font-size:12px;font-weight:700;color:var(--muted);padding:3px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
 .atrel[data-nv="perto"]{color:var(--warn);border-color:var(--warn)}
 .atrel[data-nv="passou"]{color:var(--surface);background:var(--bad);border-color:var(--bad)}
+
+/* Atendimento: uma cor por etapa (a mesma do botão na barra), títulos maiores e caixas de texto confortáveis */
+#atCorpo [data-etapa="1"],.atetapas [data-atir="1"]{--et:var(--sky)}
+#atCorpo [data-etapa="2"],.atetapas [data-atir="2"]{--et:var(--teal)}
+#atCorpo [data-etapa="3"],.atetapas [data-atir="3"]{--et:var(--violet)}
+#atCorpo [data-etapa="4"],.atetapas [data-atir="4"]{--et:var(--amber)}
+#atCorpo [data-etapa="5"],.atetapas [data-atir="5"]{--et:var(--green)}
+#atCorpo [data-etapa="6"],.atetapas [data-atir="6"]{--et:var(--pink)}
+#atCorpo [data-etapa="7"],.atetapas [data-atir="7"]{--et:var(--red)}
+#atCorpo .atsec[data-etapa]{border-left:5px solid var(--et);background:color-mix(in srgb,var(--et) 4%,var(--surface))}
+#atCorpo .atsec[data-etapa]>.sec-h h3{font-size:21px;color:var(--et)}
+.tabs .atetapas button[data-atir]{border-bottom:2.5px solid var(--et)}
+.atetapas button[data-st=""] b{background:color-mix(in srgb,var(--et) 30%,var(--surface));color:var(--ink)}
+#atCorpo textarea.inp{font-family:inherit;font-size:15px;line-height:1.5;min-height:76px;field-sizing:content}
+#atCorpo textarea.inp[data-atd="hma"]{min-height:120px;font-size:16px}
+#atCorpo textarea.out-edit{font-size:14.5px}
+.atexlbl{display:block;margin-top:14px}

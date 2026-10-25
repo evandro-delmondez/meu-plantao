@@ -19,7 +19,6 @@ Depois: perfil por unidade (remédios disponíveis, diluições locais, telefone
 
 ## Pendências combinadas
 **Retomar primeiro (2026-10-25, sessão parou no limite de tokens):**
-- TEP e TVP separados: redação e conferência prontas (.rascunhos/tep-tvp*.json/.md, tep-tvp-conferencia.md); aplicação parcial guardada em .rascunhos/tep-tvp-aplicacao-parcial.patch e tep-tvp.spec.mjs.parcial (faltavam os exames e o verificar). Corrige bug da receita no ar: apixabana trocava só a 2ª linha da rivaroxabana. CID TVP I80.2.
 - Contratura e lombalgia: rascunho pronto (.rascunhos/contratura*.json/.md); falta a conferência independente e as 8 dúvidas para o médico (AINE padrão, celecoxibe sem ataque, ciclobenzaprina 5 mg 8/8h, tiocolchicosídeo + AINE/paracetamol, diazepam, colar cervical, CID e sin).
 - "+ remédio" na receita do Atendimento (fichas já têm "receita"; falta a interface: busca, posologia, dias → quantidade; colar do Whitebook; "Salvar como opção desta conduta?"). As 14 fichas novas sugeridas (.rascunhos/receita-fichas.json "_novas") precisam virar fichas completas. Pendentes: levofloxacino 750 e amoxicilina 875 (CMED); ivermectina "doses".
 - A pensar com o médico: cor por classe de remédio na receita; quadro "Para você, não vai na receita".
@@ -44,7 +43,7 @@ Atualizado em 2026-10-22 (versão 1.22.3). Decisões: `docs/DECISOES.md`. Diverg
 **Conteúdo clínico (com fonte e conferência)**
 6. Exames e encaminhamento para as demais condutas (feito: 8 queixas e 44 condutas, 1.24.0); rever a conduta pac pela atualização ATS 2026.
 7. ~~Queixas lombalgia e dor musculoesquelética~~ (1.24.0); outras queixas; conduta de cervicalgia/torcicolo.
-8. Separar TEP e TVP em duas condutas (2026-10-25). Condutas novas: síncope, pericardite, pneumotórax, chikungunya, febre maculosa, meningite, odontalgia.
+8. ~~Separar TEP e TVP~~ (1.34.0). Condutas novas: síncope, pericardite, pneumotórax, chikungunya, febre maculosa, meningite, odontalgia.
 9. Condições que faltam: olho vermelho e corpo estranho, paralisia facial, AVC hemorrágico e AIT, retenção urinária, escroto agudo, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e overdose de opioide, zika, varicela, COVID-19, fraturas e imobilização, cervicalgia, tendinite e bursite.
 10. Fichas que faltam: sumatriptano, colchicina, alopurinol, ciclobenzaprina, tiamina, clopidogrel, aciclovir, valaciclovir, ivermectina, permetrina, anti-hipertensivos orais, furosemida, isossorbida, broncodilatadores, antifúngicos, cetirizina e hidroxizina, levotiroxina e metimazol, tópicos.
 11. Altas leigas das condutas que ainda não têm.

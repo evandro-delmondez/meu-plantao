@@ -657,5 +657,58 @@ entorse: {
     "NICE CKS. Sprains and strains (versão vigente, consultada em 10/2026; data da revisão a confirmar): proteção, gelo, elevação; evitar calor, álcool, corrida e massagem nas primeiras 72 h. https://cks.nice.org.uk/topics/sprains-strains/"
   ]
 },
+tep: {
+  titulo: "Coágulo no pulmão (embolia pulmonar)",
+  oque: "Um coágulo de sangue, que em geral se forma nas veias da perna, foi parar no pulmão. O seu caso é de baixo risco e pode ser tratado em casa com um remédio que afina o sangue (anticoagulante). A falta de ar e a dor costumam melhorar aos poucos, em dias a semanas.",
+  cuidados: [
+    "Tome o anticoagulante todos os dias, nos horários da sua receita. Não pare nem pule doses por conta própria: o tratamento dura pelo menos 3 meses.",
+    "Na primeira fase do tratamento a dose é maior. Siga a receita com atenção quando a dose mudar.",
+    "Não tome outros remédios para dor ou inflamação, como ibuprofeno, diclofenaco ou nimesulida, nem ácido acetilsalicílico, sem falar com o médico. Eles aumentam o risco de sangramento.",
+    "Avise qualquer médico ou dentista que você está tomando anticoagulante, principalmente antes de uma cirurgia, extração de dente ou injeção.",
+    "Pode fazer as atividades do dia a dia, dentro do que o cansaço permitir.",
+    "Faça a consulta de retorno com o médico em até 1 semana. Leve a receita e os exames.",
+    "Se estiver grávida, amamentando ou engravidar durante o tratamento, avise o médico: o remédio precisa ser trocado."
+  ],
+  volte: [
+    "Falta de ar que piora ou que aparece em repouso.",
+    "Dor no peito forte ou que piora.",
+    "Desmaio, tontura forte ou coração muito acelerado.",
+    "Tosse com sangue.",
+    "Sangramento que não para, vômito com sangue ou parecendo borra de café, fezes pretas ou com sangue, urina vermelha.",
+    "Dor de cabeça muito forte e repentina, ou fraqueza ou dormência de um lado do corpo."
+  ],
+  fontes: [
+    "Creager MA et al. 2026 AHA/ACC Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults (Circulation 2026;153:e977): alta precoce nas categorias A–B, retorno em até 1 semana, reavaliação até 3 meses.",
+    "Bulas do Xarelto (rivaroxabana) e do Eliquis (apixabana) registradas na Anvisa: adesão, fase de ataque, interação com anti-inflamatório e ácido acetilsalicílico, sinais de sangramento, não usar na gestação e lactação.",
+    "NHS. Pulmonary embolism: sintomas e tratamento com anticoagulante, sinais para procurar atendimento. https://www.nhs.uk/conditions/pulmonary-embolism/"
+  ]
+},
+tvp: {
+  titulo: "Coágulo na veia da perna (trombose venosa profunda)",
+  oque: "Um coágulo de sangue entupiu uma veia funda da perna. O tratamento com um remédio que afina o sangue (anticoagulante) impede que o coágulo cresça ou vá para o pulmão. O inchaço e a dor costumam melhorar em dias a semanas.",
+  cuidados: [
+    "Tome o anticoagulante todos os dias, nos horários da sua receita. Não pare nem pule doses por conta própria: o tratamento dura pelo menos 3 meses.",
+    "Na primeira fase do tratamento a dose é maior. Siga a receita com atenção quando a dose mudar.",
+    "Caminhe normalmente, dentro do que a dor permitir. Não precisa ficar de repouso na cama. Sentado ou deitado, deixe a perna elevada.",
+    "Não tome outros remédios para dor ou inflamação, como ibuprofeno, diclofenaco ou nimesulida, nem ácido acetilsalicílico, sem falar com o médico. Eles aumentam o risco de sangramento.",
+    "Avise qualquer médico ou dentista que você está tomando anticoagulante.",
+    "Se você saiu sem anticoagulante, faça o ultrassom da perna de novo nas datas marcadas, mesmo que esteja melhor.",
+    "Faça a consulta de retorno marcada com o médico.",
+    "Se estiver grávida, amamentando ou engravidar durante o tratamento, avise o médico: o remédio precisa ser trocado."
+  ],
+  volte: [
+    "Falta de ar, dor no peito, tosse com sangue ou desmaio: pode ser coágulo no pulmão.",
+    "A perna fica muito inchada, fria, arroxeada ou pálida, ou a dor fica muito forte.",
+    "Sangramento que não para, vômito com sangue, fezes pretas ou com sangue, urina vermelha.",
+    "Dor de cabeça muito forte e repentina, ou fraqueza ou dormência de um lado do corpo."
+  ],
+  fontes: [
+    "Ortel TL et al. ASH 2020 guidelines: treatment of deep vein thrombosis and pulmonary embolism (Blood Adv 2020;4:4693): tratamento em casa, duração mínima de 3 meses.",
+    "Stevens SM et al. CHEST Guideline 2021 (Chest 2021;160:e545): TVP distal com ultrassom seriado por 2 semanas.",
+    "Kearon C et al. ACCP 9ª ed. (Chest 2012;141:e419S): caminhar cedo em vez de repouso.",
+    "Bulas do Xarelto (rivaroxabana) e do Eliquis (apixabana) registradas na Anvisa: adesão, fase de ataque, interação com anti-inflamatório e ácido acetilsalicílico, sinais de sangramento.",
+    "NHS. Deep vein thrombosis (DVT): perna elevada, caminhar, sinais de embolia pulmonar para procurar atendimento. https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
+  ]
+},
 };
 if (typeof module!=="undefined") module.exports={ALTA};

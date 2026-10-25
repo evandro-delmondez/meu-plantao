@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.34.0 — 2026-10-26
+- **TEP e TVP em condutas separadas** (CID I26.9 e I80.2), com checklist, alta leiga, exames e cálculos de cada uma (TEP: Wells, PERC, sPESI; TVP: Wells da TVP). Conferência independente: 1 crítico e 5 importantes corrigidos.
+- **Corrigido na receita**: ao escolher apixabana, a receita podia sair com rivaroxabana 15 mg + apixabana; agora a apixabana troca o esquema inteiro.
+- Enoxaparina: 1,5 mg/kg 1x/dia só na TVP sem complicação e baixo risco de recorrência; ClCr 15–30: 1 mg/kg 1x/dia; ClCr < 15: heparina não fracionada (bula Clexane; HC-FMUSP). Trombólise não indicada nas categorias A a C2 (AHA/ACC 2026); TVP distal com ultrassom seriado (CHEST 2021); tratamento domiciliar (ASH 2020).
+
 ## 1.33.2 — 2026-10-25
 - **Passagem de plantão**: sem título nem data. "Deixo o consultório 3 com retornos:" e uma linha por paciente: "Caroline da Costa Freire, ciente da troca, com Dra. Ana no consultório 5." O consultório que você deixa fica em cima; cada paciente tem "quem assume" e "consultório dele" (os sem nome usam o médico e o consultório padrão).
 

@@ -336,11 +336,18 @@ eap:{
  fontes:["Køber L, Adamo M et al. 2026 ESC Guidelines for the management of heart failure (Eur Heart J 2026; doi:10.1093/eurheartj/ehag100).","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 34 — Insuficiência cardíaca aguda."]
 },
 tep:{
- hist:["dispneia súbita","dor torácica pleurítica","hemoptise","síncope","dor ou inchaço em uma perna"],
- ant:["cirurgia ou imobilização nas últimas 4 semanas","TVP ou TEP prévio","câncer ativo","uso de estrogênio (anticoncepcional ou reposição hormonal)","gestação ou puerpério","idade ≥ 50 anos"],
- ex:["FC ≥ 100 bpm","saturação de O2 < 95%","edema ou dor no trajeto venoso de uma perna","hipotensão","turgência jugular"],
- alarme:["hipotensão ou choque (TEP de alto risco)","síncope","hipoxemia importante","disfunção de VD ou troponina elevada"],
- fontes:["Konstantinides SV et al. 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism (Eur Heart J 2020;41:543).","Wells PS et al. Derivation of a simple clinical model to categorize patients probability of pulmonary embolism (Thromb Haemost 2000;83:416).","Kline JA et al. Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism — PERC (J Thromb Haemost 2004;2:1247)."]
+ hist:["dispneia súbita","dor torácica pleurítica","hemoptise","síncope","palpitação","dor ou inchaço em uma perna"],
+ ant:["cirurgia ou trauma com internação nas últimas 4 semanas","imobilização ou acamado por 3 dias ou mais","TVP ou TEP prévio","câncer ativo","uso de estrogênio (anticoncepcional ou reposição hormonal)","gestação ou puerpério","idade ≥ 50 anos","uso de anticoagulante e adesão","sangramento recente ou doença renal (risco do anticoagulante)"],
+ ex:["FC ≥ 100 bpm","saturação de O2 < 95%","taquipneia","hipotensão","turgência jugular","edema ou dor no trajeto venoso de uma perna"],
+ alarme:["hipotensão ou choque (TEP de alto risco)","síncope","hipoxemia importante","disfunção de VD ou troponina elevada","lactato ou creatinina subindo (falência iminente)"],
+ fontes:["Konstantinides SV et al. 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism (Eur Heart J 2020;41:543).","Creager MA et al. 2026 AHA/ACC Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults (Circulation 2026;153:e977) — categorias D e E.","Wells PS et al. Derivation of a simple clinical model to categorize patients probability of pulmonary embolism (Thromb Haemost 2000;83:416).","Kline JA et al. Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism — PERC (J Thromb Haemost 2004;2:1247)."]
+},
+tvp:{
+ hist:["dor na perna","inchaço de uma perna","vermelhidão ou calor na perna","dispneia ou dor torácica","hemoptise"],
+ ant:["cirurgia maior nas últimas 12 semanas","acamado por 3 dias ou mais","imobilização gessada, paralisia ou paresia da perna","TVP ou TEP prévio","câncer ativo","uso de estrogênio (anticoncepcional ou reposição hormonal)","gestação ou puerpério","sangramento recente ou doença renal (risco do anticoagulante)"],
+ ex:["edema de toda a perna","panturrilha > 3 cm maior que a do outro lado","edema com cacifo só na perna sintomática","dor à palpação no trajeto venoso profundo","veias superficiais colaterais (não varicosas)","perna fria, arroxeada ou pálida"],
+ alarme:["dispneia, dor torácica ou síncope (TEP)","perna muito inchada, arroxeada e fria (flegmasia)","sangramento ativo","dor sem controle com remédio oral"],
+ fontes:["Wells PS et al. Evaluation of D-dimer in the diagnosis of suspected deep-vein thrombosis (N Engl J Med 2003;349:1227).","Lim W et al. American Society of Hematology 2018 guidelines for management of venous thromboembolism: diagnosis of venous thromboembolism (Blood Adv 2018;2:3226).","Ortel TL et al. American Society of Hematology 2020 guidelines: treatment of deep vein thrombosis and pulmonary embolism (Blood Adv 2020;4:4693).","Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 39 — Trombose venosa profunda."]
 },
 tce:{
  hist:["perda de consciência","amnésia retrógrada ≥ 30 minutos","mecanismo perigoso (atropelamento, ejeção do veículo, queda > 1 m ou > 5 degraus)","vômitos (2 ou mais episódios)","cefaleia intensa ou progressiva","convulsão após o trauma"],

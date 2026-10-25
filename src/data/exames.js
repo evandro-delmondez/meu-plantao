@@ -5316,6 +5316,254 @@ const EXAMES = {
    "AHA/ACC 2021 — Gulati M et al. 2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR guideline for the evaluation and diagnosis of chest pain. Circulation 2021;144(22):e368-e454. PMID 34709879. https://doi.org/10.1161/CIR.0000000000001029",
    "HC-FMUSP 2024 — Medicina de Emergência: Abordagem Prática, 18ª ed., Manole, 2024, cap. 60 Emergências neuropsiquiátricas; cap. 88 Hipoglicemia (conferência)."
   ]
+ },
+ "tep": {
+  "encaminhar": [
+   {
+    "t": "Sala vermelha: hipotensão persistente, choque ou parada (categoria E): trombólise sistêmica, ou terapia por cateter ou cirúrgica onde houver",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "UTI ou semi-intensiva: categoria D (D1 hipotensão transitória ou síncope; D2 normotenso com hipoperfusão) ou C com VD e troponina alterados",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Internação: sPESI ≥ 1 ou Hestia positivo (categoria C)",
+    "f": [
+     1,
+     6
+    ]
+   },
+   {
+    "t": "Centro com terapia por cateter ou cirurgia: categoria D ou E com contraindicação ou falha da trombólise",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Alta precoce: categorias A–B, com anticoagulante oral direto e retorno em até 1 semana",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "D-dímero: TEP improvável (Wells ≤ 4) ou probabilidade baixa/intermediária (Wells ≤ 6), com PERC positivo; > 50 anos, corte idade × 10 mcg/L",
+    "f": [
+     2,
+     4,
+     1
+    ]
+   },
+   {
+    "t": "Angio-TC de tórax: probabilidade alta ou D-dímero positivo",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Cintilografia de ventilação/perfusão: contraindicação ao contraste (alergia grave, insuficiência renal) ou gestante com RX de tórax normal",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "USG Doppler venoso das pernas: sintomas de TVP ou angio-TC impossível; TVP proximal confirma o tromboembolismo",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Troponina, BNP ou NT-proBNP e VD (eco ou angio-TC): sPESI ≥ 1 ou Hestia positivo, para estratificar",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Lactato e creatinina: suspeita de falência iminente (categoria D)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Eco à beira do leito: choque sem condição de angio-TC; VD dilatado autoriza tratar como TEP de alto risco",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Hemograma, TP/INR, TTPa, creatinina com ClCr e função hepática: antes de anticoagular",
+    "f": [
+     2,
+     8
+    ]
+   },
+   {
+    "t": "Beta-hCG: mulher em idade fértil, antes do anticoagulante oral direto",
+    "f": [
+     7
+    ]
+   },
+   {
+    "t": "ECG e RX de tórax: diagnóstico diferencial",
+    "f": [
+     2,
+     8
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "D-dímero ou imagem com probabilidade baixa e PERC 0",
+    "f": [
+     3,
+     2
+    ]
+   },
+   {
+    "t": "D-dímero com probabilidade alta: ir direto à angio-TC",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Ecocardiograma para confirmar ou excluir TEP no paciente estável",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Rastreio extenso de câncer oculto no pronto-socorro",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "div": [
+   {
+    "t": "Baixa ou intermediária probabilidade: D-dímero com corte ajustado à idade (ESC 2019; ADJUST-PE 2014) ou algoritmo YEARS, recomendado também na gestação",
+    "f": [
+     2,
+     4,
+     1,
+     5
+    ]
+   }
+  ],
+  "fontes": [
+   "AHA/ACC 2026 — Creager MA et al. 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. Circulation 2026;153:e977.",
+   "ESC 2019 — Konstantinides SV et al. 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism. Eur Heart J 2020;41:543. https://academic.oup.com/eurheartj/article/41/4/543/5556136",
+   "Kline JA et al. Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism (PERC). J Thromb Haemost 2004;2:1247.",
+   "ADJUST-PE 2014 — Righini M et al. Age-adjusted D-dimer cutoff levels to rule out pulmonary embolism. JAMA 2014;311:1117.",
+   "YEARS 2017 — van der Hulle T et al. Simplified diagnostic management of suspected pulmonary embolism (the YEARS study). Lancet 2017;390:289.",
+   "Hestia 2011 — Zondag W et al. Outpatient treatment in patients with acute pulmonary embolism: the Hestia Study. J Thromb Haemost 2011;9:1500.",
+   "Bulas Xarelto (rivaroxabana) e Eliquis (apixabana) registradas na Anvisa: contraindicados na gestação.",
+   "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 51 Tromboembolismo pulmonar (conferência)."
+  ]
+ },
+ "tvp": {
+  "encaminhar": [
+   {
+    "t": "Cirurgia Vascular de urgência: flegmasia (perna muito inchada, arroxeada ou pálida, fria, dor intensa, isquemia)",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "Conduta de TEP: dispneia, dor torácica, síncope, taquicardia ou hipoxemia",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Internação: TVP iliofemoral extensa com sintomas graves, sangramento ativo ou alto risco, insuficiência renal grave, dor sem controle oral ou sem condição de seguir em casa",
+    "f": [
+     2,
+     6
+    ]
+   },
+   {
+    "t": "Alta com retorno: TVP sem complicação, com anticoagulante oral direto",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "D-dímero: Wells < 2; > 50 anos, corte idade × 10 mcg/L",
+    "f": [
+     1,
+     7,
+     6
+    ]
+   },
+   {
+    "t": "USG Doppler venoso com compressão (proximal ou da perna inteira): Wells ≥ 2 ou D-dímero positivo",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Repetir a USG proximal em cerca de 1 semana (ou fazer da perna inteira): probabilidade alta ou D-dímero positivo com USG proximal negativa",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "USG seriada 1 vez por semana por 2 semanas: TVP distal isolada sem anticoagulante",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Hemograma, TP/INR, TTPa, creatinina com ClCr e função hepática: antes de anticoagular",
+    "f": [
+     6,
+     5
+    ]
+   },
+   {
+    "t": "Beta-hCG: mulher em idade fértil, antes do anticoagulante oral direto",
+    "f": [
+     5
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "D-dímero com probabilidade alta (Wells ≥ 2): ir direto à USG",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "D-dímero com condição que sabidamente o eleva (câncer, gestação, internação, pós-operatório): ir direto à USG",
+    "f": [
+     6
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ASH 2018 — Lim W et al. American Society of Hematology 2018 guidelines for management of venous thromboembolism: diagnosis of venous thromboembolism. Blood Adv 2018;2:3226.",
+   "ASH 2020 — Ortel TL et al. American Society of Hematology 2020 guidelines for management of venous thromboembolism: treatment of deep vein thrombosis and pulmonary embolism. Blood Adv 2020;4:4693.",
+   "CHEST 2021 — Stevens SM et al. Antithrombotic Therapy for VTE Disease: Second Update of the CHEST Guideline and Expert Panel Report. Chest 2021;160:e545.",
+   "ESC 2019 — Konstantinides SV et al. 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism. Eur Heart J 2020;41:543.",
+   "Bulas Xarelto (rivaroxabana) e Eliquis (apixabana) registradas na Anvisa: contraindicados na gestação; ajuste pela função renal e hepática.",
+   "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 39 Trombose venosa profunda (conferência).",
+   "NICE NG158 — NICE. Venous thromboembolic diseases: diagnosis, management and thrombophilia testing (NG158, 2020, atualizada 2023): D-dímero com corte ajustado à idade acima de 50 anos na suspeita de TVP. https://www.nice.org.uk/guidance/ng158"
+  ]
  }
 };
 if (typeof module!=="undefined") module.exports={EXAMES};

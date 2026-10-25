@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.28.1 — 2026-10-25
+- **Não perde mais texto no Atendimento**: recarregar a página traz de volta o atendimento em andamento (fica só nesta aba; some ao fechar e no "Novo paciente"); a sincronização da nuvem espera você sair do campo para redesenhar; o texto que você editou à mão nunca é trocado sozinho — se mudar algo acima, aparece "Refazer com as mudanças".
+- **CID sem ponto** (M545), como o MV procura.
+
 ## 1.28.0 — 2026-10-23
 - **Exames no fluxo do prontuário**: no Atendimento, cada exame de "Pedir quando" tem **+ pedir** — vai para "Exames laboratoriais" ou "Exames de imagem" e para a Conduta ("Solicito exames…"); tocar de novo tira. O primeiro bloco de exames já vem aberto; "Não pedir" continua à vista.
 - **Reavaliação guiada**: o que ficou pendente aparece para conferir ("Ver os exames: …", "Ver como ficou depois da medicação") e a **decisão** — alta para casa, observação, internar (para onde) ou transferir — já escolhe o destino da alta.

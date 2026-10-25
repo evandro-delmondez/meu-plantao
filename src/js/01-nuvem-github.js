@@ -32,7 +32,7 @@ function gsJunta(rem){
   if(rem.uso&&(rem.uso.updatedAt||0)>(uso.updatedAt||0)){uso=Object.assign({counts:{},favs:[],rec:[]},rem.uso);lsSet("rxp_uso_v1",uso);mudou=true}
   return mudou;
 }
-function gsRedesenha(){try{applyOrg();renderCats();renderList();fillSelects();if(!editing)renderDetail();renderEv();if(ui.tab==="modelos")renderModelos()}catch(e){}}
+function gsRedesenha(){try{applyOrg();renderCats();renderList();fillSelects();if(!editing)renderDetail();renderEvSeguro();if(ui.tab==="modelos")renderModelos()}catch(e){}}
 async function gsSync(){
   if(!gsAtivo()) return;
   if(gsRodando){gsDeNovo=true;return}

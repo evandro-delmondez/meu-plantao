@@ -19,7 +19,7 @@ function renderPed(force){
   renderPedChips();
   const c=PEDS.find(x=>x.id===ui.ped)||PEDS[0]; ui.ped=c.id;
   const p=parseFloat(String($("#pdPeso").value).replace(",",".")), m=pedIdadeMeses();
-  $("#pdTitulo").textContent=c.nome+(c.cid?` — CID ${c.cid}`:"");
+  $("#pdTitulo").textContent=c.nome+(c.cid?` — CID ${String(c.cid).replace(/\./g,"")}`:"");
   if(!(p>0)){$("#pdOut").value="Informe o peso.";return}
   const r=c.gen(p,m);
   $("#pdAviso").hidden=!r.aviso; $("#pdAviso").textContent=r.aviso||"";

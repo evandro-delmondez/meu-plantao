@@ -264,12 +264,13 @@ function atReavHTML(){
 function atSaida(k,rot){
   return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
     <textarea class="out-edit" data-atout="${k}" spellcheck="false" aria-label="${rot}"></textarea>
-    <p class="note" data-atman="${k}" hidden>Você editou este campo. <button class="btn sm" data-atre="${k}">Refazer</button></p></div>`;
+    <p class="note" data-atman="${k}" hidden><span data-atmanmsg>Você editou este campo.</span> <button class="btn sm" data-atre="${k}">Refazer</button></p></div>`;
 }
 function renderEv(){
   const el=$("#atCorpo"); if(!el) return;
   // só existe na tela enquanto a aba está aberta (o checklist e os campos não se repetem em outra aba)
   if(ui.tab!=="evolucao"){el.innerHTML="";return}
+  const foco=atFocoGuarda();
   pacNomeAtualiza();
   const it=atItem();
   const inp=(k,rot,ph="",num)=>`<label class="f">${rot}<input class="inp" data-atd="${k}" value="${esc(atd[k])}" placeholder="${ph}"${num?' inputmode="decimal"':""}></label>`;
@@ -359,10 +360,43 @@ function renderEv(){
     <div class="hospev" id="atHospInt"></div></div></details>
   <div class="actions attudo"><button class="btn primary" id="atCpTudo">Copiar tudo</button></div>`;
   bindEv(it);
+  atFocoVolta(foco);
 }
+// redesenhar não tira o cursor do campo em que você está digitando
+function atFocoGuarda(){
+  const a=document.activeElement, box=$("#atCorpo");
+  if(!a||!box||!box.contains(a)||!/^(INPUT|TEXTAREA)$/.test(a.tagName)) return null;
+  const sel=["data-atd","data-atout","id"].find(x=>a.hasAttribute(x));
+  if(!sel) return null;
+  let ini=null,fim=null; try{ini=a.selectionStart;fim=a.selectionEnd}catch(e){}
+  return {q:`[${sel}="${CSS.escape(a.getAttribute(sel))}"]`,ini,fim};
+}
+function atFocoVolta(f){
+  if(!f) return; const e=$("#atCorpo "+f.q); if(!e) return;
+  e.focus({preventScroll:true}); try{if(f.ini!=null)e.setSelectionRange(f.ini,f.fim)}catch(x){}
+}
+// redesenho que vem de fora (nuvem, outro aparelho): espera você sair do campo
+let atRedesenhaDepois=false;
+function renderEvSeguro(){
+  const a=document.activeElement, box=$("#atCorpo");
+  if(ui.tab==="evolucao"&&a&&box&&box.contains(a)&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)){atRedesenhaDepois=true;return}
+  renderEv();
+}
+$("#atCorpo").addEventListener("focusout",()=>setTimeout(()=>{
+  if(!atRedesenhaDepois) return; const a=document.activeElement, box=$("#atCorpo");
+  if(a&&box.contains(a)&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return;
+  atRedesenhaDepois=false; const y=window.scrollY; renderEv(); window.scrollTo(0,y);
+},0));
 function atAtualiza(){
   const it=atItem(); pacSnapLogo();
-  AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`);if(!ta)return;if(atd.man[k]==null)ta.value=atTexto(k,it);grow(ta);$(`#atCorpo [data-atman="${k}"]`).hidden=atd.man[k]==null});
+  atdSessaoLogo();
+  // texto editado à mão nunca é trocado sozinho: se algo acima mudou depois, avisa e deixa você escolher refazer
+  AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`);if(!ta)return;const gerado=atTexto(k,it);
+    if(atd.man[k]==null)ta.value=gerado;else if(ta.value!==atd.man[k]&&document.activeElement!==ta)ta.value=atd.man[k];grow(ta);
+    const n=$(`#atCorpo [data-atman="${k}"]`);if(!n)return;n.hidden=atd.man[k]==null;
+    const velho=atd.man[k]!=null&&(atd.manBase||{})[k]!=null&&atd.manBase[k]!==gerado;n.classList.toggle("atvelho",velho);
+    n.querySelector("[data-atmanmsg]").textContent=velho?"Você mudou algo acima depois de editar este texto. O seu texto foi mantido.":"Você editou este campo.";
+    n.querySelector("[data-atre]").textContent=velho?"Refazer com as mudanças":"Refazer"});
   const w=$("#atAtW"); if(w) w.hidden=!atTexto("atest",it);
   // NEWS2 e alertas dos sinais vitais (mesmas regras da conduta)
   if(it) atdAvisoAtualiza(it,"#atAviso","#atNews");
@@ -385,7 +419,7 @@ function bindEv(it){
   });
   box.querySelectorAll("[data-atchip]").forEach(b=>b.onclick=()=>{
     const g=b.dataset.atchip, k=b.dataset.k;
-    if(g==="sis"){const s=new Set(atSis(it));s.has(k)?s.delete(k):s.add(k);atd.sis=EX_SIS.map(x=>x[0]).filter(x=>s.has(x));delete atd.man.exame}
+    if(g==="sis"){const s=new Set(atSis(it));s.has(k)?s.delete(k):s.add(k);atd.sis=EX_SIS.map(x=>x[0]).filter(x=>s.has(x))}
     if(g==="cond"){atd.cond[k]=!atCondOn(k);if(k==="med"){renderEv();return}}
     if(g==="medsel") atd.medSel[k]=!atd.medSel[k];
     if(g==="reav") atd.reav[k]=!atd.reav[k];
@@ -396,10 +430,10 @@ function bindEv(it){
     b.setAttribute("aria-pressed",!!on); b.textContent=(on?"✓ ":"")+b.textContent.replace(/^✓ /,"");
     atAtualiza();
   });
-  // sexo e perfil do exame: refazem o texto do exame (o que foi editado à mão nele é trocado)
-  box.querySelectorAll("[data-atseg]").forEach(b=>b.onclick=()=>{atd[b.dataset.atseg]=b.dataset.v;delete atd.man.exame;renderEv()});
-  box.querySelectorAll("[data-atout]").forEach(ta=>ta.addEventListener("input",()=>{atd.man[ta.dataset.atout]=ta.value;grow(ta);$(`#atCorpo [data-atman="${ta.dataset.atout}"]`).hidden=false}));
-  box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];atAtualiza()});
+  // sexo e perfil do exame: refazem o texto do exame (se foi editado à mão, fica e aparece o aviso para refazer)
+  box.querySelectorAll("[data-atseg]").forEach(b=>b.onclick=()=>{atd[b.dataset.atseg]=b.dataset.v;renderEv()});
+  box.querySelectorAll("[data-atout]").forEach(ta=>ta.addEventListener("input",()=>{const k=ta.dataset.atout;if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}atd.man[k]=ta.value;grow(ta);$(`#atCorpo [data-atman="${k}"]`).hidden=false;atdSessaoLogo();pacSnapLogo()}));
+  box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});
   box.querySelectorAll("[data-atcp]").forEach(b=>b.onclick=()=>{const t=$(`#atCorpo [data-atout="${b.dataset.atcp}"]`).value;if(!t.trim()){toast("Campo vazio");return}copy(t,b)});
   box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));
   box.querySelectorAll("[data-atrem]").forEach(b=>b.onclick=()=>{atd.extras=atd.extras.filter(x=>x!==b.dataset.atrem);atd.sis=null;atd.alarOff={};renderEv()});

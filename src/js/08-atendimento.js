@@ -4,8 +4,25 @@ const ATD_VAZIO=()=>({hma:"",alergia:"",ap:"",muc:"",pa:"",fc:"",fr:"",sat:"",ta
   queixa:null,extras:[],exLab:"",exImg:"",condLivre:"",cond:{},medSel:{},visto:{},decisao:null,exSexo:null,exPerfil:null,sis:null,exLivre:"",diag:"",destino:null,
   reav:{},reavTxt:"",altaOri:{},alarOff:{},altaLivre:"",compreende:false,
   intern:{local:"",motivo:"",obj:{},objLivre:"",lab:"",laudos:"",feito:"",parecer:""},
-  tipo:"atestado",dias:"",aut:false,hora:"",man:{}});
+  tipo:"atestado",dias:"",aut:false,hora:"",man:{},manBase:{}});
 let atd=ATD_VAZIO();
+// rede de segurança contra perda de texto: o atendimento em andamento fica no sessionStorage da aba
+// (sobrevive a recarregar a página; some ao fechar a aba ou o navegador, e no "Novo paciente"). Fora do backup e da nuvem.
+const ATD_SS="mph_atd_sessao";
+let atdSsT=null;
+function atdSessaoGrava(){
+  try{const cond=$("#evCond").value, ch={};for(const id of [cond,...(atd.extras||[])])if(id&&chk[id])ch[id]=chk[id];
+    sessionStorage.setItem(ATD_SS,JSON.stringify({atd,cond,chk:ch,sexo:pac.sexo,idade:pac.idade,atPac}))}catch(e){}
+}
+const atdSessaoLogo=()=>{clearTimeout(atdSsT);atdSsT=setTimeout(atdSessaoGrava,400)};
+function atdSessaoLe(){
+  try{const s=JSON.parse(sessionStorage.getItem(ATD_SS)||"null");if(!s||!s.atd)return;
+    atd=Object.assign(ATD_VAZIO(),s.atd);Object.assign(chk,s.chk||{});if(s.sexo)pac.sexo=s.sexo;if(s.idade)pac.idade=s.idade;
+    if(s.cond&&$(`#evCond option[value="${s.cond}"]`)){$("#evCond").value=s.cond}
+    if(s.atPac&&typeof pacDe==="function"&&pacDe(s.atPac))atPac=s.atPac}catch(e){}
+}
+const atdSessaoApaga=()=>{clearTimeout(atdSsT);try{sessionStorage.removeItem(ATD_SS)}catch(e){}};
+addEventListener("pagehide",atdSessaoGrava);
 // lista de pacientes do plantão (exceção à regra 5 decidida pelo médico; 27-pacientes.js): chave própria, 7 dias
 const PAC_LS="mph_pacientes_v1", PAC_DIAS=7;
 let atPac=null;        // id do paciente da lista que está no Atendimento

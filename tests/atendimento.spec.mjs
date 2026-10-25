@@ -149,10 +149,37 @@ test("exame físico direcionado: liga e desliga sistemas; modelo completo contin
   await expect(saida(page, "exame")).toHaveValue(/Abdome: gravídico/);
   await page.click('#atCorpo [data-atseg="exPerfil"][data-v="ped"]');
   await expect(saida(page, "exame")).toHaveValue(/ativa e reativa/);
-  // editar o exame à mão e depois ligar um sistema: o sistema entra no texto
+  // editar o exame à mão e depois ligar um sistema: o texto editado fica, e o aviso oferece refazer
   await saida(page, "exame").fill("texto meu do exame"); await saida(page, "exame").dispatchEvent("input");
   await page.locator('#atCorpo [data-atchip="sis"][data-k="pele"]').click();
+  await expect(saida(page, "exame")).toHaveValue("texto meu do exame");
+  await page.click('#atCorpo [data-atseg="exSexo"][data-v="M"]');
+  await expect(saida(page, "exame")).toHaveValue("texto meu do exame");
+  await expect(page.locator('#atCorpo [data-atman="exame"]')).toHaveClass(/atvelho/);
+  await page.click('#atCorpo [data-atre="exame"]');
   await expect(saida(page, "exame")).toHaveValue(/^Pele:/m);
+  expect(erros).toEqual([]);
+});
+
+test("não perde texto: recarregar mantém o atendimento na aba, redesenho da nuvem não tira o cursor, CID sem ponto", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "amigdalite");
+  await expect(page.locator("#atCorpo .cidbig").first()).not.toContainText(".");
+  await campo(page, "hma").fill("odinofagia há 3 dias");
+  await saida(page, "hda").fill("HDA que eu redigi"); await saida(page, "hda").dispatchEvent("input");
+  await campo(page, "ap").fill("asma leve");
+  // recarregar a página (atualização, travou, F5): o atendimento volta
+  await page.waitForTimeout(600);
+  await page.reload(); await aba(page, "evolucao");
+  await expect(campo(page, "hma")).toHaveValue("odinofagia há 3 dias");
+  await expect(campo(page, "ap")).toHaveValue("asma leve");
+  await expect(saida(page, "hda")).toHaveValue("HDA que eu redigi");
+  // só na aba (sessionStorage), nunca no localStorage; Novo paciente apaga
+  expect(await page.evaluate(() => Object.values(localStorage).join(" "))).not.toContain("odinofagia");
+  await page.locator("#atNovo").click(); await page.locator("#atNovo").click();
+  expect(await page.evaluate(() => sessionStorage.getItem("mph_atd_sessao"))).toBeNull();
+  await page.reload(); await aba(page, "evolucao");
+  await expect(campo(page, "hma")).toHaveValue("");
   expect(erros).toEqual([]);
 });
 
@@ -212,5 +239,29 @@ test("Editar padrões: checklist, listas da alta, sistema do exame e na unidade 
   await page.locator('#atCorpo [data-edc="amigdalite|hist"]').locator("xpath=..").locator("[data-edorig]").click();
   await page.click("#atEdSalva");
   await expect(page.locator("#atCorpo .ck", { hasText: "rouquidão (item do médico)" })).toHaveCount(0);
+  expect(erros).toEqual([]);
+});
+
+test("a nuvem dos padrões chega enquanto digita: o campo não perde o cursor nem o texto", async ({ page }) => {
+  // nuvem ligada (repositório de mentira); a resposta do GitHub chega no meio da digitação, com padrões mais novos
+  await page.addInitScript(() => localStorage.setItem("mph_nuvem_v1", JSON.stringify({ repo: "teste/plantao-modelos", chave: "x" })));
+  let libera; const pronto = new Promise((r) => { libera = r; });
+  await page.route("https://api.github.com/**", async (route) => {
+    if (route.request().method() !== "GET") return route.fulfill({ status: 200, body: "{}" });
+    await pronto;
+    const d = { app: "meu-plantao", v: 1, overrides: {}, model: { updatedAt: Date.now() + 1e9 }, uso: {} };
+    route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ sha: "a", content: Buffer.from(JSON.stringify(d)).toString("base64") }) });
+  });
+  const erros = await abrir(page);
+  await atender(page, "amigdalite");
+  await campo(page, "ap").click(); await page.keyboard.type("asma");
+  const veio = page.waitForResponse((r) => r.url().includes("api.github.com") && r.request().method() === "GET");
+  libera(); await veio; await page.waitForTimeout(150);
+  await page.keyboard.type(" leve");
+  await expect(campo(page, "ap")).toHaveValue("asma leve");
+  expect(await page.evaluate(() => document.activeElement.dataset.atd)).toBe("ap");
+  // ao sair do campo, redesenha com os padrões novos e mantém o que foi digitado
+  await campo(page, "hma").click();
+  await expect(campo(page, "ap")).toHaveValue("asma leve");
   expect(erros).toEqual([]);
 });

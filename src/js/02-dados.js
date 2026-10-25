@@ -12,6 +12,7 @@ function allItems(){
     if(!baseById[id]&&!o.deleted) out.push(Object.assign({rev:[]},o,{id,custom:true}));
   }
   const ic=(model.org&&model.org.itemCat)||{};
-  for(const it of out){ if(ic[it.id]) it.cat=ic[it.id]; if(!CATS[it.cat]) it.cat="outros"; }
+  // CID sem ponto (M545), como o MV procura
+  for(const it of out){ if(ic[it.id]) it.cat=ic[it.id]; if(!CATS[it.cat]) it.cat="outros"; if(it.cid) it.cid=String(it.cid).replace(/\./g,""); }
   return out.sort((a,b)=>a.nome.localeCompare(b.nome,"pt-BR"));
 }

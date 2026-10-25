@@ -12,7 +12,7 @@ async function initCloud(){
   dbState="ok";refreshSync();
   try{
     const m=await db.doc("config/modelo").get();
-    if(m.exists){const r=migrateModel(JSON.parse(JSON.stringify(m.data())));const loc=lsGet(LS.model,{})||{};if((r.updatedAt||0)>=(loc.updatedAt||0)){model=r;lsSet(LS.model,model);applyOrg();renderCats();renderList();fillSelects();renderEv();renderAt();renderDetail();if(ui.tab==="modelos")renderModelos()} else saveModel()}
+    if(m.exists){const r=migrateModel(JSON.parse(JSON.stringify(m.data())));const loc=lsGet(LS.model,{})||{};if((r.updatedAt||0)>=(loc.updatedAt||0)){model=r;lsSet(LS.model,model);applyOrg();renderCats();renderList();fillSelects();renderEvSeguro();renderAt();renderDetail();if(ui.tab==="modelos")renderModelos()} else saveModel()}
   }catch(e){}
   try{const u=await db.doc("config/uso").get();if(u.exists){const r=JSON.parse(JSON.stringify(u.data()));if((r.updatedAt||0)>(uso.updatedAt||0)){uso=Object.assign({counts:{},favs:[],rec:[]},r);lsSet("rxp_uso_v1",uso);renderList()}else if((uso.updatedAt||0)>(r.updatedAt||0))saveUso()}else if(uso.updatedAt)saveUso()}catch(e){}
   db.collection("prescricoes").onSnapshot(snap=>{

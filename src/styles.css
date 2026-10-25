@@ -743,3 +743,6 @@ details.panel>summary{cursor:pointer}
 .atpend{display:grid;gap:4px}
 .atdec{flex-wrap:wrap}
 .pcafazer{font-size:14px;background:var(--surface-2);border-radius:8px;padding:6px 8px}
+
+/* campo editado à mão que ficou desatualizado: avisa, não troca */
+.note.atvelho{color:var(--warn);border-left:3px solid var(--warn);padding-left:8px;font-weight:600}

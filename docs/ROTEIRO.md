@@ -18,6 +18,7 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
+**Próximas melhorias de fluxo (escolhidas pelo médico em 2026-10-26):** ditado por voz na HDA (avisar sobre privacidade do Chrome); colar o resultado do laboratório do MV e a IA preencher as siglas alteradas; IA na justificativa da internação e na evolução da reavaliação. Sugeridas: "restante negativo" no checklist; orientação de alta por QR/impressa; aviso sonoro de reavaliação; tempo por etapa.
 **Retomar primeiro (2026-10-25, sessão parou no limite de tokens):**
 - As 14 fichas novas sugeridas (.rascunhos/receita-fichas.json "_novas") precisam virar fichas completas; pendentes levofloxacino 750 e amoxicilina 875 (CMED); ivermectina "doses".
 - A pensar com o médico: cor por classe de remédio na receita; quadro "Para você, não vai na receita".

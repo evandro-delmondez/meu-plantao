@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.40.0 — 2026-10-26
+- **"⧉ Próximo"** na barra do Atendimento: copia o próximo campo ainda não copiado, na ordem do MV (HDA → exame → HD → conduta → receituário → alta…), marca ✓ na etapa e já mostra qual vem depois. No computador, a tecla **F2** faz o mesmo.
+
 ## 1.39.0 — 2026-10-26
 - **Pacientes por plantão**: diurno 7–19h e noturno 19–7h (o noturno leva a data em que começou). Cada plantão mostra os nomes e quantos foram **atendidos** — conta alta, internação, transferência e evasão (o que você recebe); passados a outro médico e "Passei para outra especialidade" (desfecho novo) saem do "em aberto", ficam com o nome no plantão e não contam. Topo: "N atendidos neste plantão · M em aberto". "Atendidos por plantão" no lugar de "Pacientes por dia".
 - **Passagem de plantão mais coesa**: pacientes com o mesmo médico e consultório numa linha só ("Caroline e João, cientes da troca, com Dra. Ana no consultório 5.").

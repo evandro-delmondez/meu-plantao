@@ -541,3 +541,21 @@ test("HDA: avisa quando um item está nas notas e foi marcado como ausente no ch
   await expect(page.locator("#atContra")).toBeHidden();
   expect(erros).toEqual([]);
 });
+
+test("Copiar o próximo: segue a ordem do MV, marca ✓ e funciona com F2", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  const copiados = [];
+  await page.exposeFunction("guardaCopia", (t) => copiados.push(t));
+  await page.evaluate(() => { navigator.clipboard.writeText = (t) => { window.guardaCopia(t); return Promise.resolve(); }; });
+  await campo(page, "hma").fill("coriza 2d");
+  await expect(page.locator("#atProx")).toContainText("Próximo: HDA");
+  await page.click("#atProx");
+  await expect(page.locator('#atEtapas [data-atir="1"]')).toHaveAttribute("data-st", "ok");
+  await expect(page.locator("#atProx")).toContainText("Próximo: Exame físico");
+  await page.keyboard.press("F2");
+  await expect(page.locator("#atProx")).toContainText("Próximo: Hipótese");
+  expect(copiados[0]).toMatch(/^Paciente refere coriza há 2 dias/);
+  expect(copiados[1]).toMatch(/Exame físico|estado geral/);
+  expect(erros).toEqual([]);
+});

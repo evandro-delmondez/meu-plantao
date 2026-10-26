@@ -458,11 +458,24 @@ function atRelogio(){
   r.title=`Meta ${meta} min (toque para mudar)${m?` · média de hoje ${m.media} min (${m.n})`:""}`;
 }
 setInterval(()=>{if(ui.tab==="evolucao"&&atd.t0)atRelogio()},1000);
+function atProximo(){
+  for(const [k] of AT_CAMPOS){const ta=$(`#atCorpo [data-atout="${k}"]`);
+    if(!ta||!ta.value.trim()||ta.closest("[hidden]")||ta.closest("details:not([open])")) continue;
+    if(atd.cop[k]!==ta.value) return {k,ta,rot:(ta.getAttribute("aria-label")||k)};}
+  return null;
+}
+async function atCopiaProximo(){
+  const p=atProximo(), b=$("#atProx"); if(!p){toast("Tudo copiado para o MV");return}
+  if(!await copy(p.ta.value,null)) return;
+  atd.cop[p.k]=p.ta.value; toast(`Copiado: ${p.rot}`); atEtapasAtualiza(); atdSessaoLogo(); pacSnapLogo();
+}
+addEventListener("keydown",e=>{if(e.key==="F2"&&ui.tab==="evolucao"){e.preventDefault();atCopiaProximo()}});
 function atEtapasAtualiza(){
   const bar=$("#atEtapas"); if(!bar) return;
   if(!atd.t0&&(atPac||[1,2,3,4].some(atEtapaMexida))) atd.t0=Date.now();
   atRelogio();
   AT_CAMPOS.forEach(([k])=>{const ta=$(`#atCorpo [data-atout="${k}"]`),ok=$(`#atCorpo [data-atcopok="${k}"]`);if(ta&&ok)ok.hidden=!(atd.cop[k]&&atd.cop[k]===ta.value)});
+  const bp=$("#atProx"); if(bp){const p=atProximo();bp.textContent=p?`⧉ Próximo: ${p.rot.split(" (")[0]}`:"✓ Tudo copiado";bp.disabled=!p}
   const inter=atd.decisao==="internacao"||/intern/.test(atd.destino||"")||atTem(atd.intern.motivo);
   for(const [n,,cs] of AT_ETAPAS){
     const b=bar.querySelector(`[data-atir="${n}"]`); if(!b) continue;
@@ -520,7 +533,7 @@ function renderEv(){
   const outras=(atd.extras||[]).map(getItem).filter(Boolean);
   el.innerHTML=`
   ${atEdit?`<div class="ateditbar"><span class="note">Editando os padrões. Vale para os próximos atendimentos. Salve no alto.</span></div>`:""}
-  <nav class="atetapas" id="atEtapas" aria-label="Etapas do atendimento"><button class="atrel" id="atRelogio" hidden aria-label="Relógio do atendimento: toque para mudar a meta"></button>${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}${atEdit?`<button class="atedn primary" id="atEdSalva">Salvar padrões</button><button class="atedn" id="atEdSai">Cancelar</button>`:`<button class="atedn" id="atEdita" title="Editar os padrões do Atendimento">✎ Padrões</button>`}</nav>
+  <nav class="atetapas" id="atEtapas" aria-label="Etapas do atendimento"><button class="atrel" id="atRelogio" hidden aria-label="Relógio do atendimento: toque para mudar a meta"></button>${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}<button class="atedn primary atprox" id="atProx" title="Copia o próximo campo ainda não copiado, na ordem do MV (tecla F2)">⧉ Próximo</button>${atEdit?`<button class="atedn primary" id="atEdSalva">Salvar padrões</button><button class="atedn" id="atEdSai">Cancelar</button>`:`<button class="atedn" id="atEdita" title="Editar os padrões do Atendimento">✎ Padrões</button>`}</nav>
   ${it?`<div class="atextras"><span class="lbl">Outras queixas no mesmo paciente</span><div class="chips">${outras.map(c=>`<button class="chip" data-atrem="${esc(c.id)}" aria-pressed="true" style="--c:var(--${(CATS[c.cat]||CATS.outros).cor})">✓ ${esc(c.nome)} ✕</button>`).join("")}
     ${outras.length<2?`<div class="atbusca"><input class="inp" id="atAddQ" type="text" name="q-conduta-search" role="searchbox" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-1p-ignore data-lpignore="true" data-form-type="other" placeholder="+ outra conduta (ex.: faringite, J02)" aria-label="Buscar outra conduta"><div class="atsug" id="atAddSug"></div></div>`:""}</div></div>`:""}
   ${cs.length?`<div class="atconds">${cs.map(c=>{const k=CATS[c.cat]||CATS.outros;return `<span class="cat" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}${c.cid?` · ${esc(c.cid)}`:""}</span>`}).join("")}</div>`:""}
@@ -727,6 +740,7 @@ function bindEv(it){
   });
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});
   box.querySelectorAll("[data-atcp]").forEach(b=>b.onclick=()=>{const k=b.dataset.atcp,t=$(`#atCorpo [data-atout="${k}"]`).value;if(!t.trim()){toast("Campo vazio");return}copy(t,b).then(ok=>{if(!ok)return;atd.cop[k]=t;atEtapasAtualiza();atdSessaoLogo();pacSnapLogo()})});
+  if($("#atProx")) $("#atProx").onclick=atCopiaProximo;
   if($("#atRelogio")) $("#atRelogio").onclick=()=>{const v=prompt(`Meta de tempo por atendimento, em minutos (fica amarelo 5 min antes e vermelho ao passar).\nDigite 0 para zerar o relógio agora.`,atMeta());if(v==null)return;const n=Math.round(+String(v).replace(",","."));
     if(n===0){atd.t0=Date.now();atRelogio();atdSessaoLogo();toast("Relógio zerado");return}
     if(!(n>=5&&n<=180)){toast("Use de 5 a 180 minutos");return}model.prefs=Object.assign({},model.prefs,{meta:n});saveModel();atRelogio();toast(`Meta: ${n} min por atendimento`)};

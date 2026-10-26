@@ -74,7 +74,9 @@ const iaPrompt=()=>{const t=String((model.prefs||{}).iaPrompt||"").trim();return
 // números por extenso contam como o mesmo número (a IA às vezes escreve "três episódios" no lugar de "3x")
 const IA_EXT={um:1,uma:1,dois:2,duas:2,"três":3,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10,onze:11,doze:12,quinze:15,vinte:20,trinta:30};
 const iaNums=t=>{const s=String(t||"").replace(/\b(um|uma|dois|duas|três|tres|quatro|cinco|seis|sete|oito|nove|dez|onze|doze|quinze|vinte|trinta)\b(?=\s+(vez|vezes|episódio|episódios|dia|dias|hora|horas|semana|semanas|mês|meses|ano|anos|comprimido|comprimidos|gota|gotas|evacuaç|epis))/gi,w=>IA_EXT[w.toLowerCase()]);
-  return (s.match(/\d+(?:[.,]\d+)?/g)||[]).sort()};
+  // mesmo número em outro formato: 1.000 = 1000; 38.5 = 38,5; meio comprimido = 1/2; 140x90 = 140 x 90
+  const n=s.replace(/\b(meio|meia)\b(?=\s+(comprimido|cp|ampola|copo|colher))/gi,"1/2").replace(/(\d)\.(?=\d{3}\b)/g,"$1").replace(/(\d)\.(\d)/g,"$1,$2");
+  return (n.match(/\d+(?:,\d+)?/g)||[]).sort()};
 async function iaMelhora(texto){
   const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},
     body:JSON.stringify({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]})});

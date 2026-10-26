@@ -109,3 +109,5 @@ Lido no início de toda tarefa (skill `retomar`). Não rediscutir o que está aq
 - Passagem de plantão (2026-10-25, ajuste): sem título nem data; "Deixo o consultório N com retornos:" (ou "sem pendências."), uma linha por paciente: "Nome, ciente da troca, com Dra. X no consultório Y." Consultório próprio separado do consultório de quem assume.
 
 - Contratura (2026-10-26): AINE padrão celecoxibe 200 mg 12/12h, com naproxeno, nimesulida, cetorolaco, ibuprofeno, diclofenaco e cetoprofeno como alternativas; ciclobenzaprina padrão 10 mg 12/12h (5 mg 8/8h como alternativa); tiocolchicosídeo mantido como alternativa com aviso de fígado; diazepam e tramadol só como blocos opcionais; colar cervical fora. No HSLS a internação é só em apartamento (sem enfermaria); semi = UTI B, UTI = UTI C.
+- Lista de pacientes (2026-10-26): por plantão (diurno 7–19h, noturno 19–7h com a data do início). Conta como atendido (o que o médico recebe): alta, internação, transferência e evasão. Não contam: passados a outro médico e "passei para outra especialidade" (saem do "em aberto", ficam com o nome). Passagem agrupa pacientes com o mesmo médico e consultório numa linha.
+

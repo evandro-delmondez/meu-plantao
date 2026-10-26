@@ -3,7 +3,7 @@
    aparelho (fora das rxp_*, do backup e da nuvem do painel), apaga sozinha após 7 dias; a contagem por dia,
    sem nome, fica para sempre. Ao abrir um paciente, o Atendimento volta com o que foi digitado. */
 const PAC_ETAPAS=[["exame","Exame"],["med","Medicação"],["reav","Reavaliação"],["parecer","Parecer"]];
-const PAC_DESF=[["","— em atendimento —"],["alta","Alta"],["obs","Observação"],["internacao","Internação"],["transferencia","Transferência"],["evasao","Evasão"],["passado","Passei para outro médico"]];
+const PAC_DESF=[["","— em atendimento —"],["alta","Alta"],["obs","Observação"],["internacao","Internação"],["transferencia","Transferência"],["evasao","Evasão"],["passado","Passei para outro médico"],["especialidade","Passei para outra especialidade"]];
 const PAC_ONDE=[["","onde?"],["enfermaria","apartamento ou enfermaria"],["semi","semi-intensiva"],["uti","UTI"]];
 const PAC_H2=2*3600e3, PAC_H3=3*3600e3;
 const pacHoje=(t=Date.now())=>{const d=new Date(t);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
@@ -96,31 +96,38 @@ function pacPassagem(medico,local,consMed){
   const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs").slice().reverse();
   const meu=pacConsult(local), deixo=`Deixo ${meu?"o "+meu:"o plantão"}`;
   if(!ab.length) return `${deixo} sem pendências.`;
-  const L=[`${deixo} com retornos:`];
-  for(const p of ab){
-    const m=(p.assume||"").trim()||medico||"", c=pacConsult((p.consMed||"").trim()||consMed||"");
-    L.push(`- ${p.nome}, ${p.sabe?"ciente da troca":"ainda não ciente da troca"}${m?`, com ${m}`:""}${c?` no ${c}`:""}.`);
-  }
+  // mesmo médico e consultório numa linha só: "Caroline e João, cientes da troca, com Dra. Ana no consultório 5."
+  const L=[`${deixo} com retornos:`], g=new Map();
+  for(const p of ab){const m=(p.assume||"").trim()||medico||"", c=pacConsult((p.consMed||"").trim()||consMed||""), k=m+"|"+c;if(!g.has(k))g.set(k,{m,c,ps:[]});g.get(k).ps.push(p)}
+  for(const {m,c,ps} of g.values()) L.push(`- ${pacCiencia(ps)}${m?`, com ${m}`:""}${c?` no ${c}`:""}.`);
   return L.join("\n");
 }
+// plantão: diurno 7–19h e noturno 19–7h (o noturno leva a data em que começou)
+function pacPlantao(t){const d=new Date(t), h=d.getHours();
+  if(h>=7&&h<19) return {k:pacHoje(t)+"D",rot:`Plantão diurno ${d.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"})}`};
+  const ini=h<7?new Date(t-864e5):d; return {k:pacHoje(ini.getTime())+"N",rot:`Plantão noturno ${ini.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"})}`}}
+// conta como atendido (o que o médico recebe): alta, internação, transferência e evasão; passados não contam
+const PAC_CONTA=["alta","internacao","transferencia","evasao"], pacConta=p=>PAC_CONTA.includes(p.desf.tipo), pacSaiu=p=>p.desf.tipo==="passado"||p.desf.tipo==="especialidade";
 let pcVer="hoje", pcPass={medico:"",local:"",consMed:""};
 function renderPacientes(){
   const el=$("#pcCorpo"); if(!el) return;
   const db=pacCarrega(), agora=Date.now(), hoje=pacHoje();
-  // passados a outro médico saem da lista e da contagem (ficam no quadro "Passados" até os 7 dias)
-  const passados=db.pacs.filter(p=>p.desf.tipo==="passado"), npass=d=>passados.filter(p=>p.dia===d).length;
-  const lista=db.pacs.filter(p=>p.desf.tipo!=="passado"&&(pcVer==="todos"||p.dia===hoje||(!p.desf.tipo||p.desf.tipo==="obs")));
+  // passados (a outro médico ou a outra especialidade) saem do "em aberto" e não contam; ficam com o nome no plantão
+  const passados=db.pacs.filter(pacSaiu), agoraPl=pacPlantao(agora).k;
+  const lista=db.pacs.filter(p=>!pacSaiu(p)&&(pcVer==="todos"||pacPlantao(p.criado).k===agoraPl||(!p.desf.tipo||p.desf.tipo==="obs")));
   const abertos=db.pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs").length;
-  const dias=Object.entries(db.cont).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,14);
+  const atendidos=db.pacs.filter(p=>pacPlantao(p.criado).k===agoraPl&&pacConta(p)).length;
+  const grupos=new Map(); for(const p of lista){const pl=pacPlantao(p.criado);if(!grupos.has(pl.k))grupos.set(pl.k,{rot:pl.rot,ps:[]});grupos.get(pl.k).ps.push(p)}
+  const porPlantao=new Map(); for(const p of db.pacs){const pl=pacPlantao(p.criado);const g=porPlantao.get(pl.k)||{rot:pl.rot,n:0,saiu:[]};if(pacConta(p))g.n++;if(pacSaiu(p))g.saiu.push(p.nome);porPlantao.set(pl.k,g)}
   const et=(p,k,rot)=>{const e=p.et[k];
     if(k==="reav") return `<button class="chip pcet" data-pe="reav" aria-pressed="${!!e.t}" title="Marca a reavaliação agora">${e.t?"✓ Reavaliado "+pacHora(e.t):"Reavaliar"}</button>`;
     const st=!e.on?"":e.ok?"ok":"on";
     const tk=k==="exame"?"txt":k==="parecer"?"esp":null;
     return `<span class="pcetw"><button class="chip pcet" data-pe="${k}" data-st="${st}" aria-pressed="${!!e.on}" title="toque: pedido → pronto → desligar">${st==="ok"?"✓ ":st==="on"?"⏳ ":"+ "}${rot}${st==="ok"?" pronto":st==="on"?" pendente":""}</button>${tk&&e.on?`<input class="inp pcin" data-ptxt="${k}" value="${esc(e[tk])}" placeholder="${k==="exame"?"qual exame?":"especialidade"}" aria-label="${k==="exame"?"Qual exame":"Especialidade do parecer"}">`:""}</span>`};
-  el.innerHTML=`<div class="panel card pchead"><div class="pctopo"><h2>Pacientes do plantão</h2><span class="pcconta"><b>${Math.max(0,(db.cont[hoje]||0)-npass(hoje))}</b> hoje · ${abertos} sem desfecho${(m=>m?` · média ${m.media} min por atendimento`:"")(atTempoMedia())}</span></div>
+  el.innerHTML=`<div class="panel card pchead"><div class="pctopo"><h2>Pacientes do plantão</h2><span class="pcconta"><b>${atendidos}</b> ${atendidos===1?"atendido":"atendidos"} neste plantão · ${abertos} em aberto${(m=>m?` · média ${m.media} min por atendimento`:"")(atTempoMedia())}</span></div>
       <div class="pcnovo"><input class="inp" id="pcNome" placeholder="Nome do paciente" autocomplete="off" spellcheck="false" aria-label="Nome do paciente"><button class="btn primary" id="pcAdd">Novo paciente</button></div>
-      <div class="seg pcver" role="group" aria-label="Mostrar"><button data-pcver="hoje" aria-pressed="${pcVer==="hoje"}">Hoje e em aberto</button><button data-pcver="todos" aria-pressed="${pcVer==="todos"}">Últimos ${PAC_DIAS} dias</button></div></div>
-    <div class="pclista">${lista.length?lista.map(p=>{const av=pacAviso(p,agora);return `<div class="pcitem" data-pid="${p.id}" data-av="${av?av.nv:""}" ${atPac===p.id?'data-atual="1"':""}>
+      <div class="seg pcver" role="group" aria-label="Mostrar"><button data-pcver="hoje" aria-pressed="${pcVer==="hoje"}">Este plantão e em aberto</button><button data-pcver="todos" aria-pressed="${pcVer==="todos"}">Últimos ${PAC_DIAS} dias</button></div></div>
+    <div class="pclista">${lista.length?[...grupos.entries()].sort((a,b)=>b[0].localeCompare(a[0])).map(([k,g])=>{const pp=porPlantao.get(k)||{n:0,saiu:[]};return `<h3 class="pcplant">${esc(g.rot)} <span class="note">· ${pp.n} ${pp.n===1?"atendido":"atendidos"}${pp.saiu.length?` · passados (não contam): ${esc(pp.saiu.join(", "))}`:""}</span></h3>`+g.ps.map(p=>{const av=pacAviso(p,agora);return `<div class="pcitem" data-pid="${p.id}" data-av="${av?av.nv:""}" ${atPac===p.id?'data-atual="1"':""}>
       <div class="pclinha"><button class="pcnome" data-pabrir>${esc(p.nome)}</button><span class="note">${p.dia!==hoje?esc(p.dia.split("-").reverse().slice(0,2).join("/"))+" ":""}${pacHora(p.criado)} · há ${pacDur(agora-p.criado)}</span>${av?`<span class="pcav">${esc(av.txt)}</span>`:""}</div>
       <div class="note pchip">${esc(pacHip(p)||"sem hipótese ainda")}</div>
       ${(!p.desf.tipo||p.desf.tipo==="obs")&&pacPendencias(p).length?`<div class="pcafazer"><b>A fazer:</b> ${esc(pacPendencias(p).join(" · "))}${p.et.reav.t&&!p.desf.tipo?" · decidir: alta ou internação":""}</div>`:""}
@@ -129,8 +136,8 @@ function renderPacientes(){
         ${p.desf.tipo==="internacao"?`<select class="inp" data-pd="onde" aria-label="Onde">${(typeof atLocais==="function"?[["","onde?"],...atLocais().slice(1)]:PAC_ONDE).map(([v,r])=>`<option value="${v}" ${p.desf.onde===v?"selected":""}>${r}</option>`).join("")}</select>`:""}
         ${!p.desf.tipo||p.desf.tipo==="obs"?`<input class="inp pcassume" data-passume list="pcMedicos" value="${esc(p.assume||"")}" placeholder="quem assume" aria-label="Médico que assume ${esc(p.nome)}" autocomplete="off"><input class="inp pcassume pccons" data-pconsmed value="${esc(p.consMed||"")}" placeholder="consultório dele" aria-label="Consultório do médico que assume ${esc(p.nome)}" autocomplete="off">`:""}
         <label class="check"><input type="checkbox" data-psabe ${p.sabe?"checked":""}> ciente da troca</label>
-        <button class="btn sm" data-pabrir>Abrir atendimento</button>${!p.desf.tipo||p.desf.tipo==="obs"?`<button class="btn sm" data-ppassa>Passei para outro médico</button>`:""}<button class="btn sm danger" data-papagar>Apagar</button></div></div>`}).join(""):`<div class="panel card"><p class="note">Nenhum paciente ainda. Digite o nome acima ou no topo do Atendimento.</p></div>`}</div>
-    ${passados.length?`<details class="panel card pcpassados"><summary><h3>Passados a outro médico (${passados.length})</h3></summary><ul class="qlist">${passados.map(p=>`<li data-pid="${p.id}"><b>${esc(p.nome)}</b> · ${esc(pacHip(p)||"sem hipótese")} · ${pacHora(p.desf.t||p.criado)} <button class="btn sm" data-pvolta="${p.id}">Voltar para a lista</button></li>`).join("")}</ul></details>`:""}
+        <button class="btn sm" data-pabrir>Abrir atendimento</button>${!p.desf.tipo||p.desf.tipo==="obs"?`<button class="btn sm" data-ppassa>Passei para outro médico</button>`:""}<button class="btn sm danger" data-papagar>Apagar</button></div></div>`}).join("")}).join(""):`<div class="panel card"><p class="note">Nenhum paciente ainda. Digite o nome acima ou no topo do Atendimento.</p></div>`}</div>
+    ${passados.length?`<details class="panel card pcpassados"><summary><h3>Passados (${passados.length}) — não contam</h3></summary><ul class="qlist">${passados.map(p=>`<li data-pid="${p.id}"><b>${esc(p.nome)}</b> · ${p.desf.tipo==="especialidade"?"outra especialidade":"outro médico"} · ${esc(pacHip(p)||"sem hipótese")} · ${pacHora(p.desf.t||p.criado)} <button class="btn sm" data-pvolta="${p.id}">Voltar para a lista</button></li>`).join("")}</ul></details>`:""}
     <details class="panel card pcpass"><summary><h3>Passagem de plantão</h3></summary>
       <label class="f">Consultório que você deixa<input class="inp" id="pcLocal" value="${esc(pcPass.local)}" placeholder="ex.: 3" autocomplete="off"></label>
       <p class="note">Cada paciente pode ir para um médico (campos "quem assume" e "consultório dele" no paciente); os sem nome vão para o médico abaixo.</p>
@@ -138,7 +145,7 @@ function renderPacientes(){
       <datalist id="pcMedicos">${[...new Set(db.pacs.map(p=>(p.assume||"").trim()).filter(Boolean))].map(m=>`<option value="${esc(m)}">`).join("")}</datalist>
       <textarea class="out-edit" id="pcPassTxt" spellcheck="false" aria-label="Mensagem de passagem" readonly></textarea>
       <div class="actions"><button class="btn primary" id="pcPassCp">Copiar mensagem</button><button class="btn" id="pcPassTodos">Passei todos (tirar da lista)</button></div></details>
-    ${dias.length?`<details class="panel card"><summary><h3>Pacientes por dia</h3></summary><ul class="qlist">${dias.map(([d,n])=>`<li>${esc(d.split("-").reverse().join("/"))}: <b>${Math.max(0,n-npass(d))}</b></li>`).join("")}</ul></details>`:""}
+    ${porPlantao.size?`<details class="panel card"><summary><h3>Atendidos por plantão</h3></summary><ul class="qlist">${[...porPlantao.entries()].sort((a,b)=>b[0].localeCompare(a[0])).map(([,g])=>`<li>${esc(g.rot)}: <b>${g.n}</b>${g.saiu.length?` <span class="note">(+${g.saiu.length} passado${g.saiu.length>1?"s":""}, não conta${g.saiu.length>1?"m":""})</span>`:""}</li>`).join("")}</ul></details>`:""}
     ${typeof renderPacSync==="function"?renderPacSync():""}`;
   bindPacientes();
 }

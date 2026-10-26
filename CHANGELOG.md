@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.39.0 — 2026-10-26
+- **Pacientes por plantão**: diurno 7–19h e noturno 19–7h (o noturno leva a data em que começou). Cada plantão mostra os nomes e quantos foram **atendidos** — conta alta, internação, transferência e evasão (o que você recebe); passados a outro médico e "Passei para outra especialidade" (desfecho novo) saem do "em aberto", ficam com o nome no plantão e não contam. Topo: "N atendidos neste plantão · M em aberto". "Atendidos por plantão" no lugar de "Pacientes por dia".
+- **Passagem de plantão mais coesa**: pacientes com o mesmo médico e consultório numa linha só ("Caroline e João, cientes da troca, com Dra. Ana no consultório 5.").
+- **IA na HDA**: a trava aceita o mesmo número em outro formato (38.5 = 38,5; 1.000 = 1000; meio comprimido = 1/2), que antes fazia o texto não mudar.
+
 ## 1.38.6 — 2026-10-26
 - **Prompt padrão da IA é o prompt completo do médico** (tarefa, ordem semiológica, terminologia, medicamentos pelo princípio ativo, correção, itens do checklist, regras, conferência e 2 exemplos). Vale sozinho em qualquer aparelho; quem tinha salvo um prompt próprio usa "Restaurar o padrão".
 

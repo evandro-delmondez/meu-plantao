@@ -17,7 +17,7 @@ test("nome no Atendimento põe na lista; etapas, desfecho e passagem; volta ao a
   // lista
   await page.click("#atLista");
   await expect(page.locator("#tab-pacientes")).toBeVisible();
-  await expect(page.locator(".pcconta")).toContainText("1 hoje");
+  await expect(page.locator(".pcconta")).toContainText("1 em aberto");
   const it = item(page, "Maria Teste da Silva");
   await expect(it).toContainText("Pneumonia");
   // exame: + → pendente (com qual) → pronto; medicação separada; parecer; reavaliação com hora
@@ -69,7 +69,7 @@ test("nome no Atendimento põe na lista; etapas, desfecho e passagem; volta ao a
   await item(page, "Maria Teste da Silva").locator("[data-papagar]").click();
   await item(page, "Maria Teste da Silva").locator("[data-papagar]").click();
   await expect(item(page, "Maria Teste da Silva")).toHaveCount(0);
-  await expect(page.locator(".pcconta")).toContainText("1 hoje");           // a contagem do dia fica
+  await expect(page.locator(".pcconta")).toContainText("atendido");
   expect(erros).toEqual([]);
 });
 
@@ -88,8 +88,8 @@ test("apaga quem tem mais de 7 dias (a contagem fica) e avisa 2 h sem reavaliar 
   await expect(item(page, "Duas Horas Sem Reavaliar")).toHaveAttribute("data-av", "amarelo");
   await expect(item(page, "Tres Horas Sem Desfecho")).toHaveAttribute("data-av", "vermelho");
   await expect(item(page, "Recem Chegado")).toHaveAttribute("data-av", "");
-  await page.locator("#pcCorpo details", { hasText: "Pacientes por dia" }).locator("summary").click();
-  await expect(page.locator("#pcCorpo details", { hasText: "Pacientes por dia" })).toContainText("01/01/2000: 4");
+  await page.locator("#pcCorpo details", { hasText: "Atendidos por plantão" }).locator("summary").click();
+  await expect(page.locator("#pcCorpo details", { hasText: "Atendidos por plantão" })).toContainText("Plantão");
   expect(await page.evaluate(() => localStorage.getItem("mph_pacientes_v1"))).not.toContain("Antigo Oito Dias");
   expect(erros).toEqual([]);
 });
@@ -248,22 +248,22 @@ test("passei para outro médico: sai da lista e da contagem, fica em Passados e 
   const erros = await abrir(page);
   await aba(page, "pacientes");
   for (const n of ["Ana Passada", "Bruno Fica"]) { await page.fill("#pcNome", n); await page.click("#pcAdd"); await aba(page, "pacientes"); }
-  await expect(page.locator(".pcconta")).toContainText("2 hoje");
+  await expect(page.locator(".pcconta")).toContainText("2 em aberto");
   await item(page, "Ana Passada").locator("[data-ppassa]").click();
   await expect(item(page, "Ana Passada")).toHaveCount(0);
-  await expect(page.locator(".pcconta")).toContainText("1 hoje");
+  await expect(page.locator(".pcconta")).toContainText("1 em aberto");
   await expect(page.locator(".pcpassados")).toContainText("Ana Passada");
   expect(await page.locator("#pcPassTxt").inputValue()).not.toContain("Ana Passada");   // não entra na passagem
   await page.locator(".pcpassados summary").click();
   await page.click('.pcpassados [data-pvolta]');
   await expect(item(page, "Ana Passada")).toHaveCount(1);
-  await expect(page.locator(".pcconta")).toContainText("2 hoje");
+  await expect(page.locator(".pcconta")).toContainText("2 em aberto");
   // passar todos de uma vez (fim do plantão)
   page.once("dialog", (d) => d.accept());
   await page.locator(".pcpass summary").click();
   await page.click("#pcPassTodos");
   await expect(page.locator("#pcCorpo .pcitem")).toHaveCount(0);
-  await expect(page.locator(".pcconta")).toContainText("0 hoje");
+  await expect(page.locator(".pcconta")).toContainText("0 em aberto");
   expect(erros).toEqual([]);
 });
 
@@ -283,11 +283,27 @@ test("passagem: cada paciente com quem assume, ciência da troca corrida; sem pe
   if (!(await page.locator(".pcpass").evaluate((d) => d.open))) await page.locator(".pcpass summary").click();
   const msg = await page.inputValue("#pcPassTxt");
   expect(msg).toContain("Deixo o consultório 3 com retornos:");
-  expect(msg).toContain("- Caroline, ciente da troca, com Dr. Ana.");
-  expect(msg).toContain("- João, ciente da troca, com Dr. Ana.");
+  expect(msg).toContain("- Caroline e João, cientes da troca, com Dr. Ana.");
   expect(msg).toContain("- Maria, ainda não ciente da troca, com Dr. Bruno no consultório 7.");
   await page.fill("#pcConsMed", "5");
-  await expect(page.locator("#pcPassTxt")).toHaveValue(/- Caroline, ciente da troca, com Dr\. Ana no consultório 5\./);
+  await expect(page.locator("#pcPassTxt")).toHaveValue(/- Caroline e João, cientes da troca, com Dr\. Ana no consultório 5\./);
+  expect(erros).toEqual([]);
+});
+
+test("por plantão: alta, internação, transferência e evasão contam; passado e outra especialidade não; nomes ficam no plantão", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "pacientes");
+  for (const n of ["Alta Um", "Interna Dois", "Especialidade Tres", "Medico Quatro"]) { await page.fill("#pcNome", n); await page.click("#pcAdd"); await aba(page, "pacientes"); }
+  await item(page, "Alta Um").locator('[data-pd="tipo"]').selectOption("alta");
+  await item(page, "Interna Dois").locator('[data-pd="tipo"]').selectOption("internacao");
+  await item(page, "Especialidade Tres").locator('[data-pd="tipo"]').selectOption("especialidade");
+  await item(page, "Medico Quatro").locator("[data-ppassa]").click();
+  await expect(page.locator(".pcconta")).toContainText("2 atendidos neste plantão · 0 em aberto");
+  await expect(page.locator(".pcplant").first()).toContainText(/Plantão (diurno|noturno) \d\d\/\d\d/);
+  await expect(page.locator(".pcplant").first()).toContainText("passados (não contam):");
+  await expect(page.locator(".pcplant").first()).toContainText("Especialidade Tres");
+  await expect(page.locator(".pcplant").first()).toContainText("Medico Quatro");
+  await expect(item(page, "Especialidade Tres")).toHaveCount(0);
   expect(erros).toEqual([]);
 });
 

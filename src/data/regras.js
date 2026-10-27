@@ -18,7 +18,9 @@ ms:"Ministério da Saúde. Dengue: diagnóstico e manejo clínico, 6ª ed., 2024
 pcdt:"Ministério da Saúde. PCDT IST, 2022. https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
 emaMeto:"EMA (2013): metoclopramida — reduzir 50% se ClCr 15–60 e 75% se ClCr < 15.",
 acogUti:"ACOG Clinical Consensus: Urinary Tract Infections in Pregnant Individuals (2023). https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2023/08/urinary-tract-infections-in-pregnant-individuals",
-fdaAce:"FDA — advertência em destaque (boxed warning) dos IECA/BRA: toxicidade fetal."
+fdaAce:"FDA — advertência em destaque (boxed warning) dos IECA/BRA: toxicidade fetal.",
+diamox:"Bula do Diamox (acetazolamida 250 mg) registrada na Anvisa: contraindicado na alergia a sulfonamida, na hipocalemia, na hiponatremia, na insuficiência renal ou hepática grave, na cirrose, na insuficiência adrenal e na acidose. https://bula.com.br/diamox/contraindicacao",
+colchis:"Bula do Colchis (colchicina 0,5 mg, Apsen) registrada na Anvisa: contraindicada na gestação; TFG 30–59: 0,5 mg/dia; 15–29: a cada 2–3 dias; < 15: contraindicada. https://consultaremedios.com.br/colchis/bula. ESC 2025 (miocardite e pericardite, seção 12.3): colchicina pode ser considerada na gestação (IIb)."
 };
 const RULES=[
 {re:/ibuprofeno|diclofenaco|cetoprofeno|ácido mefenâmico|naproxeno|nimesulida|profenid/i, nome:"AINE",
@@ -77,7 +79,10 @@ const RULES=[
  gest:["Evitar na amamentação (metabolizadores ultrarrápidos).","emaCod"],
  idoso:["Opioide: usar a menor dose; risco de queda e delírio.","beers"]},
 {re:/colchicina/i, nome:"Colchicina",
+ gest:["Bula: contraindicada na gestação; a ESC 2025 admite na pericardite com cautela (IIb): discutir com a cardiologia.","colchis"],
  renal:["ClCr < 30: reduzir a dose e monitorar toxicidade (GI, neuromuscular, medular).","beers"]},
+{re:/acetazolamida/i, nome:"Acetazolamida",
+ renal:["Contraindicada na insuficiência renal grave (bula Diamox); também na alergia a sulfonamida, hipocalemia, hiponatremia e acidose.","diamox"]},
 {re:/alopurinol/i, nome:"Alopurinol",
  renal:["DRC estágio ≥ 3: iniciar com dose menor que 100 mg/dia e titular.","acr"]},
 {re:/enoxaparina/i, nome:"Enoxaparina",

@@ -738,5 +738,191 @@ tvp: {
     "NHS. Deep vein thrombosis (DVT): perna elevada, caminhar, sinais de embolia pulmonar para procurar atendimento. https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
   ]
 },
+odontalgia: {
+  titulo: "Dor de dente (odontalgia) e abscesso dentário",
+  oque: "A dor de dente costuma vir de cárie ou de infecção dentro do dente ou na gengiva. Os remédios aliviam a dor por alguns dias, mas só o dentista trata a causa, com limpeza do canal, drenagem ou retirada do dente.",
+  cuidados: [
+    "Procure um dentista em 1 a 2 dias, mesmo que a dor melhore. Na rede pública, procure a unidade básica de saúde.",
+    "Tome os remédios como está na sua receita. O remédio para dor não cura a infecção do dente.",
+    "Se recebeu antibiótico, tome nos horários certos até o fim. Se não melhorar em 3 dias, procure atendimento de novo.",
+    "Prefira alimentos mornos e macios e mastigue do outro lado. Continue escovando os dentes com cuidado.",
+    "Não coloque comprimido, álcool ou outro produto sobre o dente ou a gengiva: pode queimar a boca.",
+    "Se aparecer febre com dor no corpo, não tome anti-inflamatório até ser examinado de novo: se for dengue, aumenta o risco de sangramento."
+  ],
+  volte: [
+    "Dificuldade para abrir a boca, para engolir a saliva ou para respirar.",
+    "Voz abafada, ou inchaço embaixo da língua, no queixo ou no pescoço.",
+    "Inchaço no rosto que aumenta ou chega perto do olho.",
+    "Febre alta, calafrios ou muito mal-estar."
+  ],
+  fontes: [
+    "Lockhart PB et al. ADA. Evidence-based clinical practice guideline on antibiotic use for the urgent management of pulpal- and periapical-related dental pain and intraoral swelling (J Am Dent Assoc 2019;150(11):906-921.e12; PMID 31668170; PMC8270006; ADA Chairside Guide 2019, https://www.ferris.edu/pharmacy/michigan-antibiotic-resistance-reduction-coalition/Documents/ADA_Chairside_Guide_Antibiotics_TNA.pdf): sem dentista para o tratamento definitivo de imediato: sem antibiótico na pulpite irreversível; na necrose pulpar com periodontite apical, sem antibiótico (receita de reserva se o tratamento não for viável); no abscesso apical agudo localizado, com ou sem sinal sistêmico (febre, mal-estar), amoxicilina 500 mg 3x/dia por 3–7 dias e encaminhamento urgente; só para imunocompetentes; alergia sem anafilaxia, cefalexina 500 mg 4x/dia; com anafilaxia, angioedema ou urticária, azitromicina 500 mg e depois 250 mg por 4 dias ou clindamicina 300 mg 4x/dia; falha, amoxicilina-clavulanato 500/125 mg 3x/dia por 7 dias ou associar metronidazol; reavaliar em 3 dias e suspender 24 h após a resolução. https://doi.org/10.1016/j.adaj.2019.08.020",
+    "Carrasco-Labra A et al. ADA/Pitt/Penn. Evidence-based clinical practice guideline for the pharmacologic management of acute dental pain in adolescents, adults, and older adults (J Am Dent Assoc 2024;155(2):102-117; PMID 38325969; PMC10919895): toothache sem tratamento odontológico imediato — AINE isolado (ex.: ibuprofeno 400 mg ou naproxeno sódico 440 mg) ou com paracetamol (ex.: 500 mg) como 1ª linha; paracetamol 1 g se AINE contraindicado; opioide só se falhar, por até 3 dias; máximos diários ibuprofeno 2.400 mg, naproxeno sódico 1.100 mg, paracetamol 4.000 mg. https://doi.org/10.1016/j.adaj.2023.10.009",
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 38 — Oral Manifestations of Disease: pulpite irreversível exige tratamento endodôntico ou extração; o abscesso periapical pode evoluir para osteomielite ou celulite do assoalho da boca (angina de Ludwig); idosos, diabéticos e usuários de corticoide podem ter pouca dor ou febre.",
+    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: não usar salicilatos nem anti-inflamatórios na suspeita (item 6.1.2); só dipirona e paracetamol (apêndice H). https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf"
+  ]
+},
+"olho-vermelho": {
+  titulo: "Olho vermelho, cisco no olho ou arranhão na córnea",
+  oque: "O olho ficou vermelho por irritação, por um cisco ou por um pequeno arranhão na parte da frente do olho (córnea). O arranhão pequeno costuma fechar em 1 a 2 dias. A mancha de sangue na parte branca do olho, sem dor, some sozinha em 1 a 3 semanas.",
+  cuidados: [
+    "Use os colírios como está na sua receita. Lave as mãos antes de pingar e não encoste o frasco no olho.",
+    "Não coce nem esfregue o olho.",
+    "Não use colírio que não foi receitado, principalmente colírio anestésico ou com corticoide: pode piorar a lesão.",
+    "Se usa lente de contato, não use a lente até ser liberado pelo oftalmologista.",
+    "Ao martelar, esmerilhar, cortar ou mexer com produtos químicos, use óculos de proteção."
+  ],
+  volte: [
+    "A visão piora ou fica embaçada.",
+    "A dor fica forte ou a luz incomoda muito.",
+    "Aparece mancha branca no olho ou pus.",
+    "Não melhora em 24 a 48 horas.",
+    "Dor no olho com dor de cabeça, náuseas ou vômitos."
+  ],
+  fontes: [
+    "Wipperman JL, Dorsch JN. Evaluation and management of corneal abrasions. Am Fam Physician 2013;87(2):114-120: irrigação com soro; se não sair, cotonete após anestésico tópico; anel de ferrugem retirado por profissional experiente em poucos dias; antibiótico tópico comum (antipseudomonas no usuário de lente de contato); sem oclusão; anestésico tópico para casa não recomendado; reavaliar em 24 h exceto abrasão pequena. https://www.aafp.org/pubs/afp/issues/2013/0115/p114.html",
+    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed. (2024), cap. 108 — Emergências oftalmológicas: síndrome do olho vermelho (sinais de alarme e diferencial por secreção, visão, dor, hiperemia, córnea e pupila); queimadura química (irrigação por 30–60 min, no mínimo 2 L, até pH 7,3–7,7); trauma penetrante (proteção sem curativo compressivo, TC de órbitas); glaucoma agudo (acetazolamida 500 mg VO, timolol 0,5% 1 gota, oftalmologia com urgência); celulite pré-septal (cefalexina 500 mg 6/6h ou amoxicilina-clavulanato 250–500 mg 8/8h VO por 10 dias; grave: internar e antibiótico EV); hiposfagma benigno, resolução em 1–3 semanas; na recidiva, avaliar distúrbio da coagulação; pH da irrigação até 7,3–7,7; timolol evitado na asma e no bloqueio cardíaco.",
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 34 — Disorders of the Eye: abrasão vista com fluoresceína e luz azul; everter a pálpebra superior; corpo estranho retirado com cotonete umedecido após colírio anestésico ou por irrigação com soro; reexaminar no dia seguinte; glaucoma agudo (dor, edema de córnea, náusea e vômitos) tratado com acetazolamida e colírios hipotensores.",
+    "Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023 (Ophthalmology 2024;131:P134): encaminhar se baixa visual, dor moderada ou intensa, secreção purulenta intensa, córnea acometida, herpes ou sem resposta; usuário de lente de contato com olho vermelho tem risco de ceratite."
+  ]
+},
+sincope: {
+  titulo: "Desmaio (síncope)",
+  oque: "O desmaio acontece quando chega menos sangue ao cérebro por alguns segundos, quase sempre porque a pressão e os batimentos caem de repente. Na sua avaliação de hoje não apareceram sinais de doença grave.",
+  cuidados: [
+    "Beba água ao longo do dia e não fique muitas horas sem líquidos, a não ser que um médico tenha mandado restringir líquidos por problema no coração ou nos rins.",
+    "Ao sentir que vai desmaiar (calor, suor, enjoo, visão escurecendo, fraqueza), deite-se e levante as pernas, ou sente-se. Se não puder, cruze as pernas apertando bem as coxas, ou segure uma mão na outra e puxe os braços com força, até passar.",
+    "Levante-se devagar: sente-se na cama por 1 minuto antes de ficar em pé, principalmente ao acordar, depois das refeições e à noite.",
+    "Evite ficar muito tempo em pé parado, lugares quentes e cheios, ficar muitas horas sem comer ou beber e excesso de bebida alcoólica.",
+    "Não pare nem mude os remédios de pressão por conta própria. Leve a lista dos seus remédios à consulta.",
+    "Se o desmaio foi sem nenhum aviso, durante esforço ou enquanto dirigia, ou se você dirige profissionalmente, não dirija e evite trabalho em altura, máquinas perigosas e nadar sozinho até ser reavaliado pelo médico.",
+    "Marque consulta no posto de saúde para reavaliação. Se desmaiar outra vez, a investigação precisa continuar."
+  ],
+  volte: [
+    "Desmaio de novo, principalmente durante esforço ou deitado.",
+    "Dor no peito, falta de ar, coração disparado ou batendo muito devagar.",
+    "Fraqueza, dormência ou formigamento de um lado do corpo, fala enrolada ou boca torta.",
+    "Dor de cabeça muito forte que começa de repente.",
+    "Dor forte na barriga, fezes pretas ou qualquer sangramento.",
+    "Machucou a cabeça na queda e tem dor de cabeça que piora, vômitos ou sonolência."
+  ],
+  fontes: [
+    "NHS. Fainting (revisado): deitar com as pernas elevadas ao sentir que vai desmaiar, levantar devagar, beber bastante água; quando procurar atendimento. https://www.nhs.uk/conditions/fainting/",
+    "Brignole M et al. 2018 ESC Guidelines for the diagnosis and management of syncope (Eur Heart J 2018;39:1883-1948): avaliação inicial com ECG e PA deitado e em pé; características de alto e baixo risco na emergência (tabela 5); escores não devem ser usados sozinhos (classe III); manobras de contrapressão; hidratação; orientação sobre direção. https://doi.org/10.1093/eurheartj/ehy037",
+    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 20 — Perda transitória da consciência: tabelas de risco, regra de San Francisco e Canadian Syncope Risk Score, observação de 2 h (baixo risco) e 6 h (médio e alto), afastamento de motoristas e pilotos até avaliação (conferência)."
+  ]
+},
+pericardite: {
+  titulo: "Inflamação da membrana do coração (pericardite)",
+  oque: "A pericardite é uma inflamação da membrana que envolve o coração, quase sempre depois de uma virose. Não é infarto. Com o tratamento, a dor costuma melhorar em poucos dias, e o tratamento completo dura cerca de 3 meses.",
+  cuidados: [
+    "Tome o anti-inflamatório nos horários da sua receita, sempre depois de comer, e diminua a dose nas datas escritas. Tome junto o protetor do estômago.",
+    "Tome a colchicina todos os dias por 3 meses, mesmo sem dor. Ela diminui a chance de a inflamação voltar.",
+    "A colchicina pode soltar o intestino. Se a diarreia for forte, ou vier com dor ou fraqueza nos músculos, procure o médico.",
+    "Não tome outros anti-inflamatórios junto. Antes de começar um antibiótico ou remédio para fungo, avise o médico que usa colchicina.",
+    "Evite exercício físico e esforço, como academia, corrida, futebol ou carregar peso, por pelo menos 1 mês e até o médico liberar. As atividades leves do dia a dia estão liberadas.",
+    "Faça o retorno com o médico em 1 a 2 semanas, com exame de sangue, para ajustar o tratamento.",
+    "Se estiver grávida ou puder estar, avise o médico: alguns destes remédios precisam ser trocados."
+  ],
+  volte: [
+    "Falta de ar, ou não consegue ficar deitado por causa da falta de ar.",
+    "Desmaio, tontura forte ou coração muito disparado.",
+    "Inchaço nas pernas ou na barriga.",
+    "Febre acima de 38 °C.",
+    "Dor no peito que piora ou que não melhora depois de 1 semana de tratamento.",
+    "Fezes pretas, vômito com sangue ou parecendo borra de café."
+  ],
+  fontes: [
+    "NHS. Pericarditis: anti-inflamatório e colchicina, repouso até melhorar, evitar exercício intenso; procurar atendimento se falta de ar ou piora. https://www.nhs.uk/conditions/pericarditis/",
+    "Schulz-Menger J, Collini V et al. 2025 ESC Guidelines for the management of myocarditis and pericarditis (Eur Heart J 2025;46(40):3952): diagnóstico (quadro clínico + mais de 1 critério adicional), avaliação inicial com ECG, eco, radiografia, PCR e troponina (classe I), estratificação (tabela 7), AAS 750-1.000 mg ou ibuprofeno 600-800 mg de 8/8h por 1-2 semanas com redução, colchicina 0,5 mg 1x/dia (< 70 kg ou insuficiência renal grave) ou 12/12h por 3-6 meses (tabela 13), IBP sempre com AAS/AINE, corticoide não como 1ª opção (classe III), sem sorologia viral de rotina, restrição de exercício até a remissão e por no mínimo 1 mês (classe I). https://doi.org/10.1093/eurheartj/ehaf192",
+    "Bula Anvisa do Colchis (colchicina 0,5 mg e 1 mg, Apsen): indicação em gota (uso na pericardite fora da bula); contraindicada na gestação e na doença renal, hepática ou gastrointestinal grave; TFG 30–59: 0,5 mg/dia; 15–29: a cada 2–3 dias; < 15: contraindicada; toxicidade com inibidores do CYP3A4 e da glicoproteína P (claritromicina, eritromicina, cetoconazol, fluconazol, diltiazem, verapamil, ciclosporina); miopatia com estatina; diarreia em mais de 10%. https://consultaremedios.com.br/colchis/bula",
+    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 37 — Pericardite aguda, derrame pericárdico e tamponamento cardíaco: exames iniciais, preditores de gravidade, ibuprofeno 600-800 mg 3x/dia, colchicina pelo peso por 3 meses (conferência)."
+  ]
+},
+ansiedade: {
+  titulo: "Crise de ansiedade (crise de pânico)",
+  oque: "É uma descarga de medo muito forte, com coração acelerado, falta de ar, tremor, formigamento e sensação de morte. Assusta, mas não causa dano ao corpo e costuma passar em 5 a 20 minutos. O exame de hoje não mostrou sinal de doença grave.",
+  cuidados: [
+    "Na próxima crise, sente-se e respire devagar: puxe o ar pelo nariz contando até 5 e solte pela boca contando até 5, por pelo menos 5 minutos.",
+    "Não respire dentro de saco de papel: pode baixar o oxigênio do sangue.",
+    "Evite café, energético, bebida alcoólica e outras drogas, que pioram as crises.",
+    "Se recebeu calmante aqui, ele dá sono: não dirija nem beba bebida alcoólica hoje.",
+    "Procure a Unidade Básica de Saúde para acompanhamento. Psicoterapia e, se necessário, remédio de uso contínuo tratam as crises.",
+    "Se tiver pensamentos de se machucar ou de tirar a própria vida, ligue para o CVV no 188 (gratuito, 24 horas) e conte para alguém de confiança."
+  ],
+  volte: [
+    "Pensamentos de se machucar ou de tirar a própria vida.",
+    "Dor no peito que vem com esforço, que não passa em 20 minutos ou com suor frio.",
+    "Falta de ar forte, dor ao respirar, tosse com sangue ou perna inchada e dolorida.",
+    "Desmaio, ou coração disparado que não melhora com o descanso.",
+    "Confusão, fala enrolada, fraqueza ou dormência de um lado do corpo.",
+    "Tremor, suor e agitação depois de parar a bebida alcoólica ou um calmante."
+  ],
+  fontes: [
+    "NICE CG113. Generalised anxiety disorder and panic disorder in adults: management, 2011 (atualizada em 15/06/2020): 1.3.6 — crise de pânico no pronto-socorro: perguntar se já trata, só os exames mínimos para excluir causa física aguda, em geral sem internação, encaminhar à atenção primária com informação escrita sobre a crise e fontes de apoio; 1.3.20 — benzodiazepínico tem pior desfecho a longo prazo e não deve ser prescrito no transtorno de pânico; 1.2.26 — na ansiedade generalizada, só como medida curta na crise. https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+    "NHS. Panic disorder (revisado em 22/08/2023): a crise costuma durar 5 a 20 minutos, assusta mas não causa dano físico; tratamento com terapia (TCC) e remédio. https://www.nhs.uk/mental-health/conditions/panic-disorder/",
+    "NHS. Breathing exercises for stress (revisado em 12/06/2026): respirar pelo nariz e soltar pela boca, contando de 1 a 5 na entrada e na saída, por pelo menos 5 minutos. https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/",
+    "Callaham M. Hypoxic hazards of traditional paper bag rebreathing in hyperventilating patients (Ann Emerg Med 1989;18:622-8): queda de PO2 com o saco de papel e mortes quando aplicado a pacientes hipoxêmicos ou em isquemia miocárdica. https://doi.org/10.1016/s0196-0644(89)80515-3",
+    "Katon WJ. Clinical practice: panic disorder (N Engl J Med 2006;354:2360-7) — diagnóstico diferencial clínico (doença cardíaca e pulmonar, arritmia, hipertireoidismo, hipoglicemia, feocromocitoma, abstinência e estimulantes). https://doi.org/10.1056/NEJMcp052466",
+    "CVV — Centro de Valorização da Vida: 188, ligação gratuita, 24 horas, em todo o Brasil (acordo com o Ministério da Saúde). https://cvv.org.br/",
+    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. Manole, 2024 — cap. 60, Emergências neuropsiquiátricas: avaliação do risco de suicídio pelos fatores de risco e proteção, critérios de internação (ideação ou plano, transtorno grave, baixo suporte, tentativa grave), alta com responsável e meios letais guardados."
+  ]
+},
+"retencao-urinaria": {
+  titulo: "Retenção de urina e cuidados com a sonda",
+  oque: "A bexiga encheu e a urina não conseguia sair, na maioria das vezes por aumento da próstata ou pelo efeito de algum remédio. A bexiga foi esvaziada com uma sonda. Se você foi para casa com ela, a sonda deve ficar até a consulta para retirada, em alguns dias.",
+  cuidados: [
+    "Mantenha a bolsa sempre abaixo do nível da bexiga e sem dobras no tubo. Esvazie quando estiver entre a metade e três quartos cheia.",
+    "Lave as mãos com água e sabão antes e depois de mexer na sonda ou na bolsa. Lave todos os dias, com água e sabão neutro, a região onde a sonda entra.",
+    "Beba água ao longo do dia, para a urina ficar clara, e evite o intestino preso.",
+    "Não puxe a sonda e não tente retirá-la em casa.",
+    "Tome a tansulosina todos os dias. Ela pode causar tontura: levante-se devagar.",
+    "Não use remédio para gripe, alergia, enjoo ou para dormir sem orientação médica: alguns prendem a urina.",
+    "Vá à consulta marcada com o urologista para a retirada da sonda e leve os exames."
+  ],
+  volte: [
+    "A urina parou de sair pela sonda e a barriga está inchando ou doendo.",
+    "Febre, calafrios ou dor nas costas.",
+    "Urina com sangue vivo ou com coágulos.",
+    "A sonda saiu ou está vazando muita urina em volta.",
+    "Dormência na região genital ou anal, fraqueza nas pernas ou perda do controle das fezes.",
+    "Grande quantidade de urina com muita sede, tontura forte ou desmaio.",
+    "Não conseguir urinar de novo, depois do esvaziamento ou da retirada da sonda."
+  ],
+  fontes: [
+    "NHS. Living with a urinary catheter (revisado em 03/02/2023): lavar a pele com água e sabão todo dia, lavar as mãos, beber líquidos para a urina ficar clara, evitar constipação, sem dobras e bolsa abaixo da bexiga, esvaziar entre metade e três quartos; procurar atendimento se sonda bloqueada, vazamento, sangue na urina, espasmos fortes, febre. https://www.nhs.uk/conditions/urinary-catheters/living-with/",
+    "Serlin DC, Heidelbaugh JJ, Stoffel JT. Urinary Retention in Adults: Evaluation and Initial Management (Am Fam Physician 2018;98(8):496-503; PMID 30277739): causas (HPB, estenose, prostatite, fármacos anticolinérgicos, antidepressivos, anti-histamínicos, simpaticomiméticos, opioides; neurológicas; na mulher, prolapso, massa pélvica e pós-parto), drenagem completa, alfabloqueador antes da retirada da sonda e prova de micção após 3 a 7 dias; encaminhar se falha da prova ou resíduo > 300 mL. https://www.aafp.org/pubs/afp/issues/2018/1015/p496.html",
+    "Halbgewachs C, Domes T. Postobstructive diuresis: pay close attention to urinary retention (Can Fam Physician 2015;61(2):137-42; PMID 25821871): diurese pós-obstrutiva = ≥ 200 mL/h por 2 h seguidas ou ≥ 3 L em 24 h; risco com retenção crônica, azotemia, edema, insuficiência cardíaca e confusão; monitorar diurese, sinais vitais e eletrólitos. https://www.cfp.ca/content/61/2/137",
+    "GIRFT/NHS England. National Suspected Cauda Equina Syndrome (CES) Pathway, fevereiro de 2023, atualizado até março de 2026: sintomas novos ou em piora há 14 dias ou menos; RM de emergência o mais rápido possível e no máximo em até 4 h do pedido; ultrassom de bexiga só como complemento (resíduo > 200 mL aumenta a chance, < 200 mL não exclui). https://gettingitrightfirsttime.co.uk/wp-content/uploads/2026/04/National-Suspected-Cauda-Equina-Pathway-March-2026.pdf",
+    "Bula Anvisa do Secotex (cloridrato de tansulosina 0,4 mg, comprimido revestido de liberação prolongada, Boehringer Ingelheim): 1 comprimido ao dia, com ou sem alimento, inteiro, sem partir nem mastigar; tontura e hipotensão; síndrome da íris flácida (avisar antes de cirurgia de catarata ou glaucoma; não iniciar se cirurgia programada); contraindicado na insuficiência hepática grave. Genéricos em cápsula: 1 cápsula após o café da manhã. https://consultaremedios.com.br/secotex/bula"
+  ]
+},
+"escroto-agudo": {
+  titulo: "Dor e inchaço no testículo (epididimite ou orquite)",
+  oque: "É uma inflamação, quase sempre por infecção, no canal que fica atrás do testículo. Em pessoas mais jovens, costuma vir de infecção sexualmente transmissível; em pessoas mais velhas, de infecção urinária. Com o tratamento, a dor melhora em poucos dias, e o inchaço pode levar semanas para sumir.",
+  cuidados: [
+    "Tome o antibiótico até o fim, mesmo que melhore antes.",
+    "Use cueca firme ou suspensório escrotal. Compressa fria, enrolada num pano, por 15 a 20 minutos alivia a dor.",
+    "Fique em repouso nos primeiros dias e, deitado, mantenha o escroto apoiado e elevado com uma toalha dobrada.",
+    "Não tenha relações sexuais até terminar o tratamento e não ter mais sintomas. Sua parceria sexual também precisa ser examinada e tratada.",
+    "Faça os exames de HIV, sífilis e hepatites que foram pedidos.",
+    "Se a febre ou a dor não melhorarem em 3 dias, volte para nova avaliação."
+  ],
+  volte: [
+    "Dor muito forte e súbita no testículo, com ou sem vômitos.",
+    "Testículo que sobe, fica duro ou muda de posição.",
+    "Pele do escroto escura, roxa ou com bolhas, cheiro forte, ou dor que aumenta muito.",
+    "Febre alta, calafrios, tontura ou mal-estar forte.",
+    "Caroço duro e doloroso na virilha que não volta para dentro.",
+    "Vômitos que impedem tomar o remédio."
+  ],
+  fontes: [
+    "NHS. Epididymitis (revisado em 06/08/2024): pronto-socorro se dor súbita e insuportável no testículo (torção); antibiótico até o fim; melhora em poucos dias, recuperação completa pode levar até 3 meses; testar parcerias; causa por IST mais comum abaixo de 35 anos. https://www.nhs.uk/conditions/epididymitis/",
+    "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 — Epididymitis (MMWR Recomm Rep 2021;70(4):1-187): clamídia/gonococo provável: ceftriaxona 500 mg IM dose única + doxiciclina 100 mg VO 2x/dia por 10 dias; sexo anal insertivo: ceftriaxona 500 mg IM + levofloxacino 500 mg 1x/dia por 10 dias; só entéricos: levofloxacino 500 mg 1x/dia por 10 dias; ≥ 150 kg: ceftriaxona 1 g; repouso, elevação escrotal e AINE; NAAT de clamídia e gonococo; reavaliar se sem melhora em 72 h; tratar parcerias dos últimos 60 dias; manter alta suspeita de torção. https://www.cdc.gov/std/treatment-guidelines/epididymitis.htm",
+    "EAU Guidelines on Urological Infections, 2026 (Bonkat G et al.), cap. 3.12 Acute epididymitis e 3.13 Fournier's gangrene: urocultura de jato médio e NAAT no primeiro jato; baixo risco de gonococo: levofloxacino 500 mg 1x/dia por 10 a 14 dias; gonococo provável: ceftriaxona 1 g IM/EV + doxiciclina 200 mg e depois 100 mg 2x/dia por 10 a 14 dias; sem atividade sexual: quinolona ou SMX-TMP; quinolona não trata gonococo; ECR: ciprofloxacino superior à pivampicilina > 40 anos; AINE, frio local e elevação do escroto; Fournier: antibiótico de largo espectro na chegada (tabela 11: piperacilina-tazobactam 4,5 g EV 6/6h ou 8/8h + vancomicina 15 mg/kg 12/12h; meropenem 1 g EV 8/8h) e desbridamento em até 24 h. https://uroweb.org/guidelines/urological-infections/chapter/the-guideline",
+    "EAU Guidelines on Paediatric Urology, 2026 — Acute scrotum: torção exige tratamento imediato (forte); salvamento melhor nas primeiras 4 a 6 h; diagnóstico clínico, o Doppler não deve atrasar a cirurgia e fluxo presente não exclui torção; TWIST ajuda, mas não substitui o exame; distorção manual pode ser tentada enquanto se aguarda a cirurgia, sem atrasá-la; torção de apêndice: conservador com AINE. https://uroweb.org/guidelines/paediatric-urology/chapter/acute-scrotum",
+    "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 (versão vigente), cap. 8 (uretrites; quadro 37, p. 127): ceftriaxona 500 mg IM dose única nas infecções gonocócicas; resistência alta do gonococo ao ciprofloxacino no Brasil; orquiepididimite como complicação; testagem de HIV, sífilis e hepatites e tratamento das parcerias. Não traz esquema próprio para epididimite. https://www.saude.sp.gov.br/resources/crt/assistencia/pcdt/pcdtists2022.pdf"
+  ]
+},
 };
 if (typeof module!=="undefined") module.exports={ALTA};

@@ -78,7 +78,7 @@ const QUEIXAS = [
   ],
   caminhos: [
     { rot: "Vertigem periférica: VPPB (Dix-Hallpike positivo) ou neurite com HINTS periférico", conduta: "vertigem" },
-    { rot: "Síncope reflexa (vasovagal, situacional) ou ortostática, sem sinal de alto risco e com ECG normal: alta com orientação" },
+    { rot: "Síncope reflexa (vasovagal, situacional) ou ortostática, sem sinal de alto risco e com ECG normal: alta com orientação", conduta: "sincope" },
     { rot: "Sinais neurológicos ou HINTS central", conduta: "avc" },
     { rot: "FC baixa ou bloqueio AV", conduta: "bradicardia" },
     { rot: "Taquicardia ou palpitação antes da síncope", conduta: "taquicardia" },
@@ -127,7 +127,9 @@ const QUEIXAS = [
     { rot: "Queimação epigástrica, azia", conduta: "dispepsia" },
     { rot: "Diarreia e vômitos", conduta: "geca" },
     { rot: "Hematêmese ou melena", conduta: "hda" },
-    { rot: "Dor pélvica com corrimento, febre ou dor à mobilização do colo", conduta: "dip" }
+    { rot: "Dor pélvica com corrimento, febre ou dor à mobilização do colo", conduta: "dip" },
+    { rot: "Dor ou inchaço no testículo ou no escroto (torção, epididimite, hérnia)", conduta: "escroto-agudo" },
+    { rot: "Não consegue urinar, com bexiga palpável acima do púbis", conduta: "retencao-urinaria" }
   ],
   escores: ["AIR ou Adult Appendicitis Score (apendicite)", "Critérios de Tóquio 2018 (colangite e colecistite)"],
   fontes: [
@@ -143,7 +145,9 @@ const QUEIXAS = [
     "Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain (Circulation 2021;144:e368) — ECG em até 10 min; apresentações atípicas.",
     "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257).",
     "Manterola C et al. Analgesia in patients with acute abdominal pain (Cochrane Database Syst Rev 2011;CD005660).",
-    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 25 — Dor abdominal (tab. 4, sinais de alarme); Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 16 — Abdominal Pain."
+    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 25 — Dor abdominal (tab. 4, sinais de alarme); Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 16 — Abdominal Pain.",
+    "EAU Guidelines on Paediatric Urology, 2026 — Acute scrotum: torção exige tratamento imediato (forte); salvamento melhor nas primeiras 4 a 6 h; diagnóstico clínico, o Doppler não deve atrasar a cirurgia e fluxo presente não exclui torção; TWIST ajuda, mas não substitui o exame; distorção manual pode ser tentada enquanto se aguarda a cirurgia, sem atrasá-la; torção de apêndice: conservador com AINE. https://uroweb.org/guidelines/paediatric-urology/chapter/acute-scrotum",
+    "Serlin DC, Heidelbaugh JJ, Stoffel JT. Urinary Retention in Adults: Evaluation and Initial Management (Am Fam Physician 2018;98(8):496-503; PMID 30277739): causas (HPB, estenose, prostatite, fármacos anticolinérgicos, antidepressivos, anti-histamínicos, simpaticomiméticos, opioides; neurológicas; na mulher, prolapso, massa pélvica e pós-parto), drenagem completa, alfabloqueador antes da retirada da sonda e prova de micção após 3 a 7 dias; encaminhar se falha da prova ou resíduo > 300 mL. https://www.aafp.org/pubs/afp/issues/2018/1015/p496.html"
   ] },
 { id: "dor-toracica", nome: "Dor torácica", cor: "rose",
   alarme: [
@@ -171,7 +175,7 @@ const QUEIXAS = [
     { rot: "TEP", conduta: "tep" },
     { rot: "Dispneia com congestão (edema agudo de pulmão)", conduta: "eap" },
     { rot: "Palpitação ou taquicardia com a dor", conduta: "taquicardia" },
-    { rot: "Pericardite sem sinal de gravidade: dor pleurítica que melhora inclinado para a frente, atrito, supra difuso" },
+    { rot: "Pericardite sem sinal de gravidade: dor pleurítica que melhora inclinado para a frente, atrito, supra difuso", conduta: "pericardite" },
     { rot: "Queimação retroesternal ou epigástrica, depois de afastar causa cardíaca", conduta: "dispepsia" },
     { rot: "Crise de ansiedade, só depois de ECG e exclusão das causas graves", conduta: "ansiedade" }
   ],
@@ -314,7 +318,8 @@ const QUEIXAS = [
     { rot: "Febre com disúria, dor lombar e Giordano positivo (pielonefrite)", conduta: "itu" },
     { rot: "Dor em queimação, em faixa, unilateral, com ou sem vesículas", conduta: "zoster" },
     { rot: "Dor inflamatória crônica (4 de 5 critérios ASAS) sem sinal de alarme: analgesia e encaminhamento ambulatorial à reumatologia" },
-    { rot: "Sem melhora após 6 semanas de tratamento e candidato a cirurgia ou infiltração: RM eletiva e encaminhamento à coluna" }
+    { rot: "Sem melhora após 6 semanas de tratamento e candidato a cirurgia ou infiltração: RM eletiva e encaminhamento à coluna" },
+    { rot: "Retenção urinária: afastar cauda equina antes de sondar e liberar", conduta: "retencao-urinaria" }
   ],
   escores: ["STarT Back (risco de dor persistente; NICE NG59)", "Critérios ASAS de dor lombar inflamatória (4 de 5)", "ADD-RS (se houver suspeita de dissecção de aorta)"],
   fontes: [
@@ -332,7 +337,9 @@ const QUEIXAS = [
     "Mazzolai L et al. 2024 ESC Guidelines for the management of peripheral arterial and aortic diseases (Eur Heart J 2024;45(36):3538-3700; PMID 39210722): ADD-RS; ADD-RS 2 a 3, angiotomografia; ADD-RS 0 a 1, D-dímero. https://doi.org/10.1093/eurheartj/ehae179",
     "Sieper J et al. New criteria for inflammatory back pain in patients with chronic back pain: ASAS (Ann Rheum Dis 2009;68(6):784-788). https://doi.org/10.1136/ard.2008.101501",
     "Choosing Wisely Canada, Emergency Medicine (atualizado em setembro de 2024): não pedir imagem lombossacral na lombalgia não traumática sem sinais de alarme. https://choosingwiselycanada.org/recommendation/emergency-medicine/",
-    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 28 — Lombalgia; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 18 — Low Back Pain."
+    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 28 — Lombalgia; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 18 — Low Back Pain.",
+    "GIRFT/NHS England. National Suspected Cauda Equina Syndrome (CES) Pathway, fevereiro de 2023, atualizado até março de 2026: sintomas novos ou em piora há 14 dias ou menos; RM de emergência o mais rápido possível e no máximo em até 4 h do pedido; ultrassom de bexiga só como complemento (resíduo > 200 mL aumenta a chance, < 200 mL não exclui). https://gettingitrightfirsttime.co.uk/wp-content/uploads/2026/04/National-Suspected-Cauda-Equina-Pathway-March-2026.pdf",
+    "Serlin DC, Heidelbaugh JJ, Stoffel JT. Urinary Retention in Adults: Evaluation and Initial Management (Am Fam Physician 2018;98(8):496-503; PMID 30277739): causas (HPB, estenose, prostatite, fármacos anticolinérgicos, antidepressivos, anti-histamínicos, simpaticomiméticos, opioides; neurológicas; na mulher, prolapso, massa pélvica e pós-parto), drenagem completa, alfabloqueador antes da retirada da sonda e prova de micção após 3 a 7 dias; encaminhar se falha da prova ou resíduo > 300 mL. https://www.aafp.org/pubs/afp/issues/2018/1015/p496.html"
   ] },
 { id: "dor-musculoesqueletica", nome: "Dor musculoesquelética", cor: "teal",
   alarme: [
@@ -396,6 +403,74 @@ const QUEIXAS = [
     "Richette P et al. 2018 updated EULAR evidence-based recommendations for the diagnosis of gout (Ann Rheum Dis 2020;79(1):31-38; PMID 31167758). https://doi.org/10.1136/annrheumdis-2019-215315",
     "Choosing Wisely Canada, Emergency Medicine (atualizado em setembro de 2024): sem RX de tornozelo ou pé com Ottawa negativa; sem RX cervical com regra canadense negativa. https://choosingwiselycanada.org/recommendation/emergency-medicine/",
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 64 — Trauma cervical, cap. 68 — Fratura exposta e cap. 98 — Monoartrite aguda; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 19 — Neck Pain, cap. 135 — Infectious Arthritis e cap. 382 — Approach to Articular and Musculoskeletal Disorders."
+  ] },
+{ id: "dor-de-dente", nome: "Dor de dente / Face inchada", cor: "amber",
+  alarme: [
+    { t: "Trismo, disfagia, salivação que não consegue engolir, voz abafada, estridor ou dispneia", acao: "Infecção de espaço profundo do pescoço: não liberar; proteger a via aérea, TC de pescoço com contraste, antibiótico EV conforme o protocolo da unidade e cirurgia bucomaxilofacial ou otorrino." },
+    { t: "Edema endurecido do assoalho da boca, língua elevada ou edema submandibular bilateral", acao: "Angina de Ludwig: risco de obstrução da via aérea; não liberar, preparar via aérea difícil, antibiótico EV e cirurgia bucomaxilofacial de urgência." },
+    { t: "Febre alta, taquicardia, hipotensão ou confusão", acao: "Sepse de foco odontogênico: hemoculturas, lactato e antibiótico EV na 1ª hora (ver Sepse); procurar coleção cervical." },
+    { t: "Edema periorbitário, proptose, dor à movimentação ocular ou baixa visual", acao: "Celulite orbitária ou extensão para o seio maxilar: TC de órbitas e seios com contraste, internação e oftalmologia." },
+    { t: "Dor na mandíbula ou nos dentes ao esforço, com dispneia, sudorese ou náusea", acao: "Pode ser isquemia miocárdica: ECG em até 10 min e troponina (ver Dor torácica)." }
+  ],
+  perguntar: [
+    "Dor ao frio, ao calor ou ao doce, que passa logo (pulpite reversível) ou que persiste e acorda à noite (pulpite irreversível)",
+    "Dor ao mastigar ou ao tocar no dente; inchaço na gengiva ou no rosto; pus na boca",
+    "Febre, mal-estar, dificuldade para abrir a boca, para engolir ou para respirar",
+    "Alergia a penicilina e tipo de reação (anafilaxia, angioedema, urticária ou outra)",
+    "Diabetes, imunossupressão, corticoide, gestação, doença renal, úlcera ou anticoagulante",
+    "Exame: temperatura, dente doloroso à percussão, gengiva, abertura da boca, assoalho da boca, linfonodos e pescoço"
+  ],
+  caminhos: [
+    { rot: "Dor de dente sem inchaço (dor ao frio, ao calor ou ao mastigar): analgesia e dentista, sem antibiótico", conduta: "odontalgia" },
+    { rot: "Abscesso dentário (inchaço ou pus na gengiva) sem dentista em 1 a 2 dias, ou com febre, mal-estar ou linfonodo, sem sinal de gravidade: antibiótico e dentista com urgência", conduta: "odontalgia" },
+    { rot: "Dor de garganta com trismo ou desvio da úvula (abscesso periamigdaliano)", conduta: "amigdalite" },
+    { rot: "Dor em vários dentes superiores com congestão nasal e secreção (sinusite)", conduta: "sinusite" },
+    { rot: "Dor em queimação com vesículas num lado da face (herpes-zóster)", conduta: "zoster" }
+  ],
+  escores: [],
+  fontes: [
+    "Lockhart PB et al. ADA. Evidence-based clinical practice guideline on antibiotic use for the urgent management of pulpal- and periapical-related dental pain and intraoral swelling (J Am Dent Assoc 2019;150(11):906-921.e12; PMID 31668170; PMC8270006; ADA Chairside Guide 2019, https://www.ferris.edu/pharmacy/michigan-antibiotic-resistance-reduction-coalition/Documents/ADA_Chairside_Guide_Antibiotics_TNA.pdf): sem dentista para o tratamento definitivo de imediato: sem antibiótico na pulpite irreversível; na necrose pulpar com periodontite apical, sem antibiótico (receita de reserva se o tratamento não for viável); no abscesso apical agudo localizado, com ou sem sinal sistêmico (febre, mal-estar), amoxicilina 500 mg 3x/dia por 3–7 dias e encaminhamento urgente; só para imunocompetentes; alergia sem anafilaxia, cefalexina 500 mg 4x/dia; com anafilaxia, angioedema ou urticária, azitromicina 500 mg e depois 250 mg por 4 dias ou clindamicina 300 mg 4x/dia; falha, amoxicilina-clavulanato 500/125 mg 3x/dia por 7 dias ou associar metronidazol; reavaliar em 3 dias e suspender 24 h após a resolução. https://doi.org/10.1016/j.adaj.2019.08.020",
+    "Carrasco-Labra A et al. ADA/Pitt/Penn. Evidence-based clinical practice guideline for the pharmacologic management of acute dental pain in adolescents, adults, and older adults (J Am Dent Assoc 2024;155(2):102-117; PMID 38325969; PMC10919895): toothache sem tratamento odontológico imediato — AINE isolado (ex.: ibuprofeno 400 mg ou naproxeno sódico 440 mg) ou com paracetamol (ex.: 500 mg) como 1ª linha; paracetamol 1 g se AINE contraindicado; opioide só se falhar, por até 3 dias; máximos diários ibuprofeno 2.400 mg, naproxeno sódico 1.100 mg, paracetamol 4.000 mg. https://doi.org/10.1016/j.adaj.2023.10.009",
+    "CDC. Dentists: Be Antibiotics Aware — Treating patients with dental pain and swelling (2022, a partir da ADA 2019): tabela por cenário, encaminhamento urgente se piora, infecção de espaço profundo ou sepse. https://www.cdc.gov/antibiotic-use/pdfs/ada-treatment-guidelines-508.pdf",
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 38 — Oral Manifestations of Disease: pulpite irreversível exige tratamento endodôntico ou extração; o abscesso periapical pode evoluir para osteomielite ou celulite do assoalho da boca (angina de Ludwig); idosos, diabéticos e usuários de corticoide podem ter pouca dor ou febre.",
+    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed. (2024), cap. 47 — Infecções de vias aéreas superiores: disfagia, disfonia, babação, estridor e edema cervical sugerem infecção de espaço profundo (parafaríngeo, periamigdaliano, submandibular/Ludwig).",
+    "Evans L et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021 (Crit Care Med 2021;49(11):e1063-e1143): antibiótico em até 1 h no choque ou sepse provável. https://doi.org/10.1097/CCM.0000000000005337",
+    "Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain (Circulation 2021;144(22):e368-e454; PMID 34709879): dor na mandíbula pode ser equivalente isquêmico; ECG em até 10 min. https://doi.org/10.1161/CIR.0000000000001029"
+  ] },
+{ id: "olho-vermelho", nome: "Olho vermelho", cor: "indigo",
+  alarme: [
+    { t: "Produto químico no olho", acao: "Irrigar já, antes de examinar: SF ou Ringer lactato por 30–60 min (no mínimo 2 L), everter pálpebras, até pH 7,3–7,7; depois, oftalmologia." },
+    { t: "Trauma penetrante, pupila irregular, hifema, ou martelar ou esmerilhar metal", acao: "Suspeita de perfuração ou corpo estranho intraocular: proteger o olho sem pressionar, jejum, TC de órbitas sem contraste e oftalmologia de urgência." },
+    { t: "Dor intensa com baixa visual, pupila em média midríase fixa, córnea turva, náuseas ou vômitos", acao: "Glaucoma agudo de ângulo fechado: acetazolamida 500 mg VO (não na alergia a sulfa nem na insuficiência renal ou hepática grave) e timolol 0,5% 1 gota (não na asma, DPOC grave, bradicardia ou BAV), analgesia e oftalmologia de urgência." },
+    { t: "Usuário de lente de contato com olho vermelho, dor ou lesão branca na córnea", acao: "Ceratite (Pseudomonas, Acanthamoeba): suspender a lente, sem oclusão, oftalmologia no mesmo dia." },
+    { t: "Baixa visual, fotofobia, hiperemia ao redor da córnea ou hipópio", acao: "Ceratite, uveíte ou endoftalmite: oftalmologia no mesmo dia; não iniciar corticoide tópico." },
+    { t: "Edema palpebral com proptose, dor ao mexer o olho, diplopia ou febre", acao: "Celulite orbitária: TC de órbitas com contraste, antibiótico EV e internação; oftalmologia." },
+    { t: "Vesículas na ponta do nariz ou na pálpebra, com olho vermelho", acao: "Zoster oftálmico: antiviral oral (ver Herpes-zóster) e oftalmologia no mesmo dia." }
+  ],
+  perguntar: [
+    "Visão: piorou? Medir a acuidade de cada olho antes de qualquer colírio",
+    "Dor (sensação de areia ou dor profunda), fotofobia, secreção (aquosa ou purulenta) e coceira",
+    "Trauma, cisco, metal (martelar, esmerilhar), produto químico; uso de lente de contato",
+    "Início súbito, um ou os dois olhos; cefaleia, náuseas ou vômitos",
+    "Cirurgia ocular recente, glaucoma, herpes ocular, doença reumatológica, anticoagulante, hipertensão",
+    "Exame: acuidade, pupilas, hiperemia difusa ou ao redor da córnea, córnea, fluoresceína, pálpebra superior evertida"
+  ],
+  caminhos: [
+    { rot: "Secreção, coceira ou sensação de areia, córnea limpa e visão normal (conjuntivite)", conduta: "conjuntivite" },
+    { rot: "Cisco ou corpo estranho superficial, ou arranhão que cora com fluoresceína", conduta: "olho-vermelho" },
+    { rot: "Mancha de sangue na parte branca do olho, sem dor e sem baixa visual (hemorragia subconjuntival)", conduta: "olho-vermelho" },
+    { rot: "Dor intensa, baixa visual, fotofobia ou pupila alterada (ceratite, uveíte, glaucoma agudo): oftalmologia de urgência" },
+    { rot: "Edema e calor da pálpebra sem proptose, com visão, pupilas e movimentos oculares normais (celulite pré-septal): cefalexina 500 mg 6/6h ou amoxicilina-clavulanato 8/8h VO por 10 dias; toxemia, internar" }
+  ],
+  escores: [],
+  fontes: [
+    "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed. (2024), cap. 108 — Emergências oftalmológicas: síndrome do olho vermelho (sinais de alarme e diferencial por secreção, visão, dor, hiperemia, córnea e pupila); queimadura química (irrigação por 30–60 min, no mínimo 2 L, até pH 7,3–7,7); trauma penetrante (proteção sem curativo compressivo, TC de órbitas); glaucoma agudo (acetazolamida 500 mg VO, timolol 0,5% 1 gota, oftalmologia com urgência); celulite pré-septal (cefalexina 500 mg 6/6h ou amoxicilina-clavulanato 250–500 mg 8/8h VO por 10 dias; grave: internar e antibiótico EV); hiposfagma benigno, resolução em 1–3 semanas; na recidiva, avaliar distúrbio da coagulação; pH da irrigação até 7,3–7,7; timolol evitado na asma e no bloqueio cardíaco.",
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 34 — Disorders of the Eye: abrasão vista com fluoresceína e luz azul; everter a pálpebra superior; corpo estranho retirado com cotonete umedecido após colírio anestésico ou por irrigação com soro; reexaminar no dia seguinte; glaucoma agudo (dor, edema de córnea, náusea e vômitos) tratado com acetazolamida e colírios hipotensores.",
+    "Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023 (Ophthalmology 2024;131:P134): encaminhar se baixa visual, dor moderada ou intensa, secreção purulenta intensa, córnea acometida, herpes ou sem resposta; usuário de lente de contato com olho vermelho tem risco de ceratite.",
+    "American Academy of Ophthalmology. Bacterial Keratitis Preferred Practice Pattern (aprovado em 22/09/2023; publicado em 2024): lente de contato é o principal fator de risco; tratamento por oftalmologista com colírio antibiótico intensivo. https://www.aao.org/education/preferred-practice-pattern/bacterial-keratitis-ppp-2023",
+    "Gedde SJ et al. American Academy of Ophthalmology. Primary Angle-Closure Disease Preferred Practice Pattern 2025 (Ophthalmology 2026;133(4):P153-P201): crise aguda (dor ocular, cefaleia, náusea e vômitos, visão borrada, edema de córnea) exige redução imediata da pressão intraocular e depois iridotomia. https://www.aao.org/education/preferred-practice-pattern/primary-angle-closure-disease-ppp",
+    "Wipperman JL, Dorsch JN. Evaluation and management of corneal abrasions. Am Fam Physician 2013;87(2):114-120: irrigação com soro; se não sair, cotonete após anestésico tópico; anel de ferrugem retirado por profissional experiente em poucos dias; antibiótico tópico comum (antipseudomonas no usuário de lente de contato); sem oclusão; anestésico tópico para casa não recomendado; reavaliar em 24 h exceto abrasão pequena. https://www.aafp.org/pubs/afp/issues/2013/0115/p114.html",
+    "Expert Panel on Neurological Imaging. ACR Appropriateness Criteria Vision Loss (J Am Coll Radiol 2025;22(11S):S738-S765; PMID 41193055): a maior parte da doença não traumática do globo é diagnosticada pelo exame oftalmológico, sem imagem; no trauma com suspeita de lesão orbitária, TC de órbitas sem contraste. https://doi.org/10.1016/j.jacr.2025.08.030"
   ] }
 ];
 if (typeof module!=="undefined") module.exports={QUEIXAS};

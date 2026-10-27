@@ -5243,9 +5243,16 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Psiquiatria (interconsulta): ideação ou comportamento suicida, conforme risco e fatores de proteção",
+    "t": "CAPS: crises graves e recorrentes, ideação suicida sem critério de internação, ou uso de álcool e drogas",
     "f": [
-     4
+     7
+    ]
+   },
+   {
+    "t": "Psiquiatria (interconsulta) ou internação: ideação com plano, tentativa recente, transtorno grave ou baixo suporte",
+    "f": [
+     4,
+     8
     ]
    },
    {
@@ -5265,9 +5272,10 @@ const EXAMES = {
     ]
    },
    {
-    "t": "ECG em até 10 min: dor torácica",
+    "t": "ECG em até 10 min: dor torácica, palpitação ou síncope",
     "f": [
-     3
+     3,
+     5
     ]
    },
    {
@@ -5280,6 +5288,18 @@ const EXAMES = {
     "t": "Glicemia capilar: sintomas adrenérgicos em diabético ou rebaixamento",
     "f": [
      4
+    ]
+   },
+   {
+    "t": "D-dímero ou angiotomografia de tórax: dispneia, dor pleurítica ou fator de risco para TEP, conforme Wells e PERC",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "TSH e T4 livre: tremor, perda de peso, bócio ou taquicardia persistente",
+    "f": [
+     5
     ]
    },
    {
@@ -5312,9 +5332,13 @@ const EXAMES = {
   "div": [],
   "fontes": [
    "NICE 2011 — National Institute for Health and Care Excellence. CG113 Generalised anxiety disorder and panic disorder in adults: management, 2011 (atualizada em 15/06/2020), recomendação 1.3.6 (crise de pânico no pronto-socorro). https://www.nice.org.uk/guidance/cg113",
-   "ACEP 2017 — American College of Emergency Physicians Clinical Policies Subcommittee; Nazarian DJ et al. Clinical policy: critical issues in the diagnosis and management of the adult psychiatric patient in the emergency department. Ann Emerg Med 2017;69(4):480-498. PMID 28335913. https://doi.org/10.1016/j.annemergmed.2017.01.036 (questão 1: recomendação nível C contra exames de rotina; texto: subgrupos de maior risco e ausência de benefício do toxicológico de urina na emergência)",
+   "ACEP 2017 — American College of Emergency Physicians Clinical Policies Subcommittee; Nazarian DJ et al. Clinical policy: critical issues in the diagnosis and management of the adult psychiatric patient in the emergency department. Ann Emerg Med 2017;69(4):480-498. https://doi.org/10.1016/j.annemergmed.2017.01.036",
    "AHA/ACC 2021 — Gulati M et al. 2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR guideline for the evaluation and diagnosis of chest pain. Circulation 2021;144(22):e368-e454. PMID 34709879. https://doi.org/10.1161/CIR.0000000000001029",
-   "HC-FMUSP 2024 — Medicina de Emergência: Abordagem Prática, 18ª ed., Manole, 2024, cap. 60 Emergências neuropsiquiátricas; cap. 88 Hipoglicemia (conferência)."
+   "HC-FMUSP 2024 — Medicina de Emergência: Abordagem Prática, 18ª ed., Manole, 2024, cap. 60 Emergências neuropsiquiátricas; cap. 88 Hipoglicemia (conferência).",
+   "Katon 2006 — Katon WJ. Clinical practice: panic disorder. N Engl J Med 2006;354:2360-7. https://doi.org/10.1056/NEJMcp052466",
+   "ACEP 2018 — Wolf SJ et al. ACEP Clinical Policy: suspected acute venous thromboembolic disease. Ann Emerg Med 2018;71(5):e59-e109. https://doi.org/10.1016/j.annemergmed.2018.03.006",
+   "RAPS 2011 — Brasil. Portaria GM/MS nº 3.088/2011, Rede de Atenção Psicossocial (CAPS). https://bvsms.saude.gov.br/bvs/saudelegis/gm/2011/prt3088_23_12_2011_rep.html",
+   "ASQ 2020 — Horowitz LM et al. Validation of the Ask Suicide-Screening Questions for Adult Medical Inpatients. Psychosomatics 2020;61:713-722. https://doi.org/10.1016/j.psym.2020.04.008"
   ]
  },
  "tep": {
@@ -5664,6 +5688,591 @@ const EXAMES = {
    "OPTIMa 2016 — Côté P et al. Management of neck pain and associated disorders: a clinical practice guideline from the OPTIMa Collaboration. Eur Spine J 2016;25(7):2000-2022. https://doi.org/10.1007/s00586-016-4467-7",
    "Gulati 2021 — Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain. Circulation 2021;144(22):e368-e454. PMID 34709879. https://doi.org/10.1161/CIR.0000000000001029",
    "Choosing Wisely Canada 2024 — Choosing Wisely Canada, Emergency Medicine (atualizado em setembro de 2024): sem RX cervical com regra canadense negativa. https://choosingwiselycanada.org/recommendation/emergency-medicine/"
+  ]
+ },
+ "odontalgia": {
+  "encaminhar": [
+   {
+    "t": "Dentista (unidade básica de saúde ou CEO) em todos os casos: o tratamento definitivo é canal, drenagem ou extração",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Dentista com urgência (em 1 a 2 dias): todo abscesso (inchaço ou pus), com ou sem febre, mesmo com antibiótico",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Cirurgia bucomaxilofacial ou otorrino de urgência (não liberar): trismo, disfagia, voz abafada, edema do assoalho da boca ou cervical",
+    "f": [
+     4,
+     5
+    ]
+   },
+   {
+    "t": "Internação: sepse, toxemia, celulite cervical ou infecção de espaço profundo",
+    "f": [
+     3,
+     6
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "TC de pescoço com contraste: suspeita de infecção de espaço profundo ou angina de Ludwig (trismo, disfagia, edema cervical ou do assoalho da boca)",
+    "f": [
+     4,
+     5
+    ]
+   },
+   {
+    "t": "Hemograma, PCR, lactato e hemoculturas: febre alta, toxemia ou suspeita de sepse",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "ECG em até 10 min e troponina: dor na mandíbula aos esforços ou com dispneia, sudorese ou náusea",
+    "f": [
+     7
+    ]
+   }
+  ],
+  "naoPedir": [],
+  "div": [],
+  "fontes": [
+   "ADA 2019 — Lockhart PB et al. Evidence-based clinical practice guideline on antibiotic use for the urgent management of pulpal- and periapical-related dental pain and intraoral swelling. J Am Dent Assoc 2019;150(11):906-921. PMID 31668170. https://doi.org/10.1016/j.adaj.2019.08.020",
+   "ADA 2024 — Carrasco-Labra A et al. Pharmacologic management of acute dental pain in adolescents, adults, and older adults. J Am Dent Assoc 2024;155(2):102-117. PMID 38325969. https://doi.org/10.1016/j.adaj.2023.10.009",
+   "CDC 2022 — CDC. Dentists: Be Antibiotics Aware. Treating patients with dental pain and swelling (2022). https://www.cdc.gov/antibiotic-use/pdfs/ada-treatment-guidelines-508.pdf",
+   "HC-FMUSP 2024 cap 47 — Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 47, Infecções de vias aéreas superiores.",
+   "Harrison 2025 cap 38 — Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 38, Oral Manifestations of Disease.",
+   "SSC 2021 — Evans L et al. Surviving Sepsis Campaign 2021. Crit Care Med 2021;49(11):e1063-e1143. https://doi.org/10.1097/CCM.0000000000005337",
+   "Gulati 2021 — Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain. Circulation 2021;144(22):e368-e454. PMID 34709879. https://doi.org/10.1161/CIR.0000000000001029"
+  ]
+ },
+ "olho-vermelho": {
+  "encaminhar": [
+   {
+    "t": "Oftalmologia de urgência (não liberar): trauma penetrante, corpo estranho intraocular, queimadura química depois da irrigação, glaucoma agudo",
+    "f": [
+     1,
+     6
+    ]
+   },
+   {
+    "t": "Oftalmologia no mesmo dia: baixa visual, dor intensa, fotofobia, pupila alterada, córnea opaca, hipópio, hifema, lente de contato com olho vermelho",
+    "f": [
+     1,
+     4,
+     5
+    ]
+   },
+   {
+    "t": "Oftalmologia: corpo estranho que não sai ou profundo; anel de ferrugem, retirada pelo oftalmologista nos próximos dias",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Reavaliação em 24 h (na unidade ou com oftalmologista): abrasão maior que 4 mm, em usuário de lente de contato ou com visão diminuída",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "TC de órbitas sem contraste (cortes finos): trauma penetrante, martelar ou esmerilhar metal, suspeita de corpo estranho intraocular",
+    "f": [
+     7,
+     1
+    ]
+   },
+   {
+    "t": "TC de órbitas com contraste: edema palpebral com proptose, dor à movimentação ocular, diplopia ou baixa visual (celulite orbitária)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "pH da lágrima com fita (a de urina serve): queimadura química, 5 a 10 min após parar a irrigação, até pH 7,3 a 7,7",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Fluoresceína com luz azul: toda sensação de corpo estranho, trauma ou suspeita de abrasão",
+    "f": [
+     2,
+     3
+    ]
+   },
+   {
+    "t": "PA na hemorragia subconjuntival; coagulograma só na recorrente",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exames laboratoriais ou de imagem no olho vermelho sem trauma: o diagnóstico é pelo exame do olho",
+    "f": [
+     7
+    ]
+   },
+   {
+    "t": "RM com suspeita de corpo estranho metálico: pode deslocar o metal; pedir TC",
+    "f": [
+     8,
+     1
+    ]
+   },
+   {
+    "t": "Coagulograma na hemorragia subconjuntival isolada, sem anticoagulante e sem recorrência",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "HC-FMUSP 2024 cap 108 — Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 108, Emergências oftalmológicas.",
+   "Harrison 2025 cap 34 — Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 34, Disorders of the Eye.",
+   "AAFP 2013 — Wipperman JL, Dorsch JN. Evaluation and management of corneal abrasions. Am Fam Physician 2013;87(2):114-120. https://www.aafp.org/pubs/afp/issues/2013/0115/p114.html",
+   "AAO PPP 2023 conjunctivitis — Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023. Ophthalmology 2024;131:P134.",
+   "AAO PPP 2023 bacterial keratitis — American Academy of Ophthalmology. Bacterial Keratitis Preferred Practice Pattern (aprovado em 22/09/2023). https://www.aao.org/education/preferred-practice-pattern/bacterial-keratitis-ppp-2023",
+   "AAO PPP 2025 angle-closure — Gedde SJ et al. American Academy of Ophthalmology. Primary Angle-Closure Disease Preferred Practice Pattern 2025. Ophthalmology 2026;133(4):P153-P201. https://www.aao.org/education/preferred-practice-pattern/primary-angle-closure-disease-ppp",
+   "ACR 2025 vision loss — ACR Appropriateness Criteria Vision Loss. J Am Coll Radiol 2025;22(11S):S738-S765. PMID 41193055. https://doi.org/10.1016/j.jacr.2025.08.030",
+   "ACR MR safety 2024 — ACR Manual on MR Safety (2024): triagem de corpo estranho metálico na órbita antes da RM; na dúvida, RX ou TC de órbitas. https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Radiology-Safety/MR-Safety"
+  ]
+ },
+ "sincope": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência com monitor e desfibrilador: síncope com característica de alto risco (esforço, deitado, palpitação antes, dor torácica, ECG de alto risco, PA sistólica < 90 mmHg)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Internação ou Cardiologia: causa cardíaca ou grave identificada (arritmia, infarto, estenose aórtica grave, TEP, dissecção, tamponamento) ou alto risco sem diagnóstico",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Observação com monitor: CSRS baixo por cerca de 2 h; CSRS médio ou alto por pelo menos 6 h",
+    "f": [
+     4,
+     5
+    ]
+   },
+   {
+    "t": "Cirurgia ou Ginecologia: síncope com sangramento digestivo, dor abdominal com hipotensão ou beta-hCG positivo com suspeita de ectópica rota",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Ambulatório de Cardiologia (não urgente): síncope inexplicada recorrente sem alto risco, para Holter, monitor de eventos ou teste de inclinação",
+    "f": [
+     1,
+     5
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "ECG de 12 derivações: em toda síncope",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "PA e FC deitado e após 3 min em pé: em toda síncope",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Glicemia capilar: considerar no diabético, na recuperação incompleta ou se ainda alterado na chegada",
+    "f": [
+     5
+    ]
+   },
+   {
+    "t": "Hemograma: suspeita de sangramento ou anemia; troponina: dor torácica, dispneia ou suspeita de causa cardíaca",
+    "f": [
+     2,
+     3
+    ]
+   },
+   {
+    "t": "Eletrólitos e função renal: uso de diurético, vômitos, diarreia ou desidratação",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Beta-hCG: mulher em idade fértil",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Ecocardiograma: sopro, cardiopatia conhecida ou suspeita, ou ECG alterado",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "D-dímero ou angiotomografia de tórax: suspeita clínica de TEP (dispneia, taquicardia, hipoxemia)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "TC de crânio sem contraste: só com trauma de crânio relevante ou sinal neurológico",
+    "f": [
+     6,
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exames de laboratório de rotina sem suspeita clínica",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "TC ou RM de crânio, EEG e Doppler de carótidas de rotina na síncope sem sinal neurológico",
+    "f": [
+     2,
+     6
+    ]
+   },
+   {
+    "t": "Escore (CSRS ou San Francisco) como único critério de alta",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ESC 2018 — Brignole M et al. 2018 ESC Guidelines for the diagnosis and management of syncope. Eur Heart J 2018;39:1883-1948. https://doi.org/10.1093/eurheartj/ehy037",
+   "ACC/AHA 2017 — Shen WK et al. 2017 ACC/AHA/HRS Guideline for the Evaluation and Management of Patients With Syncope. Circulation 2017;136:e60-e122. https://doi.org/10.1161/CIR.0000000000000499",
+   "CSRS 2016 — Thiruganasambandamoorthy V et al. Development of the Canadian Syncope Risk Score. CMAJ 2016;188(12):E289-E298. https://doi.org/10.1503/cmaj.151469",
+   "Thiruganasambandamoorthy 2019 — Thiruganasambandamoorthy V et al. Duration of Electrocardiographic Monitoring of Emergency Department Patients With Syncope. Circulation 2019;139:1396-1406.",
+   "HC-FMUSP 2024 — Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 20 — Perda transitória da consciência.",
+   "ACEP Choosing Wisely — American College of Emergency Physicians, Choosing Wisely: TC de crânio na síncope sem trauma significativo e com exame neurológico normal. https://www.choosingwisely.org/clinician-lists/american-college-emergency-physicians-ct-scans-of-head-for-emergency-department-patients-with-syncope/"
+  ]
+ },
+ "pericardite": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência e Cardiologia: tamponamento (hipotensão, turgência jugular, pulso paradoxal), para ecocardiograma à beira do leito e pericardiocentese",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Internação: alto risco (febre > 38 °C, derrame > 20 mm, tamponamento)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Internação ou seguimento próximo com a Cardiologia: derrame moderado, falha do AINE, insuficiência cardíaca direita, troponina elevada, imunossupressão ou anticoagulante",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Protocolo de SCA: supra de ST localizado com imagem em espelho, onda Q ou troponina subindo",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Retorno em 1 a 2 semanas (clínico ou Cardiologia) com PCR: todos os que vão para casa",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "ECG, radiografia de tórax, ecocardiograma transtorácico, hemograma, PCR e troponina: em toda suspeita de pericardite",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Creatinina e transaminases: antes de colchicina e anti-inflamatório",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Pesquisa de causa (tuberculose, câncer, doença autoimune, função tireoidiana, ureia): alto risco ou sem resposta ao tratamento",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "FAN: mulher jovem com pericardite",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Ressonância magnética cardíaca (ambulatorial ou internado): diagnóstico duvidoso pelos critérios clínicos ou suspeita de miocardite",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Sorologias virais de rotina (pedir só HIV e hepatite C)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Pesquisa extensa de causa no paciente de baixo risco que responde ao anti-inflamatório",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ESC 2025 — Schulz-Menger J, Collini V et al. 2025 ESC Guidelines for the management of myocarditis and pericarditis. Eur Heart J 2025;46(40):3952. https://doi.org/10.1093/eurheartj/ehaf192",
+   "ESC 2015 — Adler Y et al. 2015 ESC Guidelines for the diagnosis and management of pericardial diseases. Eur Heart J 2015;36:2921-2964. https://doi.org/10.1093/eurheartj/ehv318",
+   "HC-FMUSP 2024 — Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 37 — Pericardite aguda, derrame pericárdico e tamponamento cardíaco."
+  ]
+ },
+ "retencao-urinaria": {
+  "encaminhar": [
+   {
+    "t": "Neurocirurgia / Ortopedia de urgência (não liberar): retenção com dor lombar, anestesia em sela, fraqueza nas pernas ou incontinência fecal",
+    "f": [
+     4,
+     1
+    ]
+   },
+   {
+    "t": "Urologia de urgência: falha na passagem da sonda, sangue no meato, trauma ou estenose uretral, hematúria com coágulos",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Internação: diurese pós-obstrutiva, creatinina elevada com hidronefrose, ou febre com retenção (prostatite, pielonefrite)",
+    "f": [
+     3,
+     5
+    ]
+   },
+   {
+    "t": "Urologia ambulatorial: retirada da sonda após 3 a 7 dias com tansulosina; falha na retirada; resíduo > 300 mL",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Ultrassom à beira do leito ou bladder scan, se disponível: confirmar a retenção e medir o volume antes de sondar",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "EAS, creatinina, ureia, sódio e potássio: todos; repetir eletrólitos se diurese pós-obstrutiva",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Urocultura (da sonda recém-passada): EAS alterado, febre ou sintomas de infecção",
+    "f": [
+     1,
+     7
+    ]
+   },
+   {
+    "t": "Glicemia: suspeita de causa neurológica ou diabetes",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "US de rins e vias urinárias: creatinina elevada, infecção ou retenção de longa data (hidronefrose)",
+    "f": [
+     1,
+     6
+    ]
+   },
+   {
+    "t": "RM de coluna de emergência (em até 4 h): sinais de cauda equina ou compressão medular",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Hemograma e hemoculturas: febre com retenção",
+    "f": [
+     5
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Urocultura de controle ou antibiótico para bacteriúria sem sintomas em quem está com sonda",
+    "f": [
+     7
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "Serlin 2018 — Serlin DC, Heidelbaugh JJ, Stoffel JT. Urinary Retention in Adults: Evaluation and Initial Management. Am Fam Physician 2018;98(8):496-503. PMID 30277739. https://www.aafp.org/pubs/afp/issues/2018/1015/p496.html",
+   "Fisher 2014 — Fisher E et al. The role of alpha blockers prior to removal of urethral catheter for acute urinary retention in men. Cochrane Database Syst Rev 2014;CD006744. https://doi.org/10.1002/14651858.CD006744.pub3",
+   "Halbgewachs 2015 — Halbgewachs C, Domes T. Postobstructive diuresis: pay close attention to urinary retention. Can Fam Physician 2015;61(2):137-42. PMID 25821871.",
+   "GIRFT 2023 — GIRFT/NHS England. National Suspected Cauda Equina Syndrome Pathway, fevereiro de 2023, atualizado até março de 2026. https://gettingitrightfirsttime.co.uk/wp-content/uploads/2026/04/National-Suspected-Cauda-Equina-Pathway-March-2026.pdf",
+   "Coker 2016 — Coker TJ, Dierfeldt DM. Acute bacterial prostatitis: diagnosis and management. Am Fam Physician 2016;93(2):114-20. PMID 26926407. https://www.aafp.org/pubs/afp/issues/2016/0115/p114.html",
+   "Harrison 2025 — Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 331 Urinary Tract Obstruction.",
+   "IDSA 2019 — Nicolle LE et al. Clinical Practice Guideline for the Management of Asymptomatic Bacteriuria: 2019 Update by the Infectious Diseases Society of America. Clin Infect Dis 2019;68(10):e83-e110. https://doi.org/10.1093/cid/ciy1121"
+  ]
+ },
+ "escroto-agudo": {
+  "encaminhar": [
+   {
+    "t": "Urologia na hora, sem esperar ultrassom: dor testicular súbita com suspeita de torção ou TWIST ≥ 5",
+    "f": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "t": "Sala vermelha e urologia ou cirurgia (desbridamento em até 24 h): suspeita de Fournier",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Cirurgia geral de urgência: hérnia inguinoescrotal encarcerada ou estrangulada",
+    "f": [
+     5
+    ]
+   },
+   {
+    "t": "Urologia: trauma com suspeita de ruptura testicular, hematocele volumosa ou imagem inconclusiva",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "Internação: epididimite com febre alta, sinais sistêmicos, abscesso ou sem melhora em 72 h",
+    "f": [
+     7,
+     4
+    ]
+   },
+   {
+    "t": "Atenção básica ou serviço de IST: seguimento da epididimite por IST, testagem e tratamento das parcerias",
+    "f": [
+     8,
+     7
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "US de bolsa escrotal com Doppler: TWIST 3 ou 4 ou dúvida diagnóstica, sem atrasar a urologia",
+    "f": [
+     9,
+     1
+    ]
+   },
+   {
+    "t": "US de bolsa escrotal: trauma escrotal",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "EAS e urocultura de jato médio: suspeita de epididimite",
+    "f": [
+     4,
+     7
+    ]
+   },
+   {
+    "t": "PCR (NAAT) para clamídia e gonococo no primeiro jato de urina, se disponível: epididimite em quem tem vida sexual ativa",
+    "f": [
+     7,
+     4
+    ]
+   },
+   {
+    "t": "Testes rápidos de HIV, sífilis e hepatites B e C: epididimite com risco de IST",
+    "f": [
+     8
+    ]
+   },
+   {
+    "t": "Hemograma, PCR, creatinina, lactato, glicemia e hemoculturas: suspeita de Fournier ou sepse",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "TC de pelve: Fournier com dúvida da extensão, sem atrasar a cirurgia",
+    "f": [
+     4
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "US com Doppler antes de chamar a urologia quando a suspeita de torção é alta",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "EAU 2026 pediátrica — EAU Guidelines on Paediatric Urology, 2026, Acute scrotum. https://uroweb.org/guidelines/paediatric-urology/chapter/acute-scrotum",
+   "Barbosa 2013 — Barbosa JA et al. Development and initial validation of a scoring system to diagnose testicular torsion in children. J Urol 2013;189:1859-64. https://doi.org/10.1016/j.juro.2012.10.056",
+   "Barbosa 2021 — Barbosa JABA et al. Validation of the TWIST score for testicular torsion in adults. Int Urol Nephrol 2021;53:7-11. https://doi.org/10.1007/s11255-020-02618-4",
+   "EAU 2026 infecções — EAU Guidelines on Urological Infections, 2026, cap. 3.12 Acute epididymitis e 3.13 Fournier's gangrene. https://uroweb.org/guidelines/urological-infections/chapter/the-guideline",
+   "HerniaSurge 2018 — HerniaSurge Group. International guidelines for groin hernia management. Hernia 2018;22(1):1-165. https://doi.org/10.1007/s10029-017-1668-x",
+   "EAU 2026 trauma — EAU Guidelines on Urological Trauma, 2026, Genital trauma. https://uroweb.org/guidelines/urological-trauma/chapter/urogenital-trauma-guidelines",
+   "CDC 2021 — Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021: Epididymitis. MMWR Recomm Rep 2021;70(4):1-187. https://www.cdc.gov/std/treatment-guidelines/epididymitis.htm",
+   "PCDT 2022 — Ministério da Saúde. PCDT para Atenção Integral às Pessoas com IST, 2022. https://www.saude.sp.gov.br/resources/crt/assistencia/pcdt/pcdtists2022.pdf",
+   "ACR 2024 — Expert Panel on Urological Imaging. ACR Appropriateness Criteria Acute Onset of Scrotal Pain, Without Trauma, Without Antecedent Mass: 2024 Update. J Am Coll Radiol 2024;21(11S):S364-S371. https://doi.org/10.1016/j.jacr.2024.08.011"
   ]
  }
 };

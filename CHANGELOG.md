@@ -1,5 +1,16 @@
 # Histórico de versões
 
+## 1.41.0 — 2026-10-26
+- **6 condutas novas**, cada uma com checklist, alta leiga e exames, conferidas por um segundo agente contra as fontes:
+  - **Síncope / pré-síncope** (R55): ECG, alto risco (ESC 2018), Canadian Syncope Risk Score e San Francisco, quem vai para casa, orientações.
+  - **Pericardite aguda** (I30.9): critérios ESC 2025; ibuprofeno ou AAS com desmame, colchicina por 3 meses (dose por peso e ajuste renal), protetor gástrico, restrição de exercício.
+  - **Odontalgia / abscesso dentário** (K08.8): analgesia (ADA 2024), antibiótico só por toque quando indicado (ADA 2019), encaminhamento ao dentista, sinais de alarme de Ludwig.
+  - **Olho vermelho e corpo estranho ocular** (H11.4): quando é urgência oftalmológica, irrigação e fluoresceína, colírio anestésico nunca para casa; remete à conjuntivite.
+  - **Retenção urinária aguda** (R33): sondagem de alívio × demora, tansulosina antes de retirar a sonda, cauda equina.
+  - **Escroto agudo** (N50.8): TWIST, urologia sem esperar o Doppler na suspeita de torção, epididimite pelo risco de IST (ceftriaxona 500 mg + doxiciclina), Fournier.
+- **Ansiedade revista**: crise de pânico na porta com diferencial orgânico, respiração, pergunta direta sobre ideação suicida (ASQ), CAPS e CVV 188; sem benzodiazepínico para casa (NICE).
+- Queixas novas: dor de dente e olho vermelho. Tansulosina "após o café da manhã" (bula) na HPB e na cólica renal; regra renal do levofloxacino separada para 500 e 750 mg.
+
 ## 1.40.0 — 2026-10-26
 - **"⧉ Próximo"** na barra do Atendimento: copia o próximo campo ainda não copiado, na ordem do MV (HDA → exame → HD → conduta → receituário → alta…), marca ✓ na etapa e já mostra qual vem depois. No computador, a tecla **F2** faz o mesmo.
 

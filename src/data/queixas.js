@@ -73,7 +73,7 @@ const QUEIXAS = [
     "Antes do desmaio: em pé por muito tempo, calor, dor, emoção, tosse ou micção; teve aviso (calor, suor, náusea) ou caiu sem aviso",
     "Durante e depois: quanto tempo, movimentos, mordedura da língua, confusão prolongada, recuperação rápida e completa",
     "Cardiopatia, morte súbita na família em pessoa jovem, remédios (anti-hipertensivo, diurético, os que prolongam o QT), gestação",
-    "PA e FC deitado e após 3 min em pé (hipotensão ortostática: queda ≥ 20 mmHg na sistólica ou ≥ 10 mmHg na diastólica), glicemia capilar e ECG em toda síncope",
+    "PA e FC deitado e após 3 min em pé (hipotensão ortostática: queda ≥ 20 mmHg na sistólica ou ≥ 10 mmHg na diastólica), e ECG em toda síncope; considerar glicemia capilar (diabético, recuperação incompleta ou ainda alterado)",
     "Exame: ausculta cardíaca (sopro), nistagmo, HINTS, Dix-Hallpike, marcha sem apoio, pares cranianos, força e coordenação"
   ],
   caminhos: [

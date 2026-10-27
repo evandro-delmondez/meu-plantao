@@ -816,12 +816,12 @@ pericardite: {
   titulo: "Inflamação da membrana do coração (pericardite)",
   oque: "A pericardite é uma inflamação da membrana que envolve o coração, quase sempre depois de uma virose. Não é infarto. Com o tratamento, a dor costuma melhorar em poucos dias, e o tratamento completo dura cerca de 3 meses.",
   cuidados: [
-    "Tome o anti-inflamatório nos horários da sua receita, sempre depois de comer, e diminua a dose nas datas escritas. Tome junto o protetor do estômago.",
+    "Tome o anti-inflamatório nos horários da sua receita, sempre depois de comer, junto com o protetor do estômago. Não diminua nem pare por conta própria.",
     "Tome a colchicina todos os dias por 3 meses, mesmo sem dor. Ela diminui a chance de a inflamação voltar.",
     "A colchicina pode soltar o intestino. Se a diarreia for forte, ou vier com dor ou fraqueza nos músculos, procure o médico.",
     "Não tome outros anti-inflamatórios junto. Antes de começar um antibiótico ou remédio para fungo, avise o médico que usa colchicina.",
     "Evite exercício físico e esforço, como academia, corrida, futebol ou carregar peso, por pelo menos 1 mês e até o médico liberar. As atividades leves do dia a dia estão liberadas.",
-    "Faça o retorno com o médico em 1 a 2 semanas, com exame de sangue, para ajustar o tratamento.",
+    "Volte para reavaliação em 1 a 2 semanas, com exame de sangue, para ajustar a dose do anti-inflamatório.",
     "Se estiver grávida ou puder estar, avise o médico: alguns destes remédios precisam ser trocados."
   ],
   volte: [

@@ -41,7 +41,8 @@ function unidLista(t){
 }
 function section(it,cls,title,f,copyLabel){
   const text=cur(it,f);
-  if(!text.trim()&&!(sess[it.id]&&sess[it.id][f]!=null)) return "";
+  // receita só com bloco opcional desligado: o quadro aparece mesmo vazio, para dar para ligar o bloco
+  if(!text.trim()&&!(sess[it.id]&&sess[it.id][f]!=null)&&!(f==="casa"&&it.casa&&it.casa.trim()&&rxTemMontar(it))) return "";
   const hu=f==="unidade"&&hospUnid(it.id)!=null, hc=hu&&hospCond(it.id);
   if(hu) title=`${title} — protocolo de ${esc(hospPac().curto||hospPac().nome)}`;
   const appv=hu&&it.unidade?`<details class="appver"><summary>Versão do app (fontes no fim da conduta)</summary><pre>${esc(rxTxt(it.unidade))}</pre></details>`:"";

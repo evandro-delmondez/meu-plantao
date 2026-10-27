@@ -29,8 +29,10 @@ function rxRotulo(op){
 // receita com alternativas, blocos opcionais ou 2 ou mais remédios: o médico escolhe por toque o que vai
 function rxTemMontar(it){const b=rxParse(rxTxt(it.casa||""));return b.length>1||b.some(x=>x.partes.some(p=>p.tipo==="slot"&&p.ops.length>1))||b.reduce((n,x)=>n+x.partes.filter(p=>p.tipo==="slot").length,0)>=2}
 // o primeiro bloco com remédio é a receita principal (às vezes ele próprio tem título "#"): vem ligado; os demais, desligados
-const rxPrimeiro=blocos=>blocos.findIndex(b=>b.partes.some(p=>p.tipo==="slot"));
-const rxAtivo=(blocos,st,bi)=>st.b[bi]??(bi===0||bi===rxPrimeiro(blocos));
+// bloco com "(opcional)" no título nunca entra marcado sozinho, mesmo sendo o único da receita
+const rxOpc=b=>/\(opcional\)/i.test((b&&b.tit)||"");
+const rxPrimeiro=blocos=>blocos.findIndex(b=>!rxOpc(b)&&b.partes.some(p=>p.tipo==="slot"));
+const rxAtivo=(blocos,st,bi)=>st.b[bi]??(!rxOpc(blocos[bi])&&(bi===0||bi===rxPrimeiro(blocos)));
 function rxEstado(id){return rxSel[id]=rxSel[id]||{s:{},b:{}}}
 function rxMonta(it){
   const blocos=rxParse(rxTxt(it.casa||"")), st=rxEstado(it.id), out=[]; let n=0;
@@ -66,7 +68,7 @@ function renderRxMontar(it){
   const linhas=[];
   blocos.forEach((b,bi)=>{
     const ativo=rxAtivo(blocos,st,bi);
-    if(bi>0&&bi!==rxPrimeiro(blocos)) linhas.push(`<div class="rxlin rxbloco"><button class="chip rxc" data-rxb="${bi}" aria-pressed="${!!ativo}">${ativo?"✓":"+"} ${esc(b.tit)}</button></div>`);
+    if((bi>0||rxOpc(b))&&bi!==rxPrimeiro(blocos)) linhas.push(`<div class="rxlin rxbloco"><button class="chip rxc" data-rxb="${bi}" aria-pressed="${!!ativo}">${ativo?"✓":"+"} ${esc(b.tit)}</button></div>`);
     if(!ativo) return;
     let si=0, soltos=null;   // itens únicos seguidos ficam juntos numa linha, na ordem da receita
     for(const p of b.partes){

@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.42.0 — 2026-10-27
+- **Decisões do médico aplicadas, com fonte**: odontalgia com metronidazol na falha e "receita de reserva" como opções desligadas; pericardite só com a dose cheia por 14 dias na receita (desmame no retorno, guiado pela PCR; ESC 2025); síncope com lembrete para o médico sobre água e sal sem hipertensão (EHRA 2024/ESC 2018) e glicemia capilar como "considerar"; ansiedade com clonazepam como opção desligada (Notificação B; NICE desaconselha).
+- **Escore CSRS (Canadian Syncope Risk Score)** na aba Escores e dentro da conduta de síncope.
+- **Bloco "(opcional)" na receita nunca entra marcado sozinho**, mesmo sendo o único; o quadro da receita aparece para você ligar.
+
 ## 1.41.0 — 2026-10-26
 - **6 condutas novas**, cada uma com checklist, alta leiga e exames, conferidas por um segundo agente contra as fontes:
   - **Síncope / pré-síncope** (R55): ECG, alto risco (ESC 2018), Canadian Syncope Risk Score e San Francisco, quem vai para casa, orientações.

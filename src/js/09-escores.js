@@ -23,7 +23,7 @@ function renderScores(){
 }
 /* ---------- cálculos dentro da conduta: os escores (já conferidos) ligados a ela, para preencher ali mesmo ---------- */
 // o estado é o mesmo da aba Escores (scState): preencher aqui aparece lá e vice-versa
-const SC_COND={pac:["curb"],tep:["wellsTep","perc","spesi"],tvp:["wellsTvp"],sca:["heart"],hda:["gbs"],faringite:["centor"],amigdalite:["centor"],fa:["cha","hasbled"],"dor-abdominal":["alvarado"],avc:["nihss","abcd2"],tce:["glasgow"]};
+const SC_COND={pac:["curb"],tep:["wellsTep","perc","spesi"],tvp:["wellsTvp"],sca:["heart"],hda:["gbs"],faringite:["centor"],amigdalite:["centor"],fa:["cha","hasbled"],"dor-abdominal":["alvarado"],avc:["nihss","abcd2"],tce:["glasgow"],sincope:["csrs"]};
 const scRes=sc=>{const st=scState[sc.id]||{}, n=(sc.campos||[]).filter(([k])=>st[k]!=null).length+(sc.bin||[]).filter((b,i)=>st["b"+i]).length;
   return n?`<b>${String(scTotal(sc)).replace(".",",")}</b> ponto(s) — ${esc(sc.interp(scTotal(sc)))}`:`<span class="note">preencha para ver o resultado</span>`};
 function renderCalcConduta(it){

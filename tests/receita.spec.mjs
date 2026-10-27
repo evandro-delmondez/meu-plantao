@@ -32,7 +32,9 @@ test("nenhuma receita montada sai com 'Ou', '#' ou nota para o médico", async (
     if (!(await page.locator("#detail .rxmontar").count())) continue;
     const t = await receita(page);
     expect(t, id).not.toMatch(/^\s*Ou\b|^#|^\s*(Criança|Gestante|CID)\b/m);
-    expect(t, id).toMatch(/^\s*1\)/m);   // nunca sai vazia (ex.: dengue começa com um título "#")
+    // nunca sai vazia (ex.: dengue começa com um título "#"), salvo quando só há bloco "(opcional)", que vem desligado
+    const soOpcional = await page.evaluate(() => { const b = [...document.querySelectorAll("#detail .rxmontar [data-rxb]")]; return !document.querySelector("#detail .rxmontar [data-rxs]") && b.length > 0 && b.every((x) => /opcional/i.test(x.textContent)); });
+    if (!soOpcional) expect(t, id).toMatch(/^\s*1\)/m);
     expect(t, id).not.toMatch(RUIM);
   }
   expect(erros).toEqual([]);

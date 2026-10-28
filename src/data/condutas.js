@@ -89,16 +89,19 @@ const BASE = [
   "cid": "K12.0",
   "sin": "ulcera oral boca",
   "casa": "Uso oral\n1) Clorexidina 0,12% solução oral ------------ 1 fr\nBochechar 15 mL (1 tampa), sem diluir, por 30 segundos, 2x ao dia (manhã e noite), após a higiene oral, por 7 a 10 dias. Não engolir.\nOu\n1) Triancinolona 1mg/g em orabase (Omcilon-A Orabase) --- 1 bisnaga\nAplicar pequena quantidade sobre as lesões, sem esfregar, 2 a 3x ao dia, após as refeições e ao deitar, por até 7 dias.",
-  "unidade": "",
+  "unidade": "1) Avaliar a extensão e a hidratação (consegue comer e beber?).\n2) Dor intensa que impede a alimentação: Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n3) Afastar causa sistêmica: úlceras grandes ou múltiplas, febre, lesões genitais ou oculares (Behçet), diarreia ou perda de peso (doença inflamatória intestinal, doença celíaca), imunossupressão (HIV, neutropenia, quimioterapia).\n4) Úlcera única que não cicatriza em 2 a 3 semanas: encaminhar ao estomatologista ou dentista (biópsia).\n* Lesões em várias mucosas com bolhas ou descamação da pele, ou após remédio novo: pensar em Stevens-Johnson (internar).",
   "orient": "- Evite alimentos ácidos, muito quentes ou condimentados.\n- Se a ferida na boca não cicatrizar em 2 a 3 semanas, procure reavaliação médica.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): clorexidina 15 mL por 30 segundos e triancinolona sem esfregar, também ao deitar (bulas Periogard e Omcilon-A Orabase); fonte Cochrane trocada, pois a citada (CD005411) avalia só tratamento sistêmico (Edgar 2017)."
   ],
   "evid": "Poucos ensaios de qualidade; tratamento é sintomático.",
   "fontes": [
    "Edgar NR, Saleh D, Miller RA. Recurrent aphthous stomatitis: a review (J Clin Aesthet Dermatol 2017;10(3):26-36; PMID 28360966). Tratamento tópico de 1ª linha: clorexidina, corticoide tópico, anestésico local.",
    "Bula Periogard (gluconato de clorexidina 0,12%, Colgate): 15 mL sem diluir, por 30 segundos, 2x ao dia, após a higiene oral.",
-   "Bula Omcilon-A Orabase (triancinolona acetonida 1 mg/g): aplicar sem esfregar, ao deitar e 2 a 3x ao dia após as refeições; reavaliar se não melhorar em 7 dias."
+   "Bula Omcilon-A Orabase (triancinolona acetonida 1 mg/g): aplicar sem esfregar, ao deitar e 2 a 3x ao dia após as refeições; reavaliar se não melhorar em 7 dias.",
+   "Bula Anvisa da Novalgina solução injetável (dipirona 500 mg/mL, Sanofi): IM ou EV 1–2,5 g em dose única, máximo 5 g/dia; EV lenta, no máximo 1 mL (500 mg)/min, com o paciente deitado. https://consultas.anvisa.gov.br/#/bulario/",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 63 — Cutaneous Drug Reactions (síndrome de Stevens-Johnson e necrólise epidérmica tóxica: suspender o fármaco suspeito e internar)."
   ]
  },
  {
@@ -194,13 +197,15 @@ const BASE = [
   "sin": "rolha cera ouvido tampado",
   "casa": "Uso otológico\n1) Cerumin gotas ----------------------------- 1 fr\nPingar 5 gotas no ouvido afetado e manter deitado com o ouvido para cima por 5 min, de 8/8h por 5 dias.",
   "avisoRx": ["Não usar se suspeita de perfuração timpânica ou otorreia."],
-  "unidade": "",
+  "unidade": "1) Otoscopia: confirmar a rolha e checar sinais de otite externa ou de perfuração.\n2) Rolha com sintomas (hipoacusia, plenitude, zumbido, dor) e membrana timpânica íntegra: lavagem do conduto com água ou SF morno (na temperatura do corpo, para evitar vertigem), em jatos suaves, com o paciente sentado e cuba sob a orelha.\n   Ou remoção manual (cureta ou aspiração), se houver material e treino.\n   Rolha endurecida: pingar o ceruminolítico 15–30 min antes e repetir a lavagem.\n3) Não lavar se: perfuração ou cirurgia otológica prévia, otorreia, otite externa, estenose ou exostose do conduto. Cautela em diabetes, imunossupressão ou anticoagulante (preferir remoção manual ou encaminhar).\n4) Otoscopia ao final para conferir a remoção e a membrana timpânica.\n5) Falha, dor, sangramento, vertigem intensa ou perfuração: encaminhar ao otorrino.",
   "orient": "- Não use as gotas se estiver saindo secreção do ouvido.\n- Não coloque hastes flexíveis (cotonetes) dentro do ouvido.\n- Retorne após 5 dias para lavagem do ouvido, se necessário.\n- Não use as gotas se estiver saindo secreção do ouvido ou se tiver o tímpano perfurado.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Adicionado: contraindicação em suspeita de perfuração."
   ],
   "fontes": [
-   "Schwartz SR et al. AAO-HNS Clinical Practice Guideline (Update): Earwax (Cerumen Impaction) (Otolaryngol Head Neck Surg 2017)."
+   "Schwartz SR et al. AAO-HNS Clinical Practice Guideline (Update): Earwax (Cerumen Impaction) (Otolaryngol Head Neck Surg 2017).",
+   "Schwartz SR et al. AAO-HNS Clinical Practice Guideline (Update): Earwax (Cerumen Impaction) (Otolaryngol Head Neck Surg 2017;156(1S):S1): tratar com ceruminolítico, irrigação ou remoção manual; fatores modificadores (membrana timpânica não íntegra, estenose ou exostose do conduto, diabetes, imunossupressão, anticoagulante); otoscopia ao final; encaminhar se falha; não usar velas de ouvido."
   ]
  },
  {
@@ -232,9 +237,10 @@ const BASE = [
   "cid": "T75.3",
   "sin": "enjoo viagem carro navio",
   "casa": "Uso oral\n1) Meclizina 25mg (Meclin) ------------------- 15 cp\nTomar 1 cp VO 1h antes de viajar. Se necessário, repetir a cada 24h.",
-  "unidade": "",
+  "unidade": "1) Vômitos que impedem a via oral: Dimenidrinato + Piridoxina (Dramin B6 DL): ampola EV (10 mL) em 100 mL de SF em 30 min; existe apresentação própria para IM (Dramin B6 IM 1 mL = 50 mg). Máx. 400 mg/dia de dimenidrinato.\n   Ou Prometazina 25 mg IM profunda (não usar em idosos nem em menores de 2 anos; máx. 100 mg/dia).\n2) Desidratação: hidratação EV com SF 0,9%.\n3) Afastar outra causa: tontura que persiste em repouso, com nistagmo, déficit neurológico, cefaleia intensa ou vômitos sem relação com o movimento → ver Vertigem.\n* Os dois remédios dão sonolência: não dirigir após a medicação.",
   "orient": "- Este remédio pode causar sonolência; não dirija após o uso.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): fonte da meclizina (bula FDA) e revisão Cochrane de 2022 sobre anti-histamínicos (bula FDA do Antivert; Cochrane 2022).",
    "Corrigido: intervalo 12h → 24h (meclizina tem ação de ~24h)."
   ],
@@ -242,7 +248,9 @@ const BASE = [
   "fontes": [
    "FDA. Meclizine hydrochloride (Antivert) — bula: 25–50 mg VO 1 h antes da viagem, repetir a cada 24 h se preciso; sonolência; cautela em asma, glaucoma e aumento da próstata.",
    "Karrim N, Byrne R, Magula N, Saman Y. Antihistamines for motion sickness (Cochrane Database Syst Rev 2022;10:CD012715). PubMed 36250781.",
-   "Spinks A, Wasiak J. Scopolamine for preventing and treating motion sickness (Cochrane 2011;CD002851) — escopolamina transdérmica."
+   "Spinks A, Wasiak J. Scopolamine for preventing and treating motion sickness (Cochrane 2011;CD002851) — escopolamina transdérmica.",
+   "Bula Anvisa do Dramin B6 DL injetável (dimenidrinato 30 mg + piridoxina 50 mg por ampola de 10 mL, uso EV) e do Dramin B6 IM (dimenidrinato 50 mg + piridoxina 50 mg por ampola de 1 mL): EV lenta ou em infusão, intervalo de 4/4 a 6/6h; IM com intervalo mínimo de 4 h; máximo 400 mg/dia de dimenidrinato; contém glicose e frutose (cautela no diabetes; contraindicado na intolerância hereditária à frutose). https://consultas.anvisa.gov.br/#/bulario/",
+   "Bula Anvisa do Fenergan injetável (prometazina 25 mg/mL, Sanofi): 25–50 mg IM profunda, máximo 100 mg/dia; EV não recomendada; contraindicada em menores de 2 anos; American Geriatrics Society. 2023 AGS Beers Criteria (evitar no idoso). https://consultas.anvisa.gov.br/#/bulario/"
   ]
  },
  {
@@ -335,9 +343,10 @@ const BASE = [
   "sin": "olho vermelho secrecao ocular",
   "casa": "# Bacteriana (secreção purulenta, pálpebras coladas):\nUso oftálmico\n1) Tobramicina 0,3% colírio ------------------ 1 fr\nPingar 1 a 2 gotas no olho afetado de 4/4h (enquanto acordado) por 7 dias.\n\n# Viral / irritativa:\nUso oftálmico\n1) Lágrima artificial (carmelose 0,5%) ------- 1 fr\nPingar 1 gota em cada olho de 4/4h por 7 dias.",
   "avisoRx": ["Oftalmologista no mesmo dia também se lesão na córnea."],
-  "unidade": "",
+  "unidade": "1) Medir a acuidade visual de cada olho (antes de qualquer colírio).\n2) Afastar olho vermelho grave: dor moderada ou intensa, baixa visual, fotofobia, pupila alterada, lesão na córnea (fluoresceína), olho muito vermelho ao redor da córnea, trauma ou queimadura química → ver Olho vermelho e oftalmologista no mesmo dia.\n3) Limpar a secreção com gaze e SF 0,9%, do canto interno para o externo.\n4) Encaminhar ao oftalmologista no mesmo dia se: usuário de lente de contato, secreção purulenta abundante de início rápido (suspeita de gonococo), bolhas na pálpebra (herpes), recém-nascido, ou sem melhora em 3 a 4 dias com o colírio.\n* Não há medicação de rotina na unidade; o tratamento é domiciliar. Não usar colírio com corticoide nem anestésico para casa.",
   "orient": "- Faça compressas frias por 10 a 20 minutos, várias vezes ao dia.\n- Limpe a secreção com gaze e soro fisiológico, do canto de dentro para o canto de fora do olho.\n- Lave as mãos com frequência, não compartilhe toalhas e evite coçar os olhos.\n- Não use lentes de contato durante o tratamento.\n- Procure um oftalmologista no mesmo dia se tiver dor moderada ou forte no olho, piora da visão, incômodo com a luz, muita secreção amarelada que surgiu rapidamente, bolhas na pálpebra, ou se usa lente de contato e está com o olho vermelho.\n- Se estiver usando o colírio antibiótico e não melhorar em 3 a 4 dias, retorne para reavaliação.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): tobramicina 6/6h → 4/4h (bula Tobrex); encaminhamento ampliado (lente de contato, secreção intensa, vesículas, córnea) e reavaliação em 3–4 dias (AAO PPP 2023; JAMA 2013).",
    "Corrigido: removida a orientação de 'não usar soro fisiológico'; SF é adequado para limpar a secreção.",
    "Adicionado: conduta para conjuntivite viral (mais comum) e sinais de alarme."
@@ -345,7 +354,9 @@ const BASE = [
   "fontes": [
    "Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023 (Ophthalmology 2024;131:P134): bacteriana leve é autolimitada, antibiótico tópico por 5–7 dias encurta o quadro; viral sem antibiótico (compressa fria, lágrima artificial, contágio por 10–14 dias); encaminhar se baixa visual, dor moderada ou intensa, secreção purulenta intensa, córnea acometida ou sem resposta.",
    "Bula Tobrex (tobramicina 0,3% colírio): 1 a 2 gotas a cada 4 h na infecção leve a moderada; a partir de 2 meses de idade.",
-   "Azari AA, Barney NP. Conjunctivitis: a systematic review of diagnosis and treatment (JAMA 2013;310:1721): usuário de lente de contato com olho vermelho tem risco de ceratite."
+   "Azari AA, Barney NP. Conjunctivitis: a systematic review of diagnosis and treatment (JAMA 2013;310:1721): usuário de lente de contato com olho vermelho tem risco de ceratite.",
+   "Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023 (Ophthalmology 2024;131:P134): medir a acuidade visual; evitar o uso indiscriminado de corticoide tópico; encaminhar se baixa visual, dor moderada ou intensa, secreção purulenta intensa, córnea acometida, recém-nascido ou sem resposta.",
+   "Wipperman JL, Dorsch JN. Evaluation and management of corneal abrasions (Am Fam Physician 2013;87:114): nunca prescrever colírio anestésico para casa (mesma fonte da conduta Olho vermelho)."
   ]
  },
  {
@@ -527,15 +538,19 @@ const BASE = [
   "sin": "alergia pele coceira prurido eczema dermatite contato",
   "casa": "Uso oral\n1) Loratadina 10mg --------------------------- 7 cp\nTomar 1 cp VO 1x ao dia por 7 dias.\nOu\n1) Levocetirizina 5mg ------------------------ 7 cp\nTomar 1 cp VO à noite por 7 dias.\n\nUso tópico\n2) Betametasona 0,1% creme (valerato) -------- 1 bisnaga\nAplicar fina camada na região afetada do corpo 2x ao dia por 7 a 14 dias. Não usar na face, nas dobras nem nos genitais.\nOu\n2) Hidrocortisona 1% creme ------------------- 1 bisnaga\nAplicar fina camada 2x ao dia por até 7 dias.",
   "avisoRx": ["Hidrocortisona para face, dobras ou genitais."],
-  "unidade": "",
+  "unidade": "1) Prurido intenso: Loratadina 10mg VO (ou levocetirizina 5mg VO).\n   Se não puder tomar VO: Prometazina 25 mg IM profunda (não usar em idosos nem em menores de 2 anos; máx. 100 mg/dia).\n2) Identificar e afastar o agente (contato, remédio novo, cosmético, planta).\n3) Dermatite extensa (mais de 20% da superfície do corpo): o creme não basta; precisa de corticoide oral com retirada em 2 a 3 semanas, que não está na receita padrão (prescrever à parte).\n* Bolhas, descamação, lesões em mucosas (boca, olhos, genitais) ou febre após remédio novo: pensar em Stevens-Johnson/necrólise epidérmica tóxica — suspender o remédio e internar.\n* Placas com edema de lábios ou de glote, falta de ar ou hipotensão → protocolo de anafilaxia.",
   "orient": "- Evite contato com o que provocou a reação na pele; use sabonete neutro e hidratante.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): creme de dexclorfeniramina + betametasona (sem registro tópico na Anvisa; anti-histamínico tópico sensibiliza) → corticoide tópico isolado: betametasona 0,1% no corpo por 7 a 14 dias ou hidrocortisona 1% na face, dobras e genitais por até 7 dias (Fonacier 2015; Harrison, 22ª ed., cap. 60)."
   ],
   "evid": "Diretriz AAAAI/ACAAI 2015 (evidência moderada para corticoide tópico).",
   "fontes": [
    "Fonacier L et al. Contact dermatitis: a practice parameter — update 2015 (J Allergy Clin Immunol Pract 2015;3:S1) — corticoide tópico pela potência e região; evitar anti-histamínico tópico; prednisona se > 20% da superfície.",
-   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 60 — Eczema, Psoriasis, Cutaneous Infections, Acne, and Other Common Skin Disorders."
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 60 — Eczema, Psoriasis, Cutaneous Infections, Acne, and Other Common Skin Disorders.",
+   "Bula Anvisa do Claritin (loratadina 10 mg, Bayer): adulto e maior de 12 anos, 10 mg VO 1x/dia. https://consultas.anvisa.gov.br/#/bulario/",
+   "Bula Anvisa do Fenergan injetável (prometazina 25 mg/mL, Sanofi): 25–50 mg IM profunda, máximo 100 mg/dia; EV não recomendada; contraindicada em menores de 2 anos; American Geriatrics Society. 2023 AGS Beers Criteria (evitar no idoso). https://consultas.anvisa.gov.br/#/bulario/",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 63 — Cutaneous Drug Reactions (síndrome de Stevens-Johnson e necrólise epidérmica tóxica: suspender o fármaco suspeito e internar)."
   ]
  },
  {
@@ -768,14 +783,17 @@ const BASE = [
   "cid": "B35.3",
   "sin": "frieira pe de atleta micose",
   "casa": "Uso tópico\n1) Clotrimazol 1% creme ---------------------- 1 bisnaga\nAplicar fina camada entre os dedos 2x ao dia por 4 semanas (manter 1 semana após a melhora).",
-  "unidade": "",
+  "unidade": "1) Examinar entre os dedos e a planta: fissuras, maceração, vermelhidão que se espalha pelo pé ou pela perna, calor e dor (celulite/erisipela — a tinea é porta de entrada) → ver Erisipela.\n2) Diabético: examinar o pé inteiro (úlcera, infecção, pulsos, sensibilidade); úlcera ou infecção no pé diabético não é caso só de creme.\n3) Unhas acometidas: ver Onicomicose (o creme não trata a unha).\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Seque bem entre os dedos após o banho, troque as meias todos os dias e prefira calçados arejados.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Ajustado: 14 dias → 4 semanas.",
    "Removido: dipirona IM na unidade (sem indicação)."
   ],
   "fontes": [
-   "Crawford F, Hollis S. Topical treatments for fungal infections of the skin and nails of the foot (Cochrane 2007;CD001434)."
+   "Crawford F, Hollis S. Topical treatments for fungal infections of the skin and nails of the foot (Cochrane 2007;CD001434).",
+   "Stevens DL et al. IDSA Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections: 2014 Update (Clin Infect Dis 2014;59:e10): identificar e tratar fatores predisponentes da celulite, como fissuras interdigitais e tinea pedis; impetigo e glomerulonefrite pós-estreptocócica.",
+   "Senneville É et al. IWGDF/IDSA Guidelines on the diagnosis and treatment of diabetes-related foot infections (Clin Infect Dis 2023;ciad527): examinar o pé inteiro do diabético; infecção no pé diabético exige avaliação clínica e tratamento sistêmico conforme a gravidade. https://doi.org/10.1093/cid/ciad527"
   ]
  },
  {
@@ -808,9 +826,10 @@ const BASE = [
   "sin": "oxiurus verme coceira anal",
   "casa": "Uso oral\n1) Albendazol 400mg -------------------------- 2 cp\nTomar 1 cp VO em dose única e repetir após 14 dias.",
   "avisoRx": ["Tratar todos os contatos domiciliares."],
-  "unidade": "",
+  "unidade": "1) Confirmar o quadro: prurido anal, pior à noite; em meninas, também prurido vulvar ou corrimento.\n2) Lesões de coçadura infectadas (crostas, pus): tratar como impetigo.\n3) Gestante: não usar albendazol (bula); discutir com o pré-natal.\n4) Orientar o tratamento de todos que moram na mesma casa e as medidas de higiene.\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Todas as pessoas que moram na mesma casa também precisam ser tratadas.\n- Lave roupas de cama e toalhas em água quente, mantenha as unhas curtas e lave bem as mãos.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): fontes separadas e com link (CDC, bula Zentel); alerta de gestação do albendazol fiel à bula: não usar na gestação nem em quem planeja engravidar (bula Zentel).",
    "Removido: dipirona IM para prurido anal (dipirona não trata prurido)."
   ],
@@ -905,9 +924,10 @@ const BASE = [
   "sin": "sarna coceira noturna",
   "casa": "Uso tópico\n1) Permetrina 5% loção/creme ----------------- 1 fr\nAplicar à noite do pescoço aos pés (incluir entre dedos, sob as unhas, umbigo e genitais), deixar agir 8–12h e remover no banho. Repetir após 7 dias. Em idosos e crianças pequenas, aplicar também no couro cabeludo e na face, poupando olhos e boca.\n\nUso oral\n2) Ivermectina 6mg --------------------------- conforme peso\nTomar VO em dose única, com água, e repetir após 7 dias. Dose por peso: 15–24 kg ½ cp; 25–35 kg 1 cp; 36–50 kg 1½ cp; 51–65 kg 2 cp; 66–79 kg 2½ cp; 80 kg ou mais 200 mcg/kg.\n\n3) Hidroxizina 25mg -------------------------- 20 cp\nTomar 1 cp VO à noite (ou de 8/8h) se coceira (no máximo 3 cp por dia).",
   "avisoRx": ["Ivermectina: casos extensos, falha do tópico ou surtos.","Ivermectina: não usar abaixo de 15 kg ou de 5 anos; na gestação, só com indicação médica (preferir permetrina).","Gestante, amamentando e criança a partir de 2 meses: permetrina é a escolha.","Hidroxizina: evitar em idosos (ver alerta)."],
-  "unidade": "",
+  "unidade": "1) Examinar entre os dedos, punhos, axilas, cintura, umbigo, aréolas e genitais (túneis e pápulas).\n2) Lesões infectadas (crostas melicéricas, pus, celulite): tratar a infecção (ver Impetigo/Erisipela).\n3) Crostas espessas e extensas, sobretudo em idoso, acamado ou imunossuprimido (sarna crostosa): muito contagiosa — isolamento de contato, tratamento combinado (tópico + oral, em várias doses; o esquema da receita não basta) e discutir internação ou dermatologista.\n4) Casos em asilo, creche ou outra instituição: avisar a vigilância epidemiológica do município (surto).\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Todas as pessoas que moram com você ou têm contato próximo devem ser tratadas ao mesmo tempo.\n- Lave roupas de cama e roupas de uso em água quente, ou guarde-as em saco fechado por 72 horas.\n- A coceira pode continuar por 2 a 4 semanas mesmo após o tratamento correto.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): ivermectina pela tabela de peso da bula (½ cp de 15–24 kg a 2½ cp de 66–79 kg; 200 mcg/kg a partir de 80 kg), com água, sem uso abaixo de 15 kg ou de 5 anos (bula Revectina); permetrina como escolha na gestação, na amamentação e a partir de 2 meses, com couro cabeludo e face em idosos e crianças pequenas (IUSTI 2026; bula da permetrina 5%); hidroxizina com no máximo 3 cp por dia e aviso para idosos (bula Hixizine; Beers 2023); IUSTI 2017 → 2026.",
    "Corrigido: ivermectina '3 cp' fixos → dose por peso (200 mcg/kg). Use a Calculadora.",
    "Trocado: dipirona IM para prurido → hidroxizina VO."
@@ -917,7 +937,8 @@ const BASE = [
    "Bula Revectina (ivermectina 6 mg), Abbott, registrada na Anvisa — tabela de dose por peso; contraindicada abaixo de 15 kg ou 5 anos.",
    "Bula da permetrina 5% loção (Nedax), registrada na Anvisa — uso a partir de 2 meses.",
    "Bula Hixizine (hidroxizina 25 mg), registrada na Anvisa — adulto 25 mg 3 a 4x ao dia; American Geriatrics Society. Beers Criteria, 2023 (anti-histamínico de 1ª geração: evitar no idoso).",
-   "Centers for Disease Control and Prevention. Scabies — Clinical Care, 2024. https://www.cdc.gov/scabies/hcp/clinical-care/"
+   "Centers for Disease Control and Prevention. Scabies — Clinical Care, 2024. https://www.cdc.gov/scabies/hcp/clinical-care/",
+   "Centers for Disease Control and Prevention. Scabies — Clinical Care, 2024: sarna crostosa com tratamento combinado de permetrina tópica e ivermectina oral em várias doses (dias 1, 2, 8, 9, 15 e, se grave, 22 e 29); surtos em instituições exigem manejo coordenado. https://www.cdc.gov/scabies/hcp/clinical-care/"
   ]
  },
  {
@@ -994,15 +1015,17 @@ const BASE = [
   "cid": "R14",
   "sin": "distensao abdominal meteorismo",
   "casa": "Uso oral\n1) Simeticona 75mg/mL gotas ------------------ 1 fr\nTomar 13 gotas (40 mg) VO 3x ao dia, após as refeições, por até 3 dias.",
-  "unidade": "",
+  "unidade": "1) Afastar sinais de alarme: vômitos, distensão com parada de fezes e gases (obstrução), dor intensa ou localizada, febre, sangramento, anemia, perda de peso ou mudança recente do hábito intestinal → ver Dor abdominal.\n2) Desconforto importante: Simeticona 75mg/mL gotas, 13 gotas (40 mg) VO.\n* Simeticona não deve ser usada se suspeita de obstrução ou perfuração intestinal (bula).",
   "orient": "- Evite refrigerantes, feijão, repolho e chiclete, e coma devagar.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): simeticona 15 → 13 gotas (40 mg) 3x ao dia, como a bula Luftal e a ficha; fontes de verdade (bula Luftal; AGA 2023) no lugar de \"evidência limitada\"."
   ],
   "evid": "Simeticona tem evidência limitada.",
   "fontes": [
    "Bula Luftal gotas (simeticona 75 mg/mL, Anvisa): adultos e maiores de 12 anos, 13 gotas 3x ao dia; máximo 500 mg/dia (166 gotas).",
-   "Moshiree B et al. AGA Clinical Practice Update on Evaluation and Management of Belching, Abdominal Bloating, and Distention (Gastroenterology 2023;165:791). https://doi.org/10.1053/j.gastro.2023.04.039"
+   "Moshiree B et al. AGA Clinical Practice Update on Evaluation and Management of Belching, Abdominal Bloating, and Distention (Gastroenterology 2023;165:791). https://doi.org/10.1053/j.gastro.2023.04.039",
+   "Bula Anvisa do Luftal (simeticona) gotas 75 mg/mL (25 gotas = 1 mL; 13 gotas ≈ 40 mg): contraindicado na suspeita ou confirmação de perfuração ou obstrução intestinal (ficha simeticona do app). https://consultas.anvisa.gov.br/#/bulario/"
   ]
  },
  {
@@ -1074,9 +1097,10 @@ const BASE = [
   "sin": "acido urico alopurinol",
   "casa": "Uso oral\n1) Alopurinol 100mg -------------------------- 30 cp\nTomar 1 cp VO 1 vez ao dia. Pode começar durante a crise, junto com a colchicina. Aumentar com o clínico a cada 2 a 5 semanas, conforme o ácido úrico (meta < 6 mg/dL). Se já usa, não suspender durante a crise.\n2) Colchicina 0,5mg -------------------------- 60 cp\nTomar 1 cp VO de 12/12h por 3 a 6 meses (para prevenir crises enquanto o alopurinol começa a agir). Não usar com claritromicina, cetoconazol ou ciclosporina.",
   "avisoRx": ["Alopurinol: na DRC moderada ou grave, meio cp.","Colchicina: na DRC moderada ou no idoso, 1 cp 1 vez ao dia.","Colchicina: clearance < 30 mL/min ou diálise, não usar sem o clínico (bula: 0,3 mg/dia, inviável com cp de 0,5 mg).","Início e titulação idealmente no ambulatório."],
-  "unidade": "",
+  "unidade": "1) Em crise aguda (articulação quente, vermelha e dolorosa): tratar a crise primeiro → ver Gota (crise). Se já usa alopurinol, não suspender.\n2) Pedir creatinina (ClCr) antes de definir as doses do alopurinol e da colchicina; checar as interações da colchicina listadas na receita.\n3) Encaminhar ao clínico da UBS ou ao reumatologista para ajuste da dose pelo ácido úrico (meta < 6 mg/dL).\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Pare o alopurinol e procure atendimento se aparecerem manchas, bolhas ou feridas na pele, pois pode ser uma reação grave ao remédio.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): alopurinol pode começar durante a crise; meio cp na DRC moderada ou grave, na própria receita; titulação a cada 2 a 5 semanas; colchicina 1 vez ao dia na DRC e no idoso, com as interações (ACR 2020; EULAR 2016; bula Zyloric).",
    "Corrigido: alopurinol deve iniciar em dose baixa (100mg; 50mg na DRC) e ser titulado, não 300mg de início (ACR 2020)."
   ],
@@ -1141,9 +1165,10 @@ const BASE = [
   "sin": "herpes labial genital hsv",
   "casa": "Uso oral\n# Herpes labial:\n1) Aciclovir 400mg --------------------------- 25 cp\nTomar 1 cp VO 5x ao dia por 5 dias.\nOu\n1) Valaciclovir 500mg ------------------------ 8 cp\nTomar 4 cp (2 g) VO de 12/12h por 1 dia, no início dos sintomas.\n\n# Herpes genital — 1º episódio:\n1) Aciclovir 400mg --------------------------- 30 cp\nTomar 1 cp VO de 8/8h por 10 dias.\n\n# Herpes genital — recorrência:\n1) Aciclovir 400mg --------------------------- 15 cp\nTomar 1 cp VO de 8/8h por 5 dias.",
   "avisoRx": ["Herpes labial: iniciar nos pródromos ou até 1 dia das lesões.","Herpes genital: ofertar testes rápidos de HIV, sífilis e hepatites.","Insuficiência renal: ClCr < 10 → aciclovir 200 mg de 12/12h; valaciclovir conforme o ClCr (ver ajuste renal; bulas). Hidratar bem.","CID: labial B00.1 | genital A60.0."],
-  "unidade": "",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD, se dor.\n2) Herpes genital: oferecer na unidade os testes rápidos de HIV, sífilis e hepatites B e C. Higiene das lesões com compressas de SF 0,9%.\n3) Retenção urinária (herpes genital, sobretudo no 1º episódio): sondagem vesical de alívio.\n4) Internar para aciclovir EV se: lesões extensas em imunossuprimido, doença disseminada, suspeita de encefalite ou meningite (febre, confusão, convulsão, rigidez de nuca), hepatite, ou não consegue tomar VO:\n   Encefalite ou meningoencefalite: Aciclovir 10 mg/kg EV de 8/8h (14 a 21 dias).\n   Doença grave (disseminada, hepatite, meningite) ou imunossuprimido com lesões extensas: 5–10 mg/kg EV de 8/8h.\n   Demais casos: 5 mg/kg EV de 8/8h. Obeso: calcular pelo peso ideal.\n   Reconstituir cada frasco de 250 mg em 10 mL de AD ou SF (25 mg/mL) e diluir em SF 0,9% até no máximo 5 mg/mL (até 500 mg em 100 mL; de 500 a 1.000 mg, em 2 bolsas de 100 mL). Infundir em 1 h, nunca em bolus. Hidratar bem.\n   ClCr 25–50: de 12/12h; 10–25: de 24/24h; < 10: metade da dose de 24/24h.",
   "orient": "- Comece o remédio o mais cedo possível, de preferência nas primeiras 48 a 72 horas.\n- Herpes genital: faça os testes rápidos de HIV, sífilis e hepatites e evite relações sexuais enquanto houver feridas.\n- Beba bastante água durante o tratamento.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): ajuste renal do aciclovir separado do zoster: no herpes simples, só ClCr < 10 → 200 mg de 12/12h (antes o painel sugeria 800 mg de 8/8h); valaciclovir como alternativa no herpes labial, 2 g de 12/12h por 1 dia, com ajuste renal (bula do aciclovir; bula Valtrex); PCDT IST 2022 do MS nas fontes.",
    "Separado: esquemas por situação (labial, genital 1º episódio, recorrência).",
    "Removido: nota '(se gestante: 5 dias)', sem respaldo.",
@@ -1154,7 +1179,12 @@ const BASE = [
    "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — herpes genital.",
    "Spruance SL et al. Aciclovir 400 mg 5x/dia no herpes labial (Antimicrob Agents Chemother 1990).",
    "Bula do valaciclovir (Valtrex), GSK, registrada na Anvisa; bula FDA Valtrex — herpes labial 2 g de 12/12h por 1 dia; ajuste renal (ClCr 30–49: 1 g 12/12h por 1 dia; 10–29: 500 mg 12/12h por 1 dia; < 10: 500 mg dose única).",
-   "Bula do aciclovir comprimido, registrada na Anvisa — ajuste renal: esquemas de 200–400 mg → 200 mg de 12/12h se ClCr < 10; 800 mg 5x/dia → 800 mg de 8/8h se ClCr 10–25 e de 12/12h se < 10."
+   "Bula do aciclovir comprimido, registrada na Anvisa — ajuste renal: esquemas de 200–400 mg → 200 mg de 12/12h se ClCr < 10; 800 mg 5x/dia → 800 mg de 8/8h se ClCr 10–25 e de 12/12h se < 10.",
+   "Bula Anvisa da Novalgina solução injetável (dipirona 500 mg/mL, Sanofi): IM ou EV 1–2,5 g em dose única, máximo 5 g/dia; EV lenta, no máximo 1 mL (500 mg)/min, com o paciente deitado. https://consultas.anvisa.gov.br/#/bulario/",
+   "Ministério da Saúde. PCDT para Atenção Integral às Pessoas com IST, 2022 — quadro 38 (herpes genital: imunossuprimido com lesões extensas, aciclovir 5–10 mg/kg EV de 8/8h por 5 a 7 dias ou até a resolução; compressas de soro fisiológico para higiene das lesões; analgésico se necessário; retorno em 1 semana) e orientações gerais para todas as IST (oferecer testagem para HIV, sífilis e hepatites B e C). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
+   "Bula Anvisa do Zovirax injetável (aciclovir sódico 250 mg, GSK, aprovada em 18/03/2021): herpes simples e varicela-zoster 5 mg/kg de 8/8h; imunocomprometido com varicela-zoster ou meningoencefalite herpética 10 mg/kg de 8/8h; obeso pelo peso ideal; reconstituir cada frasco em 10 mL de AD ou SF 0,9% (25 mg/mL) e diluir para no máximo 5 mg/mL (até 500 mg em 100 mL; de 500 a 1.000 mg, uma segunda bolsa de 100 mL); infusão em 1 h, nunca em bolus; ClCr 25–50: de 12/12h; 10–25: de 24/24h; < 10: metade da dose de 24/24h; garantir hidratação. https://br.gsk.com/media/6237/zovirax-injet%C3%A1vel.pdf",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 197 — Herpes Simplex Virus Infections.",
+   "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 — Genital Herpes: doença grave ou complicações que exigem internação (disseminada, pneumonite, hepatite, meningite, encefalite), aciclovir 5–10 mg/kg EV de 8/8h; encefalite, 14–21 dias de terapia EV. https://www.cdc.gov/std/treatment-guidelines/herpes.htm"
   ]
  },
  {
@@ -1165,9 +1195,10 @@ const BASE = [
   "sin": "cobreiro zona herpes facial",
   "casa": "Uso oral\n1) Aciclovir 400mg --------------------------- 70 cp\nTomar 2 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\nOu\n1) Aciclovir 200mg --------------------------- 140 cp\nTomar 4 cp (800mg) VO 5x ao dia (7h, 11h, 15h, 19h, 23h) por 7 dias.\nOu\n1) Valaciclovir 500mg ------------------------ 42 cp\nTomar 2 cp (1 g) VO de 8/8h por 7 dias.\n2) Paracetamol + Codeína 500/30mg (Paco) ----- 15 cp\nTomar 1 cp VO de 6/6h se dor intensa (no máximo 4 cp por dia).\n3) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor (no máximo 8 cp por dia).",
   "avisoRx": ["Aciclovir 200 mg se for a apresentação disponível no posto.","Iniciar até 72h do início das lesões (ou depois, se lesões novas surgindo ou imunossuprimido).","Lesão na ponta do nariz (sinal de Hutchinson), olho vermelho ou baixa da visão: avaliação oftalmológica urgente."],
-  "unidade": "",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD.\n   Se dor intensa persistir: Tramadol 100 mg (2 mL) EV em 100 mL de SF em 30–60 min (infusão rápida aumenta náuseas), ou IM. Máx. 400 mg/dia.\n2) Lesão na ponta do nariz (sinal de Hutchinson), olho vermelho, dor ocular ou baixa da visão: avaliação oftalmológica no mesmo dia.\n3) Internar para aciclovir EV se: zoster disseminado (lesões espalhadas além dos dermátomos vizinhos), imunossupressão grave, acometimento visceral ou neurológico (confusão, convulsão, rigidez de nuca, fraqueza de membros), ou zoster oftálmico complicado:\n   Aciclovir 10 mg/kg EV de 8/8h (imunossuprimido, disseminado, visceral ou neurológico). Imunocompetente sem doença disseminada, visceral ou neurológica: 5 mg/kg. Obeso: calcular pelo peso ideal.\n   Reconstituir cada frasco de 250 mg em 10 mL de AD ou SF (25 mg/mL) e diluir em SF 0,9% até no máximo 5 mg/mL (até 500 mg em 100 mL; de 500 a 1.000 mg, em 2 bolsas de 100 mL). Infundir em 1 h, nunca em bolus. Hidratar bem.\n   ClCr 25–50: de 12/12h; 10–25: de 24/24h; < 10: metade da dose de 24/24h.",
   "orient": "- Comece o remédio o mais cedo possível.\n- Procure um oftalmologista com urgência se aparecerem lesões na ponta do nariz, se o olho ficar vermelho ou se a visão piorar.\n- Evite contato com gestantes, recém-nascidos e pessoas com imunidade baixa até todas as lesões virarem casquinhas (crostas).",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): paracetamol + codeína com no máximo 4 cp por dia e dipirona com no máximo 8 cp por dia (fichas codeina e dipirona); valaciclovir 1 g de 8/8h por 7 dias como alternativa, com ajuste renal (Dworkin 2007; bula Valtrex); ajuste renal do aciclovir separado do herpes simples, mantendo 800 mg de 8/8h (ClCr 10–25) e de 12/12h (< 10) (bula).",
    "Renomeado: 'Herpes facial' → Herpes zoster. A dose de 800mg 5x/dia é de zoster, não de herpes labial.",
    "Adicionado: duração de 7 dias e alerta de zoster oftálmico."
@@ -1177,7 +1208,12 @@ const BASE = [
    "National Institute for Health and Care Excellence. CKS Shingles (revisado em 2024): antiviral em até 72 h se > 50 anos, imunossuprimido, zoster fora do tronco ou dor/erupção moderada a grave; zoster oftálmico com encaminhamento no mesmo dia. https://cks.nice.org.uk/topics/shingles/",
    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 198 — Varicella-Zoster Virus Infections.",
    "Bula do valaciclovir (Valtrex), GSK, registrada na Anvisa; bula FDA Valtrex — zoster 1 g de 8/8h por 7 dias; ajuste renal (ClCr 30–49: 1 g 12/12h; 10–29: 1 g 24/24h; < 10: 500 mg 24/24h).",
-   "Bula do aciclovir comprimido, registrada na Anvisa — zoster 800 mg 5x/dia; ClCr 10–25: 800 mg de 8/8h; < 10: 800 mg de 12/12h."
+   "Bula do aciclovir comprimido, registrada na Anvisa — zoster 800 mg 5x/dia; ClCr 10–25: 800 mg de 8/8h; < 10: 800 mg de 12/12h.",
+   "Bula Anvisa da Novalgina solução injetável (dipirona 500 mg/mL, Sanofi): IM ou EV 1–2,5 g em dose única, máximo 5 g/dia; EV lenta, no máximo 1 mL (500 mg)/min, com o paciente deitado. https://consultas.anvisa.gov.br/#/bulario/",
+   "Bula Anvisa do Tramal solução injetável (tramadol 50 mg/mL, Grünenthal): 50–100 mg IM ou EV, máximo 400 mg/dia; EV direta lenta (1 mL/min) ou em infusão diluída em SF 0,9%. https://consultas.anvisa.gov.br/#/bulario/",
+   "Bula Anvisa do Zovirax injetável (aciclovir sódico 250 mg, GSK, aprovada em 18/03/2021): herpes simples e varicela-zoster 5 mg/kg de 8/8h; imunocomprometido com varicela-zoster ou meningoencefalite herpética 10 mg/kg de 8/8h; obeso pelo peso ideal; reconstituir cada frasco em 10 mL de AD ou SF 0,9% (25 mg/mL) e diluir para no máximo 5 mg/mL (até 500 mg em 100 mL; de 500 a 1.000 mg, uma segunda bolsa de 100 mL); infusão em 1 h, nunca em bolus; ClCr 25–50: de 12/12h; 10–25: de 24/24h; < 10: metade da dose de 24/24h; garantir hidratação. https://br.gsk.com/media/6237/zovirax-injet%C3%A1vel.pdf",
+   "Tunkel AR et al. The management of encephalitis: clinical practice guidelines by the Infectious Diseases Society of America (Clin Infect Dis 2008;47:303): encefalite por VZV, aciclovir 10–15 mg/kg EV de 8/8h por 10–14 dias. https://doi.org/10.1086/589747",
+   "Dworkin RH et al. Recommendations for the management of herpes zoster (Clin Infect Dis 2007;44 Suppl 1:S1): aciclovir EV no zoster disseminado, visceral ou do sistema nervoso central e no imunossuprimido grave. https://doi.org/10.1086/510206"
   ]
  },
  {
@@ -1264,15 +1300,18 @@ const BASE = [
   "sin": "tireoide levotiroxina tsh",
   "casa": "Uso oral\n1) Levotiroxina 50mcg ------------------------ 30 cp\nTomar 1 cp VO em jejum, 30–60 min antes do café da manhã, todos os dias.",
   "avisoRx": ["Iniciar só com TSH alto confirmado (com T4 livre baixo ou TSH ≥ 10).","Idosos ou cardiopatas: começar com 25 mcg (meio comprimido de 50 mcg ou apresentação de 25 mcg).","Repetir TSH em 6–8 semanas para ajuste."],
-  "unidade": "",
+  "unidade": "1) Afastar coma mixedematoso: rebaixamento ou confusão, hipotermia, bradicardia, hipotensão, hipoventilação (CO2 alto), hiponatremia ou hipoglicemia, com história de hipotireoidismo ou cicatriz de tireoidectomia → sala vermelha e vaga de UTI (tratamento EV em terapia intensiva).\n2) Bradicardia, edema ou dor torácica: ECG.\n3) Não iniciar levotiroxina sem TSH alterado confirmado (com T4 livre); idoso ou cardiopata começa com dose baixa.\n4) Encaminhar ao clínico da UBS (TSH em 6–8 semanas).\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Repita o exame de sangue da tireoide (TSH) em 6 a 8 semanas para ajuste da dose.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): início só com diagnóstico confirmado; 25 mcg com apresentação coerente com a receita; consenso SBEM (ATA 2014; SBEM 2013).",
    "Adicionado: dose inicial em idosos/cardiopatas e controle do TSH."
   ],
   "fontes": [
    "Jonklaas J et al. Guidelines for the Treatment of Hypothyroidism — American Thyroid Association (Thyroid 2014;24:1670) — recomendações 21 e 22: dose inicial e idoso ou coronariopata.",
-   "Brenta G et al. Diretrizes clínicas práticas para o manejo do hipotireoidismo — SBEM (Arq Bras Endocrinol Metab 2013;57:265)."
+   "Brenta G et al. Diretrizes clínicas práticas para o manejo do hipotireoidismo — SBEM (Arq Bras Endocrinol Metab 2013;57:265).",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 395 — Hypothyroidism (coma mixedematoso).",
+   "Jonklaas J et al. Guidelines for the Treatment of Hypothyroidism — American Thyroid Association (Thyroid 2014;24:1670): coma mixedematoso tratado em terapia intensiva com levotiroxina EV e glicocorticoide."
   ]
  },
  {
@@ -1283,9 +1322,10 @@ const BASE = [
   "sin": "crosta melicerica ferida infectada",
   "casa": "Uso tópico\n1) Mupirocina 2% pomada ---------------------- 1 bisnaga\nAplicar nas lesões 3x ao dia, após remover as crostas com água morna e sabão, por 5 a 7 dias.\nOu\n1) Ácido fusídico 2% creme ------------------- 1 bisnaga\nAplicar nas lesões 3x ao dia, após remover as crostas, por 5 dias.\n\nUso oral\n2) Cefalexina 500mg -------------------------- 20 cp\nTomar 1 cp VO de 6/6h por 5 dias.\nOu\n2) Clindamicina 300mg ------------------------ 20 cp\nTomar 1 cp VO de 6/6h por 5 dias.\n\n3) Dipirona 500mg ---------------------------- 10 cp\nTomar 2 cp VO de 6/6h se dor ou febre (no máximo 8 cp por dia).",
   "avisoRx": ["Tópico para lesões localizadas; oral para lesões extensas ou múltiplas.","Clindamicina se alergia a penicilina.","Afastar da escola/creche até 24h após o início do antibiótico."],
-  "unidade": "",
+  "unidade": "1) Remover as crostas com água morna e sabão (ou SF 0,9%) antes da primeira aplicação do tópico.\n2) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD, se dor ou febre.\n3) Afastar complicação: vermelhidão que se espalha, calor e dor (celulite/erisipela) → ver Erisipela. Febre com bolhas e descamação extensa (síndrome da pele escaldada, sobretudo em criança) → internar.\n4) Edema, urina escura ou com sangue e PA alta 3 a 6 semanas depois (glomerulonefrite pós-estreptocócica): medir PA e pedir exame de urina e creatinina.",
   "orient": "- Mantenha as unhas curtas, lave bem as mãos e não compartilhe toalhas.\n- Se for criança, mantenha-a afastada da escola ou da creche até 24 horas após o início do antibiótico.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): clindamicina 300 mg de 8/8h → 6/6h (IDSA SSTI 2014, tabela 1); antibiótico oral por 5 dias, 20 cp (NICE NG153); neomicina + bacitracina → ácido fusídico 2% 3x ao dia por 5 dias (NICE NG153; Cochrane, Koning 2012); dipirona com no máximo 8 cp por dia (ficha dipirona).",
    "Removido: penicilina benzatina (não cobre S. aureus, principal agente).",
    "Removido: eritromicina em xarope (dose pediátrica, subdosada para adulto).",
@@ -1296,7 +1336,10 @@ const BASE = [
    "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10) — impetigo: tabela 1 (clindamicina 300–400 mg 4x ao dia).",
    "National Institute for Health and Care Excellence. NG153 — Impetigo: antimicrobial prescribing, 2020 — tópico (ácido fusídico 2% 3x ao dia) por 5 dias na lesão localizada; oral por 5 dias (até 7) se extenso ou bolhoso. https://www.nice.org.uk/guidance/ng153",
    "Koning S et al. Interventions for impetigo (Cochrane Database Syst Rev 2012;CD003261).",
-   "American Academy of Pediatrics. Red Book 2024–2027 — impetigo: volta à escola 24 h após o início do antibiótico."
+   "American Academy of Pediatrics. Red Book 2024–2027 — impetigo: volta à escola 24 h após o início do antibiótico.",
+   "Bula Anvisa da Novalgina solução injetável (dipirona 500 mg/mL, Sanofi): IM ou EV 1–2,5 g em dose única, máximo 5 g/dia; EV lenta, no máximo 1 mL (500 mg)/min, com o paciente deitado. https://consultas.anvisa.gov.br/#/bulario/",
+   "Stevens DL et al. IDSA Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections: 2014 Update (Clin Infect Dis 2014;59:e10): identificar e tratar fatores predisponentes da celulite, como fissuras interdigitais e tinea pedis; impetigo e glomerulonefrite pós-estreptocócica.",
+   "Manual MSD, versão para profissionais de saúde. Glomerulonefrite pós-infecciosa (revisão 2024): a glomerulonefrite pós-estreptocócica surge 1 a 3 semanas após faringite e 3 a 6 semanas após infecção de pele. https://www.msdmanuals.com/professional/genitourinary-disorders/glomerular-disorders/postinfectious-glomerulonephritis-pign"
   ]
  },
  {
@@ -1307,9 +1350,10 @@ const BASE = [
   "sin": "varizes meia elastica edema pernas",
   "casa": "Uso externo\n1) Meia de compressão elástica — média compressão (20–30 mmHg), 3/4.\n- Calçar pela manhã, antes de levantar da cama.\n- Usar durante todo o dia.\n- Se precisar retirar, elevar as pernas por 15 min antes de calçar de novo.",
   "avisoRx": ["Não usar meia compressiva se doença arterial periférica (checar pulsos)."],
-  "unidade": "",
+  "unidade": "1) Afastar TVP: edema assimétrico de início recente, dor na panturrilha, empastamento → Wells e doppler venoso (ver TVP).\n2) Palpar pulsos pedioso e tibial posterior antes de indicar a meia; pulsos fracos ou ausentes: suspeitar de doença arterial (sem meia compressiva até avaliação vascular).\n3) Úlcera venosa: limpar com SF 0,9% e curativo; vermelhidão que se espalha, calor e dor → ver Erisipela.\n4) Cordão endurecido, vermelho e doloroso no trajeto de uma variz (tromboflebite superficial): doppler (ver TVP).\n* Não há medicação de rotina na unidade; o tratamento é domiciliar (meia e elevação); encaminhar ao angiologista ou cirurgião vascular.",
   "orient": "- Eleve as pernas ao descansar e caminhe todos os dias.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Adicionado: faixa de compressão e contraindicação arterial."
   ],
   "fontes": [
@@ -1324,9 +1368,10 @@ const BASE = [
   "sin": "helicobacter ulcera gastrite",
   "casa": "Uso oral (14 dias)\n1) Omeprazol 20mg ---------------------------- 56 cp\nTomar 2 cp (40mg) VO de 12/12h, 30 min antes do café e do jantar, por 14 dias.\n2) Subcitrato de bismuto coloidal 240mg (manipulado) --- 28 cáps\nTomar 1 cáps VO de 12/12h por 14 dias.\n3) Tetraciclina 500mg ------------------------- 56 cáps\nTomar 1 cáps VO de 6/6h por 14 dias, com água, longe de leite, antiácido e ferro.\n4) Metronidazol 400mg ------------------------- 56 cp\nTomar 1 cp VO de 6/6h por 14 dias, após as refeições.\n\n# Sem bismuto disponível:\n1) Vonoprazana 20mg (Inzelm) ------------------ 28 cp\nTomar 1 cp VO de 12/12h por 14 dias.\n2) Amoxicilina 500mg -------------------------- 56 cáps\nTomar 2 cáps (1g) VO de 12/12h por 14 dias.\n3) Claritromicina 500mg ----------------------- 28 cp\nTomar 1 cp VO de 12/12h por 14 dias.",
   "avisoRx": ["Esquema sem bismuto não serve para alergia a penicilina: usar o 1º esquema, a quádrupla com bismuto, que não tem amoxicilina.","Controle de cura: teste respiratório com ureia 13C ou antígeno fecal monoclonal (V Consenso 2026, enunciados 17 e 20).","Tetraciclina: não usar na gestação, na amamentação nem em menores de 8 anos.","Parar de fumar aumenta a chance de cura (V Consenso, enunciado 26)."],
-  "unidade": "",
+  "unidade": "1) Não é tratamento de pronto-socorro: a erradicação se faz com diagnóstico confirmado (endoscopia, teste respiratório ou antígeno fecal).\n2) Dor epigástrica na unidade: ver Dispepsia (medicação EV).\n3) Sinais de alarme → ver HDA ou encaminhar para endoscopia: hematêmese ou melena, anemia, disfagia, vômitos persistentes, perda de peso, massa abdominal; dispepsia a partir de 40 anos também tem indicação de endoscopia.\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Depois do tratamento, faça o exame de controle de cura (teste do sopro ou exame de fezes), pelo menos 4 semanas após terminar os antibióticos e o bismuto e após 14 dias sem omeprazol ou vonoprazana.\n- O bismuto deixa as fezes escuras, o que é esperado. Volte ao pronto-socorro se tiver fezes pretas com fraqueza ou tontura, ou vômito com sangue.\n- Não tome bebida alcoólica durante o uso do metronidazol e até 3 dias depois.\n- Se estiver grávida, amamentando ou suspeitar de gravidez, não tome a tetraciclina e fale com o médico.\n- Parar de fumar aumenta a chance de cura.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Atualizado (2026-10-17): esquemas pelo V Consenso Brasileiro 2026; tripla clássica com IBP deixa de ser 1ª linha empírica; quádrupla com bismuto (omeprazol, bismuto, tetraciclina, metronidazol) por 14 dias, que serve também na alergia a penicilina; sem bismuto, vonoprazana + amoxicilina + claritromicina; controle de cura por teste respiratório ou antígeno fecal (V Consenso 2026, enunciados 17, 20, 27, 28 e 32).",
    "Corrigido: duração 7 → 14 dias (IV Consenso Brasileiro de H. pylori).",
    "Corrigido: omeprazol 20 → 40mg 12/12h (IBP em dose dobrada).",
@@ -1336,7 +1381,8 @@ const BASE = [
    "Coelho LGV et al. V Consenso Brasileiro sobre Infecção por Helicobacter pylori (Arq Gastroenterol 2026;63:e26043). doi 10.1590/S0004-2803.24612026-043: 1ª linha (enunciado 28, tabela 3), alergia a penicilina (enunciado 32, tabela 6), controle de cura (enunciados 17 e 20).",
    "Chey WD et al. ACG Clinical Guideline: Treatment of Helicobacter pylori Infection (Am J Gastroenterol 2024;119:1730).",
    "Malfertheiner P et al. Maastricht VI/Florence Consensus (Gut 2022;71:1724).",
-   "Bula da tetraciclina (Anvisa): contraindicada na gestação, na amamentação, em menores de 8 anos e na insuficiência renal; bula do Flagyl (metronidazol: efeito antabuse com álcool)."
+   "Bula da tetraciclina (Anvisa): contraindicada na gestação, na amamentação, em menores de 8 anos e na insuficiência renal; bula do Flagyl (metronidazol: efeito antabuse com álcool).",
+   "Coelho LGV et al. V Consenso Brasileiro sobre Infecção por Helicobacter pylori (Arq Gastroenterol 2026;63:e26043), enunciado 18: endoscopia se sinais de alarme ou 40 anos ou mais com dispepsia."
   ]
  },
  {
@@ -1377,9 +1423,10 @@ const BASE = [
   "sin": "dificuldade dormir sono",
   "casa": "Orientações para dormir melhor (sem remédio):\n1) Deitar e levantar sempre no mesmo horário, inclusive no fim de semana.\n2) Sem telas 1 h antes de deitar; sem cafeína depois das 16 h; evitar cochilos longos.\n3) Usar a cama só para dormir; se não dormir em cerca de 20 min, levantar e voltar quando tiver sono.\n4) Procurar a UBS se a insônia durar mais de 3 meses (terapia cognitivo-comportamental para insônia).",
   "avisoRx": ["Evitar benzodiazepínico para dormir (dependência, quedas, acidentes); no idoso, não usar.","Insônia há mais de 3 meses: encaminhar à UBS ou ao especialista; 1ª linha é TCC-I, não o remédio."],
-  "unidade": "",
+  "unidade": "1) Procurar a causa: dor, falta de ar, noctúria, refluxo, álcool, cafeína ou estimulantes, remédios (corticoide, descongestionante), suspensão de calmante, apneia do sono.\n2) Avaliar depressão e ansiedade e perguntar diretamente sobre ideação suicida; positiva → avaliar o risco antes da alta (ver Ansiedade).\n3) Sem hipnótico na porta: higiene do sono e encaminhamento à UBS (terapia cognitivo-comportamental para insônia).\n* Não há medicação de rotina na unidade.",
   "orient": "- Mantenha horários fixos para dormir e acordar; evite telas 1 hora antes de deitar, cafeína depois das 16 horas e cochilos longos.\n- Se a insônia durar mais de 3 meses, procure a unidade básica de saúde (posto de saúde) ou um especialista; o tratamento principal é a terapia cognitivo-comportamental para insônia, e não o remédio.\n- Evite calmantes para dormir (como clonazepam e diazepam), pois causam dependência, quedas e acidentes, principalmente em idosos. Se já usa um desses remédios, não pare de repente; converse com seu médico para reduzir aos poucos.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): passiflora retirada (não recomendada pela Associação Brasileira do Sono); sem hipnótico na porta, só higiene do sono e encaminhamento para TCC-I; orientação contra benzodiazepínico (ABS 2023; ACP 2016; Beers 2023).",
    "Adicionado: higiene do sono."
   ],
@@ -1449,9 +1496,10 @@ const BASE = [
   "sin": "bicho geografico",
   "casa": "Uso oral\n1) Albendazol 400mg -------------------------- 3 cp\nTomar 1 cp VO 1x ao dia por 3 dias.\nOu\n1) Ivermectina 6mg --------------------------- conforme peso\nTomar VO em dose única, com água. Dose por peso: 15–24 kg ½ cp; 25–35 kg 1 cp; 36–50 kg 1½ cp; 51–65 kg 2 cp; 66–79 kg 2½ cp; 80 kg ou mais 200 mcg/kg.\n\nUso tópico\n2) Tiabendazol 50mg/g pomada (Foldan) -------- 1 bisnaga\nAplicar nas lesões, friccionando sobre os trajetos, 3x ao dia por 5 dias.",
   "avisoRx": ["Ivermectina: não usar abaixo de 15 kg ou de 5 anos, nem na gestação.","Gestante e criança < 2 anos ou < 15 kg: preferir tratamento só tópico (tiabendazol)."],
-  "unidade": "",
+  "unidade": "1) Confirmar o trajeto serpiginoso, elevado e pruriginoso (pés, nádegas, mãos), com história de areia ou terra.\n2) Lesões infectadas (crostas, pus) ou vermelhidão que se espalha: tratar a infecção (ver Impetigo/Erisipela).\n3) Lesão no tronco que anda rápido (cm por hora), com diarreia ou tosse, em imunossuprimido ou usuário de corticoide: pensar em estrongiloidíase (ver Verminose).\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Evite andar descalço em areia ou terra.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): ivermectina pela tabela de peso da bula (½ cp de 15–24 kg a 2½ cp de 66–79 kg; 200 mcg/kg a partir de 80 kg), sem uso abaixo de 15 kg ou de 5 anos nem na gestação (bula Revectina); gestante e criança < 2 anos ou < 15 kg só com tópico (CDC).",
    "Adicionado: ivermectina como alternativa."
   ],
@@ -1459,7 +1507,8 @@ const BASE = [
    "Caumes E. Treatment of cutaneous larva migrans (Clin Infect Dis 2000).",
    "Centers for Disease Control and Prevention. Clinical Care of Zoonotic Hookworm (larva migrans cutânea): albendazol 400 mg/dia por 3–7 dias ou ivermectina 200 mcg/kg dose única; crianças < 2 anos ou < 15 kg, só tópico. https://www.cdc.gov/zoonotic-hookworm/hcp/clinical-care/index.html",
    "Bula Revectina (ivermectina 6 mg), Abbott, registrada na Anvisa — tabela de dose por peso; contraindicada abaixo de 15 kg ou 5 anos.",
-   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 238 — Trichinellosis and Other Tissue Nematode Infections (larva migrans cutânea)."
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 238 — Trichinellosis and Other Tissue Nematode Infections (larva migrans cutânea).",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 239 — Intestinal Nematode Infections (estrongiloidíase: larva currens, lesão que migra rápido, e hiperinfecção com corticoide ou imunossupressão)."
   ]
  },
  {
@@ -1549,14 +1598,16 @@ const BASE = [
   "sin": "micose unha",
   "casa": "Uso oral (pulsoterapia)\n1) Itraconazol 100mg ------------------------- 28 cp por ciclo\nTomar 2 cp VO de 12/12h, após as refeições, por 7 dias. Repetir 1 semana por mês:\n2 ciclos (unhas das mãos) ou 3 ciclos (unhas dos pés).",
   "avisoRx": ["Confirmar com exame micológico antes de tratar.","Itraconazol: contraindicado em insuficiência cardíaca; checar interações (estatinas etc.) e TGO/TGP."],
-  "unidade": "",
+  "unidade": "1) Não é urgência: confirmar com exame micológico antes de tratar (outras causas imitam: psoríase, trauma).\n2) Vermelhidão, dor e pus ao redor da unha (paroníquia aguda): drenar se flutuante → ver Abscesso.\n3) Diabético: examinar o pé inteiro (úlcera, infecção, pulsos, sensibilidade).\n4) Encaminhar à UBS ou ao dermatologista; antes do itraconazol, TGO/TGP e revisão dos remédios de uso contínuo.\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Antes de começar o itraconazol, fale com o médico se tiver insuficiência cardíaca (coração fraco) ou se usar remédio para colesterol (como sinvastatina) ou outros remédios de uso contínuo.\n- Pare o remédio e procure atendimento se tiver enjoo persistente, cansaço intenso, pele ou olhos amarelados ou urina escura.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Ajustado: 3 ciclos para unhas dos pés.",
    "Adicionado: exame micológico e contraindicações."
   ],
   "fontes": [
-   "Ameen M et al. British Association of Dermatologists guidelines for onychomycosis (Br J Dermatol 2014)."
+   "Ameen M et al. British Association of Dermatologists guidelines for onychomycosis (Br J Dermatol 2014).",
+   "Senneville É et al. IWGDF/IDSA Guidelines on the diagnosis and treatment of diabetes-related foot infections (Clin Infect Dis 2023;ciad527): examinar o pé inteiro do diabético; infecção no pé diabético exige avaliação clínica e tratamento sistêmico conforme a gravidade. https://doi.org/10.1093/cid/ciad527"
   ]
  },
  {
@@ -1641,14 +1692,17 @@ const BASE = [
   "cid": "L40.0",
   "sin": "placa descamativa",
   "casa": "Uso tópico\n1) Clobetasol 0,05% creme -------------------- 1 bisnaga\nAplicar fina camada sobre as placas do corpo 1 a 2x ao dia por até 2–4 semanas (não usar na face, dobras ou genitais).\n2) Ureia 10% + Ácido salicílico creme -------- 1 pote\nAplicar sobre as placas 2x ao dia para remover escamas.",
-  "unidade": "",
+  "unidade": "1) Afastar as formas graves, que não são de alta: vermelhidão e descamação de quase todo o corpo (eritrodérmica) ou pústulas disseminadas com febre (pustulosa generalizada) → internar e chamar o dermatologista.\n2) Dor e inchaço nas articulações (artrite psoriásica): registrar e encaminhar ao reumatologista.\n3) Não usar corticoide oral ou injetável na psoríase: pode piorar ou provocar a forma pustulosa ao suspender.\n4) Encaminhar ao dermatologista para acompanhamento.\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Hidrate a pele todos os dias.\n- Procure um dermatologista para acompanhamento.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Trocado: hidrocortisona (potência baixa) → clobetasol para placas corporais.",
    "Removido: dipirona IM."
   ],
   "fontes": [
-   "Elmets CA et al. AAD–NPF Guidelines: Topical Therapy for Psoriasis (J Am Acad Dermatol 2021)."
+   "Elmets CA et al. AAD–NPF Guidelines: Topical Therapy for Psoriasis (J Am Acad Dermatol 2021).",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 60 — Eczema, Psoriasis, Cutaneous Infections, Acne, and Other Common Skin Disorders.",
+   "Menter A et al. Joint AAD–NPF guidelines of care for the management of psoriasis with systemic nonbiologic therapies (J Am Acad Dermatol 2020;82:1445): corticoide sistêmico pode precipitar piora, eritrodermia ou psoríase pustulosa na retirada."
   ]
  },
  {
@@ -1909,9 +1963,10 @@ const BASE = [
   "sin": "gripe resfriado coriza tosse influenza covid",
   "casa": "Uso oral\n1) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se febre ou dor.\n2) Ibuprofeno 600mg -------------------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.\nOu (cetoprofeno)\n2) Cetoprofeno 100mg ------------------------- 6 cp\nTomar 1 cp VO de 12/12h, após as refeições, por 3 dias.\nOu (naproxeno)\n2) Naproxeno 500mg --------------------------- 6 cp\nTomar 1 cp VO de 12/12h, após as refeições, por 3 dias.\nOu (diclofenaco)\n2) Diclofenaco de sódio 50mg ----------------- 9 cp\nTomar 1 cp VO de 8/8h, após as refeições, por 3 dias.\n\nUso nasal\n3) Soro fisiológico 0,9% (frasco de 500 mL) --- 5 fr\nAplicar 50 mL com seringa em cada narina 4x ao dia (spray: 2 jatos em cada narina).\n\n# Síndrome gripal em grupo de risco (≥ 60 anos, gestante/puérpera, comorbidades, imunossupressão), até 48h idealmente:\n4) Oseltamivir 75mg -------------------------- 10 cp\nTomar 1 cp VO de 12/12h por 5 dias.\n\n# Corticoide nasal (opcional): congestão por mais de 10 dias ou rinite alérgica associada\nUso nasal\n5) Propionato de fluticasona 50mcg spray nasal (frasco de 120 doses) --- 1 fr\nAplicar 2 jatos em cada narina 1x ao dia, pela manhã, por 14 dias.\nOu (mometasona)\n5) Furoato de mometasona 50mcg spray nasal (frasco de 120 doses) --- 1 fr\nAplicar 2 jatos em cada narina 1x ao dia, pela manhã, por 14 dias.\nOu (budesonida 64 mcg)\n5) Budesonida 64mcg spray nasal -------------- 1 fr\nAplicar 2 jatos em cada narina 1x ao dia, pela manhã, por 14 dias.\nOu (budesonida 32 mcg)\n5) Budesonida 32mcg spray nasal (frasco de 120 doses) --- 1 fr\nAplicar 4 jatos em cada narina 1x ao dia, pela manhã, por 14 dias.\nOu (budesonida 50 mcg)\n5) Budesonida 50mcg spray nasal (frasco de 120 doses) --- 1 fr\nAplicar 2 jatos em cada narina de 12/12h, por 14 dias.\n\n# Descongestionante oral (opcional): congestão nasal intensa, por até 5 dias\nUso oral\n6) Fexofenadina 60mg + Pseudoefedrina 120mg --- 10 cp\nTomar 1 cp VO de 12/12h por até 5 dias, inteiro, sem partir nem mastigar. Suspender e procurar atendimento se dor de cabeça súbita e intensa, confusão, convulsão ou alteração da visão.\nOu (loratadina + pseudoefedrina)\n6) Loratadina 5mg + Pseudoefedrina 120mg ----- 10 cp\nTomar 1 cp VO de 12/12h por até 5 dias, inteiro, sem partir nem mastigar. Suspender e procurar atendimento se dor de cabeça súbita e intensa, confusão, convulsão ou alteração da visão.",
   "avisoRx": ["Ibuprofeno só depois de descartar dengue.","Febre com mialgia, cefaleia, dor retro-orbitária ou exantema em área de dengue (ou viagem em 14 dias): sem ibuprofeno nem AAS (MS, Dengue 2024, 6.1.2).","Nesse caso, só dipirona ou paracetamol até descartar dengue.","Grupo de risco tratado em casa: retorno em 48 h (Guia de Manejo e Tratamento de Influenza 2023).","CID resfriado: J00.","Cetoprofeno, naproxeno e diclofenaco: mesmas restrições do ibuprofeno (dengue, gestação, doença renal, úlcera, anticoagulante).","Nimesulida fica de fora: contraindicada com febre ou sintomas gripais (EMA).","Diclofenaco: evitar na doença cardiovascular (insuficiência cardíaca, coronariopatia, AVC, doença arterial periférica) — bula Voltaren; EMA 2013.","Corticoide nasal no resfriado: sem benefício (Cochrane 2015; EPOS 2020 contra). Só se > 10 dias (pós-viral) ou rinite alérgica associada.","Pseudoefedrina: não usar na HAS grave ou não controlada, coronariopatia ou IC, glaucoma de ângulo fechado, HPB/retenção, hipertireoidismo, IMAO (14 dias).","Pseudoefedrina: evitar na gestação, lactação, doença renal grave, diabetes e arritmia; risco de PRES e vasoconstrição cerebral (EMA 2024).","Pseudoefedrina na insuficiência renal: iniciar com 1 cp 1x ao dia (bula Allegra D); doença renal grave: contraindicada (EMA 2024)."],
-  "unidade": "",
+  "unidade": "1) Dipirona 1 g (2 mL): EV lenta diluída em 10–20 mL de SF/AD ou IM profunda, se febre ou dor. Suspeita de dengue: só EV (evitar IM) e ver Dengue (prova do laço, hemograma).\n2) Medir SpO2, FR, PA e FC (na gestante, FR > 20 ou FC > 100 já são sinais de alarme). SRAG = síndrome gripal com dispneia ou SpO2 ≤ 94% em ar ambiente, desconforto respiratório ou FR aumentada, piora da doença de base ou hipotensão:\n   Internar, oxigênio se necessário, hidratação EV e RX de tórax; oseltamivir 75 mg VO já na unidade, mesmo após 48 h. Choque, disfunção de órgão ou insuficiência respiratória: UTI.\n3) Síndrome gripal com fator de risco (≥ 60 anos; gestante em qualquer fase ou puérpera até 2 semanas; pneumopatia, inclusive asma; tuberculose; cardiopatia, exceto hipertensão isolada; doença renal, hepática ou hematológica, inclusive anemia falciforme; diabetes; doença neurológica que comprometa a respiração; imunossupressão; obesidade com IMC ≥ 40; indígena aldeado ou com dificuldade de acesso): Oseltamivir 75 mg VO, 1ª dose na unidade.\n   ClCr > 30–60: 30 mg de 12/12h; > 10–30: 30 mg 1x/dia; hemodiálise: 30 mg após cada sessão.\n4) Desidratação ou vômitos: hidratação EV com SF 0,9%.\n5) Notificar: SRAG hospitalizada no Sivep-Gripe (obrigatória); síndrome gripal suspeita de covid-19 no e-SUS Notifica. Na SRAG, coletar secreção respiratória, de preferência antes do oseltamivir, sem atrasá-lo. Na síndrome gripal, teste para covid-19 e influenza conforme a disponibilidade da unidade.",
   "orient": "- Faça repouso e beba bastante líquido.\n- Se você faz parte de um grupo de risco e vai se tratar em casa, volte para reavaliação em 48 horas, ou antes se piorar.\n- Volte imediatamente ao pronto-socorro se tiver falta de ar, oxigenação baixa, dor no peito ou se a febre piorar depois de ter melhorado.\n- Se tiver febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, não tome ibuprofeno nem AAS (aspirina) até que a dengue seja descartada; nesse caso, use só dipirona ou paracetamol.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-27): corticoide nasal e descongestionante oral (anti-histamínico + pseudoefedrina) como opções desligadas, por decisão do médico; conferência independente (bulas Anvisa, EPOS 2020, EMA 2024).",
    "Corrigido (2026-10-17): loratadina removida (sem benefício no resfriado, Cochrane 2015); título do guia de influenza corrigido (MS, Guia de Manejo e Tratamento de Influenza 2023).",
    "Corrigido (2026-10-09): não usar ibuprofeno na febre com dengue não descartada (MS, Dengue 2024).",
@@ -1938,7 +1993,9 @@ const BASE = [
    "Bula Anvisa do Allegra D (cloridrato de fexofenadina 60 mg + cloridrato de pseudoefedrina 120 mg de liberação prolongada; Sanofi, aprovada em 18/01/2013): maiores de 12 anos e adultos, 1 cp 2x ao dia, sem partir nem mastigar; insuficiência renal: dose inicial de 1 cp 1x ao dia; evitar refeição rica em gordura; contraindicado na hipertensão grave, coronariopatia grave, glaucoma de ângulo estreito, retenção urinária e com IMAO (até 14 dias); cautela no diabetes, hipertireoidismo, hipertrofia prostática e doença renal; evitar na gestação e lactação; caixas com 6 e 10 cp. https://www.saudedireta.com.br/catinc/drugs/bulas/allegrad.pdf",
    "Bula Anvisa de loratadina 5 mg + sulfato de pseudoefedrina 120 mg comprimido (Loranil D, Libbs, bula de 2008): maiores de 12 anos e adultos, 1 cp a cada 12 horas; caixa com 6 cp; contraindicado na hipertensão acentuada, insuficiência cardíaca, coronariopatia grave, IMAO (até 14 dias), hipertrofia prostática, glaucoma, diabetes e hipertireoidismo. https://www.saudedireta.com.br/catinc/drugs/bulas/loranild.pdf",
    "De Sutter AI et al. Oral antihistamine-decongestant-analgesic combinations for the common cold. Cochrane Database Syst Rev 2022;1:CD004976 (anti-histamínico + descongestionante: algum benefício global no adulto, evidência limitada). https://www.cochrane.org/CD004976",
-   "EMA/PRAC 2024, comunicado aos profissionais (DHPC) sobre pseudoefedrina: risco de síndrome de encefalopatia posterior reversível (PRES) e de vasoconstrição cerebral reversível (SVCR); contraindicada na hipertensão grave ou não controlada e na doença renal aguda ou crônica grave; suspender se cefaleia súbita intensa, náusea, vômitos, confusão, convulsão ou alteração visual. https://www.ema.europa.eu/en/documents/dhpc/direct-healthcare-professional-communication-dhpc-pseudoephedrine-risks-posterior-reversible-encephalopathy-syndrome-pres-reversible-cerebral-vasoconstriction-syndrome-rcvs_en.pdf"
+   "EMA/PRAC 2024, comunicado aos profissionais (DHPC) sobre pseudoefedrina: risco de síndrome de encefalopatia posterior reversível (PRES) e de vasoconstrição cerebral reversível (SVCR); contraindicada na hipertensão grave ou não controlada e na doença renal aguda ou crônica grave; suspender se cefaleia súbita intensa, náusea, vômitos, confusão, convulsão ou alteração visual. https://www.ema.europa.eu/en/documents/dhpc/direct-healthcare-professional-communication-dhpc-pseudoephedrine-risks-posterior-reversible-encephalopathy-syndrome-pres-reversible-cerebral-vasoconstriction-syndrome-rcvs_en.pdf",
+   "Bula Anvisa da Novalgina solução injetável (dipirona 500 mg/mL, Sanofi): IM ou EV 1–2,5 g em dose única, máximo 5 g/dia; EV lenta, no máximo 1 mL (500 mg)/min, com o paciente deitado. https://consultas.anvisa.gov.br/#/bulario/",
+   "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023: definições de síndrome gripal e de SRAG (dispneia, SpO2 ≤ 94% em ar ambiente, desconforto respiratório ou FR aumentada, piora da doença de base, hipotensão), sinais de agravamento, fatores de risco (p. 18: inclui tuberculose, doença hematológica e neurológica; cardiopatia exceto hipertensão isolada; indígena aldeado ou com dificuldade de acesso), sinais de alarme na gestante (FR > 20, FC > 100; p. 20), coleta de secreção na SRAG sem atrasar o antiviral (p. 19), oseltamivir em toda SRAG e na SG com fator de risco (benefício mesmo após 48 h na SRAG), internação na SRAG, ajuste renal (ClCr > 30–60: 30 mg de 12/12h; > 10–30: 30 mg 1x/dia; hemodiálise: 30 mg após cada sessão), notificação de SRAG hospitalizada no Sivep-Gripe e de SG suspeita de covid-19 no e-SUS Notifica (anexo C). https://bvsms.saude.gov.br/bvs/publicacoes/guia_manejo_tratamento_influenza_2023.pdf"
   ]
  },
  {
@@ -1949,9 +2006,10 @@ const BASE = [
   "sin": "sinusite dor face secrecao nasal",
   "casa": "# Antibiótico só se: sintomas > 10 dias sem melhora, piora após melhora inicial (dupla piora) ou início grave: febre ≥ 39°C com secreção purulenta ou dor facial por 3 a 4 dias seguidos.\nUso oral\n1) Amoxicilina 875mg ------------------------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\nOu\n1) Amoxicilina 500mg ------------------------- 21 cp\nTomar 1 cp VO de 8/8h por 7 dias.\nOu (ATB recente, > 65 anos ou comorbidades)\n1) Amoxicilina + Clavulanato 875/125mg ------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias.\nOu (alergia a penicilina)\n1) Doxiciclina 100mg ------------------------- 14 cp\nTomar 1 cp VO de 12/12h por 7 dias, com bastante água e sem deitar logo depois.\n2) Dipirona 500mg ---------------------------- 20 cp\nTomar 2 cp VO de 6/6h se dor ou febre.\n\nUso nasal\n3) Budesonida 64mcg spray nasal -------------- 1 fr\nAplicar 2 jatos em cada narina pela manhã por 15 dias.\n4) Soro fisiológico 0,9% (frasco de 500 mL) --- 5 fr\nLavar cada narina com 50 mL com seringa 4x ao dia.\n\n# Outro corticoide nasal (opcional): no lugar da budesonida 64 mcg\nUso nasal\n5) Propionato de fluticasona 50mcg spray nasal (frasco de 120 doses) --- 1 fr\nAplicar 2 jatos em cada narina 1x ao dia, pela manhã, por 15 dias.\nOu (mometasona)\n5) Furoato de mometasona 50mcg spray nasal (frasco de 120 doses) --- 2 fr\nAplicar 2 jatos em cada narina de 12/12h, por 15 dias.\nOu (budesonida 32 mcg)\n5) Budesonida 32mcg spray nasal (frasco de 120 doses) --- 2 fr\nAplicar 4 jatos em cada narina 1x ao dia, pela manhã, por 15 dias.\nOu (budesonida 50 mcg)\n5) Budesonida 50mcg spray nasal (frasco de 120 doses) --- 2 fr\nAplicar 2 jatos em cada narina de 12/12h, por 15 dias.",
   "avisoRx": ["Não complicada: oferecer observação sem antibiótico se o retorno estiver garantido; iniciar se piorar ou não melhorar em 7 dias.","Outro corticoide nasal: ao marcar, tirar a budesonida do item 3 (sem). Descongestionante fica de fora: IDSA 2012 contra como adjuvante."],
-  "unidade": "",
+  "unidade": "1) Dipirona 1 g (2 mL): IM profunda ou EV lenta diluída em 10–20 mL de SF/AD, se dor ou febre.\n2) Afastar complicação orbitária ou intracraniana: edema ou vermelhidão ao redor do olho, olho deslocado, visão dupla, dor ou limitação ao mover o olho, baixa da visão, cefaleia frontal intensa, inchaço na testa, rigidez de nuca, confusão ou déficit neurológico → tomografia com contraste, otorrino e internação.\n3) Sem sinais de complicação: não pedir exame de imagem (o diagnóstico é clínico).",
   "orient": "- Resfriados com menos de 10 dias de sintomas são causados por vírus e não precisam de antibiótico.\n- Se o médico optou por observar sem antibiótico, volte para reavaliação se piorar ou se não melhorar em 7 dias.\n- Volte imediatamente ao pronto-socorro se tiver inchaço ou vermelhidão ao redor do olho, alteração da visão ou dor de cabeça forte.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-27): corticoide nasal alternativo como opção desligada; conferência independente (bula Nasonex, EPOS 2020).",
    "Corrigido (2026-10-17): oferecer observação sem antibiótico como 1ª opção na bacteriana não complicada com retorno garantido; início grave por 3 a 4 dias seguidos (era ≥ 3 dias); doxiciclina 100 mg de 12/12h por 7 dias para alergia a penicilina (AAO-HNSF 2025; IDSA 2012).",
    "Adicionado: critérios para antibiótico.",
@@ -1968,7 +2026,9 @@ const BASE = [
    "Bula Anvisa do Nasonex (furoato de mometasona 50 mcg/acionamento, spray nasal; Organon, bula do paciente aprovada em 28/04/2026): rinite alérgica no adulto 2 jatos em cada narina 1x ao dia (200 mcg), máximo 400 mcg; rinossinusite aguda (12 anos ou mais) 2 jatos em cada narina 2x ao dia (400 mcg); preparo inicial de 10 acionamentos; frascos de 60 e 120 acionamentos. https://www.organon.com/brazil/wp-content/uploads/sites/33/2023/06/nasonex_bula_paciente.pdf",
    "Bula Anvisa do Budecort Aqua (budesonida 32 e 64 mcg/dose, spray nasal; AstraZeneca, atualizada em 01/03/2021): rinite no adulto 256 mcg/dia (2 jatos de 64 mcg ou 4 jatos de 32 mcg em cada narina), 1x ao dia pela manhã ou dividido em 2 tomadas; frasco de 120 doses. https://www.bulas.med.br/p/detalhamento-das-bulas/1160134/posologia-e-modo-de-usar-budecort-aqua.htm",
    "Bula Anvisa do Busonid spray nasal aquoso (budesonida 50 e 100 mcg/dose; Biosintética/Aché, atualizada em 21/05/2020): adultos e maiores de 6 anos com 50 mcg, 2 jatos em cada narina 2x ao dia ou 4 jatos em cada narina pela manhã (400 mcg/dia); máximo 400 mcg/dia; frascos de 60 e 120 doses. https://www.bulas.med.br/p/bulas-de-medicamentos/bula/1367728/busonid-spray-nasal.htm",
-   "AAO-HNSF. Clinical Practice Guideline: Adult Sinusitis Update (Otolaryngol Head Neck Surg 2025;173 Suppl 1:S1–S56; doi 10.1002/ohn.1344): pode recomendar analgésico, corticoide nasal e lavagem nasal para alívio na rinossinusite viral e na bacteriana. https://doi.org/10.1002/ohn.1344"
+   "AAO-HNSF. Clinical Practice Guideline: Adult Sinusitis Update (Otolaryngol Head Neck Surg 2025;173 Suppl 1:S1–S56; doi 10.1002/ohn.1344): pode recomendar analgésico, corticoide nasal e lavagem nasal para alívio na rinossinusite viral e na bacteriana. https://doi.org/10.1002/ohn.1344",
+   "Bula Anvisa da Novalgina solução injetável (dipirona 500 mg/mL, Sanofi): IM ou EV 1–2,5 g em dose única, máximo 5 g/dia; EV lenta, no máximo 1 mL (500 mg)/min, com o paciente deitado. https://consultas.anvisa.gov.br/#/bulario/",
+   "Fokkens WJ et al. EPOS 2020 (Rhinology 2020;58 Suppl S29): sinais de alarme da rinossinusite aguda (edema ou eritema periorbitário, deslocamento do globo, diplopia, oftalmoplegia, baixa da acuidade visual, cefaleia frontal intensa, edema frontal, sinais de meningite ou neurológicos focais) com encaminhamento imediato e imagem. https://doi.org/10.4193/Rhin20.600"
   ]
  },
  {
@@ -2002,9 +2062,10 @@ const BASE = [
   "cid": "N76.0",
   "sin": "corrimento odor peixe gardnerella",
   "casa": "Uso oral\n1) Metronidazol 250mg ------------------------ 28 cp\nTomar 2 cp VO de 12/12h por 7 dias.\nOu\nUso vaginal\n1) Metronidazol gel vaginal 100mg/g ---------- 1 bisnaga\nAplicar 1 aplicador cheio via vaginal à noite por 5 noites.",
-  "unidade": "",
+  "unidade": "1) Exame especular: corrimento branco-acinzentado, homogêneo e com odor; pH vaginal > 4,5 e teste das aminas (KOH 10%) positivo confirmam (3 de 4 critérios de Amsel).\n2) Dor à mobilização do colo, secreção mucopurulenta no colo ou sangramento ao toque: tratar cervicite (ver Cervicite); dor pélvica com febre: pensar em DIP.\n3) Oferecer na unidade os testes rápidos de HIV, sífilis e hepatites B e C.\n4) Gestante: tratar (o mesmo esquema).\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Não tome bebida alcoólica durante o tratamento e até 3 dias depois do fim (vale também para o gel).\n- Na gestação ou na amamentação, o tratamento é o mesmo (comprimido ou gel).\n- O parceiro não precisa ser tratado.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): link do PCDT 2022; álcool até 3 dias, como a ficha; gestante e lactante com o mesmo esquema (PCDT IST 2022, quadro 34; bula FDA do metronidazol).",
    "Corrigido: oral e vaginal são alternativas ('ou'), não associação.",
    "Ajustado: abstinência alcoólica 24 → 48h."
@@ -2012,7 +2073,8 @@ const BASE = [
   "fontes": [
    "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 — quadro 34, vaginose bacteriana (metronidazol VO por 7 dias ou gel vaginal por 5 noites, inclusive na gestação e na lactação; clindamicina como 2ª opção; parceria não tratada). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
    "Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 (MMWR Recomm Rep 2021;70(4):1) — vaginose bacteriana.",
-   "Bula FDA do metronidazol — álcool contraindicado durante o uso e até 3 dias depois."
+   "Bula FDA do metronidazol — álcool contraindicado durante o uso e até 3 dias depois.",
+   "Ministério da Saúde. PCDT para Atenção Integral às Pessoas com IST, 2022 — quadro 28 (exame especular, pH vaginal, teste das aminas com KOH 10%), fluxograma do corrimento vaginal (pH > 4,5 e/ou KOH positivo: vaginose ou tricomoníase; pH < 4,5: candidíase; cervicite e DIP se dor à mobilização do colo ou secreção mucopurulenta), critérios de Amsel, candidíase recorrente (4 ou mais episódios/ano; investigar diabetes e imunodepressão) e orientações gerais (testagem para HIV, sífilis e hepatites B e C). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf"
   ]
  },
  {
@@ -2023,14 +2085,16 @@ const BASE = [
   "sin": "corrimento branco coceira vaginal fungo",
   "casa": "Uso oral\n1) Fluconazol 150mg -------------------------- 1 cp\nTomar 1 cp VO em dose única.\nOu\nUso vaginal\n1) Miconazol 2% creme vaginal ---------------- 1 bisnaga\nAplicar 1 aplicador cheio via vaginal à noite por 7 noites.",
   "avisoRx": ["Gestante ou amamentando: somente creme vaginal (não usar fluconazol)."],
-  "unidade": "",
+  "unidade": "1) Exame especular: corrimento grumoso, sem odor, com vermelhidão e edema vulvar; pH vaginal < 4,5.\n2) Dor à mobilização do colo ou secreção mucopurulenta no colo: tratar cervicite (ver Cervicite).\n3) Quatro ou mais episódios por ano (recorrente): glicemia capilar e investigar diabetes e imunodepressão (inclusive HIV); encaminhar ao ginecologista.\n4) Oferecer na unidade os testes rápidos de HIV, sífilis e hepatites B e C.\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Na gestação ou na amamentação, use somente o creme vaginal (não use fluconazol).\n- O parceiro só precisa de tratamento se tiver sintomas.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): link do PCDT 2022; restrição do fluconazol também na lactação (PCDT IST 2022, quadro 33).",
    "Adicionado: item novo (não havia no modelo)."
   ],
   "fontes": [
-   "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 — quadro 33, candidíase vulvovaginal (miconazol vaginal por 7 noites ou nistatina por 14 noites; fluconazol 150 mg dose única como 2ª opção; recorrente; gestante e lactante só via vaginal). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf"
+   "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 — quadro 33, candidíase vulvovaginal (miconazol vaginal por 7 noites ou nistatina por 14 noites; fluconazol 150 mg dose única como 2ª opção; recorrente; gestante e lactante só via vaginal). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf",
+   "Ministério da Saúde. PCDT para Atenção Integral às Pessoas com IST, 2022 — quadro 28 (exame especular, pH vaginal, teste das aminas com KOH 10%), fluxograma do corrimento vaginal (pH > 4,5 e/ou KOH positivo: vaginose ou tricomoníase; pH < 4,5: candidíase; cervicite e DIP se dor à mobilização do colo ou secreção mucopurulenta), critérios de Amsel, candidíase recorrente (4 ou mais episódios/ano; investigar diabetes e imunodepressão) e orientações gerais (testagem para HIV, sífilis e hepatites B e C). https://bvsms.saude.gov.br/bvs/publicacoes/protocolo_clinico_atecao_integral_ist.pdf"
   ]
  },
  {
@@ -2041,9 +2105,10 @@ const BASE = [
   "sin": "verme parasitose",
   "casa": "Uso oral\n1) Albendazol 400mg -------------------------- 1 cp\nTomar 1 cp VO em dose única (áscaris, ancilóstomo, tricuríase).\nOu\n1) Mebendazol 100mg -------------------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias.\nOu\n1) Nitazoxanida 500mg (Annita) --------------- 6 cp\nTomar 1 cp VO de 12/12h por 3 dias, com alimento.\n\n# Estrongiloidíase (ou corticoide/imunossupressão com suspeita):\n1) Ivermectina 6mg --------------------------- (conforme o peso)\nTomar 200 mcg/kg VO 1x ao dia por 2 dias, em jejum, com água: 15–24 kg ½ cp; 25–35 kg 1 cp; 36–50 kg 1½ cp; 51–65 kg 2 cp; 66–79 kg 2½ cp; 80 kg ou mais 200 mcg/kg.",
   "avisoRx": ["Escolher um dos esquemas.","Ivermectina: não usar abaixo de 15 kg ou de 5 anos (bula).","Sem ivermectina: albendazol 400 mg 1x ao dia por 3 dias, menos eficaz.","Gestante: sem albendazol, mebendazol nem ivermectina (bula; Harrison cap. 239); adiar para após o parto, salvo indicação do pré-natal."],
-  "unidade": "",
+  "unidade": "1) Afastar complicação: dor abdominal em cólica com vômitos e distensão (obstrução por áscaris, sobretudo em criança), icterícia ou dor em hipocôndrio direito (áscaris na via biliar) → ver Dor abdominal e cirurgia.\n2) Palidez e cansaço (ancilostomíase): hemograma.\n3) Usuário de corticoide, imunossuprimido ou com HTLV, com febre, dor abdominal, diarreia, tosse ou lesões de pele: pensar em hiperinfecção por Strongyloides → internar.\n4) Gestante: não usar albendazol, mebendazol nem ivermectina; tratar depois do parto, salvo orientação do pré-natal.\n* Não há medicação de rotina na unidade; o tratamento é domiciliar.",
   "orient": "- Lave bem as mãos e os alimentos e beba água filtrada.\n- Na gestação, não use albendazol, mebendazol nem ivermectina; o tratamento fica para depois do parto, salvo orientação do pré-natal.",
   "rev": [
+   "Corrigido (2026-10-27): campo Na unidade redigido (estava vazio), a pedido do médico; conferência independente.",
    "Corrigido (2026-10-17): estrongiloidíase com ivermectina 200 mcg/kg por 2 dias, pela tabela de peso da bula, e albendazol de 3 dias como alternativa (Harrison 22ª ed., cap. 239; bula Revectina); teníase retirada do albendazol (praziquantel, cap. 242, sem ficha); gestante não usa albendazol nem mebendazol (bula Zentel); fontes identificadas (Harrison, OMS 2017, bulas).",
    "Corrigido: mebendazol e tiabendazol estavam prescritos juntos; ficou uma opção por vez.",
    "Removido: tiabendazol oral (muitos efeitos adversos; albendazol/ivermectina são preferíveis)."
@@ -2053,7 +2118,8 @@ const BASE = [
    "World Health Organization. Guideline: preventive chemotherapy to control soil-transmitted helminth infections in at-risk population groups. Geneva: WHO, 2017. https://www.who.int/publications/i/item/9789241550116",
    "Bula Zentel (albendazol, GSK, Anvisa) e bula Annita (nitazoxanida, Farmoquímica, Anvisa).",
    "Bula Revectina (ivermectina 6 mg, Anvisa): cerca de 200 mcg/kg em dose oral única na estrongiloidíase, com tabela de peso (15–24 kg ½ cp; 25–35 kg 1 cp; 36–50 kg 1½; 51–65 kg 2; 66–79 kg 2½; 80 kg ou mais 200 mcg/kg); não usar em menores de 15 kg ou de 5 anos; exame de fezes para confirmar a cura. O esquema de 2 dias é do Harrison.",
-   "FDA. Stromectol (ivermectina), bula americana: tomar em jejum, com água."
+   "FDA. Stromectol (ivermectina), bula americana: tomar em jejum, com água.",
+   "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 239 — Intestinal Nematode Infections (obstrução intestinal por áscaris; hiperinfecção por Strongyloides com corticoide ou imunossupressão)."
   ]
  },
  {

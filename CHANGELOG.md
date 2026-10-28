@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.45.1 — 2026-10-27
+- **"Na unidade" completo em todas as condutas**: as 25 que estavam sem essa parte (gripe, sinusite, herpes, zoster, impetigo, cinetose, dermatite, escabiose, candidíase e outras) ganharam o que se faz no PS — sintomáticos IM/EV, aciclovir EV com diluição e ajuste renal, oseltamivir 1ª dose e critérios de SRAG, ou, quando não há medicação, o que avaliar e quando encaminhar. Conferência independente: 1 crítico (aciclovir 10 mg/kg no zoster disseminado do imunocompetente) e 6 importantes corrigidos.
+
 ## 1.45.0 — 2026-10-27
 - **Ordem da porta como padrão**: HDA → Prescrição → Exame → Hipótese → Conduta → Alta (os números das etapas acompanham); "Ordem: MV" continua no botão. O "⧉ Próximo" copia sempre na ordem dos campos do MV (HDA → exame → hipótese → conduta → receituário → atestado → alta).
 - **Conduta (hipótese) por busca** no topo do Atendimento, como em "outra conduta": favoritas e mais usadas primeiro; nome, sinônimo ou CID.

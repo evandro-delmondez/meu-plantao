@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.48.1 — 2026-10-28
+- Plantões passa a ser o último botão da barra (à direita): Início, Atender, Condutas, Remédios, Plantões.
+
 ## 1.48.0 — 2026-10-28
 - **Barra com 5 seções**: Início, Atender, Condutas, **Plantões** e Remédios. Documentos, Cálculos e Sala vermelha ficam no **"☰ Mais"**, no canto superior direito (o botão fica marcado quando uma delas está aberta).
 - **Meus plantões virou seção própria** na barra.

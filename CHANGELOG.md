@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.47.0 — 2026-10-28
+- **Meus plantões** (Atender › Meus plantões): calendário do mês para marcar a escala (local e turno: diurno, noturno ou 24 h), resumo do que vai receber e "recebido" por local e mês.
+  - **Santa Lúcia**: R$ 50 por alta e R$ 150 por internação em UTI, contados sozinhos pela lista de pacientes de cada plantão (a contagem fica guardada como número, mesmo depois que a lista apaga os nomes em 7 dias).
+  - **UPA (concurso)**: salário fixo de R$ 13.359,56 por mês.
+  - Valores e nomes editáveis em "Locais e valores"; cada plantão tem "📅 Google Agenda".
+  - Não guarda nada do paciente; fica nos seus padrões e vai pela nuvem.
+
 ## 1.46.0 — 2026-10-28
 - **Receituário separado da prescrição**: "Prescrição" (no começo) fica só com a medicação na unidade e os exames; receituário e atestado foram para "Reavaliação, receituário e alta" — os documentos de saída, onde o "Fechar o atendimento" trabalha.
 - **IA sugere exames**: "✨ Sugerir exames (IA)" na Prescrição escolhe só da lista de exames já conferidos da conduta e da queixa, com o motivo; você toca em "+ pedir". Nada fora da lista entra.

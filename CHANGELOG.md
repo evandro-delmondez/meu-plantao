@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.45.0 — 2026-10-27
+- **Ordem da porta como padrão**: HDA → Prescrição → Exame → Hipótese → Conduta → Alta (os números das etapas acompanham); "Ordem: MV" continua no botão. O "⧉ Próximo" copia sempre na ordem dos campos do MV (HDA → exame → hipótese → conduta → receituário → atestado → alta).
+- **Conduta (hipótese) por busca** no topo do Atendimento, como em "outra conduta": favoritas e mais usadas primeiro; nome, sinônimo ou CID.
+- **Exame físico só com o que você examinou**: cada sistema ligado mostra seus itens (otoscopia, pupilas, Murphy, Giordano…); um toque tira do texto, sem apagar à mão.
+- **"Colar de outro guia" arruma sozinho** no padrão da receita: nome ---- quantidade, "comprimido" → cp, "via oral" → VO, "de 8 em 8 horas" → 8/8h, separa por via (Uso oral/tópico…) e tira numeração e "Posologia:".
+- **Sucralfato 2 g (1 flaconete) na unidade** em dispepsia, náuseas e GECA (decisão do médico; dose conferida na bula), com avisos (2 h de outros remédios, DRC, diabetes, uso fora da bula).
+
 ## 1.44.1 — 2026-10-27
 - **Sinais de alarme explicados (Alta)**: botões "Tirar todos" e "Pôr todos"; com duas ou mais condutas, os sinais ficam separados por conduta, cada uma com "Tirar" e "Pôr" — para deixar só os que fazem sentido para aquele paciente.
 

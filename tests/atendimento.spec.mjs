@@ -560,20 +560,28 @@ test("Copiar o próximo: segue a ordem do MV, marca ✓ e funciona com F2", asyn
   expect(erros).toEqual([]);
 });
 
-test("ordem alternável (prescrição primeiro), CID grande no alto, fechar o atendimento na volta e pacientes no Início", async ({ page }) => {
+test("ordem da porta (padrão) e do MV, CID grande no alto, fechar o atendimento na volta e pacientes no Início", async ({ page }) => {
   const erros = await abrir(page);
   await atender(page, "gripe");
   await expect(page.locator("#atCorpo .cidtop")).toContainText("CID J");
-  // alterna a ordem: prescrição vem antes da HDA, na tela e no Próximo
-  await page.click("#atOrdem");
-  await expect(page.locator("#atOrdem")).toContainText("prescrição 1º");
+  // padrão: ordem da porta — HDA → prescrição → exame → hipótese → conduta → alta
+  await expect(page.locator("#atOrdem")).toContainText("Ordem: porta");
   const y = (n) => page.locator(`#atCorpo [data-etapa="${n}"]`).evaluate((e) => e.getBoundingClientRect().top);
-  expect(await y(5)).toBeLessThan(await y(1));
-  expect(await y(3)).toBeLessThan(await y(5));
-  expect(JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1"))).prefs.ordem).toBe("presc");
-  await expect(page.locator("#atProx")).toContainText("Próximo: Hipótese");
+  expect(await y(1)).toBeLessThan(await y(5));
+  expect(await y(5)).toBeLessThan(await y(2));
+  expect(await y(2)).toBeLessThan(await y(3));
+  expect(await y(3)).toBeLessThan(await y(4));
+  expect(await y(4)).toBeLessThan(await y(6));
+  await expect(page.locator('#atCorpo [data-etapa="5"] > .sec-h h3')).toContainText("2. Prescrição");
+  // o Próximo segue a ordem dos campos do MV
+  await expect(page.locator("#atProx")).toContainText("Próximo: HDA");
+  // alterna para a ordem do MV e volta
   await page.click("#atOrdem");
   await expect(page.locator("#atOrdem")).toContainText("Ordem: MV");
+  expect(JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1"))).prefs.ordem).toBe("mv");
+  expect(await y(2)).toBeLessThan(await y(5));
+  await page.click("#atOrdem");
+  await expect(page.locator("#atOrdem")).toContainText("Ordem: porta");
   // paciente na lista com medicação marcada; ao voltar, abre em "Fechar o atendimento"
   await page.fill("#atNome", "Volta Teste"); await page.dispatchEvent("#atNome", "change");
   await page.click('#atCorpo [data-atchip="cond"][data-k="med"]');
@@ -647,5 +655,45 @@ test("sinais de alarme na alta: tirar e pôr todos, e por conduta quando há dua
   expect(on).toBeGreaterThan(0);
   await page.click('#atCorpo .atvoltecab [data-atvt="1"]');
   expect(await page.locator('#atCorpo .atvolte [aria-pressed="true"]').count()).toBeGreaterThan(on);
+  expect(erros).toEqual([]);
+});
+
+test("conduta por busca no topo e exame só com o que foi examinado (tirar item por toque)", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "evolucao");
+  await page.fill("#atCondQ", "dor abdom");
+  await page.click('#atCondSug [data-atcondq="dor-abdominal"]');
+  await expect(page.locator("#evCond")).toHaveValue("dor-abdominal");
+  let ex = await saida(page, "exame").inputValue();
+  expect(ex).toMatch(/Giordano|punho/i);
+  const it = page.locator('#atCorpo .atcl [data-atcl="abd"]', { hasText: /Giordano|punho/i }).first();
+  await it.click();
+  await expect(it).toHaveAttribute("aria-pressed", "false");
+  ex = await saida(page, "exame").inputValue();
+  expect(ex).toMatch(/^Abdome:/m);
+  expect(ex).not.toMatch(/Giordano|punho-percussão/i);
+  expect(erros).toEqual([]);
+});
+
+
+test("colar de outro guia: arruma no padrão da receita (nome ---- qtd, cp, VO, 8/8h) e separa por via", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await page.locator(".atrxcola summary").click();
+  await campo(page, "rxCola").fill("Uso oral\n1. Amoxicilina 500 mg, 21 cápsulas. Tomar 1 cápsula via oral de 8 em 8 horas por 7 dias\n• Loratadina 10mg (10 comprimidos)\nPosologia: Tomar 1 comprimido via oral 1 vez ao dia por 5 dias\nUso tópico\nMupirocina 2% pomada - 1 bisnaga\nAplicar nas lesões 3 vezes ao dia por 7 dias");
+  const rx = await saida(page, "rx").inputValue();
+  expect(rx).toMatch(/\d+\) Amoxicilina 500 mg -+ 21 cáps\nTomar 1 cáps VO de 8\/8h por 7 dias\./);
+  expect(rx).toMatch(/\d+\) Loratadina 10mg -+ 10 cp\nTomar 1 cp VO 1 vez ao dia por 5 dias\./);
+  expect(rx).toMatch(/Uso tópico\n\d+\) Mupirocina 2% pomada -+ 1 bisnaga\nAplicar nas lesões 3 vezes ao dia por 7 dias\./);
+  expect(erros).toEqual([]);
+});
+
+test("sucralfato na unidade (não na receita) em dispepsia, náuseas e GECA", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  for (const id of ["dispepsia", "nauseas", "geca"]) {
+    await page.evaluate((i) => document.querySelector(`#list .item[data-id="${i}"]`).click(), id);
+    await expect(page.locator("#detail .sec.unidade"), id).toContainText("Sucralfato");
+    expect(await page.locator("#detail .sec.casa .rxmontar, #detail .sec.casa textarea, #detail .sec.casa pre").allInnerTexts(), id).not.toContain(expect.stringMatching(/Sucralfato/));
+  }
   expect(erros).toEqual([]);
 });

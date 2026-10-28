@@ -206,7 +206,10 @@
       <p class="note">Na ordem do prontuário: cada campo tem o seu botão de copiar.</p>
       <label class="f">Paciente<input class="inp" id="atNome" placeholder="Nome (põe na lista do plantão)" autocomplete="off" spellcheck="false"></label>
       <p class="note" id="atNaLista"></p>
-      <label class="f">Conduta (hipótese)<select class="inp" id="evCond"></select></label>
+      <div class="f atcondbusca"><span>Conduta (hipótese)</span>
+        <input class="inp" id="atCondQ" type="text" name="q-hipotese-search" role="searchbox" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-1p-ignore data-lpignore="true" data-form-type="other" placeholder="Buscar: amigdalite, ITU, J03…" aria-label="Buscar a conduta">
+        <div class="atsug" id="atCondSug"></div>
+        <select class="inp atcondsel" id="evCond" aria-label="Conduta (lista completa)"></select></div>
       <div class="actions"><button class="btn sm" id="atVerConduta">Ver a conduta</button><button class="btn sm" id="atLista">Lista do plantão</button><button class="btn sm" id="atNovo">Novo paciente</button></div>
     </div>
     <div id="atCorpo"></div>

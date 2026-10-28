@@ -838,11 +838,11 @@ details.panel>summary{cursor:pointer}
 #atCorpo.ordem-presc{display:flex;flex-direction:column}
 #atCorpo.ordem-presc>*{order:0}
 #atCorpo.ordem-presc>.attudo{order:99}
-#atCorpo.ordem-presc>[data-etapa="3"],.atetapas.ordem-presc [data-atir="3"]{order:11}
+#atCorpo.ordem-presc>[data-etapa="1"],.atetapas.ordem-presc [data-atir="1"]{order:11}
 #atCorpo.ordem-presc>[data-etapa="5"],.atetapas.ordem-presc [data-atir="5"]{order:12}
-#atCorpo.ordem-presc>[data-etapa="4"],.atetapas.ordem-presc [data-atir="4"]{order:13}
-#atCorpo.ordem-presc>[data-etapa="1"],.atetapas.ordem-presc [data-atir="1"]{order:14}
-#atCorpo.ordem-presc>[data-etapa="2"],.atetapas.ordem-presc [data-atir="2"]{order:15}
+#atCorpo.ordem-presc>[data-etapa="2"],.atetapas.ordem-presc [data-atir="2"]{order:13}
+#atCorpo.ordem-presc>[data-etapa="3"],.atetapas.ordem-presc [data-atir="3"]{order:14}
+#atCorpo.ordem-presc>[data-etapa="4"],.atetapas.ordem-presc [data-atir="4"]{order:15}
 #atCorpo.ordem-presc>[data-etapa="6"],.atetapas.ordem-presc [data-atir="6"]{order:16}
 #atCorpo.ordem-presc>[data-etapa="7"],.atetapas.ordem-presc [data-atir="7"]{order:17}
 .atetapas.ordem-presc .atrel{order:0}.atetapas.ordem-presc .atedn{order:30}
@@ -855,3 +855,10 @@ details.panel>summary{cursor:pointer}
 .atfecharbox ol{margin:6px 0 8px 18px;padding:0}
 .atlabcola{margin:6px 0}.atlabcola>summary{cursor:pointer;font-weight:600;color:var(--accent)}
 .atvoltecab,.atvoltecond{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0 2px}.atvoltecond b{font-size:13.5px;margin-right:4px}
+/* conduta principal por busca; a lista completa fica escondida (continua para quem usa o teclado) */
+.atcondbusca{display:grid;gap:6px}
+.atcondbusca>span{font-size:13px;font-weight:600;color:var(--muted)}
+.atcondsel{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.atcls{margin:6px 0}.atcls>summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
+.atcl{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:4px 0}.atcl b{font-size:12.5px;min-width:110px}
+.chip.atclc{font-size:11.5px;padding:2px 8px;--c:var(--teal)}.chip.atclc[aria-pressed="false"]{text-decoration:line-through;opacity:.6}

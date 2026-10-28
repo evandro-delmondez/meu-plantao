@@ -10,18 +10,15 @@ test("Meus plantões: marca plantão no calendário, conta altas da lista (R$ 50
   await page.locator("#pcCorpo .pcitem", { hasText: "Uti Plantao" }).locator('[data-pd="tipo"]').selectOption("internacao");
   await page.locator("#pcCorpo .pcitem", { hasText: "Uti Plantao" }).locator('[data-pd="onde"]').selectOption("semi");   // UTI B também vale como UTI
   await aba(page, "plantoes");
-  // marca o plantão de hoje (turno do momento) no Santa Lúcia
-  const agora = await page.evaluate(() => { const d = new Date(), h = d.getHours(); const ini = h < 7 ? new Date(d - 864e5) : d; return { iso: `${ini.getFullYear()}-${String(ini.getMonth() + 1).padStart(2, "0")}-${String(ini.getDate()).padStart(2, "0")}`, turno: h >= 7 && h < 19 ? "D" : "N" }; });
-  await page.click(`#plCorpo [data-pldia="${agora.iso}"]`);
-  await page.selectOption("#plLocal", "hsls"); await page.selectOption("#plTurno", agora.turno);
-  await page.click("#plAdd");
+  // o plantão de hoje entra sozinho no calendário (Santa Lúcia), pela lista de pacientes
+  await expect(page.locator("#plCorpo .pllista li", { hasText: "Santa Lúcia" })).toHaveCount(1);
   const sl = page.locator("#plCorpo .plcard", { hasText: "Santa Lúcia" });
   await expect(sl).toContainText("1 alta");
   await expect(sl).toContainText("1 UTI");
   await expect(sl.locator(".plv")).toContainText("200,00");
   await expect(sl).toContainText(/Recebe de 20 a 25\/\d\d/);
-  // UPA: aguardando convocação, fora do total
-  await expect(page.locator("#plCorpo .plcard", { hasText: "UPA" })).toContainText("aguardando convocação");
+  // UPA fora por enquanto
+  await expect(page.locator("#plCorpo .plcard", { hasText: "UPA" })).toHaveCount(0);
   await expect(page.locator("#plCorpo .pltotal .plv")).toContainText("200,00");
   await expect(page.locator("#plCorpo .pllista a", { hasText: "Google Agenda" }).first()).toHaveAttribute("href", /calendar\.google\.com.*TEMPLATE/);
   // fica nos padrões (nuvem), sem nome de paciente
@@ -30,3 +27,17 @@ test("Meus plantões: marca plantão no calendário, conta altas da lista (R$ 50
   expect(await semRolagemLateral(page)).toBe(true);
   expect(erros).toEqual([]);
 });
+
+test("Meus plantões: turnos matutino e vespertino, e marcar à mão num dia sem pacientes", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "plantoes");
+  const iso = await page.evaluate(() => { const d = new Date(); d.setDate(28); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-28`; });
+  await page.click(`#plCorpo [data-pldia="${iso}"]`);
+  await expect(page.locator("#plTurno option")).toHaveText([/Diurno/, /Matutino/, /Vespertino/, /Noturno/, /24 h/]);
+  await page.selectOption("#plTurno", "M");
+  await page.click("#plAdd");
+  await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" }).locator(".pllista li", { hasText: "Matutino" })).toHaveCount(1);
+  await expect(page.locator("#plCorpo .pllista a").first()).toHaveAttribute("href", /T070000%2F\d{8}T130000/);
+  expect(erros).toEqual([]);
+});
+

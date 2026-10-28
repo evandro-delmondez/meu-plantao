@@ -1,12 +1,13 @@
 /* ---------- Meus plantões: escala do mês, pacientes que contam por plantão e quanto vai receber ----------
    Não é dado de paciente: só datas, locais, turnos, contagens e valores. Fica nos padrões (model.plantoes) e vai pela nuvem.
    A contagem por plantão é guardada como número (a lista de pacientes some em 7 dias; o número fica). */
-const PL_TURNOS={D:["Diurno","07:00","19:00"],N:["Noturno","19:00","07:00"],"24":["24 h","07:00","07:00"]};
+const PL_TURNOS={D:["Diurno","07:00","19:00"],M:["Matutino","07:00","13:00"],V:["Vespertino","13:00","19:00"],N:["Noturno","19:00","07:00"],"24":["24 h","07:00","07:00"]};
 const PL_PADRAO=()=>({escala:[],contagem:{},pagos:{},locais:{
-  hsls:{nome:"Santa Lúcia",cor:"teal",tipo:"porAlta",porAlta:50,porUti:150,ativo:true,pagDe:20,pagAte:25,pagObs:"produção do mês, paga no mês seguinte, por Pix"},
-  upa:{nome:"UPA (concurso)",cor:"indigo",tipo:"salario",salario:13359.56,ativo:false,obsInativo:"aguardando convocação"}}});
+  hsls:{nome:"Santa Lúcia",cor:"teal",tipo:"porAlta",porAlta:50,porUti:150,ativo:true,pagDe:20,pagAte:25,pagObs:"produção do mês, paga no mês seguinte, por Pix"}}});
 const plDados=()=>{const D=PL_PADRAO();model.plantoes=Object.assign(D,model.plantoes||{});const L=model.plantoes.locais||{};
   for(const k of new Set([...Object.keys(PL_PADRAO().locais),...Object.keys(L)])) L[k]=Object.assign({},PL_PADRAO().locais[k]||{},L[k]);
+  // UPA (concurso) fica de fora até o médico ser convocado (sai se não tiver plantão marcado)
+  if(L.upa&&!model.plantoes.escala.some(x=>x.local==="upa")) delete L.upa;
   model.plantoes.locais=L; return model.plantoes};
 const plBRL=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const plIso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
@@ -17,9 +18,12 @@ function plAtualizaContagem(){
   for(const p of pacCarrega().pacs){const k=pacPlantao(p.criado).k;por[k]=por[k]||{n:0,uti:0};
     if(p.desf.tipo==="internacao"&&(p.desf.onde==="uti"||p.desf.onde==="semi"))por[k].uti++;else if(pacConta(p))por[k].n++}
   let mudou=false; for(const [k,v] of Object.entries(por)){const a=P.contagem[k];if(!a||a.n!==v.n||a.uti!==v.uti){P.contagem[k]=v;mudou=true}}
+  // plantão com pacientes na lista e sem nada marcado no dia/turno: entra sozinho no Santa Lúcia
+  for(const k of Object.keys(por)){const data=k.slice(0,10), t=k.slice(10), tem=P.escala.some(x=>x.data===data&&(t==="N"?x.turno==="N"||x.turno==="24":x.turno!=="N"));
+    if(!tem){P.escala.push({id:"pl"+k,data,local:"hsls",turno:t==="N"?"N":"D",auto:true});mudou=true}}
   if(mudou) saveModel();
 }
-const plChave=x=>x.data+(x.turno==="N"?"N":x.turno==="D"?"D":"D");
+const plChave=x=>x.data+(x.turno==="N"?"N":"D");
 function plValor(x){const P=plDados(), L=P.locais[x.local]||{}, c=P.contagem[plChave(x)]||(x.turno==="24"?{n:(P.contagem[x.data+"D"]||{}).n+(P.contagem[x.data+"N"]||{}).n||0,uti:((P.contagem[x.data+"D"]||{}).uti||0)+((P.contagem[x.data+"N"]||{}).uti||0)}:null);
   if(L.tipo==="porAlta") return {c,v:c?(c.n||0)*(+L.porAlta||0)+(c.uti||0)*(+L.porUti||0):0};
   return {c,v:0};
@@ -73,7 +77,7 @@ function plAbreDia(iso){
   box.innerHTML=`<h3>${iso.split("-").reverse().join("/")}</h3>
     ${ps.length?`<ul class="pllista">${ps.map(x=>`<li>${esc((PL_TURNOS[x.turno]||PL_TURNOS.D)[0])} · ${esc((P.locais[x.local]||{}).nome||x.local)} <button class="btn sm danger" data-pltira="${esc(x.id)}">Tirar</button></li>`).join("")}</ul>`:""}
     <div class="atdgrid"><label class="f">Local<select class="inp" id="plLocal">${Object.entries(P.locais).map(([k,L])=>`<option value="${k}">${esc(L.nome)}</option>`).join("")}</select></label>
-      <label class="f">Turno<select class="inp" id="plTurno">${Object.entries(PL_TURNOS).map(([k,[r,a,b]])=>`<option value="${k}">${r} (${a}–${b})</option>`).join("")}</select></label></div>
+      <label class="f">Turno<select class="inp" id="plTurno">${["D","M","V","N","24"].map(k=>{const [r,a,b]=PL_TURNOS[k];return `<option value="${k}">${r} (${a}–${b})</option>`}).join("")}</select></label></div>
     <div class="actions"><button class="btn primary" id="plAdd">Marcar plantão</button><button class="btn" id="plFecha">Fechar</button></div>`;
   $("#plAdd").onclick=()=>{P.escala.push({id:"pl"+Date.now().toString(36),data:iso,local:$("#plLocal").value,turno:$("#plTurno").value});saveModel();renderPlantoes();plAbreDia(iso);toast("Plantão marcado")};
   $("#plFecha").onclick=()=>{box.hidden=true};

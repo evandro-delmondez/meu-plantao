@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.49.0 — 2026-10-28
+- **Plantões já feitos entram sozinhos**: todo plantão com pacientes na lista (últimos 7 dias) aparece no calendário do Santa Lúcia, já com as altas e as UTI contadas — e continua entrando a cada plantão novo.
+- **Turnos**: Diurno (07–19), Matutino (07–13), Vespertino (13–19), Noturno (19–07) e 24 h.
+- UPA saiu por enquanto (volta quando você for convocado).
+
 ## 1.48.1 — 2026-10-28
 - Plantões passa a ser o último botão da barra (à direita): Início, Atender, Condutas, Remédios, Plantões.
 

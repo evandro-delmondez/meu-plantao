@@ -1,6 +1,6 @@
 /* ---------- Pacientes do plantão: lista com nome, etapas e desfecho ----------
    Exceção à regra 5 decidida pelo médico (docs/DECISOES.md, 2026-10-21): fica só numa chave própria deste
-   aparelho (fora das rxp_*, do backup e da nuvem do painel), apaga sozinha após 7 dias; a contagem por dia,
+   aparelho (fora das rxp_*, do backup e da nuvem do painel), apaga sozinha após 30 dias; a contagem por dia,
    sem nome, fica para sempre. Ao abrir um paciente, o Atendimento volta com o que foi digitado. */
 const PAC_ETAPAS=[["exame","Exame"],["med","Medicação"],["reav","Reavaliação"],["parecer","Parecer"]];
 const PAC_DESF=[["","— em atendimento —"],["alta","Alta"],["obs","Observação"],["internacao","Internação"],["transferencia","Transferência"],["evasao","Evasão"],["passado","Passei para outro médico"],["especialidade","Passei para outra especialidade"]];
@@ -13,7 +13,7 @@ function pacCarrega(){
   if(pacDb) return pacDb;
   const d=lsGet(PAC_LS,null)||{};
   pacDb={pacs:Array.isArray(d.pacs)?d.pacs:[],cont:d.cont&&typeof d.cont==="object"?d.cont:{},apagados:d.apagados||{}};
-  // apaga quem tem mais de 7 dias (a contagem do dia continua)
+  // apaga quem tem mais de 30 dias (a contagem do dia e a do plantão continuam)
   const lim=Date.now()-PAC_DIAS*864e5;
   pacDb.pacs=pacDb.pacs.filter(p=>(p.criado||0)>=lim);
   for(const id in pacDb.apagados) if(pacDb.apagados[id]<lim) delete pacDb.apagados[id];

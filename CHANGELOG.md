@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.49.1 — 2026-10-28
+- **Lista de pacientes guarda os nomes por 30 dias** (antes 7), para fechar a produção do mês nos Plantões. Continua fora do backup e da nuvem do painel, com sincronização só cifrada.
+- **Meus plantões mais resistente**: um dado estranho (paciente antigo sem data, plantão salvo numa versão anterior) é ignorado em vez de deixar a tela em branco; se ainda der erro, a mensagem aparece na tela.
+
 ## 1.49.0 — 2026-10-28
 - **Plantões já feitos entram sozinhos**: todo plantão com pacientes na lista (últimos 7 dias) aparece no calendário do Santa Lúcia, já com as altas e as UTI contadas — e continua entrando a cada plantão novo.
 - **Turnos**: Diurno (07–19), Matutino (07–13), Vespertino (13–19), Noturno (19–07) e 24 h.

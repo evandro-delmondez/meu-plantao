@@ -73,24 +73,24 @@ test("nome no Atendimento põe na lista; etapas, desfecho e passagem; volta ao a
   expect(erros).toEqual([]);
 });
 
-test("apaga quem tem mais de 7 dias (a contagem fica) e avisa 2 h sem reavaliar e 3 h sem desfecho", async ({ page }) => {
+test("apaga quem tem mais de 30 dias (a contagem fica) e avisa 2 h sem reavaliar e 3 h sem desfecho", async ({ page }) => {
   const erros = await abrir(page);
   const h = 3600e3, agora = Date.now();
   const p = (id, nome, criado, reav) => ({ id, nome, criado, upd: criado, dia: "2000-01-01", cond: "itu", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: reav }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo: "", onde: "", t: null }, sabe: false, snap: null });
   await page.evaluate((d) => localStorage.setItem("mph_pacientes_v1", JSON.stringify(d)), {
-    pacs: [p("a", "Antigo Oito Dias", agora - 8 * 24 * h, null), p("b", "Duas Horas Sem Reavaliar", agora - 2.2 * h, null), p("c", "Tres Horas Sem Desfecho", agora - 3.5 * h, agora - 0.5 * h), p("d", "Recem Chegado", agora - 0.2 * h, null)],
+    pacs: [p("a", "Antigo Trinta E Um Dias", agora - 31 * 24 * h, null), p("b", "Duas Horas Sem Reavaliar", agora - 2.2 * h, null), p("c", "Tres Horas Sem Desfecho", agora - 3.5 * h, agora - 0.5 * h), p("d", "Recem Chegado", agora - 0.2 * h, null)],
     cont: { "2000-01-01": 4 }, apagados: {}
   });
   await page.reload();
   await aba(page, "pacientes");
   await page.click('[data-pcver="todos"]');
-  await expect(item(page, "Antigo Oito Dias")).toHaveCount(0);
+  await expect(item(page, "Antigo Trinta E Um Dias")).toHaveCount(0);
   await expect(item(page, "Duas Horas Sem Reavaliar")).toHaveAttribute("data-av", "amarelo");
   await expect(item(page, "Tres Horas Sem Desfecho")).toHaveAttribute("data-av", "vermelho");
   await expect(item(page, "Recem Chegado")).toHaveAttribute("data-av", "");
   await page.locator("#pcCorpo details", { hasText: "Atendidos por plantão" }).locator("summary").click();
   await expect(page.locator("#pcCorpo details", { hasText: "Atendidos por plantão" })).toContainText("Plantão");
-  expect(await page.evaluate(() => localStorage.getItem("mph_pacientes_v1"))).not.toContain("Antigo Oito Dias");
+  expect(await page.evaluate(() => localStorage.getItem("mph_pacientes_v1"))).not.toContain("Antigo Trinta E Um Dias");
   expect(erros).toEqual([]);
 });
 

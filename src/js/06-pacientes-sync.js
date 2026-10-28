@@ -5,7 +5,7 @@
 const PSYNC_LS="mph_pacsync_v1", PSYNC_ITER=310000;
 let psync=lsGet(PSYNC_LS,null)||{};     // {repo, arq, chave, salt, k (chave AES em base64), em, erro}
 let psyncKey=null, psyncEstado="";
-// em blocos: a lista com 7 dias de atendimentos pode passar do limite de argumentos de uma chamada
+// em blocos: a lista com 30 dias de atendimentos pode passar do limite de argumentos de uma chamada
 const b64=u=>{const a=new Uint8Array(u);let s="";for(let i=0;i<a.length;i+=0x8000)s+=String.fromCharCode.apply(null,a.subarray(i,i+0x8000));return btoa(s)};
 const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const psyncAtivo=()=>!!(psync.repo&&psync.chave&&psync.k);

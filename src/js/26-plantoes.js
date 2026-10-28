@@ -15,7 +15,7 @@ let plMes=null;
 // guarda a contagem de cada plantão que ainda está na lista de pacientes (só números)
 function plAtualizaContagem(){
   const P=plDados(), por={};
-  for(const p of pacCarrega().pacs){const k=pacPlantao(p.criado).k;por[k]=por[k]||{n:0,uti:0};
+  for(const p of pacCarrega().pacs){if(!p||!+p.criado||!p.desf) continue; const k=pacPlantao(p.criado).k; if(!/^\d{4}-\d\d-\d\d[DN]$/.test(k)) continue;por[k]=por[k]||{n:0,uti:0};
     if(p.desf.tipo==="internacao"&&(p.desf.onde==="uti"||p.desf.onde==="semi"))por[k].uti++;else if(pacConta(p))por[k].n++}
   let mudou=false; for(const [k,v] of Object.entries(por)){const a=P.contagem[k];if(!a||a.n!==v.n||a.uti!==v.uti){P.contagem[k]=v;mudou=true}}
   // plantão com pacientes na lista e sem nada marcado no dia/turno: entra sozinho no Santa Lúcia
@@ -36,8 +36,12 @@ function plGoogle(x){
 }
 function renderPlantoes(){
   const el=$("#plCorpo"); if(!el) return;
+  try{plRender(el)}catch(e){el.innerHTML=`<div class="panel card"><h2>Meus plantões</h2><p class="note">Não consegui montar a tela: ${esc(e.message||String(e))}. Me mande esta frase.</p></div>`;console.error(e)}
+}
+function plRender(el){
   try{plAtualizaContagem()}catch(e){}
   const P=plDados(), hoje=new Date(); plMes=plMes||{a:hoje.getFullYear(),m:hoje.getMonth()};
+  P.escala=(Array.isArray(P.escala)?P.escala:[]).filter(x=>x&&/^\d{4}-\d\d-\d\d$/.test(x.data||"")&&PL_TURNOS[x.turno]); P.contagem=P.contagem||{}; P.pagos=P.pagos||{};
   const ini=new Date(plMes.a,plMes.m,1), dias=new Date(plMes.a,plMes.m+1,0).getDate(), pre=ini.getDay();
   const mesTxt=ini.toLocaleDateString("pt-BR",{month:"long",year:"numeric"}), pref=`${plMes.a}-${String(plMes.m+1).padStart(2,"0")}`;
   const doMes=P.escala.filter(x=>x.data.startsWith(pref)).sort((a,b)=>a.data.localeCompare(b.data)||a.turno.localeCompare(b.turno));

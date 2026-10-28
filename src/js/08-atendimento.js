@@ -36,8 +36,8 @@ function atTempoFecha(){
   lsSet(TEMPO_LS,t);
 }
 function atTempoMedia(){const t=(lsGet(TEMPO_LS,{})||{})[new Date().toISOString().slice(0,10)]||[];return t.length?{media:Math.round(t.reduce((a,b)=>a+b,0)/t.length),n:t.length}:null}
-// lista de pacientes do plantão (exceção à regra 5 decidida pelo médico; 27-pacientes.js): chave própria, 7 dias
-const PAC_LS="mph_pacientes_v1", PAC_DIAS=7;
+// lista de pacientes do plantão (exceção à regra 5 decidida pelo médico; 27-pacientes.js): chave própria, 30 dias
+const PAC_LS="mph_pacientes_v1", PAC_DIAS=30;   // 30 dias: decisão do médico em 2026-10-28 (antes 7)
 let atPac=null;        // id do paciente da lista que está no Atendimento
 let pacDb=null;        // {pacs:[…], cont:{"AAAA-MM-DD":n}, apagados:{id:quando}}
 

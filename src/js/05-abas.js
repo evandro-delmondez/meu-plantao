@@ -1,7 +1,7 @@
 /* ---------- seções e abas ---------- */
 const TABS=["inicio","prescricoes","queixas","feridas","hospital","medicacoes","pediatria","sala","pcr","bic","iot","protocolos","evolucao","pacientes","plantoes","atestado","modelos","backup","escores","calculadora","contas","eletrolitos"];
 // cada aba pertence a uma seção da barra de navegação
-const SECOES={inicio:["inicio"],condutas:["prescricoes","queixas","feridas"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],atender:["evolucao","pacientes","plantoes"],documentos:["hospital","atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
+const SECOES={inicio:["inicio"],condutas:["prescricoes","queixas","feridas"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],atender:["evolucao","pacientes"],plantoes:["plantoes"],documentos:["hospital","atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
 const secDe=t=>Object.keys(SECOES).find(s=>SECOES[s].includes(t))||"inicio";
 const ultimaAba={}; // última aba aberta em cada seção (só nesta sessão)
 /* descrição logo abaixo de um título: fica escondida num "ⓘ" ao lado dele (o médico abre se quiser) */
@@ -19,6 +19,7 @@ function setTab(t){
   $$(".tabs button").forEach(b=>{b.setAttribute("aria-selected",b.dataset.tab===t);b.hidden=b.dataset.sec!==sec});
   $(".tabs").hidden=SECOES[sec].length<2;
   $$("#secnav [data-sec]").forEach(b=>{if(b.dataset.sec===sec)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+  {const mb=$("#maisBtn");if(mb)mb.toggleAttribute("data-ativo",!!$(`#secnav [data-sec="${sec}"][data-mais]`))}
   document.body.dataset.sec=sec;
   TABS.forEach(x=>$("#tab-"+x).hidden=x!==t);
   if(t==="inicio") renderInicio(); if(t==="sala") renderSala(); if(t==="bic") renderBic(); if(t==="pcr") renderPcr(); if(t==="protocolos") renderProtocolo(); if(t==="contas") renderContas(); if(t==="eletrolitos") renderEletrolitos(); if(t==="iot") renderIot();
@@ -36,3 +37,13 @@ function setSec(sec){
 }
 $$(".tabs button").forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
 $$("#secnav [data-sec]").forEach(b=>b.onclick=()=>setSec(b.dataset.sec));
+// menu "☰ Mais": Documentos, Cálculos e Sala vermelha (fora da barra para caber bem no celular e na meia tela)
+(function(){
+  const bt=$("#maisBtn"), mn=$("#maisMenu"); if(!bt||!mn) return;
+  mn.innerHTML=$$("#secnav [data-mais]").map(b=>`<button role="menuitem" data-maissec="${b.dataset.sec}" style="${b.getAttribute("style")||""}">${b.innerHTML}</button>`).join("");
+  const fecha=()=>{mn.hidden=true;bt.setAttribute("aria-expanded","false")};
+  bt.onclick=e=>{e.stopPropagation();mn.hidden=!mn.hidden;bt.setAttribute("aria-expanded",String(!mn.hidden))};
+  mn.querySelectorAll("[data-maissec]").forEach(b=>b.onclick=()=>{fecha();setSec(b.dataset.maissec)});
+  document.addEventListener("click",e=>{if(!mn.hidden&&!e.target.closest("#maisMenu,#maisBtn"))fecha()});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")fecha()});
+})();

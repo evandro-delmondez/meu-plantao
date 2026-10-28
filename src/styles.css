@@ -882,3 +882,11 @@ details.panel>summary{cursor:pointer}
 .plchip{font-size:10.5px;font-weight:700;border-radius:6px;padding:1px 4px;background:color-mix(in srgb,var(--c) 18%,var(--surface));color:var(--c);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pllista{list-style:none;padding:0;margin:6px 0;display:grid;gap:6px}.pllista li{border-left:4px solid var(--c,var(--line));padding:4px 8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .plloc{border:1px solid var(--line);border-radius:10px;padding:8px;margin:6px 0}
+/* barra com 5 seções; Remédios, Cálculos e Sala vermelha no menu "☰ Mais" (o botão "Mais" fica marcado quando uma delas está aberta) */
+#secnav [data-mais]{display:none}
+.maismenu{position:fixed;z-index:40;top:calc(env(safe-area-inset-top,0px) + 56px);right:12px;display:grid;gap:4px;padding:8px;min-width:210px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.maismenu button{--c:var(--accent);display:flex;align-items:center;gap:10px;border:0;background:none;color:var(--ink);font:inherit;font-weight:700;font-size:15px;padding:10px 12px;border-radius:10px;cursor:pointer;text-align:left}
+.maismenu button:hover{background:color-mix(in srgb,var(--c) 12%,var(--surface))}
+.maismenu svg{width:22px;height:22px;fill:none;stroke:var(--c);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.maisbtn[data-ativo]{border-color:var(--accent);color:var(--accent)}
+.plinativo{opacity:.6}.plpag{color:var(--ink);font-weight:600}

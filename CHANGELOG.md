@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.48.0 — 2026-10-28
+- **Barra com 5 seções**: Início, Atender, Condutas, **Plantões** e Remédios. Documentos, Cálculos e Sala vermelha ficam no **"☰ Mais"**, no canto superior direito (o botão fica marcado quando uma delas está aberta).
+- **Meus plantões virou seção própria** na barra.
+- Santa Lúcia: **UTI B e UTI C** valem R$ 150; previsão de pagamento "Recebe de 20 a 25 do mês seguinte (Pix)". UPA (concurso) fica **aguardando convocação**, fora do total, até você marcar "Ativo" em Locais e valores.
+
 ## 1.47.1 — 2026-10-28
 - **Dermatite**: prednisona como opção desligada na dermatite extensa ou grave (40 mg 7 dias → 20 mg 7 dias → 10 mg 7 dias; AAAAI 2006/AAFP 2010, Curtis 2014; bula Meticorten); citação do Fonacier 2015 corrigida.
 - **Insuficiência venosa crônica**: conduta da varicorragia no "Na unidade" (elevação, compressão direta, curativo compressivo, ponto hemostático como resgate, sem garrote; encaminhar ao vascular) — fonte: International Union of Phlebology 2024 e NICE CG168.

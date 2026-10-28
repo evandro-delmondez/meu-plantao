@@ -1,14 +1,18 @@
 import { test, expect } from "@playwright/test";
-import { abrir, aba, RUIM } from "./util.mjs";
+import { abrir, aba, RUIM, secao } from "./util.mjs";
 
 test("abre no Início e cada seção mostra só as suas páginas", async ({ page }) => {
   const erros = await abrir(page);
   await expect(page.locator("#tab-inicio")).toBeVisible();
   await expect(page.locator("#secnav")).toBeVisible();
-  const secoes = { condutas: ["prescricoes", "queixas", "feridas"], remedios: ["medicacoes", "pediatria"], sala: ["sala", "pcr", "bic", "iot", "protocolos"], atender: ["evolucao", "pacientes", "plantoes"], documentos: ["hospital", "atestado", "modelos", "backup"], calculos: ["escores", "calculadora", "contas", "eletrolitos"] };
+  const secoes = { condutas: ["prescricoes", "queixas", "feridas"], remedios: ["medicacoes", "pediatria"], sala: ["sala", "pcr", "bic", "iot", "protocolos"], atender: ["evolucao", "pacientes"], plantoes: [], documentos: ["hospital", "atestado", "modelos", "backup"], calculos: ["escores", "calculadora", "contas", "eletrolitos"] };
+  // barra com 5 seções; Remédios, Cálculos e Sala vermelha pelo menu "☰ Mais"
+  const naBarra = await page.$$eval("#secnav button", (b) => b.filter((x) => x.offsetParent).map((x) => x.dataset.sec));
+  expect(naBarra).toEqual(["inicio", "atender", "condutas", "plantoes", "remedios"]);
+  const MAIS = ["documentos", "calculos", "sala"];
   for (const [sec, abas] of Object.entries(secoes)) {
-    await page.click(`#secnav [data-sec="${sec}"]`);
-    await expect(page.locator(`#secnav [data-sec="${sec}"]`)).toHaveAttribute("aria-current", "page");
+    if (MAIS.includes(sec)) { await page.click("#maisBtn"); await page.click(`#maisMenu [data-maissec="${sec}"]`); await expect(page.locator("#maisBtn")).toHaveAttribute("data-ativo", ""); }
+    else { await page.click(`#secnav [data-sec="${sec}"]`); await expect(page.locator(`#secnav [data-sec="${sec}"]`)).toHaveAttribute("aria-current", "page"); }
     const visiveis = await page.$$eval(".tabs button", (b) => b.filter((x) => x.offsetParent).map((x) => x.dataset.tab));
     expect(visiveis, sec).toEqual(abas);
   }
@@ -89,13 +93,13 @@ test("dados de uso salvos antes da v1.2 (sem recentes) continuam funcionando", a
 
 test("sala vermelha lista as condutas de emergência e os atalhos", async ({ page }) => {
   const erros = await abrir(page);
-  await page.click('#secnav [data-sec="sala"]');
+  await secao(page, "sala");
   await expect(page.locator("#tab-sala")).toBeVisible();
   expect(await page.locator("#salaConds .item").count()).toBeGreaterThan(5);
   expect(await page.locator("#tab-sala").innerText()).not.toMatch(RUIM);
   await page.click('#salaConds [data-sc2="anafilaxia"]');
   await expect(page.locator("#detail h2")).toHaveText("Anafilaxia");
-  await page.click('#secnav [data-sec="sala"]');
+  await secao(page, "sala");
   await page.locator("#salaAtalhos .hsec", { hasText: "Emergência pediátrica" }).click();
   await expect(page.locator("#pdEm")).toBeVisible();
   expect(erros).toEqual([]);

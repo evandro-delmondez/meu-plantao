@@ -57,6 +57,7 @@ Atualizado em 2026-10-22 (versão 1.22.3). Decisões: `docs/DECISOES.md`. Diverg
 17. Divergências antigas sem mudança: glucagon (RCUK × AAAAI); valproato 10 × 60 min; biperideno VO infantil. Opcionais dos conferentes: MACOCHA, Holbrook 2012, teto de glicose ISPAD, bula do Metalyse, PALS 2025.
 
 ## Ideias em espera
+- **Modo Sala Vermelha** (pedido do médico, 2026-10-28, para quando trabalhar na sala vermelha): um botão que transforma o app inteiro (barra, telas e atalhos de emergência) e outro para voltar ao modo porta (verde e amarela).
 - **Clínica:**
   - fluxos por queixa com sinais de alarme;
   - ECG de bolso;

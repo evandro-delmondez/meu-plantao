@@ -16,3 +16,9 @@ export async function abrir(page, url = PAINEL) {
 }
 export const aba = (page, nome) => page.evaluate((n) => document.querySelector(`.tabs [data-tab="${n}"]`).click(), nome);
 export const semRolagemLateral = (page) => page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth <= 1);
+// abre uma seção pela barra ou, se estiver no menu "☰ Mais", pelo menu
+export async function secao(page, sec) {
+  if (await page.locator(`#secnav [data-sec="${sec}"][data-mais]`).count()) { await page.click("#maisBtn"); await page.click(`#maisMenu [data-maissec="${sec}"]`); }
+  else await page.click(`#secnav [data-sec="${sec}"]`);
+}
+

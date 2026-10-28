@@ -825,3 +825,31 @@ details.panel>summary{cursor:pointer}
 .atrxmais{margin:10px 0;padding:8px 10px;border:1px dashed var(--line);border-radius:12px}
 .atrxx{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}.atrxd{display:inline-flex;gap:4px;align-items:center;font-size:13px}.atrxd .inp{width:64px;padding:4px 6px}
 .atrxav{flex-basis:100%;margin:0;color:var(--warn)}.atrxcola{margin-top:6px}.atrxcola>summary{cursor:pointer;font-weight:600;color:var(--muted)}
+
+/* Início: pacientes em aberto no alto, maiores, com o que falta */
+.hpacsbox #hPacs{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.hpacsbox .hboxh{gap:10px;align-items:baseline}
+.hpac{padding:12px 14px;border-left-width:6px;font-size:15px}
+.hpac .hpac-l{display:flex;justify-content:space-between;gap:8px;color:var(--ink);font-size:16.5px}
+.hpac .hpac-l em{font-style:normal;font-size:13px;color:var(--muted)}
+.hpac .hpac-f{color:var(--ink);font-weight:600}
+.hpac .hpac-av{color:var(--bad);font-weight:700}
+/* ordem "prescrição primeiro": as seções e a barra trocam de lugar sem mexer no conteúdo */
+#atCorpo.ordem-presc{display:flex;flex-direction:column}
+#atCorpo.ordem-presc>*{order:0}
+#atCorpo.ordem-presc>.attudo{order:99}
+#atCorpo.ordem-presc>[data-etapa="3"],.atetapas.ordem-presc [data-atir="3"]{order:11}
+#atCorpo.ordem-presc>[data-etapa="5"],.atetapas.ordem-presc [data-atir="5"]{order:12}
+#atCorpo.ordem-presc>[data-etapa="4"],.atetapas.ordem-presc [data-atir="4"]{order:13}
+#atCorpo.ordem-presc>[data-etapa="1"],.atetapas.ordem-presc [data-atir="1"]{order:14}
+#atCorpo.ordem-presc>[data-etapa="2"],.atetapas.ordem-presc [data-atir="2"]{order:15}
+#atCorpo.ordem-presc>[data-etapa="6"],.atetapas.ordem-presc [data-atir="6"]{order:16}
+#atCorpo.ordem-presc>[data-etapa="7"],.atetapas.ordem-presc [data-atir="7"]{order:17}
+.atetapas.ordem-presc .atrel{order:0}.atetapas.ordem-presc .atedn{order:30}
+#atCorpo.ordem-presc>.atsec{margin-bottom:14px}
+/* CID grande no alto, ao lado da conduta */
+.cidtop{font:inherit;font-weight:800;font-size:15px;padding:4px 10px;border-radius:8px;border:1.5px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--ink);cursor:pointer;margin-left:6px}
+.cidtop span{font-size:11px;font-weight:600;color:var(--muted)}
+/* fechar o atendimento */
+.atfecharbox{border:2px solid var(--pink);border-radius:12px;padding:10px 14px;margin:0 0 12px;background:color-mix(in srgb,var(--pink) 8%,var(--surface))}
+.atfecharbox ol{margin:6px 0 8px 18px;padding:0}

@@ -102,7 +102,9 @@ function renderInicio(){
   // pacientes sem desfecho, com os avisos de 2 h e 3 h
   const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");
   $("#hPacsBox").hidden=!ab.length;
-  $("#hPacs").innerHTML=ab.map(p=>{const av=pacAviso(p);return `<button class="hpac" data-hp="${p.id}" data-av="${av?av.nv:""}"><b>${esc(p.nome)}</b><span>${esc(pacHip(p)||"sem hipótese")} · ${pacHora(p.criado)}${av?` · ${esc(av.txt)}`:""}</span></button>`}).join("");
+  const agora=Date.now(), pl=pacPlantao(agora).k, at=pacCarrega().pacs.filter(p=>pacPlantao(p.criado).k===pl&&pacConta(p)).length;
+  $("#hPacsConta").textContent=`${at} ${at===1?"atendido":"atendidos"} neste plantão`;
+  $("#hPacs").innerHTML=ab.map(p=>{const av=pacAviso(p,agora), pe=pacPendencias(p);return `<button class="hpac" data-hp="${p.id}" data-av="${av?av.nv:""}"><span class="hpac-l"><b>${esc(p.nome)}</b><em>há ${pacDur(agora-p.criado)}</em></span><span>${esc(pacHip(p)||"sem hipótese")}</span>${pe.length?`<span class="hpac-f">A fazer: ${esc(pe.join(" · "))}</span>`:""}${av?`<span class="hpac-av">${esc(av.txt)}</span>`:""}</button>`}).join("");
   $$("#hPacs [data-hp]").forEach(b=>b.onclick=()=>pacAbrir(b.dataset.hp));
   // sem nenhuma chave neste computador: oferece Entrar
   const box=$("#acInicio"), cfg=psyncAtivo()||gsAtivo()||(hosp.cfg&&hosp.cfg.chave);

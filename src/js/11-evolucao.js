@@ -424,7 +424,7 @@ function atResBind(box){
 }
 function atReavHTML(){
   const pend=atPendencias(), dec=atd.decisao;
-  return `<div class="atreav"><div id="atResBox">${atResHTML()}</div>${pend.length?`<span class="lbl">Na reavaliação, ver:</span><div class="atpend">${pend.map(([k,t])=>`<label class="check"><input type="checkbox" data-atvisto="${k}" ${atd.visto[k]?"checked":""}> ${esc(t)}</label>`).join("")}</div>`:""}
+  return `${atd.fechar?`<div class="atfecharbox"><b>Fechar o atendimento</b><ol><li>Veja os resultados e a resposta à medicação.</li><li>Escolha a decisão.</li><li><b>⧉ Próximo</b> (ou F2) copia em sequência: receituário → atestado → alta.</li></ol><button class="btn sm" id="atFecharSai">Voltar ao atendimento completo</button></div>`:""}<div class="atreav"><div id="atResBox">${atResHTML()}</div>${pend.length?`<span class="lbl">Na reavaliação, ver:</span><div class="atpend">${pend.map(([k,t])=>`<label class="check"><input type="checkbox" data-atvisto="${k}" ${atd.visto[k]?"checked":""}> ${esc(t)}</label>`).join("")}</div>`:""}
     <span class="lbl">Decisão</span><div class="seg atdec" role="group" aria-label="Decisão">${AT_DEC.map(([v,r])=>`<button data-atdec="${v}" aria-pressed="${dec===v}">${r}</button>`).join("")}</div>
     ${dec==="internacao"?`<label class="f">Para onde<select class="inp" data-atd="intern.local">${atLocais().map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label>`:""}</div>`;
 }
@@ -458,8 +458,15 @@ function atRelogio(){
   r.title=`Meta ${meta} min (toque para mudar)${m?` · média de hoje ${m.media} min (${m.n})`:""}`;
 }
 setInterval(()=>{if(ui.tab==="evolucao"&&atd.t0)atRelogio()},1000);
+// ordem das etapas: "mv" (HDA primeiro) ou "presc" (HD + CID → prescrição → conduta → HDA → exame → alta); fica nos padrões
+const AT_ORDEM_PRESC=[3,5,4,1,2,6,7], AT_ETAPA_DE={hda:1,exame:2,diag:3,trat:4,punid:5,rx:5,atest:5,alta:6,intern:7};
+const atOrdem=()=>(model.prefs||{}).ordem==="presc"?"presc":"mv";
+const atPos=n=>atOrdem()==="presc"?AT_ORDEM_PRESC.indexOf(+n)+1:+n;
+// "Fechar o atendimento" (volta do paciente): o Próximo copia só o que sai na alta
+const AT_FECHAR=["rx","atest","alta","intern"];
+function atCamposOrdem(){const l=AT_CAMPOS.map(([k])=>k).filter(k=>!atd.fechar||AT_FECHAR.includes(k));return l.sort((a,b)=>atd.fechar?AT_FECHAR.indexOf(a)-AT_FECHAR.indexOf(b):atPos(AT_ETAPA_DE[a])-atPos(AT_ETAPA_DE[b])||0)}
 function atProximo(){
-  for(const [k] of AT_CAMPOS){const ta=$(`#atCorpo [data-atout="${k}"]`);
+  for(const k of atCamposOrdem()){const ta=$(`#atCorpo [data-atout="${k}"]`);
     if(!ta||!ta.value.trim()||ta.closest("[hidden]")||ta.closest("details:not([open])")) continue;
     if(atd.cop[k]!==ta.value) return {k,ta,rot:(ta.getAttribute("aria-label")||k)};}
   return null;
@@ -494,7 +501,7 @@ try{const tp=$(".top");if(tp&&window.ResizeObserver)new ResizeObserver(()=>docum
 function atMarcaEtapa(){
   const bar=$("#atEtapas"); if(!bar||ui.tab!=="evolucao") return;
   const lim=Math.max(bar.getBoundingClientRect().bottom+40,window.innerHeight*0.45); let atual=null;
-  $$("#atCorpo [data-etapa]").forEach(x=>{if(x.getBoundingClientRect().top<=lim)atual=x.dataset.etapa});
+  let melhor=-Infinity; $$("#atCorpo [data-etapa]").forEach(x=>{const t=x.getBoundingClientRect().top;if(t<=lim&&t>melhor){melhor=t;atual=x.dataset.etapa}});
   bar.querySelectorAll("[data-atir]").forEach(b=>b.toggleAttribute("aria-current",b.dataset.atir===atual));
   $$("#atCorpo [data-etapa]").forEach(x=>x.classList.toggle("atagora",x.dataset.etapa===atual));
 }
@@ -519,6 +526,8 @@ function renderEv(){
   // só existe na tela enquanto a aba está aberta (o checklist e os campos não se repetem em outra aba)
   if(ui.tab!=="evolucao"){el.innerHTML="";const v=$(".top .atetapas");if(v)v.remove();return}
   const foco=atFocoGuarda();
+  // a barra antiga sai antes de montar a nova (senão os botões novos ficam sem ação: $() acharia os antigos)
+  {const v=$(".top .atetapas");if(v)v.remove()}
   pacNomeAtualiza();
   const it=atItem();
   const inp=(k,rot,ph="",num)=>`<label class="f">${rot}<input class="inp" data-atd="${k}" value="${esc(atd[k])}" placeholder="${ph}"${num?' inputmode="decimal"':""}></label>`;
@@ -533,10 +542,10 @@ function renderEv(){
   const outras=(atd.extras||[]).map(getItem).filter(Boolean);
   el.innerHTML=`
   ${atEdit?`<div class="ateditbar"><span class="note">Editando os padrões. Vale para os próximos atendimentos. Salve no alto.</span></div>`:""}
-  <nav class="atetapas" id="atEtapas" aria-label="Etapas do atendimento"><button class="atrel" id="atRelogio" hidden aria-label="Relógio do atendimento: toque para mudar a meta"></button>${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}<button class="atedn primary atprox" id="atProx" title="Copia o próximo campo ainda não copiado, na ordem do MV (tecla F2)">⧉ Próximo</button>${atEdit?`<button class="atedn primary" id="atEdSalva">Salvar padrões</button><button class="atedn" id="atEdSai">Cancelar</button>`:`<button class="atedn" id="atEdita" title="Editar os padrões do Atendimento">✎ Padrões</button>`}</nav>
+  <nav class="atetapas${atOrdem()==="presc"?" ordem-presc":""}" id="atEtapas" aria-label="Etapas do atendimento"><button class="atrel" id="atRelogio" hidden aria-label="Relógio do atendimento: toque para mudar a meta"></button>${AT_ETAPAS.map(([n,r])=>`<button data-atir="${n}"${n===7?' data-int':""}><b>${n}</b> ${r}</button>`).join("")}<button class="atedn" id="atOrdem" title="Alterna a ordem das etapas">${atOrdem()==="presc"?"Ordem: prescrição 1º":"Ordem: MV"}</button><button class="atedn primary atprox" id="atProx" title="Copia o próximo campo ainda não copiado, na ordem do MV (tecla F2)">⧉ Próximo</button>${atEdit?`<button class="atedn primary" id="atEdSalva">Salvar padrões</button><button class="atedn" id="atEdSai">Cancelar</button>`:`<button class="atedn" id="atEdita" title="Editar os padrões do Atendimento">✎ Padrões</button>`}</nav>
   ${it?`<div class="atextras"><span class="lbl">Outras queixas no mesmo paciente</span><div class="chips">${outras.map(c=>`<button class="chip" data-atrem="${esc(c.id)}" aria-pressed="true" style="--c:var(--${(CATS[c.cat]||CATS.outros).cor})">✓ ${esc(c.nome)} ✕</button>`).join("")}
     ${outras.length<2?`<div class="atbusca"><input class="inp" id="atAddQ" type="text" name="q-conduta-search" role="searchbox" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-1p-ignore data-lpignore="true" data-form-type="other" placeholder="+ outra conduta (ex.: faringite, J02)" aria-label="Buscar outra conduta"><div class="atsug" id="atAddSug"></div></div>`:""}</div></div>`:""}
-  ${cs.length?`<div class="atconds">${cs.map(c=>{const k=CATS[c.cat]||CATS.outros;return `<span class="cat" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}${c.cid?` · ${esc(c.cid)}`:""}</span>`}).join("")}</div>`:""}
+  ${cs.length?`<div class="atconds">${cs.map(c=>{const k=CATS[c.cat]||CATS.outros;return `<span class="cat" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}</span>${c.cid?`<button class="cidtop" data-cpcid="${esc(c.cid)}" title="Copiar o CID">CID ${esc(c.cid)} <span>copiar</span></button>`:""}`}).join("")}</div>`:""}
   ${atQueixaHTML(!!it)}
   <div class="sec atsec" data-etapa="1" id="atHdaSec"><div class="sec-h"><h3>1. HDA e antecedentes</h3></div><div class="atbody">
     ${ta("hma","Queixa e HDA (notas soltas: o texto sai corrido)","ex.: dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre")}
@@ -614,6 +623,7 @@ function renderEv(){
     <div class="hospev" id="atHospInt"></div></div></details>
   <div class="actions attudo"><button class="btn primary" id="atCpTudo">Copiar tudo</button></div>`;
   bindEv(it);
+  el.classList.toggle("ordem-presc",atOrdem()==="presc"); el.classList.toggle("atfechar",!!atd.fechar);
   // a barra de etapas vai para a linha das abas do topo (fica sempre à vista sem ocupar uma faixa a mais)
   const bar=$("#atCorpo .atetapas"), tabs=$(".top .tabs");
   if(bar&&tabs){const v=$(".top .atetapas");if(v)v.remove();tabs.appendChild(bar);atEtapasAtualiza()}
@@ -741,6 +751,8 @@ function bindEv(it){
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});
   box.querySelectorAll("[data-atcp]").forEach(b=>b.onclick=()=>{const k=b.dataset.atcp,t=$(`#atCorpo [data-atout="${k}"]`).value;if(!t.trim()){toast("Campo vazio");return}copy(t,b).then(ok=>{if(!ok)return;atd.cop[k]=t;atEtapasAtualiza();atdSessaoLogo();pacSnapLogo()})});
   if($("#atProx")) $("#atProx").onclick=atCopiaProximo;
+  if($("#atFecharSai")) $("#atFecharSai").onclick=()=>{atd.fechar=false;const y=window.scrollY;renderEv();window.scrollTo(0,y)};
+  if($("#atOrdem")) $("#atOrdem").onclick=()=>{model.prefs=Object.assign({},model.prefs,{ordem:atOrdem()==="presc"?"mv":"presc"});saveModel();const y=window.scrollY;renderEv();window.scrollTo(0,y);toast(atOrdem()==="presc"?"Ordem: HD → prescrição → conduta → HDA → exame → alta":"Ordem do MV: HDA primeiro")};
   if($("#atRelogio")) $("#atRelogio").onclick=()=>{const v=prompt(`Meta de tempo por atendimento, em minutos (fica amarelo 5 min antes e vermelho ao passar).\nDigite 0 para zerar o relógio agora.`,atMeta());if(v==null)return;const n=Math.round(+String(v).replace(",","."));
     if(n===0){atd.t0=Date.now();atRelogio();atdSessaoLogo();toast("Relógio zerado");return}
     if(!(n>=5&&n<=180)){toast("Use de 5 a 180 minutos");return}model.prefs=Object.assign({},model.prefs,{meta:n});saveModel();atRelogio();toast(`Meta: ${n} min por atendimento`)};

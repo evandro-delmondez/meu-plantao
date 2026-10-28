@@ -559,3 +559,30 @@ test("Copiar o próximo: segue a ordem do MV, marca ✓ e funciona com F2", asyn
   expect(copiados[1]).toMatch(/Exame físico|estado geral/);
   expect(erros).toEqual([]);
 });
+
+test("ordem alternável (prescrição primeiro), CID grande no alto, fechar o atendimento na volta e pacientes no Início", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await expect(page.locator("#atCorpo .cidtop")).toContainText("CID J");
+  // alterna a ordem: prescrição vem antes da HDA, na tela e no Próximo
+  await page.click("#atOrdem");
+  await expect(page.locator("#atOrdem")).toContainText("prescrição 1º");
+  const y = (n) => page.locator(`#atCorpo [data-etapa="${n}"]`).evaluate((e) => e.getBoundingClientRect().top);
+  expect(await y(5)).toBeLessThan(await y(1));
+  expect(await y(3)).toBeLessThan(await y(5));
+  expect(JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1"))).prefs.ordem).toBe("presc");
+  await expect(page.locator("#atProx")).toContainText("Próximo: Hipótese");
+  await page.click("#atOrdem");
+  await expect(page.locator("#atOrdem")).toContainText("Ordem: MV");
+  // paciente na lista com medicação marcada; ao voltar, abre em "Fechar o atendimento"
+  await page.fill("#atNome", "Volta Teste"); await page.dispatchEvent("#atNome", "change");
+  await page.click('#atCorpo [data-atchip="cond"][data-k="med"]');
+  await page.waitForTimeout(800);
+  await aba(page, "inicio");
+  await expect(page.locator("#hPacsBox")).toBeVisible();
+  await expect(page.locator("#hPacs .hpac", { hasText: "Volta Teste" })).toContainText("A fazer");
+  await page.locator("#hPacs .hpac", { hasText: "Volta Teste" }).click();
+  await expect(page.locator("#atCorpo .atfecharbox")).toBeVisible();
+  await expect(page.locator("#atProx")).toContainText(/Próximo: (Receituário|Atestado|Reavaliação)/);
+  expect(erros).toEqual([]);
+});

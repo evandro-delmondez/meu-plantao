@@ -61,8 +61,12 @@ function pacAbrir(id){
   const s=p.snap;
   if(s){atd=Object.assign(ATD_VAZIO(),s.atd);if(s.cond&&s.chk)chk[s.cond]=s.chk;if(s.sexo)pac.sexo=s.sexo;if(s.idade)pac.idade=s.idade}
   atd.t0=Date.now();   // reabrir (reavaliação) conta como um novo tempo de atendimento
+  // volta do paciente (já tinha prescrição, exame ou medicação): abre em "Fechar o atendimento", na reavaliação
+  const voltou=!!(s&&s.atd&&(String(s.atd.exLab||"").trim()||String(s.atd.exImg||"").trim()||(s.atd.cond||{}).med||s.atd.decisao));
+  atd.fechar=voltou;
   const cond=(s&&s.cond)||p.cond||""; $("#evCond").value=cond; if(cond) ui.sel=cond;
   setTab("evolucao"); window.scrollTo({top:0});
+  if(atd.fechar) setTimeout(()=>{const x=$('#atCorpo [data-etapa="6"]');if(x)x.scrollIntoView({block:"start"})},60);
 }
 function pacApagar(id){const db=pacCarrega();db.pacs=db.pacs.filter(p=>p.id!==id);db.apagados[id]=Date.now();if(atPac===id)atPac=null;pacGrava()}
 // aviso de tempo: 2 h sem reavaliar (amarelo); 3 h sem desfecho (vermelho)

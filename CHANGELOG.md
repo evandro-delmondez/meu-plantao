@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.43.0 — 2026-10-27
+- **Ordem alternável** no Atendimento (botão na barra): "Ordem: MV" ou "Ordem: prescrição 1º" (HD + CID → prescrição → conduta → HDA → exame → alta). Fica nos seus padrões; o "⧉ Próximo" segue a ordem escolhida.
+- **CID grande no alto**, ao lado da conduta, copiável com um toque.
+- **Fechar o atendimento**: ao tocar num paciente que volta (já tinha prescrição, exame ou medicação), o Atendimento abre na reavaliação com um quadro de passos, e o "⧉ Próximo" copia em sequência receituário → atestado → alta.
+- **Pacientes em aberto no alto do Início, maiores**, com tempo, hipótese e o que falta, e quantos atendidos neste plantão.
+- Corrigido: depois de qualquer redesenho, os botões da barra (Próximo, relógio, Padrões) podiam parar de responder.
+
 ## 1.42.0 — 2026-10-27
 - **Decisões do médico aplicadas, com fonte**: odontalgia com metronidazol na falha e "receita de reserva" como opções desligadas; pericardite só com a dose cheia por 14 dias na receita (desmame no retorno, guiado pela PCR; ESC 2025); síncope com lembrete para o médico sobre água e sal sem hipertensão (EHRA 2024/ESC 2018) e glicemia capilar como "considerar"; ansiedade com clonazepam como opção desligada (Notificação B; NICE desaconselha).
 - **Escore CSRS (Canadian Syncope Risk Score)** na aba Escores e dentro da conduta de síncope.

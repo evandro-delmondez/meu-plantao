@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.47.1 — 2026-10-28
+- **Dermatite**: prednisona como opção desligada na dermatite extensa ou grave (40 mg 7 dias → 20 mg 7 dias → 10 mg 7 dias; AAAAI 2006/AAFP 2010, Curtis 2014; bula Meticorten); citação do Fonacier 2015 corrigida.
+- **Insuficiência venosa crônica**: conduta da varicorragia no "Na unidade" (elevação, compressão direta, curativo compressivo, ponto hemostático como resgate, sem garrote; encaminhar ao vascular) — fonte: International Union of Phlebology 2024 e NICE CG168.
+- **Alertas novos**: ajuste renal do aciclovir EV (bula Zovirax injetável) e prometazina na gestante (Bula Padrão Anvisa). Conferência independente: 0 crítico, 3 importantes corrigidos.
+
 ## 1.47.0 — 2026-10-28
 - **Meus plantões** (Atender › Meus plantões): calendário do mês para marcar a escala (local e turno: diurno, noturno ou 24 h), resumo do que vai receber e "recebido" por local e mês.
   - **Santa Lúcia**: R$ 50 por alta e R$ 150 por internação em UTI, contados sozinhos pela lista de pacientes de cada plantão (a contagem fica guardada como número, mesmo depois que a lista apaga os nomes em 7 dias).

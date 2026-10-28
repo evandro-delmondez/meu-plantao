@@ -20,7 +20,9 @@ emaMeto:"EMA (2013): metoclopramida — reduzir 50% se ClCr 15–60 e 75% se ClC
 acogUti:"ACOG Clinical Consensus: Urinary Tract Infections in Pregnant Individuals (2023). https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2023/08/urinary-tract-infections-in-pregnant-individuals",
 fdaAce:"FDA — advertência em destaque (boxed warning) dos IECA/BRA: toxicidade fetal.",
 diamox:"Bula do Diamox (acetazolamida 250 mg) registrada na Anvisa: contraindicado na alergia a sulfonamida, na hipocalemia, na hiponatremia, na insuficiência renal ou hepática grave, na cirrose, na insuficiência adrenal e na acidose. https://bula.com.br/diamox/contraindicacao",
-colchis:"Bula do Colchis (colchicina 0,5 mg, Apsen) registrada na Anvisa: contraindicada na gestação; TFG 30–59: 0,5 mg/dia; 15–29: a cada 2–3 dias; < 15: contraindicada. https://consultaremedios.com.br/colchis/bula. ESC 2025 (miocardite e pericardite, seção 12.3): colchicina pode ser considerada na gestação (IIb)."
+colchis:"Bula do Colchis (colchicina 0,5 mg, Apsen) registrada na Anvisa: contraindicada na gestação; TFG 30–59: 0,5 mg/dia; 15–29: a cada 2–3 dias; < 15: contraindicada. https://consultaremedios.com.br/colchis/bula. ESC 2025 (miocardite e pericardite, seção 12.3): colchicina pode ser considerada na gestação (IIb).",
+zoviraxEv:"Bula Anvisa do Zovirax injetável (aciclovir sódico 250 mg, GSK, aprovada em 18/03/2021): dose de 5 ou 10 mg/kg; ClCr 25–50, de 12/12h; 10–25, de 24/24h; 0–10, metade da dose de 24/24h (na hemodiálise, depois da diálise); garantir hidratação; infusão em 1 h, nunca em bolus. https://br.gsk.com/media/6237/zovirax-injet%C3%A1vel.pdf",
+fenergan:"Bula Padrão Anvisa da prometazina injetável (texto profissional do Pamergan, Cristália, conforme Bula Padrão aprovada em 06/12/2023; bula do paciente do Fenergan, Sanofi, versão em bula.com.br de 30/07/2025): categoria C; não usar no 1º trimestre (leve aumento de malformação cardiovascular); fim da gestação, tratamento prolongado: sonolência ou hiperexcitabilidade no recém-nascido, observar funções neurológicas e digestivas; dose alta no fim da gravidez causou distúrbio neurológico prolongado; desaconselhada na amamentação. https://bula.com.br/original/fenergan-injetavel ; https://cristalia.com.br/produto/387/bula-profissional"
 };
 const RULES=[
 {re:/ibuprofeno|diclofenaco|cetoprofeno|ácido mefenâmico|naproxeno|nimesulida|profenid/i, nome:"AINE",
@@ -58,6 +60,8 @@ const RULES=[
  idoso:["Evitar: déficit cognitivo, delírio, quedas e fraturas.","beers"]},
 {re:/dexclorfeniramina|prometazina|hidroxizina|dimenidrinato|meclizina|dramin|polaramine|fenergan/i, nome:"Anti-histamínico de 1ª geração",
  idoso:["Evitar: altamente anticolinérgico (confusão, retenção urinária, constipação).","beers"]},
+{re:/prometazina|fenergan/i, nome:"Prometazina",
+ gest:["Bula: categoria C; não usar no 1º trimestre (malformação cardiovascular). Perto do parto: sonolência ou agitação no recém-nascido (avisar o pediatra). Evitar na amamentação.","fenergan"]},
 {re:/tiocolchic|coltrax/i, nome:"Tiocolchicosídeo",
  gest:["Contraindicado na gestação, na amamentação e em mulher fértil sem contracepção (risco de aneuploidia).","coltrax"]},
 {re:/ciclobenzaprina/i, nome:"Ciclobenzaprina",
@@ -91,6 +95,8 @@ const RULES=[
  renal:["Evitar se ClCr < 15; ajustar entre 15 e 50.","beers"]},
 {re:/\baciclovir/i, nome:"Aciclovir",
  renal:["Ajustar ao ClCr: herpes simples, ClCr < 10 → 200 mg de 12/12h; zoster, ClCr 10–25 → 800 mg de 8/8h e < 10 → 800 mg de 12/12h.","bula"]},
+{re:/\baciclovir[^\n]{0,60}\bEV\b/i, nome:"Aciclovir EV",
+ renal:["Bula Zovirax EV: ClCr 25–50, mesma dose (mg/kg) de 12/12h; 10–25, de 24/24h; < 10, metade da dose de 24/24h (após a hemodiálise). Hidratar; infundir em 1 h.","zoviraxEv"]},
 {re:/valaciclovir/i, nome:"Valaciclovir",
  renal:["Ajustar ao ClCr: herpes labial, ClCr 30–49 → 1 g de 12/12h por 1 dia, 10–29 → 500 mg de 12/12h por 1 dia, < 10 → 500 mg dose única; zoster, ClCr 30–49 → 1 g de 12/12h, 10–29 → 1 g a cada 24h, < 10 → 500 mg a cada 24h.","bula"]},
 {re:/oseltamivir/i, nome:"Oseltamivir",

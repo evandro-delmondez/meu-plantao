@@ -853,3 +853,4 @@ details.panel>summary{cursor:pointer}
 /* fechar o atendimento */
 .atfecharbox{border:2px solid var(--pink);border-radius:12px;padding:10px 14px;margin:0 0 12px;background:color-mix(in srgb,var(--pink) 8%,var(--surface))}
 .atfecharbox ol{margin:6px 0 8px 18px;padding:0}
+.atlabcola{margin:6px 0}.atlabcola>summary{cursor:pointer;font-weight:600;color:var(--accent)}

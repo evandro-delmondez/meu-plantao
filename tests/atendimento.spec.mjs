@@ -387,7 +387,7 @@ test("IA na HDA: sem chave orienta; com chave troca o texto (sem o nome), trava 
   expect(corpo.model).toBe("claude-haiku-4-5-20251001");
   expect(JSON.stringify(corpo.messages)).not.toContain("Carla");                 // o nome não sai do aparelho
   await expect(page.locator('#atCorpo [data-atout="hda"]')).toHaveValue(/^Paciente refere dor de cabeça há 2 dias, sem melhora com dipirona\./);
-  await page.click("#atIaDesfaz");
+  await page.click("#atIaEst [data-iadesfaz]");
   await expect(page.locator('#atCorpo [data-atout="hda"]')).toHaveValue(antes);
   // trava: número mudou → mantém o original
   resposta = antes.replace(/2/g, "3");
@@ -584,5 +584,50 @@ test("ordem alternável (prescrição primeiro), CID grande no alto, fechar o at
   await page.locator("#hPacs .hpac", { hasText: "Volta Teste" }).click();
   await expect(page.locator("#atCorpo .atfecharbox")).toBeVisible();
   await expect(page.locator("#atProx")).toContainText(/Próximo: (Receituário|Atestado|Reavaliação)/);
+  expect(erros).toEqual([]);
+});
+
+test("+ remédio acha remédio da receita de outra conduta (texto conferido de lá) e entra na receita", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await page.evaluate(() => { navigator.clipboard.writeText = () => Promise.resolve(); });
+  await page.fill("#atRxQ", "hexomedine");
+  const b = page.locator("#atRxSug [data-rxcond]").first();
+  await expect(b).toBeVisible();
+  await expect(b).toContainText("de ");
+  await b.click();
+  await expect(saida(page, "rx")).toHaveValue(/Hexomedine/);
+  await expect(page.locator("#atCorpo .atrxx", { hasText: "da conduta" })).toBeVisible();
+  expect(erros).toEqual([]);
+});
+
+test("IA no exame físico, no pedido de internação e no laboratório colado (só alteradas, valor tem de estar no texto)", async ({ page }) => {
+  let resp = "";
+  await page.route("https://api.anthropic.com/**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ content: [{ type: "text", text: resp }] }) }));
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await atender(page, "pac");
+  // exame: a IA devolve o mesmo texto com um achado integrado (mesmos números)
+  const ex = await saida(page, "exame").inputValue();
+  resp = ex.replace(/Respiratório:[^\n]*/, "Respiratório: murmúrio vesicular presente, com crepitações em base direita.");
+  await page.click('#atCorpo [data-atia="exame"]');
+  await expect(page.locator('#atCorpo [data-atiaest="exame"]')).toContainText("Texto melhorado pela IA");
+  await expect(saida(page, "exame")).toHaveValue(/crepitações em base direita/);
+  // laboratório colado
+  await page.evaluate(() => { const t = document.querySelector('#atCorpo [data-atd="exLab"]'); t.value = "hemograma\nPCR\nureia e creatinina"; t.dispatchEvent(new Event("input")); t.dispatchEvent(new Event("change")); });
+  await page.locator(".atlabcola summary").click();
+  await page.fill("#atLabCola", "Hemoglobina 13,9 g/dL (12-16)\nLeucócitos 15.200 /mm3 (4.000-10.000) H\nPCR 8,5 mg/dL (<0,5) H\nCreatinina 0,9");
+  resp = JSON.stringify({ Leuco: "15.200/mm³", PCR: "8,5 mg/dL", Cr: "2,7 mg/dL" });   // Cr inventada: a trava tira
+  await page.click("#atLabIa");
+  await expect(page.locator("#atLabEst")).toContainText("Leuco 15.200/mm³");
+  await expect(page.locator('#atCorpo [data-atres="Leuco"]')).toHaveValue("15.200/mm³");
+  await expect(page.locator('#atCorpo [data-atres="PCR"]')).toHaveValue("8,5 mg/dL");
+  await expect(page.locator('#atCorpo [data-atres="Cr"]')).toHaveValue("");
+  // internação: IA reescreve mantendo os números
+  await page.click('#atCorpo [data-atdec="internacao"]');
+  const it = await saida(page, "intern").inputValue();
+  resp = it.replace("Justificativa: ___", "Justificativa: ___");
+  await page.click('#atCorpo [data-atia="intern"]');
+  await expect(page.locator('#atCorpo [data-atiaest="intern"]')).toContainText("Texto melhorado pela IA");
   expect(erros).toEqual([]);
 });

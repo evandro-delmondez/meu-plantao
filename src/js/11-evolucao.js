@@ -100,7 +100,20 @@ function atJuntaVias(tx){
 // "+ remédio": posologia de receita da ficha (campo receita) e dias escolhidos → quantidade calculada; e "colar de fora"
 const AT_VIA={oral:"Uso oral",nasal:"Uso nasal","tópico":"Uso tópico",topico:"Uso tópico","inalatório":"Uso inalatório",inalatorio:"Uso inalatório"};
 const rxPad=(nome,q)=>{const n=`${nome} `;return n+"-".repeat(Math.max(3,46-n.length))+" "+q};
+let AT_RX_IDX=null;
+function atRxIndice(){
+  if(AT_RX_IDX) return AT_RX_IDX; const out=[], vistos=new Set();
+  for(const c of allItems()){ let via="Uso oral", it=null, ant="";
+    for(const l of String(rxTxt(c.casa||"")).split("\n")){const t=l.trim();
+      if(/^\d+\)\s/.test(t)){it={nome:t.replace(/^\d+\)\s*/,""),linhas:[],via,cond:c.nome,cid:c.id};const k=norm(it.nome.split(/\s-{2,}/)[0]);if(!vistos.has(k)){vistos.add(k);out.push(it)}else it={linhas:[]};ant=t;continue}
+      if(!t){it=null;ant="";continue}
+      if(/^uso\s/i.test(t)&&(!it||!ant)){via=t.replace(/:$/,"");it=null;ant=t;continue}
+      if(/^(ou\b|#)/i.test(t)){it=null;ant=t;continue}
+      if(it&&ant) it.linhas.push(t); ant=t;}}
+  return AT_RX_IDX=out;
+}
 function atRxLinha(e){
+  if(e.txt) return `${e.via||"Uso oral"}\n1) ${e.txt}`;
   const m=MEDS.find(x=>x.id===e.id), p=m&&(m.receita||[])[e.i]; if(!p) return "";
   const dias=Math.max(1,+e.dias||p.diasPadrao||1);
   const qtd=p.qtdFixa!=null?p.qtdFixa:p.embalagem!=null?p.embalagem:Math.ceil((p.porTomada||1)*(p.vezesDia||1)*dias*(p.doses||1));
@@ -118,7 +131,8 @@ const atRxExtras=()=>[...(atd.rxExtra||[]).map(atRxLinha),...atRxCola(atd.rxCola
 function atRxMaisHTML(){
   const ex=atd.rxExtra||[];
   return `<div class="atrxmais"><span class="lbl">Acrescentar remédio</span>
-    ${ex.map((e,j)=>{const m=MEDS.find(x=>x.id===e.id), p=m&&(m.receita||[])[e.i]; if(!p) return "";
+    ${ex.map((e,j)=>{if(e.txt) return `<div class="atrxx"><b>${esc(e.txt.split("\n")[0].split(/\s-{2,}/)[0])}</b> <span class="note">da conduta ${esc(e.de||"")}</span><button class="btn sm danger" data-rxtira="${j}">Tirar</button></div>`;
+      const m=MEDS.find(x=>x.id===e.id), p=m&&(m.receita||[])[e.i]; if(!p) return "";
       return `<div class="atrxx"><b>${esc(p.nome)}</b> <span class="note">${esc(p.rotulo||"")}</span>
         <label class="atrxd">por <input class="inp" type="number" min="1" max="${p.diasMax||90}" value="${esc(String(e.dias||p.diasPadrao||1))}" data-rxdias="${j}" aria-label="Dias de ${esc(p.nome)}"> dias</label>
         <button class="btn sm" data-rxsalva="${j}" title="Fica como opção desta conduta nos seus padrões">Salvar como opção desta conduta</button><button class="btn sm danger" data-rxtira="${j}">Tirar</button>
@@ -411,11 +425,23 @@ function atResHTML(){
   const res=atd.res||{};
   return `<div class="atres"><span class="lbl">Resultados (digite só o que veio alterado)</span>
     ${sg.length?`<div class="chips"><button class="chip" data-atlabok aria-pressed="${!!atd.labOk}">${atd.labOk?"✓ ":""}Laboratoriais sem (outras) alterações</button></div>
+    <details class="atlabcola"><summary>Colar o resultado do laboratório (a IA preenche só as alteradas)</summary>
+      <textarea class="inp" id="atLabCola" rows="4" placeholder="cole aqui o texto dos exames do sistema"></textarea>
+      <div class="actions"><button class="btn sm primary" id="atLabIa">✨ Preencher as alteradas</button></div><p class="note" id="atLabEst" hidden></p></details>
     <div class="atresg">${sg.map(x=>`<label class="atresf"><span>${esc(x)}</span><input class="inp" data-atres="${esc(x)}" value="${esc(res[x]||"")}" autocomplete="off"></label>`).join("")}</div>`:""}
     ${img.map((n,i)=>`<div class="atimg"><b>${esc(n)}</b><button class="chip" data-atimgok="${i}" aria-pressed="${!!(atd.imgOk||{})[i]}">${(atd.imgOk||{})[i]?"✓ ":""}sem alterações</button>
       <input class="inp" data-atimg="${i}" value="${esc((atd.img||{})[i]||"")}" placeholder="laudo ou impressão diagnóstica" autocomplete="off"></div>`).join("")}</div>`;
 }
 function atResBind(box){
+  const lb=box.querySelector("#atLabIa");
+  if(lb) lb.onclick=async()=>{const est=$("#atLabEst"),dz=t=>{est.hidden=false;est.textContent=t}, tx=$("#atLabCola").value.trim();
+    if(!iaAtiva()){dz("Ligue a IA em Documentos › Backup.");return} if(!tx){dz("Cole o resultado antes.");return}
+    lb.disabled=true; dz("Lendo os resultados…");
+    try{const r=await iaLab(tx,atSiglas());const n=Object.keys(r).length;atd.res=Object.assign({},atd.res,r);
+      const rb=$("#atResBox");if(rb){rb.innerHTML=atResHTML();atResBind(rb)};atAtualiza();
+      const e2=$("#atLabEst");if(e2){e2.hidden=false;e2.textContent=n?`Preenchido: ${Object.entries(r).map(([k,v])=>`${k} ${v}`).join("; ")}. Confira.`:"Nenhum valor alterado encontrado."}}
+    catch(e){dz(e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora.")}
+    lb.disabled=false};
   box.querySelectorAll("[data-atres]").forEach(i=>i.oninput=()=>{atd.res=Object.assign({},atd.res,{[i.dataset.atres]:i.value});atAtualiza()});
   box.querySelectorAll("[data-atimg]").forEach(i=>i.oninput=()=>{atd.img=Object.assign({},atd.img,{[i.dataset.atimg]:i.value});atAtualiza()});
   const tg=(b,on,rot)=>{b.setAttribute("aria-pressed",on);b.textContent=(on?"✓ ":"")+rot;atAtualiza()};
@@ -431,9 +457,9 @@ function atReavHTML(){
 
 /* ---- tela ---- */
 function atSaida(k,rot){
-  return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><span class="atcop" data-atcopok="${k}" hidden>✓ no MV</span>${k==="hda"?`<button class="btn sm" data-atia title="Corrige e dá coesão, sem inventar nem tirar dados">✨ Melhorar texto (IA)</button>`:""}<button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
+  return `<div class="atout" data-campo="${k}"><div class="sec-h"><h4>${rot}</h4><span class="atcop" data-atcopok="${k}" hidden>✓ no MV</span>${["hda","exame","intern"].includes(k)?`<button class="btn sm" data-atia="${k}" title="Corrige e dá coesão, sem inventar nem tirar dados">✨ Melhorar texto (IA)</button>`:""}<button class="btn sm primary" data-atcp="${k}">Copiar ${rot.split(" (")[0].toLowerCase()}</button></div>
     <textarea class="out-edit" data-atout="${k}" spellcheck="false" aria-label="${rot}"></textarea>
-    ${k==="hda"?`<p class="note atiaest" id="atIaEst" hidden></p><p class="note atvelho" id="atContra" hidden></p>`:""}
+    ${["hda","exame","intern"].includes(k)?`<p class="note atiaest" data-atiaest="${k}" ${k==="hda"?'id="atIaEst"':""} hidden></p>`:""}${k==="hda"?`<p class="note atvelho" id="atContra" hidden></p>`:""}
     <p class="note" data-atman="${k}" hidden><span data-atmanmsg>Você editou este campo.</span> <button class="btn sm" data-atre="${k}">Refazer</button></p></div>`;
 }
 // barra de etapas: vazia, preenchida (falta copiar) ou copiada para o MV (✓); some a 7 se não for internar
@@ -705,7 +731,10 @@ function bindEv(it){
   const rq=$("#atRxQ"), rs=$("#atRxSug");
   if(rq){const mostra=()=>{const t=norm(rq.value.trim()); if(t.length<2){rs.innerHTML="";return}
       const hits=MEDS.filter(m=>(m.receita||[]).length&&norm([m.nome,(m.marcas||[]).join(" "),m.classe].join(" ")).includes(t)).slice(0,8);
-      rs.innerHTML=hits.flatMap(m=>m.receita.map((p,i)=>`<button class="chip" data-rxadd="${m.id}" data-rxi="${i}">${esc(p.nome)} · ${esc(p.rotulo||"")}</button>`)).join("")||`<span class="note">Sem posologia de receita para isso. Use "Colar de outro guia".</span>`;
+      const cond=atRxIndice().filter(x=>norm(x.nome).includes(t)).slice(0,8);
+      rs.innerHTML=(hits.flatMap(m=>m.receita.map((p,i)=>`<button class="chip" data-rxadd="${m.id}" data-rxi="${i}">${esc(p.nome)} · ${esc(p.rotulo||"")}</button>`)).join("")
+        +cond.map((x,i)=>`<button class="chip rxdacond" data-rxcond="${AT_RX_IDX.indexOf(x)}" title="Texto da conduta ${esc(x.cond)}">${esc(x.nome.split(/\s-{2,}/)[0])} <span class="note">· de ${esc(x.cond)}</span></button>`).join(""))||`<span class="note">Sem posologia de receita para isso. Use "Colar de outro guia".</span>`;
+      rs.querySelectorAll("[data-rxcond]").forEach(b=>b.onclick=()=>{const x=AT_RX_IDX[+b.dataset.rxcond];atd.rxExtra=[...(atd.rxExtra||[]),{txt:[x.nome,...x.linhas].join("\n"),via:x.via,de:x.cond}];const y=window.scrollY;renderEv();window.scrollTo(0,y)});
       rs.querySelectorAll("[data-rxadd]").forEach(b=>b.onclick=()=>{const m=MEDS.find(x=>x.id===b.dataset.rxadd),p=m.receita[+b.dataset.rxi];atd.rxExtra=[...(atd.rxExtra||[]),{id:m.id,i:+b.dataset.rxi,dias:p.diasPadrao||1}];const y=window.scrollY;renderEv();window.scrollTo(0,y)})};
     rq.addEventListener("input",mostra);rq.addEventListener("keydown",e=>{if(e.key==="Enter"){const b=rs.querySelector("[data-rxadd]");if(b){e.preventDefault();b.click()}}})}
   box.querySelectorAll("[data-rxdias]").forEach(i=>i.oninput=()=>{const e=atd.rxExtra[+i.dataset.rxdias];if(e){e.dias=Math.max(1,+i.value||1);atAtualiza()}});
@@ -736,15 +765,15 @@ function bindEv(it){
   box.querySelectorAll("[data-atout]").forEach(ta=>ta.addEventListener("input",()=>{const k=ta.dataset.atout;if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}atd.man[k]=ta.value;grow(ta);$(`#atCorpo [data-atman="${k}"]`).hidden=false;atdSessaoLogo();pacSnapLogo()}));
   // IA na HDA: troca o texto pelo melhorado (fica como edição sua, com Desfazer); a trava de números está em iaMelhora
   box.querySelectorAll("[data-atia]").forEach(b=>b.onclick=async()=>{
-    const est=$("#atIaEst"), ta=$('#atCorpo [data-atout="hda"]'), dz=t=>{est.hidden=false;est.innerHTML=t};
+    const k=b.dataset.atia||"hda", est=$(`#atCorpo [data-atiaest="${k}"]`), ta=$(`#atCorpo [data-atout="${k}"]`), dz=t=>{est.hidden=false;est.innerHTML=t};
     if(!iaAtiva()){dz(`Ligue a IA em Documentos › Backup (cole a chave da Anthropic).`);return}
     let tx=ta.value; if(!tx.trim()){toast("HDA vazia");return}
     const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) nome.split(/\s+/).filter(x=>x.length>2).forEach(n=>{tx=tx.replace(new RegExp(`\\b${n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}\\b`,"gi"),"paciente")});
     b.disabled=true; dz("Melhorando o texto…");
-    try{const out=await iaMelhora(tx);const k="hda";if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}
-      atd.iaAntes=ta.value; atd.man[k]=out; ta.value=out; grow(ta); atAtualiza();
-      dz(`Texto melhorado pela IA: confira antes de copiar. <button class="btn sm" id="atIaDesfaz">Desfazer</button>`);
-      $("#atIaDesfaz").onclick=()=>{atd.man.hda=atd.iaAntes;ta.value=atd.iaAntes;grow(ta);atAtualiza();dz("Voltou ao texto anterior.")}}
+    try{const out=k==="hda"?await iaMelhora(tx):await iaChama(k==="exame"?IA_EXAME:IA_INTERN,tx);if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}
+      const antes=ta.value; atd.man[k]=out; ta.value=out; grow(ta); atAtualiza();
+      dz(`Texto melhorado pela IA: confira antes de copiar. <button class="btn sm" data-iadesfaz>Desfazer</button>`);
+      est.querySelector("[data-iadesfaz]").onclick=()=>{atd.man[k]=antes;ta.value=antes;grow(ta);atAtualiza();dz("Voltou ao texto anterior.")}}
     catch(e){dz(e.message==="numeros"?`A IA mudou ou tirou um número do texto${e.det?` (${esc(e.det)})`:""}: mantive o original. Tente de novo.`:/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
     b.disabled=false;
   });

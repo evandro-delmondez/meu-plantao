@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## 1.44.0 — 2026-10-27
+- **IA em mais três lugares** (com a sua chave, sem o nome do paciente, e a trava de números):
+  - **Exame físico**: "✨ Melhorar texto (IA)" junta os achados do checklist e as linhas soltas às linhas de cada sistema, com terminologia médica, sem inventar.
+  - **Pedido de internação**: deixa a justificativa clara e coesa só com os dados preenchidos.
+  - **Colar o resultado do laboratório** (na reavaliação): a IA preenche só as siglas alteradas; valor que não está no texto colado é descartado.
+- **"+ remédio" acha também remédios das receitas de outras condutas** (com o texto já conferido de lá), além das fichas.
+- **Respiratório e diarreia** (opções desligadas, conferidas): corticoide nasal (fluticasona, budesonida, mometasona) e descongestionante oral (anti-histamínico + pseudoefedrina) em gripe, rinite, sinusite e tosse conforme a indicação; racecadotrila na GECA.
+
 ## 1.43.0 — 2026-10-27
 - **Ordem alternável** no Atendimento (botão na barra): "Ordem: MV" ou "Ordem: prescrição 1º" (HD + CID → prescrição → conduta → HDA → exame → alta). Fica nos seus padrões; o "⧉ Próximo" segue a ordem escolhida.
 - **CID grande no alto**, ao lado da conduta, copiável com um toque.

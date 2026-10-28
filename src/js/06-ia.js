@@ -77,6 +77,35 @@ const iaNums=t=>{const s=String(t||"").replace(/\b(um|uma|dois|duas|três|tres|q
   // mesmo número em outro formato: 1.000 = 1000; 38.5 = 38,5; meio comprimido = 1/2; 140x90 = 140 x 90
   const n=s.replace(/\b(meio|meia)\b(?=\s+(comprimido|cp|ampola|copo|colher))/gi,"1/2").replace(/(\d)\.(?=\d{3}\b)/g,"$1").replace(/(\d)\.(\d)/g,"$1,$2");
   return (n.match(/\d+(?:,\d+)?/g)||[]).sort()};
+const IA_EXAME=`Você é médico emergencista e redige o EXAME FÍSICO de um prontuário de pronto-socorro no Brasil. O texto vem entre <entrada> e </entrada>.
+Ele tem uma linha de estado geral, linhas por sistema ("Abdome: …", "Respiratório: …") e, às vezes, frases de checklist no fim ("Ao exame, presença de …", "Ao exame, ausência de …") e linhas soltas de achados.
+Integre cada achado do checklist e cada linha solta na linha do sistema correspondente, substituindo o trecho normal que ele contradiz (ex.: se há "presença de crepitações", o Respiratório deixa de dizer "sem ruídos adventícios" e passa a citar as crepitações). Ausências viram parte do texto normal do sistema, sem repetir. Use terminologia médica. Mantenha uma linha por sistema, na mesma ordem, com o mesmo rótulo; mantenha linhas de sinais vitais, NEWS2, escores e "Escores:" exatamente como estão.
+Regras: não acrescente nenhum achado, sinal, número ou interpretação que não esteja no texto; não retire nenhum achado, número ou sinal vital; números em algarismos, exatamente como estão. Sem markdown, sem comentários, sem as tags: devolva só o texto final.`;
+const IA_INTERN=`Você é médico emergencista e redige o PEDIDO DE INTERNAÇÃO de um pronto-socorro no Brasil. O texto vem entre <entrada> e </entrada>, em tópicos separados por linha em branco (Solicito internação…, Hipótese diagnóstica, História, HPP, sinais vitais, exames, laudos, conduta no PS, parecer, Justificativa, Objetivo).
+Mantenha os mesmos tópicos, na mesma ordem e com os mesmos rótulos, com uma linha em branco entre eles. Corrija ortografia e coesão, use terminologia médica e torne a Justificativa clara e objetiva (por que não dá para tratar em casa ou na observação, o critério de gravidade presente, o que a internação vai oferecer), usando SÓ dados que já estão no texto.
+Regras: não acrescente nenhum dado, número, exame, diagnóstico ou critério que não esteja no texto; não retire nenhuma informação ou número; se a Justificativa estiver "___", mantenha "___". Números em algarismos, exatamente como estão. Sem markdown, sem comentários, sem as tags: devolva só o texto final.`;
+const IA_LAB=`Você lê resultados de exames laboratoriais colados de um sistema hospitalar (texto entre <entrada> e </entrada>) e devolve só os valores ALTERADOS, isto é, fora do valor de referência mostrado no próprio texto ou marcados como alterados (H, L, *, ↑, ↓, "alto", "baixo"). Se não houver referência nem marcação, não inclua.
+Use só estas siglas como chaves: LISTA. Mapeie cada exame para a sigla certa (hemoglobina → Hb; hematócrito → Ht; leucócitos → Leuco; plaquetas → Plaq; proteína C reativa → PCR; ureia → Ur; creatinina → Cr; sódio → Na; potássio → K; etc.). Valor: o número exatamente como aparece, com a unidade se houver (ex.: "15.200/mm³", "8,5 mg/dL").
+Responda SÓ com um objeto JSON, sem comentários: {"Hb":"10,2 g/dL","Leuco":"15.200/mm³"}. Se nada estiver alterado, responda {}.`;
+async function iaChama(sistema,texto,trava=true){
+  const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},
+    body:JSON.stringify({model:IA_MODELO,max_tokens:2000,temperature:0,system:sistema,messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]})});
+  if(!r.ok){let m="";try{m=(await r.json()).error?.message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}
+  const j=await r.json(); const out=(j.content||[]).map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
+  if(!out) throw new Error("vazio");
+  if(trava){const a=iaNums(texto), b=iaNums(out);
+    if(a.join("|")!==b.join("|")){const sobra=[...b];const falta=a.filter(n=>{const k=sobra.indexOf(n);if(k<0)return true;sobra.splice(k,1);return false});
+      const e=new Error("numeros");e.det=[falta.length?`sumiu: ${falta.join(", ")}`:"",sobra.length?`apareceu: ${sobra.join(", ")}`:""].filter(Boolean).join("; ");throw e}}
+  return out;
+}
+// laboratório colado → só os valores alterados, nas siglas pedidas; cada valor tem de estar no texto colado
+async function iaLab(texto,siglas){
+  const out=await iaChama(IA_LAB.replace("LISTA",siglas.join(", ")),texto,false);
+  let o; try{o=JSON.parse(out.replace(/^[^{]*/,"").replace(/[^}]*$/,""))}catch(e){throw new Error("formato")}
+  const tn=norm(texto).replace(/\s+/g,""), res={};
+  for(const [k,v] of Object.entries(o||{})){if(!siglas.includes(k))continue;const num=(String(v).match(/\d+(?:[.,]\d+)?/)||[])[0];if(num&&tn.includes(num))res[k]=String(v).trim()}
+  return res;
+}
 async function iaMelhora(texto){
   const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},
     body:JSON.stringify({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]})});

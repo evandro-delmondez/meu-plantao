@@ -492,7 +492,7 @@ test("+ remédio: busca na ficha, dias calculam a quantidade, entra na via certa
   // colar de fora
   await page.locator(".atrxcola summary").click();
   await campo(page, "rxCola").fill("Loratadina 10 mg\nTomar 1 comprimido VO 1x ao dia por 5 dias");
-  await expect(saida(page, "rx")).toHaveValue(/\d+\) Loratadina 10 mg\nTomar 1 comprimido VO 1x ao dia por 5 dias/);
+  await expect(saida(page, "rx")).toHaveValue(/\d+\) Loratadina 10 mg\nTomar 1 cp VO 1x ao dia por 5 dias\./);
   // salvar como opção da conduta
   page.once("dialog", (d) => d.accept());
   await page.click("#atCorpo [data-rxsalva]");

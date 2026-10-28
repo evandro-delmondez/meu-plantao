@@ -862,3 +862,11 @@ details.panel>summary{cursor:pointer}
 .atcls{margin:6px 0}.atcls>summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
 .atcl{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:4px 0}.atcl b{font-size:12.5px;min-width:110px}
 .chip.atclc{font-size:11.5px;padding:2px 8px;--c:var(--teal)}.chip.atclc[aria-pressed="false"]{text-decoration:line-through;opacity:.6}
+.atdocs{margin:12px 0;padding-top:8px;border-top:1px dashed var(--line)}.atdocslbl{font-size:14px}
+/* menos texto no Atendimento: porquês e avisos atrás de um "ⓘ" */
+.exwhy{display:inline}.exwhy>summary{display:inline;cursor:pointer;color:var(--accent);font-weight:700;list-style:none;margin-left:4px}
+.exwhy>summary::-webkit-details-marker{display:none}
+.exwhy[open]{display:block;font-size:13px;color:var(--muted);margin:2px 0 4px 24px}
+.exmais{margin:4px 0}.exmais>summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:13px}
+.atavisos{margin:8px 0}.atavisos>summary{cursor:pointer;font-weight:700;color:var(--warn);font-size:13.5px}
+.atexcab{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}.atexsug{margin:6px 0 10px;padding:8px 10px;border:1px dashed var(--accent);border-radius:10px}.atexsugl{margin:4px 0 0;padding-left:0;list-style:none;display:grid;gap:4px}

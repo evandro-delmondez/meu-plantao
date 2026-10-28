@@ -106,6 +106,16 @@ async function iaLab(texto,siglas){
   for(const [k,v] of Object.entries(o||{})){if(!siglas.includes(k))continue;const num=(String(v).match(/\d+(?:[.,]\d+)?/)||[])[0];if(num&&tn.includes(num))res[k]=String(v).trim()}
   return res;
 }
+const IA_SUG=`Você é médico emergencista num pronto-socorro no Brasil. Entre <entrada> e </entrada> há a HDA, o exame físico e as hipóteses de um paciente, e uma LISTA numerada de exames (cada um com o critério de quando pedir, tirado de diretrizes).
+Escolha, SÓ dessa lista, os exames cujo critério o paciente cumpre pelos dados do texto. Não sugira nada fora da lista. Se nenhum se aplica, devolva lista vazia. Prefira pedir menos.
+Responda SÓ com JSON, sem comentários: [{"n":<número do item>,"por":"motivo curto, com o dado do texto que justifica"}].`;
+// sugestão de exames: só itens da lista enviada (conferida); devolve [{nome, por}]
+async function iaSugereExames(contexto,lista){
+  const txt=`${contexto}\n\nLISTA:\n${lista.map((x,i)=>`${i+1}. ${x.t}`).join("\n")}`;
+  const out=await iaChama(IA_SUG,txt,false);
+  let a; try{a=JSON.parse(out.replace(/^[^\[]*/,"").replace(/[^\]]*$/,""))}catch(e){throw new Error("formato")}
+  return (Array.isArray(a)?a:[]).map(o=>({i:(+o.n)-1,por:String(o.por||"").slice(0,200)})).filter(o=>lista[o.i]).map(o=>({nome:lista[o.i].nome,t:lista[o.i].t,por:o.por}));
+}
 async function iaMelhora(texto){
   const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},
     body:JSON.stringify({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]})});

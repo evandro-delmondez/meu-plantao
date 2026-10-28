@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.46.0 — 2026-10-28
+- **Receituário separado da prescrição**: "Prescrição" (no começo) fica só com a medicação na unidade e os exames; receituário e atestado foram para "Reavaliação, receituário e alta" — os documentos de saída, onde o "Fechar o atendimento" trabalha.
+- **IA sugere exames**: "✨ Sugerir exames (IA)" na Prescrição escolhe só da lista de exames já conferidos da conduta e da queixa, com o motivo; você toca em "+ pedir". Nada fora da lista entra.
+- **Menos texto no Atendimento**: nos exames, à vista só "+ pedir" e o nome — o porquê e a fonte ficam num "ⓘ"; "Não pedir" e "Divergências" recolhidos; os avisos "Para você" num único "ⓘ Avisos para você".
+
 ## 1.45.1 — 2026-10-27
 - **"Na unidade" completo em todas as condutas**: as 25 que estavam sem essa parte (gripe, sinusite, herpes, zoster, impetigo, cinetose, dermatite, escabiose, candidíase e outras) ganharam o que se faz no PS — sintomáticos IM/EV, aciclovir EV com diluição e ajuste renal, oseltamivir 1ª dose e critérios de SRAG, ou, quando não há medicação, o que avaliar e quando encaminhar. Conferência independente: 1 crítico (aciclovir 10 mg/kg no zoster disseminado do imunocompetente) e 6 importantes corrigidos.
 

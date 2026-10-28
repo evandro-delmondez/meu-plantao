@@ -420,10 +420,12 @@ test("estado geral por toque, sigla traz o normal para editar, relógio zera e c
   await expect(page.locator("#atCorpo .rxlin-c .rxcls", { hasText: "Anti-inflamatório" })).toHaveCount(1);
   await expect(page.locator("#atCorpo .rxlin-c .rxcls", { hasText: "Relaxante muscular" })).toHaveCount(1);
   // tocar na receita não tira o destaque da etapa em que você está
-  await page.locator('#atEtapas [data-atir="5"]').click();
-  await expect(page.locator('#atCorpo [data-etapa="5"]')).toHaveClass(/atagora/);
+  // (o receituário fica na etapa da alta: resultados, receituário, atestado e alta)
+  await page.locator("#atCorpo .atrx .rxlin-c .chip.rxc").first().scrollIntoViewIfNeeded();
+  await page.evaluate(() => window.dispatchEvent(new Event("scroll")));
+  await expect(page.locator('#atCorpo [data-etapa="6"]')).toHaveClass(/atagora/);
   await page.locator("#atCorpo .atrx .rxlin-c .chip.rxc").first().click();
-  await expect(page.locator('#atCorpo [data-etapa="5"]')).toHaveClass(/atagora/);
+  await expect(page.locator('#atCorpo [data-etapa="6"]')).toHaveClass(/atagora/);
   expect(erros).toEqual([]);
 });
 
@@ -695,5 +697,23 @@ test("sucralfato na unidade (não na receita) em dispepsia, náuseas e GECA", as
     await expect(page.locator("#detail .sec.unidade"), id).toContainText("Sucralfato");
     expect(await page.locator("#detail .sec.casa .rxmontar, #detail .sec.casa textarea, #detail .sec.casa pre").allInnerTexts(), id).not.toContain(expect.stringMatching(/Sucralfato/));
   }
+  expect(erros).toEqual([]);
+});
+
+test("IA sugere exames só da lista conferida; receituário fica na etapa da alta; avisos e porquês atrás do ⓘ", async ({ page }) => {
+  await page.route("https://api.anthropic.com/**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ content: [{ type: "text", text: '[{"n":1,"por":"febre e tosse"},{"n":99,"por":"fora da lista"}]' }] }) }));
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await atender(page, "pac");
+  // receituário e atestado dentro da etapa 6
+  await expect(page.locator('#atCorpo [data-etapa="6"] [data-atout="rx"]')).toHaveCount(1);
+  await expect(page.locator('#atCorpo [data-etapa="5"] [data-atout="rx"]')).toHaveCount(0);
+  // porquê dos exames escondido
+  await expect(page.locator("#atCorpo .exwhy").first()).not.toHaveAttribute("open", "");
+  await page.click("#atExIa");
+  const sug = page.locator("#atExSug li");
+  await expect(sug).toHaveCount(1);                       // o item 99 (fora da lista) é descartado
+  await sug.locator("[data-expedir]").click();
+  await expect(page.locator("#atExSug li [data-expedir]")).toHaveAttribute("aria-pressed", "true");   // continua na tela
   expect(erros).toEqual([]);
 });

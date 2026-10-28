@@ -506,7 +506,7 @@ function atSaida(k,rot){
     <p class="note" data-atman="${k}" hidden><span data-atmanmsg>Você editou este campo.</span> <button class="btn sm" data-atre="${k}">Refazer</button></p></div>`;
 }
 // barra de etapas: vazia, preenchida (falta copiar) ou copiada para o MV (✓); some a 7 se não for internar
-const AT_ETAPAS=[[1,"HDA",["hda"]],[2,"Exame",["exame"]],[3,"HD",["diag"]],[4,"Conduta",["trat"]],[5,"Prescrição",["punid","rx","atest"]],[6,"Alta",["alta"]],[7,"Internação",["intern"]]];
+const AT_ETAPAS=[[1,"HDA",["hda"]],[2,"Exame",["exame"]],[3,"HD",["diag"]],[4,"Conduta",["trat"]],[5,"Prescrição",["punid"]],[6,"Alta",["rx","atest","alta"]],[7,"Internação",["intern"]]];
 const atTem=v=>!!String(v||"").trim();
 function atEtapaMexida(n){
   const ck=atConds().some(c=>chk[c.id]&&Object.keys(chk[c.id]).length);
@@ -515,8 +515,8 @@ function atEtapaMexida(n){
     ["pa","fc","fr","sat","tax","hgt","exLivre"].some(k=>atTem(atd[k]))||!!atd.sis,
     atConds().length>0||atTem(atd.diag),
     Object.keys(atd.cond||{}).length>0||atTem(atd.exLab)||atTem(atd.exImg)||atTem(atd.condLivre),
-    atCondOn("med")||atTem(atd.dias),
-    !!atd.decisao||Object.values(atd.reav||{}).some(Boolean)||atTem(atd.reavTxt),
+    atCondOn("med")||atTem(atd.exLab)||atTem(atd.exImg),
+    atTem(atd.dias)||!!atd.decisao||Object.values(atd.reav||{}).some(Boolean)||atTem(atd.reavTxt),
     atTem(atd.intern.motivo)||atTem(atd.intern.local)][n];
 }
 function atRelogio(){
@@ -528,7 +528,7 @@ function atRelogio(){
 }
 setInterval(()=>{if(ui.tab==="evolucao"&&atd.t0)atRelogio()},1000);
 // ordem das etapas: "mv" (HDA primeiro) ou "presc" (HD + CID → prescrição → conduta → HDA → exame → alta); fica nos padrões
-const AT_ORDEM_PRESC=[1,5,2,3,4,6,7], AT_ETAPA_DE={hda:1,exame:2,diag:3,trat:4,punid:5,rx:5,atest:5,alta:6,intern:7};
+const AT_ORDEM_PRESC=[1,5,2,3,4,6,7], AT_ETAPA_DE={hda:1,exame:2,diag:3,trat:4,punid:5,rx:6,atest:6,alta:6,intern:7};
 const atOrdem=()=>(model.prefs||{}).ordem==="mv"?"mv":"presc";   // padrão: ordem da porta
 const atPos=n=>atOrdem()==="presc"?AT_ORDEM_PRESC.indexOf(+n)+1:+n;
 // "Fechar o atendimento" (volta do paciente): o Próximo copia só o que sai na alta
@@ -589,6 +589,10 @@ function atBuscaCond(q,fora){
   const ws=t.split(/\s+/), hay=x=>norm([x.nome,x.sin,x.cid,String(x.cid||"").replace(/\./g,""),(CATS[x.cat]||{}).nome].join(" "));
   return its.filter(x=>ws.every(w=>hay(x).includes(w))).sort((a,b)=>(norm(b.nome).startsWith(t)-norm(a.nome).startsWith(t))||a.nome.localeCompare(b.nome)).slice(0,10);
 }
+// sugestões da IA ficam na tela até trocar de paciente (o "+ pedir" redesenha a tela)
+let atExSugR=null;
+function atExSugHTML(){const r=atExSugR||[];return r.length?`<span class="lbl">Sugeridos pela IA (confira):</span><ul class="atexsugl">${r.map(o=>{const ja=[...atItens(atd.exLab),...atItens(atd.exImg)].some(y=>norm(y)===norm(o.nome));return `<li><button class="expedir" data-expedir="${esc(o.nome)}" aria-pressed="${ja}">${ja?"✓ pedido":"+ pedir"}</button> <b>${esc(o.nome)}</b> <span class="note">${esc(o.por)}</span></li>`}).join("")}</ul>`:`<p class="note">A IA não viu critério para pedir exames com os dados preenchidos.</p>`}
+function atExSugBind(bx){bx.querySelectorAll("[data-expedir]").forEach(b=>b.onclick=()=>{const n=b.dataset.expedir,k=exImagem(n)?"exImg":"exLab",l=atItens(atd[k]),i=l.findIndex(y=>norm(y)===norm(n));if(i>=0)l.splice(i,1);else l.push(n);atd[k]=l.join("\n");const y=window.scrollY;renderEv();window.scrollTo(0,y)})}
 // rótulo da conduta que fica preso no alto enquanto você está no trecho dela
 const atFixo=c=>{const k=CATS[c.cat]||CATS.outros;return `<h4 class="atcond atfixo" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}${c.cid?` <span class="atfixcid">CID ${esc(c.cid)}</span>`:""}</h4>`};
 function renderEv(){
@@ -650,22 +654,16 @@ function renderEv(){
     ${ta("condLivre","Outras condutas","ex.: solicito parecer da Cirurgia Geral")}
     ${atEdit?edLista("cond","Itens da conduta"):""}
     ${atSaida("trat","Conduta")}</div></div>
-  <div class="sec atsec" data-etapa="5"><div class="sec-h"><h3>${atPos(5)}. Prescrição</h3><span class="alsum">na unidade · exames · receituário · atestado</span></div><div class="atbody">
+  <div class="sec atsec" data-etapa="5"><div class="sec-h"><h3>${atPos(5)}. Prescrição</h3><span class="alsum">na unidade · exames</span></div><div class="atbody">
     ${unidH?`<div class="atunid"><span class="lbl">Na unidade (para selecionar no prontuário)</span>${unidH}</div>`:""}
     ${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")+edTxt(c,"casa","receita")+edTxt(c,"orient","orientações")).join(""):""}
     ${unidH?`<details class="atpunid"><summary>Texto da prescrição na unidade (para copiar, se precisar)</summary>${atSaida("punid","Prescrição na unidade")}</details>`:""}
-    <span class="lbl atexlbl">Solicitar exames</span>
+    <div class="atexcab"><span class="lbl atexlbl">Solicitar exames</span>${ks.length?`<button class="btn sm" id="atExIa" title="A IA escolhe só da lista conferida desta conduta">✨ Sugerir exames (IA)</button>`:""}</div>
+    <div class="atexsug" id="atExSug" ${atExSugR?"":"hidden"}>${atExSugR?atExSugHTML():""}</div>
     ${ks.length?`<div class="atexs">${ks.map((k,i)=>exHTML(k,{pedir:true,aberto:i===0,titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
     <div class="atdgrid">${ta("exLab","Exames laboratoriais","ex.: hemograma\nPCR\nureia e creatinina")}${ta("exImg","Exames de imagem","ex.: TC de abdome com contraste")}</div>
-    ${cs.map(c=>{const m=renderRxMontar(c);return m?`<div class="atrx atbloco" data-rxc="${esc(c.id)}">${atFixo(c)}${m}</div>`:""}).join("")}
-    ${atRxMaisHTML()}
-    ${cs.map(rxAvisoHTML).join("")}
-    ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}
-    <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">${[["atestado","Atestado"],["comparecimento","Comparecimento"],["nenhum","Nenhum"]].map(([v,r])=>`<option value="${v}" ${atd.tipo===v?"selected":""}>${r}</option>`).join("")}</select></label>
-      ${atd.tipo==="atestado"?inp("dias","Dias","0",1):atd.tipo==="comparecimento"?inp("hora","Período","ex.: 14h às 16h"):""}
-      ${atd.tipo!=="nenhum"&&it&&it.cid?`<label class="check"><input type="checkbox" data-atd="aut" ${atd.aut?"checked":""}> CID ${esc(it.cid)} autorizado</label>`:""}</div>
-    <div id="atAtW">${atSaida("atest","Atestado")}</div></div></div>
-  <div class="sec atsec" data-etapa="6"><div class="sec-h"><h3>${atPos(6)}. Reavaliação e alta</h3></div><div class="atbody">
+  </div></div>
+  <div class="sec atsec" data-etapa="6"><div class="sec-h"><h3>${atPos(6)}. Reavaliação, receituário e alta</h3><span class="alsum">resultados · decisão · receituário · atestado · alta</span></div><div class="atbody">
     ${atReavHTML()}
     ${atRoteiro()}
     <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
@@ -676,6 +674,16 @@ function renderEv(){
     ${ta("altaLivre","Outras orientações dadas","ex.: retornar em 48 h para reavaliação")}
     <div class="atdgrid"><label class="check"><input type="checkbox" data-atd="compreende" ${atd.compreende?"checked":""}> Compreendeu e concorda</label>
       <label class="f">Destino<select class="inp" data-atd="destino" id="evDestino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${esc(v)}" ${destAtual===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label></div>
+    <div class="atdocs"><span class="lbl atdocslbl">Receituário e atestado</span>
+    ${cs.map(c=>{const m=renderRxMontar(c);return m?`<div class="atrx atbloco" data-rxc="${esc(c.id)}">${atFixo(c)}${m}</div>`:""}).join("")}
+    ${atRxMaisHTML()}
+    ${(h=>h?`<details class="atavisos"><summary>ⓘ Avisos para você (${(h.match(/<li/g)||[]).length||1})</summary>${h}</details>`:"")(cs.map(rxAvisoHTML).join(""))}
+    ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}
+    <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">${[["atestado","Atestado"],["comparecimento","Comparecimento"],["nenhum","Nenhum"]].map(([v,r])=>`<option value="${v}" ${atd.tipo===v?"selected":""}>${r}</option>`).join("")}</select></label>
+      ${atd.tipo==="atestado"?inp("dias","Dias","0",1):atd.tipo==="comparecimento"?inp("hora","Período","ex.: 14h às 16h"):""}
+      ${atd.tipo!=="nenhum"&&it&&it.cid?`<label class="check"><input type="checkbox" data-atd="aut" ${atd.aut?"checked":""}> CID ${esc(it.cid)} autorizado</label>`:""}</div>
+    <div id="atAtW">${atSaida("atest","Atestado")}</div>
+    </div>
     ${atSaida("alta","Reavaliação e alta")}
     <div class="hospev" id="atHosp"></div></div></div>
   <details class="sec atsec atintern" data-etapa="7" ${/intern/.test(destAtual)||atd.intern.local?"open":""}><summary class="sec-h"><h3>${atPos(7)}. Pedido de internação</h3><span class="alsum">${esc(atLocais().slice(1).map(x=>x[1]).join(", "))}</span></summary><div class="atbody">
@@ -791,6 +799,18 @@ function bindEv(it){
     const base=(overrides[it.id]&&!overrides[it.id].deleted&&overrides[it.id].casa!=null)?overrides[it.id].casa:it.casa;
     overrides[it.id]=Object.assign({},overrides[it.id]||{},{nome:it.nome,cat:it.cat,cid:it.cid,sin:it.sin,unidade:it.unidade,orient:it.orient,casa:`${base}\n\n# Opção sua: ${p.nome}\n${lin.replace(/^1\)/,`${Math.max(0,...[...String(base).matchAll(/^\s*(\d+)\)/gm)].map(x=>+x[1]))+1})`)}`,updatedAt:Date.now()});
     delete overrides[it.id].restored; persistLocal(); if(typeof gsAgenda==="function") gsAgenda(); toast("Salvo como opção da conduta (Editar padrões para mudar)")});
+  // IA sugere exames: só da lista "pedir" (conferida) das condutas e da queixa
+  if($("#atExIa")) $("#atExIa").onclick=async()=>{const bx=$("#atExSug"),dz=h=>{bx.hidden=false;bx.innerHTML=h};
+    if(!iaAtiva()){dz(`<p class="note">Ligue a IA em Documentos › Backup.</p>`);return}
+    const lista=[];const ks2=[...(atd.queixa?["q:"+atd.queixa]:[]),...atConds().map(c=>c.id)].filter(k=>exDe(k));
+    ks2.forEach(k=>(exDe(k).pedir||[]).forEach(x=>{const nome=exNome(x.t);if(nome&&!lista.some(y=>norm(y.nome)===norm(nome)))lista.push({nome,t:x.t})}));
+    if(!lista.length){dz(`<p class="note">Esta conduta não tem lista de exames para pedir.</p>`);return}
+    let ctx=[atTexto("hda",atItem()),atTexto("exame",atItem()),"Hipóteses: "+atConds().map(c=>c.nome).join("; ")].join("\n\n");
+    const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) nome.split(/\s+/).filter(x=>x.length>2).forEach(n=>{ctx=ctx.split(n).join("paciente")});
+    dz(`<p class="note">Analisando…</p>`);
+    try{const r=await iaSugereExames(ctx,lista);
+      atExSugR=r; dz(atExSugHTML()); atExSugBind(bx)}
+    catch(e){dz(`<p class="note">${e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}</p>`)}};
   // exames digitados à mão: ao sair do campo, só o quadro de resultados é refeito (sem redesenhar a tela e perder texto)
   box.querySelectorAll('[data-atd="exLab"],[data-atd="exImg"]').forEach(t=>t.addEventListener("change",()=>{const r=$("#atResBox");if(r){r.innerHTML=atResHTML();atResBind(r)}}));
   atResBind(box);

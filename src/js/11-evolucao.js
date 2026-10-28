@@ -308,6 +308,11 @@ function atRoteiro(){
     ${rem.length?`<li><b>O que tomar:</b> ${esc(ptLista(rem))} — como está na receita.</li>`:""}
     ${volte.length?`<li><b>Volte se:</b> ${esc(ptLista(volte.map(x=>x.charAt(0).toLowerCase()+x.slice(1))))}.</li>`:""}</ol></div>`;
 }
+function atVolteGrupos(){
+  const todos=atVolte(), cs=atConds(), usados=new Set();
+  const gs=cs.map(c=>({c:cs.length>1?c:null,itens:atVolte1(c).map(x=>[x,todos.indexOf(x)]).filter(([,i])=>i>=0&&!usados.has(i)&&usados.add(i))})).filter(g=>g.itens.length);
+  return gs;
+}
 function atAlta(it){
   const L=[];
   const rv=atL("reav").filter(([k])=>atd.reav[k]).map(([,t])=>t);
@@ -626,7 +631,7 @@ function renderEv(){
     <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
     ${ta("reavTxt","Resultados de exames e resposta ao tratamento","ex.: hemograma sem leucocitose; TC sem coleção")}
     <span class="lbl">Orientado sobre</span><div class="chips">${atL("ori").map(([k,r])=>chip("ori",k,r.split(" (")[0],atd.altaOri[k]!==false)).join("")}</div>
-    ${volte.length?`<span class="lbl">Sinais de alarme explicados (toque para tirar)</span><div class="chips atvolte">${volte.map((x,i)=>chip("volte",i,semParenteses(x),!atd.alarOff[i])).join("")}</div>`:""}
+    ${volte.length?`<div class="atvoltecab"><span class="lbl">Sinais de alarme explicados (toque para tirar)</span><button class="btn sm" data-atvt="0">Tirar todos</button><button class="btn sm" data-atvt="1">Pôr todos</button></div>${atVolteGrupos().map(g=>`${g.c?`<div class="atvoltecond"><b>${esc(g.c.nome)}</b><button class="btn sm" data-atvt="0" data-atvc="${esc(g.c.id)}">Tirar</button><button class="btn sm" data-atvt="1" data-atvc="${esc(g.c.id)}">Pôr</button></div>`:""}<div class="chips atvolte">${g.itens.map(([x,i])=>chip("volte",i,semParenteses(x),!atd.alarOff[i])).join("")}</div>`).join("")}`:""}
     ${atEdit?edLista("reav","Reavaliação")+edLista("ori","Orientado sobre")+`<p class="note">Os sinais de alarme da alta são os do checklist (edite na HDA).</p>`:""}
     ${ta("altaLivre","Outras orientações dadas","ex.: retornar em 48 h para reavaliação")}
     <div class="atdgrid"><label class="check"><input type="checkbox" data-atd="compreende" ${atd.compreende?"checked":""}> Compreendeu e concorda</label>
@@ -787,6 +792,11 @@ function bindEv(it){
     if(!(n>=5&&n<=180)){toast("Use de 5 a 180 minutos");return}model.prefs=Object.assign({},model.prefs,{meta:n});saveModel();atRelogio();toast(`Meta: ${n} min por atendimento`)};
   box.querySelectorAll("[data-atir]").forEach(b=>b.onclick=()=>{const sec=$(`#atCorpo [data-etapa="${b.dataset.atir}"]`);if(!sec)return;if(sec.tagName==="DETAILS")sec.open=true;sec.scrollIntoView({behavior:"smooth",block:"start"})});
   box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));
+  // tirar ou pôr todos os sinais de alarme (no geral ou de uma conduta)
+  box.querySelectorAll("[data-atvt]").forEach(b=>b.onclick=()=>{const on=b.dataset.atvt==="1", c=b.dataset.atvc;
+    const alvo=c?(atVolteGrupos().find(g=>g.c&&g.c.id===c)||{itens:[]}).itens.map(([,i])=>i):atVolte().map((x,i)=>i);
+    atd.alarOff=Object.assign({},atd.alarOff); alvo.forEach(i=>{if(on)delete atd.alarOff[i];else atd.alarOff[i]=true});
+    const y=window.scrollY; renderEv(); window.scrollTo(0,y)});
   box.querySelectorAll("[data-atrem]").forEach(b=>b.onclick=()=>{atd.extras=atd.extras.filter(x=>x!==b.dataset.atrem);atd.sis=null;atd.alarOff={};renderEv()});
   // busca de outra conduta: sem digitar, mostra favoritas, mais usadas e as da mesma área; digitando, acha por nome, sinônimo ou CID
   const aq=$("#atAddQ"), as=$("#atAddSug");

@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.44.1 — 2026-10-27
+- **Sinais de alarme explicados (Alta)**: botões "Tirar todos" e "Pôr todos"; com duas ou mais condutas, os sinais ficam separados por conduta, cada uma com "Tirar" e "Pôr" — para deixar só os que fazem sentido para aquele paciente.
+
 ## 1.44.0 — 2026-10-27
 - **IA em mais três lugares** (com a sua chave, sem o nome do paciente, e a trava de números):
   - **Exame físico**: "✨ Melhorar texto (IA)" junta os achados do checklist e as linhas soltas às linhas de cada sistema, com terminologia médica, sem inventar.

@@ -631,3 +631,21 @@ test("IA no exame físico, no pedido de internação e no laboratório colado (s
   await expect(page.locator('#atCorpo [data-atiaest="intern"]')).toContainText("Texto melhorado pela IA");
   expect(erros).toEqual([]);
 });
+
+test("sinais de alarme na alta: tirar e pôr todos, e por conduta quando há duas", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await page.fill("#atAddQ", "amigdal"); await page.click('#atAddSug [data-atadd="amigdalite"]');
+  await expect(page.locator("#atCorpo .atvoltecond")).toHaveCount(2);
+  const alta = () => saida(page, "alta").inputValue();
+  expect(await alta()).toMatch(/sinais de alarme|retornar|volt/i);
+  await page.click('#atCorpo .atvoltecab [data-atvt="0"]');
+  await expect(page.locator('#atCorpo .atvolte [aria-pressed="true"]')).toHaveCount(0);
+  // pôr só os da amigdalite
+  await page.click('#atCorpo [data-atvt="1"][data-atvc="amigdalite"]');
+  const on = await page.locator('#atCorpo .atvolte [aria-pressed="true"]').count();
+  expect(on).toBeGreaterThan(0);
+  await page.click('#atCorpo .atvoltecab [data-atvt="1"]');
+  expect(await page.locator('#atCorpo .atvolte [aria-pressed="true"]').count()).toBeGreaterThan(on);
+  expect(erros).toEqual([]);
+});

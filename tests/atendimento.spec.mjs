@@ -801,3 +801,31 @@ test("constipação: Fleet e clister glicerinado como opção para marcar na med
   await expect(page.locator('#atCorpo [data-atchip="medsel"]', { hasText: "clister glicerinado" })).toHaveCount(1);
   expect(erros).toEqual([]);
 });
+
+test("IA nunca troca nem acrescenta remédio: Frontal com venlafaxina é recusado; antecedentes voltam intactos", async ({ page }) => {
+  let resp = "";
+  await page.route("https://api.anthropic.com/**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ content: [{ type: "text", text: resp }] }) }));
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await atender(page, "ansiedade");
+  await campo(page, "hma").fill("crise de ansiedade 2d, tomou frontal");
+  await campo(page, "muc").fill("frontal 0,5 mg");
+  const antes = await saida(page, "hda").inputValue();
+  // 1) a IA "traduz" o Frontal: recusado, o texto fica como estava
+  resp = "Paciente refere crise de ansiedade há 2 dias. Fez uso de Frontal (venlafaxina).";
+  await page.click('#atCorpo [data-atia="hda"]');
+  await expect(page.locator("#atIaEst")).toContainText(/remédio|parêntese/i);
+  await expect(saida(page, "hda")).toHaveValue(antes);
+  // 2) correção de grafia é aceita (losartan → losartana), também nos antecedentes
+  await campo(page, "muc").fill("losartan 50 mg");
+  const base = await saida(page, "hda").inputValue();
+  resp = base.replace("losartan 50 mg", "Losartana 50 mg");
+  await page.click('#atCorpo [data-atia="hda"]');
+  await expect(page.locator("#atIaEst")).toContainText("Texto melhorado pela IA");
+  await expect(saida(page, "hda")).toHaveValue(/Losartana 50 mg/);
+  // 3) trocar um remédio por outro nos antecedentes é recusado
+  resp = base.replace("losartan 50 mg", "Enalapril 50 mg");
+  await page.click('#atCorpo [data-atia="hda"]');
+  await expect(page.locator("#atIaEst")).toContainText(/remédio/);
+  expect(erros).toEqual([]);
+});

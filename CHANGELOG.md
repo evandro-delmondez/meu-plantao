@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## 1.54.0 — 2026-10-30
+- **IA nunca troca nem acrescenta remédio** (corrige o caso "Frontal (venlafaxina)"):
+  - o prompt não manda mais traduzir nome comercial nem acrescentar princípio ativo — o nome fica como você escreveu (exemplos corrigidos);
+  - regras de segurança fixas vão junto de qualquer prompt, mesmo editado, e em toda IA (HDA, exame, internação, justificativa, objetivos);
+  - **trava de remédio**: se a resposta tiver um remédio que não estava no seu texto, é recusada e o seu texto fica; correção de grafia (losartan → losartana, rivotrol → Rivotril) é aceita;
+  - **trava de parênteses**: parênteses novos são recusados;
+  - na dúvida de grafia, a IA pode consultar a web (até 2 buscas), se a sua conta permitir.
+
 ## 1.53.3 — 2026-10-30
 - **Constipação: Fleet também em casa, como opção desligada** na receita ("Uso retal: 1 unidade via retal, dose única; não repetir em menos de 24 horas"); as contraindicações ficam no aviso para você.
 

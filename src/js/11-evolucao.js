@@ -513,7 +513,7 @@ function atResBind(box){
     try{const r=await iaLab(tx,atSiglas());if(atd!==dono){lb.disabled=false;return}const n=Object.keys(r).length;atd.res=Object.assign({},atd.res,r);
       const rb=$("#atResBox");if(rb){rb.innerHTML=atResHTML();atResBind(rb)};atAtualiza();
       const e2=$("#atLabEst");if(e2){e2.hidden=false;e2.textContent=n?`Preenchido: ${Object.entries(r).map(([k,v])=>`${k} ${v}`).join("; ")}. Confira.`:"Nenhum valor alterado encontrado."}}
-    catch(e){if(atd!==dono){lb.disabled=false;return}dz(e.message==="tempo"?"A IA demorou demais para responder. Tente de novo.":e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora.")}
+    catch(e){if(atd!==dono){lb.disabled=false;return}dz(e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="tempo"?"A IA demorou demais para responder. Tente de novo.":e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora.")}
     lb.disabled=false};
   box.querySelectorAll("[data-atres]").forEach(i=>i.oninput=()=>{atd.res=Object.assign({},atd.res,{[i.dataset.atres]:i.value});atAtualiza()});
   box.querySelectorAll("[data-atimg]").forEach(i=>i.oninput=()=>{atd.img=Object.assign({},atd.img,{[i.dataset.atimg]:i.value});atAtualiza()});
@@ -879,7 +879,7 @@ function bindEv(it){
       const antes=ta.value; atd.man[k]=out; ta.value=out; grow(ta); atAtualiza();
       dz(`Texto melhorado pela IA: confira antes de copiar. <button class="btn sm" data-iadesfaz>Desfazer</button>`);
       est.querySelector("[data-iadesfaz]").onclick=()=>{atd.man[k]=antes;ta.value=antes;grow(ta);atAtualiza();dz("Voltou ao texto anterior.")}}
-    catch(e){if(atd!==dono){b.disabled=false;return}dz(e.message==="tempo"?"A IA demorou demais para responder. O texto ficou como estava; tente de novo.":e.message==="numeros"?`A IA mudou ou tirou um número do texto${e.det?` (${esc(e.det)})`:""}: mantive o original. Tente de novo.`:/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
+    catch(e){if(atd!==dono){b.disabled=false;return}dz(e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="tempo"?"A IA demorou demais para responder. O texto ficou como estava; tente de novo.":e.message==="numeros"?`A IA mudou ou tirou um número do texto${e.det?` (${esc(e.det)})`:""}: mantive o original. Tente de novo.`:/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
     b.disabled=false;
   });
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});
@@ -907,7 +907,7 @@ function bindEv(it){
     try{const t=await iaJustifica(ctx); if(atPac!==quem){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
       const ta=$('#atCorpo [data-atd="intern.motivo"]'); const antes=atd.intern.motivo; atd.intern.motivo=t; if(ta){ta.value=t;grow(ta)} atAtualiza();
       est.innerHTML=`Escrita pela IA: confira. <button class="btn sm" id="atJustDesfaz">Desfazer</button>`; $("#atJustDesfaz").onclick=()=>{atd.intern.motivo=antes;if(ta){ta.value=antes;grow(ta)}atAtualiza();est.textContent="Voltou ao anterior."}}
-    catch(e){est.textContent=e.message==="numeros"?`A IA pôs um número que não está nos dados (${e.det}): descartei.`:/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}
+    catch(e){est.textContent=e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="numeros"?`A IA pôs um número que não está nos dados (${e.det}): descartei.`:/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}
     b.disabled=false};
   box.querySelectorAll("[data-atobj]").forEach(c=>c.onchange=()=>{atd.intern.obj[c.dataset.atobj]=c.checked;atAtualiza()});
   box.querySelectorAll("[data-atobjia]").forEach(c=>c.onchange=()=>{const x=(atd.intern.objIa||[])[+c.dataset.atobjia];if(x){x.on=c.checked;atAtualiza()}});

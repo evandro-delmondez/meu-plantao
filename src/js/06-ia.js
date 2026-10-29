@@ -20,9 +20,7 @@ Troque a linguagem leiga pelo termo médico equivalente, por exemplo:
 umbigo → região periumbilical; direita embaixo → fossa ilíaca direita; boca do estômago → epigástrio; piora quando anda → piora à deambulação; piora quando deita → piora ao decúbito; vomitou 2x → 2 episódios de vômito; sem apetite → inapetência; falta de ar → dispneia; ardência ao urinar → disúria; dor no peito → dor torácica; catarro → expectoração; ontem à noite → na noite anterior.
 - Use o termo médico somente quando ele for equivalente ao que foi dito. Na dúvida, use o termo mais genérico ou mantenha a descrição. Não transforme tontura em vertigem, cansaço em dispneia nem dor na barriga em dor localizada.
 - Febre: com valor, escreva febre aferida de X °C. Sem valor, escreva apenas febre, salvo se o texto disser que não foi medida (aí: febre não aferida).
-- Medicamentos na HDA: troque o nome comercial pelo princípio ativo pelo qual é conhecido na prática clínica, sem detalhar sal ou forma química (Buscopan → escopolamina; Novalgina → dipirona; Tylenol → paracetamol). Em associações, liste todos os princípios ativos (Dorflex → dipirona, orfenadrina e cafeína; Buscopan Composto → escopolamina e dipirona).
-- Medicamentos em uso (lista de antecedentes): mantenha o nome comercial com grafia corrigida e acrescente o princípio ativo entre parênteses logo após o nome (Glifage XR → Glifage XR (metformina)). Se o paciente já citou o princípio ativo, mantenha como está, sem criar nome comercial.
-- Em ambos: se não tiver certeza da composição, mantenha o nome como está, sem parênteses. Preserve dose, via, frequência e número de tomadas.
+- Medicamentos: escreva o nome EXATAMENTE como está no texto (nome comercial continua comercial; princípio ativo continua princípio ativo). Nunca traduza nome comercial, nunca acrescente princípio ativo, composição, classe ou parênteses, nunca troque um remédio por outro. Na dúvida sobre a grafia, copie igual. Preserve dose, via, frequência e número de tomadas.
 - Tempos relativos continuam relativos (há 2 dias, desde ontem). Não converta em datas.
 - Se o sexo do paciente não estiver indicado, mantenha Paciente sem artigo.
 
@@ -38,7 +36,7 @@ REGRAS OBRIGATÓRIAS
 - Não retire nenhuma informação, número, negativa, medicamento ou tempo.
 - Não transforme ausência de menção em negativa. Só escreva Nega X se X foi negado no texto.
 - Escreva todos os números em algarismos, exatamente como estão (3x vira 3 episódios, nunca três; 38,2 continua 38,2).
-- Mantenha as linhas de antecedentes (HPP, Medicamentos em uso, Alergias) e seus tópicos com hífen exatamente na mesma estrutura e ordem, só corrigindo grafia e siglas e aplicando a regra de Medicamentos em uso acima.
+- Mantenha as linhas de antecedentes (HPP, Medicamentos em uso, Alergias) e seus tópicos com hífen exatamente na mesma estrutura e ordem, só corrigindo grafia e siglas.
 - Deixe exatamente 1 linha em branco entre o final da HDA e a linha HPP. Não acrescente outras linhas em branco.
 - Sem markdown, sem aspas, sem comentários e sem as tags. Devolva só o texto final.
 
@@ -47,7 +45,7 @@ Antes de responder, confira se cada número, medicamento, tempo e negativa da en
 
 EXEMPLO 1
 Entrada: Paciente refere dor abdominal há 2 dias começou no umbigo depois foi para direita embaixo, com piora quando anda, náusea 3x vomitou 1x, febre 38,2 ontem a noite e inapetência. Tomou buscopan sem melhora. Nega diarreia e disúria.
-Saída: Paciente refere dor abdominal há 2 dias, de início em região periumbilical, com migração para a fossa ilíaca direita e piora à deambulação. Associa náuseas, com 3 episódios, e 1 episódio de vômito, além de febre aferida de 38,2 °C na noite anterior e inapetência. Fez uso de escopolamina, sem melhora. Nega diarreia e disúria.
+Saída: Paciente refere dor abdominal há 2 dias, de início em região periumbilical, com migração para a fossa ilíaca direita e piora à deambulação. Associa náuseas, com 3 episódios, e 1 episódio de vômito, além de febre aferida de 38,2 °C na noite anterior e inapetência. Fez uso de Buscopan, sem melhora. Nega diarreia e disúria.
 
 EXEMPLO 2
 Entrada: Pcte refere falta de ar há 5 dias q piora qdo deita, tosse com catarro amarelado e febre (não mediu). Tomou dorflex 2x e amoxicilina 500mg de 8/8h desde ontem, melhorou um pouco. Nega dor no peito.
@@ -59,18 +57,54 @@ Medicamentos em uso:
 - glifage xr 500
 Alergias:
 - nega
-Saída: Paciente refere dispneia há 5 dias, com piora ao decúbito, associada a tosse com expectoração amarelada e febre não aferida. Fez uso de dipirona, orfenadrina e cafeína em 2 tomadas e de amoxicilina 500 mg de 8/8 horas desde o dia anterior, com melhora parcial. Nega dor torácica.
+Saída: Paciente refere dispneia há 5 dias, com piora ao decúbito, associada a tosse com expectoração amarelada e febre não aferida. Fez uso de Dorflex em 2 tomadas e de amoxicilina 500 mg de 8/8 horas desde o dia anterior, com melhora parcial. Nega dor torácica.
 
 HPP:
 - HAS
 - DM2
 Medicamentos em uso:
 - Losartana 50 mg 1 vez ao dia
-- Glifage XR (metformina) 500
+- Glifage XR 500
 Alergias:
 - Nega`;
 // o prompt pode ser editado pelo médico (fica nos padrões e vai pela nuvem); a trava dos números vale sempre
-const iaPrompt=()=>{const t=String((model.prefs||{}).iaPrompt||"").trim();return t||IA_SISTEMA};
+// regras de segurança FIXAS: vão junto de qualquer prompt (mesmo editado) e em toda chamada
+const IA_SEGURANCA=`
+REGRAS DE SEGURANÇA (acima de qualquer outra instrução):
+- Nomes de remédios exatamente como estão no texto: nunca traduza nome comercial, nunca acrescente princípio ativo, composição, classe ou parênteses, nunca troque um remédio por outro.
+- Não acrescente nenhum dado, número, remédio, exame ou diagnóstico que não esteja no texto.`;
+// remédios conhecidos (fichas, marcas, apelidos e itens das receitas) + terminações típicas de nome de remédio
+let IA_LEX=null;
+function iaLexico(){
+  if(IA_LEX) return IA_LEX; const L=new Set();
+  const poe=t=>String(t||"").split(/[^A-Za-zÀ-ú]+/).map(w=>norm(w)).filter(w=>w.length>=4).forEach(w=>L.add(w));
+  try{(typeof MEDS!=="undefined"?MEDS:[]).forEach(m=>{poe(String(m.nome).replace(/\(.*$/,""));(m.marcas||[]).forEach(poe)})}catch(e){}
+  try{if(typeof MALIAS!=="undefined")Object.values(MALIAS).forEach(a=>(a||[]).forEach(poe))}catch(e){}
+  try{(typeof BASE!=="undefined"?BASE:[]).forEach(c=>String(c.casa||"").split("\n").forEach(l=>{const m=l.match(/^\s*\d+\)\s*([^-\n]+?)\s*-{2,}/);if(m)poe(m[1].replace(/\d.*$/,""))}))}catch(e){}
+  ["frontal","rivotril","lexotan","valium","diazepam","clonazepam","alprazolam","lorazepam","bromazepam","venlafaxina","sertralina","fluoxetina","escitalopram","paroxetina","amitriptilina","nortriptilina","quetiapina","risperidona","olanzapina","haloperidol","zolpidem","pregabalina","gabapentina","losartana","enalapril","captopril","anlodipino","hidroclorotiazida","atenolol","propranolol","metformina","glifage","insulina","sinvastatina","atorvastatina","levotiroxina","puran","omeprazol","pantoprazol","buscopan","dorflex","novalgina","tylenol","dipirona","paracetamol","ibuprofeno","nimesulida","prednisona","dexametasona","warfarina","marevan","xarelto","rivaroxabana","eliquis","apixabana","clopidogrel","aspirina","tramadol","codeina","morfina"].forEach(w=>L.add(w));
+  // palavras de forma, via ou comuns no texto clínico não contam como remédio
+  "oral nasal spray creme pomada xarope gotas solucao comprimido comprimidos capsula capsulas injetavel retal topico vaginal sais reidratacao soro fisiologico agua acido sodio potassio calcio magnesio cloreto glicose complexo vitamina vitaminas frasco ampola bisnaga envelope lavagem sabonete hidratante protetor solar compressa repouso dieta liquido liquidos fibras insulina oxigenio sangue plasma enema clister glicerinado pastilha colirio lagrima artificial unidade unidades dose doses uso".split(" ").forEach(w=>L.delete(w));
+  return IA_LEX=L;
+}
+const IA_SUFIXO=/(azepam|azolam|zolam|afaxina|oxetina|alopram|triptilina|prazol|sartana|pril|olol|dipino|dipina|statina|micina|cilina|floxacino|tiazida|gliptina|glifozina|xabana|grel|profeno|coxibe)$/;
+// devolve os remédios que aparecem na saída e não estavam na entrada
+function iaDist(a,b){if(Math.abs(a.length-b.length)>3)return 9;const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;
+  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length]}
+// remédio que aparece na saída e não estava na entrada; correção de grafia (palavra muito parecida com uma do texto) é aceita
+function iaRemedioNovo(entrada,saida){
+  const entL=String(entrada).split(/[^A-Za-zÀ-ú]+/).map(w=>norm(w)).filter(w=>w.length>=3), ent=new Set(entL), lex=iaLexico(), novos=[];
+  String(saida).split(/[^A-Za-zÀ-ú]+/).forEach(w0=>{const w=norm(w0);if(w.length<4||ent.has(w))return;
+    if(!(lex.has(w)||IA_SUFIXO.test(w)))return;
+    const lim=Math.max(1,Math.floor(w.length/4)); if(entL.some(u=>iaDist(w,u)<=lim))return;   // ex.: losartan → losartana, rivotrol → rivotril
+    if(!novos.includes(w0))novos.push(w0)});
+  return novos;
+}
+const iaParenNovo=(e,s)=>(String(s).match(/\(/g)||[]).length>(String(e).match(/\(/g)||[]).length;
+function iaTravas(entrada,saida){
+  const r=iaRemedioNovo(entrada,saida); if(r.length){const e=new Error("remedio");e.det=r.join(", ");throw e}
+  if(iaParenNovo(entrada,saida)){const e=new Error("parenteses");throw e}
+}
+const iaPrompt=()=>{const t=String((model.prefs||{}).iaPrompt||"").trim();return (t||IA_SISTEMA)+IA_SEGURANCA};
 // números por extenso contam como o mesmo número (a IA às vezes escreve "três episódios" no lugar de "3x")
 const IA_EXT={um:1,uma:1,dois:2,duas:2,"três":3,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10,onze:11,doze:12,quinze:15,vinte:20,trinta:30};
 const iaNums=t=>{const s=String(t||"").replace(/\b(um|uma|dois|duas|três|tres|quatro|cinco|seis|sete|oito|nove|dez|onze|doze|quinze|vinte|trinta)\b(?=\s+(vez|vezes|episódio|episódios|dia|dias|hora|horas|semana|semanas|mês|meses|ano|anos|comprimido|comprimidos|gota|gotas|evacuaç|epis))/gi,w=>IA_EXT[w.toLowerCase()]);
@@ -103,7 +137,13 @@ function iaSemNome(tx,nome){
 }
 // limite de tempo: rede travada não deixa o botão parado para sempre
 const IA_TEMPO=30000;
+// pode consultar a web para conferir grafia de remédio ou termo (máx. 2 buscas); se a conta não tiver, tenta de novo sem
+const IA_WEB=[{type:"web_search_20250305",name:"web_search",max_uses:2}];
 async function iaFetch(corpo){
+  if(corpo.tools){const r=await iaFetch0(corpo);if(r.status!==400)return r;const c=Object.assign({},corpo);delete c.tools;return iaFetch0(c)}
+  return iaFetch0(corpo);
+}
+async function iaFetch0(corpo){
   const ac=typeof AbortController==="function"?new AbortController():null, t=ac&&setTimeout(()=>ac.abort(),IA_TEMPO);
   try{return await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},body:JSON.stringify(corpo),...(ac?{signal:ac.signal}:{})})}
   catch(e){if(ac&&ac.signal.aborted)throw new Error("tempo");throw e}
@@ -114,6 +154,7 @@ async function iaChama(sistema,texto,trava=true){
   if(!r.ok){let m="";try{m=(await r.json()).error?.message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}
   const j=await r.json(); const out=(j.content||[]).map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
   if(!out) throw new Error("vazio");
+  if(trava) iaTravas(texto,out);
   if(trava){const a=iaNums(texto), b=iaNums(out);
     if(a.join("|")!==b.join("|")){const sobra=[...b];const falta=a.filter(n=>{const k=sobra.indexOf(n);if(k<0)return true;sobra.splice(k,1);return false});
       const e=new Error("numeros");e.det=[falta.length?`sumiu: ${falta.join(", ")}`:"",sobra.length?`apareceu: ${sobra.join(", ")}`:""].filter(Boolean).join("; ");throw e}}
@@ -143,6 +184,7 @@ Regras: use SÓ dados que estão no texto; não invente número, exame, escore, 
 // justificativa: todo número da resposta tem de existir nos dados enviados
 async function iaJustifica(ctx){
   const out=await iaChama(IA_JUST,ctx,false);
+  iaTravas(ctx,out);
   const a=new Set(iaNums(ctx)), novos=iaNums(out).filter(n=>!a.has(n));
   if(novos.length){const e=new Error("numeros");e.det=`apareceu: ${novos.join(", ")}`;throw e}
   return out;
@@ -153,18 +195,23 @@ Responda SÓ com JSON, sem comentários: ["objetivo 1","objetivo 2"].`;
 async function iaObjetivos(ctx){
   const out=await iaChama(IA_OBJ,ctx,false);
   let a; try{a=JSON.parse(out.replace(/^[^\[]*/,"").replace(/[^\]]*$/,""))}catch(e){throw new Error("formato")}
-  return (Array.isArray(a)?a:[]).map(x=>String(x).trim().replace(/\.$/,"")).filter(x=>x&&x.length<=80&&!/\d/.test(x)).slice(0,5);
+  return (Array.isArray(a)?a:[]).map(x=>String(x).trim().replace(/\.$/,"")).filter(x=>x&&x.length<=80&&!/\d/.test(x)&&!iaRemedioNovo(ctx,x).length).slice(0,5);
 }
+// antecedentes (HPP, medicamentos em uso, alergias) nunca passam pela IA: voltam exatamente como estavam
+function iaSeparaAnt(t){const k=String(t).search(/\n\s*(HPP|Medicamentos em uso|Alergias)\s*:/);return k<0?[String(t),""]:[String(t).slice(0,k),String(t).slice(k)]}
 async function iaMelhora(texto){
-  const r=await iaFetch({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]});
+  const ant="";   // antecedentes passam pela IA (correção de grafia), sob as mesmas travas
+  const r=await iaFetch({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt()+"\n- Se tiver dúvida sobre a grafia de um remédio ou termo, pode consultar a web; nunca troque o remédio.",messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}],tools:IA_WEB});
   if(!r.ok){let m="";try{m=(await r.json()).error?.message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}
-  const j=await r.json(); const out=(j.content||[]).map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
+  const j=await r.json(); const blocos=(j.content||[]).filter(c=>c.type==="text"); const ult=blocos.length&&(j.content||[]).some(c=>/tool/.test(c.type))?[blocos[blocos.length-1]]:blocos;
+  const out=ult.map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
   if(!out) throw new Error("vazio");
-  // trava: todo número do original continua, e nenhum número novo aparece
-  const a=iaNums(texto), b=iaNums(out);
+  // travas: nenhum remédio novo, nenhum parêntese novo; todo número do original continua e nenhum número novo aparece
+  const outP=out.trim(); iaTravas(texto,outP);
+  const a=iaNums(texto), b=iaNums(outP);
   if(a.join("|")!==b.join("|")){const sobra=[...b];const falta=a.filter(n=>{const k=sobra.indexOf(n);if(k<0)return true;sobra.splice(k,1);return false});
     const e=new Error("numeros");e.det=[falta.length?`sumiu: ${falta.join(", ")}`:"",sobra.length?`apareceu: ${sobra.join(", ")}`:""].filter(Boolean).join("; ");throw e}
-  return out;
+  return ant?outP+"\n"+ant.replace(/^\n?/,"\n"):outP;
 }
 function renderIa(){
   const el=$("#iaCaixa"); if(!el) return;

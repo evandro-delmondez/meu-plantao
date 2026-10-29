@@ -58,7 +58,7 @@ const psPoe=(o,c,v)=>{const ks=c.split(".");let x=o;ks.slice(0,-1).forEach(k=>x=
 function psyncJunta(loc,rem){
   const ap=Object.assign({},rem.apagados||{},loc.apagados||{});
   const por={};
-  for(const p of [...(rem.pacs||[]),...loc.pacs]){
+  for(const p of [...(Array.isArray(rem.pacs)?rem.pacs:[]),...loc.pacs].filter(p=>p&&typeof p==="object"&&p.id)){
     if(ap[p.id]) continue;
     const q=por[p.id]; if(!q){por[p.id]=clone(p);continue}
     for(const c of PSYNC_CAMPOS){
@@ -79,6 +79,13 @@ async function repoPrivado(repo,chave){
   if(!r.ok) return "chave";
   return (await r.json()).private===false?"publico":"ok";
 }
+// põe o resultado da junção na lista sem trocar os objetos de quem continua (a tela e o Atendimento seguem ligados a eles)
+function pacAplica(j){
+  const db=pacCarrega(), velhos=new Map(db.pacs.map(p=>[p.id,p]));
+  db.pacs=j.pacs.map(pacNorm).filter(Boolean).map(q=>{const o=velhos.get(q.id);if(!o)return q;for(const k of Object.keys(o))delete o[k];return Object.assign(o,q)});
+  db.cont=j.cont; db.apagados=j.apagados;
+  if(atPac&&!pacDe(atPac)) atPac=null;
+}
 let psyncRodando=false, psyncDeNovo=false;
 async function pacSync(){
   if(!psyncAtivo()) return;
@@ -90,12 +97,12 @@ async function pacSync(){
       let rem={pacs:[],cont:{},apagados:{}};
       if(f){ if(f.salt!==psync.salt) throw new Error("senha"); try{rem=await psyncDecifra(f)}catch(e){throw new Error("senha")} }
       const j=psyncJunta(pacCarrega(),rem);
-      pacDb=j; lsSet(PAC_LS,pacDb);
+      pacAplica(j); lsSet(PAC_LS,pacDb);
       try{await psyncEscreve(await psyncCifra(j),sha);break}catch(e){if(e.message!=="conflito"||tent)throw e}
     }
     psync.em=Date.now(); psync.erro=""; lsSet(PSYNC_LS,psync);
     psyncEstado=psyncDeNovo?"Sincronizando…":`Sincronizado às ${pacHora(psync.em)}`;
-    if(ui.tab==="pacientes"&&!document.activeElement?.closest?.("#pcCorpo input,#pcCorpo select,#pcCorpo textarea")) renderPacientes();
+    if(ui.tab==="pacientes"&&!document.activeElement?.closest?.("#pcCorpo input,#pcCorpo select,#pcCorpo textarea")) renderPacientes(true);
   }catch(e){
     psync.erro=e.message; lsSet(PSYNC_LS,psync);
     psyncEstado=e.message==="senha"?"Senha diferente da usada no outro aparelho: nada foi enviado":e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}). ${/^403/.test(psyncMotivo)?"A chave não pode gravar neste repositório: use Trocar a chave e cole a chave da lista.":"Use Trocar a chave."}`:"Sem conexão: sincroniza quando voltar";

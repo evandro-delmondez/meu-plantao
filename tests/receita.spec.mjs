@@ -147,3 +147,24 @@ test("toda receita sai agrupada por via (nenhum 'Uso oral' repetido depois de ou
   }
   expect(erros).toEqual([]);
 });
+
+test("via certa em cada remédio (gripe: oseltamivir oral; tosse: inalatório; vaginose e candidíase: vaginal)", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  const monta = async (id) => { await page.evaluate((i) => document.querySelector(`#list .item[data-id="${i}"]`).click(), id);
+    await page.evaluate(() => document.querySelectorAll("#detail .rxmontar [data-rxb]").forEach((b) => { if (b.getAttribute("aria-pressed") === "false") b.click(); }));
+    return receita(page); };
+  const sob = (t, via) => { const i = t.indexOf(via); if (i < 0) return ""; const r = t.slice(i + via.length); const k = r.search(/\n\nUso /); return k < 0 ? r : r.slice(0, k); };
+  let t = await monta("gripe");
+  expect(sob(t, "Uso oral")).toMatch(/Oseltamivir/); expect(sob(t, "Uso nasal")).not.toMatch(/Oseltamivir/);
+  t = await monta("tosse");
+  expect(sob(t, "Uso nasal")).not.toMatch(/Azitromicina|Ipratr/i);
+  for (const id of ["vaginose", "candidiase"]) {
+    t = await monta(id);
+    // escolhe a alternativa vaginal (gel/creme), quando ela é "Ou" de um remédio oral
+    const alt = page.locator("#detail .rxmontar [data-rxs]", { hasText: /gel|creme|vaginal|óvulo/i }).first();
+    if (await alt.count()) { await alt.click(); t = await receita(page); }
+    expect(t, id).toMatch(/Uso vaginal\n\d+\)/);
+    expect(sob(t, "Uso oral"), id).not.toMatch(/vaginal|aplicador/i);
+  }
+  expect(erros).toEqual([]);
+});

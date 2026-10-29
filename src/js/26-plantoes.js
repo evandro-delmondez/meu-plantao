@@ -3,9 +3,10 @@
    A contagem por plantão é guardada como número (a lista de pacientes some em 7 dias; o número fica). */
 const PL_TURNOS={D:["Diurno","07:00","19:00"],M:["Matutino","07:00","13:00"],V:["Vespertino","13:00","19:00"],N:["Noturno","19:00","07:00"],N1:["Noturno até 1h","19:00","01:00"],"24":["24 h","07:00","07:00"]};
 const PL_ORDEM=["D","M","V","N","N1","24"];
-const PL_PADRAO=()=>({escala:[],contagem:{},pagos:{},locais:{
+const PL_PADRAO=()=>({escala:[],contagem:{},pagos:{},recusados:{},locais:{
   hsls:{nome:"Santa Lúcia",cor:"teal",tipo:"porAlta",porAlta:50,porUti:150,ativo:true,pagDe:20,pagAte:25,pagObs:"produção do mês, paga no mês seguinte, por Pix"}}});
-const plDados=()=>{const D=PL_PADRAO();model.plantoes=Object.assign(D,model.plantoes||{});const L=model.plantoes.locais||{};
+// completa no lugar (mesmo objeto): quem guardou P=plDados() antes de um redesenho continua mexendo no que é salvo
+const plDados=()=>{const D=PL_PADRAO();if(!model.plantoes||typeof model.plantoes!=="object")model.plantoes={};for(const k in D)if(model.plantoes[k]==null)model.plantoes[k]=D[k];const L=model.plantoes.locais||{};
   for(const k of new Set([...Object.keys(PL_PADRAO().locais),...Object.keys(L)])) L[k]=Object.assign({},PL_PADRAO().locais[k]||{},L[k]);
   // UPA (concurso) fica de fora até o médico ser convocado (sai se não tiver plantão marcado)
   if(L.upa&&!model.plantoes.escala.some(x=>x.local==="upa")) delete L.upa;
@@ -13,19 +14,34 @@ const plDados=()=>{const D=PL_PADRAO();model.plantoes=Object.assign(D,model.plan
 const plBRL=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const plIso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 let plMes=null;
-// guarda a contagem de cada plantão que ainda está na lista de pacientes (só números)
+// guarda a contagem de cada plantão que ainda está na lista de pacientes (só números). Além do diurno (D) e do
+// noturno (N), guarda a manhã (M, até 13h) e a tarde (V): no dia com matutino e vespertino, cada um conta só os seus.
 function plAtualizaContagem(){
-  const P=plDados(), por={};
-  for(const p of pacCarrega().pacs){if(!p||!+p.criado||!p.desf) continue; const k=pacPlantao(p.criado).k; if(!/^\d{4}-\d\d-\d\d[DN]$/.test(k)) continue;por[k]=por[k]||{n:0,uti:0};
-    if(p.desf.tipo==="internacao"&&(p.desf.onde==="uti"||p.desf.onde==="semi"))por[k].uti++;else if(pacConta(p))por[k].n++}
+  const P=plDados(), por={}, poe=(k,p)=>{por[k]=por[k]||{n:0,uti:0};if(p.desf.tipo==="internacao"&&(p.desf.onde==="uti"||p.desf.onde==="semi"))por[k].uti++;else if(pacConta(p))por[k].n++};
+  for(const p of pacCarrega().pacs){if(!p||!+p.criado||!p.desf) continue; const k=pacPlantao(p.criado).k; if(!/^\d{4}-\d\d-\d\d[DN]$/.test(k)) continue;
+    poe(k,p); if(k.endsWith("D")) poe(k.slice(0,10)+(new Date(+p.criado).getHours()<13?"M":"V"),p)}
   let mudou=false; for(const [k,v] of Object.entries(por)){const a=P.contagem[k];if(!a||a.n!==v.n||a.uti!==v.uti){P.contagem[k]=v;mudou=true}}
-  // plantão com pacientes na lista e sem nada marcado no dia/turno: entra sozinho no Santa Lúcia
-  for(const k of Object.keys(por)){const data=k.slice(0,10), t=k.slice(10), tem=P.escala.some(x=>x.data===data&&(t==="N"?["N","N1","24"].includes(x.turno):!["N","N1"].includes(x.turno)));
+  // plantão com paciente que conta (alta, internação, transferência, evasão) e sem nada marcado no dia/turno: entra
+  // sozinho no Santa Lúcia. Paciente passado a outro médico não cria plantão; o que você tirou não volta.
+  P.recusados=P.recusados&&typeof P.recusados==="object"?P.recusados:{};
+  for(const [k,v] of Object.entries(por)){if(!/[DN]$/.test(k)||!(v.n+v.uti)||P.recusados[k]) continue;
+    const data=k.slice(0,10), t=k.slice(10), tem=P.escala.some(x=>x.data===data&&(t==="N"?["N","N1","24"].includes(x.turno):!["N","N1"].includes(x.turno)));
     if(!tem){P.escala.push({id:"pl"+k,data,local:"hsls",turno:t==="N"?"N":"D",auto:true});mudou=true}}
   if(mudou) saveModel();
 }
 const plChave=x=>x.data+(x.turno==="N"||x.turno==="N1"?"N":"D");
-function plValor(x){const P=plDados(), L=P.locais[x.local]||{}, c=x.manual||P.contagem[plChave(x)]||(x.turno==="24"?{n:(P.contagem[x.data+"D"]||{}).n+(P.contagem[x.data+"N"]||{}).n||0,uti:((P.contagem[x.data+"D"]||{}).uti||0)+((P.contagem[x.data+"N"]||{}).uti||0)}:null);
+// chaves de contagem que o plantão cobre (24 h: o dia e a noite)
+const plCobre=x=>x.turno==="24"?[x.data+"D",x.data+"N"]:[plChave(x)];
+const plSoma=(a,b)=>({n:((a||{}).n||0)+((b||{}).n||0),uti:((a||{}).uti||0)+((b||{}).uti||0)});
+function plContagem(x){
+  const P=plDados(), C=P.contagem||{};
+  if(x.turno==="24") return C[x.data+"D"]||C[x.data+"N"]?plSoma(C[x.data+"D"],C[x.data+"N"]):null;
+  // matutino e vespertino no mesmo dia: cada um com os seus pacientes (contagem antiga, sem M/V: fica toda no matutino)
+  if((x.turno==="M"||x.turno==="V")&&P.escala.some(y=>y!==x&&y.data===x.data&&y.turno===(x.turno==="M"?"V":"M")))
+    return C[x.data+x.turno]||(x.turno==="M"?C[x.data+"D"]:null)||null;
+  return C[plChave(x)]||null;
+}
+function plValor(x){const P=plDados(), L=P.locais[x.local]||{}, c=x.manual||plContagem(x);
   if(L.tipo==="porAlta") return {c,v:c?(c.n||0)*(+L.porAlta||0)+(c.uti||0)*(+L.porUti||0):0};
   return {c,v:0};
 }
@@ -37,7 +53,7 @@ function plGoogle(x){
 }
 function renderPlantoes(){
   const el=$("#plCorpo"); if(!el) return;
-  try{plRender(el)}catch(e){el.innerHTML=`<div class="panel card"><h2>Meus plantões</h2><p class="note">Não consegui montar a tela: ${esc(e.message||String(e))}. Me mande esta frase.</p></div>`;console.error(e)}
+  try{plRender(el)}catch(e){el.innerHTML=`<div class="panel card"><h2>Meus plantões</h2><p class="note" id="plErro">Não consegui montar a tela: ${esc(e.message||String(e))}. Me mande esta frase.</p></div>`;console.error(e)}
 }
 function plRender(el){
   try{plAtualizaContagem()}catch(e){}
@@ -90,11 +106,14 @@ function plAbreDia(iso){
       <label class="f">Turno<select class="inp" id="plTurno">${PL_ORDEM.map(k=>{const [r,a,b]=PL_TURNOS[k];return `<option value="${k}">${r} (${a}–${b})</option>`}).join("")}</select></label></div>
     <label class="check"><input type="checkbox" id="plSobre"> Sobreaviso</label>
     <div class="actions"><button class="btn primary" id="plAdd">Marcar plantão</button><button class="btn" id="plFecha">Fechar</button></div>`;
-  $("#plAdd").onclick=()=>{P.escala.push({id:"pl"+Date.now().toString(36),data:iso,local:$("#plLocal").value,turno:$("#plTurno").value,...($("#plSobre").checked?{sobre:true}:{})});saveModel();renderPlantoes();plAbreDia(iso);toast("Plantão marcado")};
+  $("#plAdd").onclick=()=>{const x={id:"pl"+Date.now().toString(36),data:iso,local:$("#plLocal").value,turno:$("#plTurno").value,...($("#plSobre").checked?{sobre:true}:{})};P.escala.push(x);
+    if(P.recusados) plCobre(x).forEach(k=>delete P.recusados[k]);saveModel();renderPlantoes();plAbreDia(iso);toast("Plantão marcado")};
   $("#plFecha").onclick=()=>{box.hidden=true};
   box.querySelectorAll("[data-plman]").forEach(i=>i.onchange=()=>{const x=P.escala.find(y=>y.id===i.dataset.plman);if(!x)return;const v=i.value.trim();
     const m=Object.assign({n:0,uti:0},x.manual||{});m[i.dataset.f]=+v||0;const outro=box.querySelector(`[data-plman="${x.id}"][data-f="${i.dataset.f==="n"?"uti":"n"}"]`);
     if(!v&&!(outro&&outro.value.trim()))delete x.manual;else x.manual=m;saveModel();renderPlantoes();plAbreDia(iso)});
-  box.querySelectorAll("[data-pltira]").forEach(b=>b.onclick=()=>{P.escala=P.escala.filter(x=>x.id!==b.dataset.pltira);saveModel();renderPlantoes();plAbreDia(iso)});
+  // tirado não volta sozinho pela lista de pacientes (fica em recusados até você marcar de novo naquele dia/turno)
+  box.querySelectorAll("[data-pltira]").forEach(b=>b.onclick=()=>{const x=P.escala.find(y=>y.id===b.dataset.pltira);P.escala=P.escala.filter(y=>y.id!==b.dataset.pltira);
+    if(x){P.recusados=P.recusados||{};plCobre(x).forEach(k=>P.recusados[k]=true)}saveModel();renderPlantoes();plAbreDia(iso)});
   box.scrollIntoView({behavior:"smooth",block:"nearest"});
 }

@@ -1302,19 +1302,20 @@ const EXAMES = {
  "colica": {
   "encaminhar": [
    {
-    "t": "Urologia de urgência: febre/sepse com cálculo obstrutivo — descompressão (cateter duplo J ou nefrostomia) e antibiótico",
+    "t": "Urologia de urgência: febre ou sepse com cálculo obstrutivo — descompressão (cateter duplo J ou nefrostomia) e antibiótico",
     "f": [
      1
     ]
    },
    {
-    "t": "Urologia: rim único, obstrução bilateral, anúria, lesão renal aguda ou dor refratária à analgesia",
+    "t": "Urologia no mesmo dia: rim único ou transplantado obstruído, obstrução bilateral, anúria, lesão renal aguda ou dor refratária à analgesia",
     "f": [
-     1
+     1,
+     7
     ]
    },
    {
-    "t": "Urologia (eletivo): cálculo ureteral > 10 mm ou sem eliminação no seguimento",
+    "t": "Urologia (eletivo): cálculo ureteral > 10 mm ou sem eliminação em 4 a 6 semanas",
     "f": [
      3,
      1
@@ -1328,7 +1329,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Sala vermelha / Cirurgia vascular: > 50 anos com \"primeira cólica\", hipotensão ou massa pulsátil — afastar aneurisma de aorta",
+    "t": "Sala vermelha / Cirurgia vascular: mais de 50 anos com \"primeira cólica\", hipotensão ou massa pulsátil — afastar aneurisma de aorta",
     "f": [
      5
     ]
@@ -1348,6 +1349,12 @@ const EXAMES = {
     ]
    },
    {
+    "t": "Hemoculturas e urocultura: febre com cálculo obstrutivo, antes do antibiótico",
+    "f": [
+     1
+    ]
+   },
+   {
     "t": "Beta-hCG: mulher em idade fértil antes de imagem com radiação",
     "f": [
      6,
@@ -1355,17 +1362,23 @@ const EXAMES = {
     ]
    },
    {
-    "t": "TC de abdome e pelve sem contraste, baixa dose: primeiro episódio ou dúvida diagnóstica (padrão-ouro)",
-    "f": [
-     2,
-     1
-    ]
-   },
-   {
-    "t": "US de rins e vias urinárias: primeira linha para hidronefrose (POCUS); exame inicial na gestante",
+    "t": "US de rins e vias urinárias: primeira linha para hidronefrose (POCUS); exame inicial na gestante, com RM em segundo lugar",
     "f": [
      1,
      2
+    ]
+   },
+   {
+    "t": "TC de abdome e pelve sem contraste, baixa dose: confirmar o cálculo após a US no primeiro episódio ou na dúvida diagnóstica",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Imagem imediata (US ou TC sem contraste): febre, rim único ou dúvida diagnóstica",
+    "f": [
+     1
     ]
    }
   ],
@@ -1392,12 +1405,13 @@ const EXAMES = {
   ],
   "div": [],
   "fontes": [
-   "EAU 2025 — Skolarikos A et al. European Association of Urology guidelines on the diagnosis and treatment of urolithiasis. Eur Urol 2025;88(1):64-75. https://doi.org/10.1016/j.eururo.2025.03.011 ; texto completo em https://uroweb.org/guidelines/urolithiasis",
-   "ACR Appropriateness Criteria® Acute Onset Flank Pain–Suspicion of Stone Disease (Urolithiasis): 2023 Update. J Am Coll Radiol 2023;20(11S):S315-S328. PMID 38040458. https://doi.org/10.1016/j.jacr.2023.08.020",
-   "AUA/Endourology 2016 — Assimos D et al. Surgical management of stones: AUA/Endourological Society guideline. J Urol 2016;196(4):1153-60. PMID 27238616 (observação/terapia expulsiva em cálculo ureteral não complicado ≤ 10 mm).",
+   "EAU 2026 — EAU Guidelines on Urolithiasis, limited update March 2026 (texto completo: https://uroweb.org/guidelines/urolithiasis ; PDF: https://d56bochluxqnz.cloudfront.net/documents/full-guideline/EAU-Guidelines-on-Urolithiasis-2026.pdf); resumo: Skolarikos A et al. Eur Urol 2025;88(1):64-75. https://doi.org/10.1016/j.eururo.2025.03.011",
+   "ACR 2023 — ACR Appropriateness Criteria® Acute Onset Flank Pain–Suspicion of Stone Disease (Urolithiasis): 2023 Update. J Am Coll Radiol 2023;20(11S):S315-S328. PMID 38040458. https://doi.org/10.1016/j.jacr.2023.08.020",
+   "AUA 2026 — Pearle MS et al. Surgical Management of Kidney and Ureteral Stones: American Urological Association (AUA) Guideline (2026), Part II. J Urol 2026;215(2):124-131. PMID 41263322; substitui a AUA/Endourological Society de 2016 (observação no cálculo ureteral não complicado ≤ 10 mm; alfabloqueador no distal, forte). https://www.auanet.org/guidelines-and-quality/guidelines/surgical-management-of-kidney-and-ureteral-stones",
    "ACEP Choosing Wisely 2014 — American College of Emergency Physicians. Choosing Wisely, 2014: avoid CT of the abdomen and pelvis in young otherwise healthy ED patients (< 50 anos) with known kidney stones and uncomplicated renal colic. https://www.choosingwisely.org",
-   "Chaikof EL et al. SVS practice guidelines on abdominal aortic aneurysm. J Vasc Surg 2018;67(1):2-77; Wanhainen A et al. ESVS 2024 AAA guidelines. Eur J Vasc Endovasc Surg 2024;67(2):192-331.",
-   "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 25 Dor abdominal (teste de gravidez em idade fértil)."
+   "SVS 2018 — Chaikof EL et al. SVS practice guidelines on abdominal aortic aneurysm. J Vasc Surg 2018;67(1):2-77; Wanhainen A et al. ESVS 2024 AAA guidelines. Eur J Vasc Endovasc Surg 2024;67(2):192-331.",
+   "HC-FMUSP 2024 cap. 25 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 25 Dor abdominal (teste de gravidez em idade fértil).",
+   "HC-FMUSP 2024 cap. 87 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 87 Cólica nefrética (indicações de internação e de intervenção)."
   ]
  },
  "dor-abdominal": {
@@ -6273,6 +6287,133 @@ const EXAMES = {
    "CDC 2021 — Workowski KA et al. CDC Sexually Transmitted Infections Treatment Guidelines, 2021: Epididymitis. MMWR Recomm Rep 2021;70(4):1-187. https://www.cdc.gov/std/treatment-guidelines/epididymitis.htm",
    "PCDT 2022 — Ministério da Saúde. PCDT para Atenção Integral às Pessoas com IST, 2022. https://www.saude.sp.gov.br/resources/crt/assistencia/pcdt/pcdtists2022.pdf",
    "ACR 2024 — Expert Panel on Urological Imaging. ACR Appropriateness Criteria Acute Onset of Scrotal Pain, Without Trauma, Without Antecedent Mass: 2024 Update. J Am Coll Radiol 2024;21(11S):S364-S371. https://doi.org/10.1016/j.jacr.2024.08.011"
+  ]
+ },
+ "biliar": {
+  "encaminhar": [
+   {
+    "t": "Cirurgia Geral (internação): colecistite aguda pelos critérios de Tóquio, para colecistectomia laparoscópica precoce",
+    "f": [
+     1,
+     4,
+     7
+    ]
+   },
+   {
+    "t": "Sala de emergência + CPRE ou drenagem percutânea urgente: colangite grave (hipotensão, confusão ou outra disfunção orgânica)",
+    "f": [
+     2,
+     5
+    ]
+   },
+   {
+    "t": "Endoscopia (CPRE) precoce: colangite moderada; na leve, se não melhorar com antibiótico em 24 h. Sem CPRE no serviço: transferir",
+    "f": [
+     5
+    ]
+   },
+   {
+    "t": "CPRE: coledocolitíase de risco alto (cálculo no colédoco na imagem, bilirrubina total > 4 mg/dL com colédoco dilatado, ou colangite)",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "Cirurgia Geral ambulatorial (eletivo): cólica biliar não complicada com litíase na US",
+    "f": [
+     8,
+     9
+    ]
+   },
+   {
+    "t": "Pancreatite (lipase > 3 vezes o limite com dor típica): seguir a conduta Dor abdominal",
+    "f": [
+     11
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "US de abdome superior: primeiro exame em toda suspeita (cálculo, parede espessada, líquido perivesicular, Murphy ultrassonográfico, colédoco dilatado)",
+    "f": [
+     1,
+     10
+    ]
+   },
+   {
+    "t": "Hemograma, PCR, bilirrubinas, TGO, TGP, fosfatase alcalina, GGT e lipase: dor biliar com febre, dor > 6 h, icterícia ou antes de liberar",
+    "f": [
+     1,
+     6
+    ]
+   },
+   {
+    "t": "Creatinina, eletrólitos, plaquetas, INR, lactato e gasometria: suspeita de colangite ou colecistite moderada a grave (gravidade de Tóquio)",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Hemoculturas (2 pares): colangite e colecistite graus II e III, antes do antibiótico, sem atrasá-lo",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Colangio-RM ou ecoendoscopia: coledocolitíase de risco intermediário (enzimas alteradas, mais de 55 anos ou colédoco > 6 mm)",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "TC de abdome com contraste: dúvida diagnóstica, suspeita de complicação (perfuração, abscesso, forma enfisematosa) ou colangite com US inconclusiva",
+    "f": [
+     1,
+     12
+    ]
+   },
+   {
+    "t": "Beta-hCG na mulher em idade fértil; ECG na dor epigástrica em idoso ou com fatores de risco cardiovascular",
+    "f": [
+     12
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Colangio-RM, ecoendoscopia ou CPRE antes da cirurgia na coledocolitíase de risco baixo (exames e colédoco normais)",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "CPRE só para diagnóstico quando a colangio-RM ou a ecoendoscopia respondem",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "RX simples de abdome para procurar cálculo biliar",
+    "f": [
+     10
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "TG18 colecistite — Yokoe M et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholecystitis. J Hepatobiliary Pancreat Sci 2018;25(1):41-54. PMID 29032636. https://doi.org/10.1002/jhbp.515",
+   "TG18 colangite — Kiriyama S et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis. J Hepatobiliary Pancreat Sci 2018;25(1):17-30. PMID 29032610. https://doi.org/10.1002/jhbp.512",
+   "TG18 antimicrobianos — Gomi H et al. Tokyo Guidelines 2018: antimicrobial therapy for acute cholangitis and cholecystitis. J Hepatobiliary Pancreat Sci 2018;25(1):3-16. PMID 29090866. https://doi.org/10.1002/jhbp.518",
+   "TG18 manejo colecistite — Okamoto K et al. Tokyo Guidelines 2018: flowchart for the management of acute cholecystitis. J Hepatobiliary Pancreat Sci 2018;25(1):55-72. PMID 29045062. https://doi.org/10.1002/jhbp.516",
+   "TG18 manejo colangite — Miura F et al. Tokyo Guidelines 2018: initial management of acute biliary infection and flowchart for acute cholangitis. J Hepatobiliary Pancreat Sci 2018;25(1):31-40. PMID 29032628. https://doi.org/10.1002/jhbp.509",
+   "ASGE 2019 — Buxbaum JL et al. ASGE guideline on the role of endoscopy in the evaluation and management of choledocholithiasis. Gastrointest Endosc 2019;89(6):1075-1105. PMID 30979521. https://doi.org/10.1016/j.gie.2018.10.001",
+   "WSES 2020 — Pisano M et al. 2020 World Society of Emergency Surgery updated guidelines for the diagnosis and treatment of acute calculus cholecystitis. World J Emerg Surg 2020;15:61. https://doi.org/10.1186/s13017-020-00336-x",
+   "EASL 2016 — European Association for the Study of the Liver. EASL Clinical Practice Guidelines on the prevention, diagnosis and treatment of gallstones. J Hepatol 2016;65(1):146-181. https://doi.org/10.1016/j.jhep.2016.03.005",
+   "SAGES 2010 — Overby DW et al. SAGES guidelines for the clinical application of laparoscopic biliary tract surgery. Surg Endosc 2010;24(10):2368-2386. https://www.sages.org/publications/guidelines/guidelines-for-the-clinical-application-of-laparoscopic-biliary-tract-surgery/",
+   "ACR 2022 — ACR Appropriateness Criteria® Right Upper Quadrant Pain: 2022 Update. J Am Coll Radiol 2023;20(5S):S211-S223. PMID 37236744.",
+   "ACG 2024 pancreatite — Tenner S et al. American College of Gastroenterology guidelines: management of acute pancreatitis. Am J Gastroenterol 2024;119(3):419-437. PMID 38857482. https://doi.org/10.14309/ajg.0000000000002645",
+   "HC-FMUSP 2024 cap. 77 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 77 Emergências biliares."
   ]
  }
 };

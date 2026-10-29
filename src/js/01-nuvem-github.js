@@ -15,7 +15,10 @@ async function gsLe(){
   const r=await fetch(gsUrl(),{cache:"no-store",headers:gsHdr()});
   if(r.status===404) return {sha:null,d:null};
   if(!r.ok) throw await gsErro(r);
-  const j=await r.json(); return {sha:j.sha,d:JSON.parse(gsDeB64(j.content))};
+  // arquivo ilegível (editado à mão, ou acima de 1 MB, quando a API manda content vazio): vale o deste aparelho, que regrava
+  const j=await r.json(); let d=null;
+  try{d=JSON.parse(gsDeB64(j.content||""))}catch(e){d=null}
+  return {sha:j.sha,d:d&&typeof d==="object"&&!Array.isArray(d)?d:null};
 }
 async function gsEscreve(d,sha){
   const r=await fetch(gsUrl(),{method:"PUT",headers:Object.assign({"Content-Type":"application/json"},gsHdr()),body:JSON.stringify({message:"meus padrões",content:gsB64(JSON.stringify(d,null,1)),...(sha?{sha}:{})})});
@@ -26,10 +29,12 @@ async function gsEscreve(d,sha){
 // traz o que veio da nuvem quando é mais novo; devolve se mudou algo neste aparelho
 function gsJunta(rem){
   let mudou=false;
-  for(const id in (rem.overrides||{})){const r=rem.overrides[id], l=overrides[id];if(r&&(!l||(r.updatedAt||0)>(l.updatedAt||0))){overrides[id]=r;mudou=true}}
+  const obj=x=>x&&typeof x==="object"&&!Array.isArray(x);
+  const ro=obj(rem.overrides)?rem.overrides:{};
+  for(const id in ro){const r=ro[id], l=overrides[id];if(obj(r)&&(!l||(r.updatedAt||0)>(l.updatedAt||0))){overrides[id]=r;mudou=true}}
   if(mudou) persistLocal();
-  if(rem.model&&(rem.model.updatedAt||0)>(model.updatedAt||0)){model=migrateModel(rem.model);lsSet(LS.model,model);mudou=true}
-  if(rem.uso&&(rem.uso.updatedAt||0)>(uso.updatedAt||0)){uso=Object.assign({counts:{},favs:[],rec:[]},rem.uso);lsSet("rxp_uso_v1",uso);mudou=true}
+  if(obj(rem.model)&&(rem.model.updatedAt||0)>(model.updatedAt||0)){model=migrateModel(rem.model);lsSet(LS.model,model);mudou=true}
+  if(obj(rem.uso)&&(rem.uso.updatedAt||0)>(uso.updatedAt||0)){uso=usoValido(rem.uso);lsSet("rxp_uso_v1",uso);mudou=true}
   return mudou;
 }
 function gsRedesenha(){try{applyOrg();renderCats();renderList();fillSelects();if(!editing)renderDetail();renderEvSeguro();if(ui.tab==="modelos")renderModelos()}catch(e){}}

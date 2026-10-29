@@ -11,7 +11,7 @@ test("Meus plantões: marca plantão no calendário, conta altas da lista (R$ 50
   await page.locator("#pcCorpo .pcitem", { hasText: "Uti Plantao" }).locator('[data-pd="onde"]').selectOption("semi");   // UTI B também vale como UTI
   await aba(page, "plantoes");
   // o plantão de hoje entra sozinho no calendário (Santa Lúcia), pela lista de pacientes
-  await expect(page.locator("#plCorpo .pllista li", { hasText: "Santa Lúcia" })).toHaveCount(1);
+  await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" }).locator(".pllista li", { hasText: "Santa Lúcia" })).toHaveCount(1);
   const sl = page.locator("#plCorpo .plcard", { hasText: "Santa Lúcia" });
   await expect(sl).toContainText("1 alta");
   await expect(sl).toContainText("1 UTI");
@@ -56,6 +56,25 @@ test("Meus plantões: próximos plantões, noturno até 1h, sobreaviso e contage
   const n1 = page.locator("#plDia li", { hasText: "Noturno até 1h" });
   await n1.locator('[data-f="n"]').fill("11"); await n1.locator('[data-f="n"]').dispatchEvent("change");
   await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" })).toContainText("(à mão)");
+  expect(erros).toEqual([]);
+});
+
+test("Meus plantões: tirar um plantão marcado à mão e um que entrou sozinho (e não volta)", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "pacientes"); await page.fill("#pcNome", "Paciente Tirar"); await page.click("#pcAdd");
+  await aba(page, "pacientes"); await page.locator("#pcCorpo .pcitem", { hasText: "Paciente Tirar" }).locator('[data-pd="tipo"]').selectOption("alta");
+  await aba(page, "plantoes");
+  const mes = page.locator("#plCorpo .panel", { hasText: "Plantões do mês" });
+  await expect(mes.locator(".pllista li")).toHaveCount(1);                 // entrou sozinho
+  const dia = await mes.locator(".pllista li b").first().innerText();
+  const iso = await page.evaluate((d) => { const [dd, mm] = d.split("/"); const y = new Date().getFullYear(); return `${y}-${mm}-${dd}`; }, dia);
+  await page.click(`#plCorpo [data-pldia="${iso}"]`);
+  await page.selectOption("#plTurno", "M"); await page.click("#plAdd");
+  await expect(mes.locator(".pllista li")).toHaveCount(2);
+  for (let k = 0; k < 2; k++) await page.locator("#plDia [data-pltira]").first().click();
+  await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" }).locator(".pllista li")).toHaveCount(0);
+  await aba(page, "inicio"); await aba(page, "plantoes");                  // reabrir: o automático não volta
+  await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" }).locator(".pllista li")).toHaveCount(0);
   expect(erros).toEqual([]);
 });
 

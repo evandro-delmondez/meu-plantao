@@ -12,7 +12,9 @@ function infoNotas(raiz=document){
     d.innerHTML=`<summary aria-label="Sobre esta tela" title="Sobre esta tela">ⓘ</summary>`; d.append(n); h.append(d);
   });
 }
-new MutationObserver(()=>{clearTimeout(infoNotas._t);infoNotas._t=setTimeout(infoNotas,30)}).observe(document.body,{childList:true,subtree:true});
+// só refaz quando entra um título ou uma nota (o relógio do atendimento muda o texto a cada segundo e não conta)
+const infoEntra=n=>n.nodeType===1&&(n.matches("h2,p.note")||!!n.querySelector("h2+p.note"));
+new MutationObserver(ms=>{if(!ms.some(m=>[...m.addedNodes].some(infoEntra)))return;clearTimeout(infoNotas._t);infoNotas._t=setTimeout(infoNotas,30)}).observe(document.body,{childList:true,subtree:true});
 function setTab(t){
   if(!TABS.includes(t)) t="inicio";
   ui.tab=t; const sec=secDe(t); ultimaAba[sec]=t;
@@ -42,10 +44,12 @@ $$("#secnav [data-sec]").forEach(b=>b.onclick=()=>setSec(b.dataset.sec));
 // menu "☰ Mais": Documentos, Cálculos e Sala vermelha (fora da barra para caber bem no celular e na meia tela)
 (function(){
   const bt=$("#maisBtn"), mn=$("#maisMenu"); if(!bt||!mn) return;
-  mn.innerHTML=$$("#secnav [data-mais]").map(b=>`<button role="menuitem" data-maissec="${b.dataset.sec}" style="${b.getAttribute("style")||""}">${b.innerHTML}</button>`).join("");
+  // lista simples de botões (Tab navega); abre com o foco no primeiro e Esc devolve o foco ao "☰ Mais"
+  mn.innerHTML=$$("#secnav [data-mais]").map(b=>`<button data-maissec="${b.dataset.sec}" style="${b.getAttribute("style")||""}">${b.innerHTML}</button>`).join("");
+  bt.setAttribute("aria-controls","maisMenu");
   const fecha=()=>{mn.hidden=true;bt.setAttribute("aria-expanded","false")};
-  bt.onclick=e=>{e.stopPropagation();mn.hidden=!mn.hidden;bt.setAttribute("aria-expanded",String(!mn.hidden))};
+  bt.onclick=e=>{e.stopPropagation();mn.hidden=!mn.hidden;bt.setAttribute("aria-expanded",String(!mn.hidden));if(!mn.hidden){const p=mn.querySelector("button");if(p)p.focus()}};
   mn.querySelectorAll("[data-maissec]").forEach(b=>b.onclick=()=>{fecha();setSec(b.dataset.maissec)});
   document.addEventListener("click",e=>{if(!mn.hidden&&!e.target.closest("#maisMenu,#maisBtn"))fecha()});
-  document.addEventListener("keydown",e=>{if(e.key==="Escape")fecha()});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!mn.hidden){fecha();bt.focus()}});
 })();

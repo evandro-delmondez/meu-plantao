@@ -38,7 +38,8 @@ test("porta: alarmes no topo da conduta; Atendimento em 1 tela com cópia por ca
   for (const k of ["hda", "exame", "diag", "trat", "rx", "alta"]) expect(await saida(page, k).inputValue()).not.toMatch(RUIM);
   // atestado
   // atestado: só o item "Forneço atestado médico" na alta (o modelo fica no MV)
-  await page.click("#atCorpo [data-atatest]");
+  await expect(page.locator('#atCorpo [data-atd="compreende"]')).toBeChecked();   // sempre marcado
+  await page.check('#atCorpo [data-atd="altaAtest"]');
   await expect(saida(page, "alta")).toHaveValue(/- Forneço atestado médico\./);
   expect(await semRolagemLateral(page)).toBe(true);
   // nada do paciente fica no aparelho
@@ -739,5 +740,36 @@ test("duas condutas: um só 'Volte imediatamente ao pronto-socorro se…' nas or
   const rx = await saida(page, "rx").inputValue();
   expect(rx.match(/Volte imediatamente ao pronto-socorro/g) || []).toHaveLength(1);
   expect(rx).not.toMatch(/grupo de risco e vai se tratar em casa/);
+  expect(erros).toEqual([]);
+});
+
+test("texto da alta: atestado logo abaixo do 'orientado sobre'; internação com sinais de alarme e compreendeu a conduta", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "pac");
+  await page.check('#atCorpo [data-atd="altaAtest"]');
+  let a = await saida(page, "alta").inputValue();
+  expect(a.indexOf("- Forneço atestado médico.")).toBeGreaterThan(a.indexOf("- Paciente orientado sobre"));
+  expect(a.indexOf("- Forneço atestado médico.")).toBeLessThan(a.indexOf("- Oriento quanto aos sinais de alarme"));
+  await page.click('#atCorpo [data-atdec="internacao"]');
+  a = await saida(page, "alta").inputValue();
+  expect(a).toContain("- Oriento quanto aos sinais de alarme e à necessidade de internação.\n- Paciente compreendeu e concorda com a conduta.");
+  expect(erros).toEqual([]);
+});
+
+
+test("IA escreve a justificativa da internação só com os dados (número inventado é descartado)", async ({ page }) => {
+  let resp = "Pneumonia com SpO2 89% em ar ambiente e FR 28 irpm; risco de deterioração, necessita de antibiótico EV e monitorização.";
+  await page.route("https://api.anthropic.com/**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ content: [{ type: "text", text: resp }] }) }));
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await atender(page, "pac");
+  await campo(page, "sat").fill("89"); await campo(page, "fr").fill("28");
+  await page.click('#atCorpo [data-atdec="internacao"]');
+  await page.click("#atJustIa");
+  await expect(page.locator("#atJustEst")).toContainText("Escrita pela IA");
+  await expect(page.locator('#atCorpo [data-atd="intern.motivo"]')).toHaveValue(/SpO2 89%/);
+  resp = "SpO2 70% e lactato 4.";                                       // números que não estão nos dados
+  await page.click("#atJustIa");
+  await expect(page.locator("#atJustEst")).toContainText("descartei");
   expect(erros).toEqual([]);
 });

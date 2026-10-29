@@ -603,32 +603,54 @@ itu: {
   ]
 },
 colica: {
-  titulo: "Cólica de rim ou de vesícula (pedra)",
-  oque: "É uma dor forte, que vem em ondas, causada por uma pedra no caminho da urina ou na vesícula, a bolsa da bile que fica embaixo do fígado. A pedra pequena no caminho da urina costuma sair sozinha pela urina em alguns dias ou semanas.",
+  titulo: "Cólica de rim (pedra no caminho da urina)",
+  oque: "É uma dor forte, que vem em ondas, causada por uma pedra no caminho da urina. A pedra pequena costuma sair sozinha pela urina em alguns dias ou semanas.",
   cuidados: [
     "Tome os remédios como está na sua receita. Alguns podem dar sono: se for o seu caso, não dirija.",
-    "Não tome outros remédios para dor por conta própria. Se aparecer febre, volte ao pronto-socorro.",
-    "Pedra no rim: beba bastante água, de 2,5 a 3 litros por dia, se o seu médico não pediu para limitar os líquidos. A urina deve ficar clarinha.",
-    "Pedra no rim: evite refrigerante, bebidas com cafeína e bebida alcoólica.",
-    "Pedra na vesícula: prefira comidas com pouca gordura e evite frituras e os alimentos que provocam a dor.",
-    "Pedra na vesícula: faça o ultrassom pedido e leve o resultado ao posto de saúde, para marcar a avaliação com o cirurgião.",
-    "Pedra no rim: procure o posto de saúde para acompanhar e saber se a pedra saiu."
+    "Não tome outros remédios para dor por conta própria.",
+    "Beba bastante água, de 2,5 a 3 litros por dia, se o seu médico não pediu para limitar os líquidos. A urina deve ficar clarinha.",
+    "Evite refrigerante, bebidas com cafeína e bebida alcoólica.",
+    "Se estiver usando tansulosina, levante-se devagar: ela pode causar tontura.",
+    "Procure o posto de saúde para acompanhar e saber se a pedra saiu. Se a dor continuar voltando por 4 semanas, peça a avaliação do urologista."
   ],
   volte: [
     "Febre, calafrios ou tremedeira.",
     "Urina muito pouco ou não consegue urinar.",
-    "A dor não passa com os remédios da receita, ou a dor de vesícula dura mais de 6 horas.",
+    "A dor não passa com os remédios da receita.",
     "Vômitos que não param e não deixam você beber água nem tomar os remédios.",
-    "Olhos ou pele amarelados, urina escura como café ou fezes claras.",
     "Tontura forte, desmaio ou confusão."
   ],
   fontes: [
-    "EAU Guidelines on Urolithiasis, 2026: a maioria dos cálculos pequenos sai espontaneamente; descompressão urgente se obstrução com infecção (febre) ou rim único obstruído; hidratação. https://uroweb.org/guidelines/urolithiasis",
+    "EAU Guidelines on Urolithiasis, limited update March 2026: a maioria dos cálculos pequenos sai espontaneamente (média de 17 dias); descompressão urgente se obstrução com infecção (febre) ou rim único obstruído; retirada se dor persistente. https://uroweb.org/guidelines/urolithiasis",
     "NHS. Kidney stones (revisado em 17/09/2026): beber 2,5 a 3 litros de água por dia, evitar refrigerante, cafeína e álcool, urina clara; atendimento urgente se dor intensa ou febre e tremedeira. https://www.nhs.uk/conditions/kidney-stones/",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 87 — Cólica nefrética: sem eliminação em 4 semanas, em geral indicação de intervenção.",
+    "Bula Anvisa do Secotex (cloridrato de tansulosina 0,4 mg, comprimido revestido de liberação prolongada, Boehringer Ingelheim): 1 comprimido ao dia, com ou sem alimento, inteiro, sem partir nem mastigar; tontura e hipotensão; síndrome da íris flácida (avisar antes de cirurgia de catarata ou glaucoma; não iniciar se cirurgia programada); contraindicado na insuficiência hepática grave. Genéricos em cápsula: 1 cápsula após o café da manhã. https://consultaremedios.com.br/secotex/bula",
+    "Bula Tramal (tramadol, Anvisa): máximo 400 mg/dia; sonolência, evitar dirigir."
+  ]
+},
+biliar: {
+  titulo: "Cólica de vesícula (pedra na vesícula)",
+  oque: "É uma dor forte na parte de cima da barriga, do lado direito, causada por uma pedra na vesícula, a bolsa da bile que fica embaixo do fígado. A crise passou e o exame de hoje não mostrou inflamação nem infecção, mas a dor pode voltar até a vesícula ser retirada.",
+  cuidados: [
+    "Tome os remédios como está na sua receita.",
+    "Prefira comidas com pouca gordura e evite frituras e os alimentos que provocaram a dor.",
+    "Faça o ultrassom pedido e leve o resultado ao posto de saúde, para marcar a avaliação com o cirurgião. A cirurgia evita novas crises e complicações.",
+    "Não tome outros remédios para dor por conta própria."
+  ],
+  volte: [
+    "Febre, calafrios ou tremedeira.",
+    "Olhos ou pele amarelados, urina escura como café ou fezes claras.",
+    "Dor que dura mais de 6 horas ou não passa com os remédios da receita.",
+    "Dor forte na parte de cima da barriga que vai para as costas, com vômitos.",
+    "Vômitos que não param e não deixam você beber água nem tomar os remédios.",
+    "Tontura forte, desmaio ou confusão."
+  ],
+  fontes: [
     "NHS. Gallstones (revisado em 11/08/2025): dieta com pouca gordura enquanto aguarda a cirurgia; emergência se dor súbita e forte, febre alta ou calafrios, pele ou olhos amarelados. https://www.nhs.uk/conditions/gallstones/",
-    "Gallaher JR, Charles A. Acute Cholecystitis: A Review (JAMA 2022;327:965): dor biliar que dura mais de 4 a 6 horas ou com febre sugere colecistite.",
-    "Kiriyama S et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (J Hepatobiliary Pancreat Sci 2018;25:17): febre, icterícia e dor.",
-    "Bula Tramal (tramadol, Anvisa): sonolência, evitar dirigir."
+    "Gallaher JR, Charles A. Acute Cholecystitis: A Review (JAMA 2022;327:965): dor biliar que dura mais de 4 a 6 horas ou com febre sugere colecistite. https://doi.org/10.1001/jama.2022.2350",
+    "Kiriyama S et al. Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis (J Hepatobiliary Pancreat Sci 2018;25(1):17-30; PMID 29032610): A (febre > 38 °C ou calafrios; leucócitos < 4.000 ou > 10.000, PCR ≥ 1 mg/dL) + B (bilirrubina ≥ 2 mg/dL; FA, GGT, TGO ou TGP > 1,5× o limite) + C (dilatação biliar; causa na imagem); grau II: 2 de leucócitos > 12.000 ou < 4.000, febre ≥ 39 °C, ≥ 75 anos, bilirrubina ≥ 5 mg/dL, albumina baixa; grau III: disfunção orgânica. https://doi.org/10.1002/jhbp.512",
+    "European Association for the Study of the Liver. EASL Clinical Practice Guidelines on the prevention, diagnosis and treatment of gallstones (J Hepatol 2016;65:146-181): AINE (diclofenaco, indometacina) na cólica biliar; colecistectomia na litíase sintomática. https://doi.org/10.1016/j.jhep.2016.03.005",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 77 — Emergências biliares (AINE de 1ª escolha na cólica biliar, cetorolaco 30–60 mg; opioide pode ser usado; alta com colecistectomia eletiva; colecistite: internar, jejum, antibiótico EV, colecistectomia precoce; tabela 6: ceftriaxona 2 g/dia + metronidazol 500 mg 8/8h, ciprofloxacino 400 mg 12/12h + metronidazol, piperacilina-tazobactam 4,5 g 6/6h; coledocolitíase sem infecção não precisa de antibiótico)."
   ]
 },
 "dor-abdominal": {

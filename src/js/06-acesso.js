@@ -52,6 +52,8 @@ const ACESSO_NOMES={hosp:"protocolos do hospital",lista:"lista de pacientes",nuv
 function acessoSair(){
   for(const k of [HOSP_LS,PSYNC_LS,GS_LS,PAC_LS,IA_LS]) try{localStorage.removeItem(k)}catch(e){}
   hosp={}; psync={}; psyncKey=null; gs={}; ia={}; pacDb=null; atPac=null;
+  // o atendimento aberto também sai (memória e cópia de segurança da aba)
+  {const t=toast;toast=()=>{};try{novoPaciente()}finally{toast=t}}
   hospAplica(); toast("Saiu deste computador");
 }
 function renderAcesso(el){

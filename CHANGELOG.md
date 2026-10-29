@@ -1,5 +1,14 @@
 # Histórico de versões
 
+## 1.52.0 — 2026-10-29
+- **Cólica renal e vias biliares separadas** (conferido): "Cólica renal / Litíase urinária" (EAU 2026, AUA 2026; tansulosina para cálculo distal de 5–10 mm, opcional) e conduta nova **Vias biliares** — cólica biliar, colecistite, coledocolitíase e colangite (Tokyo Guidelines 2018, ASGE 2019), com antibiótico por gravidade e cirurgia/CPRE quando indicado.
+- **Cetorolaco corrigido** (lombalgia e contratura): só na insuficiência renal leve; contraindicado com desidratação e insuficiência renal moderada ou grave (bula Toragesic).
+- **Via certa em cada remédio da receita**: a via sai da própria instrução (oseltamivir em uso oral na gripe; tosse sem nada em uso nasal; creme e gel vaginal em uso vaginal) e uma linha em branco separa cada remédio.
+- **Revisão de conteúdo**: 21 condutas com a receita só com a posologia (notas para o médico foram para o aviso), sem mudar nenhum número; aviso de sono do clonazepam na linha do remédio.
+- **Revisão de código (23 correções)**: atendimento sem nome em andamento não se perde mais ao abrir outro (vira "Sem nome HH:MM" na lista); edições não se perdem depois da sincronização da lista; resposta da IA descartada se você trocou de paciente; "Novo paciente" não leva a conduta do anterior; nome com acento sai antes de ir para a IA; Plantões abre ao recarregar, "Tirar" funciona (o automático não volta), matutino e vespertino contam separado; sem rolagem lateral no Atendimento.
+- **Alta**: "Compreendeu e concorda" vem marcado e "Forneço atestado médico" é caixa de seleção (maiores, ao lado do destino); o atestado entra logo abaixo do "orientado sobre"; na internação, "Oriento quanto aos sinais de alarme e à necessidade de internação." e "Paciente compreendeu e concorda com a conduta."
+- **"✨ Escrever justificativa (IA)"** no pedido de internação, só com os dados preenchidos (número que não está nos dados é descartado).
+
 ## 1.51.0 — 2026-10-29
 - **Toda receita agrupada por via**: todo o uso oral junto, depois nasal, tópico… (9 condutas tinham a mesma via repetida: gripe, GECA, ITU, rinite, sinusite, tosse, dermatite, conjuntivite, olho vermelho), numerada em sequência; se alguma linha se perderia, a receita fica como está.
 - **Orientações mais curtas**: com duas condutas, os "Volte imediatamente ao pronto-socorro se…" viram uma frase só; saiu a frase do grupo de risco tratado em casa (gripe).

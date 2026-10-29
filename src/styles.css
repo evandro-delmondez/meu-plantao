@@ -858,7 +858,8 @@ details.panel>summary{cursor:pointer}
 /* conduta principal por busca; a lista completa fica escondida (continua para quem usa o teclado) */
 .atcondbusca{display:grid;gap:6px}
 .atcondbusca>span{font-size:13px;font-weight:600;color:var(--muted)}
-.atcondsel{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+/* select.inp também: senão "select.inp{width:100%}" ganha e o select escondido passa da borda (rolagem lateral) */
+.atcondsel,select.inp.atcondsel{position:absolute;width:1px;height:1px;min-width:0;padding:0;border:0;margin:0;opacity:0;pointer-events:none;overflow:hidden}
 .atcls{margin:6px 0}.atcls>summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
 .atcl{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:4px 0}.atcl b{font-size:12.5px;min-width:110px}
 .chip.atclc{font-size:11.5px;padding:2px 8px;--c:var(--teal)}.chip.atclc[aria-pressed="false"]{text-decoration:line-through;opacity:.6}
@@ -895,3 +896,5 @@ details.panel>summary{cursor:pointer}
 .hpacsacoes{margin-top:10px}#hFimBox{margin-top:10px;padding:10px 12px;border:2px solid var(--accent);border-radius:12px}
 .pcfim{font-size:12.5px;font-weight:700;color:var(--ok);border:1px solid var(--ok);border-radius:999px;padding:1px 8px}.pcfim.pcsaiu{color:var(--muted);border-color:var(--line)}
 .plman{display:inline-flex;align-items:center;gap:4px;font-size:12.5px}.plman .inp{width:56px;padding:3px 6px}.plchip.plsobre{border:1px dashed var(--c)}.plprox{border-left:5px solid var(--amber)}
+.ataltachk{align-items:center}.atchks{display:flex;flex-direction:column;gap:8px}.check.grande{font-size:16px;font-weight:700}.check.grande input{width:22px;height:22px}
+.atjustcab{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0}

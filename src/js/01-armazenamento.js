@@ -133,15 +133,17 @@ async function pushOne(id){
     await db.doc("prescricoes/"+id).set(doc);
     if(overrides[id]&&overrides[id].updatedAt===doc.updatedAt) pending.delete(id);
   }catch(e){
-    if(e&&e.code==="unavailable"){await new Promise(r=>setTimeout(r,800+Math.random()*800));try{await db.doc("prescricoes/"+id).set(doc);pending.delete(id)}catch(e2){}}
+    if(e&&e.code==="unavailable"){await new Promise(r=>setTimeout(r,800+Math.random()*800));try{await db.doc("prescricoes/"+id).set(doc);if(overrides[id]&&overrides[id].updatedAt===doc.updatedAt)pending.delete(id)}catch(e2){}}
   }
   persistLocal();refreshSync();
 }
-let pushing=false;
+let pushing=false, flushDeNovo=false;
 async function flush(){
-  if(!db||pushing) return; pushing=true;
+  if(!db) return; if(pushing){flushDeNovo=true;return} pushing=true;
   for(const id of [...pending]) await pushOne(id);
   pushing=false; refreshSync();
+  // edição feita durante o envio: manda de novo (uma volta por pedido, para não insistir sem fim sem rede)
+  if(flushDeNovo){flushDeNovo=false;return flush()}
 }
 function writeOverride(id,obj){
   obj.updatedAt=Date.now();

@@ -87,9 +87,30 @@ Regras: não acrescente nenhum dado, número, exame, diagnóstico ou critério q
 const IA_LAB=`Você lê resultados de exames laboratoriais colados de um sistema hospitalar (texto entre <entrada> e </entrada>) e devolve só os valores ALTERADOS, isto é, fora do valor de referência mostrado no próprio texto ou marcados como alterados (H, L, *, ↑, ↓, "alto", "baixo"). Se não houver referência nem marcação, não inclua.
 Use só estas siglas como chaves: LISTA. Mapeie cada exame para a sigla certa (hemoglobina → Hb; hematócrito → Ht; leucócitos → Leuco; plaquetas → Plaq; proteína C reativa → PCR; ureia → Ur; creatinina → Cr; sódio → Na; potássio → K; etc.). Valor: o número exatamente como aparece, com a unidade se houver (ex.: "15.200/mm³", "8,5 mg/dL").
 Responda SÓ com um objeto JSON, sem comentários: {"Hb":"10,2 g/dL","Leuco":"15.200/mm³"}. Se nada estiver alterado, responda {}.`;
+// tira o nome do paciente antes de mandar à IA: palavra inteira, sem diferenciar maiúsculas nem acento
+// ("Ângela", "angela" e "ANGELA" viram "paciente"; "Sá" não pega "Sábado" nem "casa")
+const PAC_SEM_NOME=/^sem nome( \d\d:\d\d)?$/i;
+const IA_LIGA=new Set(["da","de","do","das","dos","di","du","del","la","le","van","von"]);
+const IA_ACENTO={a:"aàáâãä",e:"eèéêë",i:"iìíîï",o:"oòóôõö",u:"uùúûü",c:"cç",n:"nñ"};
+function iaSemNome(tx,nome){
+  tx=String(tx||"").normalize("NFC");
+  if(PAC_SEM_NOME.test(String(nome||"").trim())) return tx;   // "Sem nome 14:32" (guardado sozinho) não é nome
+  for(const n of [...new Set(String(nome||"").split(/\s+/).map(norm).filter(x=>x.length>1&&/\p{L}/u.test(x)&&!IA_LIGA.has(x)))]){
+    const pad=[...n].map(c=>IA_ACENTO[c]?`[${IA_ACENTO[c]}]`:c.replace(/[.*+?^${}()|[\]\\/]/g,"\\$&")).join("");
+    tx=tx.replace(new RegExp(`(?<![\\p{L}\\p{N}])${pad}(?![\\p{L}\\p{N}])`,"giu"),"paciente");
+  }
+  return tx;
+}
+// limite de tempo: rede travada não deixa o botão parado para sempre
+const IA_TEMPO=30000;
+async function iaFetch(corpo){
+  const ac=typeof AbortController==="function"?new AbortController():null, t=ac&&setTimeout(()=>ac.abort(),IA_TEMPO);
+  try{return await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},body:JSON.stringify(corpo),...(ac?{signal:ac.signal}:{})})}
+  catch(e){if(ac&&ac.signal.aborted)throw new Error("tempo");throw e}
+  finally{if(t)clearTimeout(t)}
+}
 async function iaChama(sistema,texto,trava=true){
-  const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},
-    body:JSON.stringify({model:IA_MODELO,max_tokens:2000,temperature:0,system:sistema,messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]})});
+  const r=await iaFetch({model:IA_MODELO,max_tokens:2000,temperature:0,system:sistema,messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]});
   if(!r.ok){let m="";try{m=(await r.json()).error?.message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}
   const j=await r.json(); const out=(j.content||[]).map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
   if(!out) throw new Error("vazio");
@@ -116,9 +137,18 @@ async function iaSugereExames(contexto,lista){
   let a; try{a=JSON.parse(out.replace(/^[^\[]*/,"").replace(/[^\]]*$/,""))}catch(e){throw new Error("formato")}
   return (Array.isArray(a)?a:[]).map(o=>({i:(+o.n)-1,por:String(o.por||"").slice(0,200)})).filter(o=>lista[o.i]).map(o=>({nome:lista[o.i].nome,t:lista[o.i].t,por:o.por}));
 }
+const IA_JUST=`Você é médico emergencista no Brasil e escreve a JUSTIFITIVA DE INTERNAÇÃO de um paciente do pronto-socorro, a partir dos dados entre <entrada> e </entrada> (HDA, exame físico, sinais vitais, exames, hipóteses, local pedido).
+Escreva 2 a 4 frases objetivas, em português formal, com terminologia médica: o critério de gravidade ou de risco presente (sinal vital, exame, escore), por que não é seguro tratar em casa ou na observação, e o que a internação vai oferecer (ex.: antibiótico EV, monitorização, suporte, investigação, avaliação da especialidade).
+Regras: use SÓ dados que estão no texto; não invente número, exame, escore, diagnóstico ou critério; números em algarismos, exatamente como estão. Sem markdown, sem comentários, sem as tags: devolva só a justificativa.`.replace("JUSTIFITIVA","JUSTIFICATIVA");
+// justificativa: todo número da resposta tem de existir nos dados enviados
+async function iaJustifica(ctx){
+  const out=await iaChama(IA_JUST,ctx,false);
+  const a=new Set(iaNums(ctx)), novos=iaNums(out).filter(n=>!a.has(n));
+  if(novos.length){const e=new Error("numeros");e.det=`apareceu: ${novos.join(", ")}`;throw e}
+  return out;
+}
 async function iaMelhora(texto){
-  const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"x-api-key":ia.chave,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true","content-type":"application/json"},
-    body:JSON.stringify({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]})});
+  const r=await iaFetch({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]});
   if(!r.ok){let m="";try{m=(await r.json()).error?.message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}
   const j=await r.json(); const out=(j.content||[]).map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
   if(!out) throw new Error("vazio");

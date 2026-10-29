@@ -27,7 +27,7 @@ test("marcações viram texto na evolução e não ficam salvas no aparelho", as
   // tocar de novo no mesmo botão desmarca
   await page.click('[data-ck="ant1"][data-val="+"]'); await page.click('[data-ck="ant1"][data-val="+"]');
   await expect(page.locator('[data-ck="ant1"][data-val="+"]')).toHaveAttribute("aria-pressed", "false");
-  await page.click("#detail #ckEv");
+  await page.click("#detail [data-ckev]");
   await expect(page.locator("#tab-evolucao")).toBeVisible();
   const hda = await page.inputValue('#atCorpo [data-atout="hda"]'), exf = await page.inputValue('#atCorpo [data-atout="exame"]');
   const ev = hda + "\n" + exf;
@@ -53,10 +53,10 @@ test("limpar desfaz as marcações; sem marcação não leva nada", async ({ pag
   await page.fill("#q", "dengue"); await page.click("#list .item >> nth=0");
   await page.evaluate(() => document.querySelectorAll("#detail details.sec").forEach((d) => { d.open = true; }));
   await page.click('[data-ck="alarme0"][data-val="+"]');
-  await page.click("#ckClear");
+  await page.click("#detail [data-ckclear]");
   await expect(page.locator('#detail [data-ck][aria-pressed="true"]')).toHaveCount(0);
   await page.evaluate(() => document.querySelectorAll("#detail details.sec").forEach((d) => { d.open = true; }));
-  await page.click("#detail #ckEv");
+  await page.click("#detail [data-ckev]");
   await expect(page.locator("#tab-evolucao")).toBeVisible();
   expect(await page.inputValue('#atCorpo [data-atout="hda"]')).not.toMatch(/Presença de|Nega /);
 });

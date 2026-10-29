@@ -107,7 +107,7 @@ const QUEIXAS = [
     { t: "Gestante a partir de 20 semanas com dor epigástrica ou no hipocôndrio direito, dor uterina forte, útero endurecido ou sangramento vaginal", acao: "Medir PA: pensar em pré-eclâmpsia ou síndrome HELLP (ver pré-eclâmpsia) ou descolamento de placenta; obstetrícia com urgência; não tratar como dispepsia." },
     { t: "Dor súbita no testículo ou em fossa ilíaca com náusea e vômitos, em jovem", acao: "Torção de testículo ou de ovário: urologia ou ginecologia já; ultrassom com Doppler só se não atrasar a cirurgia (suspeita forte = exploração cirúrgica). O tempo salva o órgão." },
     { t: "Vômitos, parada de gases e fezes e distensão; cirurgia abdominal prévia ou hérnia endurecida e dolorosa", acao: "Obstrução ou hérnia encarcerada: jejum, sonda nasogástrica se vômitos, imagem e cirurgião." },
-    { t: "Febre com icterícia, ou dor no hipocôndrio direito com febre", acao: "Colangite ou colecistite: hemoculturas, antibiótico, ultrassom e cirurgia; com hipotensão ou confusão, ver sepse." },
+    { t: "Febre com icterícia, ou dor no hipocôndrio direito com febre", acao: "Colangite ou colecistite: hemoculturas, antibiótico, ultrassom e cirurgia (ver Vias biliares); com hipotensão ou confusão, ver sepse." },
     { t: "Idoso (65 anos ou mais), imunossuprimido ou em uso de corticoide", acao: "Exame e exames iniciais enganam: limiar baixo para TC e reavaliação antes da alta." },
     { t: "Dor epigástrica em idoso, diabético ou com fatores de risco cardiovascular", acao: "ECG em até 10 minutos: síndrome coronariana pode se apresentar como dor abdominal." }
   ],
@@ -122,7 +122,8 @@ const QUEIXAS = [
   ],
   caminhos: [
     { rot: "Dor abdominal aguda indiferenciada: abordagem inicial e analgesia (não atrasa o diagnóstico)", conduta: "dor-abdominal" },
-    { rot: "Cólica renal ou biliar", conduta: "colica" },
+    { rot: "Dor em cólica no flanco irradiando para a virilha, com ou sem hematúria (cólica renal)", conduta: "colica" },
+    { rot: "Dor no hipocôndrio direito ou no epigástrio após refeição, com ou sem febre ou icterícia (vesícula e vias biliares)", conduta: "biliar" },
     { rot: "Ardência urinária, febre e dor lombar (cistite, pielonefrite)", conduta: "itu" },
     { rot: "Queimação epigástrica, azia", conduta: "dispepsia" },
     { rot: "Diarreia e vômitos", conduta: "geca" },

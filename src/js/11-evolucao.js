@@ -72,29 +72,39 @@ function atJunta(f){
 }
 // receita de 2+ condutas: junta por via (todo o uso oral, depois nasal, tópico…), sem repetir remédio, numerada em sequência.
 // Rótulos que não são via (ex.: "Antibiótico") ficam antes dos seus remédios, dentro da via.
-const atViaDe=(cab,txt)=>{const m=/^uso\s+(.+?):?$/i.exec(cab||"");if(m)return "Uso "+m[1].toLowerCase();
-  if(/narina|nasal/i.test(txt))return "Uso nasal";if(/\bVO\b|tomar|dissolver|mastigar|ingerir/i.test(txt))return "Uso oral";
-  if(/pomada|creme|pele|t[óo]pic|les[ãa]o/i.test(txt))return "Uso tópico";return null};
+// via de um remédio: primeiro pela própria instrução (é o que vale), depois pelo cabeçalho "Uso …"
+const atViaDe=(cab,txt)=>{
+  const t=String(txt||"");
+  if(/vagina|vaginal|aplicador/i.test(t)) return "Uso vaginal";
+  if(/narina|nasal/i.test(t)) return "Uso nasal";
+  if(/\binala|\bjatos? .*\bboca\b|bombinha|nebuliz|espa[çc]ador/i.test(t)) return "Uso inalatório";
+  if(/\bolhos?\b|ocular|col[ií]rio/i.test(t)) return "Uso oftálmico";
+  if(/ouvido|otol[oó]gic/i.test(t)) return "Uso otológico";
+  if(/\bVO\b|\btomar\b|\btome\b|dissolver|mastigar|ingerir|sublingual|\bSL\b|na boca|gargarej/i.test(t)) return "Uso oral";
+  if(/pomada|creme|pele|t[óo]pic|les[ãa]o|les[õo]es|aplicar (na|nas|no|nos|fina)/i.test(t)) return "Uso tópico";
+  const m=/^uso\s+(.+?):?$/i.exec(cab||""); if(m) return "Uso "+m[1].toLowerCase();
+  return null};
 function atJuntaVias(tx){
   const chave=l=>norm(l.replace(/^\s*\d+\)\s*/,"")).split(/[\s,(]+/).slice(0,1).join(" ");
-  const vias=[], porVia={}, vistos=new Set(), soltos=[];
+  const itens=[], vistos=new Set();
   for(const t of tx){
-    let via="Uso oral", rot=null, item=null, ant="";
+    let cab="Uso oral", rot=null, item=null, ant="";
     for(const l of t.split("\n")){
       const tr=l.trim();
-      if(/^\d+\)\s/.test(tr)){item={l:[tr.replace(/^\d+\)\s*/,"")],k:chave(tr),via,rot,cabVia:true};
-        item.pula=vistos.has(item.k);if(!item.pula){vistos.add(item.k);(porVia[via]=porVia[via]||(vias.push(via),[])).push(item)}ant=tr;continue}
+      if(/^uso\s/i.test(tr)&&tr.length<40){cab=tr.replace(/:$/,"");rot=null;item=null;ant=tr;continue}   // "Uso …" é sempre cabeçalho
+      if(/^\d+\)\s/.test(tr)){item={l:[tr.replace(/^\d+\)\s*/,"")],k:chave(tr),cab,rot};item.pula=vistos.has(item.k);if(!item.pula){vistos.add(item.k);itens.push(item)}ant=tr;continue}
       if(!tr){item=null;ant="";continue}
-      if(!item||!ant){ // cabeçalho: via ou rótulo
-        const v=atViaDe(tr,"");if(v&&/^uso\s/i.test(tr)){via=v;rot=null}else rot=tr;ant=tr;item=null;continue}
+      if(!item||!ant){rot=tr;ant=tr;item=null;continue}   // rótulo (ex.: "Antibiótico") antes dos seus remédios
       item.l.push(tr); ant=tr;
-      // rótulo que não é via: a via sai da instrução (ex.: "Tomar 1 cp VO")
-      if(item.rot&&item.l.length===2&&!item.pula){const v=atViaDe(item.rot,tr);if(v&&v!==item.via){const a=porVia[item.via];a.splice(a.indexOf(item),1);if(!a.length){delete porVia[item.via];vias.splice(vias.indexOf(item.via),1)}item.via=v;(porVia[v]=porVia[v]||(vias.push(v),[])).push(item)}}
     }
   }
+  // a via sai da instrução do remédio; sem pista, a do cabeçalho
+  const vias=[], porVia={};
+  for(const it of itens){const v=atViaDe(it.cab,it.l.slice(1).join(" ")+" "+it.l[0])||"Uso oral";(porVia[v]=porVia[v]||(vias.push(v),[])).push(it)}
   let n=0; const out=[];
   for(const v of vias){ if(out.length) out.push(""); out.push(v); let r=null;
-    for(const it of porVia[v]){ if(it.rot&&it.rot!==r) out.push(it.rot); r=it.rot; out.push(`${++n}) ${it.l[0]}`,...it.l.slice(1)); } }
+    // uma linha em branco entre um remédio e o próximo (mais fácil de o paciente ler)
+    porVia[v].forEach((it,k)=>{ if(k) out.push(""); if(it.rot&&it.rot!==r) out.push(it.rot); r=it.rot; out.push(`${++n}) ${it.l[0]}`,...it.l.slice(1)); }); }
   return out.join("\n").trim();
 }
 // "+ remédio": posologia de receita da ficha (campo receita) e dias escolhidos → quantidade calculada; e "colar de fora"
@@ -372,14 +382,16 @@ function atAlta(it){
   const rv=atL("reav").filter(([k])=>atd.reav[k]).map(([,t])=>t);
   if(rv.length||atd.reavTxt.trim()) L.push(`- Paciente reavaliado${rv.length?", "+ptLista(rv):""}${atd.reavTxt.trim()?`: ${atd.reavTxt.trim()}`:"."}`.replace(/\.\.$/,"."));
   L.push(...atResultados());
-  if(atd.altaAtest) L.push("- Forneço atestado médico.");
   const ori=atL("ori").filter(([k])=>atd.altaOri[k]!==false).map(([,t])=>t);
   if(ori.length) L.push(`- Paciente orientado sobre ${ptLista(ori)}.`);
-  const vt=atVolte(it).filter((x,i)=>!atd.alarOff[i]).map(x=>semParenteses(x).replace(/\.$/,""));
-  if(vt.length) L.push(`- Oriento quanto aos sinais de alarme e à necessidade de retorno imediato em caso de piora: ${vt.join("; ")}.`);
-  else L.push("- Oriento quanto aos sinais de alarme e à necessidade de retorno imediato em caso de piora.");
+  if(atd.altaAtest) L.push("- Forneço atestado médico.");   // logo abaixo do "orientado sobre", acima do destino
+  const interna=atd.decisao==="internacao"||/intern/.test(atd.destino||"");
+  if(interna) L.push("- Oriento quanto aos sinais de alarme e à necessidade de internação.");
+  else {const vt=atVolte(it).filter((x,i)=>!atd.alarOff[i]).map(x=>semParenteses(x).replace(/\.$/,""));
+    if(vt.length) L.push(`- Oriento quanto aos sinais de alarme e à necessidade de retorno imediato em caso de piora: ${vt.join("; ")}.`);
+    else L.push("- Oriento quanto aos sinais de alarme e à necessidade de retorno imediato em caso de piora.")}
   if(atd.altaLivre.trim()) L.push(...atd.altaLivre.trim().split("\n").map(x=>/^\s*-/.test(x)?x:"- "+x));
-  if(atd.compreende) L.push("- Paciente compreendeu e concorda com as orientações.");
+  if(atd.compreende) L.push(interna?"- Paciente compreendeu e concorda com a conduta.":"- Paciente compreendeu e concorda com as orientações.");
   const dest=(destinos().find(d=>d[0]===(atd.destino??atdDestinoPadrao(it||{})))||[])[2]; if(dest) L.push(dest);
   return L.join("\n");
 }
@@ -496,11 +508,11 @@ function atResBind(box){
   const lb=box.querySelector("#atLabIa");
   if(lb) lb.onclick=async()=>{const est=$("#atLabEst"),dz=t=>{est.hidden=false;est.textContent=t}, tx=$("#atLabCola").value.trim();
     if(!iaAtiva()){dz("Ligue a IA em Documentos › Backup.");return} if(!tx){dz("Cole o resultado antes.");return}
-    lb.disabled=true; dz("Lendo os resultados…");
-    try{const r=await iaLab(tx,atSiglas());const n=Object.keys(r).length;atd.res=Object.assign({},atd.res,r);
+    lb.disabled=true; dz("Lendo os resultados…"); const dono=atd;
+    try{const r=await iaLab(tx,atSiglas());if(atd!==dono){lb.disabled=false;return}const n=Object.keys(r).length;atd.res=Object.assign({},atd.res,r);
       const rb=$("#atResBox");if(rb){rb.innerHTML=atResHTML();atResBind(rb)};atAtualiza();
       const e2=$("#atLabEst");if(e2){e2.hidden=false;e2.textContent=n?`Preenchido: ${Object.entries(r).map(([k,v])=>`${k} ${v}`).join("; ")}. Confira.`:"Nenhum valor alterado encontrado."}}
-    catch(e){dz(e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora.")}
+    catch(e){if(atd!==dono){lb.disabled=false;return}dz(e.message==="tempo"?"A IA demorou demais para responder. Tente de novo.":e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora.")}
     lb.disabled=false};
   box.querySelectorAll("[data-atres]").forEach(i=>i.oninput=()=>{atd.res=Object.assign({},atd.res,{[i.dataset.atres]:i.value});atAtualiza()});
   box.querySelectorAll("[data-atimg]").forEach(i=>i.oninput=()=>{atd.img=Object.assign({},atd.img,{[i.dataset.atimg]:i.value});atAtualiza()});
@@ -696,14 +708,15 @@ function renderEv(){
     ${volte.length?`<div class="atvoltecab"><span class="lbl">Sinais de alarme explicados (toque para tirar)</span><button class="btn sm" data-atvt="0">Tirar todos</button><button class="btn sm" data-atvt="1">Pôr todos</button></div>${atVolteGrupos().map(g=>`${g.c?`<div class="atvoltecond"><b>${esc(g.c.nome)}</b><button class="btn sm" data-atvt="0" data-atvc="${esc(g.c.id)}">Tirar</button><button class="btn sm" data-atvt="1" data-atvc="${esc(g.c.id)}">Pôr</button></div>`:""}<div class="chips atvolte">${g.itens.map(([x,i])=>chip("volte",i,semParenteses(x),!atd.alarOff[i])).join("")}</div>`).join("")}`:""}
     ${atEdit?edLista("reav","Reavaliação")+edLista("ori","Orientado sobre")+`<p class="note">Os sinais de alarme da alta são os do checklist (edite na HDA).</p>`:""}
     ${ta("altaLivre","Outras orientações dadas","ex.: retornar em 48 h para reavaliação")}
-    <div class="atdgrid"><label class="check"><input type="checkbox" data-atd="compreende" ${atd.compreende?"checked":""}> Compreendeu e concorda</label>
+    <div class="atdgrid ataltachk"><div class="atchks"><label class="check grande"><input type="checkbox" data-atd="compreende" ${atd.compreende?"checked":""}> Compreendeu e concorda</label>
+      <label class="check grande"><input type="checkbox" data-atd="altaAtest" ${atd.altaAtest?"checked":""}> Forneço atestado médico</label></div>
       <label class="f">Destino<select class="inp" data-atd="destino" id="evDestino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${esc(v)}" ${destAtual===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label></div>
-    <div class="chips atatest"><button class="chip" data-atatest aria-pressed="${!!atd.altaAtest}">${atd.altaAtest?"✓ ":""}Forneço atestado médico</button></div>
     ${atSaida("alta","Reavaliação e alta")}
     <div class="hospev" id="atHosp"></div></div></div>
   <details class="sec atsec atintern" data-etapa="7" ${/intern/.test(destAtual)||atd.intern.local?"open":""}><summary class="sec-h"><h3>${atPos(7)}. Pedido de internação</h3><span class="alsum">${esc(atLocais().slice(1).map(x=>x[1]).join(", "))}</span></summary><div class="atbody">
     <label class="f">Onde<select class="inp" data-atd="intern.local">${atLocais().map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label>
     <div class="atperg"><b>Para escrever a justificativa, responda:</b><ul>${atL("perg").map(([,p])=>`<li>${esc(p)}</li>`).join("")}</ul></div>
+    <div class="atjustcab"><button class="btn sm" id="atJustIa" title="Monta a justificativa com os dados preenchidos, sem inventar">✨ Escrever justificativa (IA)</button><span class="note" id="atJustEst"></span></div>
     ${ta("motivo","Justificativa (motivo da internação)","ex.: pneumonia com SpO2 89% em ar ambiente e CURB-65 3","intern")}
     <span class="lbl">Objetivo</span><div class="chips">${atL("obj").map(([k,r])=>chip("obj",k,r,atd.intern.obj[k])).join("")}</div>
     ${atEdit?edLista("obj","Objetivos")+edLista("perg","Perguntas da justificativa"):""}
@@ -739,16 +752,16 @@ function atFocoVolta(f){
 }
 // redesenho que vem de fora (nuvem, outro aparelho): espera você sair do campo
 let atRedesenhaDepois=false;
+// campo do Atendimento em uso: os do corpo e os do topo (nome do paciente e busca da conduta)
+const atDigitando=()=>{const a=document.activeElement;return !!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.closest&&a.closest("#atCorpo,#tab-evolucao .attopo"))};
 function renderEvSeguro(){
-  const a=document.activeElement, box=$("#atCorpo");
-  if(ui.tab==="evolucao"&&a&&box&&box.contains(a)&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)){atRedesenhaDepois=true;return}
+  if(ui.tab==="evolucao"&&atDigitando()){atRedesenhaDepois=true;return}
   renderEv();
 }
-$("#atCorpo").addEventListener("focusout",()=>setTimeout(()=>{
-  if(!atRedesenhaDepois) return; const a=document.activeElement, box=$("#atCorpo");
-  if(a&&box.contains(a)&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return;
+["#atCorpo","#tab-evolucao .attopo"].forEach(q=>{const x=$(q);if(x)x.addEventListener("focusout",()=>setTimeout(()=>{
+  if(!atRedesenhaDepois||atDigitando()) return;
   atRedesenhaDepois=false; const y=window.scrollY; renderEv(); window.scrollTo(0,y);
-},0));
+},0))});
 function atAtualiza(){
   const it=atItem(); pacSnapLogo();
   atdSessaoLogo();
@@ -821,11 +834,14 @@ function bindEv(it){
     ks2.forEach(k=>(exDe(k).pedir||[]).forEach(x=>{const nome=exNome(x.t);if(nome&&!lista.some(y=>norm(y.nome)===norm(nome)))lista.push({nome,t:x.t})}));
     if(!lista.length){dz(`<p class="note">Esta conduta não tem lista de exames para pedir.</p>`);return}
     let ctx=[atTexto("hda",atItem()),atTexto("exame",atItem()),"Hipóteses: "+atConds().map(c=>c.nome).join("; ")].join("\n\n");
-    const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) nome.split(/\s+/).filter(x=>x.length>2).forEach(n=>{ctx=ctx.split(n).join("paciente")});
+    const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) ctx=iaSemNome(ctx,nome);
+    // a resposta só vale para o atendimento que a pediu (trocar de paciente durante a espera descarta)
+    const dono=atd;
     dz(`<p class="note">Analisando…</p>`);
     try{const r=await iaSugereExames(ctx,lista);
-      atExSugR=r; dz(atExSugHTML()); atExSugBind(bx)}
-    catch(e){dz(`<p class="note">${e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}</p>`)}};
+      if(atd!==dono) return;
+      atExSugR=r; const bx2=$("#atExSug"); if(!bx2) return; bx2.hidden=false; bx2.innerHTML=atExSugHTML(); atExSugBind(bx2)}
+    catch(e){if(atd!==dono)return;const bx2=$("#atExSug");if(!bx2)return;bx2.hidden=false;bx2.innerHTML=(`<p class="note">${e.message==="tempo"?"A IA demorou demais para responder. Tente de novo.":e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}</p>`)}};
   // exames digitados à mão: ao sair do campo, só o quadro de resultados é refeito (sem redesenhar a tela e perder texto)
   box.querySelectorAll('[data-atd="exLab"],[data-atd="exImg"]').forEach(t=>t.addEventListener("change",()=>{const r=$("#atResBox");if(r){r.innerHTML=atResHTML();atResBind(r)}}));
   atResBind(box);
@@ -845,16 +861,23 @@ function bindEv(it){
   box.querySelectorAll("[data-atout]").forEach(ta=>ta.addEventListener("input",()=>{const k=ta.dataset.atout;if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}atd.man[k]=ta.value;grow(ta);$(`#atCorpo [data-atman="${k}"]`).hidden=false;atdSessaoLogo();pacSnapLogo()}));
   // IA na HDA: troca o texto pelo melhorado (fica como edição sua, com Desfazer); a trava de números está em iaMelhora
   box.querySelectorAll("[data-atia]").forEach(b=>b.onclick=async()=>{
-    const k=b.dataset.atia||"hda", est=$(`#atCorpo [data-atiaest="${k}"]`), ta=$(`#atCorpo [data-atout="${k}"]`), dz=t=>{est.hidden=false;est.innerHTML=t};
+    const k=b.dataset.atia||"hda"; let est=$(`#atCorpo [data-atiaest="${k}"]`), ta=$(`#atCorpo [data-atout="${k}"]`); const dz=t=>{est.hidden=false;est.innerHTML=t};
     if(!iaAtiva()){dz(`Ligue a IA em Documentos › Backup (cole a chave da Anthropic).`);return}
     let tx=ta.value; if(!tx.trim()){toast("HDA vazia");return}
-    const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) nome.split(/\s+/).filter(x=>x.length>2).forEach(n=>{tx=tx.replace(new RegExp(`\\b${n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}\\b`,"gi"),"paciente")});
+    const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) tx=iaSemNome(tx,nome);
+    // guarda de quem é o pedido e o texto mandado: a resposta não pode cair em outro paciente nem apagar o que foi digitado
+    const dono=atd, txOrig=ta.value, tela=()=>({ta:$(`#atCorpo [data-atout="${k}"]`),est:$(`#atCorpo [data-atiaest="${k}"]`)});
     b.disabled=true; dz("Melhorando o texto…");
-    try{const out=k==="hda"?await iaMelhora(tx):await iaChama(k==="exame"?IA_EXAME:IA_INTERN,tx);if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}
+    try{const out=k==="hda"?await iaMelhora(tx):await iaChama(k==="exame"?IA_EXAME:IA_INTERN,tx);
+      const T=tela(), dz2=t=>{if(T.est){T.est.hidden=false;T.est.innerHTML=t}};
+      if(atd!==dono){toast("Você trocou de paciente: a resposta da IA foi descartada");b.disabled=false;return}
+      if(!T.ta||T.ta.value!==txOrig){dz2("O texto mudou enquanto a IA respondia: mantive o seu. Toque de novo para melhorar.");b.disabled=false;return}
+      ta=T.ta; est=T.est;
+      if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}
       const antes=ta.value; atd.man[k]=out; ta.value=out; grow(ta); atAtualiza();
       dz(`Texto melhorado pela IA: confira antes de copiar. <button class="btn sm" data-iadesfaz>Desfazer</button>`);
       est.querySelector("[data-iadesfaz]").onclick=()=>{atd.man[k]=antes;ta.value=antes;grow(ta);atAtualiza();dz("Voltou ao texto anterior.")}}
-    catch(e){dz(e.message==="numeros"?`A IA mudou ou tirou um número do texto${e.det?` (${esc(e.det)})`:""}: mantive o original. Tente de novo.`:/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
+    catch(e){if(atd!==dono){b.disabled=false;return}dz(e.message==="tempo"?"A IA demorou demais para responder. O texto ficou como estava; tente de novo.":e.message==="numeros"?`A IA mudou ou tirou um número do texto${e.det?` (${esc(e.det)})`:""}: mantive o original. Tente de novo.`:/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
     b.disabled=false;
   });
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});
@@ -868,13 +891,22 @@ function bindEv(it){
   box.querySelectorAll("[data-atir]").forEach(b=>b.onclick=()=>{const sec=$(`#atCorpo [data-etapa="${b.dataset.atir}"]`);if(!sec)return;if(sec.tagName==="DETAILS")sec.open=true;sec.scrollIntoView({behavior:"smooth",block:"start"})});
   box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));
   // tirar ou pôr todos os sinais de alarme (no geral ou de uma conduta)
-  box.querySelectorAll("[data-atatest]").forEach(b=>b.onclick=()=>{atd.altaAtest=!atd.altaAtest;b.setAttribute("aria-pressed",atd.altaAtest);b.textContent=(atd.altaAtest?"✓ ":"")+"Forneço atestado médico";atAtualiza()});
   box.querySelectorAll("[data-atori]").forEach(b=>b.onclick=()=>{const k=b.dataset.atori;atd.oriOff=Object.assign({},atd.oriOff);atd.oriOff[k]=!atd.oriOff[k];if(!atd.oriOff[k])delete atd.oriOff[k];b.setAttribute("aria-pressed",!atd.oriOff[k]);atAtualiza()});
   if($("#atOriPadrao")) $("#atOriPadrao").onclick=()=>{const off=atd.oriOff||{};if(!Object.keys(off).length){toast("Toque nas orientações que quer tirar antes");return}
     let n=0; atConds().forEach(c=>{const o=String(cur(c,"orient")||"");const fica=o.split("\n").filter(l=>!off[norm(l)]);if(fica.length===o.split("\n").length)return;
       const base=overrides[c.id]&&!overrides[c.id].deleted?overrides[c.id]:{};overrides[c.id]=Object.assign({},base,{nome:c.nome,cat:c.cat,cid:c.cid,sin:c.sin,casa:base.casa??getItem(c.id).casa,unidade:base.unidade??c.unidade,orient:fica.join("\n"),updatedAt:Date.now()});delete overrides[c.id].restored;n++});
     persistLocal(); if(typeof gsAgenda==="function") gsAgenda(); atd.oriOff={}; toast(n?`Orientações salvas como padrão (${n} conduta${n>1?"s":""}); para voltar, use "Restaurar" na conduta`:"Nada a mudar"); const y=window.scrollY; renderEv(); window.scrollTo(0,y)};
   box.querySelectorAll("[data-atcl]").forEach(b=>b.onclick=()=>{const k=b.dataset.atcl,c=b.dataset.c;atd.exOff=Object.assign({},atd.exOff);const l=new Set(atd.exOff[k]||[]);l.has(c)?l.delete(c):l.add(c);atd.exOff[k]=[...l];b.setAttribute("aria-pressed",!l.has(c));atAtualiza()});
+  if($("#atJustIa")) $("#atJustIa").onclick=async()=>{const est=$("#atJustEst"),b=$("#atJustIa");if(!iaAtiva()){est.textContent="Ligue a IA em Documentos › Backup.";return}
+    const it=atItem(), loc=(atLocais().find(x=>x[0]===atd.intern.local)||[])[1]||"";
+    let ctx=[atTexto("hda",it),atTexto("exame",it),"Exames: "+[atInternAuto().lab,atInternAuto().laudos].filter(Boolean).join(" "),"Hipóteses: "+atConds().map(c=>c.nome).join("; "),loc?"Local pedido: "+loc:"",atd.intern.feito?"Feito no PS: "+atd.intern.feito:""].filter(Boolean).join("\n\n");
+    const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) ctx=iaSemNome(ctx,nome);
+    const quem=atPac; b.disabled=true; est.textContent="Escrevendo…";
+    try{const t=await iaJustifica(ctx); if(atPac!==quem){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
+      const ta=$('#atCorpo [data-atd="intern.motivo"]'); const antes=atd.intern.motivo; atd.intern.motivo=t; if(ta){ta.value=t;grow(ta)} atAtualiza();
+      est.innerHTML=`Escrita pela IA: confira. <button class="btn sm" id="atJustDesfaz">Desfazer</button>`; $("#atJustDesfaz").onclick=()=>{atd.intern.motivo=antes;if(ta){ta.value=antes;grow(ta)}atAtualiza();est.textContent="Voltou ao anterior."}}
+    catch(e){est.textContent=e.message==="numeros"?`A IA pôs um número que não está nos dados (${e.det}): descartei.`:/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}
+    b.disabled=false};
   box.querySelectorAll("[data-atvt]").forEach(b=>b.onclick=()=>{const on=b.dataset.atvt==="1", c=b.dataset.atvc;
     const alvo=c?(atVolteGrupos().find(g=>g.c&&g.c.id===c)||{itens:[]}).itens.map(([,i])=>i):atVolte().map((x,i)=>i);
     atd.alarOff=Object.assign({},atd.alarOff); alvo.forEach(i=>{if(on)delete atd.alarOff[i];else atd.alarOff[i]=true});

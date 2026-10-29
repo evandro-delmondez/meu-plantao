@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.53.1 — 2026-10-30
+- **Tudo que é IM fica na unidade**: penicilina G benzatina saiu da receita da amigdalite (continua na unidade); ceftriaxona 500 mg IM da prostatite (homem < 35 anos com risco de IST) passou para a unidade, e a doxiciclina continua na receita.
+- **Metronidazol e álcool**: 3 dias depois em todas as condutas (odontalgia corrigida).
+- **Rivaroxabana**: alerta renal "evitar se ClCr < 30", como em TEP e TVP.
+- **Constipação**: as orientações não ensinam mais o fosfato de sódio retal (Fleet), que é feito só na unidade.
+- **Colangite**: metronidazol de rotina, como no HC-FMUSP (a TG18 só pede com anastomose biliodigestiva).
+
 ## 1.53.0 — 2026-10-29
 - **Pedido de internação mais direto**: sem "Solicito internação em…" nem "Hipótese diagnóstica" (vão em outros campos do MV); começa por História e Exame físico, e segue com exames, laudos, conduta no PS, parecer e justificativa.
 - **Objetivos da internação em caixas de seleção e em tópicos** (um por linha); "Outros objetivos" aceita um por linha.

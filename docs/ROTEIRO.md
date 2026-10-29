@@ -18,43 +18,27 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
-**Próximas melhorias de fluxo (escolhidas pelo médico em 2026-10-26):** ditado por voz na HDA (avisar sobre privacidade do Chrome); colar o resultado do laboratório do MV e a IA preencher as siglas alteradas; IA na justificativa da internação e na evolução da reavaliação. Sugeridas: "restante negativo" no checklist; orientação de alta por QR/impressa; aviso sonoro de reavaliação; tempo por etapa.
-**Retomar primeiro (2026-10-25, sessão parou no limite de tokens):**
-- As 14 fichas novas sugeridas (.rascunhos/receita-fichas.json "_novas") precisam virar fichas completas; pendentes levofloxacino 750 e amoxicilina 875 (CMED); ivermectina "doses".
-- A pensar com o médico: cor por classe de remédio na receita; quadro "Para você, não vai na receita".
-Atualizado em 2026-10-22 (versão 1.22.3). Decisões: `docs/DECISOES.md`. Divergências registradas: `docs/REVISAO.md`.
+Atualizado em 2026-10-30 (versão 1.53.1). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
 
-**Feito em 2026-10-22:** sincronização da lista, nuvem dos padrões, hospital e senha de acesso ligados pelo médico.
+**Conteúdo clínico (redação + conferência independente)**
+1. Atualizar fontes antigas: crise hipertensiva (ACC/AHA 2025), ARIA 2010, BTS 2009, ACCP 2012/2016, ATLS 11ª, EAU 2025, GINA na ficha da prednisona, WAO 2020 (lista em revisao-conteudo.md).
+2. Condutas novas (1º lote sugerido): pancreatite aguda, diverticulite, meningite, AIT e AVC hemorrágico, pneumotórax, cetoacidose/estado hiperosmolar, hemorragia digestiva baixa, paralisia facial. Depois: celulite e abscesso, dissecção de aorta, hiponatremia/hipocalemia, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica, overdose de opioide, COVID-19, varicela, chikungunya, febre maculosa, fraturas e imobilização, tendinite e bursite.
+3. Fichas: as 14 sugeridas para o "+ remédio" (desloratadina, cetirizina, levocetirizina, fexofenadina, hidroxizina, nistatina, cetoconazol creme, ivermectina, albendazol, salbutamol, naproxeno, nimesulida, ciclobenzaprina, tiocolchicosídeo); levofloxacino 750 e amoxicilina 875 (CMED); fichas de piperacilina-tazobactam, meropeném, ampicilina-sulbactam; demais da lista antiga (sumatriptano, colchicina, aciclovir, anti-hipertensivos orais, broncodilatadores…). Formas: cp × cáps nas condutas.
+4. Da revisão de conteúdo: dengue sem alta leiga; hpb e tireoide pedem exames que não estão na aba Exames; Hexomedine e Amidalin sem fonte; probiótico "(opcional)" da diarreia na criança vem ligado; ficha do cetorolaco (IR: 45 mg/dia) × condutas; insônia e crise hipertensiva com orientações sob "Uso oral".
+5. Atualizações antigas: EAP (ESC 2026), ureia no CURB-65 da calculadora, Parkland pediátrico, máximo do MART, PAC pela ATS 2026.
 
-**Decisões do médico**
-1. Divergências hospital × app (dengue 20 × 10 mL/kg; AVC alteplase × tenecteplase; PA pós-trombólise; lactato; acesso da noradrenalina; tenecteplase ≥ 75 anos) — registrar no pacote (campo `decisao`).
-2. Divergências dos exames (10, `docs/REVISAO.md` 2026-10-22) e a opcional (antibiótico na PAC com vírus positivo).
-3. Pontos para a coordenação do hospital (`plantao-hsls/docs/divergencias.md`).
+**Segurança**
+6. Peso implausível; "UI" → "unidades"; tetos de dose nas fichas; alertas de gestante que faltam (hidroxizina, itraconazol, rivaroxabana, apixabana, valproato, fenobarbital); alergia a AINE e sulfa; teste que compare doses entre abas.
 
-**Atendimento e MV**
-4. Modelo real do MV (print dos campos) para ajustar os botões de copiar; print da lista de exames do MV para usar os nomes do hospital no "+ pedir".
-5. Visual: o médico aponta o que ainda polui.
-5a. (2026-10-25) Redesenho do Atendimento: ~~barra de etapas~~ (1.29.0); quadro "o essencial" em destaque com os porquês num ⓘ; visão única com 2+ queixas; checklist e exames enxutos; avisos num quadro só. Depois: HDA em texto corrido (semiologia, notas soltas + toques; antecedentes em comorbidades, cirurgias, internações), exame só com alterações, atalhos de frase; e botão opcional "Melhorar texto (IA)" com chave da API do médico (exceção à regra 5 a registrar).
-5b. (2026-10-25) Remédio extra na receita a um toque: trazer da ficha de Remédios com posologia e dias (calcula a quantidade), ou colar uma prescrição de fora (ex.: Whitebook) e o app formatar.
-5c. (2026-10-25) Meu hospital dentro de Documentos; busca nos protocolos do hospital fácil de achar (ex.: "reposição de ferro: pode ou não pode").
-5d. (2026-10-25) Cálculos acionados na própria conduta quando necessários (escores e doses por peso ligados).
-5e. (2026-10-25) Lista de pacientes: "passei para outro médico" tira da tela e não conta como meu paciente.
+**Fluxo e app**
+7. Ditado por voz na HDA (avisar privacidade do Chrome; usar no celular se o PC não tiver microfone).
+8. Orientação de alta por QR ou impressa; aviso sonoro de reavaliação; tempo por etapa no relógio.
+9. Modo Sala Vermelha (quando o médico trabalhar na sala vermelha).
+10. Plantões: UPA quando for convocado; data de pagamento recebido; resumo do mês.
 
-**Conteúdo clínico (com fonte e conferência)**
-6. Exames e encaminhamento para as demais condutas (feito: 8 queixas e 44 condutas, 1.24.0); rever a conduta pac pela atualização ATS 2026.
-7. ~~Queixas lombalgia e dor musculoesquelética~~ (1.24.0); outras queixas; conduta de cervicalgia/torcicolo.
-8. ~~Separar TEP e TVP~~ (1.34.0). ~~Síncope, pericardite, odontalgia~~ (2026-10-26, aplicadas, sem commit; decisões pendentes em `docs/REVISAO.md`). Condutas novas: pneumotórax, chikungunya, febre maculosa, meningite.
-9. Condições que faltam (~~olho vermelho e corpo estranho, retenção urinária, escroto agudo~~ aplicadas em 2026-10-26): paralisia facial, AVC hemorrágico e AIT, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica e overdose de opioide, zika, varicela, COVID-19, fraturas e imobilização, cervicalgia, tendinite e bursite.
-10. Fichas que faltam: sumatriptano, colchicina, alopurinol, ciclobenzaprina, tiamina, clopidogrel, aciclovir, valaciclovir, ivermectina, permetrina, anti-hipertensivos orais, furosemida, isossorbida, broncodilatadores, antifúngicos, cetirizina e hidroxizina, levotiroxina e metimazol, tópicos.
-11. Altas leigas das condutas que ainda não têm.
-12. Atualizações: EAP (ESC 2026), título do guia de influenza, ureia no CURB-65 da calculadora, Parkland pediátrico (ATLS 11), máximo do MART (bula do Vannair).
-13. Segurança (auditoria de 2026-10-09): peso implausível; "UI" → "unidades" (heparina, ocitocina, vasopressina); tetos de dose em fichas; alertas de gestante (hidroxizina, itraconazol, rivaroxabana, apixabana, valproato, fenobarbital); alergia a dipirona, AINE e sulfa; teste que compare doses entre abas.
-14. Da simulação: "álcool?" na agitação; alarme cruzado (epigástrica em diabético → ECG); sinônimos leigos na busca; faixa da otite na ficha da amoxicilina.
-
-**Sala vermelha e extras (baixa prioridade: o médico atende a porta)**
-15. Cartão Agora nas outras 11 emergências e na hiponatremia grave; vazão inicial da noradrenalina em mL/h no cartão da sepse.
-16. Confiança visível (selo, data, página de Fontes); modo transporte (SAMU); domínio próprio (adiado).
-17. Divergências antigas sem mudança: glucagon (RCUK × AAAAI); valproato 10 × 60 min; biperideno VO infantil. Opcionais dos conferentes: MACOCHA, Holbrook 2012, teto de glicose ISPAD, bula do Metalyse, PALS 2025.
+**Esperam o médico**
+11. Divergências hospital × app (dengue, AVC, PA pós-trombólise, lactato, noradrenalina, tenecteplase ≥ 75 anos) e dos exames (~10).
+12. Prints do MV: nomes dos exames do hospital no "+ pedir".
 
 ## Ideias em espera
 - **Modo Sala Vermelha** (pedido do médico, 2026-10-28, para quando trabalhar na sala vermelha): um botão que transforma o app inteiro (barra, telas e atalhos de emergência) e outro para voltar ao modo porta (verde e amarela).

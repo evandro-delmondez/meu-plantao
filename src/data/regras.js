@@ -92,7 +92,7 @@ const RULES=[
 {re:/enoxaparina/i, nome:"Enoxaparina",
  renal:["ClCr < 30: reduzir a dose (1 mg/kg 1x/dia).","beers"]},
 {re:/rivaroxabana/i, nome:"Rivaroxabana",
- renal:["Evitar se ClCr < 15; ajustar entre 15 e 50.","beers"]},
+ renal:["Evitar se ClCr < 30 (como nas condutas de TEP e TVP; a bula não recomenda < 15 e pede cautela entre 15 e 29); ajustar até 50.","beers"]},
 {re:/\baciclovir/i, nome:"Aciclovir",
  renal:["Ajustar ao ClCr: herpes simples, ClCr < 10 → 200 mg de 12/12h; zoster, ClCr 10–25 → 800 mg de 8/8h e < 10 → 800 mg de 12/12h.","bula"]},
 {re:/\baciclovir[^\n]{0,60}\bEV\b/i, nome:"Aciclovir EV",

@@ -404,12 +404,9 @@ function atInternAuto(){
 }
 function atIntern(it){
   const I=atd.intern, L=[];
-  const loc=(atLocais().find(x=>x[0]===I.local)||[])[1];
-  L.push(`Solicito internação${loc?` em ${loc}`:""}.`);
-  if(atConds().length) L.push(atConds().length>1?`Hipóteses diagnósticas: ${atConds().map(atHip).join("; ")}.`:`Hipótese diagnóstica: ${atHip(atConds()[0])}.`);
-  if(atd.hma.trim()) L.push(`História: ${atd.hma.trim()}`);
-  if(atItens(atd.ap).length) L.push(atLista("HPP",atItens(atd.ap)));
-  const sv=atSv(); if(sv) L.push(sv);
+  // começa pela história e pelo exame físico (o local e a hipótese ficam em outros campos do MV)
+  const hda=(atd.man.hda!=null?atd.man.hda:atTexto("hda",it)).trim(); if(hda) L.push(`História: ${hda}`);
+  const ex=(atd.man.exame!=null?atd.man.exame:atTexto("exame",it)).trim(); if(ex) L.push(/^Exame físico/i.test(ex)?ex:`Exame físico: ${ex}`);
   // campos vazios puxam da reavaliação (exames alterados e laudos) e do que foi marcado no PS
   const au=atInternAuto(), lab=I.lab.trim()||au.lab, laudos=I.laudos.trim()||au.laudos, feito=I.feito.trim()||au.feito;
   if(lab) L.push(`Exames laboratoriais relevantes: ${lab}`);
@@ -417,8 +414,9 @@ function atIntern(it){
   if(feito) L.push(`Conduta no PS: ${feito}`);
   if(I.parecer.trim()) L.push(`Parecer: ${I.parecer.trim()}`);
   L.push(`Justificativa: ${I.motivo.trim()||"___"}`);
-  const ob=atL("obj").filter(([k])=>I.obj[k]).map(([,t])=>t);
-  if(ob.length||I.objLivre.trim()) L.push(`Objetivo da internação: ${[...ob,I.objLivre.trim()].filter(Boolean).join("; ")}.`);
+  // objetivos em tópicos, um por linha (marcados + sugeridos pela IA e marcados + livre)
+  const ob=[...atL("obj").filter(([k])=>I.obj[k]).map(([,t])=>t),...(I.objIa||[]).filter(x=>x.on).map(x=>x.t),...atItens(I.objLivre)];
+  if(ob.length) L.push(`Objetivos da internação:\n${ob.map(x=>"- "+x.charAt(0).toUpperCase()+x.slice(1)).join("\n")}`);
   return L.join("\n\n");   // um espaço entre os tópicos
 }
 function atAtestado(it){
@@ -718,9 +716,10 @@ function renderEv(){
     <div class="atperg"><b>Para escrever a justificativa, responda:</b><ul>${atL("perg").map(([,p])=>`<li>${esc(p)}</li>`).join("")}</ul></div>
     <div class="atjustcab"><button class="btn sm" id="atJustIa" title="Monta a justificativa com os dados preenchidos, sem inventar">✨ Escrever justificativa (IA)</button><span class="note" id="atJustEst"></span></div>
     ${ta("motivo","Justificativa (motivo da internação)","ex.: pneumonia com SpO2 89% em ar ambiente e CURB-65 3","intern")}
-    <span class="lbl">Objetivo</span><div class="chips">${atL("obj").map(([k,r])=>chip("obj",k,r,atd.intern.obj[k])).join("")}</div>
+    <div class="atobjcab"><span class="lbl">Objetivos da internação</span><button class="btn sm" id="atObjIa" title="Sugere objetivos específicos para o caso">✨ Sugerir objetivos (IA)</button><span class="note" id="atObjEst"></span></div>
+    <div class="atobjs">${atL("obj").map(([k,r])=>`<label class="check"><input type="checkbox" data-atobj="${esc(k)}" ${atd.intern.obj[k]?"checked":""}> ${esc(r)}</label>`).join("")}${(atd.intern.objIa||[]).map((x,i)=>`<label class="check atobjia"><input type="checkbox" data-atobjia="${i}" ${x.on?"checked":""}> ${esc(x.t)} <span class="note">(IA)</span></label>`).join("")}</div>
     ${atEdit?edLista("obj","Objetivos")+edLista("perg","Perguntas da justificativa"):""}
-    ${ta("objLivre","Outro objetivo","","intern")}
+    ${ta("objLivre","Outros objetivos (um por linha)","ex.: parecer da cirurgia geral","intern")}
     ${ta("lab","Exames laboratoriais relevantes (vazio = os alterados da reavaliação)","ex.: leucócitos 18.000; PCR 25; creatinina 1,8","intern")}
     ${ta("laudos","Laudos de imagem (vazio = os da reavaliação)","ex.: TC de tórax: consolidação em lobo inferior direito","intern")}
     ${ta("feito","O que já foi feito no PS (vazio = medicação marcada e exames pedidos)","ex.: ceftriaxona 1 g EV, 1.000 mL de SF","intern")}
@@ -907,6 +906,18 @@ function bindEv(it){
       est.innerHTML=`Escrita pela IA: confira. <button class="btn sm" id="atJustDesfaz">Desfazer</button>`; $("#atJustDesfaz").onclick=()=>{atd.intern.motivo=antes;if(ta){ta.value=antes;grow(ta)}atAtualiza();est.textContent="Voltou ao anterior."}}
     catch(e){est.textContent=e.message==="numeros"?`A IA pôs um número que não está nos dados (${e.det}): descartei.`:/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}
     b.disabled=false};
+  box.querySelectorAll("[data-atobj]").forEach(c=>c.onchange=()=>{atd.intern.obj[c.dataset.atobj]=c.checked;atAtualiza()});
+  box.querySelectorAll("[data-atobjia]").forEach(c=>c.onchange=()=>{const x=(atd.intern.objIa||[])[+c.dataset.atobjia];if(x){x.on=c.checked;atAtualiza()}});
+  if($("#atObjIa")) $("#atObjIa").onclick=async()=>{const est=$("#atObjEst"),b=$("#atObjIa");if(!iaAtiva()){est.textContent="Ligue a IA em Documentos › Backup.";return}
+    const it=atItem(), ja=[...atL("obj").filter(([k])=>atd.intern.obj[k]).map(([,t])=>t),...(atd.intern.objIa||[]).map(x=>x.t)];
+    let ctx=[atTexto("hda",it),atTexto("exame",it),"Exames: "+[atInternAuto().lab,atInternAuto().laudos].filter(Boolean).join(" "),"Hipóteses: "+atConds().map(c=>c.nome).join("; "),"Já marcados: "+(ja.join("; ")||"nenhum")].join("\n\n");
+    const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) ctx=iaSemNome(ctx,nome);
+    const quem=atPac; b.disabled=true; est.textContent="Pensando…";
+    try{const r=await iaObjetivos(ctx); if(atPac!==quem){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
+      const novos=r.filter(t=>!ja.some(y=>norm(y)===norm(t))).map(t=>({t,on:false}));
+      atd.intern.objIa=[...(atd.intern.objIa||[]),...novos]; const y=window.scrollY; renderEv(); window.scrollTo(0,y);
+      const e2=$("#atObjEst"); if(e2) e2.textContent=novos.length?`${novos.length} sugestão(ões) da IA: marque as que quiser.`:"Sem sugestões novas."}
+    catch(e){est.textContent=/^40[13]/.test(e.message)?"Chave da IA recusada.":e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":"Não consegui falar com a IA agora."; b.disabled=false}};
   box.querySelectorAll("[data-atvt]").forEach(b=>b.onclick=()=>{const on=b.dataset.atvt==="1", c=b.dataset.atvc;
     const alvo=c?(atVolteGrupos().find(g=>g.c&&g.c.id===c)||{itens:[]}).itens.map(([,i])=>i):atVolte().map((x,i)=>i);
     atd.alarOff=Object.assign({},atd.alarOff); alvo.forEach(i=>{if(on)delete atd.alarOff[i];else atd.alarOff[i]=true});

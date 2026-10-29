@@ -111,14 +111,16 @@ test("alta em tópicos e pedido de internação com justificativa, sem repetir a
   await campo(page, "destino").selectOption("internacao");
   await campo(page, "intern.local").selectOption("uti");
   await campo(page, "intern.motivo").fill("SpO2 88% em ar ambiente e CURB-65 3");
-  await page.locator('#atCorpo [data-atchip="obj"][data-k="atb"]').click();
+  await page.check('#atCorpo [data-atobj="atb"]');
   await campo(page, "intern.lab").fill("leucócitos 19.000");
   const int = await saida(page, "intern").inputValue();
-  expect(int).toMatch(/^Solicito internação em UTI\.\n\n/);                        // um espaço entre os tópicos
+  expect(int).toMatch(/^História: /);                                               // começa pela história (sem "Solicito internação" nem hipótese)
+  expect(int).not.toMatch(/Solicito internação|Hipótese diagnóstica/);
+  expect(int).toMatch(/\n\nExame físico/);                                          // um espaço entre os tópicos
   await campo(page, "hma").fill("tosse há 4 dias");
   await expect(saida(page, "hda")).toHaveValue(/^Paciente refere tosse há 4 dias\.[^\n]*\n\nHPP:/);   // e entre a HDA e os antecedentes
   expect(int).toMatch(/Justificativa: SpO2 88%/);
-  expect(int).toMatch(/Objetivo da internação: antibioticoterapia EV\./);
+  expect(int).toMatch(/Objetivos da internação:\n- Antibioticoterapia EV/);          // em tópicos
   expect(int).toMatch(/Exames laboratoriais relevantes: leucócitos 19\.000/);
   await expect(page.locator("#atCorpo .atperg li")).toHaveCount(5);
   // editar um campo à mão não é sobrescrito; "Refazer" volta ao automático
@@ -773,3 +775,17 @@ test("IA escreve a justificativa da internação só com os dados (número inven
   await expect(page.locator("#atJustEst")).toContainText("descartei");
   expect(erros).toEqual([]);
 });
+
+test("IA sugere objetivos da internação (caixas para marcar, em tópicos, sem número)", async ({ page }) => {
+  await page.route("https://api.anthropic.com/**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ content: [{ type: "text", text: '["anticoagulação plena","parecer da pneumologia","dose de 80 mg"]' }] }) }));
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await atender(page, "tep");
+  await page.click('#atCorpo [data-atdec="internacao"]');
+  await page.click("#atObjIa");
+  await expect(page.locator("#atCorpo .atobjia")).toHaveCount(2);           // o item com número é descartado
+  await page.locator('#atCorpo [data-atobjia="0"]').check();
+  await expect(saida(page, "intern")).toHaveValue(/Objetivos da internação:\n- Anticoagulação plena/);
+  expect(erros).toEqual([]);
+});
+

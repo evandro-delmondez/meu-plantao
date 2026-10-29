@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.53.0 — 2026-10-29
+- **Pedido de internação mais direto**: sem "Solicito internação em…" nem "Hipótese diagnóstica" (vão em outros campos do MV); começa por História e Exame físico, e segue com exames, laudos, conduta no PS, parecer e justificativa.
+- **Objetivos da internação em caixas de seleção e em tópicos** (um por linha); "Outros objetivos" aceita um por linha.
+- **"✨ Sugerir objetivos (IA)"**: a IA propõe objetivos breves e específicos para o caso (ex.: anticoagulação plena no TEP, parecer da especialidade); eles aparecem como caixas para você marcar (sem dose nem número).
+
 ## 1.52.0 — 2026-10-29
 - **Cólica renal e vias biliares separadas** (conferido): "Cólica renal / Litíase urinária" (EAU 2026, AUA 2026; tansulosina para cálculo distal de 5–10 mm, opcional) e conduta nova **Vias biliares** — cólica biliar, colecistite, coledocolitíase e colangite (Tokyo Guidelines 2018, ASGE 2019), com antibiótico por gravidade e cirurgia/CPRE quando indicado.
 - **Cetorolaco corrigido** (lombalgia e contratura): só na insuficiência renal leve; contraindicado com desidratação e insuficiência renal moderada ou grave (bula Toragesic).

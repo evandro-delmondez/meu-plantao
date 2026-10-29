@@ -147,6 +147,14 @@ async function iaJustifica(ctx){
   if(novos.length){const e=new Error("numeros");e.det=`apareceu: ${novos.join(", ")}`;throw e}
   return out;
 }
+const IA_OBJ=`Você é médico emergencista no Brasil. Entre <entrada> e </entrada> há os dados de um paciente que vai ser internado (HDA, exame, exames, hipóteses, local) e os objetivos já marcados.
+Sugira de 2 a 5 OUTROS objetivos da internação, específicos para este caso, cada um em poucas palavras (ex.: "parecer da cirurgia geral", "anticoagulação plena", "controle glicêmico", "investigação de foco infeccioso", "reposição volêmica guiada"). Não repita os já marcados, não invente dado, não ponha dose nem número.
+Responda SÓ com JSON, sem comentários: ["objetivo 1","objetivo 2"].`;
+async function iaObjetivos(ctx){
+  const out=await iaChama(IA_OBJ,ctx,false);
+  let a; try{a=JSON.parse(out.replace(/^[^\[]*/,"").replace(/[^\]]*$/,""))}catch(e){throw new Error("formato")}
+  return (Array.isArray(a)?a:[]).map(x=>String(x).trim().replace(/\.$/,"")).filter(x=>x&&x.length<=80&&!/\d/.test(x)).slice(0,5);
+}
 async function iaMelhora(texto){
   const r=await iaFetch({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt(),messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]});
   if(!r.ok){let m="";try{m=(await r.json()).error?.message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}

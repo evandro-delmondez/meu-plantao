@@ -141,7 +141,7 @@ function renderPacientes(){
         ${!p.desf.tipo||p.desf.tipo==="obs"?`<input class="inp pcassume" data-passume list="pcMedicos" value="${esc(p.assume||"")}" placeholder="quem assume" aria-label="Médico que assume ${esc(p.nome)}" autocomplete="off"><input class="inp pcassume pccons" data-pconsmed value="${esc(p.consMed||"")}" placeholder="consultório dele" aria-label="Consultório do médico que assume ${esc(p.nome)}" autocomplete="off">`:""}
         <label class="check"><input type="checkbox" data-psabe ${p.sabe?"checked":""}> ciente da troca</label>
         <button class="btn sm" data-pabrir>Abrir atendimento</button>${!p.desf.tipo||p.desf.tipo==="obs"?`<button class="btn sm" data-ppassa>Passei para outro médico</button>`:""}<button class="btn sm danger" data-papagar>Apagar</button></div></div>`}).join("")}).join(""):`<div class="panel card"><p class="note">Nenhum paciente ainda. Digite o nome acima ou no topo do Atendimento.</p></div>`}</div>
-    ${passados.length?`<details class="panel card pcpassados"><summary><h3>Passados (${passados.length}) — não contam</h3></summary><ul class="qlist">${passados.map(p=>`<li data-pid="${p.id}"><b>${esc(p.nome)}</b> · ${p.desf.tipo==="especialidade"?"outra especialidade":"outro médico"} · ${esc(pacHip(p)||"sem hipótese")} · ${pacHora(p.desf.t||p.criado)} <button class="btn sm" data-pvolta="${p.id}">Voltar para a lista</button></li>`).join("")}</ul></details>`:""}
+    ${passados.length?`<details class="panel card pcpassados"><summary><h3>Passados (${passados.length}) — não contam</h3></summary><ul class="qlist">${passados.map(p=>`<li data-pid="${p.id}"><b>${esc(p.nome)}</b> · ${p.desf.tipo==="especialidade"?"outra especialidade":"outro médico"} · ${esc(pacHip(p)||"sem hipótese")} · ${pacHora(p.desf.t||p.criado)} <button class="btn sm" data-pabre2="${p.id}">Abrir</button><button class="btn sm" data-pvolta="${p.id}">Voltar para a lista</button></li>`).join("")}</ul></details>`:""}
     <details class="panel card pcpass"><summary><h3>Passagem de plantão</h3></summary>
       <label class="f">Consultório que você deixa<input class="inp" id="pcLocal" value="${esc(pcPass.local)}" placeholder="ex.: 3" autocomplete="off"></label>
       <p class="note">Cada paciente pode ir para um médico (campos "quem assume" e "consultório dele" no paciente); os sem nome vão para o médico abaixo.</p>
@@ -181,6 +181,7 @@ function bindPacientes(){
   $("#pcMed").oninput=e=>{pcPass.medico=e.target.value;pacPassAtualiza()};
   $("#pcLocal").oninput=e=>{pcPass.local=e.target.value;pacPassAtualiza()};
   $("#pcConsMed").oninput=e=>{pcPass.consMed=e.target.value;pacPassAtualiza()};
+  $$("#pcCorpo [data-pabre2]").forEach(b=>b.onclick=()=>pacAbrir(b.dataset.pabre2));
   $$("#pcCorpo [data-pvolta]").forEach(b=>b.onclick=()=>{const p=pacDe(b.dataset.pvolta);if(!p)return;p.desf.tipo="";p.desf.t=null;pacToca(p,"desf");pacGrava();renderPacientes()});
   $("#pcPassTodos").onclick=()=>{const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");if(!ab.length){toast("Nenhum paciente em aberto");return}
     if(!confirm(`Tirar da lista os ${ab.length} paciente(s) em aberto, como passados a outro médico?`))return;

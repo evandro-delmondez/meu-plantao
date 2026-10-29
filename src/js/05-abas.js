@@ -1,7 +1,7 @@
 /* ---------- seções e abas ---------- */
 const TABS=["inicio","prescricoes","queixas","feridas","hospital","medicacoes","pediatria","sala","pcr","bic","iot","protocolos","evolucao","pacientes","plantoes","atestado","modelos","backup","escores","calculadora","contas","eletrolitos"];
 // cada aba pertence a uma seção da barra de navegação
-const SECOES={inicio:["inicio"],condutas:["prescricoes","queixas","feridas"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],atender:["evolucao","pacientes"],plantoes:["plantoes"],documentos:["hospital","atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
+const SECOES={inicio:["inicio","pacientes"],condutas:["prescricoes","queixas","feridas"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],atender:["evolucao"],plantoes:["plantoes"],documentos:["hospital","atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
 const secDe=t=>Object.keys(SECOES).find(s=>SECOES[s].includes(t))||"inicio";
 const ultimaAba={}; // última aba aberta em cada seção (só nesta sessão)
 /* descrição logo abaixo de um título: fica escondida num "ⓘ" ao lado dele (o médico abre se quiser) */
@@ -16,8 +16,10 @@ new MutationObserver(()=>{clearTimeout(infoNotas._t);infoNotas._t=setTimeout(inf
 function setTab(t){
   if(!TABS.includes(t)) t="inicio";
   ui.tab=t; const sec=secDe(t); ultimaAba[sec]=t;
-  $$(".tabs button").forEach(b=>{b.setAttribute("aria-selected",b.dataset.tab===t);b.hidden=b.dataset.sec!==sec});
-  $(".tabs").hidden=SECOES[sec].length<2;
+  // seção com uma página só: somem os botões de aba, mas a linha fica no Atendimento (é onde mora a barra de etapas)
+  const uma=SECOES[sec].length<2;
+  $$(".tabs button[role=tab]").forEach(b=>{b.setAttribute("aria-selected",b.dataset.tab===t);b.hidden=b.dataset.sec!==sec||uma});
+  $(".tabs").hidden=uma&&t!=="evolucao";
   $$("#secnav [data-sec]").forEach(b=>{if(b.dataset.sec===sec)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
   {const mb=$("#maisBtn");if(mb)mb.toggleAttribute("data-ativo",!!$(`#secnav [data-sec="${sec}"][data-mais]`))}
   document.body.dataset.sec=sec;

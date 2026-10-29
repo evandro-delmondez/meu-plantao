@@ -332,7 +332,14 @@ function atTrat(it){
 }
 // prescrição: na unidade e receituário (com as orientações), para copiar na prescrição e no receituário do prontuário
 const atPrescUnid=()=>atJunta("unidade");
-function atReceita(){const c=atJunta("casa"), o=atJunta("orient");return [c,o?"Orientações:\n"+o:""].filter(Boolean).join("\n\n")}
+// orientações: o médico tira por toque; pode salvar a escolha como padrão da conduta
+const atOriLinhas=()=>{const o=[];atConds().forEach(c=>String(cur(c,"orient")||"").split("\n").forEach(l=>{if(l.trim()&&!o.some(x=>x.l===l))o.push({l,c})}));return o};
+function atReceita(){const c=atJunta("casa"), off=atd.oriOff||{}, o=atJunta("orient").split("\n").filter(l=>l.trim()&&!off[norm(l)]).join("\n");return [c,o?"Orientações:\n"+o:""].filter(Boolean).join("\n\n")}
+function atOriHTML(){
+  const L=atOriLinhas(); if(!L.length) return ""; const off=atd.oriOff||{};
+  return `<details class="atori"><summary>Orientações (toque para tirar do receituário)</summary><div class="atorilst">${L.map(({l})=>`<button class="chip atoric" data-atori="${esc(norm(l))}" aria-pressed="${!off[norm(l)]}">${esc(l.replace(/^\s*-\s*/,""))}</button>`).join("")}</div>
+    <div class="actions"><button class="btn sm" id="atOriPadrao" title="As orientações que você tirou deixam de aparecer nesta conduta (nos seus padrões, pela nuvem)">Salvar como padrão desta conduta</button></div></details>`;
+}
 const atVolte1=c=>(chkDe(c.id)&&chkDe(c.id).alarme)||(ALTA[c.id]&&ALTA[c.id].volte)||[];
 const atVolte=()=>[...new Set(atConds().flatMap(atVolte1))];
 // roteiro curto de fala (30 s): o que tem, o que tomar, quando voltar — montado com o que já está na conduta e na receita
@@ -506,7 +513,7 @@ function atSaida(k,rot){
     <p class="note" data-atman="${k}" hidden><span data-atmanmsg>Você editou este campo.</span> <button class="btn sm" data-atre="${k}">Refazer</button></p></div>`;
 }
 // barra de etapas: vazia, preenchida (falta copiar) ou copiada para o MV (✓); some a 7 se não for internar
-const AT_ETAPAS=[[1,"HDA",["hda"]],[2,"Exame",["exame"]],[3,"HD",["diag"]],[4,"Conduta",["trat"]],[5,"Prescrição",["punid"]],[6,"Alta",["rx","atest","alta"]],[7,"Internação",["intern"]]];
+const AT_ETAPAS=[[1,"HDA",["hda"]],[2,"Exame",["exame"]],[3,"HD",["diag"]],[4,"Conduta",["trat","rx"]],[5,"Prescrição",["punid"]],[6,"Alta",["atest","alta"]],[7,"Internação",["intern"]]];
 const atTem=v=>!!String(v||"").trim();
 function atEtapaMexida(n){
   const ck=atConds().some(c=>chk[c.id]&&Object.keys(chk[c.id]).length);
@@ -528,7 +535,7 @@ function atRelogio(){
 }
 setInterval(()=>{if(ui.tab==="evolucao"&&atd.t0)atRelogio()},1000);
 // ordem das etapas: "mv" (HDA primeiro) ou "presc" (HD + CID → prescrição → conduta → HDA → exame → alta); fica nos padrões
-const AT_ORDEM_PRESC=[1,5,2,3,4,6,7], AT_ETAPA_DE={hda:1,exame:2,diag:3,trat:4,punid:5,rx:6,atest:6,alta:6,intern:7};
+const AT_ORDEM_PRESC=[1,5,2,3,4,6,7], AT_ETAPA_DE={hda:1,exame:2,diag:3,trat:4,punid:5,rx:4,atest:6,alta:6,intern:7};
 const atOrdem=()=>(model.prefs||{}).ordem==="mv"?"mv":"presc";   // padrão: ordem da porta
 const atPos=n=>atOrdem()==="presc"?AT_ORDEM_PRESC.indexOf(+n)+1:+n;
 // "Fechar o atendimento" (volta do paciente): o Próximo copia só o que sai na alta
@@ -648,12 +655,19 @@ function renderEv(){
     <div class="atcids">${cs.filter(c=>c.cid).map(c=>`<button class="cidbig" data-cpcid="${esc(c.cid)}" title="Copiar o CID de ${esc(c.nome)}">CID ${esc(c.cid)} <span>copiar</span></button>`).join("")}</div>
     ${ta("diag","Outras hipóteses ou complemento","ex.: diagnóstico diferencial com…")}
     ${atSaida("diag","Hipótese diagnóstica")}</div></div>
-  <div class="sec atsec" data-etapa="4"><div class="sec-h"><h3>${atPos(4)}. Conduta</h3></div><div class="atbody">
+  <div class="sec atsec" data-etapa="4"><div class="sec-h"><h3>${atPos(4)}. Conduta</h3><span class="alsum">itens · receituário</span></div><div class="atbody">
     <div class="chips atcond">${atL("cond").map(([k,r])=>chip("cond",k,k==="explico"?"Explico o quadro e a conduta":r.replace(/\.$/,""),atCondOn(k))).join("")}</div>
     ${atCondOn("med")&&atNomesUnid().length?`<span class="lbl">Quais remédios (toque nos que foram feitos)</span><div class="chips atmeds">${atNomesUnid().map(n=>chip("medsel",n,n,atd.medSel[n])).join("")}</div>`:""}
     ${ta("condLivre","Outras condutas","ex.: solicito parecer da Cirurgia Geral")}
     ${atEdit?edLista("cond","Itens da conduta"):""}
-    ${atSaida("trat","Conduta")}</div></div>
+    ${atSaida("trat","Conduta")}
+    <div class="atdocs"><span class="lbl atdocslbl">Receituário</span>
+    ${cs.map(c=>{const m=renderRxMontar(c);return m?`<div class="atrx atbloco" data-rxc="${esc(c.id)}">${atFixo(c)}${m}</div>`:""}).join("")}
+    ${atRxMaisHTML()}
+    ${(h=>h?`<details class="atavisos"><summary>ⓘ Avisos para você (${(h.match(/<li/g)||[]).length||1})</summary>${h}</details>`:"")(cs.map(rxAvisoHTML).join(""))}
+    ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}
+    ${atOriHTML()}
+    </div></div></div>
   <div class="sec atsec" data-etapa="5"><div class="sec-h"><h3>${atPos(5)}. Prescrição</h3><span class="alsum">na unidade · exames</span></div><div class="atbody">
     ${unidH?`<div class="atunid"><span class="lbl">Na unidade (para selecionar no prontuário)</span>${unidH}</div>`:""}
     ${atEdit?cs.map(c=>edTxt(c,"unidade","na unidade")+edTxt(c,"casa","receita")+edTxt(c,"orient","orientações")).join(""):""}
@@ -663,7 +677,7 @@ function renderEv(){
     ${ks.length?`<div class="atexs">${ks.map((k,i)=>exHTML(k,{pedir:true,aberto:i===0,titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
     <div class="atdgrid">${ta("exLab","Exames laboratoriais","ex.: hemograma\nPCR\nureia e creatinina")}${ta("exImg","Exames de imagem","ex.: TC de abdome com contraste")}</div>
   </div></div>
-  <div class="sec atsec" data-etapa="6"><div class="sec-h"><h3>${atPos(6)}. Reavaliação, receituário e alta</h3><span class="alsum">resultados · decisão · receituário · atestado · alta</span></div><div class="atbody">
+  <div class="sec atsec" data-etapa="6"><div class="sec-h"><h3>${atPos(6)}. Reavaliação e alta</h3><span class="alsum">resultados · decisão · atestado · alta</span></div><div class="atbody">
     ${atReavHTML()}
     ${atRoteiro()}
     <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
@@ -674,11 +688,7 @@ function renderEv(){
     ${ta("altaLivre","Outras orientações dadas","ex.: retornar em 48 h para reavaliação")}
     <div class="atdgrid"><label class="check"><input type="checkbox" data-atd="compreende" ${atd.compreende?"checked":""}> Compreendeu e concorda</label>
       <label class="f">Destino<select class="inp" data-atd="destino" id="evDestino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${esc(v)}" ${destAtual===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label></div>
-    <div class="atdocs"><span class="lbl atdocslbl">Receituário e atestado</span>
-    ${cs.map(c=>{const m=renderRxMontar(c);return m?`<div class="atrx atbloco" data-rxc="${esc(c.id)}">${atFixo(c)}${m}</div>`:""}).join("")}
-    ${atRxMaisHTML()}
-    ${(h=>h?`<details class="atavisos"><summary>ⓘ Avisos para você (${(h.match(/<li/g)||[]).length||1})</summary>${h}</details>`:"")(cs.map(rxAvisoHTML).join(""))}
-    ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}
+    <div class="atdocs"><span class="lbl atdocslbl">Atestado</span>
     <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">${[["atestado","Atestado"],["comparecimento","Comparecimento"],["nenhum","Nenhum"]].map(([v,r])=>`<option value="${v}" ${atd.tipo===v?"selected":""}>${r}</option>`).join("")}</select></label>
       ${atd.tipo==="atestado"?inp("dias","Dias","0",1):atd.tipo==="comparecimento"?inp("hora","Período","ex.: 14h às 16h"):""}
       ${atd.tipo!=="nenhum"&&it&&it.cid?`<label class="check"><input type="checkbox" data-atd="aut" ${atd.aut?"checked":""}> CID ${esc(it.cid)} autorizado</label>`:""}</div>
@@ -853,6 +863,11 @@ function bindEv(it){
   box.querySelectorAll("[data-atir]").forEach(b=>b.onclick=()=>{const sec=$(`#atCorpo [data-etapa="${b.dataset.atir}"]`);if(!sec)return;if(sec.tagName==="DETAILS")sec.open=true;sec.scrollIntoView({behavior:"smooth",block:"start"})});
   box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));
   // tirar ou pôr todos os sinais de alarme (no geral ou de uma conduta)
+  box.querySelectorAll("[data-atori]").forEach(b=>b.onclick=()=>{const k=b.dataset.atori;atd.oriOff=Object.assign({},atd.oriOff);atd.oriOff[k]=!atd.oriOff[k];if(!atd.oriOff[k])delete atd.oriOff[k];b.setAttribute("aria-pressed",!atd.oriOff[k]);atAtualiza()});
+  if($("#atOriPadrao")) $("#atOriPadrao").onclick=()=>{const off=atd.oriOff||{};if(!Object.keys(off).length){toast("Toque nas orientações que quer tirar antes");return}
+    let n=0; atConds().forEach(c=>{const o=String(cur(c,"orient")||"");const fica=o.split("\n").filter(l=>!off[norm(l)]);if(fica.length===o.split("\n").length)return;
+      const base=overrides[c.id]&&!overrides[c.id].deleted?overrides[c.id]:{};overrides[c.id]=Object.assign({},base,{nome:c.nome,cat:c.cat,cid:c.cid,sin:c.sin,casa:base.casa??getItem(c.id).casa,unidade:base.unidade??c.unidade,orient:fica.join("\n"),updatedAt:Date.now()});delete overrides[c.id].restored;n++});
+    persistLocal(); if(typeof gsAgenda==="function") gsAgenda(); atd.oriOff={}; toast(n?`Orientações salvas como padrão (${n} conduta${n>1?"s":""}); para voltar, use "Restaurar" na conduta`:"Nada a mudar"); const y=window.scrollY; renderEv(); window.scrollTo(0,y)};
   box.querySelectorAll("[data-atcl]").forEach(b=>b.onclick=()=>{const k=b.dataset.atcl,c=b.dataset.c;atd.exOff=Object.assign({},atd.exOff);const l=new Set(atd.exOff[k]||[]);l.has(c)?l.delete(c):l.add(c);atd.exOff[k]=[...l];b.setAttribute("aria-pressed",!l.has(c));atAtualiza()});
   box.querySelectorAll("[data-atvt]").forEach(b=>b.onclick=()=>{const on=b.dataset.atvt==="1", c=b.dataset.atvc;
     const alvo=c?(atVolteGrupos().find(g=>g.c&&g.c.id===c)||{itens:[]}).itens.map(([,i])=>i):atVolte().map((x,i)=>i);

@@ -101,7 +101,7 @@ function renderInicio(){
   chipsHome($("#hRec"),(uso.rec||[]).slice(0,10).map(itemRecente),"As condutas, fichas e escores que você abrir aparecem aqui.");
   // pacientes sem desfecho, com os avisos de 2 h e 3 h
   const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");
-  $("#hPacsBox").hidden=!ab.length;
+  $("#hPacsBox").hidden=!pacCarrega().pacs.length;
   const agora=Date.now(), pl=pacPlantao(agora).k, at=pacCarrega().pacs.filter(p=>pacPlantao(p.criado).k===pl&&pacConta(p)).length;
   $("#hPacsConta").textContent=`${at} ${at===1?"atendido":"atendidos"} neste plantão`;
   $("#hPacs").innerHTML=ab.map(p=>{const av=pacAviso(p,agora), pe=pacPendencias(p);return `<button class="hpac" data-hp="${p.id}" data-av="${av?av.nv:""}"><span class="hpac-l"><b>${esc(p.nome)}</b><em>há ${pacDur(agora-p.criado)}</em></span><span>${esc(pacHip(p)||"sem hipótese")}</span>${pe.length?`<span class="hpac-f">A fazer: ${esc(pe.join(" · "))}</span>`:""}${av?`<span class="hpac-av">${esc(av.txt)}</span>`:""}</button>`}).join("");
@@ -112,6 +112,28 @@ function renderInicio(){
   renderBusca();
 }
 $("#hPacsTodos").onclick=()=>setTab("pacientes");
+$("#hPassagem").onclick=()=>{setTab("pacientes");setTimeout(()=>{const d=$(".pcpass");if(d){d.open=true;pacPassAtualiza();d.scrollIntoView({behavior:"smooth",block:"start"})}},50)};
+// finalizar o plantão: resumo (atendidos, UTI, valor), mensagem de passagem e "passei todos"
+$("#hFinaliza").onclick=()=>{
+  const box=$("#hFimBox"); if(!box.hidden){box.hidden=true;return}
+  const agora=Date.now(), pl=pacPlantao(agora), ps=pacCarrega().pacs.filter(p=>pacPlantao(p.criado).k===pl.k);
+  const at=ps.filter(pacConta).length, uti=ps.filter(p=>p.desf.tipo==="internacao"&&(p.desf.onde==="uti"||p.desf.onde==="semi")).length;
+  const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");
+  const L=(typeof plDados==="function"&&plDados().locais.hsls)||{porAlta:50,porUti:150};
+  const valor=(at-uti)*(+L.porAlta||0)+uti*(+L.porUti||0);
+  box.hidden=false;
+  box.innerHTML=`<h3>${esc(pl.rot)}</h3><p><b>${at}</b> atendidos${uti?` (${uti} em UTI)`:""} · ${ab.length} em aberto · <b>${valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}</b> <span class="note">(Santa Lúcia, bruto)</span></p>
+    ${ab.length?`<label class="f">Médico que assume<input class="inp" id="hFimMed" value="${esc(pcPass.medico)}" autocomplete="off"></label><label class="f">Consultório que você deixa<input class="inp" id="hFimLocal" value="${esc(pcPass.local)}" placeholder="ex.: 3" autocomplete="off"></label>
+      <textarea class="out-edit" id="hFimTxt" readonly></textarea>
+      <div class="actions"><button class="btn primary" id="hFimCp">Copiar a passagem</button><button class="btn" id="hFimPassa">Passei todos e finalizar</button></div>`:`<p class="note">Nenhum paciente em aberto. Bom descanso!</p>`}`;
+  const txt=()=>{const t=$("#hFimTxt");if(t){t.value=pacPassagem(pcPass.medico.trim(),pcPass.local.trim(),(pcPass.consMed||"").trim());grow(t)}};
+  txt();
+  if($("#hFimMed")) $("#hFimMed").oninput=e=>{pcPass.medico=e.target.value;txt()};
+  if($("#hFimLocal")) $("#hFimLocal").oninput=e=>{pcPass.local=e.target.value;txt()};
+  if($("#hFimCp")) $("#hFimCp").onclick=e=>copy($("#hFimTxt").value,e.currentTarget);
+  if($("#hFimPassa")) $("#hFimPassa").onclick=()=>{if(!confirm(`Marcar os ${ab.length} paciente(s) em aberto como passados a outro médico?`))return;
+    ab.forEach(p=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();pacToca(p,"desf");if(atPac===p.id)atPac=null});pacGrava();toast("Plantão finalizado");box.hidden=true;renderInicio()};
+};
 /* novo atendimento pela queixa da triagem ou pela conduta: abre o Atendimento já no caminho */
 let naCat=null;   // grande área escolhida no Novo atendimento (só nesta sessão)
 function renderNovoAtend(){

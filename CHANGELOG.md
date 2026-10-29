@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.50.0 — 2026-10-29
+- **Receituário na etapa Conduta** (o atestado continua na Alta).
+- **Orientações por toque**: dentro do receituário, cada orientação é um botão; um toque tira do texto, e "Salvar como padrão desta conduta" faz valer daí em diante (nos seus padrões, pela nuvem).
+- **Início com a lista do plantão**: "Pacientes do plantão", com "Lista completa", **"Passagem de plantão"** e **"Finalizar plantão"** (resumo do plantão com atendidos, UTI e valor; mensagem de passagem para copiar; "Passei todos e finalizar"). A página Pacientes fica junto do Início.
+- Pacientes passados agora têm "Abrir".
+
 ## 1.49.1 — 2026-10-28
 - **Lista de pacientes guarda os nomes por 30 dias** (antes 7), para fechar a produção do mês nos Plantões. Continua fora do backup e da nuvem do painel, com sincronização só cifrada.
 - **Meus plantões mais resistente**: um dado estranho (paciente antigo sem data, plantão salvo numa versão anterior) é ignorado em vez de deixar a tela em branco; se ainda der erro, a mensagem aparece na tela.

@@ -42,7 +42,7 @@
       <button role="tab" data-tab="iot" data-sec="sala" aria-selected="false">Intubação e ventilação</button>
       <button role="tab" data-tab="protocolos" data-sec="sala" aria-selected="false">Protocolos</button>
       <button role="tab" data-tab="evolucao" data-sec="atender" aria-selected="false">Atendimento</button>
-      <button role="tab" data-tab="pacientes" data-sec="atender" aria-selected="false">Pacientes</button>
+      <button role="tab" data-tab="pacientes" data-sec="inicio" aria-selected="false">Pacientes</button>
       <button role="tab" data-tab="plantoes" data-sec="plantoes" aria-selected="false">Meus plantões</button>
       <button role="tab" data-tab="hospital" data-sec="documentos" aria-selected="false">Meu hospital</button>
       <button role="tab" data-tab="atestado" data-sec="documentos" aria-selected="false">Atestado</button>
@@ -64,7 +64,9 @@
     </div>
     <div id="gres" class="gres" hidden></div>
     <div id="hbody">
-      <div class="panel hbox hpacsbox" id="hPacsBox" hidden><div class="hboxh"><h2>Pacientes em aberto</h2><span class="note" id="hPacsConta"></span><button class="btn sm" id="hPacsTodos">Ver lista</button></div><div id="hPacs"></div></div>
+      <div class="panel hbox hpacsbox" id="hPacsBox" hidden><div class="hboxh"><h2>Pacientes do plantão</h2><span class="note" id="hPacsConta"></span></div><div id="hPacs"></div>
+        <div class="actions hpacsacoes"><button class="btn sm" id="hPacsTodos">Lista completa</button><button class="btn sm" id="hPassagem">Passagem de plantão</button><button class="btn sm primary" id="hFinaliza">Finalizar plantão</button></div>
+        <div id="hFimBox" hidden></div></div>
       <div class="panel hnovo" id="hNovo"></div>
       <div class="hcols">
         <div class="panel hbox"><h2>★ Favoritos</h2><div class="hchips" id="hFav"></div></div>

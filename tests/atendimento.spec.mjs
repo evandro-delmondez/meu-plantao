@@ -420,12 +420,12 @@ test("estado geral por toque, sigla traz o normal para editar, relógio zera e c
   await expect(page.locator("#atCorpo .rxlin-c .rxcls", { hasText: "Anti-inflamatório" })).toHaveCount(1);
   await expect(page.locator("#atCorpo .rxlin-c .rxcls", { hasText: "Relaxante muscular" })).toHaveCount(1);
   // tocar na receita não tira o destaque da etapa em que você está
-  // (o receituário fica na etapa da alta: resultados, receituário, atestado e alta)
+  // (o receituário fica na Conduta)
   await page.locator("#atCorpo .atrx .rxlin-c .chip.rxc").first().scrollIntoViewIfNeeded();
   await page.evaluate(() => window.dispatchEvent(new Event("scroll")));
-  await expect(page.locator('#atCorpo [data-etapa="6"]')).toHaveClass(/atagora/);
+  const et = await page.locator("#atCorpo .atsec.atagora").getAttribute("data-etapa");
   await page.locator("#atCorpo .atrx .rxlin-c .chip.rxc").first().click();
-  await expect(page.locator('#atCorpo [data-etapa="6"]')).toHaveClass(/atagora/);
+  await expect(page.locator(`#atCorpo [data-etapa="${et}"]`)).toHaveClass(/atagora/);
   expect(erros).toEqual([]);
 });
 
@@ -706,8 +706,8 @@ test("IA sugere exames só da lista conferida; receituário fica na etapa da alt
   const erros = await abrir(page);
   await atender(page, "pac");
   // receituário e atestado dentro da etapa 6
-  await expect(page.locator('#atCorpo [data-etapa="6"] [data-atout="rx"]')).toHaveCount(1);
-  await expect(page.locator('#atCorpo [data-etapa="5"] [data-atout="rx"]')).toHaveCount(0);
+  await expect(page.locator('#atCorpo [data-etapa="4"] [data-atout="rx"]')).toHaveCount(1);   // receituário na Conduta
+  await expect(page.locator('#atCorpo [data-etapa="6"] [data-atout="rx"]')).toHaveCount(0);
   // porquê dos exames escondido
   await expect(page.locator("#atCorpo .exwhy").first()).not.toHaveAttribute("open", "");
   await page.click("#atExIa");
@@ -717,3 +717,18 @@ test("IA sugere exames só da lista conferida; receituário fica na etapa da alt
   await expect(page.locator("#atExSug li [data-expedir]")).toHaveAttribute("aria-pressed", "true");   // continua na tela
   expect(erros).toEqual([]);
 });
+
+test("orientações por toque: tira do receituário e salva como padrão da conduta", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await page.locator(".atori summary").click();
+  const b = page.locator("#atCorpo [data-atori]").first();
+  const txt = (await b.innerText()).trim();
+  await b.click();
+  expect(await saida(page, "rx").inputValue()).not.toContain(txt);
+  await page.click("#atOriPadrao");
+  const ov = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_overrides_v1")));
+  expect(ov.gripe.orient).not.toContain(txt);
+  expect(erros).toEqual([]);
+});
+

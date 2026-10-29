@@ -5,7 +5,7 @@ test("abre no Início e cada seção mostra só as suas páginas", async ({ page
   const erros = await abrir(page);
   await expect(page.locator("#tab-inicio")).toBeVisible();
   await expect(page.locator("#secnav")).toBeVisible();
-  const secoes = { condutas: ["prescricoes", "queixas", "feridas"], remedios: ["medicacoes", "pediatria"], sala: ["sala", "pcr", "bic", "iot", "protocolos"], atender: ["evolucao", "pacientes"], plantoes: [], documentos: ["hospital", "atestado", "modelos", "backup"], calculos: ["escores", "calculadora", "contas", "eletrolitos"] };
+  const secoes = { inicio: ["inicio", "pacientes"], condutas: ["prescricoes", "queixas", "feridas"], remedios: ["medicacoes", "pediatria"], sala: ["sala", "pcr", "bic", "iot", "protocolos"], atender: [], plantoes: [], documentos: ["hospital", "atestado", "modelos", "backup"], calculos: ["escores", "calculadora", "contas", "eletrolitos"] };
   // barra com 5 seções; Remédios, Cálculos e Sala vermelha pelo menu "☰ Mais"
   const naBarra = await page.$$eval("#secnav button", (b) => b.filter((x) => x.offsetParent).map((x) => x.dataset.sec));
   expect(naBarra).toEqual(["inicio", "atender", "condutas", "remedios", "plantoes"]);

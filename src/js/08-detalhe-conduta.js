@@ -19,7 +19,15 @@ function rxSemDipirona(t){
   });
 }
 const rxAlergia=t=>perfisAtivos().has("dip")?rxSemDipirona(t):t;
-const cur=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="unidade"&&hospUnid(it.id)!=null)return hospUnid(it.id);if(f==="casa"&&rxTemMontar(it))return rxAlergia(rxOut[it.id]??rxMonta(it));if(f==="casa")return rxAlergia(rxLimpa(rxTxt(it.casa||"")));return rxTxt(it[f]||"")};
+// receita de casa sempre agrupada por via (todo o uso oral junto, depois nasal…); se alguma linha se perderia, fica como está
+function rxPorVia(t){
+  if(typeof atJuntaVias!=="function"||!/^\s*\d+\)/m.test(t||"")) return t;
+  try{const g=atJuntaVias([t]);const sem=x=>norm(x.replace(/^\s*\d+\)\s*/,"").trim());const tem=new Set(g.split("\n").map(sem));
+    if(String(t).split("\n").filter(l=>l.trim()).every(l=>tem.has(sem(l))||/^uso\s/i.test(l.trim())))return g}catch(e){}
+  return t;
+}
+const cur=(it,f)=>{const v=cur0(it,f);return f==="casa"?rxPorVia(v):v};
+const cur0=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="unidade"&&hospUnid(it.id)!=null)return hospUnid(it.id);if(f==="casa"&&rxTemMontar(it))return rxAlergia(rxOut[it.id]??rxMonta(it));if(f==="casa")return rxAlergia(rxLimpa(rxTxt(it.casa||"")));return rxTxt(it[f]||"")};
 // avisos para o médico sobre a receita (ex.: "Ibuprofeno só depois de descartar dengue"): na tela, nunca no texto copiado
 function rxAvisoHTML(c){
   if(!c) return "";

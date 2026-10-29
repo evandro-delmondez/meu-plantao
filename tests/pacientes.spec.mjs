@@ -307,3 +307,19 @@ test("por plantão: alta, internação, transferência e evasão contam; passado
   expect(erros).toEqual([]);
 });
 
+test("busca de paciente na lista e selo de paciente finalizado", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "pacientes");
+  for (const n of ["Iago José", "Maria Busca"]) { await page.fill("#pcNome", n); await page.click("#pcAdd"); await aba(page, "pacientes"); }
+  await page.locator("#pcCorpo .pcitem", { hasText: "Maria Busca" }).locator('[data-pd="tipo"]').selectOption("alta");
+  await expect(page.locator("#pcCorpo .pcitem", { hasText: "Maria Busca" }).locator(".pcfim")).toContainText("Paciente finalizado — alta realizada");
+  await page.fill("#pcNome", "iago");
+  await expect(page.locator("#pcCorpo .pcitem")).toHaveCount(1);
+  await expect(page.locator("#pcCorpo .pcitem")).toContainText("Iago José");
+  // "Novo paciente" com nome que já existe abre o existente em vez de duplicar
+  await page.fill("#pcNome", "Iago José"); await page.click("#pcAdd");
+  await expect(page.locator("#tab-evolucao")).toBeVisible();
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem("mph_pacientes_v1")).pacs.filter((p) => p.nome === "Iago José").length)).toBe(1);
+  expect(erros).toEqual([]);
+});
+

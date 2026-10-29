@@ -132,3 +132,18 @@ test("anti-inflamatório: escolher a alternativa troca só o item, com dose e du
   await expect(page.locator("#detail .rxaviso")).toContainText(/cardiovascular/);
   expect(erros).toEqual([]);
 });
+
+test("toda receita sai agrupada por via (nenhum 'Uso oral' repetido depois de outra via), sem perder linha", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  for (const id of ["gripe", "geca", "itu", "rinite", "sinusite", "tosse", "dermatite", "conjuntivite", "olho-vermelho"]) {
+    await page.evaluate((i) => document.querySelector(`#list .item[data-id="${i}"]`).click(), id);
+    if (!(await page.locator("#detail .rxmontar").count())) continue;
+    await page.evaluate(() => document.querySelectorAll("#detail .rxmontar [data-rxb]").forEach((b) => { if (b.getAttribute("aria-pressed") === "false") b.click(); }));
+    const t = await receita(page);
+    const vias = [...t.matchAll(/^Uso\s+(\S+)/gim)].map((m) => m[1].toLowerCase());
+    expect(new Set(vias).size, `${id}: ${vias.join(",")}`).toBe(vias.length);
+    const n = [...t.matchAll(/^(\d+)\)/gm)].map((m) => +m[1]);
+    expect(n, id).toEqual(n.map((_, i) => i + 1));
+  }
+  expect(erros).toEqual([]);
+});

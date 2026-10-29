@@ -57,7 +57,7 @@ function atJunta(f){
   if(tx.length<2) return tx[0]||"";
   if(f==="casa") return atJuntaVias(tx);
   // orientações: uma lista só, sem repetir
-  if(f==="orient"){const o=[];tx.forEach(t=>t.split("\n").forEach(l=>{if(l.trim()&&!o.includes(l))o.push(l)}));return o.join("\n")}
+  if(f==="orient"){const o=[];tx.forEach(t=>t.split("\n").forEach(l=>{if(l.trim()&&!o.includes(l))o.push(l)}));return atJuntaVolte(o).join("\n")}
   const vistos=new Set(), out=[]; let n=0, pula=false;
   const chave=l=>norm(l.replace(/^\s*\d+\)\s*/,"")).split(/[\s,(]+/).slice(0,1).join(" ");
   for(const t of tx){ if(out.length) out.push("");
@@ -166,6 +166,15 @@ function atRxMaisHTML(){
     <details class="atrxcola"${atd.rxCola?" open":""}><summary>Colar de outro guia (ex.: Whitebook)</summary>
       <textarea class="inp" data-atd="rxCola" rows="3" placeholder="cole aqui; cada remédio vira um item da receita">${esc(atd.rxCola||"")}</textarea></details></div>`;
 }
+// várias condutas: os "Volte imediatamente ao pronto-socorro se …" viram uma frase só, sem repetir sinal
+function atJuntaVolte(o){
+  const RE=/^(\s*-\s*)?volte imediatamente ao pronto-socorro se (voc[eê] )?(tiver |apresentar |notar |sentir )?/i, idx=o.map((l,i)=>RE.test(l)?i:-1).filter(i=>i>=0);
+  if(idx.length<2) return o;
+  const itens=[]; idx.forEach(i=>{o[i].replace(RE,"").replace(/\.\s*$/,"").split(/,\s*|\s+ou\s+|\s+e\s+(?=[a-zà-ú])/i).map(x=>x.trim()).filter(Boolean).forEach(x=>{if(!itens.some(y=>norm(y)===norm(x)))itens.push(x)})});
+  const pre=(o[idx[0]].match(/^\s*-\s*/)||[""])[0];
+  const junta=`${pre}Volte imediatamente ao pronto-socorro se tiver ${itens.slice(0,-1).join(", ")}${itens.length>1?" ou ":""}${itens[itens.length-1]}.`;
+  return o.filter((l,i)=>!idx.includes(i)||i===idx[0]).map((l,i,a)=>a.indexOf(l)===a.indexOf(o[idx[0]])&&l===o[idx[0]]?junta:l);
+}
 // lista em português: "a, b e c"
 const ptLista=a=>a.length<2?(a[0]||""):a.slice(0,-1).join(", ")+" e "+a[a.length-1];
 // a alta registra o que foi explicado (proteção do médico e do paciente)
@@ -175,7 +184,7 @@ const AT_REAV=[["melhora","com melhora após a medicação na unidade"],["estave
 const atLocais=()=>{const n=(typeof hospAtivo==="function"&&hospAtivo()&&hospPac().internacao&&hospPac().internacao.locais)||{};return [["","— escolher —"],["enfermaria",n.enfermaria||"enfermaria ou apartamento"],["semi",n.semi||"semi-intensiva"],["uti",n.uti||"UTI"]]};
 // conduta (campo Conduta do prontuário): o que foi feito, em itens que o médico marca; o detalhe vai na prescrição
 const AT_COND=()=>[["explico",(String(model.conduta||"").split("\n")[0]||"").replace(/^\s*-\s*/,"")||"Explico ao paciente o quadro clínico, as hipóteses diagnósticas e a conduta proposta, confirmando a compreensão das orientações."],
-  ["med","Prescrevo medicação na unidade"],["lab","Solicito exames laboratoriais"],["img","Solicito exames de imagem"],["sint","Prescrevo sintomáticos para uso domiciliar."],["atb","Prescrevo antibioticoterapia domiciliar."],["reav","Reavaliação após a medicação e o resultado dos exames."],["atest","Forneço atestado médico."]];
+  ["med","Prescrevo medicação na unidade"],["lab","Solicito exames laboratoriais"],["img","Solicito exames de imagem"],["sint","Prescrevo sintomáticos para uso domiciliar."],["atb","Prescrevo antibioticoterapia domiciliar."],["reav","Reavaliação após a medicação e o resultado dos exames."]];   // "Forneço atestado médico" entra na alta, sozinho, quando há atestado
 const AT_OBJ=[["atb","antibioticoterapia EV"],["suporte","suporte clínico e hidratação EV"],["dor","controle álgico"],["monit","monitorização"],["o2","oxigenoterapia"],["invest","investigação diagnóstica"],["espec","avaliação e conduta da especialidade"]];
 const AT_PADRAO=()=>({reav:AT_REAV,ori:AT_ORI,obj:AT_OBJ,perg:AT_PERGUNTAS.map((t,i)=>["p"+i,t]),cond:AT_COND()});
 // lista do médico (Editar padrões) ou a padrão; cada item é [chave, texto]
@@ -363,6 +372,7 @@ function atAlta(it){
   const rv=atL("reav").filter(([k])=>atd.reav[k]).map(([,t])=>t);
   if(rv.length||atd.reavTxt.trim()) L.push(`- Paciente reavaliado${rv.length?", "+ptLista(rv):""}${atd.reavTxt.trim()?`: ${atd.reavTxt.trim()}`:"."}`.replace(/\.\.$/,"."));
   L.push(...atResultados());
+  if(atd.altaAtest) L.push("- Forneço atestado médico.");
   const ori=atL("ori").filter(([k])=>atd.altaOri[k]!==false).map(([,t])=>t);
   if(ori.length) L.push(`- Paciente orientado sobre ${ptLista(ori)}.`);
   const vt=atVolte(it).filter((x,i)=>!atd.alarOff[i]).map(x=>semParenteses(x).replace(/\.$/,""));
@@ -500,7 +510,7 @@ function atResBind(box){
 }
 function atReavHTML(){
   const pend=atPendencias(), dec=atd.decisao;
-  return `${atd.fechar?`<div class="atfecharbox"><b>Fechar o atendimento</b><ol><li>Veja os resultados e a resposta à medicação.</li><li>Escolha a decisão.</li><li><b>⧉ Próximo</b> (ou F2) copia em sequência: receituário → atestado → alta.</li></ol><button class="btn sm" id="atFecharSai">Voltar ao atendimento completo</button></div>`:""}<div class="atreav"><div id="atResBox">${atResHTML()}</div>${pend.length?`<span class="lbl">Na reavaliação, ver:</span><div class="atpend">${pend.map(([k,t])=>`<label class="check"><input type="checkbox" data-atvisto="${k}" ${atd.visto[k]?"checked":""}> ${esc(t)}</label>`).join("")}</div>`:""}
+  return `${atd.fechar?`<div class="atfecharbox"><b>Fechar o atendimento</b><ol><li>Veja os resultados e a resposta à medicação.</li><li>Escolha a decisão.</li><li><b>⧉ Próximo</b> (ou F2) copia em sequência: receituário → alta.</li></ol><button class="btn sm" id="atFecharSai">Voltar ao atendimento completo</button></div>`:""}<div class="atreav"><div id="atResBox">${atResHTML()}</div>${pend.length?`<span class="lbl">Na reavaliação, ver:</span><div class="atpend">${pend.map(([k,t])=>`<label class="check"><input type="checkbox" data-atvisto="${k}" ${atd.visto[k]?"checked":""}> ${esc(t)}</label>`).join("")}</div>`:""}
     <span class="lbl">Decisão</span><div class="seg atdec" role="group" aria-label="Decisão">${AT_DEC.map(([v,r])=>`<button data-atdec="${v}" aria-pressed="${dec===v}">${r}</button>`).join("")}</div>
     ${dec==="internacao"?`<label class="f">Para onde<select class="inp" data-atd="intern.local">${atLocais().map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label>`:""}</div>`;
 }
@@ -513,7 +523,7 @@ function atSaida(k,rot){
     <p class="note" data-atman="${k}" hidden><span data-atmanmsg>Você editou este campo.</span> <button class="btn sm" data-atre="${k}">Refazer</button></p></div>`;
 }
 // barra de etapas: vazia, preenchida (falta copiar) ou copiada para o MV (✓); some a 7 se não for internar
-const AT_ETAPAS=[[1,"HDA",["hda"]],[2,"Exame",["exame"]],[3,"HD",["diag"]],[4,"Conduta",["trat","rx"]],[5,"Prescrição",["punid"]],[6,"Alta",["atest","alta"]],[7,"Internação",["intern"]]];
+const AT_ETAPAS=[[1,"HDA",["hda"]],[2,"Exame",["exame"]],[3,"HD",["diag"]],[4,"Conduta",["trat","rx"]],[5,"Prescrição",["punid"]],[6,"Alta",["alta"]],[7,"Internação",["intern"]]];
 const atTem=v=>!!String(v||"").trim();
 function atEtapaMexida(n){
   const ck=atConds().some(c=>chk[c.id]&&Object.keys(chk[c.id]).length);
@@ -539,8 +549,8 @@ const AT_ORDEM_PRESC=[1,5,2,3,4,6,7], AT_ETAPA_DE={hda:1,exame:2,diag:3,trat:4,p
 const atOrdem=()=>(model.prefs||{}).ordem==="mv"?"mv":"presc";   // padrão: ordem da porta
 const atPos=n=>atOrdem()==="presc"?AT_ORDEM_PRESC.indexOf(+n)+1:+n;
 // "Fechar o atendimento" (volta do paciente): o Próximo copia só o que sai na alta
-const AT_FECHAR=["rx","atest","alta","intern"];
-const AT_COPIA=["hda","exame","diag","trat","punid","rx","atest","alta","intern"];
+const AT_FECHAR=["rx","alta","intern"];
+const AT_COPIA=["hda","exame","diag","trat","punid","rx","alta","intern"];
 function atCamposOrdem(){return atd.fechar?AT_FECHAR:AT_COPIA}
 function atProximo(){
   for(const k of atCamposOrdem()){const ta=$(`#atCorpo [data-atout="${k}"]`);
@@ -677,7 +687,7 @@ function renderEv(){
     ${ks.length?`<div class="atexs">${ks.map((k,i)=>exHTML(k,{pedir:true,aberto:i===0,titulo:k.startsWith("q:")?"Exames pela queixa: "+((QUEIXAS.find(q=>"q:"+q.id===k)||{}).nome||""):"Exames: "+((getItem(k)||{}).nome||"")})).join("")}</div>`:""}
     <div class="atdgrid">${ta("exLab","Exames laboratoriais","ex.: hemograma\nPCR\nureia e creatinina")}${ta("exImg","Exames de imagem","ex.: TC de abdome com contraste")}</div>
   </div></div>
-  <div class="sec atsec" data-etapa="6"><div class="sec-h"><h3>${atPos(6)}. Reavaliação e alta</h3><span class="alsum">resultados · decisão · atestado · alta</span></div><div class="atbody">
+  <div class="sec atsec" data-etapa="6"><div class="sec-h"><h3>${atPos(6)}. Reavaliação e alta</h3><span class="alsum">resultados · decisão · alta</span></div><div class="atbody">
     ${atReavHTML()}
     ${atRoteiro()}
     <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
@@ -688,12 +698,7 @@ function renderEv(){
     ${ta("altaLivre","Outras orientações dadas","ex.: retornar em 48 h para reavaliação")}
     <div class="atdgrid"><label class="check"><input type="checkbox" data-atd="compreende" ${atd.compreende?"checked":""}> Compreendeu e concorda</label>
       <label class="f">Destino<select class="inp" data-atd="destino" id="evDestino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${esc(v)}" ${destAtual===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label></div>
-    <div class="atdocs"><span class="lbl atdocslbl">Atestado</span>
-    <div class="atdat"><label class="f">Documento<select class="inp" data-atd="tipo">${[["atestado","Atestado"],["comparecimento","Comparecimento"],["nenhum","Nenhum"]].map(([v,r])=>`<option value="${v}" ${atd.tipo===v?"selected":""}>${r}</option>`).join("")}</select></label>
-      ${atd.tipo==="atestado"?inp("dias","Dias","0",1):atd.tipo==="comparecimento"?inp("hora","Período","ex.: 14h às 16h"):""}
-      ${atd.tipo!=="nenhum"&&it&&it.cid?`<label class="check"><input type="checkbox" data-atd="aut" ${atd.aut?"checked":""}> CID ${esc(it.cid)} autorizado</label>`:""}</div>
-    <div id="atAtW">${atSaida("atest","Atestado")}</div>
-    </div>
+    <div class="chips atatest"><button class="chip" data-atatest aria-pressed="${!!atd.altaAtest}">${atd.altaAtest?"✓ ":""}Forneço atestado médico</button></div>
     ${atSaida("alta","Reavaliação e alta")}
     <div class="hospev" id="atHosp"></div></div></div>
   <details class="sec atsec atintern" data-etapa="7" ${/intern/.test(destAtual)||atd.intern.local?"open":""}><summary class="sec-h"><h3>${atPos(7)}. Pedido de internação</h3><span class="alsum">${esc(atLocais().slice(1).map(x=>x[1]).join(", "))}</span></summary><div class="atbody">
@@ -863,6 +868,7 @@ function bindEv(it){
   box.querySelectorAll("[data-atir]").forEach(b=>b.onclick=()=>{const sec=$(`#atCorpo [data-etapa="${b.dataset.atir}"]`);if(!sec)return;if(sec.tagName==="DETAILS")sec.open=true;sec.scrollIntoView({behavior:"smooth",block:"start"})});
   box.querySelectorAll("[data-cpcid]").forEach(cid=>cid.onclick=()=>copy(cid.dataset.cpcid,cid));
   // tirar ou pôr todos os sinais de alarme (no geral ou de uma conduta)
+  box.querySelectorAll("[data-atatest]").forEach(b=>b.onclick=()=>{atd.altaAtest=!atd.altaAtest;b.setAttribute("aria-pressed",atd.altaAtest);b.textContent=(atd.altaAtest?"✓ ":"")+"Forneço atestado médico";atAtualiza()});
   box.querySelectorAll("[data-atori]").forEach(b=>b.onclick=()=>{const k=b.dataset.atori;atd.oriOff=Object.assign({},atd.oriOff);atd.oriOff[k]=!atd.oriOff[k];if(!atd.oriOff[k])delete atd.oriOff[k];b.setAttribute("aria-pressed",!atd.oriOff[k]);atAtualiza()});
   if($("#atOriPadrao")) $("#atOriPadrao").onclick=()=>{const off=atd.oriOff||{};if(!Object.keys(off).length){toast("Toque nas orientações que quer tirar antes");return}
     let n=0; atConds().forEach(c=>{const o=String(cur(c,"orient")||"");const fica=o.split("\n").filter(l=>!off[norm(l)]);if(fica.length===o.split("\n").length)return;

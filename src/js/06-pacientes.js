@@ -112,13 +112,17 @@ function pacPlantao(t){const d=new Date(t), h=d.getHours();
   const ini=h<7?new Date(t-864e5):d; return {k:pacHoje(ini.getTime())+"N",rot:`Plantão noturno ${ini.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"})}`}}
 // conta como atendido (o que o médico recebe): alta, internação, transferência e evasão; passados não contam
 const PAC_CONTA=["alta","internacao","transferencia","evasao"], pacConta=p=>PAC_CONTA.includes(p.desf.tipo), pacSaiu=p=>p.desf.tipo==="passado"||p.desf.tipo==="especialidade";
+let pcBusca="";
+// selo do desfecho: "Paciente finalizado — alta realizada"
+const PAC_FIM={alta:"alta realizada",internacao:"internação",transferencia:"transferência",evasao:"evasão"};
 let pcVer="hoje", pcPass={medico:"",local:"",consMed:""};
 function renderPacientes(){
   const el=$("#pcCorpo"); if(!el) return;
   const db=pacCarrega(), agora=Date.now(), hoje=pacHoje();
   // passados (a outro médico ou a outra especialidade) saem do "em aberto" e não contam; ficam com o nome no plantão
   const passados=db.pacs.filter(pacSaiu), agoraPl=pacPlantao(agora).k;
-  const lista=db.pacs.filter(p=>!pacSaiu(p)&&(pcVer==="todos"||pacPlantao(p.criado).k===agoraPl||(!p.desf.tipo||p.desf.tipo==="obs")));
+  const qb=norm(pcBusca.trim());
+  const lista=db.pacs.filter(p=>qb?norm(p.nome).includes(qb):!pacSaiu(p)&&(pcVer==="todos"||pacPlantao(p.criado).k===agoraPl||(!p.desf.tipo||p.desf.tipo==="obs")));
   const abertos=db.pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs").length;
   const atendidos=db.pacs.filter(p=>pacPlantao(p.criado).k===agoraPl&&pacConta(p)).length;
   const grupos=new Map(); for(const p of lista){const pl=pacPlantao(p.criado);if(!grupos.has(pl.k))grupos.set(pl.k,{rot:pl.rot,ps:[]});grupos.get(pl.k).ps.push(p)}
@@ -129,10 +133,10 @@ function renderPacientes(){
     const tk=k==="exame"?"txt":k==="parecer"?"esp":null;
     return `<span class="pcetw"><button class="chip pcet" data-pe="${k}" data-st="${st}" aria-pressed="${!!e.on}" title="toque: pedido → pronto → desligar">${st==="ok"?"✓ ":st==="on"?"⏳ ":"+ "}${rot}${st==="ok"?" pronto":st==="on"?" pendente":""}</button>${tk&&e.on?`<input class="inp pcin" data-ptxt="${k}" value="${esc(e[tk])}" placeholder="${k==="exame"?"qual exame?":"especialidade"}" aria-label="${k==="exame"?"Qual exame":"Especialidade do parecer"}">`:""}</span>`};
   el.innerHTML=`<div class="panel card pchead"><div class="pctopo"><h2>Pacientes do plantão</h2><span class="pcconta"><b>${atendidos}</b> ${atendidos===1?"atendido":"atendidos"} neste plantão · ${abertos} em aberto${(m=>m?` · média ${m.media} min por atendimento`:"")(atTempoMedia())}</span></div>
-      <div class="pcnovo"><input class="inp" id="pcNome" placeholder="Nome do paciente" autocomplete="off" spellcheck="false" aria-label="Nome do paciente"><button class="btn primary" id="pcAdd">Novo paciente</button></div>
+      <div class="pcnovo"><input class="inp" id="pcNome" type="text" name="q-paciente-search" placeholder="Buscar ou novo paciente (nome)" autocomplete="off" spellcheck="false" data-1p-ignore data-lpignore="true" aria-label="Buscar ou cadastrar paciente" value="${esc(pcBusca)}"><button class="btn primary" id="pcAdd">Novo paciente</button></div>
       <div class="seg pcver" role="group" aria-label="Mostrar"><button data-pcver="hoje" aria-pressed="${pcVer==="hoje"}">Este plantão e em aberto</button><button data-pcver="todos" aria-pressed="${pcVer==="todos"}">Últimos ${PAC_DIAS} dias</button></div></div>
     <div class="pclista">${lista.length?[...grupos.entries()].sort((a,b)=>b[0].localeCompare(a[0])).map(([k,g])=>{const pp=porPlantao.get(k)||{n:0,saiu:[]};return `<h3 class="pcplant">${esc(g.rot)} <span class="note">· ${pp.n} ${pp.n===1?"atendido":"atendidos"}${pp.saiu.length?` · passados (não contam): ${esc(pp.saiu.join(", "))}`:""}</span></h3>`+g.ps.map(p=>{const av=pacAviso(p,agora);return `<div class="pcitem" data-pid="${p.id}" data-av="${av?av.nv:""}" ${atPac===p.id?'data-atual="1"':""}>
-      <div class="pclinha"><button class="pcnome" data-pabrir>${esc(p.nome)}</button><span class="note">${p.dia!==hoje?esc(p.dia.split("-").reverse().slice(0,2).join("/"))+" ":""}${pacHora(p.criado)} · há ${pacDur(agora-p.criado)}</span>${av?`<span class="pcav">${esc(av.txt)}</span>`:""}</div>
+      <div class="pclinha"><button class="pcnome" data-pabrir>${esc(p.nome)}</button>${PAC_FIM[p.desf.tipo]?`<span class="pcfim">✓ Paciente finalizado — ${PAC_FIM[p.desf.tipo]}</span>`:pacSaiu(p)?`<span class="pcfim pcsaiu">passado</span>`:""}<span class="note">${p.dia!==hoje?esc(p.dia.split("-").reverse().slice(0,2).join("/"))+" ":""}${pacHora(p.criado)} · há ${pacDur(agora-p.criado)}</span>${av?`<span class="pcav">${esc(av.txt)}</span>`:""}</div>
       <div class="note pchip">${esc(pacHip(p)||"sem hipótese ainda")}</div>
       ${(!p.desf.tipo||p.desf.tipo==="obs")&&pacPendencias(p).length?`<div class="pcafazer"><b>A fazer:</b> ${esc(pacPendencias(p).join(" · "))}${p.et.reav.t&&!p.desf.tipo?" · decidir: alta ou internação":""}</div>`:""}
       <div class="chips pcets">${PAC_ETAPAS.map(([k,r])=>et(p,k,r)).join("")}</div>
@@ -155,7 +159,9 @@ function renderPacientes(){
 }
 function bindPacientes(){
   const add=()=>{const n=$("#pcNome").value.trim();if(!n){toast("Digite o nome");return}const p=pacNovo(n);pacAbrir(p.id);$("#atNome")&&($("#atNome").value=p.nome)};
-  $("#pcAdd").onclick=add; $("#pcNome").onkeydown=e=>{if(e.key==="Enter")add()};
+  $("#pcAdd").onclick=()=>{const n=$("#pcNome").value.trim();const igual=pacCarrega().pacs.find(p=>norm(p.nome)===norm(n));if(igual){pcBusca="";pacAbrir(igual.id);return}pcBusca="";add()};
+  $("#pcNome").onkeydown=e=>{if(e.key==="Enter")$("#pcAdd").click()};
+  $("#pcNome").oninput=e=>{pcBusca=e.target.value;const pos=e.target.selectionStart;renderPacientes();const i=$("#pcNome");i.focus();try{i.setSelectionRange(pos,pos)}catch(x){}};
   $$("[data-pcver]").forEach(b=>b.onclick=()=>{pcVer=b.dataset.pcver;renderPacientes()});
   $$("#pcCorpo .pcitem").forEach(row=>{
     const p=pacDe(row.dataset.pid); if(!p) return;

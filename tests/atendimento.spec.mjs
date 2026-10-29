@@ -37,10 +37,9 @@ test("porta: alarmes no topo da conduta; Atendimento em 1 tela com cópia por ca
   await expect(saida(page, "hda")).toHaveValue(/HPP:\n- hipertensão arterial\n- colecistectomia em 2019\nMedicamentos em uso:\n- losartana 50 mg/);
   for (const k of ["hda", "exame", "diag", "trat", "rx", "alta"]) expect(await saida(page, k).inputValue()).not.toMatch(RUIM);
   // atestado
-  await campo(page, "dias").fill("2");
-  await expect(saida(page, "atest")).toHaveValue(/02 \(dois\) dias/);
-  await campo(page, "tipo").selectOption("nenhum");
-  await expect(page.locator("#atAtW")).toBeHidden();
+  // atestado: só o item "Forneço atestado médico" na alta (o modelo fica no MV)
+  await page.click("#atCorpo [data-atatest]");
+  await expect(saida(page, "alta")).toHaveValue(/- Forneço atestado médico\./);
   expect(await semRolagemLateral(page)).toBe(true);
   // nada do paciente fica no aparelho
   const ls = await page.evaluate(() => Object.values(localStorage).join(" "));
@@ -732,3 +731,13 @@ test("orientações por toque: tira do receituário e salva como padrão da cond
   expect(erros).toEqual([]);
 });
 
+
+test("duas condutas: um só 'Volte imediatamente ao pronto-socorro se…' nas orientações; sem frase de grupo de risco", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "gripe");
+  await page.fill("#atAddQ", "amigdal"); await page.click('#atAddSug [data-atadd="amigdalite"]');
+  const rx = await saida(page, "rx").inputValue();
+  expect(rx.match(/Volte imediatamente ao pronto-socorro/g) || []).toHaveLength(1);
+  expect(rx).not.toMatch(/grupo de risco e vai se tratar em casa/);
+  expect(erros).toEqual([]);
+});

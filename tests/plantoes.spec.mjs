@@ -33,11 +33,29 @@ test("Meus plantões: turnos matutino e vespertino, e marcar à mão num dia sem
   await aba(page, "plantoes");
   const iso = await page.evaluate(() => { const d = new Date(); d.setDate(28); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-28`; });
   await page.click(`#plCorpo [data-pldia="${iso}"]`);
-  await expect(page.locator("#plTurno option")).toHaveText([/Diurno/, /Matutino/, /Vespertino/, /Noturno/, /24 h/]);
+  await expect(page.locator("#plTurno option")).toHaveText([/Diurno/, /Matutino/, /Vespertino/, /^Noturno \(/, /Noturno até 1h/, /24 h/]);
   await page.selectOption("#plTurno", "M");
   await page.click("#plAdd");
   await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" }).locator(".pllista li", { hasText: "Matutino" })).toHaveCount(1);
   await expect(page.locator("#plCorpo .pllista a").first()).toHaveAttribute("href", /T070000%2F\d{8}T130000/);
+  expect(erros).toEqual([]);
+});
+
+test("Meus plantões: próximos plantões, noturno até 1h, sobreaviso e contagem à mão (plantão antigo)", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "plantoes");
+  const dia = await page.evaluate(() => { const d = new Date(Date.now() + 864e5); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; });
+  if (!(await page.locator(`#plCorpo [data-pldia="${dia}"]`).count())) await page.click('#plCorpo [data-plmes="1"]');
+  await page.click(`#plCorpo [data-pldia="${dia}"]`);
+  await page.selectOption("#plTurno", "M"); await page.check("#plSobre"); await page.click("#plAdd");
+  await page.selectOption("#plTurno", "N1"); await page.click("#plAdd");
+  await expect(page.locator("#plCorpo .plprox li")).toHaveCount(2);
+  await expect(page.locator("#plCorpo .plprox")).toContainText("Sobreaviso · Matutino");
+  await expect(page.locator("#plCorpo .plprox")).toContainText("Noturno até 1h (19:00–01:00)");
+  // contagem à mão
+  const n1 = page.locator("#plDia li", { hasText: "Noturno até 1h" });
+  await n1.locator('[data-f="n"]').fill("11"); await n1.locator('[data-f="n"]').dispatchEvent("change");
+  await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" })).toContainText("(à mão)");
   expect(erros).toEqual([]);
 });
 

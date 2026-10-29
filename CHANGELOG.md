@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## 1.51.0 — 2026-10-29
+- **Toda receita agrupada por via**: todo o uso oral junto, depois nasal, tópico… (9 condutas tinham a mesma via repetida: gripe, GECA, ITU, rinite, sinusite, tosse, dermatite, conjuntivite, olho vermelho), numerada em sequência; se alguma linha se perderia, a receita fica como está.
+- **Orientações mais curtas**: com duas condutas, os "Volte imediatamente ao pronto-socorro se…" viram uma frase só; saiu a frase do grupo de risco tratado em casa (gripe).
+- **Receitas só com a posologia**: descongestionante oral "Tomar 1 cp VO de 12/12h por 5 dias."; contraindicações que estavam na receita (gota) foram para o aviso ao médico; racecadotrila sem o "procurar atendimento"; corticoides nasais sem "(frasco de 120 doses)".
+- **Atestado na alta**: item "Forneço atestado médico" para ligar e desligar; o texto do atestado saiu do Atendimento (o modelo fica no MV e em Documentos › Atestado).
+- **Lista de pacientes**: busca pelo nome no próprio campo ("Novo paciente" abre o existente se o nome já está na lista) e selo "✓ Paciente finalizado — alta realizada" (ou internação, transferência, evasão).
+- **Meus plantões**: "Próximos plantões" no alto, com Google Agenda; turno "Noturno até 1h" (19h–01h); marcação de **Sobreaviso**; altas e UTI **à mão** em cada plantão (para plantão antigo, como o de 21/10).
+
 ## 1.50.0 — 2026-10-29
 - **Receituário na etapa Conduta** (o atestado continua na Alta).
 - **Orientações por toque**: dentro do receituário, cada orientação é um botão; um toque tira do texto, e "Salvar como padrão desta conduta" faz valer daí em diante (nos seus padrões, pela nuvem).

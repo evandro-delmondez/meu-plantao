@@ -321,6 +321,7 @@ function atDiag(it){
 }
 // nomes dos itens da prescrição na unidade (ex.: "Dipirona 1 g EV"), para a linha da conduta
 // remédios da prescrição na unidade, pelos nomes das fichas do app (na ordem em que aparecem; sem adivinhar o texto)
+const AT_UNID_EXTRA=[["Fleet (fosfato de sódio enema)",/\bfleet\b|fosfato de sodio enema/],["clister glicerinado",/clister glicerinado/]];
 function atNomesUnid(){
   const t=norm(atJunta("unidade")), achados=[];
   for(const m of (typeof MEDS!=="undefined"?MEDS:[])){
@@ -328,6 +329,8 @@ function atNomesUnid(){
     const i=t.search(new RegExp("(^|[^a-z])"+norm(nome).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![a-z])"));
     if(i>=0&&!achados.some(a=>a.n===nome.toLowerCase())) achados.push({i,n:nome.toLowerCase()});
   }
+  // feitos na unidade que não têm ficha (ex.: enema): também viram opção para marcar
+  for(const [n,re] of AT_UNID_EXTRA){const i=t.search(re);if(i>=0&&!achados.some(a=>a.n===n))achados.push({i,n})}
   return achados.sort((a,b)=>a.i-b.i).map(a=>a.n);
 }
 // exames: o item liga sozinho quando há exame pedido na Prescrição (e pode ser desligado)

@@ -789,3 +789,15 @@ test("IA sugere objetivos da internação (caixas para marcar, em tópicos, sem 
   expect(erros).toEqual([]);
 });
 
+
+test("constipação: Fleet e clister glicerinado como opção para marcar na medicação da unidade", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "constipacao");
+  await page.click('#atCorpo [data-atchip="cond"][data-k="med"]');
+  const fleet = page.locator('#atCorpo [data-atchip="medsel"]', { hasText: "Fleet" });
+  await expect(fleet).toHaveCount(1);
+  await fleet.click();
+  await expect(saida(page, "trat")).toHaveValue(/Prescrevo medicação na unidade: Fleet \(fosfato de sódio enema\)\./);
+  await expect(page.locator('#atCorpo [data-atchip="medsel"]', { hasText: "clister glicerinado" })).toHaveCount(1);
+  expect(erros).toEqual([]);
+});

@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.53.2 — 2026-10-30
+- **Fleet e clister glicerinado como opção para marcar** em "Prescrevo medicação na unidade" (constipação): marcou, entra na conduta ("Prescrevo medicação na unidade: Fleet").
+
 ## 1.53.1 — 2026-10-30
 - **Tudo que é IM fica na unidade**: penicilina G benzatina saiu da receita da amigdalite (continua na unidade); ceftriaxona 500 mg IM da prostatite (homem < 35 anos com risco de IST) passou para a unidade, e a doxiciclina continua na receita.
 - **Metronidazol e álcool**: 3 dias depois em todas as condutas (odontalgia corrigida).

@@ -829,3 +829,17 @@ test("IA nunca troca nem acrescenta remédio: Frontal com venlafaxina é recusad
   await expect(page.locator("#atIaEst")).toContainText(/remédio/);
   expect(erros).toEqual([]);
 });
+
+test("IA: SpO₂, %, 6/6h, 14h30, DM2/diabetes tipo 2 e B12 não disparam a trava de números", async ({ page }) => {
+  let resp = "";
+  await page.route("https://api.anthropic.com/**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ content: [{ type: "text", text: resp }] }) }));
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await atender(page, "pac");
+  await campo(page, "hma").fill("tosse 3d, SpO2 89% ontem as 14:30, DM2, usa B12, tomou dipirona 1g 6/6h");
+  const antes = await saida(page, "hda").inputValue();
+  resp = antes.replace(/^[^\n]*/, "Paciente refere tosse há 3 dias, com SpO₂ de 89 % às 14h30 do dia anterior. Portador de diabetes mellitus tipo 2, em uso de B12. Fez uso de dipirona 1 g de 6/6 horas.");
+  await page.click('#atCorpo [data-atia="hda"]');
+  await expect(page.locator("#atIaEst")).toContainText("Texto melhorado pela IA");
+  expect(erros).toEqual([]);
+});

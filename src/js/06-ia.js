@@ -15,6 +15,11 @@ Organize a informação nesta sequência, usando apenas os itens presentes no te
 queixa principal e duração; início; localização; irradiação ou migração; caráter; intensidade; evolução; fatores de melhora e de piora; sintomas associados; tratamentos já feitos e resposta; negativas pertinentes.
 Ao reordenar, preserve as relações de tempo do original (o que veio antes, depois, desde quando).
 
+COESÃO E CONCISÃO
+- Conte a história em ordem cronológica: do início do quadro até o momento do atendimento, com conectores de tempo claros ("iniciou há…", "evoluindo com…", "há X horas…", "desde então…", "hoje…").
+- Agrupe os sintomas associados numa frase; os tratamentos feitos e a resposta noutra; as negativas numa frase só no final.
+- Seja enxuto: 3 a 5 frases no parágrafo da HDA. Use "Paciente refere" uma vez só, no início; depois "Associa…", "Evoluiu com…", "Fez uso de…", "Nega…". Não repita palavras nem ideias, não use frases vazias ("procura atendimento por esse motivo").
+
 TERMINOLOGIA
 Troque a linguagem leiga pelo termo médico equivalente, por exemplo:
 umbigo → região periumbilical; direita embaixo → fossa ilíaca direita; boca do estômago → epigástrio; piora quando anda → piora à deambulação; piora quando deita → piora ao decúbito; vomitou 2x → 2 episódios de vômito; sem apetite → inapetência; falta de ar → dispneia; ardência ao urinar → disúria; dor no peito → dor torácica; catarro → expectoração; ontem à noite → na noite anterior.
@@ -46,6 +51,10 @@ Antes de responder, confira se cada número, medicamento, tempo e negativa da en
 EXEMPLO 1
 Entrada: Paciente refere dor abdominal há 2 dias começou no umbigo depois foi para direita embaixo, com piora quando anda, náusea 3x vomitou 1x, febre 38,2 ontem a noite e inapetência. Tomou buscopan sem melhora. Nega diarreia e disúria.
 Saída: Paciente refere dor abdominal há 2 dias, de início em região periumbilical, com migração para a fossa ilíaca direita e piora à deambulação. Associa náuseas, com 3 episódios, e 1 episódio de vômito, além de febre aferida de 38,2 °C na noite anterior e inapetência. Fez uso de Buscopan, sem melhora. Nega diarreia e disúria.
+
+EXEMPLO 3 (coesão temporal)
+Entrada: dor de garganta 3d, febre desde ontem 38,5, hoje piorou e nao consegue engolir direito, tomou dipirona melhorou febre, nega falta de ar
+Saída: Paciente refere odinofagia há 3 dias, evoluindo desde o dia anterior com febre aferida de 38,5 °C e, hoje, com piora da dor e dificuldade para deglutir. Fez uso de dipirona, com melhora da febre. Nega dispneia.
 
 EXEMPLO 2
 Entrada: Pcte refere falta de ar há 5 dias q piora qdo deita, tosse com catarro amarelado e febre (não mediu). Tomou dorflex 2x e amoxicilina 500mg de 8/8h desde ontem, melhorou um pouco. Nega dor no peito.
@@ -107,7 +116,9 @@ function iaTravas(entrada,saida){
 const iaPrompt=()=>{const t=String((model.prefs||{}).iaPrompt||"").trim();return (t||IA_SISTEMA)+IA_SEGURANCA};
 // números por extenso contam como o mesmo número (a IA às vezes escreve "três episódios" no lugar de "3x")
 const IA_EXT={um:1,uma:1,dois:2,duas:2,"três":3,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10,onze:11,doze:12,quinze:15,vinte:20,trinta:30};
-const iaNums=t=>{const s=String(t||"").replace(/\b(um|uma|dois|duas|três|tres|quatro|cinco|seis|sete|oito|nove|dez|onze|doze|quinze|vinte|trinta)\b(?=\s+(vez|vezes|episódio|episódios|dia|dias|hora|horas|semana|semanas|mês|meses|ano|anos|comprimido|comprimidos|gota|gotas|evacuaç|epis))/gi,w=>IA_EXT[w.toLowerCase()]);
+const IA_IDX={"₀":"0","₁":"1","₂":"2","₃":"3","₄":"4","₅":"5","₆":"6","₇":"7","₈":"8","₉":"9","⁰":"0","¹":"1","²":"2","³":"3","⁴":"4","⁵":"5","⁶":"6","⁷":"7","⁸":"8","⁹":"9"};
+const iaNumsLimpa=t=>String(t||"").replace(/[₀-₉⁰¹²³⁴-⁹]/g,c=>IA_IDX[c]||c).replace(/diabetes( mellitus)? tipo (\d)/gi,"DM$2").replace(/(^|[^A-Za-zÀ-ú0-9])[A-Za-zÀ-ú]+\d+[A-Za-z0-9]*/g,"$1 ").replace(/%/g," % ");
+const iaNums=t=>{const s=iaNumsLimpa(t).replace(/\b(um|uma|dois|duas|três|tres|quatro|cinco|seis|sete|oito|nove|dez|onze|doze|quinze|vinte|trinta)\b(?=\s+(vez|vezes|episódio|episódios|dia|dias|hora|horas|semana|semanas|mês|meses|ano|anos|comprimido|comprimidos|gota|gotas|evacuaç|epis))/gi,w=>IA_EXT[w.toLowerCase()]);
   // mesmo número em outro formato: 1.000 = 1000; 38.5 = 38,5; meio comprimido = 1/2; 140x90 = 140 x 90
   const n=s.replace(/\b(meio|meia)\b(?=\s+(comprimido|cp|ampola|copo|colher))/gi,"1/2").replace(/(\d)\.(?=\d{3}\b)/g,"$1").replace(/(\d)\.(\d)/g,"$1,$2");
   return (n.match(/\d+(?:,\d+)?/g)||[]).sort()};

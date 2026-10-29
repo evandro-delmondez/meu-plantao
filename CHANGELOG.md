@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.54.1 — 2026-10-30
+- **Trava de números da IA mais inteligente**: números em siglas (SpO2, O2, CO2, DM2, B12, HbA1c) não contam mais; índices e expoentes (SpO₂) viram número normal; "diabetes tipo 2" = DM2; %, barra e dois-pontos (89 %, 6/6 horas, 14h30) não dão mais erro.
+- **HDA com coesão temporal e mais enxuta**: o prompt pede ordem cronológica com conectores de tempo ("iniciou há…", "evoluindo com…", "hoje…"), 3 a 5 frases, "Paciente refere" uma vez só, sintomas associados numa frase, tratamentos noutra e negativas no fim; novo exemplo de coesão temporal.
+
 ## 1.54.0 — 2026-10-30
 - **IA nunca troca nem acrescenta remédio** (corrige o caso "Frontal (venlafaxina)"):
   - o prompt não manda mais traduzir nome comercial nem acrescentar princípio ativo — o nome fica como você escreveu (exemplos corrigidos);

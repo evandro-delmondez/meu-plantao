@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.53.3 — 2026-10-30
+- **Constipação: Fleet também em casa, como opção desligada** na receita ("Uso retal: 1 unidade via retal, dose única; não repetir em menos de 24 horas"); as contraindicações ficam no aviso para você.
+
 ## 1.53.2 — 2026-10-30
 - **Fleet e clister glicerinado como opção para marcar** em "Prescrevo medicação na unidade" (constipação): marcou, entra na conduta ("Prescrevo medicação na unidade: Fleet").
 

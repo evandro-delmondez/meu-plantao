@@ -168,3 +168,12 @@ test("via certa em cada remédio (gripe: oseltamivir oral; tosse: inalatório; v
   }
   expect(erros).toEqual([]);
 });
+
+test("constipação: Fleet em casa é opção desligada (entra em Uso retal ao marcar)", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "prescricoes");
+  await page.evaluate(() => document.querySelector('#list .item[data-id="constipacao"]').click());
+  expect(await receita(page)).not.toMatch(/Fleet/);
+  await page.locator("#detail .rxmontar [data-rxb]", { hasText: "Fleet" }).click();
+  expect(await receita(page)).toMatch(/Uso retal\n\d+\) Fosfato de sódio enema \(Fleet\)/);
+  expect(erros).toEqual([]);
+});

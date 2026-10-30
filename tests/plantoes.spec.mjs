@@ -78,3 +78,45 @@ test("Meus plantões: tirar um plantão marcado à mão e um que entrou sozinho 
   expect(erros).toEqual([]);
 });
 
+
+test("Meus plantões: entrada e saída sugeridas pela lista e corrigíveis; horas, fichas, valor, R$/h, diurno × noturno e meta", async ({ page }) => {
+  await page.addInitScript(() => {
+    if (localStorage.getItem("teste_pl_horas")) return; localStorage.setItem("teste_pl_horas", "1");
+    const d = new Date(); const em = (h, m) => new Date(d.getFullYear(), d.getMonth(), 10, h, m).getTime();
+    const dia = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-10`;
+    const p = (id, nome, ini, fim) => ({ id, nome, criado: ini, upd: fim, dia, cond: "gripe", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo: "alta", onde: "", t: fim }, sabe: false, snap: null });
+    localStorage.setItem("mph_pacientes_v1", JSON.stringify({ pacs: [p("a", "Um", em(8, 12), em(9, 0)), p("b", "Dois", em(10, 30), em(12, 3))], cont: {}, apagados: {} }));
+    // plantão antigo (sem horário) num outro dia: continua funcionando
+    const m = { v: 4, updatedAt: 1 };   // como o app grava (modelo de versão 4)
+    m.plantoes = { escala: [{ id: "antigo", data: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-05`, local: "hsls", turno: "N", manual: { n: 6, uti: 0 } }] };
+    localStorage.setItem("rxp_model_v1", JSON.stringify(m));
+  });
+  const erros = await abrir(page);
+  await aba(page, "plantoes");
+  const mes = page.locator("#plCorpo .panel", { hasText: "Plantões do mês" });
+  // sugerido pela lista: 08:10–12:05 (3h55), 2 fichas, R$ 100,00
+  await expect(mes).toContainText("08:10–12:05 (3h55) · 2 fichas · R$ 100,00 · R$ 25,53/h");
+  // plantão antigo, noturno do horário do turno (12 h), 6 fichas à mão
+  await expect(mes).toContainText("19:00–07:00 (12h00) · 6 fichas · R$ 300,00 · R$ 25,00/h");
+  await expect(page.locator("#plCorpo .plhoras")).toContainText("15h55");
+  await expect(page.locator("#plCorpo .plhoras")).toContainText("Diurno: 3h55");
+  await expect(page.locator("#plCorpo .plhoras")).toContainText("Noturno: 12h00");
+  // corrigir a saída à mão
+  const iso = await page.evaluate(() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-10`; });
+  await page.click(`#plCorpo [data-pldia="${iso}"]`);
+  await expect(page.locator("#plDia .plorig")).toContainText("sugerido pela lista");
+  await page.locator('#plDia [data-f="fim"]').fill("13:00"); await page.locator('#plDia [data-f="fim"]').dispatchEvent("change");
+  await expect(mes).toContainText("08:10–13:00 (4h50) · 2 fichas · R$ 100,00 · R$ 20,69/h");
+  await expect(page.locator("#plDia .plorig")).toContainText("à mão");
+  // meta do mês: R$ 1.000 → faltam R$ 600
+  await page.fill("#plMeta", "1000"); await page.dispatchEvent("#plMeta", "change");
+  await expect(page.locator("#plCorpo .plmeta")).toContainText("Faltam R$ 600,00");
+  // voltar à sugestão
+  await page.click(`#plCorpo [data-pldia="${iso}"]`);
+  await page.click("#plDia [data-plsug]");
+  await expect(mes).toContainText("08:10–12:05 (3h55)");
+  const m = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1")));
+  expect(m.plantoes.meta).toBe(1000);
+  expect(JSON.stringify(m)).not.toMatch(/"Um"|"Dois"/);      // nada do paciente nos padrões
+  expect(erros).toEqual([]);
+});

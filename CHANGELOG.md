@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.55.0 — 2026-10-30
+- **Meus plantões com horário real**: cada plantão tem entrada e saída. Sem digitar, o app sugere pela lista de pacientes daquele plantão (1º paciente → entrada; último desfecho ou reavaliação → saída, em 5 min) e guarda a sugestão no plantão (fica mesmo depois que a lista apaga os nomes); você corrige à mão no dia e pode "Voltar à sugestão". Sem pacientes, vale o horário do turno.
+- **Por plantão**: horário, horas trabalhadas, fichas, valor e R$/hora.
+- **Resumo do mês**: total de horas, R$/hora geral e separado em diurno e noturno (pela hora de entrada), e **meta do mês** — mostra quanto falta e cerca de quantas horas no seu R$/hora médio.
+- Compatível com os plantões já salvos (campos novos opcionais).
+
 ## 1.54.1 — 2026-10-30
 - **Trava de números da IA mais inteligente**: números em siglas (SpO2, O2, CO2, DM2, B12, HbA1c) não contam mais; índices e expoentes (SpO₂) viram número normal; "diabetes tipo 2" = DM2; %, barra e dois-pontos (89 %, 6/6 horas, 14h30) não dão mais erro.
 - **HDA com coesão temporal e mais enxuta**: o prompt pede ordem cronológica com conectores de tempo ("iniciou há…", "evoluindo com…", "hoje…"), 3 a 5 frases, "Paciente refere" uma vez só, sintomas associados numa frase, tratamentos noutra e negativas no fim; novo exemplo de coesão temporal.

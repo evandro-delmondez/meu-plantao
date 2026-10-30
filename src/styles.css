@@ -899,3 +899,4 @@ details.panel>summary{cursor:pointer}
 .ataltachk{align-items:center}.atchks{display:flex;flex-direction:column;gap:8px}.check.grande{font-size:16px;font-weight:700}.check.grande input{width:22px;height:22px}
 .atjustcab{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0}
 .atobjcab{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}.atobjs{display:grid;gap:6px;margin:6px 0}.atobjs .check{font-size:15px}.atobjia{color:var(--accent)}
+.plhr{color:var(--ink);font-weight:600}.plmetal{display:flex;align-items:center;gap:6px;font-weight:700}.plmetal .inp{max-width:140px}.plhm{width:112px;padding:3px 6px}.plorig{font-size:12px}.plhoras{--c:var(--violet)}.plmeta{--c:var(--amber)}

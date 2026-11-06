@@ -22,6 +22,7 @@ Atualizado em 2026-10-30 (versão 1.53.1). Decisões: `docs/DECISOES.md`. Diverg
 
 **Em andamento (2026-11-06)**
 - Publicados: Aparência, Mais em grupos, Iniciar plantão (1.57.x); Adicionar escala e "UI" → "unidades" (1.58.0).
+- Perguntas ao médico (22): página "Decisões clínicas pendentes" (https://claude.ai/artifact/JMm2Aen4iiqweAKjpXS8cw; fonte em `.rascunhos/decisoes-lote3.html`). Segurança conferida em `.rascunhos/seguranca-2026-11-final.json` (itens `_conferir` ainda sem bula confirmada).
 - Condutas do 1º lote: conferência em `.rascunhos/lote3-*-conferencia.md`; aguardam as decisões do médico antes de entrar em src/. Também: protocolos.js (EHH 200–250 e "> 7,3 / > 18" → "≥"), pendente de aprovação.
 - Segurança ainda a fazer: peso implausível, tetos de dose, alertas de gestante (hidroxizina, itraconazol, rivaroxabana, apixabana, valproato, fenobarbital), alergia a AINE e sulfa; 14 fichas do + remédio.
 

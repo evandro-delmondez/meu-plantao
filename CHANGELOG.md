@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.58.0 — 2026-11-06
+- **Adicionar escala** (Plantões): cole ou dite os plantões ("12/11 noturno", "15 e 20/11 diurno", "22/11 sobreaviso 24h", "28/11 24h invertido"), confira a lista e grave. Entende todos os turnos; com a IA ligada, também texto livre. Não duplica o que já está na escala.
+- **"UI" virou "unidades"** em todo o app (heparina, insulina, penicilina benzatina, soros e imunoglobulinas), como recomenda o ISMP Brasil; só o nome mudou, nenhum número. O verificador de conteúdo barra a sigla.
+- **Pediatria por peso**: avisa quando o peso parece de adulto (60 kg ou mais) ou está abaixo de 2 kg, para conferir a digitação.
+
 ## 1.57.1 — 2026-11-06
 - **24 h invertido corrigido**: das 19h às 19h (não existe plantão das 17h às 17h). Conta como noturno, com a data em que começou.
 

@@ -166,8 +166,8 @@
   "subclasse": "Penicilina natural de depósito",
   "mecanismo": "Betalactâmico de liberação lenta IM: inibe a síntese da parede celular.",
   "apresentacoes": [
-   "Pó/suspensão injetável 600.000 UI",
-   "Pó/suspensão injetável 1.200.000 UI"
+   "Pó/suspensão injetável 600.000 unidades",
+   "Pó/suspensão injetável 1.200.000 unidades"
   ],
   "marcas": [
    "Benzetacil"
@@ -177,19 +177,19 @@
    "IM"
   ],
   "adulto": [
-   "Sífilis recente (primária, secundária, latente ≤1 ano): 2,4 milhões UI IM dose única (1,2 milhão UI em cada glúteo).",
-   "Sífilis tardia (latente >1 ano ou duração ignorada, terciária): 2,4 milhões UI IM semanal por 3 semanas (total 7,2 milhões UI).",
-   "Faringite estreptocócica: 1,2 milhão UI IM dose única.",
-   "Profilaxia secundária de febre reumática: ≥20 kg 1,2 milhão UI IM a cada 21 dias (Diretrizes Brasileiras de Febre Reumática, SBC 2009); bula FDA: mensal."
+   "Sífilis recente (primária, secundária, latente ≤1 ano): 2,4 milhões unidades IM dose única (1,2 milhão unidades em cada glúteo).",
+   "Sífilis tardia (latente >1 ano ou duração ignorada, terciária): 2,4 milhões unidades IM semanal por 3 semanas (total 7,2 milhões unidades).",
+   "Faringite estreptocócica: 1,2 milhão unidades IM dose única.",
+   "Profilaxia secundária de febre reumática: ≥20 kg 1,2 milhão unidades IM a cada 21 dias (Diretrizes Brasileiras de Febre Reumática, SBC 2009); bula FDA: mensal."
   ],
   "pediatria": [
-   "Sífilis congênita <2 anos: 50.000 UI/kg (bula FDA).",
-   "Faringite: <27 kg: 300.000–600.000 UI; crianças maiores: 900.000 UI IM dose única (bula FDA).",
-   "Profilaxia secundária de febre reumática: <20 kg 600.000 UI; ≥20 kg 1,2 milhão UI IM a cada 21 dias (Diretrizes Brasileiras de Febre Reumática, SBC 2009)."
+   "Sífilis congênita <2 anos: 50.000 unidades/kg (bula FDA).",
+   "Faringite: <27 kg: 300.000–600.000 unidades; crianças maiores: 900.000 unidades IM dose única (bula FDA).",
+   "Profilaxia secundária de febre reumática: <20 kg 600.000 unidades; ≥20 kg 1,2 milhão unidades IM a cada 21 dias (Diretrizes Brasileiras de Febre Reumática, SBC 2009)."
   ],
   "diluicao": [
    "Exclusivamente IM profunda: adultos no quadrante superior externo do glúteo (dorsoglúteo) ou ventroglúteo; em neonatos, lactentes e crianças pequenas a face médio-lateral da coxa pode ser preferível (bula FDA; bula Benzetacil).",
-   "Benzetacil 1.200.000 UI: frasco de 4 mL (300.000 UI/mL); agitar vigorosamente antes de aspirar. 2,4 milhões UI = 2 frascos, 1,2 milhão UI em cada glúteo (bula Benzetacil; PCDT IST)."
+   "Benzetacil 1.200.000 unidades: frasco de 4 mL (300.000 unidades/mL); agitar vigorosamente antes de aspirar. 2,4 milhões unidades = 2 frascos, 1,2 milhão unidades em cada glúteo (bula Benzetacil; PCDT IST)."
   ],
   "renal": "Excreção renal, retardada na insuficiência renal (bula FDA).",
   "hepatica": "",

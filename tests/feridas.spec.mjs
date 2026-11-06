@@ -14,7 +14,7 @@ test("cão observável: não iniciar profilaxia, observar 10 dias", async ({ pag
 test("cão não observável, grave: vacina + soro com dose pelo peso", async ({ page }) => {
   await opt(page, "animal", "caogato"); await opt(page, "obs", "nao"); await opt(page, "exp", "grave");
   const t = await texto(page);
-  expect(t).toMatch(/dias 0, 3, 7 e 14/); expect(t).toMatch(/SAR 3\.200 UI \(40 UI\/kg\)/); expect(t).toMatch(/IGHAR 1\.600 UI/);
+  expect(t).toMatch(/dias 0, 3, 7 e 14/); expect(t).toMatch(/SAR 3\.200 unidades \(40 unidades\/kg\)/); expect(t).toMatch(/IGHAR 1\.600 unidades/);
 });
 test("morcego é sempre grave; roedor urbano não indica profilaxia", async ({ page }) => {
   await opt(page, "animal", "morcego"); await opt(page, "exp", "leve");
@@ -43,7 +43,7 @@ test("tétano: tabela do Ministério da Saúde", async ({ page }) => {
     await page.setChecked("#frEsp", esp);
     const t = await texto(page);
     expect(t, `${vac}/${risco}/${esp}`).toMatch(re);
-    expect(/IGHAT 250 UI/.test(t), `passiva ${vac}/${risco}/${esp}`).toBe(passiva);
+    expect(/IGHAT 250 unidades/.test(t), `passiva ${vac}/${risco}/${esp}`).toBe(passiva);
   }
 });
 test("mordedura com critério indica antibiótico por 3 a 5 dias", async ({ page }) => {

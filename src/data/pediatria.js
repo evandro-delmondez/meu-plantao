@@ -55,7 +55,7 @@ gen(p,m){
 {id:"faringite",nome:"Faringite estreptocócica",cid:"J02.0",fontes:["idsaGas"],
 gen(p,m){
  const u=Math.min(50*p,1000), b=Math.min(25*p,500), cfx=Math.min(20*p,500), az=Math.min(12*p,500), cl=Math.min(7*p,300);
- return {casa:`Uso oral\n1) Amoxicilina 250 mg/5 mL --------------------\nDar ${fm(mlDose(u,50))} mL (${fm(u)} mg) VO 1x ao dia por 10 dias\nou ${fm(mlDose(b,50))} mL (${fm(b)} mg) VO de 12/12h por 10 dias.\nou\n1) Penicilina G benzatina ${p<27?"600.000":"1.200.000"} UI IM, dose única (${p<27?"< 27 kg":"≥ 27 kg"}).\n\n# Alergia a penicilina:\n1) Cefalexina 250 mg/5 mL ${fm(mlDose(cfx,50))} mL (${fm(cfx)} mg) VO de 12/12h por 10 dias (se reação não anafilática)\nou\n1) Azitromicina 200 mg/5 mL ${fm(mlDose(az,40))} mL (${fm(az)} mg) VO 1x ao dia por 5 dias\nou\n1) Clindamicina ${fm(cl)} mg VO de 8/8h por 10 dias.`,
+ return {casa:`Uso oral\n1) Amoxicilina 250 mg/5 mL --------------------\nDar ${fm(mlDose(u,50))} mL (${fm(u)} mg) VO 1x ao dia por 10 dias\nou ${fm(mlDose(b,50))} mL (${fm(b)} mg) VO de 12/12h por 10 dias.\nou\n1) Penicilina G benzatina ${p<27?"600.000":"1.200.000"} unidades IM, dose única (${p<27?"< 27 kg":"≥ 27 kg"}).\n\n# Alergia a penicilina:\n1) Cefalexina 250 mg/5 mL ${fm(mlDose(cfx,50))} mL (${fm(cfx)} mg) VO de 12/12h por 10 dias (se reação não anafilática)\nou\n1) Azitromicina 200 mg/5 mL ${fm(mlDose(az,40))} mL (${fm(az)} mg) VO 1x ao dia por 5 dias\nou\n1) Clindamicina ${fm(cl)} mg VO de 8/8h por 10 dias.`,
  orient:`- Tratar só com quadro compatível e, idealmente, teste rápido/cultura positivos.\n- Retorno se dificuldade para abrir a boca, babar ou respirar.`,
  aviso:m<36?"Faringite estreptocócica é incomum abaixo de 3 anos.":""};
 }},

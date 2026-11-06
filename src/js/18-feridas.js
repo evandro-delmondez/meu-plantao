@@ -2,7 +2,7 @@
 const FR_FONTES=[
  "Ministério da Saúde. Nota Técnica nº 8/2022-CGZV/DEIDT/SVS/MS — Protocolo de profilaxia pré, pós e reexposição da raiva humana no Brasil.",
  "Prefeitura de São Paulo. Protocolo de atendimento da raiva humana, 11/2022 (reexposição em imunodeprimidos; via ID).",
- "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed. revisada, 2024 — tétano acidental (profilaxia após ferimento; SAT 5.000 UI, IGHAT 250 UI; imunização passiva em situações especiais com última dose há 5 anos ou mais e ferimento de alto risco).",
+ "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed. revisada, 2024 — tétano acidental (profilaxia após ferimento; SAT 5.000 unidades, IGHAT 250 unidades; imunização passiva em situações especiais com última dose há 5 anos ou mais e ferimento de alto risco).",
  "Stevens DL et al. IDSA 2014 — Practice guidelines for skin and soft tissue infections (mordeduras: antibiótico preemptivo e fechamento primário).",
  "Forsch RT, Little SH, Williams C. Laceration Repair: A Practical Approach. Am Fam Physician 2017;95(10):628-636 (irrigação, janela de fechamento, mordedura de gato)."
 ];
@@ -32,7 +32,7 @@ function frRaiva(){
   const a=fr.animal, p=frPeso();
   if(a==="nao") return null;
   const VAC="Vacina antirrábica, 4 doses nos dias 0, 3, 7 e 14: IM (0,5 ou 1,0 mL conforme o fabricante; deltoide, ou vasto lateral em < 2 anos; não aplicar no glúteo) ou ID (0,2 mL por dose, divididos em 2 sítios de 0,1 mL, no antebraço ou na região do deltoide). Imunodeprimidos ou em uso de cloroquina: preferir IM.";
-  const sar=p?`SAR ${fmtUI(40*p)} UI (40 UI/kg) ou IGHAR ${fmtUI(20*p)} UI (20 UI/kg)`:"SAR 40 UI/kg ou IGHAR 20 UI/kg — informe o peso para calcular";
+  const sar=p?`SAR ${fmtUI(40*p)} unidades (40 unidades/kg) ou IGHAR ${fmtUI(20*p)} unidades (20 unidades/kg)`:"SAR 40 unidades/kg ou IGHAR 20 unidades/kg — informe o peso para calcular";
   const SORO=`${sar}, no dia 0 (no máximo até o 7º dia após a 1ª dose da vacina; depois disso, não indicar). Infiltrar o máximo possível dentro e ao redor da(s) lesão(ões); o que não couber, IM no grupo muscular mais próximo.`;
   let t="", itens=[], alerta=false;
   if(a==="roedor"){ t="Baixo risco: profilaxia antirrábica não indicada."; itens=["Vale para rato, ratazana, camundongo, cobaia, hamster e coelho. Roedores silvestres (ex.: capivara) contam como animal silvestre.","Lavar com água e sabão."]; }
@@ -74,7 +74,7 @@ function frTetano(){
   const itens=[], box=[];
   if(!vac&&!sat) txt="Nenhuma vacina ou soro indicado agora.";
   if(vac) itens.push(v==="incerta"?`Vacina ${tipo}: iniciar ou completar o esquema de 3 doses.`:`Vacina ${tipo}: 1 dose de reforço.`);
-  if(sat) itens.push("Imunização passiva: IGHAT 250 UI IM ou SAT 5.000 UI IM, em grupo muscular diferente do da vacina.");
+  if(sat) itens.push("Imunização passiva: IGHAT 250 unidades IM ou SAT 5.000 unidades IM, em grupo muscular diferente do da vacina.");
   if(sat) box.push("Preferir IGHAT em imunodeprimidos ou com hipersensibilidade prévia a soro heterólogo.");
   if(vac&&!crianca) box.push("Gestante: seguir o calendário da gestante (dTpa a partir da 20ª semana).");
   if(!vac&&!sat) itens.push("Orientar manter o calendário vacinal em dia.");

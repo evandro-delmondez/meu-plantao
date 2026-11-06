@@ -19,7 +19,7 @@ vm.runInContext(fontesDados + "\n;globalThis.__dados={BASE,CATS,SC,CHECK,CALC,IN
 const { BASE, CATS, SC, CHECK, CALC, INFUSAO, IOT_FONTES, PROTOCOLOS, ELETROLITOS, QT_RISCO, QT_FONTES, AGORA, QUEIXAS, ALTA, EXAMES } = ctx.__dados;
 
 const CAPS = /[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{12,}/;          // trecho longo em maiúsculas
-const RUIM = /\bundefined\b|\bNaN\b|\[object Object\]/;
+const RUIM = /\bundefined\b|\bNaN\b|\[object Object\]|\d\s?UI\b|\bUI\/|milh(?:ão|ões) UI\b/;   // "UI" confunde (ISMP Brasil): escreva "unidades"
 const textoDe = (o) => JSON.stringify(o).replace(/https?:\/\/[^"\s]+/g, "");  // URLs não contam
 
 // ---------- condutas ----------
@@ -123,7 +123,7 @@ if ((QT_RISCO || []).length && !(QT_FONTES || []).length) err("QT: lista sem fon
 for (const q of QT_RISCO || []) { if (!q.nome || !Array.isArray(q.termos) || !q.termos.length || !q.risco) err(`QT "${q.nome}": campos incompletos`); verTexto(`QT "${q.nome}"`, q); }
 
 // ---------- cartão "Agora" ----------
-const UNS = new Set(["mg", "mcg", "g", "UI", "mL"]);
+const UNS = new Set(["mg", "mcg", "g", "unidades", "mL"]);
 for (const [id, a] of Object.entries(AGORA || {})) {
   const onde = `cartão Agora "${id}"`;
   if (!ids.has(id)) err(`${onde}: conduta não existe`);

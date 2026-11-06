@@ -20,10 +20,10 @@ Depois: perfil por unidade (remédios disponíveis, diluições locais, telefone
 ## Pendências combinadas
 Atualizado em 2026-10-30 (versão 1.53.1). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
 
-**Retomar (2026-11-05, parado pelo limite de uso)**
-- Aparência (Ajustes → Aparência; padrão petróleo e coral, Plus Jakarta, sombra, retos, compacta), "Mais" em grupos (No paciente / Papéis / App; backup em Ajustes), "Iniciar plantão" só com botão e turnos em botões (+ 24 h 19h–19h): publicados na 1.57.0.
-- Plantões: "Adicionar escala" colando ou ditando texto ("12/11 noturno, 15/11 sobreaviso 24h"), com parser simples e IA opcional; mostrar lista para conferir antes de gravar. Escolhido pelo médico.
-- Condutas do 1º lote: rascunhos prontos em `.rascunhos/lote3-*.json`; conferências interrompidas — relançar os conferentes (gi, neuro, resp-endo) e levar as perguntas ao médico.
+**Em andamento (2026-11-06)**
+- Publicados: Aparência, Mais em grupos, Iniciar plantão (1.57.x); Adicionar escala e "UI" → "unidades" (1.58.0).
+- Condutas do 1º lote: conferência em `.rascunhos/lote3-*-conferencia.md`; aguardam as decisões do médico antes de entrar em src/. Também: protocolos.js (EHH 200–250 e "> 7,3 / > 18" → "≥"), pendente de aprovação.
+- Segurança ainda a fazer: peso implausível, tetos de dose, alertas de gestante (hidroxizina, itraconazol, rivaroxabana, apixabana, valproato, fenobarbital), alergia a AINE e sulfa; 14 fichas do + remédio.
 
 **Conteúdo clínico (redação + conferência independente)**
 1. Atualizar fontes antigas: crise hipertensiva (ACC/AHA 2025), ARIA 2010, BTS 2009, ACCP 2012/2016, ATLS 11ª, EAU 2025, GINA na ficha da prednisona, WAO 2020 (lista em revisao-conteudo.md).

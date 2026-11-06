@@ -10,7 +10,7 @@
      fontes: ["..."]
    }
    dose = { ref: "0,2 mg/kg IM (máx. 10 mg)"   ← obrigatório, sempre visível para conferir
-            porKg: 0.2, un: "mg" | "mcg" | "g" | "UI" | "mL", max: 10, min: 0, conc: 5 (un por mL, para mostrar mL) }
+            porKg: 0.2, un: "mg" | "mcg" | "g" | "unidades" | "mL", max: 10, min: 0, conc: 5 (un por mL, para mostrar mL) }
    Sem porKg = dose fixa: aparece só o ref. */
 const AGORA = {
 intoxicacao: {
@@ -296,7 +296,7 @@ sca: {
     { t: "Anticoagular junto com a fibrinólise", acoes: [
       { txt: "Enoxaparina, < 75 anos: 30 mg EV em bolus e, 15 min depois, SC de 12/12 h.", dose: { ref: "1 mg/kg SC de 12/12 h (máx. 100 mg nas 2 primeiras doses); ClCr < 30 mL/min: 1 mg/kg SC 1x/dia", porKg: 1, un: "mg", max: 100, conc: 100 } },
       { txt: "Enoxaparina, ≥ 75 anos: sem bolus.", dose: { ref: "0,75 mg/kg SC de 12/12 h (máx. 75 mg nas 2 primeiras doses); ClCr < 30 mL/min: 1 mg/kg SC 1x/dia", porKg: 0.75, un: "mg", max: 75, conc: 100 } },
-      { txt: "Ou HNF (frasco EV de 5.000 UI/mL; a ampola SC tem 20.000 UI/mL) em bolus, depois 12 UI/kg/h (máx. 1.000 UI/h); TTPa 1,5–2 vezes o controle.", dose: { ref: "60 UI/kg EV em bolus (máx. 4.000 UI); mL calculados para 5.000 UI/mL", porKg: 60, un: "UI", max: 4000, conc: 5000 },
+      { txt: "Ou HNF em bolus (frasco EV 5.000 unidades/mL; ampola SC 20.000 unidades/mL), depois 12 unidades/kg/h (máx. 1.000 unidades/h); TTPa 1,5–2 vezes o controle.", dose: { ref: "60 unidades/kg EV em bolus (máx. 4.000 unidades); mL calculados para 5.000 unidades/mL", porKg: 60, un: "unidades", max: 4000, conc: 5000 },
         mais: "HNF = heparina não fracionada." }
     ]},
     { t: "60–90 min após o fibrinolítico", acoes: [
@@ -309,7 +309,7 @@ sca: {
         mais: "ECG com V7–V9 e V3R–V4R. IC = insuficiência cardíaca." },
       { txt: "2º antiagregante, conforme a estratégia do serviço.", dose: { ref: "ticagrelor 180 mg VO ou clopidogrel 300–600 mg VO" } },
       { txt: "Anticoagular.", dose: { ref: "enoxaparina 1 mg/kg SC de 12/12 h; ClCr < 30 mL/min: 1 mg/kg SC 1x/dia", porKg: 1, un: "mg", conc: 100 },
-        mais: "Alternativa: heparina não fracionada 60 UI/kg EV em bolus (máx. 4.000 UI)." }
+        mais: "Alternativa: heparina não fracionada 60 unidades/kg EV em bolus (máx. 4.000 unidades)." }
     ]}
   ],
   atalhos: [

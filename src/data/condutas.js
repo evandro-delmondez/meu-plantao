@@ -171,7 +171,7 @@ const BASE = [
   "orient": "- Se tiver febre com dor no corpo, dor de cabeça, dor atrás dos olhos ou manchas na pele, não tome ibuprofeno nem AAS (aspirina) até que a dengue seja descartada; nesse caso, use só dipirona ou paracetamol.\n- Se não melhorar em 3 a 5 dias, ou se piorar, retorne para reavaliação.\n- Volte imediatamente ao pronto-socorro se tiver dificuldade para abrir a boca, para engolir a saliva ou para respirar.",
   "rev": [
    "Corrigido (2026-10-30): penicilina G benzatina IM saiu da receita de casa (fica só na unidade), por decisão do médico.",
-   "Corrigido (2026-10-17): antibiótico só com estreptococo confirmado ou Centor/FeverPAIN alto (IDSA 2012; NICE NG84); azitromicina 500 mg por 5 dias (2,5 g) → 500 mg no 1º dia e 250 mg do 2º ao 5º (bula FDA Zithromax; CDC); \"UI\" por extenso e \"nunca EV\" na penicilina benzatina (MS/Anvisa 2013; ISMP Brasil 2015).",
+   "Corrigido (2026-10-17): antibiótico só com estreptococo confirmado ou Centor/FeverPAIN alto (IDSA 2012; NICE NG84); azitromicina 500 mg por 5 dias (2,5 g) → 500 mg no 1º dia e 250 mg do 2º ao 5º (bula FDA Zithromax; CDC); \"unidades\" por extenso e \"nunca EV\" na penicilina benzatina (MS/Anvisa 2013; ISMP Brasil 2015).",
    "Corrigido (2026-10-09): não usar ibuprofeno na febre com dengue não descartada (MS, Dengue 2024).",
    "Atualizado: 1ª linha para faringite estreptocócica é amoxicilina ou penicilina benzatina; amoxicilina-clavulanato ficou para falha/recorrência.",
    "Ajustado: ibuprofeno 300mg 12/12h → 600mg 8/8h por 3 dias.",
@@ -933,14 +933,14 @@ const BASE = [
   "orient": "- Tome corretamente os remédios para diabetes de uso contínuo e marque consulta com o clínico para ajustá-los.",
   "rev": [
    "Corrigido (2026-10-17): horário da aplicação: insulina regular 30 min antes da refeição, análogo rápido até 15 min antes, dieta zero ou contínua a cada 4–6 h (SBD 2026, tabela 3 e quadro 2).",
-   "Corrigido (2026-10-17): \"UI\" → \"unidades\" (ISMP); escala trocada pela publicada na diretriz da SBD 2026 (tabela 3, colunas usual, sensível e resistente); ADA 2026 e consenso de crises hiperglicêmicas 2024 nas fontes (SBD 2026; ADA 2026; ISMP Brasil 2015).",
+   "Corrigido (2026-10-17): \"unidades\" → \"unidades\" (ISMP); escala trocada pela publicada na diretriz da SBD 2026 (tabela 3, colunas usual, sensível e resistente); ADA 2026 e consenso de crises hiperglicêmicas 2024 nas fontes (SBD 2026; ADA 2026; ISMP Brasil 2015).",
    "Adicionado: alerta para cetoacidose/estado hiperosmolar."
   ],
   "fontes": [
    "Marino EC, Momesso D, Toyoshima MTK et al. Manejo da hiperglicemia hospitalar em pacientes não críticos — Diretriz da Sociedade Brasileira de Diabetes, ed. 2026 — tabela 3, sugestão de escala de correção (sensível, usual e resistente); escala isolada só para hiperglicemia ocasional. https://diretriz.diabetes.org.br/?p=21079",
    "American Diabetes Association. Standards of Care in Diabetes—2026, seção 16, Diabetes Care in the Hospital (Diabetes Care 2026;49 Suppl 1) — escala de correção isolada desencorajada; correção associada à insulina basal.",
    "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257) — quando investigar cetoacidose e estado hiperosmolar.",
-   "ISMP Brasil. Erros de medicação associados a abreviaturas, siglas e símbolos (Boletim ISMP Brasil, 2015); ISMP List of Error-Prone Abbreviations, 2021 — \"U\" e \"UI\": escrever \"unidades\"."
+   "ISMP Brasil. Erros de medicação associados a abreviaturas, siglas e símbolos (Boletim ISMP Brasil, 2015); ISMP List of Error-Prone Abbreviations, 2021 — \"U\" e \"unidades\": escrever \"unidades\"."
   ]
  },
  {
@@ -1949,7 +1949,7 @@ const BASE = [
   "unidade": "# Sífilis recente (primária, secundária, latente < 1 ano):\nPenicilina G benzatina 2.400.000 unidades IM, dose única (1.200.000 unidades em cada glúteo).\n\n# Sífilis tardia (latente > 1 ano, duração ignorada ou terciária):\nPenicilina G benzatina 2.400.000 unidades IM, 1x por semana por 3 semanas (total 7.200.000 unidades).\n\n# Alergia grave a penicilina (não gestante):\nDoxiciclina 100 mg VO de 12/12h por 15 dias (recente) ou 30 dias (tardia). Gestante: só penicilina (dessensibilização em hospital).\n\n# Neurossífilis, sífilis ocular ou otossífilis: internar. Penicilina cristalina 18–24 milhões de unidades por dia EV (3–4 milhões de 4/4h) por 14 dias; alternativa: ceftriaxona 2 g EV 1x/dia por 10–14 dias.",
   "orient": "- Nas primeiras 24 horas depois da injeção, você pode ter febre, mal-estar e piora das manchas na pele. Isso passa sozinho e não é alergia; se precisar, use paracetamol.\n- Se o seu tratamento for de 3 semanas, as injeções são feitas a cada 7 dias; não atrase as doses.\n- As pessoas com quem você teve relação sexual nos últimos 90 dias precisam ser testadas e tratadas, mesmo que o teste delas dê negativo.\n- Faça o exame de sangue de controle (VDRL) a cada 3 meses durante 1 ano (aos 3, 6, 9 e 12 meses); na gestação, todo mês.",
   "rev": [
-   "Corrigido (2026-10-17): alternativa com doxiciclina, dose da neurossífilis, intervalo entre doses (NT 14/2023), Jarisch-Herxheimer, parcerias dos últimos 90 dias, seguimento até 12 meses, \"UI\" → \"unidades\" e link do PCDT 2022 (PCDT IST 2022, cap. 5 e quadro 40; NT 14/2023; CDC 2021).",
+   "Corrigido (2026-10-17): alternativa com doxiciclina, dose da neurossífilis, intervalo entre doses (NT 14/2023), Jarisch-Herxheimer, parcerias dos últimos 90 dias, seguimento até 12 meses, \"unidades\" → \"unidades\" e link do PCDT 2022 (PCDT IST 2022, cap. 5 e quadro 40; NT 14/2023; CDC 2021).",
    "Adicionado: esquema da sífilis tardia, seguimento e notificação."
   ],
   "fontes": [
@@ -2232,7 +2232,7 @@ const BASE = [
    "Atualizado (09/2026): antibiótico por 3 a 5 dias apenas quando houver critério (IDSA 2014); fluxo de raiva e tétano na aba Feridas."
   ],
   "fontes": [
-   "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed. revisada, 2024 — tétano acidental: conduta por tipo de ferimento e situação vacinal (SAT 5.000 UI; IGHAT 250 UI; imunização passiva em situações especiais).",
+   "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed. revisada, 2024 — tétano acidental: conduta por tipo de ferimento e situação vacinal (SAT 5.000 unidades; IGHAT 250 unidades; imunização passiva em situações especiais).",
    "Ministério da Saúde. Calendário Nacional de Vacinação — gestante: dTpa a partir da 20ª semana de cada gestação.",
    "Stevens DL et al. IDSA 2014 (mordeduras: amoxicilina-clavulanato).",
    "Ministério da Saúde. Nota Técnica nº 8/2022 — Profilaxia da raiva humana."

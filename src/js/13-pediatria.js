@@ -22,7 +22,9 @@ function renderPed(force){
   $("#pdTitulo").textContent=c.nome+(c.cid?` — CID ${String(c.cid).replace(/\./g,"")}`:"");
   if(!(p>0)){$("#pdOut").value="Informe o peso.";return}
   const r=c.gen(p,m);
-  $("#pdAviso").hidden=!r.aviso; $("#pdAviso").textContent=r.aviso||"";
+  // peso fora do esperado para criança: confira a digitação (só aviso; não muda a dose)
+  const pa=p>=60?"Peso de adulto (60 kg ou mais): confira o número ou use a calculadora de adulto.":p<2?"Peso abaixo de 2 kg: confira o número digitado.":"";
+  const av=[pa,r.aviso].filter(Boolean).join(" "); $("#pdAviso").hidden=!av; $("#pdAviso").textContent=av;
   const txt=[`Paciente: ${fm(p)} kg, ${idadeTxt(m)}.`,r.casa,r.unidade?("Na unidade:\n"+r.unidade):"",r.orient?("Orientações:\n"+r.orient):""].filter(Boolean).join("\n\n");
   if(pedManual&&!force){$("#pdManualNote").hidden=false}else{pedManual=false;$("#pdManualNote").hidden=true;$("#pdOut").value=txt;grow($("#pdOut"))}
   $("#pdFontes").innerHTML=c.fontes.map(k=>`<li>${linkify(PF[k]||k)}</li>`).join("");

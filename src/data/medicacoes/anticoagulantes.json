@@ -6,10 +6,10 @@
   "subclasse": "Heparina não fracionada (sódica)",
   "mecanismo": "Potencializa a antitrombina, inativando a trombina (IIa) e o fator Xa; efeito imediato EV, reversível com protamina.",
   "apresentacoes": [
-   "Frasco-ampola 5 mL com 5.000 UI/mL (25.000 UI) — uso EV ou SC (Hemofol, Hepamax-S, Parinex, Heptar)",
-   "Frasco-ampola 10 mL com 5.000 UI/mL (Hepamax-S)",
-   "Ampola 0,25 mL com 5.000 UI (20.000 UI/mL) — uso SC (Hemofol, Parinex)",
-   "Bolsa pronta 250 mL com 100 UI/mL (25.000 UI) (Heptar)"
+   "Frasco-ampola 5 mL com 5.000 unidades/mL (25.000 unidades) — uso EV ou SC (Hemofol, Hepamax-S, Parinex, Heptar)",
+   "Frasco-ampola 10 mL com 5.000 unidades/mL (Hepamax-S)",
+   "Ampola 0,25 mL com 5.000 unidades (20.000 unidades/mL) — uso SC (Hemofol, Parinex)",
+   "Bolsa pronta 250 mL com 100 unidades/mL (25.000 unidades) (Heptar)"
   ],
   "rename": null,
   "vias": [
@@ -17,17 +17,17 @@
    "SC"
   ],
   "adulto": [
-   "SCA (sem supra ou com fibrinólise): 60 UI/kg EV em bolus (máx. 4.000 UI) + 12 UI/kg/h (máx. 1.000 UI/h), TTPa 1,5–2 vezes o controle, por 24–48 h (ESC 2023; ACC/AHA 2025). Na angioplastia primária, a dose (70–100 UI/kg) é dada na hemodinâmica.",
-   "TEV (TVP/TEP) quando indicada em vez da HBPM (instabilidade, candidato a reperfusão, ClCr < 30): 80 UI/kg EV em bolus + 18 UI/kg/h, ajustando pelo TTPa (ACCP 2012).",
-   "Esquema fixo da bula: 5.000 UI EV e depois 20.000–40.000 UI/24 h em infusão contínua; ajustar para TTPa 1,5–2 vezes o normal (FDA).",
-   "Profilaxia de TEV: 5.000 UI SC a cada 8–12 h (FDA)."
+   "SCA (sem supra ou com fibrinólise): 60 unidades/kg EV em bolus (máx. 4.000 unidades) + 12 unidades/kg/h (máx. 1.000 unidades/h), TTPa 1,5–2 vezes o controle, por 24–48 h (ESC 2023; ACC/AHA 2025). Na angioplastia primária, a dose (70–100 unidades/kg) é dada na hemodinâmica.",
+   "TEV (TVP/TEP) quando indicada em vez da HBPM (instabilidade, candidato a reperfusão, ClCr < 30): 80 unidades/kg EV em bolus + 18 unidades/kg/h, ajustando pelo TTPa (ACCP 2012).",
+   "Esquema fixo da bula: 5.000 unidades EV e depois 20.000–40.000 unidades/24 h em infusão contínua; ajustar para TTPa 1,5–2 vezes o normal (FDA).",
+   "Profilaxia de TEV: 5.000 unidades SC a cada 8–12 h (FDA)."
   ],
   "pediatria": [
-   "Bula americana (experiência clínica): bolus de 75–100 UI/kg EV em 10 min; manutenção de 25–30 UI/kg/h em lactentes (< 2 meses, média de 28 UI/kg/h) e 18–20 UI/kg/h acima de 1 ano; TTPa alvo 60–85 s (anti-Xa 0,35–0,70) (FDA).",
+   "Bula americana (experiência clínica): bolus de 75–100 unidades/kg EV em 10 min; manutenção de 25–30 unidades/kg/h em lactentes (< 2 meses, média de 28 unidades/kg/h) e 18–20 unidades/kg/h acima de 1 ano; TTPa alvo 60–85 s (anti-Xa 0,35–0,70) (FDA).",
    "Neonatos e lactentes: usar só apresentação sem álcool benzílico (FDA)."
   ],
   "diluicao": [
-   "Infusão a 100 UI/mL: bolsa pronta de 25.000 UI/250 mL, ou 5 mL do frasco de 5.000 UI/mL (25.000 UI) + 245 mL de SF 0,9% = 250 mL (conta própria — diluição usual, conferir protocolo da unidade). Ex.: 70 kg × 12 UI/kg/h = 840 UI/h = 8,4 mL/h.",
+   "Infusão a 100 unidades/mL: bolsa pronta de 25.000 unidades/250 mL, ou 5 mL do frasco de 5.000 unidades/mL (25.000 unidades) + 245 mL de SF 0,9% = 250 mL (conta própria — diluição usual, conferir protocolo da unidade). Ex.: 70 kg × 12 unidades/kg/h = 840 unidades/h = 8,4 mL/h.",
    "Após acrescentar a heparina à bolsa, inverter várias vezes para misturar (evita concentração desigual) (FDA).",
    "SC: injeção profunda no tecido adiposo (abdome, acima da crista ilíaca), trocando o local; não usar IM (FDA)."
   ],
@@ -44,9 +44,9 @@
   ],
   "alertas": [
    "Medicamento de alta vigilância (ISMP Brasil: anticoagulantes).",
-   "Confira a concentração: há 5.000 UI/mL (frasco) e 20.000 UI/mL (ampola SC de 5.000 UI/0,25 mL); a troca já causou mortes (FDA). Heparina de flush (lock) de cateter não serve para anticoagular.",
+   "Confira a concentração: há 5.000 unidades/mL (frasco) e 20.000 unidades/mL (ampola SC de 5.000 unidades/0,25 mL); a troca já causou mortes (FDA). Heparina de flush (lock) de cateter não serve para anticoagular.",
    "TIH: plaquetas antes e durante o uso; queda abaixo de 100.000 ou nova trombose: suspender e investigar; pode surgir até semanas depois (FDA).",
-   "Reversão: protamina 1 mg neutraliza cerca de 100 UI de heparina; EV muito lenta, no máximo 50 mg em 10 min; risco de reação anafilactoide (FDA).",
+   "Reversão: protamina 1 mg neutraliza cerca de 100 unidades de heparina; EV muito lenta, no máximo 50 mg em 10 min; risco de reação anafilactoide (FDA).",
    "Hipercalemia por supressão da aldosterona; sangramento maior em mulheres acima de 60 anos (FDA)."
   ],
   "fontes": [

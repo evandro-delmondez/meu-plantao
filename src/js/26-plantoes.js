@@ -150,7 +150,7 @@ function plRender(el){
   for(let d=1;d<=dias;d++){const iso=`${pref}-${String(d).padStart(2,"0")}`, ps=doMes.filter(x=>x.data===iso);
     cel.push(`<button class="plcel${iso===plIso(hoje)?" hoje":""}" data-pldia="${iso}"><span class="pld">${d}</span>${ps.map(x=>{const L=P.locais[x.local]||{};const r=plValor(x);return `<span class="plchip${x.sobre?" plsobre":""}" style="--c:var(--${L.cor||"slate"})">${x.sobre?"SA ":""}${x.turno==="N1"?"N1":/^18/.test(x.turno)?"18h":(PL_TURNOS[x.turno]||PL_TURNOS.D)[0].slice(0,1)} ${esc((L.nome||"").split(" ")[0])}${r.c?` · ${(r.c.n||0)+(r.c.uti||0)}`:""}</span>`}).join("")}</button>`)}
   const hojeIso=plIso(hoje), proxPl=P.escala.filter(x=>x.data>=hojeIso).sort((a,b)=>a.data.localeCompare(b.data)||PL_ORDEM.indexOf(a.turno)-PL_ORDEM.indexOf(b.turno)).slice(0,6);
-  el.innerHTML=`${proxPl.length?`<div class="panel card plprox"><h3>Próximos plantões</h3><ul class="pllista">${proxPl.map(x=>{const L=P.locais[x.local]||{};return `<li style="--c:var(--${L.cor||"slate"})"><b>${x.data.split("-").reverse().slice(0,2).join("/")}</b> ${x.sobre?"Sobreaviso · ":""}${esc((PL_TURNOS[x.turno]||PL_TURNOS.D)[0])} (${PL_TURNOS[x.turno][1]}–${PL_TURNOS[x.turno][2]}) · ${esc(L.nome||x.local)} <a class="btn sm" href="${plGoogle(x)}" target="_blank" rel="noopener">📅 Google Agenda</a></li>`}).join("")}</ul></div>`:""}
+  el.innerHTML=`<div id="plEscBox"></div>${proxPl.length?`<div class="panel card plprox"><h3>Próximos plantões</h3><ul class="pllista">${proxPl.map(x=>{const L=P.locais[x.local]||{};return `<li style="--c:var(--${L.cor||"slate"})"><b>${x.data.split("-").reverse().slice(0,2).join("/")}</b> ${x.sobre?"Sobreaviso · ":""}${esc((PL_TURNOS[x.turno]||PL_TURNOS.D)[0])} (${PL_TURNOS[x.turno][1]}–${PL_TURNOS[x.turno][2]}) · ${esc(L.nome||x.local)} <a class="btn sm" href="${plGoogle(x)}" target="_blank" rel="noopener">📅 Google Agenda</a></li>`}).join("")}</ul></div>`:""}
   <div class="panel card"><div class="plhead"><button class="btn sm" data-plmes="-1" aria-label="Mês anterior">◀</button><h2>${esc(mesTxt)}</h2><button class="btn sm" data-plmes="1" aria-label="Próximo mês">▶</button></div>
       <div class="plres">${res.map(r=>`<div class="plcard${r.inativo?" plinativo":""}" style="--c:var(--${r.L.cor||"slate"})"><b>${esc(r.L.nome)}</b>${r.inativo?`<span class="note">${esc(r.txt)} — fora do total</span>`:`<span class="note">${r.ps.length} plantão(ões) · ${esc(r.txt)}</span><span class="plv">${plBRL(r.total)}</span>${r.pag?`<span class="note plpag">${esc(r.pag)}</span>`:""}
         <label class="check"><input type="checkbox" data-plpago="${pref}|${r.k}" ${(P.pagos[pref+"|"+r.k]||{}).ok?"checked":""}> recebido</label>`}</div>`).join("")}
@@ -174,6 +174,7 @@ function plRender(el){
   const mt=el.querySelector("#plMeta"); if(mt) mt.onchange=()=>{P.meta=+String(mt.value).replace(/\./g,"").replace(",",".")||0;saveModel();renderPlantoes()};
   el.querySelectorAll("[data-plativo]").forEach(c=>c.onchange=()=>{P.locais[c.dataset.plativo].ativo=c.checked;saveModel();renderPlantoes()});
   el.querySelectorAll("[data-pldia]").forEach(b=>b.onclick=()=>plAbreDia(b.dataset.pldia));
+  renderPlEscala($("#plEscBox"));
 }
 function plAbreDia(iso){
   const P=plDados(), box=$("#plDia"), ps=P.escala.filter(x=>x.data===iso);

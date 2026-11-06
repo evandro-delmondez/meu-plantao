@@ -958,3 +958,6 @@ details.panel>summary{cursor:pointer}
 .brand-r .btn{white-space:nowrap}
 .brand h1{white-space:nowrap}
 @media (max-width:420px){.brand-r .themebtn{display:none}.brand{flex-wrap:nowrap}.brand h1{font-size:18px;gap:8px}.brand-r{gap:4px}.brand-r .btn.sm{padding-inline:8px}}
+.plesc textarea{width:100%;min-height:90px}
+.plescerro{color:var(--warn)}
+.plescl li{display:flex;align-items:center;gap:8px;flex-wrap:wrap}

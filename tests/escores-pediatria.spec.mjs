@@ -30,3 +30,16 @@ test("pediatria: todas as condições em 3 pesos e emergência", async ({ page }
   await page.click('[data-pmode="em"]');
   for (const w of [3, 20, 50]) { await page.fill("#pdPeso", String(w)); await page.dispatchEvent("#pdPeso", "input"); expect(await page.$eval("#pdEmGrid", (e) => e.innerText)).not.toMatch(RUIM); }
 });
+
+test("Pediatria por peso: avisa peso de adulto ou abaixo de 2 kg (confira a digitação)", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "pediatria");
+  await page.fill("#pdPeso", "75");
+  await expect(page.locator("#pdAviso")).toBeVisible();
+  await expect(page.locator("#pdAviso")).toContainText("Peso de adulto");
+  await page.fill("#pdPeso", "1.2");
+  await expect(page.locator("#pdAviso")).toContainText("abaixo de 2 kg");
+  await page.fill("#pdPeso", "15");
+  await expect(page.locator("#pdAviso")).not.toContainText("confira o número");
+  expect(erros).toEqual([]);
+});

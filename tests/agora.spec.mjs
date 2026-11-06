@@ -20,7 +20,7 @@ test("cartão Agora: aparece no topo das emergências, calcula pelo peso e não 
       await peso.fill("70");
       const calc = (await card.locator(".agcalc").allInnerTexts()).filter(Boolean);
       expect(calc.length, id).toBeGreaterThan(0);
-      for (const t of calc) expect(t, id).toMatch(/^\d[\d.,]* (mg|mcg|g|UI|mL)/);
+      for (const t of calc) expect(t, id).toMatch(/^\d[\d.,]* (mg|mcg|g|unidades|mL)/);
       await peso.fill("");
     }
     expect(await card.innerText(), id).not.toMatch(RUIM);
@@ -50,5 +50,14 @@ test("cartão Agora: peso tem teto de dose máxima e os atalhos levam às ferram
   // anafilaxia: volume com teto de 1.000 mL
   await conduta(page, "anafilaxia"); await page.fill("#agPeso", "120");
   await expect(page.locator("#detail .agcalc", { hasText: "1.000 mL" }).first()).toContainText("dose máxima");
+  expect(erros).toEqual([]);
+});
+
+test("nenhuma tela mostra a sigla UI (ISMP Brasil): sempre unidades", async ({ page }) => {
+  const erros = await abrir(page);
+  for (const t of ["calculadora", "bic", "feridas"]) {
+    await aba(page, t);
+    expect(await page.locator(`#tab-${t}`).innerText(), t).not.toMatch(/\d\s?UI\b|\bUI\//);
+  }
   expect(erros).toEqual([]);
 });

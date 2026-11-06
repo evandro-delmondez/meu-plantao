@@ -30,7 +30,7 @@ const PROTOCOLOS=[
   {id:"p4",t:"Angioplastia primária: transferir já",itens:[
    "Transferência imediata com médico e monitor para o serviço com hemodinâmica; não passar por outra emergência no caminho.",
    "Segundo antiagregante (inibidor de P2Y12), conforme combinado com a hemodinâmica: ticagrelor 180 mg VO (manutenção 90 mg 12/12 h) ou prasugrel 60 mg VO (manutenção 10 mg/dia; contraindicado se AVC ou AIT prévio; ≥ 75 anos ou < 60 kg: evitar ou reduzir para 5 mg/dia). Sem os dois: clopidogrel 600 mg VO.",
-   "A anticoagulação da angioplastia (heparina não fracionada 70–100 UI/kg EV) é feita na sala de hemodinâmica; combinar com o serviço de destino antes de anticoagular na unidade.",
+   "A anticoagulação da angioplastia (heparina não fracionada 70–100 unidades/kg EV) é feita na sala de hemodinâmica; combinar com o serviço de destino antes de anticoagular na unidade.",
    "Manter AAS, analgesia e monitorização durante o transporte."],
    decisao:{pergunta:"Paciente encaminhado à hemodinâmica.",opcoes:[{rot:"Ver cuidados após a reperfusão",ir:"pfim"}]}},
   {id:"p5",t:"Contraindicações à fibrinólise",itens:[
@@ -45,7 +45,7 @@ const PROTOCOLOS=[
    "AAS: manter (se ainda não recebeu, 162–325 mg VO mastigado).",
    "Clopidogrel: ≤ 75 anos 300 mg VO de ataque; > 75 anos 75 mg VO sem ataque; manutenção 75 mg/dia.",
    "Anticoagulação (enoxaparina preferida pela ESC): < 75 anos 30 mg EV em bolus e, 15 min depois, 1 mg/kg SC de 12/12 h (máx. 100 mg nas 2 primeiras doses SC); ≥ 75 anos sem bolus, 0,75 mg/kg SC de 12/12 h (máx. 75 mg nas 2 primeiras doses); ClCr < 30 mL/min: 1 mg/kg SC 1x/dia. Manter até a revascularização ou por até 8 dias.",
-   "Alternativa: heparina não fracionada 60 UI/kg EV em bolus (máx. 4.000 UI) + 12 UI/kg/h (máx. 1.000 UI/h), com TTPa entre 1,5 e 2 vezes o controle, por 24–48 h.",
+   "Alternativa: heparina não fracionada 60 unidades/kg EV em bolus (máx. 4.000 unidades) + 12 unidades/kg/h (máx. 1.000 unidades/h), com TTPa entre 1,5 e 2 vezes o controle, por 24–48 h.",
    "Após a fibrinólise, transferir todos os pacientes para serviço com hemodinâmica."]},
   {id:"p7",t:"Avaliar a reperfusão",tempo:"60–90 min após o fibrinolítico",itens:[
    "ECG em 60–90 min: sucesso = queda ≥ 50% do supradesnível (na derivação de maior supra ou na soma das derivações).",
@@ -527,7 +527,7 @@ const PROTOCOLOS=[
    "Ou nitroprussiato em bomba (até 4 h), com PA contínua.",
    "Hipertensão refratária a 3 anti-hipertensivos indica o parto."]},
   {id:"e5",t:"Avaliar complicações e HELLP",itens:[
-   "HELLP (MS 2022/RBEHG): hemólise (LDH > 600 UI/L, bilirrubina > 1,2 mg/dL, esquizócitos, haptoglobina baixa), AST ou ALT > 70 UI/L e plaquetas < 100.000/mm³. Pode vir com pouca hipertensão; dor em hipocôndrio direito é alarme.",
+   "HELLP (MS 2022/RBEHG): hemólise (LDH > 600 unidades/L, bilirrubina > 1,2 mg/dL, esquizócitos, haptoglobina baixa), AST ou ALT > 70 unidades/L e plaquetas < 100.000/mm³. Pode vir com pouca hipertensão; dor em hipocôndrio direito é alarme.",
    "Outras: descolamento prematuro de placenta, edema pulmonar, lesão renal, hematoma hepático, coagulação intravascular disseminada, alteração da vitalidade fetal.",
    "Avaliar a vitalidade fetal só depois de estabilizar a mãe (alterações transitórias levam a condutas intempestivas)."],
    decisao:{pergunta:"Há síndrome HELLP?",opcoes:[{rot:"Sim",ir:"ehellp"},{rot:"Não",ir:"e6"}]}},
@@ -613,8 +613,8 @@ const PROTOCOLOS=[
    decisao:{pergunta:"Qual a causa principal?",opcoes:[{rot:"Tônus (atonia)",ir:"pton"},{rot:"Trauma",ir:"ptra"},{rot:"Tecido",ir:"ptec"},{rot:"Trombina",ir:"ptro"}]}},
   {id:"pton",t:"Atonia: massagem e ocitocina",tempo:"imediato",itens:[
    "Massagem uterina bimanual (manobra de Hamilton) já, após esvaziar a bexiga, enquanto o uterotônico age.",
-   "Ocitocina (1ª escolha): 5 UI EV lento em 3 min (nunca bolus rápido nem > 5 UI de ataque) + 20–40 UI em 500 mL de SF 0,9% a 250 mL/h; manutenção a 125 mL/h por 4 h.",
-   "Atonia importante: manter ocitocina até 24 h a cerca de 3 UI/h, vigiando intoxicação hídrica (hiponatremia).",
+   "Ocitocina (1ª escolha): 5 unidades EV lento em 3 min (nunca bolus rápido nem > 5 unidades de ataque) + 20–40 unidades em 500 mL de SF 0,9% a 250 mL/h; manutenção a 125 mL/h por 4 h.",
+   "Atonia importante: manter ocitocina até 24 h a cerca de 3 unidades/h, vigiando intoxicação hídrica (hiponatremia).",
    "Ácido tranexâmico 1 g EV em 10 min junto com a ocitocina, se ainda não feito.",
    "Quem estava em trabalho de parto responde menos à ocitocina: não atrasar a 2ª linha. Se a profilaxia foi pela regra dos 3, falha da 3ª dose indica a 2ª linha, não outro esquema de ocitocina."],
    decisao:{pergunta:"O útero contraiu e o sangramento parou?",opcoes:[{rot:"Sim",ir:"pfim"},{rot:"Não",ir:"pton2"}]}},
@@ -656,10 +656,10 @@ const PROTOCOLOS=[
    "Após a estabilização: hemograma, coagulograma, eletrólitos e lactato de controle; UTI ou transferência se houve choque ou transfusão maciça."]}
  ],
  fontes:[
-  "Organização Pan-Americana da Saúde. Recomendações assistenciais para prevenção, diagnóstico e tratamento da hemorragia obstétrica (Estratégia Zero Morte Materna por Hemorragia). Brasília: OPAS, 2018 — definições, hora de ouro, 4 Ts, índice de choque (quadro 8), quadro 9 (ocitocina 5 UI + 20–40 UI/500 mL, metilergometrina 0,2 mg até 1 mg/24 h, misoprostol 800 mcg, ácido tranexâmico 1 g em 10 min com repetição), massagem bimanual, balão, traje antichoque (quadros 10–13), cirurgia, cristaloide racional, metas transfusionais (quadro 16), hemocomponentes (quadro 17), sequenciamento e checklist. https://iris.paho.org/handle/10665.2/34879",
+  "Organização Pan-Americana da Saúde. Recomendações assistenciais para prevenção, diagnóstico e tratamento da hemorragia obstétrica (Estratégia Zero Morte Materna por Hemorragia). Brasília: OPAS, 2018 — definições, hora de ouro, 4 Ts, índice de choque (quadro 8), quadro 9 (ocitocina 5 unidades + 20–40 unidades/500 mL, metilergometrina 0,2 mg até 1 mg/24 h, misoprostol 800 mcg, ácido tranexâmico 1 g em 10 min com repetição), massagem bimanual, balão, traje antichoque (quadros 10–13), cirurgia, cristaloide racional, metas transfusionais (quadro 16), hemocomponentes (quadro 17), sequenciamento e checklist. https://iris.paho.org/handle/10665.2/34879",
   "World Health Organization, FIGO, ICM. Consolidated guidelines for the prevention, diagnosis and treatment of postpartum haemorrhage. Genebra: OMS, 2025 — agir com 300 mL e sinal vital anormal, medir a perda, pacote MOTIVE. https://www.who.int/news/item/05-10-2025-global-health-agencies-issue-new-recommendations-to-help-end-deaths-from-postpartum-haemorrhage",
   "WOMAN Trial Collaborators. Effect of early tranexamic acid administration on mortality, hysterectomy, and other morbidities in women with post-partum haemorrhage (Lancet 2017;389:2105) — 1 g EV em até 3 h do parto, 2ª dose de 1 g se persistir após 30 min ou recomeçar em até 24 h.",
-  "Bulas registradas na Anvisa: ocitocina (5 UI/mL), maleato de metilergometrina (0,2 mg/mL; contraindicado na hipertensão e na pré-eclâmpsia), ácido tranexâmico (Transamin 250 mg/5 mL)."
+  "Bulas registradas na Anvisa: ocitocina (5 unidades/mL), maleato de metilergometrina (0,2 mg/mL; contraindicado na hipertensão e na pré-eclâmpsia), ácido tranexâmico (Transamin 250 mg/5 mL)."
  ]},
 ];
 if (typeof module!=="undefined") module.exports={PROTOCOLOS};

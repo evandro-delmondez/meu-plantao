@@ -168,3 +168,37 @@ test("Plantão: paciente das 7h05 fica no noturno (folga de 2 h); outubro sem ho
   await expect(page.locator("#plCorpo .plcard", { hasText: "Santa Lúcia" }).locator(".plv")).toContainText("550,00");
   expect(erros).toEqual([]);
 });
+
+test("Adicionar escala: cola o texto, confere a lista e grava (turnos, sobreaviso, 24 h invertido, sem duplicar)", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 6, 10, 0));
+  const erros = await abrir(page);
+  await aba(page, "plantoes");
+  await page.click("#plEscBox summary");
+  await page.fill("#plEscTxt", "12/11 noturno\n15 e 20/11 diurno; 22/11 sobreaviso 24h\n28/11 24h invertido\n29/11 18h 13h às 7h\n30/11 noturno até 1h\n3/1 matutino\nalgo sem data");
+  await page.click("#plEscLer");
+  const li = page.locator("#plEscBox .plescl li");
+  await expect(li).toHaveCount(8);
+  await expect(li.nth(0)).toContainText("12/11 Noturno (19:00–07:00)");
+  await expect(li.nth(1)).toContainText("15/11 Diurno");
+  await expect(li.nth(2)).toContainText("20/11 Diurno");
+  await expect(li.nth(3)).toContainText("22/11 Sobreaviso · 24 h (07:00–07:00)");
+  await expect(li.nth(4)).toContainText("28/11 24 h (19h às 19h) (19:00–19:00)");
+  await expect(li.nth(5)).toContainText("29/11 18 h (13h às 7h)");
+  await expect(li.nth(6)).toContainText("30/11 Noturno até 1h");
+  await expect(li.nth(7)).toContainText("03/01 Matutino");
+  await expect(page.locator("#plEscBox .plescerro")).toContainText("algo sem data");
+  await li.nth(7).locator("[data-plesctira]").click();          // tira o de janeiro antes de gravar
+  await expect(li).toHaveCount(7);
+  await page.click("#plEscGrava");
+  const m = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1")));
+  const e = m.plantoes.escala.map(x => `${x.data} ${x.turno}${x.sobre ? " SA" : ""}`).sort();
+  expect(e).toEqual(["2026-11-12 N", "2026-11-15 D", "2026-11-20 D", "2026-11-22 24 SA", "2026-11-28 24B", "2026-11-29 18B", "2026-11-30 N1"]);
+  // colar de novo não duplica
+  await page.click("#plEscBox summary");
+  await page.fill("#plEscTxt", "12/11 noturno");
+  await page.click("#plEscLer");
+  await expect(page.locator("#plEscBox .plescl")).toContainText("já está na escala");
+  await expect(page.locator("#plEscGrava")).toContainText("Gravar 0");
+  expect(await semRolagemLateral(page)).toBe(true);
+  expect(erros).toEqual([]);
+});

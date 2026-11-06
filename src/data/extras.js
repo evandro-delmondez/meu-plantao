@@ -58,6 +58,13 @@ const ALTA_ITEM={
  bronquiolite:["SatO2 adequada, mamando bem, sem apneia; família sabe os sinais de alarme."],
  crupe:["Sem estridor em repouso 2–4h após adrenalina/dexametasona."],
  hipoglicemia:["Glicemia estável após refeição; sulfonilureia/NPH = observação prolongada."],
+ pancreatite:["Pancreatite leve: sem SIRS nem falência orgânica; tolera dieta sólida; sem febre; dor controlada com analgésico comum; causa biliar com colecistectomia programada (ACG 2024)."],
+ diverticulite:["Diverticulite não complicada na TC; imunocompetente; sem sepse; tolera via oral; dor controlada; reavaliação em 2–7 dias e colonoscopia em 6–8 semanas encaminhadas."],
+ hdb:["Estável (índice de choque < 1), sangramento parou, Oakland ≤ 8 calculado e registrado; colonoscopia ambulatorial urgente encaminhada; antitrombóticos revistos."],
+ ait:["AIT: déficit totalmente resolvido; TC sem hemorragia; angio-TC ou doppler e ECG feitos; sem FA nem estenose carotídea sintomática; antiagregante iniciado; consulta rápida marcada."],
+ "paralisia-facial":["Paralisia periférica (testa acometida), sem outro déficit nem sinal de Ramsay Hunt; corticoide em até 72 h; proteção do olho explicada."],
+ meningite:["Não se aplica ao caso suspeito (internar). Para o contato: quimioprofilaxia entregue e sinais de alarme explicados por 10 dias."],
+ pneumotorax:["Primário estável observado 6 h (< 2 cm) ou 12 h (≥ 2 cm), sem aumento no RX de controle; reavaliação em 24 h garantida.","Sem hipoxemia, sem dor importante; orientado sobre avião, mergulho e cigarro."],
  cad:["CAD não tem alta da UPA: internação."],
  tosse:["Sem sinais de alarme (dispneia, hemoptise, perda de peso, febre persistente)."]
 };
@@ -296,6 +303,17 @@ const SC=[
  interp:s=>s<=8?"≤ 8: grave — considerar via aérea definitiva.":s<=12?"9–12: moderado.":"13–15: leve."},
 {id:"news2",nome:"NEWS2",src:NEWS2_SRC,
  campos:[["fr","FR",news2Opcoes("fr")],["sat","SatO2 (escala 1)",news2Opcoes("sat")],["o2","Ar ou O2",[["Ar ambiente",0],["Em O2",2]]],["pas","PAS",news2Opcoes("pas")],["fc","FC",news2Opcoes("fc")],["cons","Consciência",[["Alerta",0],["Confusão nova, voz, dor ou não responde",3]]],["t","Temperatura",news2Opcoes("t")]],
- interp:s=>news2Resposta(s,false).txt+(s<5?" Qualquer parâmetro com 3 pontos também pede resposta urgente.":"")}
+ interp:s=>news2Resposta(s,false).txt+(s<5?" Qualquer parâmetro com 3 pontos também pede resposta urgente.":"")},
+{id:"bisap",nome:"BISAP (pancreatite aguda)",src:"Wu BU et al. Gut 2008;57:1698 (PMID 18519429); Harrison 22ª ed., cap. 359 (tabela 359-3); HC-FMUSP 18ª ed., cap. 76 (mortalidade). Nas primeiras 24 h. BUN > 25 mg/dL = ureia > 53 mg/dL. Não decide sozinho o destino.",
+ bin:[["Ureia > 53 mg/dL (BUN > 25 mg/dL)",1],["Alteração do estado mental (Glasgow < 15)",1],["SIRS (2 ou mais: T > 38 ou < 36 °C, FC > 90, FR > 20 ou PaCO2 < 32, leucócitos > 12 mil ou < 4 mil)",1],["Idade > 60 anos",1],["Derrame pleural na imagem",1]],
+ interp:s=>(s<=2?"0–2: menor risco de morte (0,1% sem nenhum critério).":"≥ 3: mortalidade acima de 3,5% (cerca de 10% com 5); leito monitorizado e reavaliação frequente; UTI se falência orgânica.")+" Reavaliar SIRS em 48 h; o escore não substitui o julgamento clínico."},
+{id:"oakland",nome:"Oakland (hemorragia digestiva baixa)",src:"Oakland K et al. Lancet Gastroenterol Hepatol 2017;2:635 (PMID 28651935); BSG 2019 (Gut 2019;68:776, tabela 1); ACG 2023 (Am J Gastroenterol 2023;118:208); HC-FMUSP 18ª ed., HDB, tabela 7. Hemoglobina convertida de g/L para g/dL. Só no paciente estável (índice de choque ≤ 1).",
+ campos:[["idade","Idade",[["< 40 anos",0],["40–69 anos",1],["≥ 70 anos",2]]],["fc","Frequência cardíaca",[["< 70 bpm",0],["70–89 bpm",1],["90–109 bpm",2],["≥ 110 bpm",3]]],["pas","PA sistólica",[["< 90 mmHg",5],["90–119 mmHg",4],["120–129 mmHg",3],["130–159 mmHg",2],["≥ 160 mmHg",0]]],["hb","Hemoglobina",[["< 7 g/dL",22],["7–8,9 g/dL",17],["9–10,9 g/dL",13],["11–12,9 g/dL",8],["13–15,9 g/dL",4],["≥ 16 g/dL",0]]]],
+ bin:[["Sexo masculino",1],["Internação prévia por hemorragia digestiva baixa",1],["Sangue no toque retal",1]],
+ interp:s=>s<=8?"≤ 8: sangramento menor; se parou e não houver outro motivo para internar, alta com colonoscopia ambulatorial urgente (BSG 2019; ACG 2023).":"> 8: sangramento maior; internar para colonoscopia na internação (não urgente)."},
+{id:"ich",nome:"Escore ICH (hemorragia intracerebral)",src:"Hemphill JC 3rd et al. Stroke 2001;32:891 (mortalidade em 30 dias); conduta: Greenberg SM et al. AHA/ASA 2022 (Stroke 2022;53:e282) — usar na avaliação inicial, sem limitar o tratamento só pelo escore. Volume pelo ABC/2 (Kothari RU et al. Stroke 1996;27:1304).",
+ campos:[["gcs","Glasgow",[["13–15",0],["5–12",1],["3–4",2]]]],
+ bin:[["Volume do hematoma ≥ 30 mL (ABC/2)",1],["Hemorragia intraventricular",1],["Origem infratentorial (cerebelo ou tronco)",1],["Idade ≥ 80 anos",1]],
+ interp:s=>["0: mortalidade em 30 dias de cerca de 0%.","1: cerca de 13%.","2: cerca de 26%.","3: cerca de 72%.","4: cerca de 97%.","5 ou 6: cerca de 100%."][Math.min(s,5)]+" Estimativa de grupo: não usar sozinho para limitar o tratamento nas primeiras 24 h (AHA/ASA 2022)."}
 ];
 if (typeof module!=="undefined") module.exports={RENAL,cockcroft,ALTA_GERAL,ALTA_ITEM,dengueCalc,pedEmerg,SC,NEWS2_FX,NEWS2_NAO_VALIDADO,news2Calc,news2Resposta,CRB65_FX,CURB65_FX,pacFaixa,PAC_EV,SVAL};

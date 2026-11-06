@@ -6415,6 +6415,876 @@ const EXAMES = {
    "ACG 2024 pancreatite — Tenner S et al. American College of Gastroenterology guidelines: management of acute pancreatitis. Am J Gastroenterol 2024;119(3):419-437. PMID 38857482. https://doi.org/10.14309/ajg.0000000000002645",
    "HC-FMUSP 2024 cap. 77 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 77 Emergências biliares."
   ]
+ },
+ "pancreatite": {
+  "encaminhar": [
+   {
+    "t": "UTI: falência orgânica (Marshall ≥ 2: PaO2/FiO2 ≤ 300, creatinina ≥ 1,9 mg/dL ou hipotensão sem resposta a volume), choque ou necrose infectada com sepse",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Leito monitorizado ou semi-intensiva: SIRS na chegada, BISAP ≥ 3, ureia ou hematócrito subindo apesar do volume",
+    "f": [
+     2,
+     4
+    ]
+   },
+   {
+    "t": "Endoscopia (CPRE) em até 24 h: pancreatite com colangite; sem colangite, CPRE precoce não está indicada",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Cirurgia Geral: pancreatite biliar leve, para colecistectomia na mesma internação",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Centro de referência: falência orgânica ou necrose infectada sem estrutura local",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Lipase (uma vez): dor abdominal alta típica; diagnóstico com 2 de 3 critérios (dor típica, lipase > 3× o limite, imagem)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "US de abdome superior: em todos, para procurar cálculo biliar e colédoco dilatado",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Hemograma (hematócrito), ureia, creatinina, eletrólitos, cálcio, glicemia, PCR, TGO, TGP, fosfatase alcalina, GGT e bilirrubinas: na chegada, para gravidade e causa",
+    "f": [
+     1,
+     5
+    ]
+   },
+   {
+    "t": "Triglicérides: sem cálculo biliar nem álcool importante (causa provável se > 1.000 mg/dL)",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Radiografia de tórax: derrame pleural (BISAP) e falta de ar",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Gasometria arterial (PaO2/FiO2) e lactato: SIRS, hipotensão ou falta de ar",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "TC de abdome com contraste: dúvida diagnóstica, ou sem melhora em 48–72 h; para gravidade e necrose, a partir de 72–96 h do início",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Colangio-RM ou ecoendoscopia: suspeita de cálculo no colédoco sem colangite, antes de CPRE",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "ECG na dor epigástrica; beta-hCG na mulher em idade fértil",
+    "f": [
+     7
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Lipase ou amilase seriadas: não se relacionam com gravidade, dieta ou alta",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Amilase junto com a lipase",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "TC na chegada só para medir a gravidade, com diagnóstico clínico e laboratorial claro",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "CPRE diagnóstica na pancreatite biliar sem colangite",
+    "f": [
+     2,
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "IAP 2025 — IAP/APA/EPC/IPC/JPS Working Group. International Association of Pancreatology Revised Guidelines on Acute Pancreatitis 2025. Pancreatology 2025;25(6):770-814. https://doi.org/10.1016/j.pan.2025.04.020",
+   "ACG 2024 — Tenner S et al. American College of Gastroenterology Guidelines: Management of Acute Pancreatitis. Am J Gastroenterol 2024;119(3):419-437. PMID 38857482. https://doi.org/10.14309/ajg.0000000000002645",
+   "Atlanta 2012 — Banks PA et al. Classification of acute pancreatitis — 2012: revision of the Atlanta classification. Gut 2013;62(1):102-111. PMID 23100216. https://doi.org/10.1136/gutjnl-2012-302779",
+   "BISAP Wu 2008 — Wu BU et al. The early prediction of mortality in acute pancreatitis: a large population-based study (BISAP). Gut 2008;57(12):1698-1703. PMID 18519429. https://doi.org/10.1136/gut.2008.152702",
+   "HC-FMUSP 2024 cap. 76 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 76 Pancreatite aguda.",
+   "Choosing Wisely ASCP — American Society for Clinical Pathology. Choosing Wisely: não pedir amilase na suspeita de pancreatite aguda; pedir lipase. https://www.choosingwisely.org",
+   "HC-FMUSP 2024 cap. 25 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 25 Dor abdominal (beta-hCG e ECG)."
+  ]
+ },
+ "diverticulite": {
+  "encaminhar": [
+   {
+    "t": "Cirurgia Geral de emergência: peritonite generalizada (Hinchey III ou IV), perfuração livre, instabilidade ou falha do tratamento clínico",
+    "f": [
+     4,
+     5
+    ]
+   },
+   {
+    "t": "Radiologia intervencionista: abscesso maior que 3 cm (ASCRS) a 4–5 cm (WSES), para drenagem percutânea com antibiótico",
+    "f": [
+     4,
+     3
+    ]
+   },
+   {
+    "t": "Internação com Cirurgia Geral: diverticulite complicada, sepse, imunossupressão, febre ≥ 39 °C, > 70 anos, comorbidade importante ou sem tolerar via oral",
+    "f": [
+     5,
+     4
+    ]
+   },
+   {
+    "t": "Colonoscopia ambulatorial em 6–8 semanas após a resolução (complicada ou primeiro episódio), salvo colonoscopia de qualidade no último ano",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Coloproctologia ou Cirurgia Geral ambulatorial: fístula, estenose, imunossupressão ou episódios que pioram a qualidade de vida",
+    "f": [
+     1,
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "TC de abdome e pelve com contraste EV: primeiro exame na suspeita, para confirmar e classificar (Hinchey)",
+    "f": [
+     4,
+     3,
+     2
+    ]
+   },
+   {
+    "t": "Hemograma e PCR: em todos (PCR > 140 mg/L ou leucócitos > 15.000 indicam antibiótico)",
+    "f": [
+     1,
+     5
+    ]
+   },
+   {
+    "t": "Creatinina e eletrólitos: antes do contraste e se vômitos, desidratação ou internação",
+    "f": [
+     5
+    ]
+   },
+   {
+    "t": "Urina tipo I: sintomas urinários ou suspeita de fístula colovesical; beta-hCG na mulher em idade fértil",
+    "f": [
+     5
+    ]
+   },
+   {
+    "t": "Hemoculturas e lactato: sepse, antes do antibiótico",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Nova TC: sem melhora em 2–3 dias de tratamento (abscesso)",
+    "f": [
+     5,
+     1
+    ]
+   },
+   {
+    "t": "US com operador experiente: alternativa inicial quando a TC não estiver disponível ou na gestante",
+    "f": [
+     4
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Nova imagem no paciente que melhora com o tratamento",
+    "f": [
+     5
+    ]
+   },
+   {
+    "t": "Colonoscopia na fase aguda (risco de perfuração); esperar 6–8 semanas",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "TC de rotina na dúvida pequena com quadro típico e episódio anterior confirmado por TC, se for tratar em casa sem antibiótico",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "AGA 2021 — Peery AF, Shaukat A, Strate LL. AGA Clinical Practice Update on Medical Management of Colonic Diverticulitis: Expert Review. Gastroenterology 2021;160(3):906-911.e1. PMID 33279517. https://doi.org/10.1053/j.gastro.2020.09.059",
+   "ACP 2022 — Qaseem A et al. Diagnosis and Management of Acute Left-Sided Colonic Diverticulitis: A Clinical Guideline From the American College of Physicians. Ann Intern Med 2022;175(3):399-415. PMID 35038273. https://doi.org/10.7326/M21-2710",
+   "ASCRS 2020 — Hall J et al. The American Society of Colon and Rectal Surgeons Clinical Practice Guidelines for the Treatment of Left-Sided Colonic Diverticulitis. Dis Colon Rectum 2020;63(6):728-747. PMID 32384404. https://doi.org/10.1097/DCR.0000000000001679",
+   "WSES 2020 — Sartelli M et al. 2020 update of the WSES guidelines for the management of acute colonic diverticulitis in the emergency setting. World J Emerg Surg 2020;15:32. PMID 32381121. https://doi.org/10.1186/s13017-020-00313-4",
+   "HC-FMUSP 2024 cap. 75 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 75 Doença diverticular aguda (tabela 13, critérios de internação)."
+  ]
+ },
+ "hdb": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência: índice de choque (FC ÷ PA sistólica) > 1 ou sangramento ativo",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Radiologia intervencionista (embolização): angio-TC com extravasamento, o quanto antes",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Endoscopia alta imediata: instável sem fonte na angio-TC, ou suspeita de fonte alta (melena, ureia desproporcional)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Internação para colonoscopia (não urgente, após preparo): Oakland > 8",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Colonoscopia ambulatorial urgente: Oakland ≤ 8, sangramento que parou e sem outro motivo para internar",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Cardiologia: dupla antiagregação com stent coronário, antes de suspender o P2Y12",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Cirurgia só depois de tentar localizar o sangramento por imagem ou endoscopia",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Hemograma, tipagem sanguínea e prova cruzada: em todos",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Coagulograma (TP/INR), ureia, creatinina e eletrólitos: em todos (ureia desproporcional sugere fonte alta)",
+    "f": [
+     3,
+     2
+    ]
+   },
+   {
+    "t": "Angiotomografia de abdome e pelve: instável ou com sangramento ativo, após a reposição inicial",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Colonoscopia urgente (< 24 h) de rotina: não reduz ressangramento nem morte",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Angio-TC no sangramento pequeno ou que já parou (baixo rendimento)",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Transfusão de plaquetas só porque usa antiagregante",
+    "f": [
+     2,
+     4
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "BSG 2019 — Oakland K et al. Diagnosis and management of acute lower gastrointestinal bleeding: guidelines from the British Society of Gastroenterology. Gut 2019;68(5):776-789. PMID 30792244. https://doi.org/10.1136/gutjnl-2018-317807",
+   "ACG 2023 — Sengupta N et al. Management of Patients With Acute Lower Gastrointestinal Bleeding: An Updated ACG Guideline. Am J Gastroenterol 2023;118(2):208-231. PMID 36735555. https://doi.org/10.14309/ajg.0000000000002130",
+   "HC-FMUSP 2024 HDB — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, capítulo Hemorragia digestiva baixa (Brandão Neto RA).",
+   "HC-FMUSP 2024 cap. 74 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 74 Hemorragia digestiva alta (antitrombótico não exige transfusão de plaquetas)."
+  ]
+ },
+ "meningite": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência e UTI (ou regulação): todo caso suspeito de meningite bacteriana; não liberar",
+    "f": [
+     1,
+     8
+    ]
+   },
+   {
+    "t": "Vigilância epidemiológica: notificação imediata (até 24 h) de todo caso suspeito e lista dos contatos próximos",
+    "f": [
+     5,
+     6
+    ]
+   },
+   {
+    "t": "Neurocirurgia: meningite após neurocirurgia, derivação ventricular, trauma penetrante ou fístula liquórica",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Infectologia ou CCIH: alergia grave a betalactâmico, imunossupressão ou germe resistente",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Hemoculturas (2 pares): em todo suspeito, antes do antibiótico, sem atrasá-lo",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Hemograma, PCR, glicemia, creatinina, eletrólitos, coagulograma, gasometria e lactato: todo suspeito (sepse, coagulação antes da punção)",
+    "f": [
+     8,
+     2
+    ]
+   },
+   {
+    "t": "LCR (punção lombar): celularidade e diferencial, glicose com glicemia simultânea, proteína, lactato, Gram, cultura e PCR ou látex para bactérias, se não houver contraindicação",
+    "f": [
+     2,
+     8
+    ]
+   },
+   {
+    "t": "PCR no LCR para herpes simples e enterovírus: LCR de padrão linfocitário ou suspeita de encefalite",
+    "f": [
+     4,
+     2
+    ]
+   },
+   {
+    "t": "Tinta da China e antígeno criptocócico no LCR: imunossuprimido ou HIV",
+    "f": [
+     8
+    ]
+   },
+   {
+    "t": "TC de crânio antes da punção: imunossupressão, doença prévia do SNC, convulsão nova, papiledema, consciência alterada ou déficit focal; antibiótico antes da TC",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Testes rápidos de HIV e sífilis: meningite linfocitária ou viral provável",
+    "f": [
+     8
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "TC de crânio de rotina antes da punção sem nenhum critério: atrasa o tratamento",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Esperar TC ou LCR para dar o antibiótico",
+    "f": [
+     2,
+     7
+    ]
+   },
+   {
+    "t": "Látex isolado para afastar meningite bacteriana: falso-negativo",
+    "f": [
+     8
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "IDSA 2004 — Tunkel AR et al. Practice Guidelines for the Management of Bacterial Meningitis. Clin Infect Dis 2004;39(9):1267-1284. PMID 15494903. https://doi.org/10.1086/425368",
+   "ESCMID 2016 — van de Beek D et al. ESCMID guideline: diagnosis and treatment of acute bacterial meningitis. Clin Microbiol Infect 2016;22 Suppl 3:S37-S62. PMID 27062097. https://doi.org/10.1016/j.cmi.2016.01.007",
+   "IDSA 2017 — Tunkel AR et al. 2017 Infectious Diseases Society of America Clinical Practice Guidelines for Healthcare-Associated Ventriculitis and Meningitis. Clin Infect Dis 2017;64(6):e34-e65. PMID 28203777. https://doi.org/10.1093/cid/ciw861",
+   "IDSA 2008 — Tunkel AR et al. The management of encephalitis: clinical practice guidelines by the Infectious Diseases Society of America. Clin Infect Dis 2008;47(3):303-327. PMID 18582201. https://doi.org/10.1086/589747",
+   "NT 154/2024 — Ministério da Saúde. Nota Técnica Conjunta nº 154/2024-DPNI/SVSA/MS: novas orientações para a vigilância das meningites (caso suspeito, contato próximo, quimioprofilaxia). https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/notas-tecnicas/2024/nota-tecnica-conjunta-no-154-2024-dpni-svsa-ms.pdf",
+   "MS Lista Nacional — Ministério da Saúde. Lista Nacional de Notificação Compulsória (Portaria de Consolidação GM/MS nº 4/2017, anexo 1 do anexo V, atualizada): doença meningocócica e outras meningites, notificação imediata. https://www.gov.br/saude/pt-br/composicao/svsa/notificacao-compulsoria/lista-nacional-de-notificacao-compulsoria-de-doencas-agravos-e-eventos-de-saude-publica",
+   "NICE 2024 — NICE NG240. Meningitis (bacterial) and meningococcal disease: recognition, diagnosis and management, 2024. https://www.nice.org.uk/guidance/ng240",
+   "HC-FMUSP 2024 cap. 56 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 56 Infecções do sistema nervoso central."
+  ]
+ },
+ "ait": {
+  "encaminhar": [
+   {
+    "t": "Neurologia ou centro de AVC (regulação): déficit persistente ou flutuante — seguir a conduta AVC isquêmico",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Internar ou observar: ABCD² ≥ 4 sem investigação completa, investigação impossível em 24–48 h, difusão positiva, FA nova ou crises repetidas",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Cirurgia vascular: estenose de carótida ipsilateral ≥ 50% sintomática, para endarterectomia ou stent em até 2 semanas",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Neurologia ambulatorial rápida: AIT de baixo risco com investigação feita no PS",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Neurocirurgia e UTI: hemorragia intracerebral; cirurgia já na hemorragia cerebelar com piora, compressão do tronco, hidrocefalia ou ≥ 15 mL",
+    "f": [
+     3,
+     4
+    ]
+   },
+   {
+    "t": "Neurocirurgia ou neurorradiologia: hemorragia subaracnóidea, para tratar o aneurisma o quanto antes",
+    "f": [
+     5
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Glicemia capilar: todo déficit súbito, antes da imagem",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "TC de crânio sem contraste: todo déficit súbito, já",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Angio-TC de crânio e pescoço (ou doppler de carótidas e vertebrais): todo AIT, no PS ou em até 24 h",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "RM com difusão: AIT, quando disponível em até 24 h",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "ECG de 12 derivações e monitor cardíaco: todo AIT e AVC (FA)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemograma, glicemia, eletrólitos, creatinina, coagulograma (INR), perfil lipídico e hemoglobina glicada: AIT e AVC",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Ecocardiograma e Holter: AIT sem causa definida, internado ou em ambulatório rápido",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Angio-TC na hemorragia intracerebral: lobar antes dos 70 anos, profunda antes dos 45, ou 45–70 anos sem hipertensão",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "INR, TTPa, plaquetas e fibrinogênio: hemorragia intracerebral, sobretudo com anticoagulante, sem atrasar a reversão",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Esperar o INR para reverter a varfarina com hemorragia e uso confirmado",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Liberar o AIT só pelo ABCD² baixo, sem imagem dos vasos e ECG",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "EEG de rotina sem crise clínica ou rebaixamento inexplicado",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "AHA 2023 AIT — Amin HP et al. Diagnosis, Workup, Risk Reduction of Transient Ischemic Attack in the Emergency Department Setting: A Scientific Statement From the American Heart Association. Stroke 2023;54(3):e109-e121. PMID 36655570. https://doi.org/10.1161/STR.0000000000000418",
+   "AHA/ASA 2021 — Kleindorfer DO et al. 2021 Guideline for the Prevention of Stroke in Patients With Stroke and Transient Ischemic Attack. Stroke 2021;52(7):e364-e467. PMID 34024117. https://doi.org/10.1161/STR.0000000000000375",
+   "AHA/ASA 2022 — Greenberg SM et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage. Stroke 2022;53(7):e282-e361. PMID 35579034. https://doi.org/10.1161/STR.0000000000000407",
+   "ESO-EANS 2025 — Steiner T et al. European Stroke Organisation (ESO) and European Association of Neurosurgical Societies (EANS) guideline on stroke due to spontaneous intracerebral haemorrhage. Eur Stroke J 2025;10(4):1007-1086. PMID 40401775. https://doi.org/10.1177/23969873251340815",
+   "AHA/ASA 2023 HSA — Hoh BL et al. 2023 Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage. Stroke 2023;54(7):e314-e370. PMID 37212182. https://doi.org/10.1161/STR.0000000000000436"
+  ]
+ },
+ "paralisia-facial": {
+  "encaminhar": [
+   {
+    "t": "Protocolo de AVC já: testa poupada ou outro déficit neurológico (paralisia central)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Otorrino com urgência: Ramsay Hunt (vesículas, perda auditiva, vertigem), otite média ou mastoidite com paralisia",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Oftalmologia: olho vermelho, dor ocular ou baixa da visão com olho que não fecha",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Otorrino ou neurologia ambulatorial: piora, novo déficit, paralisia recorrente ou recuperação incompleta em 3 meses",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Glicemia: diabético que vai usar corticoide",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "TC ou RM: outro achado neurológico, paralisia recorrente do mesmo lado, progressão por mais de 3 semanas ou massa na parótida",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Sorologia para Lyme, HIV ou outras: paralisia bilateral ou exposição sugestiva",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Audiometria: Ramsay Hunt ou queixa auditiva, com o otorrino",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exames de sangue de rotina na paralisia de Bell típica",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Imagem de rotina na paralisia de Bell típica",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Eletroneuromiografia na paralisia incompleta",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "AAO-HNS 2013 — Baugh RF et al. Clinical Practice Guideline: Bell's Palsy. Otolaryngol Head Neck Surg 2013;149(3 Suppl):S1-S27. PMID 24189771. https://doi.org/10.1177/0194599813505967",
+   "Harrison 2025 cap. 452 — Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 452 Trigeminal Neuralgia, Bell's Palsy, and Other Cranial Nerve Disorders."
+  ]
+ },
+ "pneumotorax": {
+  "encaminhar": [
+   {
+    "t": "Sala vermelha: pneumotórax com hipotensão, hipoxemia grave ou jugulares ingurgitadas (hipertensivo) — descompressão imediata e dreno de tórax, sem esperar imagem",
+    "f": [
+     3,
+     4
+    ]
+   },
+   {
+    "t": "Internação (Clínica, Pneumologia ou Cirurgia torácica): secundário, alto risco (hipoxemia, bilateral, hemopneumotórax, 50 anos ou mais com tabagismo), dreno de tórax ou falha da aspiração",
+    "f": [
+     2,
+     4
+    ]
+   },
+   {
+    "t": "UTI: pneumotórax hipertensivo ou necessidade de suporte ventilatório",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Cirurgia torácica (eletiva): 2º episódio do mesmo lado, 1º contralateral, hipertensivo no 1º episódio ou profissão de risco (mergulhador, piloto, militar)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Pneumologia ambulatorial: todo paciente após a alta, com RX de controle em 2 a 4 semanas",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "RX de tórax PA, em pé: primeiro exame em toda suspeita estável; perfil se o PA não mostrar e a suspeita continuar",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Ultrassom de tórax à beira do leito: suspeita com paciente instável ou para pneumotórax pequeno, por médico treinado (mais sensível que o RX)",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "RX de controle: depois de 6 h (pneumotórax < 2 cm) ou 12 h (2 cm ou mais) de observação, antes da alta",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "TC de tórax: sintomático com pneumotórax pequeno demais para intervir pelo RX, doença pulmonar de base ou dúvida diagnóstica",
+    "f": [
+     2,
+     4
+    ]
+   },
+   {
+    "t": "Gasometria arterial: secundário (DPOC) ou hipoxemia",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Hemograma e tipagem: hemopneumotórax (nível líquido no RX), característica de alto risco",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Imagem antes de descomprimir o pneumotórax hipertensivo: o diagnóstico é clínico",
+    "f": [
+     3,
+     4
+    ]
+   },
+   {
+    "t": "TC de tórax de rotina no primário estável já visto no RX",
+    "f": [
+     4
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "BTS 2023 — Roberts ME et al. British Thoracic Society Guideline for pleural disease. Thorax 2023;78(Suppl 3):s1-s42. https://doi.org/10.1136/thorax-2022-219784",
+   "BTS 2023 Appendix 1 — British Thoracic Society. Guideline for pleural disease 2023, Appendix 1: Pneumothorax pathway (características de alto risco; tamanho seguro para intervir em geral ≥ 2 cm no RX ou qualquer tamanho acessível na TC). https://www.brit-thoracic.org.uk/document-library/guidelines/pleural-disease/bts-guideline-for-pleural-disease-appendix-1-clinical-pathwaysdecision-trees/",
+   "ATLS 2018 — American College of Surgeons. ATLS — Advanced Trauma Life Support, 10ª ed., 2018, cap. 4 (Thoracic trauma): hipertensivo é diagnóstico clínico; descompressão no 4º ou 5º espaço intercostal, logo à frente da linha axilar média, no adulto.",
+   "HC-FMUSP 2024 cap. 46 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 46 Pneumotórax não traumático."
+  ]
+ },
+ "cad": {
+  "encaminhar": [
+   {
+    "t": "Internação em toda CAD e todo EHH: não há alta da UPA",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Sala vermelha: rebaixamento da consciência, choque ou CAD grave (pH < 7,0, bicarbonato < 10 ou estupor)",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "UTI: CAD grave (pH < 7,0, bicarbonato < 10, beta-hidroxibutirato > 6 ou estupor/coma), EHH, alteração mental ou doença crítica como desencadeante (infarto, sangramento digestivo, sepse)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Semi-intensiva (UTI B no HSLS): CAD moderada (pH 7,0–7,24 ou bicarbonato 10–14, alerta ou sonolento)",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Glicemia, gasometria venosa (pH e bicarbonato), Na, K, Cl com ânion gap, ureia e creatinina: toda suspeita de crise hiperglicêmica",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Beta-hidroxibutirato no sangue: diagnóstico e acompanhamento da resolução; cetonúria só se não houver",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Osmolalidade efetiva (2 × Na + glicose/18) e sódio corrigido: glicemia muito alta ou rebaixamento (EHH)",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Fósforo e magnésio: na chegada e durante o tratamento",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "ECG: na chegada (potássio e infarto como desencadeante)",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Glicemia capilar a cada 1 a 2 h; eletrólitos, fósforo, creatinina, pH venoso e beta-hidroxibutirato a cada 4 h até resolver; K 2 h após iniciar a insulina",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Hemograma, urina tipo I, urocultura, hemoculturas, RX de tórax, troponina, lipase e beta-hCG: pelo desencadeante suspeito (infecção, infarto, pancreatite, gestação)",
+    "f": [
+     1,
+     3
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Gasometria arterial de rotina: o pH venoso basta para diagnosticar e acompanhar",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Fita urinária para decidir a resolução: a cetonúria persiste depois que a cetonemia já caiu",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ADA 2024 — Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report — ADA/EASD/JBDS/AACE/DTS. Diabetes Care 2024;47(8):1257-1275. PMID 39052901 (também em Diabetologia 2024;67:1455, PMC11343900). https://doi.org/10.2337/dci24-0032",
+   "CCJM 2025 — Hyperglycemic crises in adults: a look at the 2024 consensus report. Cleveland Clinic Journal of Medicine 2025;92(3):152 (eletrólitos, fosfato, creatinina, beta-hidroxibutirato e pH venoso a cada 4 h até a resolução). https://www.ccjm.org/content/92/3/152",
+   "HC-FMUSP 2024 cap. 89 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 89 Hiperglicemias."
+  ]
  }
 };
 if (typeof module!=="undefined") module.exports={EXAMES};

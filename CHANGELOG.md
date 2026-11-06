@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## 1.59.0 — 2026-11-06
+- **Sete condutas novas, conferidas** (lote 3): pancreatite aguda (BISAP, Atlanta, hidratação moderada), diverticulite aguda (sem antibiótico na não complicada; antibiótico como bloco opcional), hemorragia digestiva baixa (Oakland, reversão de anticoagulantes), meningite aguda (antibiótico na 1ª hora, dexametasona, quimioprofilaxia dos contatos opcional, notificação), AIT e AVC hemorrágico (dupla antiagregação opcional, PA, reversão), paralisia facial periférica (prednisona, antiviral opcional, proteção do olho) e pneumotórax espontâneo (BTS 2023, hipertensivo pelo ATLS).
+- Cada uma com checklist, alta leiga, item de alta e exames (pedir, não pedir, encaminhar).
+- **Escores novos**: BISAP, Oakland e escore ICH, na aba Escores e nos cálculos da conduta.
+- **CAD / estado hiperosmolar** atualizada pelo consenso de 2024 inteiro (gravidade, quadro misto, CAD euglicêmica, ritmo no EHH, resolução e transição); checklist com itens do EHH. O protocolo da sala vermelha não mudou (aguarda o médico).
+- **Queixas**: caminhos para as condutas novas em dor abdominal, cefaleia, febre, tontura, dor torácica e tosse/dispneia.
+- Decisões pendentes do médico em `docs/LOTE3-DECISOES.md` (aplicado o padrão do conferente).
+
 ## 1.58.0 — 2026-11-06
 - **Adicionar escala** (Plantões): cole ou dite os plantões ("12/11 noturno", "15 e 20/11 diurno", "22/11 sobreaviso 24h", "28/11 24h invertido"), confira a lista e grave. Entende todos os turnos; com a IA ligada, também texto livre. Não duplica o que já está na escala.
 - **"UI" virou "unidades"** em todo o app (heparina, insulina, penicilina benzatina, soros e imunoglobulinas), como recomenda o ISMP Brasil; só o nome mudou, nenhum número. O verificador de conteúdo barra a sigla.

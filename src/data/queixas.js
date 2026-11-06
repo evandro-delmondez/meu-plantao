@@ -13,8 +13,8 @@ const QUEIXAS = [
 { id: "cefaleia", nome: "Cefaleia", cor: "amber",
   alarme: [
     { t: "Início súbito, dor máxima em até 1 hora (pior dor da vida, em trovoada)", acao: "Não liberar: regra de Ottawa para HSA; qualquer critério → TC sem contraste. TC normal em até 6 h do início, com exame neurológico normal, afasta HSA; após 6 h, punção lombar ou angiotomografia." },
-    { t: "Febre com rigidez de nuca, confusão ou petéquias", acao: "Meningite: não liberar; hemoculturas e antibiótico sem esperar TC ou punção. TC antes da punção se déficit focal, convulsão, rebaixamento, papiledema ou imunossupressão." },
-    { t: "Déficit neurológico novo, confusão, sonolência ou crise convulsiva", acao: "TC de crânio sem contraste imediata. Déficit súbito: protocolo de AVC já, registrando a hora em que foi visto bem pela última vez (trombólise e trombectomia têm janela). Ver AVC." },
+    { t: "Febre com rigidez de nuca, confusão ou petéquias", acao: "Meningite: não liberar; hemoculturas e antibiótico sem esperar TC ou punção. TC antes da punção se déficit focal, convulsão, rebaixamento, papiledema ou imunossupressão. Ver Meningite." },
+    { t: "Déficit neurológico novo, confusão, sonolência ou crise convulsiva", acao: "TC de crânio sem contraste imediata. Déficit súbito: protocolo de AVC já, registrando a hora em que foi visto bem pela última vez (trombólise e trombectomia têm janela). Ver AVC; hemorragia na TC: ver AIT e AVC hemorrágico." },
     { t: "Papiledema, ou dor que piora deitado, ao tossir ou no esforço, com vômitos", acao: "Pensar em hipertensão intracraniana (tumor, hematoma, trombose venosa): neuroimagem antes de qualquer alta." },
     { t: "Cefaleia nova ou com mudança de padrão depois dos 50 anos", acao: "Neuroimagem. Dor temporal, dor ao mastigar ou alteração visual: VHS e PCR (arterite temporal); com alteração visual, corticoide no mesmo dia e oftalmologia." },
     { t: "Imunossupressão (HIV, quimioterapia, transplante, corticoide crônico) ou câncer", acao: "Neuroimagem e, sem contraindicação, punção lombar: infecção oportunista ou metástase." },
@@ -38,10 +38,12 @@ const QUEIXAS = [
     { rot: "Salvas: dor orbitária intensa com lacrimejamento e coriza do mesmo lado, crises de 15 a 180 min", conduta: "salvas" },
     { rot: "Após trauma de crânio", conduta: "tce" },
     { rot: "Déficit neurológico súbito", conduta: "avc" },
+    { rot: "Febre com rigidez de nuca, confusão, fotofobia ou petéquias (meningite)", conduta: "meningite" },
+    { rot: "Cefaleia súbita com déficit, vômitos ou rebaixamento e sangue na TC (AVC hemorrágico)", conduta: "ait" },
     { rot: "PA elevada com lesão de órgão-alvo", conduta: "has" },
     { rot: "Gestante ou puérpera com PA elevada", conduta: "pre-eclampsia" }
   ],
-  escores: ["Regra de Ottawa para HSA (idade ≥ 40, dor ou rigidez cervical, perda de consciência presenciada, início no esforço, pico instantâneo, flexão do pescoço limitada)", "SNNOOP10 (sinais de alarme)", "Regra canadense de TC de crânio (trauma)"],
+  escores: ["Regra de Ottawa para HSA (idade ≥ 40, dor ou rigidez cervical, perda de consciência presenciada, início no esforço, pico instantâneo, flexão do pescoço limitada)", "SNNOOP10 (sinais de alarme)", "Regra canadense de TC de crânio (trauma)", "Escore ICH (hemorragia intracerebral)"],
   fontes: [
     "ACEP Clinical Policy: Critical Issues in the Evaluation and Management of Adult Patients Presenting to the ED With Acute Headache (Godwin SA et al., Ann Emerg Med 2019;74(4):e41-e74). https://pubmed.ncbi.nlm.nih.gov/31543134/",
     "Perry JJ et al. Clinical decision rules to rule out subarachnoid hemorrhage for acute headache (JAMA 2013;310:1248) e validação (CMAJ 2017;189:E1379).",
@@ -52,7 +54,8 @@ const QUEIXAS = [
     "Ministério da Saúde. Manual de Gestação de Alto Risco, 2022 (pré-eclâmpsia).",
     "Stiell IG et al. The Canadian CT Head Rule for patients with minor head injury (Lancet 2001;357:1391) e NICE NG232. Head injury: assessment and early management, 2023 (anticoagulados).",
     "SBC. Diretriz Brasileira de Hipertensão Arterial 2025 (Arq Bras Cardiol) e Posicionamento Luso-Brasileiro de Emergências Hipertensivas, 2020.",
-    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 26 — Cefaleia; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 17 — Headache."
+    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 26 — Cefaleia; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 17 — Headache.",
+    "Greenberg SM et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage — AHA/ASA (Stroke 2022;53:e282)."
   ] },
 { id: "tontura-sincope", nome: "Tontura, vertigem e síncope", cor: "indigo",
   alarme: [
@@ -62,7 +65,7 @@ const QUEIXAS = [
     { t: "ECG de alto risco: isquemia, Mobitz II ou BAV total, FC < 40, TV, bloqueio de ramo, QTc > 460 ms, Brugada tipo 1", acao: "Monitor e desfibrilador à mão; ver bradicardia ou taquicardia; observação ou internação." },
     { t: "PA sistólica < 90 mmHg sem explicação, melena ou sopro sistólico novo", acao: "Pensar em hemorragia (digestiva, ectópica, aneurisma) e estenose aórtica: acesso venoso, hemograma, beta-hCG na mulher em idade fértil; não liberar." },
     { t: "Tontura contínua há horas com nistagmo, ou sem conseguir andar sem apoio", acao: "Síndrome vestibular aguda: HINTS plus (com teste de audição) só por quem tem treino. Central, duvidoso, sem examinador treinado ou marcha muito alterada: tratar como AVC de circulação posterior (neurologia, ressonância); TC normal não exclui." },
-    { t: "Crises de tontura ou vertigem que vêm sozinhas, duram minutos, sem gatilho de posição, sobretudo em idoso ou com fatores de risco vascular", acao: "Pensar em AIT de circulação posterior (pode anteceder AVC): procurar sinais neurológicos, angiotomografia (ou angiorressonância) e neurologia; TC simples não exclui; não liberar como labirintite." },
+    { t: "Crises de tontura ou vertigem que vêm sozinhas, duram minutos, sem gatilho de posição, sobretudo em idoso ou com fatores de risco vascular", acao: "Pensar em AIT de circulação posterior (pode anteceder AVC): procurar sinais neurológicos, angiotomografia (ou angiorressonância) e neurologia; TC simples não exclui; não liberar como labirintite. Ver AIT." },
     { t: "Visão dupla, fala arrastada, dificuldade para engolir, fraqueza, dormência, incoordenação ou pálpebra caída", acao: "Protocolo de AVC: registrar a hora em que foi visto bem pela última vez e transferir já (trombólise e trombectomia têm janela). Ver AVC." },
     { t: "Tontura com cefaleia súbita ou dor cervical nova", acao: "Suspeitar de dissecção vertebral ou HSA: angiotomografia de crânio e pescoço; não liberar." },
     { t: "Vertigem aguda com perda auditiva súbita de um lado", acao: "Pode ser AVC (artéria cerebelar anteroinferior, HINTS plus) ou surdez súbita: avaliação neurológica e otorrino com urgência." }
@@ -80,6 +83,7 @@ const QUEIXAS = [
     { rot: "Vertigem periférica: VPPB (Dix-Hallpike positivo) ou neurite com HINTS periférico", conduta: "vertigem" },
     { rot: "Síncope reflexa (vasovagal, situacional) ou ortostática, sem sinal de alto risco e com ECG normal: alta com orientação", conduta: "sincope" },
     { rot: "Sinais neurológicos ou HINTS central", conduta: "avc" },
+    { rot: "Déficit transitório que regrediu por completo (AIT): investigar e antiagregar", conduta: "ait" },
     { rot: "FC baixa ou bloqueio AV", conduta: "bradicardia" },
     { rot: "Taquicardia ou palpitação antes da síncope", conduta: "taquicardia" },
     { rot: "Glicemia baixa", conduta: "hipoglicemia" },
@@ -95,7 +99,8 @@ const QUEIXAS = [
     "Kattah JC et al. HINTS to diagnose stroke in the acute vestibular syndrome (Stroke 2009;40:3504) e Newman-Toker DE et al. HINTS outperforms ABCD2 to screen for stroke in acute continuous vertigo and dizziness (Acad Emerg Med 2013;20:986) — HINTS plus.",
     "Newman-Toker DE, Edlow JA. TiTrATE: a novel, evidence-based approach to diagnosing acute dizziness and vertigo (Neurol Clin 2015;33:577).",
     "Chandrasekhar SS et al. AAO-HNS Clinical Practice Guideline: Sudden Hearing Loss (Update) (Otolaryngol Head Neck Surg 2019;161:S1).",
-    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 20 — Perda transitória da consciência e cap. 59 — Síndromes vertiginosas agudas; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 23 — Syncope e cap. 24 — Dizziness and Vertigo."
+    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 20 — Perda transitória da consciência e cap. 59 — Síndromes vertiginosas agudas; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 23 — Syncope e cap. 24 — Dizziness and Vertigo.",
+    "Amin HP et al. Diagnosis, Workup, Risk Reduction of Transient Ischemic Attack in the Emergency Department Setting — AHA Scientific Statement (Stroke 2023;54:e109)."
   ] },
 { id: "dor-abdominal", nome: "Dor abdominal", cor: "green",
   alarme: [
@@ -109,7 +114,9 @@ const QUEIXAS = [
     { t: "Vômitos, parada de gases e fezes e distensão; cirurgia abdominal prévia ou hérnia endurecida e dolorosa", acao: "Obstrução ou hérnia encarcerada: jejum, sonda nasogástrica se vômitos, imagem e cirurgião." },
     { t: "Febre com icterícia, ou dor no hipocôndrio direito com febre", acao: "Colangite ou colecistite: hemoculturas, antibiótico, ultrassom e cirurgia (ver Vias biliares); com hipotensão ou confusão, ver sepse." },
     { t: "Idoso (65 anos ou mais), imunossuprimido ou em uso de corticoide", acao: "Exame e exames iniciais enganam: limiar baixo para TC e reavaliação antes da alta." },
-    { t: "Dor epigástrica em idoso, diabético ou com fatores de risco cardiovascular", acao: "ECG em até 10 minutos: síndrome coronariana pode se apresentar como dor abdominal." }
+    { t: "Dor epigástrica em idoso, diabético ou com fatores de risco cardiovascular", acao: "ECG em até 10 minutos: síndrome coronariana pode se apresentar como dor abdominal." },
+    { t: "Sangue pelo ânus com tontura, desmaio, FC maior que a PA sistólica ou queda da hemoglobina", acao: "Índice de choque > 1: sala de emergência, dois acessos, angiotomografia; pensar em fonte alta (ver Hemorragia digestiva baixa e alta)." },
+    { t: "Dor epigástrica em faixa com falta de ar, hipotensão, confusão ou pouca urina", acao: "Pancreatite com falência orgânica: Ringer lactato, BISAP e UTI (ver Pancreatite aguda)." }
   ],
   perguntar: [
     "Onde dói, como começou (súbita ou gradual), se migrou (umbigo para fossa ilíaca direita) e para onde irradia (dorso, ombro, virilha)",
@@ -124,15 +131,19 @@ const QUEIXAS = [
     { rot: "Dor abdominal aguda indiferenciada: abordagem inicial e analgesia (não atrasa o diagnóstico)", conduta: "dor-abdominal" },
     { rot: "Dor em cólica no flanco irradiando para a virilha, com ou sem hematúria (cólica renal)", conduta: "colica" },
     { rot: "Dor no hipocôndrio direito ou no epigástrio após refeição, com ou sem febre ou icterícia (vesícula e vias biliares)", conduta: "biliar" },
+    { rot: "Dor epigástrica intensa, em faixa ou para as costas, com vômitos; álcool ou cálculo biliar (pancreatite)", conduta: "pancreatite" },
+    { rot: "Dor na fossa ilíaca esquerda, com ou sem febre, em adulto (diverticulite)", conduta: "diverticulite" },
     { rot: "Ardência urinária, febre e dor lombar (cistite, pielonefrite)", conduta: "itu" },
     { rot: "Queimação epigástrica, azia", conduta: "dispepsia" },
     { rot: "Diarreia e vômitos", conduta: "geca" },
     { rot: "Hematêmese ou melena", conduta: "hda" },
+    { rot: "Sangue vivo ou vinhoso pelo ânus (hematoquezia)", conduta: "hdb" },
+    { rot: "Glicemia alta com vômitos, dor abdominal, respiração rápida ou sonolência (cetoacidose ou estado hiperosmolar)", conduta: "cad" },
     { rot: "Dor pélvica com corrimento, febre ou dor à mobilização do colo", conduta: "dip" },
     { rot: "Dor ou inchaço no testículo ou no escroto (torção, epididimite, hérnia)", conduta: "escroto-agudo" },
     { rot: "Não consegue urinar, com bexiga palpável acima do púbis", conduta: "retencao-urinaria" }
   ],
-  escores: ["AIR ou Adult Appendicitis Score (apendicite)", "Critérios de Tóquio 2018 (colangite e colecistite)"],
+  escores: ["AIR ou Adult Appendicitis Score (apendicite)", "Critérios de Tóquio 2018 (colangite e colecistite)", "BISAP (pancreatite)", "Oakland (hemorragia digestiva baixa)"],
   fontes: [
     "Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022: dor epigástrica ou no hipocôndrio direito como sinal de gravidade da pré-eclâmpsia; descolamento prematuro de placenta.",
     "Podda M et al. Diagnosis and Treatment of Acute Appendicitis: 2025 Edition of the WSES Jerusalem Guidelines (JAMA Surg, publicado em 28/01/2026); Di Saverio S et al. 2020 update (World J Emerg Surg 2020;15:27) — escores AIR e AAS, idosos e imunossuprimidos.",
@@ -148,7 +159,10 @@ const QUEIXAS = [
     "Manterola C et al. Analgesia in patients with acute abdominal pain (Cochrane Database Syst Rev 2011;CD005660).",
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 25 — Dor abdominal (tab. 4, sinais de alarme); Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 16 — Abdominal Pain.",
     "EAU Guidelines on Paediatric Urology, 2026 — Acute scrotum: torção exige tratamento imediato (forte); salvamento melhor nas primeiras 4 a 6 h; diagnóstico clínico, o Doppler não deve atrasar a cirurgia e fluxo presente não exclui torção; TWIST ajuda, mas não substitui o exame; distorção manual pode ser tentada enquanto se aguarda a cirurgia, sem atrasá-la; torção de apêndice: conservador com AINE. https://uroweb.org/guidelines/paediatric-urology/chapter/acute-scrotum",
-    "Serlin DC, Heidelbaugh JJ, Stoffel JT. Urinary Retention in Adults: Evaluation and Initial Management (Am Fam Physician 2018;98(8):496-503; PMID 30277739): causas (HPB, estenose, prostatite, fármacos anticolinérgicos, antidepressivos, anti-histamínicos, simpaticomiméticos, opioides; neurológicas; na mulher, prolapso, massa pélvica e pós-parto), drenagem completa, alfabloqueador antes da retirada da sonda e prova de micção após 3 a 7 dias; encaminhar se falha da prova ou resíduo > 300 mL. https://www.aafp.org/pubs/afp/issues/2018/1015/p496.html"
+    "Serlin DC, Heidelbaugh JJ, Stoffel JT. Urinary Retention in Adults: Evaluation and Initial Management (Am Fam Physician 2018;98(8):496-503; PMID 30277739): causas (HPB, estenose, prostatite, fármacos anticolinérgicos, antidepressivos, anti-histamínicos, simpaticomiméticos, opioides; neurológicas; na mulher, prolapso, massa pélvica e pós-parto), drenagem completa, alfabloqueador antes da retirada da sonda e prova de micção após 3 a 7 dias; encaminhar se falha da prova ou resíduo > 300 mL. https://www.aafp.org/pubs/afp/issues/2018/1015/p496.html",
+    "IAP/APA/EPC/IPC/JPS Working Group. IAP Revised Guidelines on Acute Pancreatitis 2025 (Pancreatology 2025;25(6):770-814): falência orgânica (Marshall ≥ 2) indica UTI. https://doi.org/10.1016/j.pan.2025.04.020",
+    "Oakland K et al. BSG guidelines on acute lower gastrointestinal bleeding (Gut 2019;68:776-789): índice de choque > 1 = instável; angio-TC; endoscopia alta se sem fonte. https://doi.org/10.1136/gutjnl-2018-317807",
+    "Peery AF et al. AGA Clinical Practice Update on Medical Management of Colonic Diverticulitis (Gastroenterology 2021;160:906-911). https://doi.org/10.1053/j.gastro.2020.09.059"
   ] },
 { id: "dor-toracica", nome: "Dor torácica", cor: "rose",
   alarme: [
@@ -157,7 +171,7 @@ const QUEIXAS = [
     { t: "Hipotensão, choque, arritmia, síncope ou dispneia com estertores", acao: "Sala de emergência, monitor e desfibrilador à mão; tratar a causa (SCA, TEP, tamponamento, arritmia, edema agudo de pulmão)." },
     { t: "Dor súbita, muito intensa ou \"rasgando\", no tórax, dorso ou abdome; pior se assimetria de pulso ou PA entre os braços, déficit neurológico, sopro diastólico novo ou hipotensão", acao: "Dissecção de aorta: calcular ADD-RS; 2 ou mais pontos, angiotomografia de aorta já; 0 a 1, D-dímero negativo ajuda a afastar. Não liberar." },
     { t: "Dispneia súbita, taquicardia, hipoxemia, hemoptise ou dor pleurítica com fator de risco para trombose", acao: "Suspeita de TEP: Wells ou Genebra; baixa probabilidade → PERC; senão, D-dímero ou angiotomografia. Instável: sala de emergência." },
-    { t: "Dor pleurítica súbita com dispneia e murmúrio diminuído de um lado", acao: "Pneumotórax: radiografia ou ultrassom. Com instabilidade (hipotensão ou hipoxemia grave, taquicardia, jugulares ingurgitadas): hipertensivo, descompressão imediata, sem esperar imagem. Desvio de traqueia é tardio e muitas vezes ausente." },
+    { t: "Dor pleurítica súbita com dispneia e murmúrio diminuído de um lado", acao: "Pneumotórax: radiografia ou ultrassom. Instável (hipotensão, hipoxemia grave, jugulares ingurgitadas): hipertensivo, descompressão já, sem imagem. Ver pneumotórax. Desvio de traqueia é tardio e muitas vezes ausente." },
     { t: "Dor que melhora inclinado para a frente (pericardite) com febre, hipotensão ou jugulares ingurgitadas", acao: "Pericardite com sinal de gravidade ou tamponamento: ecocardiograma à beira do leito e internação." },
     { t: "Dor após vômitos intensos, com enfisema subcutâneo ou dor para engolir", acao: "Ruptura de esôfago: jejum, TC de tórax com contraste e cirurgia; não liberar." },
     { t: "Idoso, mulher ou diabético com dispneia, epigastralgia, náusea, sudorese ou síncope, sem dor típica", acao: "Equivalente anginoso: seguir o protocolo de dor torácica (ECG em até 10 min e troponina)." }
@@ -174,6 +188,7 @@ const QUEIXAS = [
   caminhos: [
     { rot: "Síndrome coronariana aguda", conduta: "sca" },
     { rot: "TEP", conduta: "tep" },
+    { rot: "Pneumotórax espontâneo: dor pleurítica súbita com dispneia e murmúrio diminuído de um lado", conduta: "pneumotorax" },
     { rot: "Dispneia com congestão (edema agudo de pulmão)", conduta: "eap" },
     { rot: "Palpitação ou taquicardia com a dor", conduta: "taquicardia" },
     { rot: "Pericardite sem sinal de gravidade: dor pleurítica que melhora inclinado para a frente, atrito, supra difuso", conduta: "pericardite" },
@@ -192,12 +207,14 @@ const QUEIXAS = [
     "Roberts ME et al. British Thoracic Society Guideline for pleural disease (Thorax 2023;78:s1) — pneumotórax.",
     "Schulz-Menger J et al. 2025 ESC Guidelines for the management of myocarditis and pericarditis (Eur Heart J 2025;46:3952).",
     "Chirica M et al. Esophageal emergencies: WSES guidelines (World J Emerg Surg 2019;14:26).",
-    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 19 — Dor torácica; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 15 — Chest Discomfort."
+    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 19 — Dor torácica; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 15 — Chest Discomfort.",
+    "American College of Surgeons. ATLS — Advanced Trauma Life Support, 10ª ed., 2018, cap. 4 (Thoracic trauma): pneumotórax hipertensivo é diagnóstico clínico; descompressão no adulto no 4º ou 5º espaço intercostal.",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 46 — Pneumotórax não traumático."
   ] },
 { id: "febre", nome: "Febre (adulto)", cor: "lime",
   alarme: [
     { t: "Hipotensão, confusão, respiração rápida, pele moteada, oligúria ou SpO2 baixa", acao: "Sepse: triagem por NEWS2 (não qSOFA sozinho), lactato, hemoculturas; antibiótico em até 1 h no choque ou sepse provável, em até 3 h se só possível. Ver sepse." },
-    { t: "Rigidez de nuca ou confusão com febre; púrpura (manchas maiores que 2 mm que não somem à pressão); ou petéquias que se espalham rápido ou em paciente com aspecto grave", acao: "Meningite ou meningococcemia: precaução para gotículas, hemoculturas e antibiótico imediato, sem esperar punção ou TC; notificar. Petéquias poucas, com bom estado geral e quadro de dengue: grupo B (abaixo), reexaminando a pele." },
+    { t: "Rigidez de nuca ou confusão com febre; púrpura (manchas maiores que 2 mm que não somem à pressão); ou petéquias que se espalham rápido ou em paciente com aspecto grave", acao: "Meningite ou meningococcemia: precaução para gotículas, hemoculturas e antibiótico imediato, sem esperar punção ou TC; notificar (ver Meningite). Petéquias poucas, com bom estado geral e quadro de dengue: grupo B (abaixo), reexaminando a pele." },
     { t: "Dengue com sinal de alarme: dor abdominal intensa e contínua, vômitos persistentes, sangramento de mucosa, tontura ao levantar, letargia, hepatomegalia ou derrames", acao: "Dengue com sinais de alarme (grupo C): hidratação venosa imediata na unidade, hemograma e reavaliação horária; internar. Ver dengue." },
     { t: "Dengue com choque ou gravidade: taquicardia com extremidades frias, pulso fraco, enchimento capilar > 2 s, PA diferencial ≤ 20 mmHg (ex.: 100/80), hipotensão, oligúria, desconforto respiratório (derrame), sangramento grave ou confusão", acao: "Dengue grave (grupo D): expansão volêmica imediata na sala de emergência e vaga de UTI. Ver dengue." },
     { t: "Suspeita de dengue em gestante, idoso, com comorbidade ou risco social, ou com prova do laço positiva ou petéquias", acao: "Dengue grupo B: hemograma obrigatório e observação com hidratação oral até o resultado; não liberar antes." },
@@ -220,6 +237,7 @@ const QUEIXAS = [
     { rot: "Dengue: febre de 2 a 7 dias com 2 ou mais de náusea, vômitos, exantema, mialgia, artralgia, cefaleia, dor retro-orbital, petéquias, prova do laço positiva ou leucopenia; classificar de A a D, sem AINE nem AAS", conduta: "dengue" },
     { rot: "Chikungunya: febre de até 7 dias com dor articular intensa de início súbito; sem AINE nem corticoide na fase aguda; grupo de risco (gestante, mais de 65 anos, comorbidade) em observação e reavaliação diária" },
     { rot: "Sepse", conduta: "sepse" },
+    { rot: "Meningite: febre com rigidez de nuca, ou com 2 de cefaleia intensa, vômitos, confusão, fotofobia, torpor ou convulsão", conduta: "meningite" },
     { rot: "Síndrome gripal", conduta: "gripe" },
     { rot: "Pneumonia", conduta: "pac" },
     { rot: "Infecção urinária ou pielonefrite", conduta: "itu" },
@@ -241,7 +259,8 @@ const QUEIXAS = [
     "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2024 (malária: caso suspeito com deslocamento de 8 a 30 dias antes; leptospirose; febre amarela; meningites).",
     "Ministério da Saúde. Leptospirose: diagnóstico e manejo clínico, 2014.",
     "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023 (síndrome respiratória aguda grave: dispneia, desconforto respiratório ou SpO2 < 95%).",
-    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 16 — Febre e síndromes hipertérmicas e cap. 50 — Dengue; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 20 — Fever e cap. 215 — Arthropod-Borne and Rodent-Borne Virus Infections."
+    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 16 — Febre e síndromes hipertérmicas e cap. 50 — Dengue; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 20 — Fever e cap. 215 — Arthropod-Borne and Rodent-Borne Virus Infections.",
+    "Ministério da Saúde. Nota Técnica Conjunta nº 154/2024-DPNI/SVSA/MS: definição de caso suspeito de meningite e de contato próximo."
   ] },
 { id: "tosse-dispneia", nome: "Tosse e dispneia", cor: "sky",
   alarme: [
@@ -251,7 +270,7 @@ const QUEIXAS = [
     { t: "DPOC com piora da falta de ar e SpO2 baixa, sonolência ou confusão", acao: "Exacerbação grave com possível retenção de CO2: oxigênio controlado (alvo 88–92%), gasometria; ventilação não invasiva se acidose respiratória. Ver DPOC." },
     { t: "Ortopneia, estertores, edema de pernas, jugulares ingurgitadas ou PA muito alta", acao: "Insuficiência cardíaca descompensada ou edema agudo de pulmão: sentar, oxigênio, ECG e troponina (procurar SCA ou arritmia como gatilho). Ver edema agudo de pulmão." },
     { t: "Dispneia súbita com dor pleurítica, taquicardia, hemoptise ou fator de risco para trombose", acao: "Suspeita de TEP: Wells ou Genebra, PERC se baixa probabilidade, D-dímero ou angiotomografia. Ver TEP." },
-    { t: "Dispneia súbita com dor de um lado e murmúrio diminuído", acao: "Pneumotórax: radiografia ou ultrassom. Com instabilidade (hipotensão ou hipoxemia grave, taquicardia, jugulares ingurgitadas): hipertensivo, descompressão imediata, sem esperar imagem." },
+    { t: "Dispneia súbita com dor de um lado e murmúrio diminuído", acao: "Pneumotórax: radiografia ou ultrassom. Instável (hipotensão, hipoxemia grave, jugulares ingurgitadas): hipertensivo, descompressão já, sem imagem. Ver pneumotórax." },
     { t: "Chiado ou estridor com inchaço de lábios ou língua, urticária ou vômitos após alimento, remédio ou picada", acao: "Anafilaxia: adrenalina intramuscular imediata e sala de emergência. Ver anafilaxia." },
     { t: "Hemoptise volumosa, ou com queda de saturação ou instabilidade", acao: "Hemoptise ameaçadora: sala de emergência, proteger a via aérea, deitar sobre o lado que sangra; TC de tórax e pneumologia ou broncoscopia." },
     { t: "Tosse há 3 semanas ou mais (qualquer duração se HIV, prisão, situação de rua ou indígena), com ou sem febre à tarde, suor noturno ou emagrecimento", acao: "Suspeita de tuberculose: máscara cirúrgica no paciente, escarro para teste rápido molecular e radiografia de tórax." }
@@ -272,7 +291,9 @@ const QUEIXAS = [
     { rot: "Síndrome gripal sem falta de ar e com SpO2 ≥ 95%: febre súbita com tosse ou dor de garganta e dor de cabeça, no corpo ou nas juntas. Com dispneia, desconforto ou SpO2 ≤ 94%: é SRAG, internar e oseltamivir já (ver febre)", conduta: "gripe" },
     { rot: "Tosse aguda, subaguda ou crônica, coqueluche", conduta: "tosse" },
     { rot: "Insuficiência cardíaca ou edema agudo de pulmão", conduta: "eap" },
-    { rot: "TEP", conduta: "tep" }
+    { rot: "TEP", conduta: "tep" },
+    { rot: "Pneumotórax espontâneo: dispneia súbita com dor de um lado e murmúrio diminuído", conduta: "pneumotorax" },
+    { rot: "Respiração rápida e profunda com glicemia alta, vômitos ou dor abdominal (cetoacidose)", conduta: "cad" }
   ],
   escores: ["CRB-65 (pneumonia, sem ureia)", "CURB-65 (pneumonia)", "Gravidade da crise de asma (GINA)", "Wells ou Genebra e PERC (TEP)", "NEWS2"],
   fontes: [
@@ -291,7 +312,10 @@ const QUEIXAS = [
     "Ministério da Saúde. Manual de Recomendações para o Controle da Tuberculose no Brasil, 2ª ed., 2019 (sintomático respiratório e populações vulneráveis).",
     "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023 (grupos de risco e síndrome respiratória aguda grave).",
     "Irwin RS et al. Classification of Cough as a Symptom in Adults and Management Algorithms — CHEST Guideline (Chest 2018;153:196).",
-    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 18 — Dispneia, cap. 22 — Hemoptise, cap. 41 — Asma e cap. 43 — PAC; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 39 — Dyspnea e cap. 40 — Cough."
+    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 18 — Dispneia, cap. 22 — Hemoptise, cap. 41 — Asma e cap. 43 — PAC; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 39 — Dyspnea e cap. 40 — Cough.",
+    "American College of Surgeons. ATLS — Advanced Trauma Life Support, 10ª ed., 2018, cap. 4 (Thoracic trauma): pneumotórax hipertensivo é diagnóstico clínico; descompressão no adulto no 4º ou 5º espaço intercostal.",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 46 — Pneumotórax não traumático.",
+    "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257): respiração de Kussmaul na cetoacidose."
   ] },
 { id: "lombalgia", nome: "Lombalgia", cor: "orange",
   alarme: [

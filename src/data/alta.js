@@ -946,5 +946,180 @@ ansiedade: {
     "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 (versão vigente), cap. 8 (uretrites; quadro 37, p. 127): ceftriaxona 500 mg IM dose única nas infecções gonocócicas; resistência alta do gonococo ao ciprofloxacino no Brasil; orquiepididimite como complicação; testagem de HIV, sífilis e hepatites e tratamento das parcerias. Não traz esquema próprio para epididimite. https://www.saude.sp.gov.br/resources/crt/assistencia/pcdt/pcdtists2022.pdf"
   ]
 },
+pancreatite: {
+  titulo: "Pancreatite (inflamação do pâncreas)",
+  oque: "O pâncreas é um órgão que ajuda na digestão. Ele inflamou, o que causa dor forte na parte de cima da barriga. Na forma leve, melhora em poucos dias.",
+  cuidados: [
+    "Tome os remédios como está na sua receita. Não use outros remédios para dor por conta própria.",
+    "Coma pouca gordura nas próximas semanas: evite frituras, carnes gordas, embutidos e doces gordurosos. Faça refeições menores, mais vezes ao dia.",
+    "Beba água ao longo do dia.",
+    "Não beba bebida alcoólica. Se for difícil parar, peça ajuda no posto de saúde ou no CAPS.",
+    "Se a causa foi pedra na vesícula, faça a cirurgia indicada: ela evita uma nova crise.",
+    "Leve os exames e o resumo da alta à consulta no posto de saúde. Depois de uma pancreatite, é preciso medir o açúcar no sangue de tempos em tempos."
+  ],
+  volte: [
+    "A dor na barriga volta forte ou piora.",
+    "Vômitos que não param e não deixam você beber água nem tomar os remédios.",
+    "Febre ou calafrios.",
+    "Pele ou olhos amarelados, urina escura ou fezes claras.",
+    "Falta de ar, tontura forte, desmaio ou confusão.",
+    "Urina muito pouco."
+  ],
+  fontes: [
+    "IAP/APA/EPC/IPC/JPS Working Group. International Association of Pancreatology Revised Guidelines on Acute Pancreatitis 2025 (Pancreatology 2025;25(6):770-814; PMID 40651900): 18 domínios e 96 perguntas (diagnóstico, gravidade, hidratação, analgesia, antibiótico, nutrição, CPRE, colecistectomia, alta). Texto integral não aberto pelo conferente; os números da conduta foram conferidos nas outras fontes. https://doi.org/10.1016/j.pan.2025.04.020",
+    "Tenner S et al. American College of Gastroenterology Guidelines: Management of Acute Pancreatitis (Am J Gastroenterol 2024;119(3):419-437; PMID 38857482): USG em todos para causa biliar; TC na admissão não, só se dúvida ou sem melhora em 48–72 h; triglicérides se sem cálculo nem álcool (causa se > 1.000 mg/dL); hidratação moderada com Ringer lactato, reavaliar em 6 h e nas 24–48 h seguintes; não repetir amilase ou lipase (não se relacionam com gravidade, dieta ou alta); sem antibiótico profilático; dieta oral em 24–48 h; CPRE em até 24 h só com colangite; colecistectomia antes da alta na biliar leve; SIRS ou falência orgânica em leito monitorizado. https://doi.org/10.14309/ajg.0000000000002645",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 76 — Pancreatite aguda (WATERFALL: 1,5 mL/kg/h com bolus de 10 mL/kg na hipovolemia; diurese de 0,5–1 mL/kg/h; analgesia escalonada com dipirona, paracetamol, AINE e opioide, sem contraindicação à morfina; sem antibiótico profilático; CPRE em 24 h só com colangite; colecistectomia na mesma internação na biliar leve; hipertrigliceridemia com glicose e insulina em bomba ou plasmaférese; BISAP com mortalidade de 0,1% sem critério, > 3,5% com 3 ou mais e cerca de 10% com 5)."
+  ]
+},
+diverticulite: {
+  titulo: "Diverticulite (inflamação no intestino grosso)",
+  oque: "No intestino grosso podem se formar pequenas bolsinhas. Uma delas inflamou, o que causa dor, quase sempre do lado esquerdo e embaixo na barriga. Na maioria das vezes melhora em poucos dias, em casa.",
+  cuidados: [
+    "Tome os remédios como está na sua receita. Se recebeu antibiótico, tome até o fim, mesmo que melhore antes.",
+    "Não use anti-inflamatório (como ibuprofeno, diclofenaco ou nimesulida): ele aumenta o risco de complicação.",
+    "Nos primeiros dias, prefira líquidos e alimentos leves, como caldos, sopas, sucos sem bagaço e gelatina. Volte a comer normalmente aos poucos.",
+    "Depois que melhorar, coma mais frutas, verduras, legumes e cereais integrais, beba bastante água e faça atividade física.",
+    "Volte para ser reavaliado em 2 a 7 dias, como o médico combinou.",
+    "Procure o posto de saúde para marcar a colonoscopia (exame que olha o intestino por dentro) cerca de 6 a 8 semanas depois que melhorar."
+  ],
+  volte: [
+    "Febre alta, calafrios ou tremedeira.",
+    "A dor fica mais forte, se espalha pela barriga ou a barriga fica dura.",
+    "Vômitos que não deixam você beber água nem tomar os remédios.",
+    "Sangue nas fezes.",
+    "Não consegue soltar gases nem evacuar, com a barriga inchada.",
+    "Sai ar ou fezes junto com a urina."
+  ],
+  fontes: [
+    "Peery AF, Shaukat A, Strate LL. AGA Clinical Practice Update on Medical Management of Colonic Diverticulitis: Expert Review (Gastroenterology 2021;160(3):906-911.e1; PMID 33279517; PMC7878331): TC para confirmar; antibiótico seletivo, não de rotina, no imunocompetente com diverticulite não complicada leve; antibiótico se comorbidade ou fragilidade, sintomas refratários ou vômitos, PCR > 140 mg/L, leucócitos > 15.000, complicada, coleção ou segmento inflamado longo na TC; imunossuprimido: limiar baixo para TC, antibiótico e cirurgião; dieta líquida na fase aguda, avançando com a melhora; colonoscopia após 6–8 semanas (ou após resolução), dispensável se colonoscopia de qualidade no último ano; evitar AINE de uso regular. https://doi.org/10.1053/j.gastro.2020.09.059",
+    "Sartelli M et al. 2020 update of the WSES guidelines for the management of acute colonic diverticulitis in the emergency setting (World J Emerg Surg 2020;15:32; PMID 32381121; PMC7206757): TC com contraste como primeiro exame; sem antibiótico no imunocompetente com diverticulite não complicada sem inflamação sistêmica (forte, 1A); antibiótico (Gram-negativos e anaeróbios), oral sempre que possível, se inflamação sistêmica, imunossupressão, idoso ou comorbidades; ambulatorial se não complicada e sem comorbidades, reavaliando em até 7 dias; abscesso < 4–5 cm: antibiótico; maior: drenagem percutânea + antibiótico; após cirurgia com controle do foco, 4 dias de antibiótico. https://doi.org/10.1186/s13017-020-00313-4",
+    "NICE NG147. Diverticular disease: diagnosis and management, 2019 (antimicrobial prescribing): diverticulite não complicada sem sinais sistêmicos pode ser tratada sem antibiótico, com paracetamol e reavaliação; quando indicado, amoxicilina-clavulanato 500/125 mg 8/8h por 5 dias; alergia a penicilina: cefalexina + metronidazol 400 mg 8/8h por 5 dias (alternativas: trimetoprima ou ciprofloxacino, este só na troca do EV com especialista, cada um + metronidazol); evitar AINE e opioide se possível. https://www.nice.org.uk/guidance/ng147",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 75 — Doença diverticular aguda (TC com contraste; Hinchey modificada; ambulatorial em jovem imunocompetente, com ou sem antibiótico, reavaliação em 2–7 dias; tabela 12: ciprofloxacino 500 mg 12/12h + metronidazol 500 mg 8/8h, amoxicilina-clavulanato 875/125 mg 8/8h (a bula brasileira usa 12/12h); duração de 7–10 dias; tabela 13: critérios de internação — complicada, sepse, microperfuração, imunossupressão, febre ≥ 39 °C, leucocitose importante, dor intensa ou peritonite, > 70 anos, comorbidades, não tolera via oral, sem condição de retorno, falha do tratamento ambulatorial; tabela 14: esquemas hospitalares (ciprofloxacino 400 mg EV 12/12h + metronidazol 500 mg EV 8/8h, piperacilina-tazobactam 4,5 g EV 6/6h, sem ceftriaxona); antibiótico do internado por 10–14 dias, para VO após 3–5 dias; abscesso de 3–5 cm como limite para drenagem; colonoscopia após 4–6 semanas)."
+  ]
+},
+hdb: {
+  titulo: "Sangramento pelo intestino (sangue nas fezes)",
+  oque: "Você teve sangramento que saiu pelo ânus, vindo do intestino. Ele parou e os seus exames permitem cuidar em casa. Ainda é preciso descobrir de onde veio o sangue.",
+  cuidados: [
+    "Faça a colonoscopia (exame que olha o intestino por dentro) o quanto antes. Procure o posto de saúde ou o serviço indicado com o encaminhamento.",
+    "Não tome anti-inflamatório, como ibuprofeno, diclofenaco, nimesulida ou cetoprofeno.",
+    "Não pare nem mude os remédios para afinar o sangue ou para o coração por conta própria. Siga o que o médico explicou na alta.",
+    "Leve a lista dos seus remédios e o resumo da alta à consulta.",
+    "Levante-se devagar nos primeiros dias, principalmente ao acordar."
+  ],
+  volte: [
+    "O sangramento volta ou aumenta.",
+    "Fezes pretas, como borra de café.",
+    "Tontura, desmaio ou coração acelerado.",
+    "Palidez, cansaço forte ou falta de ar.",
+    "Dor no peito.",
+    "Dor forte na barriga."
+  ],
+  fontes: [
+    "Oakland K et al. Diagnosis and management of acute lower gastrointestinal bleeding: guidelines from the British Society of Gastroenterology (Gut 2019;68(5):776-789; PMID 30792244): instável = índice de choque (FC/PAS) > 1; estável: escore de Oakland, ≤ 8 com sangramento autolimitado e sem outra indicação de internação = alta para investigação ambulatorial urgente; sangramento maior: internar para colonoscopia no próximo horário disponível; instável: angio-TC e, sem fonte, endoscopia alta imediata; embolização após angio-TC positiva; transfusão: gatilho Hb 7 g/dL (alvo 7–9), doença cardiovascular 8 g/dL (alvo 10); varfarina: suspender, reverter com complexo protrombínico e vitamina K se instável, reiniciar em 7 dias; alto risco trombótico (válvula metálica mitral, FA com prótese ou estenose mitral, TEV < 3 meses): HBPM após 48 h; AAS de prevenção primária: suspender definitivamente; AAS de prevenção secundária: não suspender de rotina; dupla antiagregação com stent: com a cardiologia, manter AAS e reiniciar o P2Y12 em até 5 dias; DOAC: suspender, idarucizumabe ou andexanet no risco de vida, reiniciar em até 7 dias. https://doi.org/10.1136/gutjnl-2018-317807",
+    "Sengupta N et al. Management of Patients With Acute Lower Gastrointestinal Bleeding: An Updated ACG Guideline (Am J Gastroenterol 2023;118(2):208-231; PMID 36735555): escores de risco (Oakland ≤ 8) para alta precoce com investigação ambulatorial; transfusão restritiva (Hb 7 g/dL) no estável; varfarina: reverter só no sangramento com risco de vida (complexo protrombínico em vez de plasma); DOAC: idarucizumabe ou andexanet só no sangramento com risco de vida; angio-TC como 1º exame na hematoquezia contínua com instabilidade; endoscopia digestiva alta se suspeita de fonte alta; colonoscopia não urgente na internação (a de < 24 h não melhora desfechos); não usar ácido tranexâmico (forte); suspender AAS de prevenção primária e AINE; manter AAS de prevenção secundária; reiniciar anticoagulante após parar o sangramento. https://doi.org/10.14309/ajg.0000000000002130",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, capítulo Hemorragia digestiva baixa (Brandão Neto RA) — relação ureia/creatinina alta sugere fonte alta; endoscopia alta na hematoquezia com instabilidade; angiotomografia no instável; transfusão se Hb < 7 g/dL; escore de Oakland (tabela 7)."
+  ]
+},
+meningite: {
+  titulo: "Contato com meningite (remédio de prevenção)",
+  oque: "Você conviveu de perto com uma pessoa com suspeita de meningite por bactéria, uma infecção grave da membrana que envolve o cérebro. O remédio de prevenção elimina a bactéria que pode estar na garganta, mesmo sem sintomas, e diminui a chance de você adoecer ou passar para outras pessoas.",
+  cuidados: [
+    "Tome o remédio de prevenção exatamente como está na receita, até a última dose.",
+    "A rifampicina deixa a urina, o suor e a lágrima cor de laranja. Isso é esperado e passa. Pode manchar lente de contato gelatinosa: prefira óculos nesses dias.",
+    "Se você usa pílula, injeção ou adesivo anticoncepcional, use também camisinha: a rifampicina diminui o efeito do anticoncepcional. Pergunte ao médico ou ao posto por quanto tempo.",
+    "Se está grávida ou pode estar, avise antes de tomar: na gravidez o remédio é outro, uma injeção.",
+    "Lave as mãos com frequência e não divida copos, talheres ou garrafas.",
+    "A equipe de vigilância da sua cidade pode entrar em contato para conferir se todos os contatos tomaram a prevenção."
+  ],
+  volte: [
+    "Febre com dor de cabeça forte ou vômitos.",
+    "Dor ou rigidez na nuca, com dificuldade para encostar o queixo no peito.",
+    "Manchas roxas ou vermelhas na pele que não somem ao apertar.",
+    "Sonolência, confusão, agitação ou convulsão.",
+    "Mãos e pés frios, tontura forte ou desmaio.",
+    "Fique atento a esses sinais por 10 dias depois do último contato com a pessoa doente."
+  ],
+  fontes: [
+    "Ministério da Saúde. Nota Técnica Conjunta nº 154/2024-DPNI/SVSA/MS (revoga as definições da 6ª ed. do Guia de Vigilância em Saúde e retifica a NT 97/2024): caso suspeito; contato próximo (10 dias antes até 24 h de ceftriaxona ou rifampicina; mesma casa, beijo, ≥ 4 h a até 1 m em ambiente fechado, ≥ 5 dias, procedimento na via aérea sem EPI); quimioprofilaxia o quanto antes, idealmente em 24 h, pouco valor após 10 dias; doença meningocócica: rifampicina 10 mg/kg (máx. 600 mg) de 12/12h por 2 dias, ceftriaxona 250 mg IM dose única (≥ 12 anos; 1ª escolha na gestante), ciprofloxacino 500 mg VO dose única (≥ 18 anos; não na gestante), azitromicina 500 mg se resistência; Hib: rifampicina 600 mg 1x/dia por 4 dias (≥ 18 anos) só com criança < 4 anos sem vacina completa, < 2 anos ou imunocomprometido no domicílio; paciente tratado sem cefalosporina de 3ª geração também recebe. https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/notas-tecnicas/2024/nota-tecnica-conjunta-no-154-2024-dpni-svsa-ms.pdf",
+    "Bula Anvisa da rifampicina (Rifaldin cápsulas 300 mg, Sanofi): tomar 1 h antes ou 2 h depois das refeições; cor alaranjada da urina, suor, lágrima e escarro, podendo manchar lente de contato gelatinosa; reduz a eficácia do anticoncepcional hormonal (usar método não hormonal); muitas interações por indução enzimática. https://consultaremedios.com.br/rifaldin/bula",
+    "NICE NG240. Meningitis (bacterial) and meningococcal disease: recognition, diagnosis and management, 2024: sinais (rigidez de nuca, fotofobia, consciência alterada, exantema que não some à pressão); não atrasar o antibiótico pela punção. https://www.nice.org.uk/guidance/ng240"
+  ]
+},
+ait: {
+  titulo: "Ameaça de derrame (AIT, ataque isquêmico transitório)",
+  oque: "Por alguns minutos ou horas faltou sangue em uma parte do cérebro, e os sintomas passaram. É um aviso: o risco de um derrame é maior nos próximos dias, e os remédios e exames diminuem esse risco.",
+  cuidados: [
+    "Tome os remédios da receita todos os dias, no horário. Não pare por conta própria.",
+    "Faça os exames pedidos e vá à consulta com o neurologista o quanto antes. Leve a receita e os resultados.",
+    "Não fume e evite bebida alcoólica.",
+    "Cuide da pressão, do açúcar no sangue e do colesterol no posto de saúde.",
+    "Não dirija por 1 mês, ou até o médico liberar.",
+    "Os remédios que afinam o sangue podem causar sangramentos. Avise o dentista e outros médicos que está tomando."
+  ],
+  volte: [
+    "Ligue 192 (SAMU) ou volte imediatamente, mesmo que passe, se tiver: boca torta, fraqueza ou dormência de um lado do corpo, ou dificuldade para falar ou entender.",
+    "Perda da visão de um olho ou visão dupla.",
+    "Tontura forte com desequilíbrio ou dificuldade para andar.",
+    "Dor de cabeça súbita e muito forte.",
+    "Fezes pretas, vômito com sangue ou sangramento que não para.",
+    "Anote a hora em que os sintomas começaram: o tempo muda o tratamento."
+  ],
+  fontes: [
+    "NHS. Transient ischaemic attack (TIA) (revisado em 2023): sintomas FAST, que passam em minutos a horas; ligar para emergência mesmo se passarem; remédios para prevenir AVC; não dirigir por 1 mês após um AIT (DVLA). https://www.nhs.uk/conditions/transient-ischaemic-attack-tia/",
+    "Amin HP et al. Diagnosis, Workup, Risk Reduction of Transient Ischemic Attack in the Emergency Department Setting: A Scientific Statement From the AHA (Stroke 2023;54(3):e109-e121; PMID 36655570): risco de AVC em 90 dias de até 17,8%, metade nos 2 primeiros dias; imagem do cérebro (RM com difusão) e dos vasos (angio-TC de crânio e pescoço), ECG e monitor; ABCD² não decide sozinho; alta só com investigação completa no PS ou garantida rapidamente. https://doi.org/10.1161/STR.0000000000000418",
+    "Kleindorfer DO et al. 2021 Guideline for the Prevention of Stroke in Patients With Stroke and Transient Ischemic Attack — AHA/ASA (Stroke 2021;52(7):e364-e467; PMID 34024117): AIT de alto risco (ABCD² ≥ 4) ou AVC menor (NIHSS ≤ 3) não cardioembólico: AAS + clopidogrel iniciados cedo (idealmente em 12–24 h) por 21 dias, depois um só antiagregante; FA: anticoagulação; estenose carotídea ipsilateral 70–99% (e 50–69% selecionada): endarterectomia ou stent, de preferência em até 2 semanas; estatina de alta intensidade (atorvastatina 80 mg), alvo de LDL < 70 mg/dL; PA < 130/80 mmHg no seguimento. https://doi.org/10.1161/STR.0000000000000375"
+  ]
+},
+"paralisia-facial": {
+  titulo: "Paralisia facial (paralisia de Bell)",
+  oque: "É uma fraqueza de um lado do rosto, causada por uma inflamação do nervo que move a face. Não é derrame. Na maioria das pessoas, a face começa a melhorar em poucas semanas, e a recuperação pode levar alguns meses.",
+  cuidados: [
+    "Tome a prednisona pela manhã, após o café, como está na receita, até o último dia.",
+    "Proteja o olho do lado paralisado: pingue a lágrima artificial durante o dia e use o gel à noite.",
+    "Para dormir, feche a pálpebra com uma fita adesiva antialérgica, sem deixar a fita encostar no olho.",
+    "Use óculos na rua, por causa do vento e da poeira.",
+    "Para comer, mastigue do lado bom e faça a limpeza da boca depois das refeições, porque a comida pode ficar parada na bochecha.",
+    "Se tem diabetes, meça a glicose com mais frequência enquanto usa o corticoide.",
+    "Procure o posto de saúde para reavaliação em 1 a 2 semanas."
+  ],
+  volte: [
+    "Fraqueza ou dormência no braço ou na perna, ou dificuldade para falar ou engolir.",
+    "Visão dupla, olho vermelho, dor no olho ou visão embaçada.",
+    "Bolhas na orelha ou na boca, perda de audição ou tontura forte.",
+    "Paralisia que piora, ou que aparece também do outro lado do rosto.",
+    "Rosto sem nenhuma melhora depois de 3 semanas."
+  ],
+  fontes: [
+    "NHS. Bell's palsy (revisado em 2023): a maioria melhora em até 9 meses; proteger o olho com colírio lubrificante de dia, pomada à noite e fita para fechá-lo ao dormir, óculos de sol; procurar ajuda urgente se fraqueza em outra parte do corpo, olho vermelho ou dolorido. https://www.nhs.uk/conditions/bells-palsy/",
+    "Baugh RF et al. Clinical Practice Guideline: Bell's Palsy — AAO-HNS (Otolaryngol Head Neck Surg 2013;149(3 Suppl):S1-S27; PMID 24189771): excluir outra causa; corticoide oral em até 72 h para ≥ 16 anos (prednisolona 50 mg por 10 dias ou prednisona 60 mg por 5 dias com redução em 5 dias); antiviral sozinho não; antiviral junto do corticoide como opção; proteção ocular se o olho não fecha; sem exame de sangue nem imagem de rotina; encaminhar se novo déficit neurológico, sintoma ocular ou recuperação incompleta em 3 meses. https://doi.org/10.1177/0194599813505967",
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 452 — Trigeminal Neuralgia, Bell's Palsy, and Other Cranial Nerve Disorders (fita de papel para fechar a pálpebra ao dormir, lágrima artificial; prednisona 60–80 mg/dia por 5 dias e redução nos 5 dias seguintes; antiviral sem benefício claro sobre o corticoide sozinho; Ramsay Hunt, Lyme, sarcoidose e Guillain-Barré no diferencial)."
+  ]
+},
+pneumotorax: {
+  titulo: "Pulmão colabado (pneumotórax)",
+  oque: "Entrou ar entre o pulmão e a parede do peito, e parte do pulmão murchou. O médico avaliou que, no seu caso, é seguro continuar o tratamento em casa: o corpo absorve o ar que sobrou em alguns dias ou semanas.",
+  cuidados: [
+    "Tome o remédio para dor como está na sua receita.",
+    "Volte para a reavaliação nas datas marcadas e faça o raio-x de controle, mesmo que esteja bem.",
+    "Não viaje de avião até o raio-x mostrar que o pulmão voltou ao normal. Depois disso, espere pelo menos 7 dias.",
+    "Não faça mergulho com cilindro, nem depois de curado, a não ser que um cirurgião libere após uma operação.",
+    "Não fume. O cigarro aumenta muito a chance de o pulmão murchar de novo. Peça ajuda no posto de saúde para parar.",
+    "Pode caminhar. Evite esforço forte, esporte e carregar peso por pelo menos 4 semanas.",
+    "Se piorar, não dirija até o hospital: peça a outra pessoa que leve você."
+  ],
+  volte: [
+    "A falta de ar voltou ou piorou.",
+    "A dor no peito aumentou ou apareceu do outro lado.",
+    "Lábios ou pontas dos dedos arroxeados.",
+    "Coração muito acelerado, tontura forte ou desmaio.",
+    "Inchaço com estalos embaixo da pele do peito ou do pescoço."
+  ],
+  fontes: [
+    "Roberts ME et al. British Thoracic Society Guideline for pleural disease (Thorax 2023;78(Suppl 3):s1-s42): conservador no primário minimamente sintomático independentemente do tamanho; ambulatorial; aspiração ou dreno se não; cirurgia no 2º episódio ipsilateral ou 1º contralateral; RX em 2–4 semanas; avião 7 dias após a resolução no RX; mergulho desaconselhado para sempre salvo pleurectomia; parar de fumar; gestante. https://doi.org/10.1136/thorax-2022-219784",
+    "North Tees and Hartlepool NHS Foundation Trust. Pneumothorax, folheto ao paciente PIL1217 v2 (revisado em 04/09/2025): caminhar é bom; evitar esforço forte e levantar peso por pelo menos 4 semanas; voltar se os sintomas voltarem; parar de fumar reduz a recorrência; mergulho só após cirurgia. https://www.nth.nhs.uk/resources/pneumothorax/",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 46 — Pneumotórax não traumático (estável: FR < 24, fala sem dispneia, FC 60–120, PA normal, SatO2 > 90% em ar ambiente, sem hemotórax; observação 6 h se < 2 cm e 12 h se ≥ 2 cm com RX de controle e retorno em 24 h; O2 com FiO2 > 30% acelera a reabsorção; aspiração com cateter 14 G de pelo menos 5 cm no 2º–3º EIC na linha hemiclavicular ou 4º–5º EIC na linha axilar anterior, drenar se 2–3 L aspirados; hipertensivo: punção imediata e dreno no 5º EIC na linha axilar média; dreno 10–14 F, 14–22 F se fuga grande ou ventilação mecânica; drenar mesmo pequeno se ventilação mecânica ou voo; internação se moderado a grande, UTI se hipertensivo ou suporte ventilatório)."
+  ]
+},
 };
 if (typeof module!=="undefined") module.exports={ALTA};

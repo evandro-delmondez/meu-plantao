@@ -36,6 +36,8 @@ const pacDe=id=>pacCarrega().pacs.find(p=>p.id===id);
 // cada campo guarda quando mudou: na sincronização, dois aparelhos mexendo no mesmo paciente não se apagam
 function pacToca(p,campo){const t=Date.now();p.ts=p.ts||{};p.ts[campo]=Math.max(t,(p.ts[campo]||0)+1);p.upd=Math.max(p.upd||0,p.ts[campo])}
 function pacNovo(nome){
+  // antes do novo paciente, o plantão de quem já saiu entra na escala (é ele que segura o paciente das 7h05 no noturno)
+  try{plAtualizaContagem()}catch(e){}
   const db=pacCarrega(), t=Date.now();
   const p={id:"p"+t.toString(36)+Math.random().toString(36).slice(2,6),nome:nome.trim(),criado:t,upd:t,dia:pacHoje(t),
     et:{exame:{on:false,ok:false,txt:""},med:{on:false,ok:false},reav:{t:null},parecer:{on:false,ok:false,esp:""}},desf:{tipo:"",onde:"",t:null},sabe:false,snap:null};
@@ -119,8 +121,11 @@ function pacPassagem(medico,local,consMed){
   for(const {m,c,ps} of g.values()) L.push(`- ${pacCiencia(ps)}${m?`, com ${m}`:""}${c?` no ${c}`:""}.`);
   return L.join("\n");
 }
-// plantão: diurno 7–19h e noturno 19–7h (o noturno leva a data em que começou)
-function pacPlantao(t){const d=new Date(t), h=d.getHours();
+// plantão: o da escala em que cai o horário (iniciado com o botão ou turno + 2 h de folga, em 26-plantoes);
+// sem plantão na escala, pelo relógio: diurno 7–19h e noturno 19–7h (o noturno leva a data em que começou)
+function pacPlantao(t){t=+t;const x=plJanela(t);
+  if(x){const [rot]=PL_TURNOS[x.turno];return {k:plChave(x),rot:`Plantão ${rot.toLowerCase()} ${x.data.split("-").reverse().slice(0,2).join("/")}`,pl:x}}
+  const d=new Date(t), h=d.getHours();
   if(h>=7&&h<19) return {k:pacHoje(t)+"D",rot:`Plantão diurno ${d.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"})}`};
   const ini=h<7?new Date(t-864e5):d; return {k:pacHoje(ini.getTime())+"N",rot:`Plantão noturno ${ini.toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"})}`}}
 // conta como atendido (o que o médico recebe): alta, internação, transferência e evasão; passados não contam

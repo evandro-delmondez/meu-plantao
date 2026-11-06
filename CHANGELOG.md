@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.56.0 — 2026-11-05
+- **Iniciar e finalizar plantão** no Início: guarda a hora real de entrada e de saída em Plantões.
+- **Paciente no plantão certo**: conta no plantão iniciado até você finalizar; sem o botão, no plantão da escala com 2 h de folga depois do fim (o paciente das 7h05 fica no noturno). Vale a partir de 1º/11; as contagens anteriores não mudam.
+- **Turnos de 18 h**: das 7h à 1h e das 13h às 7h.
+- **Horas e R$/hora só a partir de novembro** (fichas e valores de outubro continuam).
+
 ## 1.55.0 — 2026-10-30
 - **Meus plantões com horário real**: cada plantão tem entrada e saída. Sem digitar, o app sugere pela lista de pacientes daquele plantão (1º paciente → entrada; último desfecho ou reavaliação → saída, em 5 min) e guarda a sugestão no plantão (fica mesmo depois que a lista apaga os nomes); você corrige à mão no dia e pode "Voltar à sugestão". Sem pacientes, vale o horário do turno.
 - **Por plantão**: horário, horas trabalhadas, fichas, valor e R$/hora.

@@ -33,7 +33,7 @@ test("Meus plantões: turnos matutino e vespertino, e marcar à mão num dia sem
   await aba(page, "plantoes");
   const iso = await page.evaluate(() => { const d = new Date(); d.setDate(28); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-28`; });
   await page.click(`#plCorpo [data-pldia="${iso}"]`);
-  await expect(page.locator("#plTurno option")).toHaveText([/Diurno/, /Matutino/, /Vespertino/, /^Noturno \(/, /Noturno até 1h/, /24 h/]);
+  await expect(page.locator("#plTurno option")).toHaveText([/Diurno/, /Matutino/, /Vespertino/, /^Noturno \(/, /Noturno até 1h/, /18 h \(7h à 1h\) \(07:00–01:00\)/, /18 h \(13h às 7h\) \(13:00–07:00\)/, /24 h/]);
   await page.selectOption("#plTurno", "M");
   await page.click("#plAdd");
   await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" }).locator(".pllista li", { hasText: "Matutino" })).toHaveCount(1);
@@ -118,5 +118,51 @@ test("Meus plantões: entrada e saída sugeridas pela lista e corrigíveis; hora
   const m = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1")));
   expect(m.plantoes.meta).toBe(1000);
   expect(JSON.stringify(m)).not.toMatch(/"Um"|"Dois"/);      // nada do paciente nos padrões
+  expect(erros).toEqual([]);
+});
+
+test("Plantão: iniciar e finalizar no Início guarda a hora real e o paciente conta nesse plantão", async ({ page }) => {
+  const erros = await abrir(page);
+  await expect(page.locator("#hPlBox")).toContainText("Iniciar plantão");
+  await page.selectOption("#hPlTurno", "18A");
+  await page.click("#hPlIni");
+  await expect(page.locator("#hPlBox")).toContainText("Plantão em andamento");
+  await expect(page.locator("#hPlTxt")).toContainText("18 h (7h à 1h) · Santa Lúcia · desde");
+  await aba(page, "pacientes");
+  await page.fill("#pcNome", "Com Plantao"); await page.click("#pcAdd"); await aba(page, "pacientes");
+  await page.locator("#pcCorpo .pcitem", { hasText: "Com Plantao" }).locator('[data-pd="tipo"]').selectOption("alta");
+  await aba(page, "inicio");
+  page.once("dialog", d => d.accept());
+  await page.click("#hPlFim");
+  await expect(page.locator("#hPlBox")).toContainText("Iniciar plantão");
+  const m = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1")));
+  const x = m.plantoes.escala.find(y => y.turno === "18A");
+  expect(x.iniT).toBeGreaterThan(0); expect(x.fimT).toBeGreaterThanOrEqual(x.iniT); expect(x.ini).toMatch(/^\d\d:\d\d$/); expect(x.fim).toMatch(/^\d\d:\d\d$/);
+  expect(m.plantoes.escala).toHaveLength(1);   // não cria outro plantão automático pelo relógio
+  await aba(page, "plantoes");
+  await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" })).toContainText("1 ficha");
+  expect(erros).toEqual([]);
+});
+
+test("Plantão: paciente das 7h05 fica no noturno (folga de 2 h); outubro sem horas; contagem antiga intacta", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 4, 10, 0));
+  await page.addInitScript(() => {
+    if (localStorage.getItem("teste_pl_folga")) return; localStorage.setItem("teste_pl_folga", "1");
+    const em = (d, h, m) => new Date(2026, 10, d, h, m).getTime();
+    const p = (id, ini, fim) => ({ id, nome: id, criado: ini, upd: fim, dia: "2026-11-0" + new Date(ini).getDate(), cond: "gripe", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo: "alta", onde: "", t: fim }, sabe: false, snap: null });
+    localStorage.setItem("mph_pacientes_v1", JSON.stringify({ pacs: [p("Noite", em(3, 23, 0), em(4, 0, 30)), p("Madrugada", em(4, 7, 5), em(4, 7, 40))], cont: {}, apagados: {} }));
+    const m = { v: 4, updatedAt: 1 };
+    m.plantoes = { escala: [{ id: "n3", data: "2026-11-03", local: "hsls", turno: "N", auto: true }, { id: "out", data: "2026-10-21", local: "hsls", turno: "D", manual: { n: 11, uti: 0 } }], contagem: { "2026-10-21D": { n: 11, uti: 0 } } };
+    localStorage.setItem("rxp_model_v1", JSON.stringify(m));
+  });
+  const erros = await abrir(page);
+  await aba(page, "plantoes");
+  const mes = page.locator("#plCorpo .panel", { hasText: "Plantões do mês" });
+  await expect(mes.locator(".pllista li")).toHaveCount(1);          // nenhum diurno do dia 4 criado pelo relógio
+  await expect(mes).toContainText("2 fichas");
+  await page.click('#plCorpo [data-plmes="-1"]');
+  await expect(mes).toContainText("11 atendidos");
+  await expect(mes).not.toContainText("/h");                         // outubro: sem horas nem R$/h
+  await expect(page.locator("#plCorpo .plcard", { hasText: "Santa Lúcia" }).locator(".plv")).toContainText("550,00");
   expect(erros).toEqual([]);
 });

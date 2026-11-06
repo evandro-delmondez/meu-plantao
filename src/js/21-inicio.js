@@ -106,6 +106,7 @@ function renderInicio(){
   $("#hPacsConta").textContent=`${at} ${at===1?"atendido":"atendidos"} neste plantão`;
   $("#hPacs").innerHTML=ab.map(p=>{const av=pacAviso(p,agora), pe=pacPendencias(p);return `<button class="hpac" data-hp="${p.id}" data-av="${av?av.nv:""}"><span class="hpac-l"><b>${esc(p.nome)}</b><em>há ${pacDur(agora-p.criado)}</em></span><span>${esc(pacHip(p)||"sem hipótese")}</span>${pe.length?`<span class="hpac-f">A fazer: ${esc(pe.join(" · "))}</span>`:""}${av?`<span class="hpac-av">${esc(av.txt)}</span>`:""}</button>`}).join("");
   $$("#hPacs [data-hp]").forEach(b=>b.onclick=()=>pacAbrir(b.dataset.hp));
+  renderPlInicio();
   // sem nenhuma chave neste computador: oferece Entrar
   const box=$("#acInicio"), cfg=psyncAtivo()||gsAtivo()||(hosp.cfg&&hosp.cfg.chave);
   box.hidden=!!cfg; if(!cfg) renderAcesso(box);
@@ -125,15 +126,34 @@ $("#hFinaliza").onclick=()=>{
   box.innerHTML=`<h3>${esc(pl.rot)}</h3><p><b>${at}</b> atendidos${uti?` (${uti} em UTI)`:""} · ${ab.length} em aberto · <b>${valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}</b> <span class="note">(Santa Lúcia, bruto)</span></p>
     ${ab.length?`<label class="f">Médico que assume<input class="inp" id="hFimMed" value="${esc(pcPass.medico)}" autocomplete="off"></label><label class="f">Consultório que você deixa<input class="inp" id="hFimLocal" value="${esc(pcPass.local)}" placeholder="ex.: 3" autocomplete="off"></label>
       <textarea class="out-edit" id="hFimTxt" readonly></textarea>
-      <div class="actions"><button class="btn primary" id="hFimCp">Copiar a passagem</button><button class="btn" id="hFimPassa">Passei todos e finalizar</button></div>`:`<p class="note">Nenhum paciente em aberto. Bom descanso!</p>`}`;
+      <div class="actions"><button class="btn primary" id="hFimCp">Copiar a passagem</button><button class="btn" id="hFimPassa">Passei todos e finalizar</button></div>`:`<p class="note">Nenhum paciente em aberto. Bom descanso!</p>${plAtivo()?`<div class="actions"><button class="btn primary" id="hFimSai">Finalizar e registrar a saída</button></div>`:""}`}`;
   const txt=()=>{const t=$("#hFimTxt");if(t){t.value=pacPassagem(pcPass.medico.trim(),pcPass.local.trim(),(pcPass.consMed||"").trim());grow(t)}};
   txt();
   if($("#hFimMed")) $("#hFimMed").oninput=e=>{pcPass.medico=e.target.value;txt()};
   if($("#hFimLocal")) $("#hFimLocal").oninput=e=>{pcPass.local=e.target.value;txt()};
   if($("#hFimCp")) $("#hFimCp").onclick=e=>copy($("#hFimTxt").value,e.currentTarget);
   if($("#hFimPassa")) $("#hFimPassa").onclick=()=>{if(!confirm(`Marcar os ${ab.length} paciente(s) em aberto como passados a outro médico?`))return;
-    ab.forEach(p=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();pacToca(p,"desf");if(atPac===p.id)atPac=null});pacGrava();toast("Plantão finalizado");box.hidden=true;renderInicio()};
+    ab.forEach(p=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();pacToca(p,"desf");if(atPac===p.id)atPac=null});pacGrava();plFinaliza();toast("Plantão finalizado");box.hidden=true;renderInicio()};
+  if($("#hFimSai")) $("#hFimSai").onclick=()=>{plFinaliza();toast("Plantão finalizado");box.hidden=true;renderInicio()};
 };
+// iniciar e finalizar o plantão: a hora real de entrada e de saída vai para Plantões, e os pacientes desse
+// intervalo contam nesse plantão (mesmo o das 7h05, se o noturno ainda não foi finalizado)
+function renderPlInicio(){
+  const box=$("#hPlBox"); if(!box) return; const x=plAtivo(), P=plDados();
+  if(x){const L=P.locais[x.local]||{};
+    box.innerHTML=`<div class="hboxh"><h2>Plantão em andamento</h2><span class="note" id="hPlTxt">${esc(PL_TURNOS[x.turno][0])} · ${esc(L.nome||x.local)} · desde ${esc(x.ini||plHHMM(x.iniT))}</span></div>
+      <div class="actions"><button class="btn sm primary" id="hPlFim">Finalizar plantão</button></div>`;
+    $("#hPlFim").onclick=()=>{const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");
+      if(ab.length){$("#hPacsBox").hidden=false;const fb=$("#hFimBox");if(fb.hidden)$("#hFinaliza").click();fb.scrollIntoView({behavior:"smooth",block:"nearest"});return}
+      if(!confirm("Finalizar o plantão agora? A hora de saída vai para Plantões."))return;plFinaliza();toast("Plantão finalizado");renderInicio()};
+    return}
+  const tAg=plTurnoAgora(new Date());
+  box.innerHTML=`<div class="hboxh"><h2>Plantão</h2><span class="note">Inicie para contar a hora real e os pacientes certos</span></div>
+    <div class="hplini"><select class="inp" id="hPlTurno" aria-label="Turno">${PL_ORDEM.map(k=>{const [r,a,b]=PL_TURNOS[k];return `<option value="${k}"${k===tAg?" selected":""}>${esc(r)} (${a}–${b})</option>`}).join("")}</select>
+      <select class="inp" id="hPlLocal" aria-label="Local">${Object.entries(P.locais).filter(([,L])=>L.ativo!==false).map(([k,L])=>`<option value="${k}">${esc(L.nome)}</option>`).join("")}</select>
+      <button class="btn sm primary" id="hPlIni">Iniciar plantão</button></div>`;
+  $("#hPlIni").onclick=()=>{const x=plInicia($("#hPlLocal").value||"hsls",$("#hPlTurno").value);toast(`Plantão iniciado às ${x.ini}`);renderInicio()};
+}
 /* novo atendimento pela queixa da triagem ou pela conduta: abre o Atendimento já no caminho */
 let naCat=null;   // grande área escolhida no Novo atendimento (só nesta sessão)
 function renderNovoAtend(){

@@ -20,6 +20,8 @@ Depois: perfil por unidade (remédios disponíveis, diluições locais, telefone
 ## Pendências combinadas
 Atualizado em 2026-10-30 (versão 1.53.1). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
 
+**Layout (2026-11-05)**: o médico vai escolher paleta, fontes, navegação e cartões no provador (`.rascunhos/provador-layout.html`, publicado como artefato privado); separar o "Mais" em No paciente / Papéis / Ajustes (backup fora de Documentos). Sem erros: testes de layout em 390 px e meia tela.
+
 **Conteúdo clínico (redação + conferência independente)**
 1. Atualizar fontes antigas: crise hipertensiva (ACC/AHA 2025), ARIA 2010, BTS 2009, ACCP 2012/2016, ATLS 11ª, EAU 2025, GINA na ficha da prednisona, WAO 2020 (lista em revisao-conteudo.md).
 2. Condutas novas (1º lote sugerido): pancreatite aguda, diverticulite, meningite, AIT e AVC hemorrágico, pneumotórax, cetoacidose/estado hiperosmolar, hemorragia digestiva baixa, paralisia facial. Depois: celulite e abscesso, dissecção de aorta, hiponatremia/hipocalemia, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, intoxicação alcoólica, overdose de opioide, COVID-19, varicela, chikungunya, febre maculosa, fraturas e imobilização, tendinite e bursite.

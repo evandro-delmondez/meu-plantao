@@ -90,7 +90,7 @@ function chipsHome(el,lista,vazio){
 const SEC_INFO={
  condutas:{t:"Condutas",d:"Prescrição, receita e orientações por diagnóstico; feridas e mordeduras.",cor:"sky"},
  remedios:{t:"Remédios",d:"Fichas das medicações e prescrição pediátrica pelo peso.",cor:"pink"},
- documentos:{t:"Documentos",d:"Evolução, atestado, seus modelos e backup.",cor:"teal"},
+ documentos:{t:"Documentos",d:"Atestado, seus modelos e o protocolo do hospital.",cor:"teal"},
  calculos:{t:"Cálculos",d:"Escores clínicos e doses por peso.",cor:"violet"},
 };
 function renderInicio(){
@@ -138,21 +138,26 @@ $("#hFinaliza").onclick=()=>{
 };
 // iniciar e finalizar o plantão: a hora real de entrada e de saída vai para Plantões, e os pacientes desse
 // intervalo contam nesse plantão (mesmo o das 7h05, se o noturno ainda não foi finalizado)
+let plEscolhe=false;   // mostrando os turnos para escolher (só nesta sessão)
 function renderPlInicio(){
-  const box=$("#hPlBox"); if(!box) return; const x=plAtivo(), P=plDados();
-  if(x){const L=P.locais[x.local]||{};
-    box.innerHTML=`<div class="hboxh"><h2>Plantão em andamento</h2><span class="note" id="hPlTxt">${esc(PL_TURNOS[x.turno][0])} · ${esc(L.nome||x.local)} · desde ${esc(x.ini||plHHMM(x.iniT))}</span></div>
-      <div class="actions"><button class="btn sm primary" id="hPlFim">Finalizar plantão</button></div>`;
+  const box=$("#hPlBox"); if(!box) return; const x=plAtivo();
+  if(x){
+    box.innerHTML=`<div class="hplrow"><span class="hplon"><b>Plantão em andamento</b><span class="note" id="hPlTxt">${esc(PL_TURNOS[x.turno][0])} · desde ${esc(x.ini||plHHMM(x.iniT))}</span></span><button class="btn sm primary" id="hPlFim">Finalizar plantão</button></div>`;
     $("#hPlFim").onclick=()=>{const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");
       if(ab.length){$("#hPacsBox").hidden=false;const fb=$("#hFimBox");if(fb.hidden)$("#hFinaliza").click();fb.scrollIntoView({behavior:"smooth",block:"nearest"});return}
       if(!confirm("Finalizar o plantão agora? A hora de saída vai para Plantões."))return;plFinaliza();toast("Plantão finalizado");renderInicio()};
     return}
-  const tAg=plTurnoAgora(new Date());
-  box.innerHTML=`<div class="hboxh"><h2>Plantão</h2><span class="note">Inicie para contar a hora real e os pacientes certos</span></div>
-    <div class="hplini"><select class="inp" id="hPlTurno" aria-label="Turno">${PL_ORDEM.map(k=>{const [r,a,b]=PL_TURNOS[k];return `<option value="${k}"${k===tAg?" selected":""}>${esc(r)} (${a}–${b})</option>`}).join("")}</select>
-      <select class="inp" id="hPlLocal" aria-label="Local">${Object.entries(P.locais).filter(([,L])=>L.ativo!==false).map(([k,L])=>`<option value="${k}">${esc(L.nome)}</option>`).join("")}</select>
-      <button class="btn sm primary" id="hPlIni">Iniciar plantão</button></div>`;
-  $("#hPlIni").onclick=()=>{const x=plInicia($("#hPlLocal").value||"hsls",$("#hPlTurno").value);toast(`Plantão iniciado às ${x.ini}`);renderInicio()};
+  const comeca=(turno,m)=>{const y=plInicia(plLocalPadrao(),turno,m);plEscolhe=false;toast(`Plantão iniciado às ${y.ini}`);renderInicio()};
+  const m=plMarcadoAgora();
+  if(!plEscolhe){
+    box.innerHTML=`<div class="hplrow"><button class="btn primary hplini" id="hPlIni">Iniciar plantão</button>${m?`<span class="note">${esc(PL_TURNOS[m.turno][0])} marcado na escala</span>`:""}</div>`;
+    $("#hPlIni").onclick=()=>{if(m)return comeca(m.turno,m);plEscolhe=true;renderPlInicio()};
+    return}
+  const prov=plTurnoAgora(new Date()), ord=[prov,...PL_ORDEM.filter(k=>k!==prov)];
+  box.innerHTML=`<div class="hplrow"><b>Qual turno?</b><button class="btn sm" id="hPlVolta">Cancelar</button></div>
+    <div class="hplturnos">${ord.map((k,i)=>{const [r,a,b]=PL_TURNOS[k];return `<button class="hplt${i?"":" prov"}" data-plt="${k}"><b>${esc(r.replace(/ \(.*\)$/,""))}</b><span>${a.slice(0,2)}h–${b.slice(0,2)}h</span></button>`}).join("")}</div>`;
+  box.querySelectorAll("[data-plt]").forEach(b=>b.onclick=()=>comeca(b.dataset.plt));
+  $("#hPlVolta").onclick=()=>{plEscolhe=false;renderPlInicio()};
 }
 /* novo atendimento pela queixa da triagem ou pela conduta: abre o Atendimento já no caminho */
 let naCat=null;   // grande área escolhida no Novo atendimento (só nesta sessão)

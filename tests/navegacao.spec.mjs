@@ -5,11 +5,11 @@ test("abre no Início e cada seção mostra só as suas páginas", async ({ page
   const erros = await abrir(page);
   await expect(page.locator("#tab-inicio")).toBeVisible();
   await expect(page.locator("#secnav")).toBeVisible();
-  const secoes = { inicio: ["inicio", "pacientes"], condutas: ["prescricoes", "queixas", "feridas"], remedios: ["medicacoes", "pediatria"], sala: ["sala", "pcr", "bic", "iot", "protocolos"], atender: [], plantoes: [], documentos: ["hospital", "atestado", "modelos", "backup"], calculos: ["escores", "calculadora", "contas", "eletrolitos"] };
+  const secoes = { inicio: ["inicio", "pacientes"], condutas: ["prescricoes", "queixas", "feridas"], remedios: ["medicacoes", "pediatria"], sala: ["sala", "pcr", "bic", "iot", "protocolos"], atender: [], plantoes: [], documentos: ["hospital", "atestado", "modelos"], ajustes: ["aparencia", "backup"], calculos: ["escores", "calculadora", "contas", "eletrolitos"] };
   // barra com 5 seções; Remédios, Cálculos e Sala vermelha pelo menu "☰ Mais"
   const naBarra = await page.$$eval("#secnav button", (b) => b.filter((x) => x.offsetParent).map((x) => x.dataset.sec));
   expect(naBarra).toEqual(["inicio", "atender", "condutas", "remedios", "plantoes"]);
-  const MAIS = ["documentos", "calculos", "sala"];
+  const MAIS = ["documentos", "calculos", "sala", "ajustes"];
   for (const [sec, abas] of Object.entries(secoes)) {
     if (MAIS.includes(sec)) { await page.click("#maisBtn"); await page.click(`#maisMenu [data-maissec="${sec}"]`); await expect(page.locator("#maisBtn")).toHaveAttribute("data-ativo", ""); }
     else { await page.click(`#secnav [data-sec="${sec}"]`); await expect(page.locator(`#secnav [data-sec="${sec}"]`)).toHaveAttribute("aria-current", "page"); }
@@ -102,5 +102,35 @@ test("sala vermelha lista as condutas de emergência e os atalhos", async ({ pag
   await secao(page, "sala");
   await page.locator("#salaAtalhos .hsec", { hasText: "Emergência pediátrica" }).click();
   await expect(page.locator("#pdEm")).toBeVisible();
+  expect(erros).toEqual([]);
+});
+
+test("Ajustes → Aparência: padrão do médico, troca paleta/fonte/cantos, guarda neste aparelho e volta ao padrão", async ({ page }) => {
+  const erros = await abrir(page);
+  const d = () => page.evaluate(() => ({ ...document.documentElement.dataset }));
+  expect(await d()).toMatchObject({ pal: "petroleo", fonte: "jakarta", cartao: "sombra", cantos: "retos", dens: "compacta" });
+  await page.click("#maisBtn");
+  await expect(page.locator("#maisMenu .maisgrp")).toHaveText(["No paciente", "Papéis", "App"]);
+  await page.click('#maisMenu [data-maissec="ajustes"]');
+  await expect(page.locator("#apCorpo")).toContainText("Paleta de cores");
+  await page.click('#apCorpo [data-ap="pal"][data-v="salvia"]');
+  await page.click('#apCorpo [data-ap="fonte"][data-v="lexend"]');
+  await page.click('#apCorpo [data-ap="cantos"][data-v="redondos"]');
+  await page.click('#apCorpo [data-ap="tema"][data-v="dark"]');
+  await expect(page.locator('#apCorpo [data-ap="pal"][data-v="salvia"]')).toHaveAttribute("aria-pressed", "true");
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--accent").trim().toUpperCase())).toBe("#86C29F");
+  await page.reload();
+  expect(await d()).toMatchObject({ pal: "salvia", fonte: "lexend", cantos: "redondos", theme: "dark" });
+  expect(await page.evaluate(() => document.getElementById("apFonteCss").href)).toContain("Lexend");
+  // fora do backup e da nuvem
+  expect(await page.evaluate(() => localStorage.getItem("rxp_model_v1") || "")).not.toContain("salvia");
+  await aba(page, "aparencia");
+  await page.click("#apPadrao");
+  expect(await d()).toMatchObject({ pal: "petroleo", fonte: "jakarta", cantos: "retos" });
+  expect(await d()).not.toHaveProperty("theme");
+  // valor estranho salvo não quebra: volta ao padrão
+  await page.evaluate(() => localStorage.setItem("rxp_aparencia_v1", '{"pal":"<x>","fonte":"nada"}'));
+  await page.reload();
+  expect(await d()).toMatchObject({ pal: "petroleo", fonte: "jakarta" });
   expect(erros).toEqual([]);
 });

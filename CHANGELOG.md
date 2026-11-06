@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.57.0 — 2026-11-05
+- **Aparência** (☰ Mais → Ajustes → Aparência): paleta, fonte, cartões, cantos, densidade e tema, escolhidos em cada aparelho. Padrão novo: petróleo e coral, Plus Jakarta, sombra suave, cantos retos, compacta.
+- **Menu Mais em grupos**: No paciente (Cálculos, Sala vermelha), Papéis (Documentos) e App (Ajustes: Aparência, Backup e nuvem).
+- **Iniciar plantão** mais simples: só o botão; se houver plantão marcado para agora, começa direto, senão os turnos aparecem como botões. Novo turno 24 h das 17h às 17h.
+
 ## 1.56.0 — 2026-11-05
 - **Iniciar e finalizar plantão** no Início: guarda a hora real de entrada e de saída em Plantões.
 - **Paciente no plantão certo**: conta no plantão iniciado até você finalizar; sem o botão, no plantão da escala com 2 h de folga depois do fim (o paciente das 7h05 fica no noturno). Vale a partir de 1º/11; as contagens anteriores não mudam.

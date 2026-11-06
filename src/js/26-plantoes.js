@@ -1,10 +1,10 @@
 /* ---------- Meus plantões: escala do mês, pacientes que contam por plantão e quanto vai receber ----------
    Não é dado de paciente: só datas, locais, turnos, contagens e valores. Fica nos padrões (model.plantoes) e vai pela nuvem.
    A contagem por plantão é guardada como número (a lista de pacientes some em 7 dias; o número fica). */
-const PL_TURNOS={D:["Diurno","07:00","19:00"],M:["Matutino","07:00","13:00"],V:["Vespertino","13:00","19:00"],N:["Noturno","19:00","07:00"],N1:["Noturno até 1h","19:00","01:00"],"18A":["18 h (7h à 1h)","07:00","01:00"],"18B":["18 h (13h às 7h)","13:00","07:00"],"24":["24 h","07:00","07:00"]};
-const PL_ORDEM=["D","M","V","N","N1","18A","18B","24"];
+const PL_TURNOS={D:["Diurno","07:00","19:00"],M:["Matutino","07:00","13:00"],V:["Vespertino","13:00","19:00"],N:["Noturno","19:00","07:00"],N1:["Noturno até 1h","19:00","01:00"],"18A":["18 h (7h à 1h)","07:00","01:00"],"18B":["18 h (13h às 7h)","13:00","07:00"],"24":["24 h","07:00","07:00"],"24B":["24 h (17h às 17h)","17:00","17:00"]};
+const PL_ORDEM=["D","M","V","N","N1","18A","18B","24","24B"];
 const PL_NOITE=["N","N1","18B"];   // chave de contagem "N" (leva a data em que começou)
-const PL_LONGO=["24","18A","18B"]; // cobrem o dia e a noite (contagem antiga, feita pelo relógio)
+const PL_LONGO=["24","24B","18A","18B"]; // cobrem o dia e a noite (contagem antiga, feita pelo relógio)
 const PL_HORAS_DESDE="2026-11-01";  // horas e R$/hora só a partir de novembro (horários de outubro não eram reais)
 const PL_PADRAO=()=>({escala:[],contagem:{},pagos:{},recusados:{},locais:{
   hsls:{nome:"Santa Lúcia",cor:"teal",tipo:"porAlta",porAlta:50,porUti:150,ativo:true,pagDe:20,pagAte:25,pagObs:"produção do mês, paga no mês seguinte, por Pix"}}});
@@ -97,10 +97,15 @@ function plJanela(t){
 // plantão em andamento (iniciado e não finalizado)
 const plAtivo=()=>{try{return (plDados().escala||[]).find(x=>+x.iniT&&!+x.fimT&&Date.now()<plJanelaDe(x).fim)||null}catch(e){return null}};
 // turno provável pela hora de agora
-const plTurnoAgora=d=>{const h=d.getHours();return h>=6&&h<12?"D":h>=12&&h<18?"V":"N"};
+const plTurnoAgora=d=>{const h=d.getHours();return h>=6&&h<12?"D":h>=12&&h<16?"V":h>=16&&h<18?"24B":"N"};
+// plantão da escala marcado para agora (ainda não iniciado): o botão começa direto nele
+const plMarcadoAgora=()=>{const t=Date.now();return (plDados().escala||[]).filter(x=>!x.sobre&&!+x.iniT&&!x.auto).map(x=>({x,j:plJanelaDe(x)})).filter(o=>o.j&&t>=o.j.ini0-2*36e5&&t<o.j.fim0).sort((a,b)=>a.j.ini0-b.j.ini0).map(o=>o.x)[0]||null};
+// local padrão: o único ativo (hoje, Santa Lúcia)
+const plLocalPadrao=()=>{const L=plDados().locais;return Object.keys(L).find(k=>L[k].ativo!==false)||"hsls"};
 const plHHMM=ms=>{const d=new Date(ms);return `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`};
 // "Iniciar plantão": usa o plantão marcado para hoje nesse turno ou cria um; guarda a hora real de entrada
-function plInicia(local,turno){
+function plInicia(local,turno,marcado){
+  if(marcado){const P0=plDados(),a=Date.now();marcado.iniT=a;delete marcado.fimT;delete marcado.auto;marcado.ini=plHHMM(a);saveModel();return marcado}
   const P=plDados(), agora=Date.now(), d=new Date(agora);
   // depois da meia-noite, o noturno que começou ontem
   const data=PL_NOITE.includes(turno)&&d.getHours()<7?plIso(new Date(agora-864e5)):plIso(d);

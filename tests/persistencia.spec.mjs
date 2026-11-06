@@ -12,7 +12,7 @@ test("edição, favorito, organização, tema e preferências sobrevivem ao reca
   await page.click("#favBtn");
   await page.click("[data-org]");
   await page.fill('[data-nm="emerg"]', "Urgências");
-  await page.click("#themeBtn");
+  await page.evaluate(() => document.querySelector("#themeBtn").click());   // no celular o ◐ fica em Ajustes → Aparência
   await page.waitForTimeout(600);
   await page.reload();
   await aba(page, "prescricoes");

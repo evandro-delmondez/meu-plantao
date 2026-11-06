@@ -2,7 +2,16 @@
 <meta name="description" content="Prescrições revisadas, montador de evolução, atestado e calculadora por peso para plantões.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+/* aparência escolhida neste aparelho (Ajustes → Aparência), aplicada antes de desenhar a tela */
+window.AP_PADRAO={pal:"petroleo",fonte:"jakarta",cartao:"sombra",cantos:"retos",dens:"compacta"};
+(function(){var d=document.documentElement.dataset,a={},F={jakarta:"family=Plus+Jakarta+Sans:wght@400;600;700;800",classica:"family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800",lexend:"family=Lexend:wght@400;600;700",fraunces:"family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700",plex:"family=IBM+Plex+Sans:wght@400;600;700",nunito:"family=Nunito:wght@400;700;800"};
+ try{a=JSON.parse(localStorage.getItem("rxp_aparencia_v1")||"{}")||{}}catch(e){}
+ var V={pal:"petroleo classico salvia grafite lavanda areia",fonte:"jakarta classica lexend fraunces plex nunito",cartao:"sombra borda faixa tinta",cantos:"retos medios redondos",dens:"compacta confortavel"};
+ for(var k in AP_PADRAO)d[k]=typeof a[k]==="string"&&(" "+V[k]+" ").indexOf(" "+a[k]+" ")>=0?a[k]:AP_PADRAO[k];
+ var l=document.createElement("link");l.rel="stylesheet";l.id="apFonteCss";l.href="https://fonts.googleapis.com/css2?"+F[d.fonte]+"&display=swap";document.head.appendChild(l);})();
+</script>
 <style>
 /*__CSS__*/
 </style>
@@ -13,9 +22,10 @@
   <button data-sec="condutas" style="--c:var(--sky)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg><span>Condutas</span></button>
   <button data-sec="remedios" style="--c:var(--pink)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="m8.5 8.5 7 7"/></svg><span>Remédios</span></button>
   <button data-sec="plantoes" style="--c:var(--amber)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M12 14h2M16 14h0"/></svg><span>Plantões</span></button>
-  <button data-sec="documentos" data-mais style="--c:var(--teal)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Documentos</span></button>
   <button data-sec="calculos" data-mais style="--c:var(--violet)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg><span>Cálculos</span></button>
   <button data-sec="sala" data-mais style="--c:var(--red)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span>Sala vermelha</span></button>
+  <button data-sec="documentos" data-mais style="--c:var(--teal)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Documentos</span></button>
+  <button data-sec="ajustes" data-mais style="--c:var(--slate)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Ajustes</span></button>
 </nav>
 <div class="maismenu" id="maisMenu" hidden role="group" aria-label="Mais seções"></div>
 <div class="wrap">
@@ -25,7 +35,7 @@
       <div class="brand-r">
         <span class="sync" id="sync" data-s="local"><i></i><span id="syncTxt">Carregando…</span></span>
         <button class="btn sm novopac" id="novoPac" title="Limpa os dados do paciente em todas as abas" aria-label="Novo paciente">+ Paciente</button>
-        <button class="btn sm maisbtn" id="maisBtn" aria-expanded="false" title="Documentos, Cálculos e Sala vermelha">☰ Mais</button>
+        <button class="btn sm maisbtn" id="maisBtn" aria-expanded="false" title="Cálculos, Sala vermelha, Documentos e Ajustes">☰ Mais</button>
         <button class="btn sm themebtn" id="themeBtn" title="Alternar tema claro/escuro" aria-label="Alternar tema claro/escuro">◐</button>
       </div>
     </div>
@@ -51,7 +61,8 @@
       <button role="tab" data-tab="calculadora" data-sec="calculos" aria-selected="false">Doses por peso</button>
       <button role="tab" data-tab="contas" data-sec="calculos" aria-selected="false">Laboratório e ECG</button>
       <button role="tab" data-tab="eletrolitos" data-sec="calculos" aria-selected="false">Eletrólitos</button>
-      <button role="tab" data-tab="backup" data-sec="documentos" aria-selected="false">Backup</button>
+      <button role="tab" data-tab="aparencia" data-sec="ajustes" aria-selected="false">Aparência</button>
+      <button role="tab" data-tab="backup" data-sec="ajustes" aria-selected="false">Backup e nuvem</button>
     </nav>
   </header>
 
@@ -476,6 +487,9 @@
     <div class="chips" id="elLista"></div>
     <div class="contas" id="elCorpo"></div>
   </section>
+
+  <!-- APARÊNCIA -->
+  <section id="tab-aparencia" hidden><div id="apCorpo"></div></section>
 
   <!-- BACKUP -->
   <section id="tab-backup" hidden>

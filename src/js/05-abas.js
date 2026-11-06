@@ -1,7 +1,7 @@
 /* ---------- seções e abas ---------- */
-const TABS=["inicio","prescricoes","queixas","feridas","hospital","medicacoes","pediatria","sala","pcr","bic","iot","protocolos","evolucao","pacientes","plantoes","atestado","modelos","backup","escores","calculadora","contas","eletrolitos"];
+const TABS=["inicio","prescricoes","queixas","feridas","hospital","medicacoes","pediatria","sala","pcr","bic","iot","protocolos","evolucao","pacientes","plantoes","atestado","modelos","aparencia","backup","escores","calculadora","contas","eletrolitos"];
 // cada aba pertence a uma seção da barra de navegação
-const SECOES={inicio:["inicio","pacientes"],condutas:["prescricoes","queixas","feridas"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],atender:["evolucao"],plantoes:["plantoes"],documentos:["hospital","atestado","modelos","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
+const SECOES={inicio:["inicio","pacientes"],condutas:["prescricoes","queixas","feridas"],remedios:["medicacoes","pediatria"],sala:["sala","pcr","bic","iot","protocolos"],atender:["evolucao"],plantoes:["plantoes"],documentos:["hospital","atestado","modelos"],ajustes:["aparencia","backup"],calculos:["escores","calculadora","contas","eletrolitos"]};
 const secDe=t=>Object.keys(SECOES).find(s=>SECOES[s].includes(t))||"inicio";
 const ultimaAba={}; // última aba aberta em cada seção (só nesta sessão)
 /* descrição logo abaixo de um título: fica escondida num "ⓘ" ao lado dele (o médico abre se quiser) */
@@ -27,7 +27,7 @@ function setTab(t){
   document.body.dataset.sec=sec;
   TABS.forEach(x=>$("#tab-"+x).hidden=x!==t);
   if(t==="inicio") renderInicio(); if(t==="sala") renderSala(); if(t==="bic") renderBic(); if(t==="pcr") renderPcr(); if(t==="protocolos") renderProtocolo(); if(t==="contas") renderContas(); if(t==="eletrolitos") renderEletrolitos(); if(t==="iot") renderIot();
-  renderEv(); if(t==="pacientes") renderPacientes(); if(t==="plantoes") renderPlantoes(); if(t==="atestado") renderAt(); if(t==="calculadora") renderCalc(); if(t==="pediatria") setPMode(ui.pmode||"rx"); if(t==="modelos"){renderModelos();renderOrg()} if(t==="feridas") renderFer(); if(t==="queixas") renderQueixas(); if(t==="prescricoes"&&!editing) renderDetail(); if(t==="hospital") renderHospital(); if(t==="medicacoes") renderMedTab();
+  renderEv(); if(t==="pacientes") renderPacientes(); if(t==="plantoes") renderPlantoes(); if(t==="atestado") renderAt(); if(t==="calculadora") renderCalc(); if(t==="pediatria") setPMode(ui.pmode||"rx"); if(t==="modelos"){renderModelos();renderOrg()} if(t==="feridas") renderFer(); if(t==="queixas") renderQueixas(); if(t==="prescricoes"&&!editing) renderDetail(); if(t==="hospital") renderHospital(); if(t==="medicacoes") renderMedTab(); if(t==="aparencia") renderAparencia();
   if(t==="escores") renderScores(); if(t==="backup"){renderHidden();renderAcesso($("#acCaixa"));renderGs();renderIa()} growAll();
   try{history.replaceState(null,"","#"+t)}catch(e){}
 }
@@ -45,7 +45,10 @@ $$("#secnav [data-sec]").forEach(b=>b.onclick=()=>setSec(b.dataset.sec));
 (function(){
   const bt=$("#maisBtn"), mn=$("#maisMenu"); if(!bt||!mn) return;
   // lista simples de botões (Tab navega); abre com o foco no primeiro e Esc devolve o foco ao "☰ Mais"
-  mn.innerHTML=$$("#secnav [data-mais]").map(b=>`<button data-maissec="${b.dataset.sec}" style="${b.getAttribute("style")||""}">${b.innerHTML}</button>`).join("");
+  // em grupos: no paciente (Cálculos, Sala vermelha), papéis (Documentos) e Ajustes
+  const GRUPO={calculos:"No paciente",sala:"No paciente",documentos:"Papéis",ajustes:"App"};let g0="";
+  mn.innerHTML=$$("#secnav [data-mais]").map(b=>{const g=GRUPO[b.dataset.sec]||"";const h=g&&g!==g0?`<span class="maisgrp">${g}</span>`:"";g0=g||g0;
+    return `${h}<button data-maissec="${b.dataset.sec}" style="${b.getAttribute("style")||""}">${b.innerHTML}</button>`}).join("");
   bt.setAttribute("aria-controls","maisMenu");
   const fecha=()=>{mn.hidden=true;bt.setAttribute("aria-expanded","false")};
   bt.onclick=e=>{e.stopPropagation();mn.hidden=!mn.hidden;bt.setAttribute("aria-expanded",String(!mn.hidden));if(!mn.hidden){const p=mn.querySelector("button");if(p)p.focus()}};

@@ -20,7 +20,10 @@ Depois: perfil por unidade (remédios disponíveis, diluições locais, telefone
 ## Pendências combinadas
 Atualizado em 2026-10-30 (versão 1.53.1). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
 
-**Layout (2026-11-05)**: o médico vai escolher paleta, fontes, navegação e cartões no provador (`.rascunhos/provador-layout.html`, publicado como artefato privado); separar o "Mais" em No paciente / Papéis / Ajustes (backup fora de Documentos). Sem erros: testes de layout em 390 px e meia tela.
+**Retomar (2026-11-05, parado pelo limite de uso)**
+- Aparência (Ajustes → Aparência; padrão petróleo e coral, Plus Jakarta, sombra, retos, compacta), "Mais" em grupos (No paciente / Papéis / App; backup em Ajustes), "Iniciar plantão" só com botão e turnos em botões (+ 24 h 17h–17h): publicados na 1.57.0.
+- Plantões: "Adicionar escala" colando ou ditando texto ("12/11 noturno, 15/11 sobreaviso 24h"), com parser simples e IA opcional; mostrar lista para conferir antes de gravar. Escolhido pelo médico.
+- Condutas do 1º lote: rascunhos prontos em `.rascunhos/lote3-*.json`; conferências interrompidas — relançar os conferentes (gi, neuro, resp-endo) e levar as perguntas ao médico.
 
 **Conteúdo clínico (redação + conferência independente)**
 1. Atualizar fontes antigas: crise hipertensiva (ACC/AHA 2025), ARIA 2010, BTS 2009, ACCP 2012/2016, ATLS 11ª, EAU 2025, GINA na ficha da prednisona, WAO 2020 (lista em revisao-conteudo.md).

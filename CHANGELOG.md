@@ -1,9 +1,12 @@
 # Histórico de versões
 
+## 1.57.1 — 2026-11-06
+- **24 h invertido corrigido**: das 19h às 19h (não existe plantão das 17h às 17h). Conta como noturno, com a data em que começou.
+
 ## 1.57.0 — 2026-11-05
 - **Aparência** (☰ Mais → Ajustes → Aparência): paleta, fonte, cartões, cantos, densidade e tema, escolhidos em cada aparelho. Padrão novo: petróleo e coral, Plus Jakarta, sombra suave, cantos retos, compacta.
 - **Menu Mais em grupos**: No paciente (Cálculos, Sala vermelha), Papéis (Documentos) e App (Ajustes: Aparência, Backup e nuvem).
-- **Iniciar plantão** mais simples: só o botão; se houver plantão marcado para agora, começa direto, senão os turnos aparecem como botões. Novo turno 24 h das 17h às 17h.
+- **Iniciar plantão** mais simples: só o botão; se houver plantão marcado para agora, começa direto, senão os turnos aparecem como botões. Novo turno 24 h das 19h às 19h.
 
 ## 1.56.0 — 2026-11-05
 - **Iniciar e finalizar plantão** no Início: guarda a hora real de entrada e de saída em Plantões.

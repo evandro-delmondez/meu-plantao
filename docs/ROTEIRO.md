@@ -21,7 +21,7 @@ Depois: perfil por unidade (remédios disponíveis, diluições locais, telefone
 Atualizado em 2026-10-30 (versão 1.53.1). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
 
 **Retomar (2026-11-05, parado pelo limite de uso)**
-- Aparência (Ajustes → Aparência; padrão petróleo e coral, Plus Jakarta, sombra, retos, compacta), "Mais" em grupos (No paciente / Papéis / App; backup em Ajustes), "Iniciar plantão" só com botão e turnos em botões (+ 24 h 17h–17h): publicados na 1.57.0.
+- Aparência (Ajustes → Aparência; padrão petróleo e coral, Plus Jakarta, sombra, retos, compacta), "Mais" em grupos (No paciente / Papéis / App; backup em Ajustes), "Iniciar plantão" só com botão e turnos em botões (+ 24 h 19h–19h): publicados na 1.57.0.
 - Plantões: "Adicionar escala" colando ou ditando texto ("12/11 noturno, 15/11 sobreaviso 24h"), com parser simples e IA opcional; mostrar lista para conferir antes de gravar. Escolhido pelo médico.
 - Condutas do 1º lote: rascunhos prontos em `.rascunhos/lote3-*.json`; conferências interrompidas — relançar os conferentes (gi, neuro, resp-endo) e levar as perguntas ao médico.
 

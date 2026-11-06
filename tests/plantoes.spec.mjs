@@ -33,7 +33,7 @@ test("Meus plantões: turnos matutino e vespertino, e marcar à mão num dia sem
   await aba(page, "plantoes");
   const iso = await page.evaluate(() => { const d = new Date(); d.setDate(28); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-28`; });
   await page.click(`#plCorpo [data-pldia="${iso}"]`);
-  await expect(page.locator("#plTurno option")).toHaveText([/Diurno/, /Matutino/, /Vespertino/, /^Noturno \(/, /Noturno até 1h/, /18 h \(7h à 1h\) \(07:00–01:00\)/, /18 h \(13h às 7h\) \(13:00–07:00\)/, /^24 h \(07/, /24 h \(17h às 17h\)/]);
+  await expect(page.locator("#plTurno option")).toHaveText([/Diurno/, /Matutino/, /Vespertino/, /^Noturno \(/, /Noturno até 1h/, /18 h \(7h à 1h\) \(07:00–01:00\)/, /18 h \(13h às 7h\) \(13:00–07:00\)/, /^24 h \(07/, /24 h \(19h às 19h\)/]);
   await page.selectOption("#plTurno", "M");
   await page.click("#plAdd");
   await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" }).locator(".pllista li", { hasText: "Matutino" })).toHaveCount(1);
@@ -125,8 +125,8 @@ test("Plantão: iniciar e finalizar no Início guarda a hora real e o paciente c
   const erros = await abrir(page);
   await expect(page.locator("#hPlBox select")).toHaveCount(0);          // sem caixa de seleção
   await page.click("#hPlIni");
-  await expect(page.locator("#hPlBox [data-plt]")).toHaveCount(9);         // turnos como botões, inclusive 24 h das 17h
-  await expect(page.locator('#hPlBox [data-plt="24B"]')).toContainText("17h–17h");
+  await expect(page.locator("#hPlBox [data-plt]")).toHaveCount(9);         // turnos como botões, inclusive 24 h das 19h
+  await expect(page.locator('#hPlBox [data-plt="24B"]')).toContainText("19h–19h");
   await page.click('#hPlBox [data-plt="18A"]');
   await expect(page.locator("#hPlBox")).toContainText("Plantão em andamento");
   await expect(page.locator("#hPlTxt")).toContainText("18 h (7h à 1h) · desde");

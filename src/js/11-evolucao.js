@@ -250,7 +250,7 @@ function atHda(it){
   if(hn.length) F.push(`Nega ${ptLista(hn)}.`);
   // o resto do checklist (antecedentes, sinais de alarme) segue como frase
   ck.forEach(c=>c.hma.filter(x=>!/^(Presença de|Nega) /.test(x)||/^Nega (antecedente|sinais)/.test(x)).forEach(x=>F.push(x)));
-  const alerg=atItens(atd.alergia); if(perfisAtivos().has("pnc")&&!alerg.some(x=>/penicilin/i.test(x))) alerg.push("penicilina");
+  const alerg=atItens(atd.alergia); if(perfisAtivos().has("pnc")&&!alerg.some(x=>/penicilin/i.test(x))) alerg.push("penicilina"); if(perfisAtivos().has("aine")&&!alerg.some(x=>/aine|anti-?inflamat/i.test(x))) alerg.push("AINE"); if(perfisAtivos().has("sulfa")&&!alerg.some(x=>/sulfa/i.test(x))) alerg.push("sulfa");
   const L=[]; if(F.length) L.push(F.join(" "),"");   // um parágrafo; espaço antes dos antecedentes
   L.push(atLista("HPP",atItens(atd.ap)));
   L.push(atLista("Medicamentos em uso",atItens(atd.muc)));

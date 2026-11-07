@@ -67,3 +67,12 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 - Retenção urinária: AUA 2026 não aberta (atrás de login); a recomendação do alfabloqueador antes da retirada está apoiada na NICE CG97 1.7.2 e na Cochrane 2014.
 - (2026-10-27, Na unidade das 25 condutas) Aguardando o médico: bloco opcional de prednisona na dermatite extensa (Fonacier 2015; exigiria conferência); varicorragia na IVC (não está no ESVS 2022); alerta renal do aciclovir EV e de gestante da prometazina em regras.js.
 
+
+## 2026-11-07 — Segurança (alergia a AINE e a sulfa, gestante, tetos, fichas)
+
+### Pendente (bula não confirmada; ficou fora)
+- Fichas fora do "+ remédio" até conferir: cetirizina (faixas de ClCr na bula profissional do Zyrtec), fexofenadina (ajuste renal 60 mg/dia e alerta do suco na bula Allegra), hidroxizina (ajustes renal e hepático só no RCM europeu), nistatina (dose do lactente e alerta da prótese), ivermectina (alerta de hiperinfecção: página do CDC sobre Strongyloides), albendazol (texto de lactação), salbutamol (frase da gestação no GINA 2026; grupo "Respiratório" ainda não criado), naproxeno (teto do naproxeno sódico, Flanax 550 mg), ciclobenzaprina (glaucoma, retenção urinária e < 15 anos na bula Miosan). Rascunho conferido em `.rascunhos/seguranca-2026-11-final.json`.
+- Teto renal da bromoprida (30 mg/dia se ClCr < 40): dedução da bula; não entrou.
+- Paracetamol na hepatopatia ou etilismo, 2 g/dia: decisão do médico; buscar fonte primária (FDA OTC monograph ou AASLD). A bula brasileira só diz "evitar".
+- Prednisona > 60 mg/dia: aviso de confirmação, não é teto de bula.
+- Marcas na CMED e RENAME 2024 das fichas novas; texto integral da AAAAI 2022 (acesso automático recusado).

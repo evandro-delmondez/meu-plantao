@@ -1137,5 +1137,61 @@
     "fonte": "Bula Anvisa Vibramicina 100 mg (Pfizer): graves 100 mg 12/12h"
    }
   ]
+ },
+ {
+  "id": "cetoconazol-creme",
+  "nome": "Cetoconazol creme",
+  "classe": "Antifúngico",
+  "subclasse": "Imidazólico tópico",
+  "mecanismo": "Inibe a síntese de ergosterol do fungo.",
+  "apresentacoes": [
+   "Creme 20 mg/g (bisnaga 30 g)",
+   "Xampu 20 mg/g"
+  ],
+  "marcas": [
+   "Nizoral"
+  ],
+  "rename": null,
+  "vias": [
+   "tópica"
+  ],
+  "adulto": [
+   "Tinha do corpo, crural, pitiríase versicolor, candidíase cutânea: aplicar 1x/dia; em geral 2–4 semanas, mantendo alguns dias depois da melhora (bula)."
+  ],
+  "pediatria": [
+   "Mesmo esquema (uso tópico)."
+  ],
+  "diluicao": [],
+  "renal": "Sem ajuste (uso tópico).",
+  "hepatica": "",
+  "gestacao": "Absorção sistêmica desprezível; bula: usar com orientação médica.",
+  "lactacao": "Compatível; não aplicar na mama.",
+  "contraindicacoes": [
+   "Hipersensibilidade ao cetoconazol."
+  ],
+  "alertas": [
+   "Uso só tópico: o comprimido de cetoconazol teve o uso restrito por hepatotoxicidade (FDA 2013)."
+  ],
+  "fontes": [
+   "Bula ANVISA — cetoconazol creme 20 mg/g (EMS) https://www.sara.com.br/bula-do-paciente-cetoconazol-20mgg-com-1-bisnaga-com-30g-de-creme-dermatologico-ems/7896004718460",
+   "FDA Drug Safety Communication (2013): cetoconazol oral, restrição por hepatotoxicidade https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-fda-limits-usage-nizoral-ketoconazole-oral-tablets-due-potentially"
+  ],
+  "receita": [
+   {
+    "rotulo": "Micose de pele",
+    "nome": "Cetoconazol 20mg/g creme",
+    "via": "tópico",
+    "unidade": "bisnaga",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 21,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Aplicar nas lesões 1x ao dia e manter por alguns dias depois que sumirem (em geral 2 a 4 semanas).",
+    "embalagem": null,
+    "fonte": "Bula Anvisa cetoconazol creme 20 mg/g (EMS): 1x/dia, resultados em 2–4 semanas https://www.sara.com.br/bula-do-paciente-cetoconazol-20mgg-com-1-bisnaga-com-30g-de-creme-dermatologico-ems/7896004718460",
+    "qtdFixa": 1
+   }
+  ]
  }
 ]

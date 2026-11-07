@@ -6,7 +6,7 @@ function novoPaciente(){
   atTempoFecha(); if(typeof atExSugR!=="undefined") atExSugR=null;
   atd=ATD_VAZIO(); atPac=null; atdSessaoApaga();
   // a conduta (hipótese) é do paciente: o próximo começa sem ela (senão herda a hipótese na lista)
-  $("#evCond").value=""; {const q=$("#atCondQ"),sg=$("#atCondSug");if(q)q.value="";if(sg)sg.innerHTML=""} Object.assign(pac,{idade:"",sexo:"M",peso:"",cr:"",gest:false,pnc:false,dip:false}); ui.perfil=[];
+  $("#evCond").value=""; {const q=$("#atCondQ"),sg=$("#atCondSug");if(q)q.value="";if(sg)sg.innerHTML=""} Object.assign(pac,{idade:"",sexo:"M",peso:"",cr:"",gest:false,pnc:false,dip:false,aine:false,sulfa:false}); ui.perfil=[];
   [chk,sess,scState,contasVal,rxSel,rxOut,hospInt].forEach(o=>Object.keys(o).forEach(k=>delete o[k]));
   evScores=[]; Object.assign(dc,{peso:"",grupo:"AB",crianca:false});
   // evolução e atestado

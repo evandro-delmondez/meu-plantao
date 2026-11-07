@@ -178,7 +178,7 @@ function atRxMaisHTML(){
 }
 // várias condutas: os "Volte imediatamente ao pronto-socorro se …" viram uma frase só, sem repetir sinal
 function atJuntaVolte(o){
-  const RE=/^(\s*-\s*)?volte imediatamente ao pronto-socorro se (voc[eê] )?(tiver |apresentar |notar |sentir )?/i, idx=o.map((l,i)=>RE.test(l)?i:-1).filter(i=>i>=0);
+  const RE=/^(\s*-\s*)?volte imediatamente ao pronto-socorro se (voc[eê] )?(?:(?:tiver|apresentar|notar|sentir)\s*:?\s*)?/i, idx=o.map((l,i)=>RE.test(l)?i:-1).filter(i=>i>=0);
   if(idx.length<2) return o;
   const itens=[]; idx.forEach(i=>{o[i].replace(RE,"").replace(/\.\s*$/,"").split(/,\s*|\s+ou\s+|\s+e\s+(?=[a-zà-ú])/i).map(x=>x.trim()).filter(Boolean).forEach(x=>{if(!itens.some(y=>norm(y)===norm(x)))itens.push(x)})});
   const pre=(o[idx[0]].match(/^\s*-\s*/)||[""])[0];

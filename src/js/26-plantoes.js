@@ -5,7 +5,13 @@ const PL_TURNOS={D:["Diurno","07:00","19:00"],M:["Matutino","07:00","13:00"],V:[
 const PL_ORDEM=["D","M","V","N","N1","18A","18B","24","24B"];
 const PL_NOITE=["N","N1","18B","24B"];   // chave de contagem "N" (leva a data em que começou)
 const PL_LONGO=["24","24B","18A","18B"]; // cobrem o dia e a noite (contagem antiga, feita pelo relógio)
-const PL_HORAS_DESDE="2026-11-01";  // horas e R$/hora só a partir de novembro (horários de outubro não eram reais)
+const PL_HORAS_DESDE="2026-11-01";
+// sobreaviso tem horário próprio (médico, 2026-11-07): vespertino 12h–18h; noturno 18h–0h ("Cinderela").
+// Matutino: 7h–13h, o mesmo do turno (confirmado pelo médico em 2026-11-07).
+const PL_SOBRE={V:["Vespertino","12:00","18:00"],N:["Noturno (Cinderela)","18:00","00:00"]};
+const plTurnoDe=x=>(x&&x.sobre&&PL_SOBRE[x.turno])||PL_TURNOS[x&&x.turno]||PL_TURNOS.D;
+// plantão já dado: finalizado, ou o horário do turno já acabou (os futuros não entram em horas, R$/h nem meta)
+const plDado=(x,agora=Date.now())=>{if(+x.fimT)return true;const j=plJanelaDe(x);return !!j&&j.fim0<=agora};  // horas e R$/hora só a partir de novembro (horários de outubro não eram reais)
 const PL_PADRAO=()=>({escala:[],contagem:{},pagos:{},recusados:{},locais:{
   hsls:{nome:"Santa Lúcia",cor:"teal",tipo:"porAlta",porAlta:50,porUti:150,ativo:true,pagDe:20,pagAte:25,pagObs:"produção do mês, paga no mês seguinte, por Pix"}}});
 // completa no lugar (mesmo objeto): quem guardou P=plDados() antes de um redesenho continua mexendo no que é salvo
@@ -65,19 +71,21 @@ function plSugere(x){
 }
 function plHoras(x){
   const sug=plSugere(x); if(sug&&(!x.sug||x.sug.ini!==sug.ini||x.sug.fim!==sug.fim)){x.sug=sug;plHoras._mudou=true}
-  const t=PL_TURNOS[x.turno]||PL_TURNOS.D, base=x.sug||{ini:t[1],fim:t[2]};
+  const t=plTurnoDe(x), base=x.sug||{ini:t[1],fim:t[2]};
   const ini=x.ini||base.ini, fim=x.fim||base.fim, a=plHM(ini), b=plHM(fim);
   let min=a===null||b===null?0:b-a; if(min<=0) min+=1440;
   const origem=x.ini||x.fim?"à mão":x.sug?"sugerido pela lista":"horário do turno";
-  return {ini,fim,min,origem,noturno:a!==null&&(a<7*60||a>=19*60)};
+  // diurno × noturno pelo turno (quem chega às 18h50 para o noturno continua no noturno)
+  return {ini,fim,min,origem,noturno:PL_NOITE.includes(x.turno)||(!!x.sobre&&x.turno==="N")};
 }
 // janela do plantão em ms: começa no "Iniciar plantão" (x.iniT) ou no horário do turno; acaba no "Finalizar" (x.fimT)
 // ou no fim do turno + 2 h de folga (quem passa da hora continua no plantão). Iniciado e não finalizado: até 6 h após o fim.
 function plJanelaDe(x){
-  const t=PL_TURNOS[x.turno]; if(!t||!/^\d{4}-\d\d-\d\d$/.test(x.data||"")) return null;
+  const t=plTurnoDe(x); if(!t||!/^\d{4}-\d\d-\d\d$/.test(x.data||"")) return null;
   const base=new Date(x.data+"T00:00:00").getTime(), a=plHM(t[1]), b=plHM(t[2]);
   const ini0=base+a*6e4, fim0=base+(b>a?b:b+1440)*6e4;
-  const ini=+x.iniT||ini0, fim=+x.fimT?+x.fimT:+x.iniT?Math.max(fim0,ini)+6*36e5:fim0+2*36e5;
+  // sem o botão: começa 1 h antes do turno (chegou um pouco antes) e acaba 2 h depois (folga)
+  const ini=+x.iniT||ini0-36e5, fim=+x.fimT?+x.fimT:+x.iniT?Math.max(fim0,ini)+6*36e5:fim0+2*36e5;
   return {ini,fim,real:!!+x.iniT,ini0,fim0};
 }
 // plantão da escala em que cai o horário t. Na sobreposição (ex.: 7h05, noturno de ontem e diurno de hoje):
@@ -90,7 +98,7 @@ function plJanela(t){
   let P; try{P=plDados()}catch(e){return null}
   const c=[]; for(const x of P.escala||[]){if(!x||x.sobre)continue;const j=plJanelaDe(x);if(j&&t>=j.ini&&t<j.fim)c.push({x,j})}
   if(!c.length) return null; if(c.length===1) return c[0].x;
-  const rank=o=>o.j.real?(o.x.fimT?2:3):(t<o.j.fim0?1.5:1);
+  const rank=o=>o.j.real?(o.x.fimT?2:3):(t>=o.j.ini0&&t<o.j.fim0?1.5:1);
   c.sort((a,b)=>rank(b)-rank(a)||a.j.ini-b.j.ini);
   return c[0].x;
 }
@@ -115,8 +123,8 @@ function plInicia(local,turno,marcado){
 }
 function plFinaliza(){const x=plAtivo(); if(!x) return null; x.fimT=Date.now(); x.fim=plHHMM(x.fimT); saveModel(); return x}
 function plGoogle(x){
-  const L=plDados().locais[x.local]||{}, [rot,hi,hf]=PL_TURNOS[x.turno]||PL_TURNOS.D, d=x.data.replace(/-/g,"");
-  const fim=["D","M","V"].includes(x.turno)?d:plIso(new Date(new Date(x.data+"T12:00:00").getTime()+864e5)).replace(/-/g,"");
+  const L=plDados().locais[x.local]||{}, [rot,hi,hf]=plTurnoDe(x), d=x.data.replace(/-/g,"");
+  const fim=(plHM(hf)>plHM(hi))?d:plIso(new Date(new Date(x.data+"T12:00:00").getTime()+864e5)).replace(/-/g,"");
   const q=new URLSearchParams({action:"TEMPLATE",text:`${x.sobre?"Sobreaviso":"Plantão"} ${rot.toLowerCase()} — ${L.nome||x.local}`,dates:`${d}T${hi.replace(":","")}00/${fim}T${hf.replace(":","")}00`,ctz:"America/Sao_Paulo",details:"Meu Plantão"});
   return "https://calendar.google.com/calendar/render?"+q.toString();
 }
@@ -141,8 +149,12 @@ function plRender(el){
   const total=res.filter(r=>!r.inativo).reduce((a,r)=>a+r.total,0);
   // horas e R$/hora: só locais que pagam por produção (o salário fixo não entra na conta por hora)
   plHoras._mudou=false;
-  const porHora=doMes.filter(x=>{const L=P.locais[x.local]||{};return L.ativo!==false&&L.tipo==="porAlta"&&x.data>=PL_HORAS_DESDE}).map(x=>({x,h:plHoras(x),r:plValor(x)}));
-  const soma=f=>porHora.filter(f).reduce((a,o)=>({min:a.min+o.h.min,v:a.v+o.r.v}),{min:0,v:0});
+  const porHora=doMes.filter(x=>{const L=P.locais[x.local]||{};return L.ativo!==false&&L.tipo==="porAlta"&&x.data>=PL_HORAS_DESDE}).map(x=>({x,h:plHoras(x),r:plValor(x)}))
+    // sobreaviso só conta hora se teve atendimento
+    .filter(o=>!o.x.sobre||(o.r.c&&((o.r.c.n||0)+(o.r.c.uti||0))>0));
+  const agoraMs=Date.now(), previstos=porHora.filter(o=>!plDado(o.x,agoraMs)), dados=porHora.filter(o=>plDado(o.x,agoraMs));
+  const prevMin=doMes.filter(x=>!plDado(x,agoraMs)).reduce((a,x)=>{const t=plTurnoDe(x),i=plHM(t[1]),f=plHM(t[2]);let m=f-i;if(m<=0)m+=1440;return a+m},0), prevN=doMes.filter(x=>!plDado(x,agoraMs)).length;
+  const soma=f=>dados.filter(f).reduce((a,o)=>({min:a.min+o.h.min,v:a.v+o.r.v}),{min:0,v:0});
   const tot=soma(()=>true), di=soma(o=>!o.h.noturno), no=soma(o=>o.h.noturno);
   const rh=o=>o.min?o.v/(o.min/60):0, meta=+P.meta||0, falta=Math.max(0,meta-total), hFalta=rh(tot)?falta/rh(tot):null;
   if(plHoras._mudou) saveModel();
@@ -150,19 +162,20 @@ function plRender(el){
   for(let d=1;d<=dias;d++){const iso=`${pref}-${String(d).padStart(2,"0")}`, ps=doMes.filter(x=>x.data===iso);
     cel.push(`<button class="plcel${iso===plIso(hoje)?" hoje":""}" data-pldia="${iso}"><span class="pld">${d}</span>${ps.map(x=>{const L=P.locais[x.local]||{};const r=plValor(x);return `<span class="plchip${x.sobre?" plsobre":""}" style="--c:var(--${L.cor||"slate"})">${x.sobre?"SA ":""}${x.turno==="N1"?"N1":/^18/.test(x.turno)?"18h":(PL_TURNOS[x.turno]||PL_TURNOS.D)[0].slice(0,1)} ${esc((L.nome||"").split(" ")[0])}${r.c?` · ${(r.c.n||0)+(r.c.uti||0)}`:""}</span>`}).join("")}</button>`)}
   const hojeIso=plIso(hoje), proxPl=P.escala.filter(x=>x.data>=hojeIso).sort((a,b)=>a.data.localeCompare(b.data)||PL_ORDEM.indexOf(a.turno)-PL_ORDEM.indexOf(b.turno)).slice(0,6);
-  el.innerHTML=`<div id="plEscBox"></div>${proxPl.length?`<div class="panel card plprox"><h3>Próximos plantões</h3><ul class="pllista">${proxPl.map(x=>{const L=P.locais[x.local]||{};return `<li style="--c:var(--${L.cor||"slate"})"><b>${x.data.split("-").reverse().slice(0,2).join("/")}</b> ${x.sobre?"Sobreaviso · ":""}${esc((PL_TURNOS[x.turno]||PL_TURNOS.D)[0])} (${PL_TURNOS[x.turno][1]}–${PL_TURNOS[x.turno][2]}) · ${esc(L.nome||x.local)} <a class="btn sm" href="${plGoogle(x)}" target="_blank" rel="noopener">📅 Google Agenda</a></li>`}).join("")}</ul></div>`:""}
+  el.innerHTML=`<div id="plEscBox"></div>${proxPl.length?`<div class="panel card plprox"><h3>Próximos plantões</h3><ul class="pllista">${proxPl.map(x=>{const L=P.locais[x.local]||{};return `<li style="--c:var(--${L.cor||"slate"})"><b>${x.data.split("-").reverse().slice(0,2).join("/")}</b> ${x.sobre?"Sobreaviso · ":""}${esc(plTurnoDe(x)[0])} (${plTurnoDe(x)[1]}–${plTurnoDe(x)[2]}) · ${esc(L.nome||x.local)} <a class="btn sm" href="${plGoogle(x)}" target="_blank" rel="noopener">📅 Google Agenda</a></li>`}).join("")}</ul></div>`:""}
   <div class="panel card"><div class="plhead"><button class="btn sm" data-plmes="-1" aria-label="Mês anterior">◀</button><h2>${esc(mesTxt)}</h2><button class="btn sm" data-plmes="1" aria-label="Próximo mês">▶</button></div>
       <div class="plres">${res.map(r=>`<div class="plcard${r.inativo?" plinativo":""}" style="--c:var(--${r.L.cor||"slate"})"><b>${esc(r.L.nome)}</b>${r.inativo?`<span class="note">${esc(r.txt)} — fora do total</span>`:`<span class="note">${r.ps.length} plantão(ões) · ${esc(r.txt)}</span><span class="plv">${plBRL(r.total)}</span>${r.pag?`<span class="note plpag">${esc(r.pag)}</span>`:""}
         <label class="check"><input type="checkbox" data-plpago="${pref}|${r.k}" ${(P.pagos[pref+"|"+r.k]||{}).ok?"checked":""}> recebido</label>`}</div>`).join("")}
         <div class="plcard pltotal"><b>Total do mês</b><span class="plv">${plBRL(total)}</span><span class="note">valores brutos</span></div>
-        <div class="plcard plhoras"><b>Horas do mês</b><span class="plv">${plDur(tot.min)}</span><span class="note">${plBRL(rh(tot))}/h no geral</span>
-          <span class="note">Diurno: ${plDur(di.min)} · ${plBRL(rh(di))}/h</span><span class="note">Noturno: ${plDur(no.min)} · ${plBRL(rh(no))}/h</span></div>
+        <div class="plcard plhoras"><b>Horas trabalhadas</b><span class="plv">${plDur(tot.min)}</span><span class="note">${plBRL(rh(tot))}/h no geral</span>
+          <span class="note">Diurno: ${plDur(di.min)} · ${plBRL(rh(di))}/h</span><span class="note">Noturno: ${plDur(no.min)} · ${plBRL(rh(no))}/h</span><span class="note">só plantões já dados</span></div>
+        ${prevN?`<div class="plcard plprev"><b>Previstos no mês</b><span class="plv">${prevN} plantão(ões)</span><span class="note">${plDur(prevMin)} pela escala · ainda não contam</span></div>`:""}
         <div class="plcard plmeta"><b>Meta do mês</b><label class="plmetal">R$ <input class="inp" inputmode="decimal" id="plMeta" value="${meta?String(meta).replace(".",","):""}" placeholder="ex.: 10000" aria-label="Meta de valor do mês"></label>
           ${meta?(falta?`<span class="note">Faltam ${plBRL(falta)}${hFalta!=null?` · cerca de <b>${plDur(Math.ceil(hFalta*60))}</b> no seu R$/h médio`:""}</span>`:`<span class="note"><b>Meta batida!</b></span>`):`<span class="note">Defina para ver quantas horas faltam.</span>`}</div></div>
       <div class="plsem">${["D","S","T","Q","Q","S","S"].map(x=>`<span>${x}</span>`).join("")}</div><div class="plgrid">${cel.join("")}</div>
       <p class="note">Toque num dia para marcar ou tirar um plantão. A contagem vem da lista de pacientes (alta, internação, transferência e evasão contam; internação em UTI conta no valor de UTI).</p></div>
     <div class="panel card" id="plDia" hidden></div>
-    <div class="panel card"><h3>Plantões do mês</h3>${doMes.length?`<ul class="pllista">${doMes.map(x=>{const L=P.locais[x.local]||{};const r=plValor(x);return `<li style="--c:var(--${L.cor||"slate"})"><b>${x.data.split("-").reverse().slice(0,2).join("/")}</b> ${x.sobre?"Sobreaviso · ":""}${esc((PL_TURNOS[x.turno]||PL_TURNOS.D)[0])} · ${esc(L.nome||x.local)}${x.manual?" (à mão)":""}${(()=>{const L2=P.locais[x.local]||{};if(L2.tipo!=="porAlta"||x.data<PL_HORAS_DESDE)return "";const h=plHoras(x),f=r.c?(r.c.n||0)+(r.c.uti||0):0;return ` · <span class="plhr">${h.ini}–${h.fim} (${plDur(h.min)}) · ${f} ficha${f===1?"":"s"} · ${plBRL(r.v)} · ${plBRL(h.min?r.v/(h.min/60):0)}/h</span>`})()}${r.c?` · ${r.c.n||0} atendidos${r.c.uti?` + ${r.c.uti} UTI`:""} · ${plBRL(r.v)}`:L.tipo==="porAlta"?" · sem contagem ainda":""} <a class="btn sm" href="${plGoogle(x)}" target="_blank" rel="noopener">📅 Google Agenda</a></li>`}).join("")}</ul>`:`<p class="note">Nenhum plantão marcado neste mês.</p>`}</div>
+    <div class="panel card"><h3>Plantões do mês</h3>${doMes.length?`<ul class="pllista">${doMes.map(x=>{const L=P.locais[x.local]||{};const r=plValor(x);return `<li style="--c:var(--${L.cor||"slate"})"><b>${x.data.split("-").reverse().slice(0,2).join("/")}</b> ${x.sobre?"Sobreaviso · ":""}${esc(plTurnoDe(x)[0])} · ${esc(L.nome||x.local)}${x.manual?" (à mão)":""}${(()=>{const L2=P.locais[x.local]||{};if(L2.tipo!=="porAlta"||x.data<PL_HORAS_DESDE)return "";const h=plHoras(x),f=r.c?(r.c.n||0)+(r.c.uti||0):0;return ` · <span class="plhr">${h.ini}–${h.fim} (${plDur(h.min)}) · ${f} ficha${f===1?"":"s"} · ${plBRL(r.v)} · ${plBRL(h.min?r.v/(h.min/60):0)}/h</span>`})()}${r.c?` · ${r.c.n||0} atendidos${r.c.uti?` + ${r.c.uti} UTI`:""} · ${plBRL(r.v)}`:L.tipo==="porAlta"?" · sem contagem ainda":""} <a class="btn sm" href="${plGoogle(x)}" target="_blank" rel="noopener">📅 Google Agenda</a></li>`}).join("")}</ul>`:`<p class="note">Nenhum plantão marcado neste mês.</p>`}</div>
     <details class="panel card"><summary><h3>Locais e valores</h3></summary><div class="hospform">${Object.entries(P.locais).map(([k,L])=>`<fieldset class="plloc"><legend>${esc(L.nome)}</legend>
       <label>Nome<input class="inp" data-plcfg="${k}.nome" value="${esc(L.nome)}"></label>
       <label class="check"><input type="checkbox" data-plativo="${k}" ${L.ativo!==false?"checked":""}> Ativo (entra no total)</label>
@@ -180,13 +193,14 @@ function plAbreDia(iso){
   const P=plDados(), box=$("#plDia"), ps=P.escala.filter(x=>x.data===iso);
   box.hidden=false;
   box.innerHTML=`<h3>${iso.split("-").reverse().join("/")}</h3>
-    ${ps.length?`<ul class="pllista">${ps.map(x=>{const r=plValor(x);return `<li>${x.sobre?"Sobreaviso · ":""}${esc((PL_TURNOS[x.turno]||PL_TURNOS.D)[0])} · ${esc((P.locais[x.local]||{}).nome||x.local)}
+    ${ps.length?`<ul class="pllista">${ps.map(x=>{const r=plValor(x);return `<li>${x.sobre?"Sobreaviso · ":""}${esc(plTurnoDe(x)[0])} · ${esc((P.locais[x.local]||{}).nome||x.local)}
       <label class="plman">Altas <input class="inp" inputmode="numeric" data-plman="${esc(x.id)}" data-f="n" value="${x.manual?x.manual.n:""}" placeholder="${r.c&&!x.manual?r.c.n||0:""}"></label>
       <label class="plman">UTI <input class="inp" inputmode="numeric" data-plman="${esc(x.id)}" data-f="uti" value="${x.manual?x.manual.uti:""}" placeholder="${r.c&&!x.manual?r.c.uti||0:""}"></label>
       ${(()=>{const h=plHoras(x);return `<label class="plman">Entrada <input class="inp plhm" type="time" data-plhm="${esc(x.id)}" data-f="ini" value="${h.ini}"></label>
       <label class="plman">Saída <input class="inp plhm" type="time" data-plhm="${esc(x.id)}" data-f="fim" value="${h.fim}"></label>
       <span class="note plorig">${h.origem} · ${plDur(h.min)}</span>${x.ini||x.fim?`<button class="btn sm" data-plsug="${esc(x.id)}">Voltar à sugestão</button>`:""}`})()}
-      <button class="btn sm danger" data-pltira="${esc(x.id)}">Tirar</button></li>`}).join("")}</ul><p class="note">Altas e UTI em branco: conta pela lista de pacientes. Preencha para lançar à mão (ex.: plantão antigo).</p>`:""}
+      <button class="btn sm danger" data-pltira="${esc(x.id)}">Tirar</button>
+      <details class="pltroca"><summary>Mudar turno</summary><div class="chips">${PL_ORDEM.map(k=>`<button class="chip" data-plturno="${esc(x.id)}" data-t="${k}" aria-pressed="${x.turno===k}">${esc(PL_TURNOS[k][0])}</button>`).join("")}</div></details></li>`}).join("")}</ul><p class="note">Altas e UTI em branco: conta pela lista de pacientes. Preencha para lançar à mão (ex.: plantão antigo).</p>`:""}
     <div class="atdgrid"><label class="f">Local<select class="inp" id="plLocal">${Object.entries(P.locais).map(([k,L])=>`<option value="${k}">${esc(L.nome)}</option>`).join("")}</select></label>
       <label class="f">Turno<select class="inp" id="plTurno">${PL_ORDEM.map(k=>{const [r,a,b]=PL_TURNOS[k];return `<option value="${k}">${r} (${a}–${b})</option>`}).join("")}</select></label></div>
     <label class="check"><input type="checkbox" id="plSobre"> Sobreaviso</label>
@@ -195,6 +209,9 @@ function plAbreDia(iso){
     if(P.recusados) plCobre(x).forEach(k=>delete P.recusados[k]);saveModel();renderPlantoes();plAbreDia(iso);toast("Plantão marcado")};
   $("#plFecha").onclick=()=>{box.hidden=true};
   box.querySelectorAll("[data-plhm]").forEach(i=>i.onchange=()=>{const x=P.escala.find(y=>y.id===i.dataset.plhm);if(!x||plHM(i.value)===null)return;x[i.dataset.f]=i.value;saveModel();renderPlantoes();plAbreDia(iso)});
+  box.querySelectorAll("[data-plturno]").forEach(b=>b.onclick=()=>{const x=P.escala.find(y=>y.id===b.dataset.plturno);if(!x)return;
+    if(P.recusados) plCobre(x).forEach(k=>P.recusados[k]=true);   // o turno antigo não volta sozinho
+    x.turno=b.dataset.t;delete x.sug;delete x.auto;if(P.recusados)plCobre(x).forEach(k=>delete P.recusados[k]);saveModel();renderPlantoes();plAbreDia(iso);toast("Turno trocado")});
   box.querySelectorAll("[data-plsug]").forEach(b=>b.onclick=()=>{const x=P.escala.find(y=>y.id===b.dataset.plsug);if(!x)return;delete x.ini;delete x.fim;saveModel();renderPlantoes();plAbreDia(iso)});
   box.querySelectorAll("[data-plman]").forEach(i=>i.onchange=()=>{const x=P.escala.find(y=>y.id===i.dataset.plman);if(!x)return;const v=i.value.trim();
     const m=Object.assign({n:0,uti:0},x.manual||{});m[i.dataset.f]=+v||0;const outro=box.querySelector(`[data-plman="${x.id}"][data-f="${i.dataset.f==="n"?"uti":"n"}"]`);

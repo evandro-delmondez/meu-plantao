@@ -177,3 +177,17 @@ test("constipação: Fleet em casa é opção desligada (entra em Uso retal ao m
   expect(await receita(page)).toMatch(/Uso retal\n\d+\) Fosfato de sódio enema \(Fleet\)/);
   expect(erros).toEqual([]);
 });
+
+test("Orientação de antibiótico segue a receita: com antibiótico vira afirmação, sem antibiótico sai a frase condicional", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "prescricoes");
+  const ori = () => page.evaluate(() => document.querySelector('#detail textarea[data-f="orient"]')?.value || document.querySelector("#detail").innerText);
+  // conjuntivite: colírio antibiótico na receita → "Como está usando antibiótico: se não melhorar…"
+  await conduta(page, "conjuntivite");
+  await expect.poll(ori).toContain("Como está usando antibiótico");
+  expect(await ori()).not.toContain("Se estiver usando o colírio antibiótico");
+  // gastroenterite: antibiótico só em bloco opcional desligado → a frase condicional some
+  await conduta(page, "geca");
+  await expect.poll(ori).not.toContain("antibiótico para diarreia com sangue");
+  expect(erros).toEqual([]);
+});

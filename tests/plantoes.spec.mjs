@@ -53,7 +53,7 @@ test("Meus plantões: próximos plantões, noturno até 1h, sobreaviso e contage
   await expect(page.locator("#plCorpo .plprox")).toContainText("Sobreaviso · Matutino");
   await expect(page.locator("#plCorpo .plprox")).toContainText("Noturno até 1h (19:00–01:00)");
   // contagem à mão
-  const n1 = page.locator("#plDia li", { hasText: "Noturno até 1h" });
+  const n1 = page.locator("#plDia li", { hasText: "Noturno até 1h · Santa" });
   await n1.locator('[data-f="n"]').fill("11"); await n1.locator('[data-f="n"]').dispatchEvent("change");
   await expect(page.locator("#plCorpo .panel", { hasText: "Plantões do mês" })).toContainText("(à mão)");
   expect(erros).toEqual([]);
@@ -80,6 +80,7 @@ test("Meus plantões: tirar um plantão marcado à mão e um que entrou sozinho 
 
 
 test("Meus plantões: entrada e saída sugeridas pela lista e corrigíveis; horas, fichas, valor, R$/h, diurno × noturno e meta", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 25, 12, 0));   // os plantões dos dias 5 e 10 já foram dados
   await page.addInitScript(() => {
     if (localStorage.getItem("teste_pl_horas")) return; localStorage.setItem("teste_pl_horas", "1");
     const d = new Date(); const em = (h, m) => new Date(d.getFullYear(), d.getMonth(), 10, h, m).getTime();
@@ -200,5 +201,34 @@ test("Adicionar escala: cola o texto, confere a lista e grava (turnos, sobreavis
   await expect(page.locator("#plEscBox .plescl")).toContainText("já está na escala");
   await expect(page.locator("#plEscGrava")).toContainText("Gravar 0");
   expect(await semRolagemLateral(page)).toBe(true);
+  expect(erros).toEqual([]);
+});
+
+test("Plantões: horas só dos plantões já dados (futuros em Previstos), sobreaviso noturno 18h–0h, chegou 18h50 conta no noturno, mudar turno", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 7, 12, 0));
+  await page.addInitScript(() => {
+    if (localStorage.getItem("teste_pl_prev")) return; localStorage.setItem("teste_pl_prev", "1");
+    const em = (d, h, m) => new Date(2026, 10, d, h, m).getTime();
+    const p = (id, ini, fim) => ({ id, nome: id, criado: ini, upd: fim, dia: "2026-11-04", cond: "gripe", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo: "alta", onde: "", t: fim }, sabe: false, snap: null });
+    localStorage.setItem("mph_pacientes_v1", JSON.stringify({ pacs: [p("Cedo", em(4, 18, 50), em(4, 19, 30)), p("Noite", em(4, 23, 0), em(4, 23, 40))], cont: {}, apagados: {} }));
+    const m = { v: 4, updatedAt: 1 };
+    m.plantoes = { escala: [{ id: "n4", data: "2026-11-04", local: "hsls", turno: "N" }, { id: "fut", data: "2026-11-20", local: "hsls", turno: "D" }, { id: "sa", data: "2026-11-22", local: "hsls", turno: "N", sobre: true }] };
+    localStorage.setItem("rxp_model_v1", JSON.stringify(m));
+  });
+  const erros = await abrir(page);
+  await aba(page, "plantoes");
+  const mes = page.locator("#plCorpo .panel", { hasText: "Plantões do mês" });
+  await expect(mes.locator(".pllista li")).toHaveCount(3);                       // nenhum diurno do dia 4 criado (18h50 → noturno)
+  await expect(mes.locator(".pllista li", { hasText: "04/11" })).toContainText("2 fichas");
+  await expect(page.locator("#plCorpo .plhoras")).toContainText("Noturno: ");
+  await expect(page.locator("#plCorpo .plhoras")).toContainText("Diurno: 0h00");   // o diurno do dia 20 é futuro
+  await expect(page.locator("#plCorpo .plprev")).toContainText("2 plantão(ões)");
+  await expect(page.locator("#plCorpo .plprox")).toContainText("Sobreaviso · Noturno (Cinderela) (18:00–00:00)");
+  // mudar turno no dia
+  await page.click('#plCorpo [data-pldia="2026-11-20"]');
+  await page.locator("#plDia .pltroca summary").first().click();
+  await page.click('#plDia [data-plturno="fut"][data-t="N"]');
+  const m2 = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1")));
+  expect(m2.plantoes.escala.find(x => x.id === "fut").turno).toBe("N");
   expect(erros).toEqual([]);
 });

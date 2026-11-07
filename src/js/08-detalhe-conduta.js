@@ -39,7 +39,25 @@ function rxPorVia(t){
     if(String(t).split("\n").filter(l=>l.trim()).every(l=>tem.has(sem(l))||/^uso\s/i.test(l.trim())))return g}catch(e){}
   return t;
 }
-const cur=(it,f)=>{const v=cur0(it,f);return f==="casa"?rxPorVia(v):v};
+const cur=(it,f)=>{const v=cur0(it,f);return f==="casa"?rxPorVia(v):f==="orient"&&v?oriAntibio(v,rxTemAtb(cur(it,"casa"))):v};
+// orientação de antibiótico pela receita (médico, 2026-11-07): com antibiótico na receita, a frase condicional
+// ("Se recebeu antibiótico, …", "Se estiver tomando antibiótico …, retorne em 2 dias") vira afirmação; sem antibiótico,
+// sai. "Se o médico optou por observar sem antibiótico, …" faz o contrário.
+const RX_ATB_TOP=/^(tobramicina|ofloxacino|moxifloxacino|gatifloxacino|neomicina|mupirocina|acido fusidico|cloranfenicol|gentamicina)/;
+function rxTemAtb(casa){
+  const atb=(RX_CLASSES.find(c=>c[0]==="Antibiótico")||[])[2];
+  return [...String(casa||"").matchAll(/^\s*\d+\)\s*([^\n]+)/gm)].some(m=>{const n=norm(m[1]).trim();return (atb&&atb.test(n))||RX_ATB_TOP.test(n)});
+}
+function oriAntibio(txt,tem){
+  const cap=x=>x.charAt(0).toUpperCase()+x.slice(1);
+  return String(txt).split("\n").map(l=>{
+    let m=l.match(/^(\s*-\s*)Se (?:recebeu|estiver (?:usando|tomando)|for usar|usar|tomar) (?:o |um )?(?:colírio )?antibiótico( [^,]{0,60})?,\s*(.+)$/i);
+    if(m){if(!tem) return null; const e=(m[2]||"").trim();
+      return e.startsWith("e ")?`${m[1]}Como está usando antibiótico: se ${e.slice(2)}, ${m[3]}`:`${m[1]}Como está usando antibiótico, ${m[3]}`}
+    m=l.match(/^(\s*-\s*)Se o médico optou por (?:observar )?sem antibiótico,\s*(.+)$/i);
+    if(m) return tem?null:m[1]+cap(m[2]);
+    return l}).filter(x=>x!==null).join("\n");
+}
 const cur0=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="unidade"&&hospUnid(it.id)!=null)return hospUnid(it.id);if(f==="casa"&&rxTemMontar(it))return rxAlergia(rxOut[it.id]??rxMonta(it));if(f==="casa")return rxAlergia(rxLimpa(rxTxt(it.casa||"")));return rxTxt(it[f]||"")};
 // avisos para o médico sobre a receita (ex.: "Ibuprofeno só depois de descartar dengue"): na tela, nunca no texto copiado
 function rxAvisoHTML(c){

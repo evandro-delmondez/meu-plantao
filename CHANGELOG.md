@@ -1,5 +1,14 @@
 # Histórico de versões
 
+## 1.59.1 — 2026-11-07
+- **Plantões: horas só dos plantões já dados.** Horas trabalhadas, R$/hora e meta não contam mais os plantões futuros; eles aparecem em "Previstos no mês".
+- **Sobreaviso com horário próprio**: vespertino 12h–18h e noturno 18h–0h ("Cinderela"). Sobreaviso só conta hora se teve atendimento.
+- **Chegou antes, conta no turno certo**: sem o botão Iniciar, o plantão começa a valer 1 h antes do horário (quem chega 18h50 para o noturno fica no noturno). Diurno × noturno agora é pelo turno, não pela hora de entrada.
+- **Mudar turno** no dia do calendário (botões), para corrigir um plantão marcado errado.
+- **Orientação de antibiótico pela receita**: com antibiótico na receita, "Se recebeu/estiver usando antibiótico…" vira "Como está usando antibiótico, …"; sem antibiótico, a frase sai. "Se o médico optou por observar sem antibiótico" some quando há antibiótico.
+- **Orientações ao paciente revisadas** (39 condutas): mais curtas e diretas, sem "se o médico optou", sem avisos que não ajudam em casa (ex.: "não use antidiarreico" na diarreia), sinais de alarme no fim. Doses, dias e sinais de alarme iguais.
+- Corrigido: ao juntar duas condutas, o "Volte imediatamente…" podia sair "se tiver tiver: …".
+
 ## 1.59.0 — 2026-11-07
 - **Segurança**: perfis "Alergia a AINE" e "Alergia a sulfa" (só na memória da aba); com alergia a AINE a receita troca sozinha dipirona e anti-inflamatório por paracetamol e avisa; celecoxibe só com a 1ª dose observada. Alertas novos na gestação (hidroxizina, itraconazol, rivaroxabana, apixabana, valproato, fenobarbital); ivermectina na gestação "só se o benefício justificar". Avisos de metoclopramida (ClCr < 40) e de prednisona acima de 60 mg/dia. Cinco fichas novas no "+ remédio" (desloratadina, levocetirizina, cetoconazol creme, nimesulida, tiocolchicosídeo).
 - **Sete condutas novas, conferidas** (lote 3): pancreatite aguda (BISAP, Atlanta, hidratação moderada), diverticulite aguda (sem antibiótico na não complicada; antibiótico opcional por 7 dias), hemorragia digestiva baixa (Oakland, transfusão restritiva, plaquetas < 30 mil com sangramento ativo, reversão de anticoagulantes), meningite aguda (antibiótico na 1ª hora, dexametasona, quimioprofilaxia dos contatos opcional, notificação), AIT e AVC hemorrágico (dupla antiagregação opcional, PAS 140–160 mmHg, reversão), paralisia facial periférica (prednisona, antiviral opcional, proteção do olho) e pneumotórax espontâneo (BTS 2023, hipertensivo pelo ATLS, reavaliação em 24 h).

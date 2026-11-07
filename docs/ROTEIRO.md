@@ -38,7 +38,7 @@ Atualizado em 2026-10-30 (versão 1.53.1). Decisões: `docs/DECISOES.md`. Diverg
 
 **Fluxo e app**
 7. Ditado por voz na HDA (avisar privacidade do Chrome; usar no celular se o PC não tiver microfone).
-8. Orientação de alta por QR ou impressa; tempo por etapa no relógio. (Aviso sonoro de reavaliação: feito na 1.58.1.)
+8. Orientação de alta por QR ou impressa. (Aviso sonoro: 1.58.1; tempo por etapa: 1.58.2.)
 9. Modo Sala Vermelha (quando o médico trabalhar na sala vermelha).
 10. Plantões: UPA quando for convocado; data de pagamento recebido; resumo do mês.
 

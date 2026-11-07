@@ -843,3 +843,18 @@ test("IA: SpO₂, %, 6/6h, 14h30, DM2/diabetes tipo 2 e B12 não disparam a trav
   await expect(page.locator("#atIaEst")).toContainText("Texto melhorado pela IA");
   expect(erros).toEqual([]);
 });
+
+test("Tempo por etapa: o tempo digitando na HDA aparece em minutos na barra de etapas (pausa longa não conta)", async ({ page }) => {
+  await page.clock.install({ time: new Date(2026, 10, 7, 8, 0) });
+  const erros = await abrir(page);
+  await aba(page, "evolucao");
+  const campo = page.locator("#atHdaSec textarea, #atHdaSec input").first();
+  await campo.click(); await campo.type("dor", { delay: 0 });
+  for (let i = 0; i < 3; i++) { await page.clock.runFor(70e3); await campo.type("x", { delay: 0 }); }   // 3 × 70 s
+  await page.clock.runFor(1500);
+  await expect(page.locator('#atEtapas [data-atir="1"] .atmin')).toHaveText(" 3′");
+  await page.clock.runFor(30 * 60e3); await campo.type("y", { delay: 0 });                              // pausa: conta no máximo 2 min
+  await page.clock.runFor(1500);
+  await expect(page.locator('#atEtapas [data-atir="1"] .atmin')).toHaveText(" 5′");
+  expect(erros).toEqual([]);
+});

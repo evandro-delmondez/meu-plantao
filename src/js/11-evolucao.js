@@ -555,8 +555,25 @@ function atRelogio(){
   const seg=Math.max(0,Math.floor((Date.now()-atd.t0)/1000)), min=Math.floor(seg/60), m=atTempoMedia();
   r.hidden=false; r.textContent=`⏱ ${min}:${String(seg%60).padStart(2,"0")}`; const meta=atMeta(); r.dataset.nv=min>=meta?"passou":min>=meta-5?"perto":"";
   r.title=`Meta ${meta} min (toque para mudar)${m?` · média de hoje ${m.media} min (${m.n})`:""}`;
+  atEtMostra();
 }
 setInterval(()=>{if(ui.tab==="evolucao"&&atd.t0)atRelogio()},1000);
+// tempo por etapa: cada digitação ou foco numa etapa soma o tempo desde a última atividade (no máximo 2 min por vez,
+// para pausa longa não contar); fica no atendimento (some com o paciente) e aparece em minutos na barra de etapas
+let atEtUlt=0;
+function atEtConta(e){
+  if(ui.tab!=="evolucao"||!atd.t0) return; const s=e.target&&e.target.closest&&e.target.closest("#atCorpo [data-etapa]"); if(!s) return;
+  if(atd.tEtT0!==atd.t0){atd.tEt={};atd.tEtT0=atd.t0;atEtUlt=0}
+  const t=Date.now(), n=s.dataset.etapa; atd.tEt=atd.tEt||{};
+  if(atEtUlt) atd.tEt[n]=(atd.tEt[n]||0)+Math.min(t-atEtUlt,120000);
+  atEtUlt=t;
+}
+document.addEventListener("input",atEtConta,true); document.addEventListener("focusin",atEtConta,true);
+function atEtMostra(){
+  const tem=atd.t0&&atd.tEtT0===atd.t0&&atd.tEt?atd.tEt:{};
+  $$("#atEtapas [data-atir]").forEach(b=>{const m=Math.floor((tem[b.dataset.atir]||0)/60000);let i=b.querySelector(".atmin");
+    if(m<1){if(i)i.textContent="";return} if(!i){i=document.createElement("i");i.className="atmin";b.append(i)} i.textContent=` ${m}′`; b.title=`${m} min nesta etapa`});
+}
 // ordem das etapas: "mv" (HDA primeiro) ou "presc" (HD + CID → prescrição → conduta → HDA → exame → alta); fica nos padrões
 const AT_ORDEM_PRESC=[1,5,2,3,4,6,7], AT_ETAPA_DE={hda:1,exame:2,diag:3,trat:4,punid:5,rx:4,atest:6,alta:6,intern:7};
 const atOrdem=()=>(model.prefs||{}).ordem==="mv"?"mv":"presc";   // padrão: ordem da porta

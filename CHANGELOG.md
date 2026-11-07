@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.58.2 — 2026-11-07
+- **Tempo por etapa** no Atendimento: a barra de etapas mostra quantos minutos você passou em cada uma (HDA, Exame, HD…), contando só enquanto digita ou mexe nela (pausa longa não conta). Ajuda a ver onde a consulta demora.
+
 ## 1.58.1 — 2026-11-06
 - **Aviso sonoro de reavaliação** (opcional, por aparelho): botão "🔔 Aviso sonoro" na caixa de pacientes do Início. Quando um paciente passa de 2 h sem reavaliar ou de 3 h sem desfecho, toca um bipe curto, vibra no celular e mostra o nome; cada aviso toca uma vez só.
 

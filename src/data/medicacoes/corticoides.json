@@ -198,7 +198,7 @@
   ],
   "adulto": [
    "Dose inicial: 5–60 mg/dia, individualizada (bula).",
-   "Crise de asma: prednisolona 1 mg/kg/dia ou equivalente (máx. 50 mg/dia) por 5–7 dias, sem necessidade de desmame (GINA 2024).",
+   "Crise de asma: prednisolona 1 mg/kg/dia ou equivalente (máx. 50 mg/dia) por 5–7 dias, sem necessidade de desmame (GINA 2026).",
    "Equivalência: prednisona 5 mg = prednisolona 5 mg = hidrocortisona 20 mg (Manual Einstein)."
   ],
   "pediatria": [
@@ -220,7 +220,7 @@
   "fontes": [
    "Bula ANVISA — Meticorten (Organon), 2023",
    "RENAME 2024",
-   "GINA 2024 Strategy Report",
+   "GINA 2026 — Global Strategy for Asthma Management and Prevention (Strategy Report, cap. 9, p. 180; Summary Guide, p. 35 e fig. 9)",
    "Manual Farmacêutico Einstein — tabela de equivalência de corticosteroides",
    "AGS Beers Criteria 2023"
   ],
@@ -237,7 +237,7 @@
     "seNecessario": false,
     "instrucao": "Tomar 2 cp VO pela manhã, após o café, por {dias}.",
     "embalagem": null,
-    "fonte": "Bula Anvisa Meticorten/prednisona 20 mg: 5–60 mg/dia; GINA 2024: crise de asma 40–50 mg/dia por 5–7 dias, sem desmame"
+    "fonte": "Bula Anvisa Meticorten/prednisona 20 mg: 5–60 mg/dia; GINA 2026: crise de asma 40–50 mg/dia por 5–7 dias, sem desmame"
    }
   ]
  },
@@ -261,11 +261,11 @@
   ],
   "adulto": [
    "Dose inicial: 5–60 mg/dia conforme a doença (bula).",
-   "Crise de asma: 1 mg/kg/dia (máx. 50 mg/dia) por 5–7 dias (GINA 2024)."
+   "Crise de asma: 1 mg/kg/dia (máx. 50 mg/dia) por 5–7 dias (GINA 2026)."
   ],
   "pediatria": [
    "Dose inicial: 0,14–2 mg/kg/dia ou 4–60 mg/m²/dia (bula).",
-   "Crise de asma 6–11 anos: 1–2 mg/kg/dia (máx. 40 mg/dia) por 3–5 dias (GINA 2024)."
+   "Crise de asma 6–11 anos: 1–2 mg/kg/dia (máx. 40 mg/dia) por 3–5 dias (GINA 2026)."
   ],
   "ped_calc": [
    {
@@ -299,7 +299,7 @@
   "fontes": [
    "Bula ANVISA — Fosfato sódico de prednisolona solução oral (Eurofarma)",
    "RENAME 2024",
-   "GINA 2024 Strategy Report",
+   "GINA 2026 — Global Strategy for Asthma Management and Prevention (Strategy Report, cap. 9, p. 180; Summary Guide, p. 35 e fig. 9)",
    "AGS Beers Criteria 2023"
   ]
  },
@@ -597,7 +597,8 @@
    "Anti-histamínicos H1 têm papel limitado (alívio de sintomas cutâneos) e não devem atrasar nova dose de adrenalina IM (WAO 2020)."
   ],
   "fontes": [
-   "WAO Anaphylaxis Guidance 2020 (World Allergy Organ J)",
+   "Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020 (World Allergy Organ J 2020;13(10):100472) — versão mais recente da WAO (conferido em 2026-11).",
+   "Golden DBK et al. Anaphylaxis: a 2023 practice parameter update (Ann Allergy Asthma Immunol 2024;132:124) — adrenalina IM como primeira linha.",
    "Bula ANVISA — Efrinalin (hemitartarato de epinefrina, Blau)",
    "RENAME 2024",
    "ISMP Canada Safety Bulletin 2014 — Wrong route incidents with epinephrine",

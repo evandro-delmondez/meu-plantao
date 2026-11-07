@@ -165,7 +165,7 @@ rinite: {
     "Sangramento pelo nariz que não para depois de 10 a 15 minutos apertando o nariz."
   ],
   fontes: [
-    "Sousa-Pinto B et al. Allergic Rhinitis and its Impact on Asthma (ARIA)-EAACI Guidelines 2024–2025 Revision, Part I (tratamentos intranasais) e Part II (orais e oculares) (Allergy 2025).",
+    "Sousa-Pinto B et al. Allergic Rhinitis and its Impact on Asthma (ARIA)-EAACI Guidelines 2024–2025 Revision, Part I (tratamentos intranasais; Sousa-Pinto B et al., Allergy 2026;81(4):954–976, doi:10.1111/all.70131) e Part II (orais e oculares; Vieira RJ et al., Allergy 2026;81(6):1947–1970).",
     "Sakano E et al. IV Consenso Brasileiro sobre Rinites (Braz J Otorhinolaryngol 2018;84:3): controle ambiental, lavagem nasal, rinite medicamentosa, sinais de outro diagnóstico (sintomas de um lado só, sangramento, perda do olfato) e associação com asma. https://doi.org/10.1016/j.bjorl.2017.10.006",
     "NHS. Allergic rhinitis (revisado em 08/01/2026): controle ambiental (pano úmido, casa seca e ventilada, roupa de cama, animais fora do quarto); descongestionante nasal por no máximo 5 dias; procurar o médico se a asma piorar. https://www.nhs.uk/conditions/allergic-rhinitis/",
     "NHS. Common questions about beclometasone nasal spray: corticoide nasal leva alguns dias para o efeito completo, até 2 semanas ou mais para o efeito máximo. https://www.nhs.uk/medicines/beclometasone-nasal-spray/common-questions-about-beclometasone-nasal-spray/",
@@ -294,7 +294,7 @@ asma: {
   oque: "A asma é uma inflamação dos brônquios, os canos que levam o ar ao pulmão: na crise eles se fecham e dão chiado, tosse e falta de ar. Não tem cura, mas o tratamento de todos os dias evita novas crises.",
   cuidados: [
     "Tome e use os remédios como está na sua receita. Tome os comprimidos da crise até o último dia, mesmo que melhore.",
-    "Se a sua receita tem uma bombinha só (budesonida com formoterol), ela é de controle e de alívio ao mesmo tempo: use todos os dias, mesmo sem sintomas, e 1 jato a mais se tiver falta de ar ou chiado. No máximo 12 jatos por dia, somando todos.",
+    "Se a sua receita tem uma bombinha só (budesonida com formoterol), ela é de controle e de alívio ao mesmo tempo: use todos os dias, mesmo sem sintomas, e 1 inalação a mais se tiver falta de ar ou chiado. No máximo 12 inalações por dia, somando todas, e só por poucos dias. Se precisar de mais de 8 inalações por dia, procure atendimento.",
     "Se a sua receita tem duas bombinhas, a de alívio é para quando tiver falta de ar ou chiado, e a de controle deve ser usada todos os dias, mesmo sem sintomas. Bombinha em spray: use com o espaçador, como foi ensinado.",
     "Depois de usar a bombinha de controle, enxágue a boca e cuspa a água.",
     "Marque consulta no posto de saúde nos próximos dias, em até 1 semana, para rever o tratamento. Leve suas bombinhas.",
@@ -1119,6 +1119,376 @@ pneumotorax: {
     "Roberts ME et al. British Thoracic Society Guideline for pleural disease (Thorax 2023;78(Suppl 3):s1-s42): conservador no primário minimamente sintomático independentemente do tamanho; ambulatorial; aspiração ou dreno se não; cirurgia no 2º episódio ipsilateral ou 1º contralateral; RX em 2–4 semanas; avião 7 dias após a resolução no RX; mergulho desaconselhado para sempre salvo pleurectomia; parar de fumar; gestante. https://doi.org/10.1136/thorax-2022-219784",
     "North Tees and Hartlepool NHS Foundation Trust. Pneumothorax, folheto ao paciente PIL1217 v2 (revisado em 04/09/2025): caminhar é bom; evitar esforço forte e levantar peso por pelo menos 4 semanas; avião só 6 semanas a 3 meses após a resolução; voltar se os sintomas voltarem; parar de fumar reduz a recorrência; mergulho só após cirurgia. https://www.nth.nhs.uk/resources/pneumothorax/",
     "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 46 — Pneumotórax não traumático (estável: FR < 24, fala sem dispneia, FC 60–120, PA normal, SatO2 > 90% em ar ambiente, sem hemotórax; observação 6 h se < 2 cm e 12 h se ≥ 2 cm com RX de controle e retorno em 24 h; O2 com FiO2 > 30% acelera a reabsorção; aspiração com cateter 14 G de pelo menos 5 cm no 2º–3º EIC na linha hemiclavicular ou 4º–5º EIC na linha axilar anterior, drenar se 2–3 L aspirados; hipertensivo: punção imediata e dreno no 5º EIC na linha axilar média; dreno 10–14 F, 14–22 F se fuga grande ou ventilação mecânica; drenar mesmo pequeno se ventilação mecânica ou voo; internação se moderado a grande, UTI se hipertensivo ou suporte ventilatório)."
+  ]
+},
+hiponatremia: {
+  titulo: "Sódio baixo no sangue (hiponatremia)",
+  oque: "O sódio é um sal importante do sangue. O seu está um pouco baixo, mas sem sinais de gravidade, e pode ser acompanhado em casa enquanto a causa é tratada.",
+  cuidados: [
+    "Se o médico suspendeu algum remédio, não volte a tomá-lo até a consulta.",
+    "Siga a orientação sobre a quantidade de líquidos que o médico explicou. Não beba grandes volumes de água ou chá além da sede.",
+    "Coma normalmente, com comida de verdade em todas as refeições.",
+    "Repita o exame de sódio e leve o resultado à consulta."
+  ],
+  volte: [
+    "Confusão ou sonolência forte.",
+    "Vômitos.",
+    "Dor de cabeça forte.",
+    "Quedas ou fraqueza intensa.",
+    "Convulsão."
+  ],
+  fontes: [
+    "Spasovski G et al. Clinical practice guideline on diagnosis and treatment of hyponatraemia (Eur J Endocrinol 2014;170(3):G1-G47; PMID 24569125): sintomas graves — NaCl 3% 150 mL EV em 20 min, Na em 20 min, até 3 bolus ou +5 mEq/L; sintomas moderadamente graves — um bolus de 150 mL; limite de 10 mEq/L nas primeiras 24 h e 8 mEq/L a cada 24 h seguintes; correção excessiva: SG 5% 10 mL/kg em 1 h e desmopressina 2 mcg EV; SIADH: restrição hídrica; critérios diagnósticos. https://doi.org/10.1530/EJE-13-1020",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 81 Hiponatremia (graus 130–135, 125–129, < 125; sintomas; aguda × crônica; exames urinários; internar se sintomática ou Na < 125)."
+  ]
+},
+hipocalemia: {
+  titulo: "Potássio baixo no sangue (hipocalemia)",
+  oque: "O potássio é um sal do sangue importante para os músculos e o coração. O seu está um pouco baixo e o remédio da receita vai repor.",
+  cuidados: [
+    "Tome o potássio depois das refeições, com bastante água ou suco.",
+    "Coma alimentos ricos em potássio, como banana, laranja, feijão, tomate, batata e folhas verdes.",
+    "Não pare nem mude os seus remédios por conta própria.",
+    "Repita o exame de potássio e leve o resultado à consulta."
+  ],
+  volte: [
+    "Fraqueza forte nos braços ou nas pernas.",
+    "Coração disparado ou falhando.",
+    "Desmaio.",
+    "Câimbras fortes.",
+    "Vômitos ou diarreia que não param."
+  ],
+  fontes: [
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 83 Hipocalemia e tabela de reposição de eletrólitos (leve 3,0–3,4: VO 10–20 mEq 2 a 4 vezes ao dia; moderada 2,5–2,9: ECG, VO 40 mEq 3–4 vezes ao dia e EV 20–40 mEq; grave < 2,5 ou sintomática: monitor, EV 40–80 mEq, 10–20 mEq/h, até 40 mEq/h com risco de vida; periférica até 80 mEq/L, central até 120 mEq/L; xarope de KCl 6% 15 mL = 12 mEq; cápsula 600 mg = 8 mEq; doença renal: metade da dose; sulfato de magnésio)."
+  ]
+},
+"intoxicacao-alcoolica": {
+  titulo: "Intoxicação por bebida alcoólica",
+  oque: "O álcool em excesso causou os sintomas que você teve. Eles melhoraram e a recuperação pode continuar em casa, com alguém junto.",
+  cuidados: [
+    "Não beba bebida alcoólica hoje.",
+    "Não dirija nem opere máquinas até o dia seguinte.",
+    "Fique acompanhado por um adulto nas próximas horas e durma de lado.",
+    "Beba água e coma algo leve.",
+    "Se for difícil diminuir ou parar de beber, procure o posto de saúde ou o CAPS AD."
+  ],
+  volte: [
+    "Sonolência difícil de acordar ou confusão.",
+    "Convulsão.",
+    "Vômito com sangue.",
+    "Falta de ar.",
+    "Dor de cabeça forte depois de queda.",
+    "Visão borrada.",
+    "Tremores fortes ou ver coisas que não existem."
+  ],
+  fontes: [
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 100 Intoxicações por álcoois e drogas de abuso — etanol: glicemia capilar e sérica na chegada; hemograma, eletrólitos com cálcio e magnésio, gasometria, função hepática e renal e ECG; via aérea e intubação em sequência rápida se necessário; volume e vasopressor na hipotensão; hipoglicemia: glicose 50% e manutenção com SG 5%; convulsão: diazepam 5–10 mg EV a cada 5 min (máx. 30 mg) ou midazolam 10–15 mg IM; tiamina 100 mg EV ou VO em todos; notificação (CID F10.0); metanol: quadro inicial igual ao etanol e acidose 12–24 h depois.",
+    "Harrison's Principles of Internal Medicine, 22ª ed., McGraw Hill, 2025, cap. 464 Alcohol and Alcohol Use Disorders (intoxicação aguda: sinais vitais, depressão respiratória, outras drogas depressoras; agitação: benzodiazepínico de ação curta em dose baixa ou antipsicótico, sem desestabilizar; intervenção breve e encaminhamento — SBIRT)."
+  ]
+},
+"overdose-opioide": {
+  titulo: "Intoxicação por opioide",
+  oque: "Remédios ou drogas do tipo opioide (como morfina, tramadol, codeína, metadona, fentanil ou heroína) em excesso deixam a respiração fraca. Você recebeu o antídoto e ficou em observação até ficar seguro.",
+  cuidados: [
+    "Não use esses remédios ou drogas hoje.",
+    "Nunca os misture com bebida alcoólica, calmantes ou remédios para dormir.",
+    "Fique acompanhado por um adulto nas próximas 24 horas e não dirija hoje.",
+    "Se usa o remédio para dor, tome somente a dose da receita.",
+    "Se o uso está difícil de controlar, procure o posto de saúde ou o CAPS AD."
+  ],
+  volte: [
+    "Sonolência difícil de acordar.",
+    "Respiração lenta ou com ronco.",
+    "Lábios roxos.",
+    "Desmaio ou convulsão."
+  ],
+  fontes: [
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 101 Abordagem específica das intoxicações por fármacos — opioides: tríade, naloxona 0,04 mg no dependente, duração de 1–1,5 h; observação 3–4 h após reverter (pelo menos 2 h sem naloxona; 24 h com metadona, liberação prolongada ou adesivo); internar se doses repetidas, infusão, dessaturação ou rebaixamento.",
+    "Cao D et al. 2025 AHA Guidelines for CPR and ECC — Part 10: Special Circumstances of Resuscitation (Circulation 2025;152(16 Suppl 2):S578-S672): opioide — ventilar; naloxona 0,2–2 mg EV, IO ou IM, titulada; na parada, RCP primeiro; infusão de 2/3 da dose eficaz por hora; edema pulmonar responde à ventilação com pressão positiva."
+  ]
+},
+"cirrose-descompensada": {
+  titulo: "Cirrose (doença crônica do fígado)",
+  oque: "A cirrose causou acúmulo de líquido na barriga ou confusão, e isso foi tratado. A doença precisa de acompanhamento com o especialista em fígado.",
+  cuidados: [
+    "Não beba bebida alcoólica.",
+    "Não tome anti-inflamatório (como ibuprofeno, diclofenaco, nimesulida ou cetoprofeno).",
+    "Coma pouco sal e mantenha carne, ovos, feijão ou leite na alimentação.",
+    "Se recebeu lactulose, tome todos os dias para ter 2 a 3 evacuações pastosas por dia.",
+    "Não use calmantes nem remédios para dormir sem orientação médica.",
+    "Vá à consulta com o hepatologista e leve os seus exames."
+  ],
+  volte: [
+    "Febre ou dor na barriga.",
+    "Barriga crescendo rápido.",
+    "Confusão ou sonolência.",
+    "Fezes pretas ou vômito com sangue.",
+    "Pele ou olhos mais amarelos.",
+    "Pouca urina."
+  ],
+  fontes: [
+    "European Association for the Study of the Liver. EASL Clinical Practice Guidelines for the management of patients with decompensated cirrhosis (J Hepatol 2018;69(2):406-460; PMID 29653741): paracentese diagnóstica em toda internação de cirrótico com ascite, em sangramento, choque, febre, encefalopatia, piora renal ou hepática; PBE = PMN > 250/mm³; inocular 10 mL em frascos de hemocultura à beira do leito; cefalosporina de 3ª geração na comunitária; albumina 1,5 g/kg no diagnóstico e 1 g/kg no 3º dia; nova paracentese em 48 h; paracentese > 5 L: albumina 8 g por litro retirado; restrição de sal moderada; restrição hídrica só com Na < 125; suspender diuréticos com Na < 125, LRA ou encefalopatia; AINE contraindicado com ascite; LRA (ICA-AKI): suspender diuréticos, betabloqueador, nefrotóxicos e vasodilatadores, albumina 1 g/kg por 2 dias; síndrome hepatorrenal: terlipressina (1 mg a cada 4–6 h ou infusão de 2 mg/dia) com albumina 20–40 g/dia; norfloxacino 400 mg/dia como profilaxia secundária. https://doi.org/10.1016/j.jhep.2018.03.024",
+    "European Association for the Study of the Liver. EASL Clinical Practice Guidelines on the management of hepatic encephalopathy (J Hepatol 2022;77(3):807-824; PMID 35724930): tratar o precipitante; lactulose como 1ª linha, titulada para 2–3 evacuações pastosas por dia; rifaximina somada à lactulose para prevenir recorrência; amônia normal põe o diagnóstico em dúvida; não restringir proteína. https://doi.org/10.1016/j.jhep.2022.06.001"
+  ]
+},
+covid: {
+  titulo: "Covid-19",
+  oque: "A covid-19 é uma infecção causada por um vírus que atinge principalmente o nariz, a garganta e os pulmões. Na maioria das pessoas melhora em poucos dias, em casa.",
+  cuidados: [
+    "Tome os remédios como está na sua receita.",
+    "Faça repouso e beba bastante líquido.",
+    "Fique em casa por 5 dias desde o início dos sintomas, se estiver há 24 horas sem febre sem tomar remédio e com melhora da tosse. Quem tem imunidade baixa: 10 dias.",
+    "Até completar 10 dias do início dos sintomas, use máscara bem ajustada e evite contato com idosos, gestantes e pessoas com imunidade baixa.",
+    "Se recebeu o antiviral, tome os comprimidos juntos, nos horários certos, por 5 dias, e não comece remédio novo sem avisar o médico ou o farmacêutico."
+  ],
+  volte: [
+    "Falta de ar ou cansaço para falar.",
+    "Dor ou aperto no peito.",
+    "Confusão, sonolência excessiva ou desmaio.",
+    "Lábios ou pontas dos dedos arroxeados.",
+    "A febre volta depois de ter melhorado."
+  ],
+  fontes: [
+    "Ministério da Saúde. Nota Técnica nº 5/2026-CGCOVID/DEDT/SVSA/MS (20/03/2026): isolamento na síndrome gripal de 5 dias do início dos sintomas, com 24 h sem febre (sem antitérmico) e melhora respiratória; imunocomprometido 10 dias (48 h sem febre); SRAG por SARS-CoV-2 20 dias; máscara e evitar pessoas de risco até o 10º dia; contatos sem quarentena, máscara por 10 dias. Substitui o Guia de Vigilância Integrada 2024 nesse ponto. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/c/covid-19/notas-tecnicas/2026/nota-tecnica-no-5-2026-cgcovid-dedt-svsa-ms",
+    "Ministério da Saúde. Guia de Vigilância Integrada da Covid-19, Influenza e Outros Vírus Respiratórios de Importância em Saúde Pública, 2024: definições de síndrome gripal e SRAG; diagnóstico por RT-PCR ou teste rápido de antígeno; notificação da síndrome gripal suspeita de covid-19 no e-SUS Notifica e da SRAG hospitalizada no Sivep-Gripe. https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/guias-e-manuais/2024/guia-de-vigilancia-integrada-da-covid-19-influenza-e-outros-virus-respiratorios-de-importancia-em-saude-publica.pdf",
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 205 — SARS-CoV-2 and COVID-19 (nirmatrelvir/ritonavir em até 5 dias; ajustar à função renal e evitar na disfunção renal grave; revisar interações; retorno se confusão ou falta de ar)."
+  ]
+},
+varicela: {
+  titulo: "Catapora (varicela)",
+  oque: "A catapora é uma infecção por vírus que causa febre e bolhinhas com coceira pelo corpo. No adulto pode ser mais forte do que na criança. As bolhas viram casquinhas em cerca de uma semana.",
+  cuidados: [
+    "Tome os remédios como está na sua receita, começando hoje.",
+    "Tome banho todos os dias com água e sabonete, mantenha as unhas curtas e evite coçar.",
+    "Não use anti-inflamatório (como ibuprofeno, diclofenaco ou nimesulida) nem AAS (aspirina).",
+    "Fique afastado do trabalho ou da escola até todas as bolhas virarem casquinhas. Evite gestantes, recém-nascidos e pessoas com imunidade baixa nesse período.",
+    "Quem mora com você e nunca teve catapora nem tomou a vacina deve procurar o posto de saúde em até 5 dias."
+  ],
+  volte: [
+    "Falta de ar, tosse forte ou dor no peito.",
+    "Confusão, sonolência, convulsão ou dificuldade para andar.",
+    "Bolhas com sangue ou manchas roxas na pele.",
+    "Pele ao redor das feridas vermelha, quente, inchada e muito dolorida.",
+    "A febre volta depois de alguns dias sem febre."
+  ],
+  fontes: [
+    "National Institute for Health and Care Excellence. CKS Chickenpox (revisado em 2023–2024): evitar anti-inflamatório não esteroide (associação com infecção bacteriana grave de pele e partes moles); antialérgico oral para a coceira; antiviral em até 24 h no adulto e no adolescente; afastamento até todas as lesões em crosta; sinais de complicação (pneumonia, encefalite, infecção bacteriana). https://cks.nice.org.uk/topics/chickenpox/",
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 198 — Varicella-Zoster Virus Infections: adolescente e adulto com varicela de até 24 h: aciclovir 800 mg VO 5x/dia, valaciclovir 1 g 3x/dia ou fanciclovir por 5–7 dias; imunossuprimido grave: aciclovir 10 mg/kg EV de 8/8h por 7 dias; pneumonia por varicela pode exigir ventilação; IGHAVZ até 96 h (de preferência 72 h) da exposição, com algum efeito até 10 dias; evitar AAS em crianças (Reye).",
+    "Ministério da Saúde. Manual dos Centros de Referência para Imunobiológicos Especiais, 6ª ed., 2023, cap. 18 (vacina varicela e IGHAVZ): vacina pós-exposição em suscetível imunocompetente a partir de 9 meses até 120 h (5 dias) do contato; IGHAVZ 125 unidades/10 kg (mín. 125, máx. 625 unidades) IM em até 96 h, se suscetível + contato significativo (domiciliar ou hospitalar ≥ 1 h) + risco de varicela grave (imunodeprimido, gestante, recém-nascido nas situações listadas); transmissão de 2 dias antes do exantema até todas as lesões em crosta; vacina contraindicada na gestação e em imunodeprimidos (salvo indicações). https://www.gov.br/saude/pt-br/vacinacao/arquivos/manual-dos-centros-de-referencia-para-imunobiologicos-especiais_6a-edicao_2023.pdf"
+  ]
+},
+chikungunya: {
+  titulo: "Chikungunya",
+  oque: "A chikungunya é uma infecção por vírus transmitida pelo mosquito Aedes. Causa febre e dor forte nas juntas. A febre passa em poucos dias, mas a dor pode durar semanas.",
+  cuidados: [
+    "Tome os remédios para dor nos horários certos, mesmo que a dor diminua, e volte para reavaliação em 7 dias.",
+    "Não use anti-inflamatório (como ibuprofeno, diclofenaco ou nimesulida), AAS (aspirina) nem corticoide por conta própria.",
+    "Faça repouso e beba bastante líquido.",
+    "Use repelente e acabe com a água parada em casa.",
+    "Se a dor nas juntas continuar por mais de 2 semanas, volte para reavaliação."
+  ],
+  volte: [
+    "Dor no peito ou coração acelerado.",
+    "Tontura ao levantar ou desmaio.",
+    "Falta de ar.",
+    "Sangramento.",
+    "Sonolência, confusão ou fraqueza nos braços ou nas pernas.",
+    "Urina em pouca quantidade."
+  ],
+  fontes: [
+    "Ministério da Saúde. Chikungunya: manejo clínico, 2ª ed., Brasília, 2024: caso suspeito (febre e artralgia ou artrite, área de transmissão até 2 semanas antes); grupos de risco (gestantes, > 65 anos, < 2 anos, comorbidades); sinais de gravidade e critérios de internação (Fluxograma 1); fase aguda (até 14 dias) com analgésico em dose fixa, nunca 'se necessário', sem AINE (sangramento, rim, dengue); dipirona 1 g 6/6h ou paracetamol; dipirona + paracetamol intercalados; opioide fraco (tramadol 50–100 mg 6/6h ou codeína 30 mg 6/6h) na dor intensa; fase pós-aguda (15–90 dias): AINE na dor não inflamatória; prednisona 0,5 mg/kg/dia (máx. 40 mg) na artrite ou tenossinovite após 14 dias, desmame de 1/4 da dose a cada 7 dias; RT-PCR até o 5º dia, sorologia a partir do 6º dia. https://bvsms.saude.gov.br/bvs/publicacoes/chikungunya_manejo_clinico_2ed.pdf"
+  ]
+},
+"febre-maculosa": {
+  titulo: "Febre maculosa (doença do carrapato)",
+  oque: "A febre maculosa é uma infecção transmitida pelo carrapato. Começa com febre, dor de cabeça e dor no corpo e pode ficar grave em poucos dias. O antibiótico funciona melhor quando é começado cedo.",
+  cuidados: [
+    "Tome o antibiótico de 12 em 12 horas, com um copo cheio de água, sem deitar logo depois, até o fim.",
+    "Volte para reavaliação todos os dias até ficar sem febre.",
+    "Para evitar novas picadas, use roupas claras e calça por dentro da meia em mata ou pasto e examine o corpo a cada 3 horas."
+  ],
+  volte: [
+    "Vômitos que não deixam tomar o remédio.",
+    "Manchas roxas na pele ou sangramento.",
+    "Falta de ar.",
+    "Sonolência, confusão ou convulsão.",
+    "Urina em pouca quantidade.",
+    "Pele ou olhos amarelados."
+  ],
+  fontes: [
+    "Ministério da Saúde. Nota Técnica nº 49/2026-CGZHA/DEDT/SVSA/MS (febre maculosa): caso suspeito (febre súbita, cefaleia e mialgia com carrapato, animais ou área de transmissão nos 15 dias anteriores; ou com exantema entre o 2º e o 5º dia ou hemorragia); não lembrar da picada não exclui; sinais de gravidade (item 2.2.2); doxiciclina para todo caso suspeito, em qualquer idade e gravidade, sem esperar exame; EV e internação nos graves ou sem via oral; sem antibiótico profilático após picada (observar febre por 14 dias); RIFI e PCR segundo o Guia de Vigilância. https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/notas-tecnicas/2026/nota-tecnica-no-49-2026.pdf",
+    "Ministério da Saúde. Nota Técnica nº 11/2024-CGZV/DEDT/SVSA/MS (doxiciclina injetável na febre maculosa): adulto 100 mg de 12/12h VO ou EV; criança < 45 kg 2,2 mg/kg de 12/12h; manter até 3 dias após o fim da febre (rotina de 7 dias); iniciar na suspeita, idealmente nos primeiros 5 dias; EV se disfunção orgânica, plaquetopenia, icterícia, hemorragia, vômitos ou diarreia, ou piora com a via oral; tratamento ambulatorial com reavaliação diária. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/f/febre-maculosa/notas-tecnicas/nota-tecnica-no-11-2024-cgzv-dedt-svsa-ms"
+  ]
+},
+leptospirose: {
+  titulo: "Leptospirose",
+  oque: "A leptospirose é uma infecção transmitida pela urina de ratos e outros animais, pelo contato com água de enchente, lama ou esgoto. Causa febre, dor de cabeça e dor no corpo, principalmente nas panturrilhas.",
+  cuidados: [
+    "Tome o antibiótico nos horários certos, até o fim, mesmo que melhore antes.",
+    "Faça repouso e beba bastante líquido. Não use AAS (aspirina) nem anti-inflamatório.",
+    "Volte para reavaliação em 1 a 3 dias, como o médico combinou.",
+    "Evite água de enchente e lama; se for limpar, use botas e luvas de borracha."
+  ],
+  volte: [
+    "Falta de ar ou tosse com sangue.",
+    "Pele ou olhos amarelados.",
+    "Urina em pouca quantidade.",
+    "Vômitos frequentes ou sangramento.",
+    "Tontura ao levantar, desmaio, sonolência ou confusão."
+  ],
+  fontes: [
+    "Ministério da Saúde. Leptospirose: diagnóstico e manejo clínico, Brasília, 2014: caso suspeito (febre, cefaleia e mialgia com exposição nos 30 dias anteriores, ou com sufusão conjuntival, insuficiência renal, icterícia ou hemorragia); sinais de alerta (Quadro 1) indicam internação; sem sinal de alerta: tratar em casa e reavaliar em 24 a 72 h; fase precoce: doxiciclina 100 mg 12/12h ou amoxicilina 500 mg 8/8h por 5 a 7 dias (doxiciclina não em < 9 anos, gestantes, nefropatas ou hepatopatas; azitromicina ou claritromicina como alternativa); fase tardia: penicilina cristalina 1,5 milhão de unidades EV 6/6h, ampicilina 1 g EV 6/6h, ceftriaxona 1–2 g EV/dia ou cefotaxima 1 g EV 6/6h (alternativa azitromicina 500 mg EV/dia), por pelo menos 7 dias; exames iniciais; critérios de UTI; evitar AAS. https://bvsms.saude.gov.br/bvs/publicacoes/leptospirose-diagnostico-manejo-clinico2.pdf"
+  ]
+},
+"sangramento-gestacao-inicial": {
+  titulo: "Sangramento no início da gravidez",
+  oque: "Sangrar no começo da gravidez é comum. Pode ser só uma ameaça, com a gravidez seguindo bem, ou pode ser uma perda. Raramente a gravidez está fora do útero, o que é grave. Por isso os exames e os retornos são importantes.",
+  cuidados: [
+    "Volte no dia marcado para repetir o exame de sangue ou o ultrassom, mesmo que esteja se sentindo bem.",
+    "Na maioria dos casos, nenhum remédio impede a perda da gravidez; o obstetra avalia o seu caso. Não precisa ficar deitada o tempo todo; evite esforço forte e relações sexuais enquanto sangrar.",
+    "Para dor, use só o remédio da receita. Não tome anti-inflamatório nem dipirona sem falar com o médico.",
+    "Se o seu sangue for Rh negativo, avise sempre no pré-natal.",
+    "Marque o pré-natal ou o retorno com o obstetra."
+  ],
+  volte: [
+    "Sangramento forte, que encharca mais de 2 absorventes por hora.",
+    "Dor forte na barriga ou dor no ombro.",
+    "Tontura, fraqueza forte ou desmaio.",
+    "Febre ou corrimento com mau cheiro."
+  ],
+  fontes: [
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 112 — Emergências obstétricas (sangramento da 1ª metade: tipagem e anti-D no Rh negativo, 50 mcg no 1º trimestre e 300 mcg depois; tipos de abortamento, tabela 1; aborto séptico: clindamicina 900 mg EV 8/8h + gentamicina 3–5 mg/kg/dia; ectópica: zona discriminatória FEBRASGO > 2.000 mUI/mL, beta-hCG em 48 h com subida < 35% sugerindo ectópica ou gestação inviável, FAST positivo no instável = cirurgia; metotrexato no estável com massa < 3,5 cm e beta-hCG < 5.000, decisão do especialista).",
+    "NICE NG126. Ectopic pregnancy and miscarriage: diagnosis and initial management, 2019 (atualizada em 2021, 2025 e 2026): USG transvaginal; beta-hCG com 48 h de intervalo (subida > 63% sugere intrauterina; queda > 50% sugere falência); metotrexato 1ª linha se beta-hCG < 1.500 e sem dor importante; progesterona micronizada vaginal 400 mg 12/12h no sangramento com gestação intrauterina e abortamento prévio, até 16 semanas; anti-D: não oferecer até 11+6 semanas na ectópica, no abortamento ou na ameaça, nem na conduta cirúrgica (atualização de 2026); de 12+0 a 12+6 semanas com conduta medicamentosa ou cirúrgica, pelo menos 250 unidades (50 mcg). https://www.nice.org.uk/guidance/ng126",
+    "ACOG Practice Bulletin 200: Early Pregnancy Loss (Obstet Gynecol 2018;132(5):e197-e207; PMID 30157093): conduta expectante, medicamentosa ou aspiração; repouso não previne o abortamento. https://doi.org/10.1097/AOG.0000000000002899"
+  ]
+},
+hiperemese: {
+  titulo: "Enjoo e vômitos na gravidez",
+  oque: "O enjoo e os vômitos são comuns no começo da gravidez, por causa dos hormônios. Na maioria das vezes melhoram até a metade da gestação e não fazem mal ao bebê se você conseguir se hidratar.",
+  cuidados: [
+    "Coma pouco de cada vez, várias vezes ao dia. Alimentos secos e frios costumam ser mais bem aceitos.",
+    "Beba líquidos em pequenos goles, ao longo do dia, longe das refeições.",
+    "Evite comida gordurosa e cheiros fortes.",
+    "Tome o remédio da receita como orientado. Se der sono, não dirija.",
+    "Conte ao seu obstetra sobre os vômitos no pré-natal."
+  ],
+  volte: [
+    "Não consegue beber água nem manter os remédios.",
+    "Urina muito pouco ou muito escura, ou tontura ao levantar.",
+    "Vômito com sangue ou dor forte na barriga.",
+    "Febre.",
+    "Confusão, visão dupla ou dificuldade para andar."
+  ],
+  fontes: [
+    "RCOG Green-top Guideline 69 (2ª ed.). The Management of Nausea and Vomiting of Pregnancy and Hyperemesis Gravidarum (BJOG 2024;131(7):e1-e30; PMID 38311315): PUQE para gravidade; antieméticos de 1ª linha (anti-histamínicos, fenotiazinas, doxilamina + piridoxina) e 2ª linha (metoclopramida até 5 dias, ondansetrona — pequeno aumento absoluto de fenda orofacial no 1º trimestre, não desencorajar se a 1ª linha falhar); não associar metoclopramida a outro antidopaminérgico; SF 0,9% com KCl guiado pelos eletrólitos; tiamina antes de glicose em quem vomita ou come pouco; hidratação ambulatorial (hospital-dia); internar se não tolera antiemético oral, se vômitos com desidratação clínica ou perda de peso apesar do antiemético, ou com comorbidade; cetonúria não indica desidratação nem gravidade e não deve decidir a internação (grau C); tiamina oral 100 mg 3x/dia ou EV (complexo B); heparina profilática na internada; corticoide na refratária. https://doi.org/10.1111/1471-0528.17739",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 21 — Náuseas e vômitos (hiperêmese: perda ≥ 5% do peso; PUQE-24, tabela 2; vômitos que começam após a 9ª semana pedem outra causa; exames no quadro grave; piridoxina, dimenidrinato 25–50 mg 3x/dia, meclizina 25–100 mg/dia, metoclopramida 10 mg 3x/dia, ondansetrona 4–8 mg 3x/dia, corticoide na refratária)."
+  ]
+},
+mastite: {
+  titulo: "Mastite (inflamação da mama na amamentação)",
+  oque: "A mastite é uma inflamação da mama que aparece durante a amamentação, com dor, vermelhidão e às vezes febre. Na maioria das vezes melhora em poucos dias, e você pode e deve continuar amamentando.",
+  cuidados: [
+    "Continue amamentando quando o bebê quiser, começando pela mama que não dói. O leite não faz mal ao bebê.",
+    "Não tire leite a mais com bomba: isso aumenta a produção e pode piorar.",
+    "Coloque gelo envolto em um pano sobre a área dolorida, por 10 a 15 minutos, várias vezes ao dia. Evite massagem forte e bolsa quente.",
+    "Tome os remédios como está na receita. Se recebeu antibiótico, tome até o fim.",
+    "Descanse e beba bastante líquido."
+  ],
+  volte: [
+    "Não melhora em 2 dias de antibiótico.",
+    "Aparece um caroço amolecido, com pus, ou a vermelhidão se espalha.",
+    "Febre alta que não passa.",
+    "Tontura, fraqueza forte ou não consegue tomar os remédios."
+  ],
+  fontes: [
+    "Mitchell KB, Johnson HM, Rodríguez JM et al. Academy of Breastfeeding Medicine Clinical Protocol #36: The Mastitis Spectrum, Revised 2022 (Breastfeed Med 2022;17(5):360-376; PMID 35576513): manter a amamentação sob demanda sem extrair a mais; gelo de hora em hora e AINE (ibuprofeno 800 mg 8/8h) e paracetamol (1 g 8/8h); evitar massagem profunda e calor; antibiótico só na mastite bacteriana (celulite que piora, sintomas sistêmicos por mais de 24 h); dicloxacilina ou flucloxacilina 500 mg 4x/dia ou cefalexina 500 mg 4x/dia por 10–14 dias; 2ª linha clindamicina 300 mg 4x/dia ou sulfametoxazol-trimetoprima (evitar com bebê < 30 dias, prematuro, ictérico ou G6PD); sem melhora em 48 h: cultura do leite (MRSA); abscesso: USG, aspiração ou dreno, seguir amamentando; internar só se sepse ou sem tolerar via oral. https://doi.org/10.1089/bfm.2022.29207.kbm",
+    "Brasil. Ministério da Saúde. Saúde da criança: aleitamento materno e alimentação complementar. Cadernos de Atenção Básica nº 23, 2ª ed., 2015: na mastite, manter a amamentação e esvaziar bem a mama; abscesso com drenagem e continuidade da amamentação. https://bvsms.saude.gov.br/bvs/publicacoes/saude_crianca_aleitamento_materno_cab23.pdf"
+  ]
+},
+"violencia-sexual": {
+  titulo: "Atendimento após violência sexual",
+  oque: "O que aconteceu não é culpa sua. Hoje você recebeu remédios para prevenir gravidez, HIV e outras infecções. O acompanhamento continua nos próximos meses, com sigilo e sem custo.",
+  cuidados: [
+    "Tome os remédios contra o HIV todos os dias, no mesmo horário, por 28 dias, sem parar.",
+    "Vá ao serviço indicado para repetir os exames em 30 e 90 dias.",
+    "Use preservativo em todas as relações até terminar o acompanhamento.",
+    "Se a menstruação atrasar, faça um teste de gravidez. Se engravidou por causa da violência, você tem direito à interrupção pelo SUS.",
+    "Procure apoio psicológico. A Central de Atendimento à Mulher atende 24 horas pelo telefone 180."
+  ],
+  volte: [
+    "Enjoo ou vômitos que não deixam tomar os remédios.",
+    "Febre, corrimento, feridas na região genital ou dor ao urinar.",
+    "Pele ou olhos amarelados.",
+    "Se sentir que não está segura ou pensar em se machucar."
+  ],
+  fontes: [
+    "Brasil. Ministério da Saúde, Ministério da Justiça e Secretaria de Políticas para as Mulheres. Atenção humanizada às pessoas em situação de violência sexual com registro de informações e coleta de vestígios — Norma Técnica, 1ª ed., 2015: acolhimento, escuta qualificada, consentimento, registro do relato, coleta de vestígios por profissional capacitado, cadeia de custódia, sem exigir boletim de ocorrência. https://portaldeboaspraticas.iff.fiocruz.br/biblioteca/nt-situacao-de-violencia-sexual-com-registro-de/",
+    "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Profilaxia Pós-Exposição (PEP) de Risco à Infecção pelo HIV, IST e Hepatites Virais, 2024 (Portaria SECTICS/MS nº 14, de 8/4/2024): TDF/3TC + DTG por 28 dias, até 72 h; violência sexual: levonorgestrel 1,5 mg até 5 dias; penicilina benzatina 2,4 milhões de unidades IM + ceftriaxona 500 mg IM + azitromicina 1 g VO; metronidazol 2 g VO (pode ser adiado; não no 1º trimestre); hepatite B: vacina e imunoglobulina; testagem em 30 e 90 dias. https://www.gov.br/aids/pt-br/central-de-conteudo/pcdts/pcdt-pep"
+  ]
+},
+"ideacao-suicida": {
+  titulo: "Pensamentos de se machucar ou de morrer",
+  oque: "Quando o sofrimento fica muito grande, algumas pessoas pensam em morrer. Isso tem tratamento e costuma melhorar com apoio e acompanhamento. Você não está sozinho.",
+  cuidados: [
+    "Siga o plano de segurança que fizemos juntos e deixe-o em um lugar fácil, como o celular.",
+    "Fique com alguém de confiança nos próximos dias.",
+    "A família deve guardar os remédios da casa e tirar armas, venenos e objetos que possam machucar.",
+    "Evite bebida alcoólica e drogas.",
+    "Vá à consulta marcada no CAPS ou com o psiquiatra, mesmo que se sinta melhor.",
+    "Para conversar a qualquer hora, ligue 188 (Centro de Valorização da Vida), de graça, 24 horas."
+  ],
+  volte: [
+    "Os pensamentos de se matar ficam mais fortes ou você faz um plano.",
+    "Tomou remédios a mais ou se machucou: ligue 192 ou venha ao pronto-socorro.",
+    "Não consegue cumprir o plano de segurança ou fica sem ninguém por perto."
+  ],
+  fontes: [
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 60 — Emergências neuropsiquiátricas, seção Risco de suicídio (nenhuma escala prevê com confiabilidade; fatores de risco e proteção, tabela 1; critérios de internação, tabela 2: ideação ou planejamento, transtorno grave, baixo suporte, tentativa violenta ou premeditada, homem > 45 anos, impulsividade, causa orgânica; observação com reavaliações; alta com responsável, controle dos remédios e afastamento de meios).",
+    "Stanley B, Brown GK, Brenner LA et al. Comparison of the Safety Planning Intervention With Follow-up vs Usual Care of Suicidal Patients Treated in the Emergency Department (JAMA Psychiatry 2018;75(9):894-900; PMID 29998307): plano de segurança no PS com contato de seguimento reduziu o comportamento suicida. https://doi.org/10.1001/jamapsychiatry.2018.1776",
+    "Centro de Valorização da Vida (CVV): apoio emocional gratuito, 24 h, pelo telefone 188 e por chat em https://cvv.org.br."
+  ]
+},
+"fratura-imobilizacao": {
+  titulo: "Fratura (osso quebrado) com tala ou tipoia",
+  oque: "Você tem uma fratura, que foi imobilizada para diminuir a dor e ajudar o osso a colar. O ortopedista vai decidir o tratamento definitivo e quanto tempo a imobilização deve ficar.",
+  cuidados: [
+    "Não tire nem molhe a tala ou o gesso.",
+    "Mantenha o braço ou a perna elevados, acima do coração, nos primeiros dias.",
+    "Coloque gelo envolto em um pano por cima da tala, 15 a 20 minutos, várias vezes ao dia, nos primeiros 2 dias.",
+    "Mexa os dedos várias vezes ao dia.",
+    "Não apoie o pé no chão se o médico pediu para não apoiar.",
+    "Vá à consulta com o ortopedista na data marcada."
+  ],
+  volte: [
+    "Dor muito forte que não passa com o remédio.",
+    "Dedos frios, roxos, brancos, dormentes ou muito inchados.",
+    "Não consegue mexer os dedos.",
+    "A tala ou o gesso ficou apertado, molhou ou quebrou."
+  ],
+  fontes: [
+    "British Orthopaedic Association. BOAST 10 — Diagnosis and management of compartment syndrome of the limbs, 2016: dor desproporcional e à extensão passiva como sinais precoces; abrir gesso e curativo até a pele; membro no nível do coração; avaliação cirúrgica imediata (fasciotomia). https://www.boa.ac.uk/resource/boast-10-pdf.html",
+    "Boyd AS, Benjamin HJ, Asplund C. Splints and casts: indications and methods (Am Fam Physician 2009;80(5):491-499; PMID 19725490): tala de punho (antebraquiopalmar), com polegar (escafoide), em pinça de açúcar (rádio distal), ulnar (4º e 5º metacarpos), posterior de tornozelo; sindactilia nos dedos; checar neurovascular depois. https://www.aafp.org/pubs/afp/issues/2009/0901/p491.html"
+  ]
+},
+"tendinite-bursite": {
+  titulo: "Tendinite ou bursite",
+  oque: "É uma inflamação em um tendão ou em uma pequena bolsa que protege a articulação, quase sempre por esforço repetido ou pressão no local. Na maioria das vezes melhora em algumas semanas.",
+  cuidados: [
+    "Poupe o movimento que causa dor por alguns dias, sem deixar a articulação totalmente parada.",
+    "Coloque gelo envolto em um pano por 15 a 20 minutos, 3 a 4 vezes ao dia.",
+    "Use o gel e os remédios como está na receita.",
+    "Na bursite do cotovelo ou do joelho, não apoie nem ajoelhe sobre o local.",
+    "Se recebeu antibiótico, tome até o fim.",
+    "Se não melhorar em 4 a 6 semanas, procure o posto de saúde para fisioterapia ou ortopedista."
+  ],
+  volte: [
+    "Febre.",
+    "O local fica mais vermelho, quente e inchado, ou sai pus.",
+    "A dor piora muito ou perde a força do braço ou da perna."
+  ],
+  fontes: [
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 387 — Periarticular Disorders of the Extremities (bursite do olécrano ou pré-patelar quente e vermelha: aspirar para Gram, cultura e cristais; manguito rotador, epicondilite lateral e De Quervain: repouso relativo, gelo, AINE, fisioterapia, tala no De Quervain; infiltração de corticoide fora do PS).",
+    "Baumbach SF, Lobo CM, Badyine I, Mutschler W, Kanz KG. Prepatellar and olecranon bursitis: literature review and development of a treatment algorithm (Arch Orthop Trauma Surg 2014;134(3):359-370; PMID 24305696): separar séptica de não séptica pela clínica, aspirado e exames; séptica: antibiótico (ambulatorial oral nos casos leves); cirurgia só nos graves, refratários ou recorrentes; não séptica: conservador (repouso, compressão, AINE). https://doi.org/10.1007/s00402-013-1882-7"
   ]
 },
 };

@@ -81,3 +81,29 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 - Paracetamol na hepatopatia ou etilismo, 2 g/dia: decisão do médico; buscar fonte primária (FDA OTC monograph ou AASLD). A bula brasileira só diz "evitar".
 - Prednisona > 60 mg/dia: aviso de confirmação, não é teto de bula.
 - Marcas na CMED e RENAME 2024 das fichas novas; texto integral da AAAAI 2022 (acesso automático recusado).
+
+## 2026-11-07 — Lote 4, fontes 2026-11 e item 5 (decisões 2)
+- 18 condutas novas conferidas (`.rascunhos/lote4a/4b/4c-conferencia.md`), escores ADD-RS, Child-Pugh, Ottawa (tornozelo e joelho) e PUQE-24, queixa nova "Saúde mental e violência"; fontes atualizadas (AHA/ACC 2025, ARIA-EAACI 2024–2025, CHEST 2021, ATLS 11, EAU 2026, GINA 2026, WAO 2020 completa).
+
+### Divergências entre fontes que ficaram só informadas (o texto segue a decisão do médico)
+- Dissecção: ESC 2024 e DBHA 2025 pedem FC ≤ 60 (DBHA: PAS 90–120 em 20 min); o app segue ACC/AHA 2022 (FC 60–80; FC vista só no resumo do ACC) e AHA/ACC 2025 (PAS < 120 na 1ª hora).
+- Metoprolol EV: bula (IAM) 5 mg a cada 2 min até 15 mg × Posicionamento Luso-Brasileiro 2020 (10 min, até 20 mg), adotado.
+- Tiamina: 100 mg na intoxicação alcoólica (HC-FMUSP cap. 100) × 300 mg na abstinência.
+- Terlipressina: escalonar no 2º dia (HC-FMUSP) × 3º dia (EASL 2018). Albumina na PBE: a todos (EASL) × com creatinina, ureia ou bilirrubina altas (AASLD/HC); as duas no texto.
+- Chikungunya: prednisona pelo texto do MS 2024 (4 semanas + desmame); o Fluxograma 2 do mesmo manual diz até 3 semanas.
+- Doxiciclina EV: diluição da bula FDA do pó; o produto do MS é solução injetável (conferir a bula do frasco).
+- SMX-TMP na celulite: IDSA 2014 aceita 1 a 2 cp; o app usa 2 na celulite e 1 no abscesso.
+- Crise hipertensiva sem lesão de órgão-alvo: AHA/ACC 2025 não dá anti-hipertensivo para baixar na hora; o app segue a DBHA 2025. Crise adrenérgica: PAS < 140 na 1ª hora (DBHA), sem confirmação no texto integral da AHA/ACC 2025.
+- Queimadura: HC-FMUSP cap. 69 dá metade do volume em 8 h (mantido só na criança); o ATLS 11 calcula sobre 16 h. Parkland na criança: MS 2012 aceita até 4 mL; o app usa 3 mL (ATLS/HC-FMUSP).
+- CURB-65: SBPT 2018 usa ureia > 50 mg/dL; o app usa > 42 (Lim 2003; NICE). PAC: ATS 2025 aceita 3 a < 5 dias; o app mantém 5.
+- Prostatite: IDSA 2025 e Harrison aceitam ciprofloxacino VO no caso leve; o app segue a EAU 2026.
+- Ondansetrona no 1º trimestre: alerta Anvisa × RCOG 2024 (2ª linha). Anti-D < 12 semanas: HC-FMUSP dá 50 mcg; o app segue ACOG 2024 e NICE 2026 (não fazer).
+- Mastite: ABM 2022 aceita 10–14 dias e ibuprofeno até 800 mg. Bursite séptica: sem diretriz de duração. Fratura exposta: BOAST 4 aceita 12–24 h; o app segue o HC-FMUSP (6 h).
+- Vannair spray fica fora da bula para MART; a receita usa o Symbicort Turbuhaler.
+
+### Pendente
+- Tabela 26 da AHA/ACC 2025 (doses EV): sem acesso; o protocolo mantém a ACC/AHA 2017 só para esmolol e hidralazina.
+- ATLS 11, cap. 9: sentido exato do "cálculo em 16 h" (o compêndio de mudanças não detalha) e glicose abaixo de 30 kg (ABLS 2023).
+- Prostatite: a EAU 2026 conferida não nomeia o antibiótico oral depois da dose parenteral; a receita usa SMX-TMP (Harrison 22ª, cap. 140) guiado pela urocultura.
+- Cefuroxima na pielonefrite: dose de 250 mg 12/12h lida na bula do Zinnat reproduzida em bula.com.br (texto do paciente); a bula oficial no Bulário da Anvisa não abriu (403). Conferir. Alergia a betalactâmico na pielonefrite ambulatorial ficou sem opção oral (quinolona retirada por decisão do médico).
+- Magnésio na asma ainda com GINA 2024; Portaria GM/MS 11.211/2026 citada no lote 4b e não reconferida no lote 4c.

@@ -203,7 +203,7 @@ const PROTOCOLOS=[
    "CAD leve ou moderada sem complicação, consciente: alternativa com análogo rápido SC 0,1 unidade/kg em bolus e depois 0,1 unidade/kg a cada 1 h ou 0,2 unidade/kg a cada 2 h. Não usar SC na CAD grave, complicada ou no EHH.",
    "EHH sem cetose importante: insulina regular EV 0,05 unidade/kg/h (alguns aguardam a glicemia parar de cair só com soro antes de iniciar).",
    "Já usa insulina basal: manter a dose habitual. Pode-se associar basal SC 0,15–0,3 unidade/kg desde o início.",
-   "Bicarbonato: só se pH < 7,0 — 100 mmol (100 mL de bicarbonato de sódio 8,4%) em 400 mL de água destilada, repetido a cada 2 h até pH > 7,0.",
+   "Bicarbonato: só se pH < 6,9 (HC-FMUSP, cap. 89; o consenso 2024 indica com pH < 7,0) — 100 mmol (100 mL de bicarbonato de sódio 8,4%) em 400 mL de água destilada, repetido a cada 2 h até pH > 7,0.",
    "Fosfato: só se fósforo < 1,0 mmol/L com fraqueza muscular, insuficiência respiratória ou cardíaca."]},
   {id:"c5",t:"Monitorar e ajustar",itens:[
    "Glicemia capilar de hora em hora; eletrólitos, função renal, pH venoso e osmolalidade a cada 2–4 h; K 2 h após iniciar a insulina e depois a cada 4 h.",

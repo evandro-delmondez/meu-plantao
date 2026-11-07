@@ -1,6 +1,7 @@
 # Histórico de versões
 
 ## 1.59.0 — 2026-11-07
+- **Segurança**: perfis "Alergia a AINE" e "Alergia a sulfa" (só na memória da aba); com alergia a AINE a receita troca sozinha dipirona e anti-inflamatório por paracetamol e avisa; celecoxibe só com a 1ª dose observada. Alertas novos na gestação (hidroxizina, itraconazol, rivaroxabana, apixabana, valproato, fenobarbital); ivermectina na gestação "só se o benefício justificar". Avisos de metoclopramida (ClCr < 40) e de prednisona acima de 60 mg/dia. Cinco fichas novas no "+ remédio" (desloratadina, levocetirizina, cetoconazol creme, nimesulida, tiocolchicosídeo).
 - **Sete condutas novas, conferidas** (lote 3): pancreatite aguda (BISAP, Atlanta, hidratação moderada), diverticulite aguda (sem antibiótico na não complicada; antibiótico opcional por 7 dias), hemorragia digestiva baixa (Oakland, transfusão restritiva, plaquetas < 30 mil com sangramento ativo, reversão de anticoagulantes), meningite aguda (antibiótico na 1ª hora, dexametasona, quimioprofilaxia dos contatos opcional, notificação), AIT e AVC hemorrágico (dupla antiagregação opcional, PAS 140–160 mmHg, reversão), paralisia facial periférica (prednisona, antiviral opcional, proteção do olho) e pneumotórax espontâneo (BTS 2023, hipertensivo pelo ATLS, reavaliação em 24 h).
 - Cada uma com checklist, alta leiga, item de alta e exames (pedir, não pedir, encaminhar).
 - **Escores novos**: BISAP (ureia > 30 mg/dL, pelo HC-FMUSP), Oakland e escore ICH, na aba Escores e nos cálculos da conduta.

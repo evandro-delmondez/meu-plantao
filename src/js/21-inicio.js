@@ -107,6 +107,7 @@ function renderInicio(){
   $("#hPacs").innerHTML=ab.map(p=>{const av=pacAviso(p,agora), pe=pacPendencias(p);return `<button class="hpac" data-hp="${p.id}" data-av="${av?av.nv:""}"><span class="hpac-l"><b>${esc(p.nome)}</b><em>há ${pacDur(agora-p.criado)}</em></span><span>${esc(pacHip(p)||"sem hipótese")}</span>${pe.length?`<span class="hpac-f">A fazer: ${esc(pe.join(" · "))}</span>`:""}${av?`<span class="hpac-av">${esc(av.txt)}</span>`:""}</button>`}).join("");
   $$("#hPacs [data-hp]").forEach(b=>b.onclick=()=>pacAbrir(b.dataset.hp));
   renderPlInicio();
+  somBotao();
   // sem nenhuma chave neste computador: oferece Entrar
   const box=$("#acInicio"), cfg=psyncAtivo()||gsAtivo()||(hosp.cfg&&hosp.cfg.chave);
   box.hidden=!!cfg; if(!cfg) renderAcesso(box);

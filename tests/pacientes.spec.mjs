@@ -323,3 +323,23 @@ test("busca de paciente na lista e selo de paciente finalizado", async ({ page }
   expect(erros).toEqual([]);
 });
 
+
+test("Aviso sonoro de reavaliação: ligado no Início, avisa uma vez quando passa de 2 h sem reavaliar", async ({ page }) => {
+  await page.clock.install({ time: new Date(2026, 10, 6, 8, 0) });
+  const erros = await abrir(page);
+  await aba(page, "pacientes");
+  await page.fill("#pcNome", "Som Teste"); await page.click("#pcAdd");
+  await aba(page, "inicio");
+  await expect(page.locator("#hSom")).toHaveAttribute("aria-pressed", "false");
+  await page.click("#hSom");
+  await expect(page.locator("#hSom")).toHaveAttribute("aria-pressed", "true");
+  expect(await page.evaluate(() => localStorage.getItem("rxp_som_v1"))).toBe("1");
+  await page.clock.runFor(2 * 3600e3 + 61e3);
+  await expect(page.locator("#toast")).toContainText("Som Teste");
+  await expect(page.locator("#toast")).toContainText("sem reavaliar");
+  // não repete o mesmo aviso
+  await page.evaluate(() => { document.querySelector("#toast").textContent = ""; });
+  await page.clock.runFor(120e3);
+  await expect(page.locator("#toast")).not.toContainText("Som Teste");
+  expect(erros).toEqual([]);
+});

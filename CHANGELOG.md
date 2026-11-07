@@ -8,6 +8,12 @@
 - **Queixas**: caminhos para as condutas novas em dor abdominal, cefaleia, febre, tontura, dor torácica e tosse/dispneia.
 - Decisões pendentes do médico em `docs/LOTE3-DECISOES.md` (aplicado o padrão do conferente).
 
+## 1.58.2 — 2026-11-07
+- **Tempo por etapa** no Atendimento: a barra de etapas mostra quantos minutos você passou em cada uma (HDA, Exame, HD…), contando só enquanto digita ou mexe nela (pausa longa não conta). Ajuda a ver onde a consulta demora.
+
+## 1.58.1 — 2026-11-06
+- **Aviso sonoro de reavaliação** (opcional, por aparelho): botão "🔔 Aviso sonoro" na caixa de pacientes do Início. Quando um paciente passa de 2 h sem reavaliar ou de 3 h sem desfecho, toca um bipe curto, vibra no celular e mostra o nome; cada aviso toca uma vez só.
+
 ## 1.58.0 — 2026-11-06
 - **Adicionar escala** (Plantões): cole ou dite os plantões ("12/11 noturno", "15 e 20/11 diurno", "22/11 sobreaviso 24h", "28/11 24h invertido"), confira a lista e grave. Entende todos os turnos; com a IA ligada, também texto livre. Não duplica o que já está na escala.
 - **"UI" virou "unidades"** em todo o app (heparina, insulina, penicilina benzatina, soros e imunoglobulinas), como recomenda o ISMP Brasil; só o nome mudou, nenhum número. O verificador de conteúdo barra a sigla.

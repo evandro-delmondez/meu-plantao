@@ -605,5 +605,116 @@
    "Manual de Diluição de Medicamentos Injetáveis — SMS Joinville, 2018",
    "Resuscitation Council UK. Emergency treatment of anaphylaxis: guidelines for healthcare providers, maio 2021 (infusão de adrenalina 1 mg/100 mL a 0,5–1 mL/kg/h)."
   ]
+ },
+ {
+  "id": "desloratadina",
+  "nome": "Desloratadina",
+  "classe": "Anti-histamínico H1 (2ª geração)",
+  "subclasse": "Não sedativo",
+  "mecanismo": "Metabólito ativo da loratadina; antagonista H1 periférico de longa ação.",
+  "apresentacoes": [
+   "Comprimido 5 mg",
+   "Xarope 0,5 mg/mL"
+  ],
+  "marcas": [
+   "Desalex"
+  ],
+  "rename": null,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Adultos e ≥ 12 anos: 5 mg VO 1x/dia; não aumentar a dose (bula)."
+  ],
+  "pediatria": [
+   "Xarope: conforme a faixa etária da bula; < 6 meses não estudado."
+  ],
+  "diluicao": [],
+  "renal": "Insuficiência renal grave: usar com cautela (bula).",
+  "hepatica": "",
+  "gestacao": "Dados limitados; não usar sem orientação médica (bula). Na gestação, preferir loratadina (diretriz de urticária 2022).",
+  "lactacao": "Passa para o leite; não recomendado (bula).",
+  "contraindicacoes": [
+   "Hipersensibilidade à desloratadina ou à loratadina."
+  ],
+  "alertas": [
+   "Pouca sedação nas doses usuais; suspender 48 h antes de teste cutâneo."
+  ],
+  "fontes": [
+   "Bula ANVISA — desloratadina 5 mg (Eurofarma; referência Desalex) https://cdn.eurofarma.com.br/wp-content/uploads/2019/11/02_DESLORATADINA_BULA_PROFISSIONAL_v00_r01.pdf",
+   "Zuberbier T et al. Diretriz internacional de urticária 2022 (Allergy 2022;77:734) https://doi.org/10.1111/all.15090"
+  ],
+  "receita": [
+   {
+    "rotulo": "Alergia",
+    "nome": "Desloratadina 5mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 7,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO 1x ao dia por {dias}.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa desloratadina 5 mg (Eurofarma; ref. Desalex): ≥ 12 anos 5 mg 1x/dia, não aumentar a dose https://cdn.eurofarma.com.br/wp-content/uploads/2019/11/02_DESLORATADINA_BULA_PROFISSIONAL_v00_r01.pdf"
+   }
+  ]
+ },
+ {
+  "id": "levocetirizina",
+  "nome": "Levocetirizina",
+  "classe": "Anti-histamínico H1 (2ª geração)",
+  "subclasse": "Enantiômero ativo da cetirizina",
+  "mecanismo": "Antagonista H1 periférico seletivo.",
+  "apresentacoes": [
+   "Comprimido 5 mg",
+   "Gotas 5 mg/mL"
+  ],
+  "marcas": [
+   "Zyxem"
+  ],
+  "rename": null,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "Adultos e ≥ 12 anos: 5 mg VO 1x/dia (bula Zyxem)."
+  ],
+  "pediatria": [
+   "Conforme faixa etária da bula (gotas)."
+  ],
+  "diluicao": [],
+  "renal": "ClCr 50–79: 5 mg/dia; 30–49: 5 mg a cada 2 dias; < 30: 5 mg a cada 3 dias; doença renal terminal ou diálise: contraindicada (bula Zyxem).",
+  "hepatica": "Só hepatopatia: sem ajuste; com doença renal, ajustar ao ClCr (bula).",
+  "gestacao": "Dados limitados; bula: evitar. Preferir loratadina ou cetirizina (diretriz de urticária 2022).",
+  "lactacao": "Passa para o leite; bula: evitar.",
+  "contraindicacoes": [
+   "Hipersensibilidade a levocetirizina, cetirizina ou hidroxizina.",
+   "ClCr < 10 mL/min ou diálise (bula)."
+  ],
+  "alertas": [
+   "Pode dar sonolência; cuidado ao dirigir."
+  ],
+  "fontes": [
+   "Bula ANVISA — Zyxem (levocetirizina) https://www.bulas.med.br/p/bula/7758/zyxem.htm"
+  ],
+  "receita": [
+   {
+    "rotulo": "Alergia",
+    "nome": "Levocetirizina 5mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 1,
+    "diasPadrao": 7,
+    "diasMax": null,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO 1x ao dia por {dias}.",
+    "embalagem": null,
+    "aviso": "ClCr 30–49: 1 cp a cada 2 dias; < 30: a cada 3 dias; diálise: contraindicada (bula Zyxem).",
+    "fonte": "Bula Anvisa Zyxem (levocetirizina 5 mg): adultos e ≥ 12 anos 5 mg 1x/dia https://www.bulas.med.br/p/bula/7758/zyxem.htm"
+   }
+  ]
  }
 ]

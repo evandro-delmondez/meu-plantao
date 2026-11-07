@@ -798,5 +798,132 @@
    "Bula DBL Morphine Sulfate injection (Pfizer)",
    "Guia Farmacêutico Hospital São Camilo — Morfina"
   ]
+ },
+ {
+  "id": "nimesulida",
+  "nome": "Nimesulida",
+  "classe": "Anti-inflamatório (AINE)",
+  "subclasse": "Sulfonanilida, preferencial de COX-2",
+  "mecanismo": "Inibição preferencial da COX-2.",
+  "apresentacoes": [
+   "Comprimido 100 mg",
+   "Gotas 50 mg/mL",
+   "Granulado 100 mg"
+  ],
+  "marcas": [
+   "Nisulid"
+  ],
+  "rename": null,
+  "vias": [
+   "VO"
+  ],
+  "adulto": [
+   "50–100 mg VO de 12/12h; máx. 200 mg/dia; menor tempo possível (bula; EMA: até 15 dias)."
+  ],
+  "pediatria": [
+   "Contraindicada < 12 anos (bula)."
+  ],
+  "diluicao": [],
+  "renal": "Contraindicada na insuficiência renal grave (ClCr < 30) (bula).",
+  "hepatica": "Contraindicada na doença hepática, no etilismo e com outros hepatotóxicos (bula; EMA 2012).",
+  "gestacao": "Contraindicada no 3º trimestre; evitar a partir de 20 semanas (FDA 2020; bula).",
+  "lactacao": "Contraindicada (bula).",
+  "contraindicacoes": [
+   "Hepatopatia, etilismo, história de hepatotoxicidade com nimesulida.",
+   "Úlcera ou sangramento GI; insuficiência renal grave.",
+   "3º trimestre e lactação; < 12 anos.",
+   "Suspeita de dengue (MS)."
+  ],
+  "alertas": [
+   "Hepatotóxica: suspender se icterícia, dor abdominal ou transaminases altas (EMA 2012).",
+   "Se surgir febre ou sintoma gripal durante o uso, suspender (EMA, anexo do RCM)."
+  ],
+  "fontes": [
+   "Bula ANVISA — nimesulida 100 mg (Vitamedic; referência Nisulid) https://static-webv8.jet.com.br/drogaosuper/bulas/145802.pdf",
+   "EMA 2012 — nimesulida: uso restrito, até 15 dias https://www.ema.europa.eu/en/medicines/human/referrals/nimesulide-containing-medicinal-products",
+   "FDA Drug Safety Communication — AINE ≥ 20 semanas, 2020",
+   "Ministério da Saúde — Dengue, 6ª ed., 2024"
+  ],
+  "receita": [
+   {
+    "rotulo": "Dor ou inflamação, sem febre",
+    "nome": "Nimesulida 100mg",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 1,
+    "vezesDia": 2,
+    "diasPadrao": 3,
+    "diasMax": 5,
+    "seNecessario": false,
+    "instrucao": "Tomar 1 cp VO de 12/12h, após as refeições, por {dias}.",
+    "embalagem": null,
+    "aviso": "Só após descartar dengue (MS). Hepatotóxica; suspender se surgir febre ou sintoma gripal (EMA).",
+    "fonte": "Bula Anvisa nimesulida 100 mg (ref. Nisulid): 50–100 mg 2x/dia https://static-webv8.jet.com.br/drogaosuper/bulas/145802.pdf"
+   }
+  ]
+ },
+ {
+  "id": "tiocolchicosideo",
+  "nome": "Tiocolchicosídeo",
+  "classe": "Relaxante muscular",
+  "subclasse": "Derivado da colchicina, agonista GABA-A",
+  "mecanismo": "Relaxante muscular de ação central.",
+  "apresentacoes": [
+   "Comprimido 4 mg",
+   "Solução injetável 4 mg/2 mL (IM)"
+  ],
+  "marcas": [
+   "Coltrax"
+  ],
+  "rename": null,
+  "vias": [
+   "VO",
+   "IM"
+  ],
+  "adulto": [
+   "VO: 8 mg de 12/12h, máx. 16 mg/dia, por até 7 dias (bula Coltrax; EMA 2013).",
+   "IM: 4 mg de 12/12h, por até 5 dias (EMA 2013)."
+  ],
+  "pediatria": [
+   "Contraindicado < 16 anos (bula)."
+  ],
+  "diluicao": [
+   "IM: sem diluição."
+  ],
+  "renal": "",
+  "hepatica": "Pode elevar transaminases; evitar na hepatopatia (bula).",
+  "gestacao": "Contraindicado (metabólito aneugênico: risco de aneuploidia) (EMA 2013).",
+  "lactacao": "Contraindicado (bula).",
+  "contraindicacoes": [
+   "Gestação, lactação e mulher fértil sem contracepção.",
+   "Epilepsia ou risco de convulsão.",
+   "< 16 anos.",
+   "Paralisia flácida, hipotonia."
+  ],
+  "alertas": [
+   "Não passar da dose nem do tempo (risco de aneuploidia).",
+   "Pode causar convulsão (EMA 2013)."
+  ],
+  "fontes": [
+   "Bula ANVISA — Coltrax (Sanofi, 22/11/2019) https://www.bulas.med.br/p/bula/2357/coltrax+comprimidos.htm",
+   "EMA 2013 — tiocolchicosídeo: restrições de uso https://www.ema.europa.eu/en/medicines/human/referrals/thiocolchicoside"
+  ],
+  "receita": [
+   {
+    "rotulo": "Contratura",
+    "nome": "Tiocolchicosídeo 4mg (Coltrax)",
+    "via": "oral",
+    "unidade": "cp",
+    "porTomada": 2,
+    "vezesDia": 2,
+    "diasPadrao": 5,
+    "diasMax": 7,
+    "seNecessario": false,
+    "instrucao": "Tomar 2 cp (8 mg) VO de 12/12h por {dias}. No máximo 4 cp por dia; não usar por mais de 7 dias.",
+    "embalagem": null,
+    "fonte": "Bula Anvisa Coltrax (Sanofi, 22/11/2019): 8 mg 12/12h, máx. 16 mg/dia, até 7 dias https://www.bulas.med.br/p/bula/2357/coltrax+comprimidos.htm",
+    "aviso": "Contraindicado na gestação, lactação, mulher fértil sem contracepção, epilepsia, < 16 anos."
+   }
+  ]
  }
 ]

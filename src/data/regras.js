@@ -22,10 +22,27 @@ fdaAce:"FDA — advertência em destaque (boxed warning) dos IECA/BRA: toxicidad
 diamox:"Bula do Diamox (acetazolamida 250 mg) registrada na Anvisa: contraindicado na alergia a sulfonamida, na hipocalemia, na hiponatremia, na insuficiência renal ou hepática grave, na cirrose, na insuficiência adrenal e na acidose. https://bula.com.br/diamox/contraindicacao",
 colchis:"Bula do Colchis (colchicina 0,5 mg, Apsen) registrada na Anvisa: contraindicada na gestação; TFG 30–59: 0,5 mg/dia; 15–29: a cada 2–3 dias; < 15: contraindicada. https://consultaremedios.com.br/colchis/bula. ESC 2025 (miocardite e pericardite, seção 12.3): colchicina pode ser considerada na gestação (IIb).",
 zoviraxEv:"Bula Anvisa do Zovirax injetável (aciclovir sódico 250 mg, GSK, aprovada em 18/03/2021): dose de 5 ou 10 mg/kg; ClCr 25–50, de 12/12h; 10–25, de 24/24h; 0–10, metade da dose de 24/24h (na hemodiálise, depois da diálise); garantir hidratação; infusão em 1 h, nunca em bolus. https://br.gsk.com/media/6237/zovirax-injet%C3%A1vel.pdf",
-fenergan:"Bula Padrão Anvisa da prometazina injetável (texto profissional do Pamergan, Cristália, conforme Bula Padrão aprovada em 06/12/2023; bula do paciente do Fenergan, Sanofi, versão em bula.com.br de 30/07/2025): categoria C; não usar no 1º trimestre (leve aumento de malformação cardiovascular); fim da gestação, tratamento prolongado: sonolência ou hiperexcitabilidade no recém-nascido, observar funções neurológicas e digestivas; dose alta no fim da gravidez causou distúrbio neurológico prolongado; desaconselhada na amamentação. https://bula.com.br/original/fenergan-injetavel ; https://cristalia.com.br/produto/387/bula-profissional"
+fenergan:"Bula Padrão Anvisa da prometazina injetável (texto profissional do Pamergan, Cristália, conforme Bula Padrão aprovada em 06/12/2023; bula do paciente do Fenergan, Sanofi, versão em bula.com.br de 30/07/2025): categoria C; não usar no 1º trimestre (leve aumento de malformação cardiovascular); fim da gestação, tratamento prolongado: sonolência ou hiperexcitabilidade no recém-nascido, observar funções neurológicas e digestivas; dose alta no fim da gravidez causou distúrbio neurológico prolongado; desaconselhada na amamentação. https://bula.com.br/original/fenergan-injetavel ; https://cristalia.com.br/produto/387/bula-profissional",
+hixilerg:"Bula da hidroxizina registrada na Anvisa (Hixilerg, atualizada em 30/07/2025; Hixizine): categoria C, contraindicada na gestação e na lactação; adulto 25 mg 3 a 4x/dia; criança 0,7 mg/kg 3x/dia. https://bula.com.br/original/hixilerg . EMA/PRAC 2015: máx. 100 mg/dia no adulto, 50 mg/dia no idoso, 2 mg/kg/dia na criança até 40 kg; risco de QT. https://www.ema.europa.eu/en/news/prac-recommends-new-measures-minimise-known-heart-risks-hydroxyzine-containing-medicines",
+urticaria2022:"Zuberbier T et al. The international EAACI/GA²LEN/EuroGuiDerm/APAAACI guideline for urticaria, 2022 (Allergy 2022;77:734-766): na gestação, anti-histamínico de 2ª geração, de preferência loratadina (cetirizina como opção). https://doi.org/10.1111/all.15090",
+sporanox:"Bula do Sporanox (itraconazol, Janssen) registrada na Anvisa: não usar na gestação, exceto risco de vida; mulher em idade fértil deve usar contracepção até a menstruação seguinte ao fim do tratamento. https://bula.com.br/original/sporanox . FDA label Sporanox: contraindicado para onicomicose na gestante ou em quem planeja engravidar.",
+xarelto:"Bula do Xarelto (rivaroxabana, Bayer) registrada na Anvisa e RCM EMA: contraindicado na gravidez e na lactação. https://www.ema.europa.eu/en/documents/product-information/xarelto-epar-product-information_pt.pdf",
+eliquis:"Bula do Eliquis (apixabana, BMS/Pfizer) registrada na Anvisa: não recomendado na gravidez; na amamentação, suspender o leite ou o remédio. https://bula.com.br/original/apixabana-comprimidos-25-mg-e-5-mg",
+ash2018:"Bates SM et al. American Society of Hematology 2018 guidelines for VTE in the context of pregnancy (Blood Adv 2018;2:3317-3359): heparina de baixo peso molecular; não usar anticoagulante oral direto na gestação. https://doi.org/10.1182/bloodadvances.2018024802",
+valpEma:"EMA/PRAC 2018 (valproato: programa de prevenção da gravidez): contraindicado na gestação para epilepsia, salvo sem alternativa; risco de cerca de 10% de malformação e de 30–40% de atraso do desenvolvimento. https://www.ema.europa.eu/en/medicines/human/referrals/valproate-related-substances-0 . Bula Depakene/Depacon (Anvisa).",
+fenocris:"Bula do fenobarbital registrada na Anvisa (Fenocris, Cristália; Gardenal): contraindicado na gestação (malformações, abstinência e sangramento neonatal) e na lactação.",
+ilae2019:"Tomson T et al. Management of epilepsy in pregnancy: a report from the ILAE Task Force on Women and Pregnancy (Epileptic Disord 2019;21:497-517): lamotrigina e levetiracetam com o menor risco de malformação; valproato e fenobarbital com risco maior. https://doi.org/10.1684/epd.2019.1105",
+acog222:"ACOG Practice Bulletin 222: Gestational Hypertension and Preeclampsia (Obstet Gynecol 2020;135:e237): sulfato de magnésio para prevenir e tratar a convulsão da eclâmpsia. https://pubmed.ncbi.nlm.nih.gov/32443079/",
+enda2013:"Kowalski ML et al. Classification and practical approach to the diagnosis and management of hypersensitivity to NSAIDs (EAACI/ENDA, Allergy 2013;68:1219-1232, PMID 24117484): na reação cruzada, evitar todo inibidor forte de COX-1, inclusive pirazolonas (dipirona); paracetamol abaixo de 1 g/dose e coxibes costumam ser tolerados. https://pubmed.ncbi.nlm.nih.gov/24117484/",
+sulfaNaoAtb:"Cleveland Clin J Med 2025;92(3):147 (Can my patient with a 'sulfa allergy' receive celecoxib or other nonantimicrobial sulfonamides?): sem o grupo arilamina, a sulfonamida não antibiótica (celecoxibe, tiazídico, furosemida) não tem reação cruzada e não precisa ser evitada após reação imediata à sulfa antibiótica, mesmo quando a bula alerta; reação tardia grave (Stevens-Johnson, necrólise epidérmica tóxica, DRESS) à sulfa antibiótica: evitá-la por toda a vida. https://www.ccjm.org/content/92/3/147",
+celebra:"Bula do Celebra (celecoxibe, Pfizer) registrada na Anvisa: contraindicado na hipersensibilidade a sulfonamidas e em quem teve asma, urticária ou reação alérgica com AAS ou outro AINE. https://bula.com.br/original/celebra",
+bactrim:"Bula do Bactrim (sulfametoxazol + trimetoprima) registrada na Anvisa: contraindicado na hipersensibilidade às sulfonamidas ou à trimetoprima.",
+revectina:"Bula da Revectina (ivermectina 6 mg) registrada na Anvisa: cerca de 200 mcg/kg em dose única, por tabela de peso; categoria C, não usar na gestação sem orientação médica; contraindicada em criança < 15 kg ou < 5 anos e na meningite ou outra afecção do SNC. https://bula.com.br/original/revectina",
+plasil:"Bula do Plasil (metoclopramida) registrada na Anvisa: ClCr < 40 mL/min, iniciar com metade da dose. EMA (2013) e FDA: reduzir se ClCr ≤ 60.",
+meticorten:"Bula do Meticorten (prednisona) registrada na Anvisa, 2023: 5 a 60 mg/dia, dose individualizada; sem teto fixo. GINA 2026 (asma): 50 mg/dia por 5 a 7 dias. https://ginasthma.org/2026-gina-strategy-report/"
 };
 const RULES=[
-{re:/ibuprofeno|diclofenaco|cetoprofeno|ácido mefenâmico|naproxeno|nimesulida|profenid/i, nome:"AINE",
+{re:/ibuprofeno|alivium|diclofenaco|cataflam|voltaren|cetoprofeno|profenid|ácido mefenâmico|ponstan|naproxeno|naprosyn|flanax|nimesulida|nisulid|cetorolaco|toragesic|tenoxicam|tilatil|piroxicam|meloxicam|celecoxibe|celebra|etoricoxibe|arcoxia|parecoxibe/i, nome:"AINE",
  gest:["Evitar a partir de 20 semanas (oligoâmnio e disfunção renal fetal) e não usar no 3º trimestre (fechamento do canal arterial).","fdaNsaid"],
  idoso:["Evitar uso crônico sem gastroproteção: sangramento digestivo e lesão renal.","beers"],
  renal:["Evitar se ClCr < 30 mL/min.","beers"]},
@@ -91,7 +108,8 @@ const RULES=[
  renal:["DRC estágio ≥ 3: iniciar com dose menor que 100 mg/dia e titular.","acr"]},
 {re:/enoxaparina/i, nome:"Enoxaparina",
  renal:["ClCr < 30: reduzir a dose (1 mg/kg 1x/dia).","beers"]},
-{re:/rivaroxabana/i, nome:"Rivaroxabana",
+{re:/rivaroxabana|xarelto/i, nome:"Rivaroxabana",
+ gest:["Bula: contraindicada na gestação e na amamentação. Na TEV da gestante, usar enoxaparina (HBPM).", "xarelto", "ash2018"],
  renal:["Evitar se ClCr < 30 (como nas condutas de TEP e TVP; a bula não recomenda < 15 e pede cautela entre 15 e 29); ajustar até 50.","beers"]},
 {re:/\baciclovir/i, nome:"Aciclovir",
  renal:["Ajustar ao ClCr: herpes simples, ClCr < 10 → 200 mg de 12/12h; zoster, ClCr 10–25 → 800 mg de 8/8h e < 10 → 800 mg de 12/12h.","bula"]},
@@ -104,7 +122,7 @@ const RULES=[
 {re:/amoxicilina/i, nome:"Amoxicilina",
  renal:["ClCr 10–30: não usar 875 mg; 250–500 mg de 12/12h. < 10: 1x/dia.","bula"]},
 {re:/ivermectina/i, nome:"Ivermectina",
- gest:["Não usar na gestação (bula); preferir permetrina.","bula"]},
+ gest:["Usar só se o benefício justificar (bula: categoria C); preferir permetrina.","revectina"]},
 {re:/albendazol|mebendazol/i, nome:"Albendazol/mebendazol",
  gest:["Bula: não usar na gestação nem em quem planeja engravidar. Na enterobíase, priorizar higiene e adiar o tratamento; se indispensável, só depois do 1º trimestre.","bula"]},
 {re:/tiamazol|metimazol/i, nome:"Tiamazol",
@@ -112,7 +130,19 @@ const RULES=[
 {re:/azitromicina|claritromicina/i, nome:"Macrolídeo",
  idoso:["Risco de prolongamento do QT em quem já tem QT longo, bradicardia ou hipocalemia.","fdaAzi"]},
 {re:/prednisona|prednisolona|dexametasona|hidrocortisona|metilprednisolona/i, nome:"Corticoide sistêmico",
- idoso:["Pode precipitar delírio e hiperglicemia; monitorar glicemia em diabéticos.","beers"]}
+ idoso:["Pode precipitar delírio e hiperglicemia; monitorar glicemia em diabéticos.","beers"]},
+{re:/hidroxizina|hixizine|hixilerg/i, nome:"Hidroxizina",
+ gest:["Bula: contraindicada na gestação e na amamentação (dados insuficientes). Alternativa: loratadina ou cetirizina.", "hixilerg", "urticaria2022"]},
+{re:/itraconazol|sporanox/i, nome:"Itraconazol",
+ gest:["Bula: não usar na gestação, salvo risco de vida; na onicomicose, adiar para depois do parto. Mulher fértil: contracepção até a menstruação seguinte.", "sporanox"]},
+{re:/apixabana|eliquis/i, nome:"Apixabana",
+ gest:["Bula: não recomendada na gestação; na amamentação, suspender o leite ou o remédio. Na TEV da gestante, usar enoxaparina (HBPM).", "eliquis", "ash2018"]},
+{re:/valpro|divalproato|depakene|depakote|depacon/i, nome:"Valproato",
+ gest:["Contraindicado na gestação, salvo sem alternativa (EMA): cerca de 10% de malformação e 30–40% de atraso do desenvolvimento. Eclâmpsia: sulfato de magnésio. Outra crise: preferir levetiracetam.", "valpEma", "ilae2019", "acog222"]},
+{re:/fenobarbital|gardenal|fenocris/i, nome:"Fenobarbital",
+ gest:["Bula: contraindicado na gestação e na lactação (malformação, abstinência e sangramento no recém-nascido). Eclâmpsia: sulfato de magnésio; outra crise: preferir levetiracetam.", "fenocris", "ilae2019", "acog222"]},
+{re:/metoclopramida|plasil/i, nome:"Metoclopramida (bula)",
+ renal:["Bula: ClCr < 40, iniciar com metade da dose (EMA e FDA: reduzir já com ClCr ≤ 60).","plasil"]}
 ];
 const PNC={
  pen:/amoxicilina|penicilina|benzatina|ampicilina|clavulanato/i,
@@ -126,6 +156,15 @@ const PNCTXT={
 };
 // alergia a dipirona: não usar dipirona (nem injetável); a receita troca por paracetamol 750 mg (texto a conferir)
 const DIPTXT=["Alergia a dipirona: não usar dipirona, inclusive injetável. Alternativa: paracetamol VO até 750 mg/dose. Se também reagiu a AAS/AINE, evitar todo AINE.","bulaParacetamol"];
+// alergia a AINE e a sulfa (perfis "aine" e "sulfa", só na memória da aba); textos conferidos em 2026-11-06
+const AINE_ALERG={
+ re:{aineNaoSeletivo:/ibuprofeno|alivium|diclofenaco|cataflam|voltaren|cetoprofeno|profenid|ácido mefenâmico|ponstan|naproxeno|naprosyn|flanax|nimesulida|nisulid|cetorolaco|toragesic|tenoxicam|tilatil|piroxicam|meloxicam|\bAAS\b|ácido acetilsalicílico|aspirina/i, pirazolona:/dipirona|metamizol|novalgina|buscopan composto/i, coxibe:/celecoxibe|etoricoxibe|celebra|arcoxia/i, paracetamol:/paracetamol|tylenol|tylex/i},
+ txt:{aineNaoSeletivo:["Alergia a AINE: não usar esse AINE. Se reagiu a AINE de grupos diferentes ou tem asma ou rinossinusite que piora com AINE, a reação é cruzada (inibição da COX-1): evitar todo AINE, inclusive AAS e dipirona.", "enda2013"], pirazolona:["Alergia a AINE: a dipirona também inibe a COX-1; na reação cruzada (a mais de um AINE ou asma piorada por AINE), não usar. A bula contraindica em quem teve broncoespasmo, urticária ou angioedema com AAS ou AINE. Alternativa: paracetamol 750 mg.", "bulaParacetamol"], coxibe:["Alergia a AINE: o inibidor seletivo de COX-2 costuma ser tolerado na reação cruzada; dar a 1ª dose observada. As bulas do celecoxibe e do etoricoxibe ainda o contraindicam após asma, urticária ou alergia com AAS ou AINE: decisão do médico.", "enda2013"], paracetamol:["Alergia a AINE: alternativa de escolha. Abaixo de 1 g por dose raramente causa reação cruzada; a receita usa 750 mg.", "enda2013"], reacaoUnica:["Se a reação foi a um só AINE (urticária, angioedema ou anafilaxia) e outros de grupo diferente já foram tolerados: evitar esse e os do mesmo grupo químico. Na dúvida, no PS, tratar como cruzada.", "enda2013"]}
+};
+const SULFA_ALERG={
+ re:{sulfaAtb:/sulfametoxazol|smx-tmp|bactrim|sulfadiazina/i, sulfaNaoAtb:/furosemida|lasix|hidroclorotiazida|clortalidona|indapamida|glibenclamida|gliclazida|glimepirida|acetazolamida|diamox|celecoxibe|celebra/i},
+ txt:{sulfaAtb:["Alergia a sulfa: não usar sulfametoxazol + trimetoprima nem sulfadiazina (bula). Escolher antibiótico de outra classe.", "bactrim"], sulfaNaoAtb:["Alergia a sulfa (antibiótico): sem reação cruzada com sulfonamida não antibiótica (furosemida, tiazídico, sulfonilureia, acetazolamida, celecoxibe); não é preciso evitar. As bulas de alguns (acetazolamida, celecoxibe) ainda contraindicam: decisão do médico.", "sulfaNaoAtb"], reacaoGrave:["Se a reação à sulfa foi tardia e grave (Stevens-Johnson, necrólise epidérmica tóxica, DRESS): nunca mais usar sulfa antibiótica; a liberação da não antibiótica não foi avaliada nesse caso: discutir.", "sulfaNaoAtb"]}
+};
 /* Alertas específicos da conduta (além dos medicamentos) */
 const ITEM_ALERTS={
  dengue:{gest:["Gestante com dengue é classificada no mínimo como grupo B (condição especial): hemograma obrigatório.","ms"],idoso:["Idoso com dengue é condição especial (grupo B no mínimo).","ms"]},
@@ -159,4 +198,4 @@ const DILU=[
 {re:/glicose 50%/i, nome:"Glicose 50% (amp 10 mL = 5 g)", txt:"EV em veia calibrosa; pode diluir em AD."},
 {re:/adrenalina/i, nome:"Adrenalina 1 mg/mL", txt:"Anafilaxia: IM no vasto lateral, sem diluir. PCR: 1 mg EV/IO em bolus. Infusão na anafilaxia refratária: 1 mg em 100 mL de SF 0,9% (10 mcg/mL), 0,5–1 mL/kg/h em bomba (Resuscitation Council UK 2021). Bradicardia: 1 mg em 250 mL de SF 0,9% (4 mcg/mL), 2–10 mcg/min = 30–150 mL/h em bomba (AHA 2025)."}
 ];
-if (typeof module!=="undefined") module.exports={SRC,RULES,PNC,PNCTXT,ITEM_ALERTS,DILU};
+if (typeof module!=="undefined") module.exports={SRC,RULES,PNC,PNCTXT,ITEM_ALERTS,DILU,AINE_ALERG,SULFA_ALERG};

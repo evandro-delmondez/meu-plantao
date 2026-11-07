@@ -26,7 +26,7 @@ test("calculadora pediátrica aplica o teto por dose", async ({ page }) => {
 test("busca e filtros por grupo e via", async ({ page }) => {
   await abrir(page); await aba(page, "medicacoes");
   await page.click('[data-mg="antibioticos"]');
-  const n = await page.$$eval("#mlist [data-mid]", (x) => x.length); expect(n).toBe(15);
+  const n = await page.$$eval("#mlist [data-mid]", (x) => x.length); expect(n).toBe(16);   // + cetoconazol creme (2026-11-07)
   await page.click('[data-mv2="IM"]');
   const nomes = await page.$$eval("#mlist [data-mid]", (x) => x.map((e) => e.dataset.mid));
   expect(nomes).toContain("ceftriaxona"); expect(nomes).not.toContain("nitrofurantoina");

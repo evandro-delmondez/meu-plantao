@@ -73,3 +73,11 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 - **Divergência registrada — AVC hemorrágico (conduta `ait`):** alvo de PAS 140–160 mmHg por decisão do médico. A AHA/ASA 2022 (Stroke 2022;53:e282) recomenda 140 mmHg, faixa 130–150, evitando < 130. O protocolo da sala vermelha (`protocolos.js`) não foi alterado nessa parte.
 - **Divergência registrada — CAD:** bicarbonato só com pH < 6,9 (HC-FMUSP 18ª ed., cap. 89) por decisão do médico. O consenso ADA/EASD/JBDS/AACE/DTS 2024 (Diabetes Care 2024;47:1257) indica com pH < 7,0. O protocolo da sala vermelha segue o consenso (pH < 7,0).
 - BISAP com ureia > 30 mg/dL (HC-FMUSP cap. 76); o original (Wu 2008) usa BUN > 25 mg/dL (ureia > 53). Pneumotórax: avião só 6 semanas após a resolução (folheto NHS; a BTS 2023 diz 7 dias).
+## 2026-11-07 — Segurança (alergia a AINE e a sulfa, gestante, tetos, fichas)
+
+### Pendente (bula não confirmada; ficou fora)
+- Fichas fora do "+ remédio" até conferir: cetirizina (faixas de ClCr na bula profissional do Zyrtec), fexofenadina (ajuste renal 60 mg/dia e alerta do suco na bula Allegra), hidroxizina (ajustes renal e hepático só no RCM europeu), nistatina (dose do lactente e alerta da prótese), ivermectina (alerta de hiperinfecção: página do CDC sobre Strongyloides), albendazol (texto de lactação), salbutamol (frase da gestação no GINA 2026; grupo "Respiratório" ainda não criado), naproxeno (teto do naproxeno sódico, Flanax 550 mg), ciclobenzaprina (glaucoma, retenção urinária e < 15 anos na bula Miosan). Rascunho conferido em `.rascunhos/seguranca-2026-11-final.json`.
+- Teto renal da bromoprida (30 mg/dia se ClCr < 40): dedução da bula; não entrou.
+- Paracetamol na hepatopatia ou etilismo, 2 g/dia: decisão do médico; buscar fonte primária (FDA OTC monograph ou AASLD). A bula brasileira só diz "evitar".
+- Prednisona > 60 mg/dia: aviso de confirmação, não é teto de bula.
+- Marcas na CMED e RENAME 2024 das fichas novas; texto integral da AAAAI 2022 (acesso automático recusado).

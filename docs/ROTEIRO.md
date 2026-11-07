@@ -20,11 +20,12 @@ Depois: perfil por unidade (remédios disponíveis, diluições locais, telefone
 ## Pendências combinadas
 Atualizado em 2026-10-30 (versão 1.53.1). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
 
-**Em andamento (2026-11-06)**
-- Publicados: Aparência, Mais em grupos, Iniciar plantão (1.57.x); Adicionar escala e "UI" → "unidades" (1.58.0).
-- Perguntas ao médico (22): página "Decisões clínicas pendentes" (https://claude.ai/artifact/JMm2Aen4iiqweAKjpXS8cw; fonte em `.rascunhos/decisoes-lote3.html`). Segurança conferida em `.rascunhos/seguranca-2026-11-final.json` (itens `_conferir` ainda sem bula confirmada).
-- Condutas do 1º lote: conferência em `.rascunhos/lote3-*-conferencia.md`; aguardam as decisões do médico antes de entrar em src/. Também: protocolos.js (EHH 200–250 e "> 7,3 / > 18" → "≥"), pendente de aprovação.
-- Segurança ainda a fazer: peso implausível, tetos de dose, alertas de gestante (hidroxizina, itraconazol, rivaroxabana, apixabana, valproato, fenobarbital), alergia a AINE e sulfa; 14 fichas do + remédio.
+**Em andamento (2026-11-07)**
+- No ar (1.59.0): 7 condutas do 1º lote + CAD/EHH, escores BISAP/Oakland/ICH, queixa "Fraqueza ou alteração neurológica súbita", segurança (alergia a AINE/sulfa, gestante, tetos, 5 fichas).
+- Esperam o médico: `.rascunhos/decisoes-2.html` (35 perguntas: item 5, lote 4A emergências, 4B infecções, 4C GO/psiq/orto, fontes); item 4 ("ver antes": `.rascunhos/item4-o-que-muda.html`, cetorolaco 3 dias e 60 mg/dia já decididos).
+- Conferidos e prontos para integrar após as respostas: `.rascunhos/lote4a-final.json`, `lote4b-final.json`, `lote4c-final.json`, `fontes-2026-11-final.json`, `item5-2026-11-final.json`, `item4-2026-11-final.json`.
+- Fichas da segurança com `_conferir` (9) e bromoprida renal: em docs/REVISAO.md.
+- Sugestões do conferente (não bloqueiam): AHA/ASA 2026 no lugar da Powers 2019; AAO-HNS 2013 para a testa poupada; descrição da AHA 2022 como "alvo 140 (130–150)".
 
 **Conteúdo clínico (redação + conferência independente)**
 1. Atualizar fontes antigas: crise hipertensiva (ACC/AHA 2025), ARIA 2010, BTS 2009, ACCP 2012/2016, ATLS 11ª, EAU 2025, GINA na ficha da prednisona, WAO 2020 (lista em revisao-conteudo.md).

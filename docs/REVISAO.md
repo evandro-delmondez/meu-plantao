@@ -67,3 +67,9 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 - Retenção urinária: AUA 2026 não aberta (atrás de login); a recomendação do alfabloqueador antes da retirada está apoiada na NICE CG97 1.7.2 e na Cochrane 2014.
 - (2026-10-27, Na unidade das 25 condutas) Aguardando o médico: bloco opcional de prednisona na dermatite extensa (Fonacier 2015; exigiria conferência); varicorragia na IVC (não está no ESVS 2022); alerta renal do aciclovir EV e de gestante da prometazina em regras.js.
 
+
+## 2026-11-07 — Lote 3: decisões do médico (1.59.0)
+- Pancreatite, diverticulite, HDB, meningite, AIT/AVC hemorrágico, paralisia facial periférica e pneumotórax conferidos (`.rascunhos/lote3-*-conferencia.md`); queixa nova "Fraqueza ou alteração neurológica súbita".
+- **Divergência registrada — AVC hemorrágico (conduta `ait`):** alvo de PAS 140–160 mmHg por decisão do médico. A AHA/ASA 2022 (Stroke 2022;53:e282) recomenda 140 mmHg, faixa 130–150, evitando < 130. O protocolo da sala vermelha (`protocolos.js`) não foi alterado nessa parte.
+- **Divergência registrada — CAD:** bicarbonato só com pH < 6,9 (HC-FMUSP 18ª ed., cap. 89) por decisão do médico. O consenso ADA/EASD/JBDS/AACE/DTS 2024 (Diabetes Care 2024;47:1257) indica com pH < 7,0. O protocolo da sala vermelha segue o consenso (pH < 7,0).
+- BISAP com ureia > 30 mg/dL (HC-FMUSP cap. 76); o original (Wu 2008) usa BUN > 25 mg/dL (ureia > 53). Pneumotórax: avião só 6 semanas após a resolução (folheto NHS; a BTS 2023 diz 7 dias).

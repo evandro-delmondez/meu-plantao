@@ -1,12 +1,13 @@
 # Histórico de versões
 
-## 1.59.0 — 2026-11-06
-- **Sete condutas novas, conferidas** (lote 3): pancreatite aguda (BISAP, Atlanta, hidratação moderada), diverticulite aguda (sem antibiótico na não complicada; antibiótico como bloco opcional), hemorragia digestiva baixa (Oakland, reversão de anticoagulantes), meningite aguda (antibiótico na 1ª hora, dexametasona, quimioprofilaxia dos contatos opcional, notificação), AIT e AVC hemorrágico (dupla antiagregação opcional, PA, reversão), paralisia facial periférica (prednisona, antiviral opcional, proteção do olho) e pneumotórax espontâneo (BTS 2023, hipertensivo pelo ATLS).
+## 1.59.0 — 2026-11-07
+- **Sete condutas novas, conferidas** (lote 3): pancreatite aguda (BISAP, Atlanta, hidratação moderada), diverticulite aguda (sem antibiótico na não complicada; antibiótico opcional por 7 dias), hemorragia digestiva baixa (Oakland, transfusão restritiva, plaquetas < 30 mil com sangramento ativo, reversão de anticoagulantes), meningite aguda (antibiótico na 1ª hora, dexametasona, quimioprofilaxia dos contatos opcional, notificação), AIT e AVC hemorrágico (dupla antiagregação opcional, PAS 140–160 mmHg, reversão), paralisia facial periférica (prednisona, antiviral opcional, proteção do olho) e pneumotórax espontâneo (BTS 2023, hipertensivo pelo ATLS, reavaliação em 24 h).
 - Cada uma com checklist, alta leiga, item de alta e exames (pedir, não pedir, encaminhar).
-- **Escores novos**: BISAP, Oakland e escore ICH, na aba Escores e nos cálculos da conduta.
-- **CAD / estado hiperosmolar** atualizada pelo consenso de 2024 inteiro (gravidade, quadro misto, CAD euglicêmica, ritmo no EHH, resolução e transição); checklist com itens do EHH. O protocolo da sala vermelha não mudou (aguarda o médico).
+- **Escores novos**: BISAP (ureia > 30 mg/dL, pelo HC-FMUSP), Oakland e escore ICH, na aba Escores e nos cálculos da conduta.
+- **Queixa nova** "Fraqueza ou alteração neurológica súbita": alarmes e caminhos para AVC isquêmico, AIT / AVC hemorrágico, paralisia facial, hipoglicemia e crise convulsiva (Todd).
+- **CAD / estado hiperosmolar** pelo consenso de 2024 (gravidade, quadro misto, CAD euglicêmica, ritmo no EHH, resolução e transição); bicarbonato só com pH < 6,9 (HC-FMUSP); EHH sem rebaixamento vai para semi-intensiva. Protocolo da sala vermelha: resolução com pH ≥ 7,3 ou bicarbonato ≥ 18.
+- **Decisões do médico** registradas com data (diverticulite 7 dias, meningite em Toxico / Infecto, andexanet fora, avião só 6 semanas após o pneumotórax resolver); divergências com as diretrizes em `docs/REVISAO.md`.
 - **Queixas**: caminhos para as condutas novas em dor abdominal, cefaleia, febre, tontura, dor torácica e tosse/dispneia.
-- Decisões pendentes do médico em `docs/LOTE3-DECISOES.md` (aplicado o padrão do conferente).
 
 ## 1.58.2 — 2026-11-07
 - **Tempo por etapa** no Atendimento: a barra de etapas mostra quantos minutos você passou em cada uma (HDA, Exame, HD…), contando só enquanto digita ou mexe nela (pausa longa não conta). Ajuda a ver onde a consulta demora.

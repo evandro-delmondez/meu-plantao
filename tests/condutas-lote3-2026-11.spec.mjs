@@ -39,9 +39,10 @@ test("condutas novas existem, com fontes, rev de 2026-11, checklist, alta, item 
 test("patch da CAD: consenso 2024, bicarbonato com a divergência, rev no início e checklist do EHH", () => {
   const c = cond("cad");
   expect(c.nome).toBe("Cetoacidose diabética / Estado hiperosmolar");
-  expect(c.rev[0]).toMatch(/^Atualizado \(2026-11-05\)/);
+  expect(c.rev[0]).toMatch(/^Decisão do médico \(2026-11-07\)/);
+  expect(c.rev[1]).toMatch(/^Atualizado \(2026-11-05\)/);
   expect(c.avisoRx.join(" ")).toMatch(/pH < 6,9/);
-  expect(c.unidade).toMatch(/Bicarbonato só se pH < 7,0/);
+  expect(c.unidade).toMatch(/Bicarbonato só se pH < 6,9 \(HC-FMUSP/);
   expect(c.unidade).toMatch(/0,05 unidade\/kg\/h/);
   expect(c.sin).toMatch(/euglicemica/);
   expect(dados.CHECK.cad.hist).toContain("sede intensa com pouca ingestão de líquido");
@@ -49,14 +50,54 @@ test("patch da CAD: consenso 2024, bicarbonato com a divergência, rev no iníci
   expect(dados.CHECK.cad.fontes.join(" ")).toMatch(/PMID 39052901/);
 });
 
-test("decisões pendentes aplicadas com o padrão do conferente", () => {
-  expect(sc("bisap").bin[0][0]).toMatch(/Ureia > 53 mg\/dL/);
+test("decisões do médico (2026-11-07) aplicadas", () => {
+  expect(sc("bisap").bin[0][0]).toMatch(/Ureia > 30 mg\/dL/);
+  expect(sc("bisap").src).toMatch(/HC-FMUSP/);
+  expect(sc("bisap").src).toMatch(/BUN > 25/);
+  expect(cond("pancreatite").unidade).toMatch(/ureia > 30 mg\/dL/);
   expect(cond("diverticulite").casa).toMatch(/por 7 dias/);
   expect(cond("diverticulite").cid).toBe("K57.9");
   expect(cond("ait").unidade).toMatch(/andexanet alfa sem registro na Anvisa/);
-  expect(cond("ait").unidade).toMatch(/baixar para 140 mmHg \(manter 130–150\)/);
-  expect(cond("meningite").cat).toBe("dor");
-  expect(JSON.stringify(cond("hdb"))).not.toMatch(/plaquetas/i);
+  expect(cond("ait").unidade).toMatch(/alvo de PAS 140–160 mmHg/);
+  expect(cond("meningite").cat).toBe("toxinf");
+  expect(cond("meningite").unidade).toMatch(/20–35 mg\/kg \(máx\. 3 g\) pode ser considerado/);
+  expect(cond("hdb").unidade).toMatch(/Plaquetas < 30 mil com sangramento ativo/);
+  expect(cond("hdb").unidade).toMatch(/Complexo protrombíni/);
+  expect(cond("pancreatite").unidade).not.toMatch(/cálcio > 14/i);
+  expect(cond("pneumotorax").unidade).toMatch(/reavaliação em 24 h/);
+  expect(cond("pneumotorax").avisoRx.join(" ")).toMatch(/6 semanas/);
+  expect(cond("pneumotorax").orient).toMatch(/6 semanas/);
+  const cadEx = JSON.stringify(dados.EXAMES.cad);
+  expect(cadEx).toMatch(/EHH sem rebaixamento/);
+  for (const id of ["pancreatite", "diverticulite", "hdb", "ait", "meningite", "pneumotorax", "cad"]) expect(cond(id).rev[0], id).toMatch(/^Decisão do médico \(2026-11-07\)/);
+  const prot = readFileSync(join(root, "src/data/protocolos.js"), "utf8");
+  expect(prot).not.toMatch(/EHH 200–250/);
+  expect(prot).toMatch(/pH venoso ≥ 7,3 ou bicarbonato ≥ 18/);
+});
+
+test("queixa nova: fraqueza ou alteração neurológica súbita, com caminhos e alarmes", () => {
+  const q = dados.QUEIXAS.find((x) => x.id === "deficit-neurologico");
+  expect(q.nome).toBe("Fraqueza ou alteração neurológica súbita");
+  const alvos = q.caminhos.map((c) => c.conduta);
+  for (const id of ["avc", "ait", "paralisia-facial", "hipoglicemia", "convulsao"]) {
+    expect(alvos, id).toContain(id);
+    expect(cond(id), id).toBeTruthy();
+  }
+  expect(q.alarme.length).toBeGreaterThan(3);
+  expect(q.fontes.join(" ")).toMatch(/AHA\/ASA/);
+  expect(q.fontes.join(" ")).toMatch(/AAN/);
+});
+
+test("aba Por queixa: fraqueza súbita abre o AVC pelo caminho", async ({ page }) => {
+  const erros = await abrir(page); await aba(page, "queixas");
+  await page.click('#qLista [data-q="deficit-neurologico"]');
+  await expect(page.locator("#qCorpo .qalarme li").first()).toBeVisible();
+  expect(await page.locator("#qCorpo").innerText()).not.toMatch(RUIM);
+  expect(await semRolagemLateral(page)).toBe(true);
+  await page.click('#qCorpo [data-qc="avc"]');
+  await expect(page.locator("#tab-prescricoes")).toBeVisible();
+  expect(await page.evaluate(() => document.querySelector(`#list .item[aria-current="true"]`)?.dataset.id || "")).toBe("avc");
+  expect(erros).toEqual([]);
 });
 
 test("escores BISAP, Oakland e ICH calculam", () => {

@@ -207,12 +207,12 @@ const PROTOCOLOS=[
    "Fosfato: só se fósforo < 1,0 mmol/L com fraqueza muscular, insuficiência respiratória ou cardíaca."]},
   {id:"c5",t:"Monitorar e ajustar",itens:[
    "Glicemia capilar de hora em hora; eletrólitos, função renal, pH venoso e osmolalidade a cada 2–4 h; K 2 h após iniciar a insulina e depois a cada 4 h.",
-   "Glicemia < 250 mg/dL: acrescentar SG 5% ou 10% ao soro e reduzir a insulina para 0,05 unidade/kg/h (SC: 0,05 unidade/kg/h ou 0,1 unidade/kg a cada 2 h). Alvo: CAD 150–200 mg/dL; EHH 200–250 mg/dL até a resolução.",
+   "Glicemia < 250 mg/dL: acrescentar SG 5% ou 10% ao soro e reduzir a insulina para 0,05 unidade/kg/h (SC: 0,05 unidade/kg/h ou 0,1 unidade/kg a cada 2 h). Alvo: CAD 150–200 mg/dL até a resolução.",
    "CAD euglicêmica: SG 5–10% junto com o SF desde o início da insulina.",
    "Não suspender a insulina enquanto houver cetose: ajustar a glicose do soro."],
    decisao:{pergunta:"Critérios de resolução atingidos?",opcoes:[{rot:"Sim",ir:"c6"}]}},
   {id:"c6",t:"Resolução e transição para SC",itens:[
-   "CAD resolvida: pH venoso > 7,3 ou bicarbonato > 18 mmol/L e cetonemia < 0,6 mmol/L. EHH resolvido: osmolalidade < 300 mOsm/kg, diurese > 0,5 mL/kg/h, glicemia < 250 mg/dL e melhora mental.",
+   "CAD resolvida: pH venoso ≥ 7,3 ou bicarbonato ≥ 18 mmol/L e cetonemia < 0,6 mmol/L. EHH resolvido: osmolalidade < 300 mOsm/kg, diurese > 0,5 mL/kg/h, glicemia < 250 mg/dL e melhora mental.",
    "Quando conseguir comer: iniciar esquema SC (basal + rápida). Diabetes novo: basal 0,15–0,3 unidade/kg/dia; já usava insulina: retomar a dose habitual ajustada.",
    "Manter a insulina EV por 1–2 h após a primeira dose de insulina SC.",
    "Suspender gliflozina até a recuperação; educar sobre dias de doença."]}

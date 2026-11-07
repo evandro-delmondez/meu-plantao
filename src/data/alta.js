@@ -1102,7 +1102,7 @@ pneumotorax: {
   cuidados: [
     "Tome o remédio para dor como está na sua receita.",
     "Volte para a reavaliação nas datas marcadas e faça o raio-x de controle, mesmo que esteja bem.",
-    "Não viaje de avião até o raio-x mostrar que o pulmão voltou ao normal. Depois disso, espere pelo menos 7 dias.",
+    "Não viaje de avião até o raio-x mostrar que o pulmão voltou ao normal. Depois disso, espere pelo menos 6 semanas.",
     "Não faça mergulho com cilindro, nem depois de curado, a não ser que um cirurgião libere após uma operação.",
     "Não fume. O cigarro aumenta muito a chance de o pulmão murchar de novo. Peça ajuda no posto de saúde para parar.",
     "Pode caminhar. Evite esforço forte, esporte e carregar peso por pelo menos 4 semanas.",
@@ -1117,7 +1117,7 @@ pneumotorax: {
   ],
   fontes: [
     "Roberts ME et al. British Thoracic Society Guideline for pleural disease (Thorax 2023;78(Suppl 3):s1-s42): conservador no primário minimamente sintomático independentemente do tamanho; ambulatorial; aspiração ou dreno se não; cirurgia no 2º episódio ipsilateral ou 1º contralateral; RX em 2–4 semanas; avião 7 dias após a resolução no RX; mergulho desaconselhado para sempre salvo pleurectomia; parar de fumar; gestante. https://doi.org/10.1136/thorax-2022-219784",
-    "North Tees and Hartlepool NHS Foundation Trust. Pneumothorax, folheto ao paciente PIL1217 v2 (revisado em 04/09/2025): caminhar é bom; evitar esforço forte e levantar peso por pelo menos 4 semanas; voltar se os sintomas voltarem; parar de fumar reduz a recorrência; mergulho só após cirurgia. https://www.nth.nhs.uk/resources/pneumothorax/",
+    "North Tees and Hartlepool NHS Foundation Trust. Pneumothorax, folheto ao paciente PIL1217 v2 (revisado em 04/09/2025): caminhar é bom; evitar esforço forte e levantar peso por pelo menos 4 semanas; avião só 6 semanas a 3 meses após a resolução; voltar se os sintomas voltarem; parar de fumar reduz a recorrência; mergulho só após cirurgia. https://www.nth.nhs.uk/resources/pneumothorax/",
     "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 46 — Pneumotórax não traumático (estável: FR < 24, fala sem dispneia, FC 60–120, PA normal, SatO2 > 90% em ar ambiente, sem hemotórax; observação 6 h se < 2 cm e 12 h se ≥ 2 cm com RX de controle e retorno em 24 h; O2 com FiO2 > 30% acelera a reabsorção; aspiração com cateter 14 G de pelo menos 5 cm no 2º–3º EIC na linha hemiclavicular ou 4º–5º EIC na linha axilar anterior, drenar se 2–3 L aspirados; hipertensivo: punção imediata e dreno no 5º EIC na linha axilar média; dreno 10–14 F, 14–22 F se fuga grande ou ventilação mecânica; drenar mesmo pequeno se ventilação mecânica ou voo; internação se moderado a grande, UTI se hipertensivo ou suporte ventilatório)."
   ]
 },

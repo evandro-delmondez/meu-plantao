@@ -102,6 +102,43 @@ const QUEIXAS = [
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 20 — Perda transitória da consciência e cap. 59 — Síndromes vertiginosas agudas; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 23 — Syncope e cap. 24 — Dizziness and Vertigo.",
     "Amin HP et al. Diagnosis, Workup, Risk Reduction of Transient Ischemic Attack in the Emergency Department Setting — AHA Scientific Statement (Stroke 2023;54:e109)."
   ] },
+{ id: "deficit-neurologico", nome: "Fraqueza ou alteração neurológica súbita", cor: "violet",
+  alarme: [
+    { t: "Déficit súbito ainda presente: fraqueza ou dormência de um lado, boca torta, fala enrolada ou difícil, perda de visão, desequilíbrio", acao: "Protocolo de AVC já: glicemia capilar, hora em que foi visto bem pela última vez, NIHSS e TC de crânio sem contraste urgente; acionar o fluxo de AVC ou a regulação (trombólise até 4,5 h, trombectomia até 6–24 h). Ver AVC isquêmico." },
+    { t: "Glicemia capilar < 70 mg/dL", acao: "Hipoglicemia imita AVC: corrigir já (ver Hipoglicemia) e reexaminar; déficit que persiste após a glicemia normal segue o protocolo de AVC." },
+    { t: "Cefaleia súbita intensa, vômitos, rebaixamento ou PA muito alta junto do déficit", acao: "Pensar em AVC hemorrágico: só a TC separa da isquemia. Sangue na TC: ver AIT / AVC hemorrágico (PA, reversão do anticoagulante, neurocirurgia)." },
+    { t: "Usa anticoagulante (varfarina, apixabana, rivaroxabana, dabigatrana) ou heparina", acao: "TC sem demora; hemorragia: reverter o anticoagulante (ver AIT / AVC hemorrágico)." },
+    { t: "Déficit que melhorou mas ainda não sumiu, ou episódios que se repetem", acao: "Tratar como AVC em curso, não como AIT: protocolo de AVC." },
+    { t: "Face torta com a testa poupada (consegue franzir a testa), ou com outro déficit", acao: "Paralisia facial central: protocolo de AVC, não paralisia de Bell." },
+    { t: "Crise convulsiva no início do quadro", acao: "Déficit pós-crise (paralisia de Todd) é diagnóstico de exclusão: dentro da janela, imagem e neurologia como no AVC; crise que se prolonga ou se repete: ver Crise convulsiva." }
+  ],
+  perguntar: [
+    "Hora exata do início ou a última vez em que foi visto bem (acordou com o déficit: vale a hora em que foi dormir)",
+    "Os sintomas ainda estão presentes, melhoraram ou sumiram por completo? Quanto tempo duraram",
+    "Glicemia capilar na chegada; diabetes, insulina ou sulfonilureia",
+    "Anticoagulante ou antiagregante, e a hora da última dose",
+    "Teve crise convulsiva, cefaleia súbita, trauma ou febre antes do déficit",
+    "Exame: NIHSS, testa paralisada ou poupada, fala, campo visual, força, sensibilidade, coordenação e marcha; PA e ritmo (FA)"
+  ],
+  caminhos: [
+    { rot: "Déficit presente: AVC até a TC dizer o contrário (trombólise e trombectomia têm janela)", conduta: "avc" },
+    { rot: "Sangue na TC: AVC hemorrágico", conduta: "ait" },
+    { rot: "Déficit que regrediu por completo (AIT): ABCD², investigar e antiagregar", conduta: "ait" },
+    { rot: "Só a face, de um lado, com a testa também paralisada e sem outro déficit: paralisia facial periférica", conduta: "paralisia-facial" },
+    { rot: "Glicemia baixa que explica o quadro e o déficit some com a correção", conduta: "hipoglicemia" },
+    { rot: "Crise convulsiva antes do déficit (paralisia de Todd), após excluir AVC", conduta: "convulsao" }
+  ],
+  escores: ["NIHSS", "ABCD² (AIT)", "Escore ICH (AVC hemorrágico)", "Glasgow"],
+  fontes: [
+    "Prabhakaran S et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke — AHA/ASA (Stroke 2026): glicemia antes da trombólise, último momento visto bem, TC sem contraste, trombólise até 4,5 h e trombectomia com janela. https://doi.org/10.1161/STR.0000000000000513",
+    "Powers WJ et al. 2019 Update to the 2018 Guidelines for the Early Management of Acute Ischemic Stroke — AHA/ASA (Stroke 2019;50:e344): hipoglicemia e crise convulsiva no início como imitadores; crise no início não impede a trombólise se o déficit for atribuído ao AVC.",
+    "Amin HP et al. Diagnosis, Workup, Risk Reduction of Transient Ischemic Attack in the Emergency Department Setting — AHA Scientific Statement (Stroke 2023;54:e109): AIT só com regressão completa; ABCD².",
+    "Greenberg SM et al. 2022 Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage — AHA/ASA (Stroke 2022;53(7):e282-e361; PMID 35579034): TC para separar hemorragia de isquemia; reversão dos anticoagulantes.",
+    "Baugh RF et al. Clinical Practice Guideline: Bell's Palsy — AAO-HNS (Otolaryngol Head Neck Surg 2013;149(3 Suppl):S1-S27; PMID 24189771) e Gronseth GS, Paduga R. AAN (Neurology 2012;79(22):2209-2213): na periférica a testa também fica paralisada; excluir causa central.",
+    "American Diabetes Association. Standards of Care in Diabetes—2026, seção 6 (Diabetes Care 2026;49 Suppl 1): hipoglicemia < 70 mg/dL e tratamento.",
+    "Smith MD et al. ACEP Clinical Policy: Critical Issues in the Management of Adult Patients Presenting to the Emergency Department With Seizures (Ann Emerg Med 2024;84(1)).",
+    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), caps. 53 e 55 (AVC isquêmico e hemorragias intracranianas) e cap. 88 (Hipoglicemia); Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 439 (Intracerebral Hemorrhage)."
+  ] },
 { id: "dor-abdominal", nome: "Dor abdominal", cor: "green",
   alarme: [
     { t: "Hipotensão, taquicardia, pele fria ou confusão", acao: "Instável: sala de emergência, dois acessos, monitor. Pensar em sangramento (aneurisma roto, gravidez ectópica), sepse de foco abdominal ou isquemia; cirurgião cedo." },

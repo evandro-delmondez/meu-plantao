@@ -7204,13 +7204,13 @@ const EXAMES = {
     ]
    },
    {
-    "t": "UTI: CAD grave (pH < 7,0, bicarbonato < 10, beta-hidroxibutirato > 6 ou estupor/coma), EHH, alteração mental ou doença crítica como desencadeante (infarto, sangramento digestivo, sepse)",
+    "t": "UTI: CAD grave (pH < 7,0, bicarbonato < 10, beta-hidroxibutirato > 6 ou estupor/coma), EHH com rebaixamento ou doença crítica como desencadeante (infarto, sangramento digestivo, sepse)",
     "f": [
      1
     ]
    },
    {
-    "t": "Semi-intensiva (UTI B no HSLS): CAD moderada (pH 7,0–7,24 ou bicarbonato 10–14, alerta ou sonolento)",
+    "t": "Semi-intensiva (UTI B/C): CAD moderada (pH 7,0–7,24 ou bicarbonato 10–14, alerta ou sonolento) ou EHH sem rebaixamento (decisão do médico, 2026-11-07)",
     "f": [
      1
     ]

@@ -131,6 +131,16 @@ function pacPlantao(t){t=+t;const x=plJanela(t);
 // conta como atendido (o que o médico recebe): alta, internação, transferência e evasão; passados não contam
 const PAC_CONTA=["alta","internacao","transferencia","evasao"], pacConta=p=>PAC_CONTA.includes(p.desf.tipo), pacSaiu=p=>p.desf.tipo==="passado"||p.desf.tipo==="especialidade";
 let pcBusca="";
+// internados em UTI ou semi-intensiva nos últimos 30 dias, por plantão (para a contabilidade)
+function pacUtiTxt(db){
+  const ps=db.pacs.filter(p=>p.desf.tipo==="internacao"&&(p.desf.onde==="uti"||p.desf.onde==="semi")).sort((a,b)=>a.criado-b.criado);
+  return ps.map(p=>`${p.dia.split("-").reverse().join("/")} · ${pacPlantao(p.criado).rot} · ${p.nome} · ${p.desf.onde==="uti"?"UTI":"semi-intensiva"}`).join("\n");
+}
+function pacUtiHtml(db){
+  const t=pacUtiTxt(db), n=t?t.split("\n").length:0;
+  return `<details class="panel card pcuti"><summary><h3>Internados em UTI e semi</h3> <span class="note">${n} nos últimos ${PAC_DIAS} dias</span></summary>
+    ${n?`<textarea class="out-edit" id="pcUtiTxt" readonly rows="${Math.min(n+1,12)}">${esc(t)}</textarea><div class="actions"><button class="btn primary" id="pcUtiCp">Copiar a lista</button></div>`:`<p class="note">Nenhuma internação em UTI ou semi marcada neste aparelho.</p>`}</details>`;
+}
 // selo do desfecho: "Paciente finalizado — alta realizada"
 const PAC_FIM={alta:"alta realizada",internacao:"internação",transferencia:"transferência",evasao:"evasão"};
 let pcVer="hoje", pcPass={medico:"",local:"",consMed:""};
@@ -174,6 +184,7 @@ function renderPacientes(manter){
       <textarea class="out-edit" id="pcPassTxt" spellcheck="false" aria-label="Mensagem de passagem" readonly></textarea>
       <div class="actions"><button class="btn primary" id="pcPassCp">Copiar mensagem</button><button class="btn" id="pcPassTodos">Passei todos (tirar da lista)</button></div></details>
     ${porPlantao.size?`<details class="panel card"><summary><h3>Atendidos por plantão</h3></summary><ul class="qlist">${[...porPlantao.entries()].sort((a,b)=>b[0].localeCompare(a[0])).map(([,g])=>`<li>${esc(g.rot)}: <b>${g.n}</b>${g.saiu.length?` <span class="note">(+${g.saiu.length} passado${g.saiu.length>1?"s":""}, não conta${g.saiu.length>1?"m":""})</span>`:""}</li>`).join("")}</ul></details>`:""}
+    ${pacUtiHtml(db)}
     ${typeof renderPacSync==="function"?renderPacSync():""}`;
   $$("#pcCorpo details").forEach(d=>{if(quadros.get(d.className))d.open=true});
   bindPacientes();
@@ -219,6 +230,7 @@ function bindPacientes(){
   $(".pcpass").addEventListener("toggle",()=>{pacPassAtualiza()});
   pacPassAtualiza();
   if(typeof bindPacSync==="function") bindPacSync();
+  if($("#pcUtiCp")) $("#pcUtiCp").onclick=e=>copy($("#pcUtiTxt").value,e.currentTarget);
 }
 function pacPassAtualiza(){const ta=$("#pcPassTxt");if(!ta)return;ta.value=pacPassagem(pcPass.medico.trim(),pcPass.local.trim(),pcPass.consMed.trim());grow(ta)}
 // relógio: o aviso de 2 h e 3 h muda sozinho

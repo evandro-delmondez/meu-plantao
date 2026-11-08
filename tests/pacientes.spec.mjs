@@ -343,3 +343,70 @@ test("Aviso sonoro de reavaliação: ligado no Início, avisa uma vez quando pas
   await expect(page.locator("#toast")).not.toContainText("Som Teste");
   expect(erros).toEqual([]);
 });
+
+test("internados em UTI e semi: lista dos últimos 30 dias para copiar (enfermaria e alta não entram)", async ({ page }) => {
+  const erros = await abrir(page);
+  const h = 3600e3, agora = Date.now();
+  const p = (id, nome, criado, tipo, onde) => ({ id, nome, criado, upd: criado, dia: "2000-01-01", cond: "itu", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo, onde, t: criado }, sabe: false });
+  await page.evaluate((d) => localStorage.setItem("mph_pacientes_v1", JSON.stringify(d)), {
+    pacs: [p("u1", "Maria Da Uti", agora - 50 * h, "internacao", "uti"), p("u2", "Jose Da Semi", agora - 3 * h, "internacao", "semi"),
+      p("e1", "Ana Enfermaria", agora - 2 * h, "internacao", "enfermaria"), p("a1", "Pedro Alta", agora - 1 * h, "alta", "")],
+    cont: {}, apagados: {}
+  });
+  await page.reload();
+  await aba(page, "pacientes");
+  const box = page.locator(".pcuti");
+  await expect(box).toContainText("2 nos últimos 30 dias");
+  await box.locator("summary").click();
+  const t = await page.locator("#pcUtiTxt").inputValue();
+  expect(t).toContain("Maria Da Uti · UTI"); expect(t).toContain("Jose Da Semi · semi-intensiva");
+  expect(t).not.toContain("Ana"); expect(t).not.toContain("Pedro");
+  expect(t.indexOf("Maria")).toBeLessThan(t.indexOf("Jose"));
+  expect(erros).toEqual([]);
+});
+
+test("sincronização: recupera das versões antigas o paciente que sumiu; sem mudança, não grava versão nova", async ({ browser }) => {
+  const store = { n: 0, hist: [] };
+  const a = await browser.newContext(), b = await browser.newContext();
+  for (const x of [a, b]) {
+    await x.route("https://api.github.com/**", async (route) => {
+      const r = route.request(), u = r.url(), h = { "access-control-allow-origin": "*", "access-control-allow-headers": "*", "access-control-allow-methods": "GET,PUT,OPTIONS", "content-type": "application/json" };
+      if (r.method() === "OPTIONS") return route.fulfill({ status: 204, headers: h });
+      if (r.headers().authorization !== "Bearer chave-escrita-ficticia") return route.fulfill({ status: 401, headers: h, body: "{}" });
+      if (u.includes("/commits?")) return route.fulfill({ status: 200, headers: h, body: JSON.stringify([...store.hist].reverse().map((v) => ({ sha: v.sha }))) });
+      if (r.method() === "GET" && u.includes("/contents/") && u.includes("ref=")) { const v = store.hist.find((v) => u.endsWith("ref=" + v.sha)); return route.fulfill({ status: v ? 200 : 404, headers: h, body: JSON.stringify(v ? { sha: v.sha, content: v.content } : {}) }); }
+      if (r.method() === "GET" && !u.includes("/contents/")) return route.fulfill({ status: 200, headers: h, body: JSON.stringify({ private: true }) });
+      if (r.method() === "GET") return store.content ? route.fulfill({ status: 200, headers: h, body: JSON.stringify({ sha: store.sha, content: store.content }) }) : route.fulfill({ status: 404, headers: h, body: "{}" });
+      const bd = JSON.parse(r.postData());
+      if (store.sha && bd.sha !== store.sha) return route.fulfill({ status: 409, headers: h, body: "{}" });
+      store.content = bd.content; store.sha = "sha" + (++store.n); store.hist.push({ sha: store.sha, content: store.content });
+      return route.fulfill({ status: 200, headers: h, body: JSON.stringify({ content: { sha: store.sha } }) });
+    });
+  }
+  const pa = await a.newPage(), pb = await b.newPage();
+  const ea = await abrir(pa), eb = await abrir(pb);
+  await ligar(pb, "senha-do-plantao-1");
+  await expect(pb.locator("#psEstado")).toContainText("Sincronizado");
+  const vazio = store.hist[0];
+  await ligar(pa, "senha-do-plantao-1");
+  await expect(pa.locator("#psEstado")).toContainText("Sincronizado");
+  await pa.fill("#pcNome", "Paciente Da Uti Sumido"); await pa.click("#pcAdd");
+  await aba(pa, "pacientes"); await pa.click("#psAgora");
+  await expect.poll(() => store.hist.length).toBeGreaterThan(1);
+  // sem mudança: sincronizar de novo não cria versão
+  await expect(pa.locator("#psEstado")).toContainText("Sincronizado");
+  const n0 = store.hist.length;
+  await pa.click("#psAgora"); await expect(pa.locator("#psEstado")).toContainText("Sincronizado");
+  expect(store.hist.length).toBe(n0);
+  // a cópia atual volta a uma versão sem o paciente e este aparelho perde a lista
+  store.content = vazio.content; store.sha = "sha" + (++store.n); store.hist.push({ sha: store.sha, content: vazio.content });
+  await pa.evaluate(() => localStorage.removeItem("mph_pacientes_v1")); await pa.reload();
+  await aba(pa, "pacientes");
+  await expect(pa.locator("#psEstado")).toContainText("Sincronizado");
+  await expect(item(pa, "Paciente Da Uti Sumido")).toHaveCount(0);
+  await pa.click("#psRecupera");
+  await expect(pa.locator("#psEstado")).toContainText("1 paciente(s) recuperado(s)");
+  await expect(item(pa, "Paciente Da Uti Sumido")).toHaveCount(1);
+  expect([...ea, ...eb]).toEqual([]);
+  await a.close(); await b.close();
+});

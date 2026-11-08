@@ -98,6 +98,7 @@ async function pacSync(){
       if(f){ if(f.salt!==psync.salt) throw new Error("senha"); try{rem=await psyncDecifra(f)}catch(e){throw new Error("senha")} }
       const j=psyncJunta(pacCarrega(),rem);
       pacAplica(j); lsSet(PAC_LS,pacDb);
+      if(f&&JSON.stringify(j)===JSON.stringify(rem)) break;   // nada novo dos dois lados: não grava
       try{await psyncEscreve(await psyncCifra(j),sha);break}catch(e){if(e.message!=="conflito"||tent)throw e}
     }
     psync.em=Date.now(); psync.erro=""; lsSet(PSYNC_LS,psync);
@@ -130,7 +131,7 @@ function psyncMostra(){const el=$("#psEstado");if(el)el.textContent=psyncEstado|
 function renderPacSync(){
   return `<details class="panel card pcsync" ${psyncAtivo()||psync.erro?"open":""}><summary><h3>Sincronizar entre aparelhos</h3> <span class="note" id="psEstado"></span></summary>
     <p class="note">A lista é cifrada neste aparelho com a sua senha antes de sair; o repositório guarda só o arquivo cifrado. Use a mesma senha nos dois aparelhos. Sem a senha, ninguém lê, nem o GitHub; se esquecer, a cópia sincronizada não tem recuperação.</p>
-    ${psyncAtivo()?`<p><b>Ligada</b> · ${esc(psync.repo)}</p><div class="actions"><button class="btn" id="psAgora">Sincronizar agora</button><button class="btn" id="psTroca">Trocar a chave</button><button class="btn" id="psTesta">Testar a chave</button><button class="btn danger" id="psDesliga">Desligar neste aparelho</button></div>`:`
+    ${psyncAtivo()?`<p><b>Ligada</b> · ${esc(psync.repo)}</p><div class="actions"><button class="btn" id="psAgora">Sincronizar agora</button><button class="btn" id="psTroca">Trocar a chave</button><button class="btn" id="psTesta">Testar a chave</button><button class="btn" id="psRecupera">Recuperar pacientes sumidos</button><button class="btn danger" id="psDesliga">Desligar neste aparelho</button></div>`:`
     <div class="hospform"><label>Repositório privado (dono/nome)<input id="psRepo" autocomplete="off" spellcheck="false" placeholder="usuario/plantao-lista" value="${esc(psync.repo||"")}"></label>
       <label>Chave do GitHub (leitura e escrita só nesse repositório)<input id="psChave" class="segredo" type="text" name="ps-token-lista" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="github_pat_…"></label>
       <label>Senha da lista (a mesma nos dois aparelhos)<input id="psSenha" type="password" autocomplete="new-password"></label>
@@ -160,6 +161,7 @@ function bindPacSync(){
   };
   if($("#psAgora")) $("#psAgora").onclick=()=>pacSync();
   if($("#psTesta")) $("#psTesta").onclick=psyncTesta;
+  if($("#psRecupera")) $("#psRecupera").onclick=psyncRecupera;
   // chave nova (venceu ou foi gerada de novo): a senha e a lista continuam
   if($("#psTroca")) $("#psTroca").onclick=()=>{const c=(prompt("Cole a chave nova do GitHub")||"").trim();if(!c)return;psync.chave=c;psync.erro="";lsSet(PSYNC_LS,psync);pacSync()};
   if($("#psDesliga")) $("#psDesliga").onclick=()=>{try{localStorage.removeItem(PSYNC_LS)}catch(e){}psync={};psyncKey=null;psyncEstado="";renderPacientes();toast("Sincronização desligada neste aparelho")};
@@ -168,3 +170,34 @@ function bindPacSync(){
 if(psyncAtivo()&&navigator.onLine!==false) setTimeout(pacSync,800);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")pacSyncAgenda()});
 addEventListener("online",()=>pacSyncAgenda());
+addEventListener("focus",()=>pacSyncAgenda());
+setInterval(()=>{if(psyncAtivo()&&document.visibilityState==="visible"&&navigator.onLine!==false&&!psyncRodando)pacSync()},60000);
+// recuperar: lê as versões antigas da cópia sincronizada (histórico do repositório), decifra com a senha deste
+// aparelho e devolve à lista quem sumiu; não apaga nada e respeita quem foi apagado de propósito
+async function psyncRecupera(){
+  if(!psyncAtivo()) return;
+  psyncEstado="Procurando nas versões antigas…"; psyncMostra();
+  try{
+    const arq=psync.arq||"lista.json", base=`https://api.github.com/repos/${psync.repo}`;
+    const r=await fetch(`${base}/commits?path=${encodeURIComponent(arq)}&per_page=100`,{cache:"no-store",headers:psyncHdr()});
+    if(!r.ok) throw await psyncFalha(r);
+    const commits=await r.json(), loc=pacCarrega(), antes=new Set(loc.pacs.map(p=>p.id));
+    let acc={pacs:loc.pacs.map(clone),cont:Object.assign({},loc.cont),apagados:Object.assign({},loc.apagados)}, lidas=0;
+    for(const c of commits){
+      try{
+        const v=await fetch(`${base}/contents/${encodeURIComponent(arq)}?ref=${c.sha}`,{cache:"no-store",headers:psyncHdr()});
+        if(!v.ok) continue;
+        const j=await v.json(), f=JSON.parse(new TextDecoder().decode(unb64(j.content.replace(/\n/g,""))));
+        if(f.salt!==psync.salt) continue;
+        const rem=await psyncDecifra(f); lidas++;
+        acc=Object.assign(psyncJunta(acc,Object.assign({},rem,{apagados:{}})),{apagados:acc.apagados});
+      }catch(e){}
+    }
+    const lim=Date.now()-PAC_DIAS*864e5; acc.pacs=acc.pacs.filter(p=>(p.criado||0)>=lim);
+    const novos=acc.pacs.filter(p=>!antes.has(p.id)).length;
+    pacAplica(acc); lsSet(PAC_LS,pacDb);
+    if(novos) await pacSync();
+    psyncEstado=`${lidas} versão(ões) lida(s); ${novos} paciente(s) recuperado(s).`;
+    renderPacientes(true); psyncMostra();
+  }catch(e){psyncEstado=e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}).`:"Sem conexão: tente de novo.";psyncMostra()}
+}

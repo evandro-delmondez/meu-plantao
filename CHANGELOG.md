@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.59.2 — 2026-11-08
+- **Lista de pacientes: sincronização automática.** Com a tela aberta, a lista sincroniza a cada minuto e ao voltar para a janela; antes só sincronizava ao mudar de aba ou mexer na lista, e o computador aberto ao lado do prontuário não recebia o que foi anotado no celular. Sem mudança, nada é gravado.
+- **Recuperar pacientes sumidos**: em Sincronizar entre aparelhos, lê as versões antigas da cópia cifrada e devolve à lista quem sumiu (não apaga nada; quem foi apagado de propósito não volta).
+- **Internados em UTI e semi**: quadro na aba Pacientes com os nomes dos últimos 30 dias, por plantão, para copiar.
+
 ## 1.59.1 — 2026-11-07
 - **Plantões: horas só dos plantões já dados.** Horas trabalhadas, R$/hora e meta não contam mais os plantões futuros; eles aparecem em "Previstos no mês".
 - **Sobreaviso com horário próprio**: vespertino 12h–18h e noturno 18h–0h ("Cinderela"). Sobreaviso só conta hora se teve atendimento.

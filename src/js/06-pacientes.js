@@ -1,7 +1,9 @@
 /* ---------- Pacientes do plantão: lista com nome, etapas e desfecho ----------
    Exceção à regra 5 decidida pelo médico (docs/DECISOES.md, 2026-10-21): fica só numa chave própria deste
    aparelho (fora das rxp_*, do backup e da nuvem do painel), apaga sozinha após 30 dias; a contagem por dia,
-   sem nome, fica para sempre. Ao abrir um paciente, o Atendimento volta com o que foi digitado. */
+   sem nome, fica para sempre. Segunda exceção (médico, 2026-11-08): o nome, a data e o plantão de quem foi
+   internado em UTI ou semi ficam por mês (para a contabilidade) até o médico marcar o mês como recebido em Plantões,
+   no máximo 90 dias; na mesma chave, cifrado na sincronização. Ao abrir um paciente, o Atendimento volta com o que foi digitado. */
 const PAC_ETAPAS=[["exame","Exame"],["med","Medicação"],["reav","Reavaliação"],["parecer","Parecer"]];
 const PAC_DESF=[["","— em atendimento —"],["alta","Alta"],["obs","Observação"],["internacao","Internação"],["transferencia","Transferência"],["evasao","Evasão"],["passado","Passei para outro médico"],["especialidade","Passei para outra especialidade"]];
 const PAC_ONDE=[["","onde?"],["enfermaria","apartamento ou enfermaria"],["semi","semi-intensiva"],["uti","UTI"]];
@@ -23,15 +25,34 @@ function pacNorm(p){
 function pacCarrega(){
   if(pacDb) return pacDb;
   const d=lsGet(PAC_LS,null)||{};
-  pacDb={pacs:(Array.isArray(d.pacs)?d.pacs:[]).map(pacNorm).filter(Boolean),cont:d.cont&&typeof d.cont==="object"?d.cont:{},apagados:d.apagados&&typeof d.apagados==="object"?d.apagados:{}};
+  pacDb={pacs:(Array.isArray(d.pacs)?d.pacs:[]).map(pacNorm).filter(Boolean),cont:d.cont&&typeof d.cont==="object"?d.cont:{},apagados:d.apagados&&typeof d.apagados==="object"?d.apagados:{},uti:d.uti&&typeof d.uti==="object"&&!Array.isArray(d.uti)?d.uti:{}};
+  const ut0=JSON.stringify(d.uti||{}); pacUtiAtualiza(pacDb); const utiMudou=JSON.stringify(pacDb.uti)!==ut0;
   // apaga quem tem mais de 30 dias (a contagem do dia e a do plantão continuam)
   const lim=Date.now()-PAC_DIAS*864e5;
   pacDb.pacs=pacDb.pacs.filter(p=>(p.criado||0)>=lim);
   for(const id in pacDb.apagados) if(pacDb.apagados[id]<lim) delete pacDb.apagados[id];
-  if(Array.isArray(d.pacs)&&d.pacs.length!==pacDb.pacs.length) lsSet(PAC_LS,pacDb);
+  if((Array.isArray(d.pacs)&&d.pacs.length!==pacDb.pacs.length)||utiMudou) lsSet(PAC_LS,pacDb);
   return pacDb;
 }
-function pacGrava(){pacCarrega();if(!lsSet(PAC_LS,pacDb))toast("Sem espaço no aparelho para a lista");if(typeof pacSyncAgenda==="function")pacSyncAgenda()}
+// internados em UTI ou semi: registro por mês (nome, data, plantão), que fica além dos 30 dias da lista
+const PAC_UTI_DIAS=90;
+const pacEhUti=p=>p&&p.desf&&p.desf.tipo==="internacao"&&(p.desf.onde==="uti"||p.desf.onde==="semi");
+function pacUtiAtualiza(db){
+  db.uti=db.uti&&typeof db.uti==="object"?db.uti:{};
+  for(const p of db.pacs){
+    if(pacEhUti(p)){const o={nome:p.nome,dia:p.dia,criado:+p.criado||0,onde:p.desf.onde};const a=db.uti[p.id];if(!a||a.nome!==o.nome||a.onde!==o.onde||a.dia!==o.dia)db.uti[p.id]=o}
+    else if(db.uti[p.id]) delete db.uti[p.id];
+  }
+  for(const id in db.apagados||{}) delete db.uti[id];
+  const lim=Date.now()-PAC_UTI_DIAS*864e5;
+  let pagos={}; try{pagos=(model&&model.plantoes&&model.plantoes.pagos)||{}}catch(e){}
+  for(const [id,u] of Object.entries(db.uti)){
+    if(!u||typeof u!=="object"||!(u.criado>=lim)){delete db.uti[id];continue}
+    const mes=String(u.dia||"").slice(0,7);
+    if(Object.entries(pagos).some(([k,v])=>k.startsWith(mes+"|")&&v&&v.ok)) delete db.uti[id];
+  }
+}
+function pacGrava(){pacCarrega();pacUtiAtualiza(pacDb);if(!lsSet(PAC_LS,pacDb))toast("Sem espaço no aparelho para a lista");if(typeof pacSyncAgenda==="function")pacSyncAgenda()}
 const pacDe=id=>pacCarrega().pacs.find(p=>p.id===id);
 // cada campo guarda quando mudou: na sincronização, dois aparelhos mexendo no mesmo paciente não se apagam
 function pacToca(p,campo){const t=Date.now();p.ts=p.ts||{};p.ts[campo]=Math.max(t,(p.ts[campo]||0)+1);p.upd=Math.max(p.upd||0,p.ts[campo])}
@@ -131,15 +152,19 @@ function pacPlantao(t){t=+t;const x=plJanela(t);
 // conta como atendido (o que o médico recebe): alta, internação, transferência e evasão; passados não contam
 const PAC_CONTA=["alta","internacao","transferencia","evasao"], pacConta=p=>PAC_CONTA.includes(p.desf.tipo), pacSaiu=p=>p.desf.tipo==="passado"||p.desf.tipo==="especialidade";
 let pcBusca="";
-// internados em UTI ou semi-intensiva nos últimos 30 dias, por plantão (para a contabilidade)
-function pacUtiTxt(db){
-  const ps=db.pacs.filter(p=>p.desf.tipo==="internacao"&&(p.desf.onde==="uti"||p.desf.onde==="semi")).sort((a,b)=>a.criado-b.criado);
-  return ps.map(p=>`${p.dia.split("-").reverse().join("/")} · ${pacPlantao(p.criado).rot} · ${p.nome} · ${p.desf.onde==="uti"?"UTI":"semi-intensiva"}`).join("\n");
+// internados em UTI ou semi-intensiva, por mês (para a contabilidade)
+const PAC_MESES=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+function pacUtiMeses(db){
+  pacUtiAtualiza(db);
+  const por={};
+  for(const u of Object.values(db.uti).sort((a,b)=>a.criado-b.criado)){const m=String(u.dia).slice(0,7);(por[m]=por[m]||[]).push(u)}
+  return Object.entries(por).sort((a,b)=>b[0].localeCompare(a[0])).map(([m,us])=>({m,rot:`${PAC_MESES[+m.slice(5,7)-1]} de ${m.slice(0,4)}`,
+    txt:us.map(u=>`${u.dia.split("-").reverse().join("/")} · ${pacPlantao(u.criado).rot} · ${u.nome} · ${u.onde==="uti"?"UTI":"semi-intensiva"}`).join("\n"),n:us.length}));
 }
 function pacUtiHtml(db){
-  const t=pacUtiTxt(db), n=t?t.split("\n").length:0;
-  return `<details class="panel card pcuti"><summary><h3>Internados em UTI e semi</h3> <span class="note">${n} nos últimos ${PAC_DIAS} dias</span></summary>
-    ${n?`<textarea class="out-edit" id="pcUtiTxt" readonly rows="${Math.min(n+1,12)}">${esc(t)}</textarea><div class="actions"><button class="btn primary" id="pcUtiCp">Copiar a lista</button></div>`:`<p class="note">Nenhuma internação em UTI ou semi marcada neste aparelho.</p>`}</details>`;
+  const ms=pacUtiMeses(db), n=ms.reduce((a,x)=>a+x.n,0);
+  return `<details class="panel card pcuti"><summary><h3>Internados em UTI e semi</h3> <span class="note">${n} ${n===1?"paciente":"pacientes"} · por mês, até marcar o mês como recebido em Plantões</span></summary>
+    ${n?ms.map(x=>`<h4>${esc(x.rot)} <span class="note">· ${x.n}</span></h4><textarea class="out-edit" data-utimes="${x.m}" readonly rows="${Math.min(x.n+1,12)}">${esc(x.txt)}</textarea><div class="actions"><button class="btn primary" data-uticp="${x.m}">Copiar ${esc(x.rot)}</button></div>`).join(""):`<p class="note">Nenhuma internação em UTI ou semi marcada neste aparelho.</p>`}</details>`;
 }
 // selo do desfecho: "Paciente finalizado — alta realizada"
 const PAC_FIM={alta:"alta realizada",internacao:"internação",transferencia:"transferência",evasao:"evasão"};
@@ -230,7 +255,7 @@ function bindPacientes(){
   $(".pcpass").addEventListener("toggle",()=>{pacPassAtualiza()});
   pacPassAtualiza();
   if(typeof bindPacSync==="function") bindPacSync();
-  if($("#pcUtiCp")) $("#pcUtiCp").onclick=e=>copy($("#pcUtiTxt").value,e.currentTarget);
+  $$("[data-uticp]").forEach(b=>b.onclick=e=>copy($(`[data-utimes="${b.dataset.uticp}"]`).value,e.currentTarget));
 }
 function pacPassAtualiza(){const ta=$("#pcPassTxt");if(!ta)return;ta.value=pacPassagem(pcPass.medico.trim(),pcPass.local.trim(),pcPass.consMed.trim());grow(ta)}
 // relógio: o aviso de 2 h e 3 h muda sozinho

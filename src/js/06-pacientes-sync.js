@@ -80,7 +80,9 @@ function psyncJunta(loc,rem){
   const pacs=Object.values(por).sort((a,b)=>b.criado-a.criado);
   const cont=Object.assign({},rem.cont||{}); for(const d in loc.cont) cont[d]=Math.max(cont[d]||0,loc.cont[d]);
   for(const p of pacs){const n=pacs.filter(x=>x.dia===p.dia).length;cont[p.dia]=Math.max(cont[p.dia]||0,n)}
-  return {pacs,cont,apagados:ap};
+  const uti=Object.assign({},(rem.uti&&typeof rem.uti==="object")?rem.uti:{},loc.uti||{});
+  for(const id in ap) delete uti[id];
+  return {pacs,cont,apagados:ap,uti};
 }
 // só repositório privado: a lista (mesmo cifrada) e os padrões nunca vão para um repositório público
 async function repoPrivado(repo,chave){
@@ -93,7 +95,7 @@ async function repoPrivado(repo,chave){
 function pacAplica(j){
   const db=pacCarrega(), velhos=new Map(db.pacs.map(p=>[p.id,p]));
   db.pacs=j.pacs.map(pacNorm).filter(Boolean).map(q=>{const o=velhos.get(q.id);if(!o)return q;for(const k of Object.keys(o))delete o[k];return Object.assign(o,q)});
-  db.cont=j.cont; db.apagados=j.apagados;
+  db.cont=j.cont; db.apagados=j.apagados; db.uti=j.uti||db.uti||{};
   if(atPac&&!pacDe(atPac)) atPac=null;
 }
 let psyncRodando=false, psyncDeNovo=false;
@@ -192,7 +194,7 @@ async function psyncRecupera(){
     const r=await fetch(`${base}/commits?path=${encodeURIComponent(arq)}&per_page=100`,{cache:"no-store",headers:psyncHdr()});
     if(!r.ok) throw await psyncFalha(r);
     const commits=await r.json(), loc=pacCarrega(), antes=new Set(loc.pacs.map(p=>p.id));
-    let acc={pacs:loc.pacs.map(clone),cont:Object.assign({},loc.cont),apagados:Object.assign({},loc.apagados)}, lidas=0;
+    let acc={pacs:loc.pacs.map(clone),cont:Object.assign({},loc.cont),apagados:Object.assign({},loc.apagados),uti:Object.assign({},loc.uti||{})}, lidas=0;
     for(const c of commits){
       try{
         const v=await fetch(`${base}/contents/${encodeURIComponent(arq)}?ref=${c.sha}`,{cache:"no-store",headers:psyncHdr()});
@@ -203,11 +205,15 @@ async function psyncRecupera(){
         acc=Object.assign(psyncJunta(acc,Object.assign({},rem,{apagados:{}})),{apagados:acc.apagados});
       }catch(e){}
     }
-    const lim=Date.now()-PAC_DIAS*864e5; acc.pacs=acc.pacs.filter(p=>(p.criado||0)>=lim);
+    // quem passou dos 30 dias não volta à lista, mas o internado em UTI ou semi volta ao registro do mês
+    const lim=Date.now()-PAC_DIAS*864e5, ut0=Object.keys(acc.uti).length;
+    for(const p of acc.pacs) if(pacEhUti(p)&&!acc.uti[p.id]&&!acc.apagados[p.id]) acc.uti[p.id]={nome:p.nome,dia:p.dia||pacHoje(+p.criado),criado:+p.criado||0,onde:p.desf.onde};
+    acc.pacs=acc.pacs.filter(p=>(p.criado||0)>=lim);
     const novos=acc.pacs.filter(p=>!antes.has(p.id)).length;
-    pacAplica(acc); lsSet(PAC_LS,pacDb);
-    if(novos) await pacSync();
-    psyncEstado=`${lidas} versão(ões) lida(s); ${novos} paciente(s) recuperado(s).`;
+    pacAplica(acc); pacUtiAtualiza(pacDb); lsSet(PAC_LS,pacDb);
+    const novosUti=Object.keys(pacDb.uti).length-ut0;
+    if(novos||novosUti>0) await pacSync();
+    psyncEstado=`${lidas} versão(ões) lida(s); ${novos} paciente(s) recuperado(s)${novosUti>0?`; ${novosUti} internado(s) em UTI ou semi de volta ao registro do mês`:""}.`;
     renderPacientes(true); psyncMostra();
   }catch(e){psyncEstado=e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}).`:"Sem conexão: tente de novo.";psyncMostra()}
 }

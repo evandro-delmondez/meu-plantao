@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.59.4 — 2026-11-08
+- **Internados em UTI e semi por mês**: o quadro na aba Pacientes separa por mês, com "Copiar" em cada um, e guarda o nome além dos 30 dias da lista até você marcar o mês como recebido em Plantões (no máximo 90 dias). "Recuperar pacientes sumidos" também devolve a esse registro os internados das versões antigas.
+- **Horas do plantão**: "Iniciar plantão" apertado mais de 30 min depois do começo do turno não encurta mais o plantão (vale o 1º paciente); o horário sugerido pela lista junta o que todos os aparelhos viram (o 1º paciente e o último registro).
+
 ## 1.59.3 — 2026-11-08
 - **Correção grave: a lista de pacientes parou de sincronizar em 06/11.** A cópia cifrada passou de 1 MB e o GitHub deixa de mandar o conteúdo junto; agora o app busca o arquivo inteiro (até 100 MB).
 - **Correção grave: a contagem dos plantões não é mais apagada por outro aparelho.** Antes, o aparelho com o modelo mais novo substituía os plantões inteiros na nuvem (um celular sem os pacientes zerava a contagem do computador do plantão). Agora cada aparelho guarda a sua contagem e o plantão vale o maior número visto; plantões iniciados ou com hora real que só um aparelho tem continuam nos dois.

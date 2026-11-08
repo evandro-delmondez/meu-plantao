@@ -123,6 +123,7 @@ test("Meus plantões: entrada e saída sugeridas pela lista e corrigíveis; hora
 });
 
 test("Plantão: iniciar e finalizar no Início guarda a hora real e o paciente conta nesse plantão", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 10, 7, 10));
   const erros = await abrir(page);
   await expect(page.locator("#hPlBox select")).toHaveCount(0);          // sem caixa de seleção
   await page.click("#hPlIni");
@@ -230,5 +231,24 @@ test("Plantões: horas só dos plantões já dados (futuros em Previstos), sobre
   await page.click('#plDia [data-plturno="fut"][data-t="N"]');
   const m2 = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1")));
   expect(m2.plantoes.escala.find(x => x.id === "fut").turno).toBe("N");
+  expect(erros).toEqual([]);
+});
+
+test("Plantão: Iniciar apertado tarde (no meio do noturno) não encurta as horas; vale o 1º paciente", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 10, 1, 52));
+  await page.addInitScript(() => {
+    if (localStorage.getItem("teste_pl_tarde")) return; localStorage.setItem("teste_pl_tarde", "1");
+    const p = (id, h, m, d) => { const t = new Date(2026, 10, d, h, m).getTime(); return { id, nome: id, criado: t, upd: t, dia: "2026-11-" + d, cond: "gripe", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo: "alta", onde: "", t: t + 6e5 }, sabe: false, snap: null }; };
+    localStorage.setItem("mph_pacientes_v1", JSON.stringify({ pacs: [p("Primeiro", 20, 55, 9), p("Segundo", 23, 30, 9)], cont: {}, apagados: {} }));
+  });
+  const erros = await abrir(page);
+  await page.click("#hPlIni");
+  const n = page.locator('#hPlBox [data-plt="N"]'); if (await n.count()) await n.click();
+  await expect(page.locator("#hPlBox")).toContainText("Plantão em andamento");
+  const m = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1")));
+  const x = m.plantoes.escala.find(y => y.turno === "N" && y.data === "2026-11-09");
+  expect(x.iniT).toBeGreaterThan(0); expect(x.ini).toBeUndefined();
+  await aba(page, "plantoes");
+  await expect(page.locator("#plCorpo")).toContainText("20:55");
   expect(erros).toEqual([]);
 });

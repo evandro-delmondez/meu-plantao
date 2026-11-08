@@ -344,7 +344,7 @@ test("Aviso sonoro de reavaliação: ligado no Início, avisa uma vez quando pas
   expect(erros).toEqual([]);
 });
 
-test("internados em UTI e semi: lista dos últimos 30 dias para copiar (enfermaria e alta não entram)", async ({ page }) => {
+test("internados em UTI e semi: lista por mês para copiar (enfermaria e alta não entram); fica depois dos 30 dias e sai com o mês recebido", async ({ page }) => {
   const erros = await abrir(page);
   const h = 3600e3, agora = Date.now();
   const p = (id, nome, criado, tipo, onde) => ({ id, nome, criado, upd: criado, dia: "2000-01-01", cond: "itu", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo, onde, t: criado }, sabe: false });
@@ -356,12 +356,26 @@ test("internados em UTI e semi: lista dos últimos 30 dias para copiar (enfermar
   await page.reload();
   await aba(page, "pacientes");
   const box = page.locator(".pcuti");
-  await expect(box).toContainText("2 nos últimos 30 dias");
+  await expect(box).toContainText("2 pacientes");
   await box.locator("summary").click();
-  const t = await page.locator("#pcUtiTxt").inputValue();
+  const t = await page.locator("#pcCorpo [data-utimes]").first().inputValue();
   expect(t).toContain("Maria Da Uti · UTI"); expect(t).toContain("Jose Da Semi · semi-intensiva");
   expect(t).not.toContain("Ana"); expect(t).not.toContain("Pedro");
   expect(t.indexOf("Maria")).toBeLessThan(t.indexOf("Jose"));
+  // internado há 40 dias: sai da lista (30 dias), mas fica no registro do mês dele
+  const velho = agora - 40 * 24 * h, mesVelho = "2000-02";
+  await page.evaluate(({ velho, mesVelho }) => { const d = JSON.parse(localStorage.getItem("mph_pacientes_v1")); d.pacs.push({ id: "v1", nome: "Antigo Da Uti", criado: velho, upd: velho, dia: mesVelho + "-15", cond: "itu", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo: "internacao", onde: "uti", t: velho }, sabe: false }); localStorage.setItem("mph_pacientes_v1", JSON.stringify(d)); }, { velho, mesVelho });
+  await page.reload(); await aba(page, "pacientes");
+  await expect(item(page, "Antigo Da Uti")).toHaveCount(0);
+  await expect(box).toContainText("3 pacientes");
+  await box.locator("summary").click();
+  await expect(page.locator('#pcCorpo [data-utimes="2000-02"]')).toHaveValue(/Antigo Da Uti · UTI/);
+  expect(await page.evaluate(() => localStorage.getItem("mph_pacientes_v1"))).toContain("Antigo Da Uti");
+  // mês marcado como recebido em Plantões: o registro daquele mês sai
+  await page.addInitScript(() => { if (sessionStorage.getItem("pago")) return; sessionStorage.setItem("pago", "1"); const m = JSON.parse(localStorage.getItem("rxp_model_v1") || "{\"v\":4}"); m.plantoes = m.plantoes || {}; m.plantoes.pagos = { "2000-02|hsls": { ok: true, em: "2000-03-20" } }; localStorage.setItem("rxp_model_v1", JSON.stringify(m)); });
+  await page.reload(); await aba(page, "pacientes");
+  await expect(box).toContainText("2 pacientes");
+  expect(await page.evaluate(() => localStorage.getItem("mph_pacientes_v1"))).not.toContain("Antigo Da Uti");
   expect(erros).toEqual([]);
 });
 

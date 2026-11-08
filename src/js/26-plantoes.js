@@ -79,6 +79,7 @@ function plJuntaModelo(loc,rem){
       const y=A.escala.find(z=>z.id===x.id);
       if(!y){ if(+x.iniT||x.manual||x.ini||x.fim) A.escala.push(JSON.parse(JSON.stringify(x))); continue }
       for(const c of ["iniT","fimT","ini","fim","manual"]) if(x[c]!=null&&y[c]==null) y[c]=x[c];
+      const sj=plSugJunta(x.sug,y.sug); if(sj) y.sug=sj;
     }};
   junta(R,L); junta(L,R);
 }
@@ -111,10 +112,14 @@ function plSugere(x){
     if(ini===null||a<ini)ini=a; if(fim===null||b>fim)fim=b}
   if(ini===null) return null;
   const hm=t=>{const d=new Date(t);return d.getHours()*60+d.getMinutes()};
-  return {ini:plFmt(Math.floor(hm(ini)/5)*5),fim:plFmt(Math.min(1439,Math.ceil(hm(fim)/5)*5))};
+  return plSugFmt(ini,fim);
 }
+const plSugFmt=(ini,fim)=>{const hm=t=>{const d=new Date(t);return d.getHours()*60+d.getMinutes()};
+  return {ini:plFmt(Math.floor(hm(ini)/5)*5),fim:plFmt(Math.min(1439,Math.ceil(hm(fim)/5)*5)),iniMs:ini,fimMs:fim}};
+// junta duas sugestões (deste aparelho e de outro): fica o primeiro paciente e o último registro de todos
+const plSugJunta=(a,b)=>{if(!a||!+a.iniMs) return b||a; if(!b||!+b.iniMs) return a; return plSugFmt(Math.min(a.iniMs,b.iniMs),Math.max(a.fimMs,b.fimMs))};
 function plHoras(x){
-  const sug=plSugere(x); if(sug&&(!x.sug||x.sug.ini!==sug.ini||x.sug.fim!==sug.fim)){x.sug=sug;plHoras._mudou=true}
+  const sug=plSugJunta(plSugere(x),x.sug); if(sug&&(!x.sug||x.sug.ini!==sug.ini||x.sug.fim!==sug.fim)){x.sug=sug;plHoras._mudou=true}
   const t=plTurnoDe(x), base=x.sug||{ini:t[1],fim:t[2]};
   const ini=x.ini||base.ini, fim=x.fim||base.fim, a=plHM(ini), b=plHM(fim);
   let min=a===null||b===null?0:b-a; if(min<=0) min+=1440;
@@ -129,7 +134,8 @@ function plJanelaDe(x){
   const base=new Date(x.data+"T00:00:00").getTime(), a=plHM(t[1]), b=plHM(t[2]);
   const ini0=base+a*6e4, fim0=base+(b>a?b:b+1440)*6e4;
   // sem o botão: começa 1 h antes do turno (chegou um pouco antes) e acaba 2 h depois (folga)
-  const ini=+x.iniT||ini0-36e5, fim=+x.fimT?+x.fimT:+x.iniT?Math.max(fim0,ini)+6*36e5:fim0+2*36e5;
+  // "Iniciar plantão" apertado tarde (esqueceu no começo) não encurta: vale o mais cedo entre o botão e 1 h antes
+  const ini=+x.iniT?Math.min(+x.iniT,ini0-36e5):ini0-36e5, fim=+x.fimT?+x.fimT:+x.iniT?Math.max(fim0,ini)+6*36e5:fim0+2*36e5;
   return {ini,fim,real:!!+x.iniT,ini0,fim0};
 }
 // plantão da escala em que cai o horário t. Na sobreposição (ex.: 7h05, noturno de ontem e diurno de hoje):
@@ -157,13 +163,13 @@ const plLocalPadrao=()=>{const L=plDados().locais;return Object.keys(L).find(k=>
 const plHHMM=ms=>{const d=new Date(ms);return `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`};
 // "Iniciar plantão": usa o plantão marcado para hoje nesse turno ou cria um; guarda a hora real de entrada
 function plInicia(local,turno,marcado){
-  if(marcado){const P0=plDados(),a=Date.now();marcado.iniT=a;delete marcado.fimT;delete marcado.auto;marcado.ini=plHHMM(a);saveModel();return marcado}
+  if(marcado){const a=Date.now();marcado.iniT=a;delete marcado.fimT;delete marcado.auto;const j=plJanelaDe(marcado);if(j&&a<=j.ini0+30*6e4)marcado.ini=plHHMM(a);saveModel();return marcado}
   const P=plDados(), agora=Date.now(), d=new Date(agora);
   // depois da meia-noite, o noturno que começou ontem
   const data=PL_NOITE.includes(turno)&&d.getHours()<7?plIso(new Date(agora-864e5)):plIso(d);
   let x=P.escala.find(y=>y.data===data&&y.turno===turno&&y.local===local&&!y.sobre);
   if(!x){x={id:"pl"+agora.toString(36),data,local,turno};P.escala.push(x);if(P.recusados)plCobre(x).forEach(k=>delete P.recusados[k])}
-  x.iniT=agora; delete x.fimT; delete x.auto; x.ini=plHHMM(agora); saveModel(); return x;
+  x.iniT=agora; delete x.fimT; delete x.auto; {const j=plJanelaDe(x);if(j&&agora<=j.ini0+30*6e4)x.ini=plHHMM(agora)} saveModel(); return x;
 }
 function plFinaliza(){const x=plAtivo(); if(!x) return null; x.fimT=Date.now(); x.fim=plHHMM(x.fimT); saveModel(); return x}
 function plGoogle(x){

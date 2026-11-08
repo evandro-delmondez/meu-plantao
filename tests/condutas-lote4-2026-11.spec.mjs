@@ -140,7 +140,11 @@ test("queixas levam às condutas novas", async ({ page }) => {
 
 test("progesterona na ameaça de abortamento é bloco opcional, desligado", async ({ page }) => {
   const c = cond("sangramento-gestacao-inicial");
-  expect(c.casa).toMatch(/# Progesterona: [^\n]*\(opcional\)\nUso vaginal\n2\) Progesterona micronizada 200mg[^\n]*\nAplicar 2 cápsulas via vaginal de 12\/12h até 16 semanas/);
+  expect(c.casa).toMatch(/# Progesterona: [^\n]*\(opcional\)\nUso vaginal\n2\) Progesterona micronizada 200mg[^\n]*\nAplicar 2 cápsulas via vaginal de 12\/12h por 14 dias/);
+  expect(c.casa).toMatch(/56 cápsulas\nAplicar 2 cápsulas via vaginal de 12\/12h por 14 dias\. O obstetra do pré-natal decide se continua até 16 semanas\./);
+  expect(c.avisoRx.join(" ")).toMatch(/gestação intrauterina/);
+  expect(c.avisoRx.join(" ")).toMatch(/amendoim ou soja/);
+  expect(c.unidade).toMatch(/400 mg de 12\/12h/);
   expect(c.unidade).toMatch(/Antes de 12 semanas: não fazer/);
   const erros = await abrir(page); await aba(page, "prescricoes");
   await conduta(page, "sangramento-gestacao-inicial");
@@ -158,8 +162,13 @@ test("prostatite e pielonefrite sem ciprofloxacino como 1ª opção", async ({ p
   expect(p.fontes.join(" ")).toMatch(/EAU Guidelines on Urological Infections, edição 2026/);
   const itu = cond("itu");
   const pielo = itu.casa.slice(itu.casa.indexOf("# Pielonefrite ambulatorial"));
-  expect(pielo).toMatch(/Cefuroxima 250mg[^\n]*\nTomar 1 cp VO de 12\/12h, após as refeições, por 10 dias/);
-  expect(itu.casa).not.toMatch(/Ciprofloxacino|Levofloxacino/);
+  expect(pielo).toMatch(/^# Pielonefrite ambulatorial:\nUso oral\n1\) Cefuroxima axetila 500mg -+ 20 cp\nTomar 1 cp VO de 12\/12h, após as refeições, por 10 dias\.\nOu \(alergia a betalactâmico, sem quinolona nos últimos 12 meses\)\n1\) Ciprofloxacino 500mg -+ 14 cp\nTomar 1 cp VO de 12\/12h por 7 dias\./);
+  expect(itu.casa.indexOf("Cefuroxima")).toBeLessThan(itu.casa.indexOf("Ciprofloxacino"));
+  expect(itu.casa).not.toMatch(/Levofloxacino/);
+  expect(itu.avisoRx.join(" ")).toMatch(/bula brasileira do Zinnat traz 250 mg/);
+  expect(itu.fontes.join(" ")).toMatch(/tabela 1\.2/);
+  expect(itu.fontes.join(" ")).not.toMatch(/5 a 10/);
+  expect(p.avisoRx.join(" ")).toMatch(/SMX-TMP só após a ceftriaxona: resistência de 27–35% no Brasil/);
   expect(itu.avisoRx).toContain("Rever o antibiótico pela urocultura em 48–72 h.");
   const erros = await abrir(page); await aba(page, "prescricoes");
   await conduta(page, "prostatite");

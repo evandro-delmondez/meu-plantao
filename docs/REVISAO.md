@@ -107,3 +107,14 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 - Prostatite: a EAU 2026 conferida não nomeia o antibiótico oral depois da dose parenteral; a receita usa SMX-TMP (Harrison 22ª, cap. 140) guiado pela urocultura.
 - Cefuroxima na pielonefrite: dose de 250 mg 12/12h lida na bula do Zinnat reproduzida em bula.com.br (texto do paciente); a bula oficial no Bulário da Anvisa não abriu (403). Conferir. Alergia a betalactâmico na pielonefrite ambulatorial ficou sem opção oral (quinolona retirada por decisão do médico).
 - Magnésio na asma ainda com GINA 2024; Portaria GM/MS 11.211/2026 citada no lote 4b e não reconferida no lote 4c.
+
+## 2026-11-08 — Conferência dos antibióticos e da progesterona (`.rascunhos/conferencia-atb-2026-11.md`)
+- **Divergência registrada, cefuroxima na pielonefrite:** o app usa 500 mg de 12/12h por 10 dias, por decisão do médico (IDSA 2025, tabela 1.2). A bula brasileira do Zinnat (texto do paciente e modelo GSK) traz 250 mg de 12/12h, com duração usual de 7 dias. A EAU 2026 não lista a cefuroxima: os 10 dias vêm da EAU para cefalosporina oral (cefpodoxima, ceftibuteno), aplicados por extensão.
+- Ciprofloxacino na pielonefrite só na alergia a betalactâmico, sem quinolona nos últimos 12 meses (IDSA 2025); a EAU 3.7.4 fala em 6 meses e resistência < 10%.
+- Prostatite: SMX-TMP também com resistência de 27–35% no Brasil; vai só após a ceftriaxona e é confirmado pela urocultura em 48–72 h.
+- Progesterona (NICE NG126: 400 mg vaginal de 12/12h até 16 semanas) fora da bula do Utrogestan (200–400 mg/dia até 12 semanas): receita para 14 dias; o obstetra decide se continua.
+- Ceftriaxona antes da VO na pielonefrite: 1 g (IDSA 2011); a EAU 2026, tabela 6, traz 2 g.
+
+### Pendente
+- Ajuste renal da cefuroxima: a bula brasileira do Zinnat não traz tabela por ClCr (só "reduzir conforme o clearance"); a tabela do SmPC europeu não foi conferida. Não entrou em `extras.js`.
+- Bula do profissional do Zinnat no Bulário da Anvisa (acesso bloqueado); marcas na CMED; Harrison 22ª cap. 140 e HC-FMUSP cap. 112 (citações não reconferidas); texto literal das recomendações 1.5.2/1.5.3 do NICE NG126.

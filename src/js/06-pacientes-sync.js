@@ -41,7 +41,17 @@ async function psyncLe(){
   if(r.status===404) return {sha:null,f:null};
   if(!r.ok) throw await psyncFalha(r);
   const j=await r.json();
-  return {sha:j.sha,f:JSON.parse(new TextDecoder().decode(unb64(j.content.replace(/\n/g,""))))};
+  return {sha:j.sha,f:await psyncConteudo(j)};
+}
+// acima de 1 MB o GitHub não manda o conteúdo junto (content vazio): busca o blob pelo sha (vale até 100 MB)
+async function psyncConteudo(j){
+  let c=j.content||"";
+  if(!c.replace(/\s/g,"")&&j.sha){
+    const r=await fetch(`https://api.github.com/repos/${psync.repo}/git/blobs/${j.sha}`,{cache:"no-store",headers:psyncHdr()});
+    if(!r.ok) throw await psyncFalha(r);
+    c=(await r.json()).content||"";
+  }
+  return JSON.parse(new TextDecoder().decode(unb64(c.replace(/\s/g,""))));
 }
 async function psyncEscreve(f,sha){
   const corpo=b64(new TextEncoder().encode(JSON.stringify(f)));
@@ -187,7 +197,7 @@ async function psyncRecupera(){
       try{
         const v=await fetch(`${base}/contents/${encodeURIComponent(arq)}?ref=${c.sha}`,{cache:"no-store",headers:psyncHdr()});
         if(!v.ok) continue;
-        const j=await v.json(), f=JSON.parse(new TextDecoder().decode(unb64(j.content.replace(/\n/g,""))));
+        const f=await psyncConteudo(await v.json());
         if(f.salt!==psync.salt) continue;
         const rem=await psyncDecifra(f); lidas++;
         acc=Object.assign(psyncJunta(acc,Object.assign({},rem,{apagados:{}})),{apagados:acc.apagados});

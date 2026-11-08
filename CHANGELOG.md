@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.59.3 — 2026-11-08
+- **Correção grave: a lista de pacientes parou de sincronizar em 06/11.** A cópia cifrada passou de 1 MB e o GitHub deixa de mandar o conteúdo junto; agora o app busca o arquivo inteiro (até 100 MB).
+- **Correção grave: a contagem dos plantões não é mais apagada por outro aparelho.** Antes, o aparelho com o modelo mais novo substituía os plantões inteiros na nuvem (um celular sem os pacientes zerava a contagem do computador do plantão). Agora cada aparelho guarda a sua contagem e o plantão vale o maior número visto; plantões iniciados ou com hora real que só um aparelho tem continuam nos dois.
+
 ## 1.59.2 — 2026-11-08
 - **Lista de pacientes: sincronização automática.** Com a tela aberta, a lista sincroniza a cada minuto e ao voltar para a janela; antes só sincronizava ao mudar de aba ou mexer na lista, e o computador aberto ao lado do prontuário não recebia o que foi anotado no celular. Sem mudança, nada é gravado.
 - **Recuperar pacientes sumidos**: em Sincronizar entre aparelhos, lê as versões antigas da cópia cifrada e devolve à lista quem sumiu (não apaga nada; quem foi apagado de propósito não volta).

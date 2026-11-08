@@ -134,3 +134,31 @@ test("repositório público é recusado (a nuvem só grava em repositório priva
   expect(await page.evaluate(() => localStorage.getItem("mph_nuvem_v1"))).toBeNull();
   expect(erros).toEqual([]);
 });
+
+test("contagem do plantão: um aparelho com modelo mais novo e sem pacientes não apaga a contagem do outro", async ({ browser }) => {
+  const store = {};
+  const a = await browser.newContext(), b = await browser.newContext();
+  await githubFalso(a, store); await githubFalso(b, store);
+  const pa = await a.newPage(), pb = await b.newPage();
+  const ea = await abrir(pa), eb = await abrir(pb);
+  // aparelho A (computador do plantão): 2 altas e 1 UTI agora
+  const agora = Date.now();
+  const p = (id, tipo, onde) => ({ id, nome: "Paciente " + id, criado: agora - 60e3, upd: agora, dia: "2000-01-01", cond: "itu", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo, onde, t: agora }, sabe: false });
+  await pa.evaluate((d) => localStorage.setItem("mph_pacientes_v1", JSON.stringify(d)), { pacs: [p("x1", "alta", ""), p("x2", "alta", ""), p("x3", "internacao", "uti")], cont: {}, apagados: {} });
+  await pa.reload();
+  await aba(pa, "pacientes"); await pa.fill("#pcNome", "Mais Um Paciente"); await pa.click("#pcAdd");   // dispara a contagem
+  await ligar(pa);
+  const cont = () => { try { const C = JSON.parse(arquivo(store)).model.plantoes.contagem; return Object.entries(C).filter(([k]) => /[DN]$/.test(k)).reduce((s, [, v]) => s + (v.n || 0) * 10 + (v.uti || 0), 0); } catch (e) { return 0; } };
+  await expect.poll(cont, { timeout: 15000 }).toBe(21);
+  // aparelho B (celular): sem pacientes, modelo mais novo (contagem vazia)
+  await pb.evaluate(() => { const m = JSON.parse(localStorage.getItem("rxp_model_v1") || "{}"); m.updatedAt = Date.now() + 864e5; m.plantoes = { escala: [], contagem: {} }; localStorage.setItem("rxp_model_v1", JSON.stringify(m)); });
+  await pb.reload();
+  await ligar(pb);
+  expect(cont()).toBe(21);
+  // A volta a sincronizar e continua com a contagem
+  await aba(pa, "backup"); await pa.click("#gsAgora").catch(() => {});
+  await pa.waitForTimeout(1500);
+  expect(cont()).toBe(21);
+  expect([...ea, ...eb]).toEqual([]);
+  await a.close(); await b.close();
+});

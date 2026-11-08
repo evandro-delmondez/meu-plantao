@@ -29,7 +29,12 @@ function plAtualizaContagem(){
   const P=plDados(), por={}, poe=(k,p)=>{por[k]=por[k]||{n:0,uti:0};if(p.desf.tipo==="internacao"&&(p.desf.onde==="uti"||p.desf.onde==="semi"))por[k].uti++;else if(pacConta(p))por[k].n++};
   for(const p of pacCarrega().pacs){if(!p||!+p.criado||!p.desf) continue; const k=pacPlantao(p.criado).k; if(!/^\d{4}-\d\d-\d\d[DN]$/.test(k)) continue;
     poe(k,p); if(k.endsWith("D")) poe(k.slice(0,10)+(new Date(+p.criado).getHours()<13?"M":"V"),p)}
-  let mudou=false; for(const [k,v] of Object.entries(por)){const a=P.contagem[k];if(!a||a.n!==v.n||a.uti!==v.uti){P.contagem[k]=v;mudou=true}}
+  // cada aparelho guarda a sua contagem (contDisp); o plantão vale o maior número visto em qualquer aparelho. Assim
+  // um aparelho com menos pacientes (o celular, por exemplo) não apaga a contagem feita no computador do hospital.
+  let mudou=plContPrepara(P);
+  const meu=P.contDisp[PL_DISP]||{};
+  if(JSON.stringify(meu)!==JSON.stringify(por)){P.contDisp[PL_DISP]=por;mudou=true}
+  if(plContRecalcula(P)) mudou=true;
   // plantão com paciente que conta (alta, internação, transferência, evasão) e sem nada marcado no dia/turno: entra
   // sozinho no Santa Lúcia. Paciente passado a outro médico não cria plantão; o que você tirou não volta.
   P.recusados=P.recusados&&typeof P.recusados==="object"?P.recusados:{};
@@ -37,6 +42,45 @@ function plAtualizaContagem(){
     const data=k.slice(0,10), t=k.slice(10), tem=P.escala.some(x=>x.data===data&&(t==="N"?["N","N1","24"].includes(x.turno):!["N","N1"].includes(x.turno)));
     if(!tem){P.escala.push({id:"pl"+k,data,local:"hsls",turno:t==="N"?"N":"D",auto:true});mudou=true}}
   if(mudou) saveModel();
+}
+// identificador deste aparelho (só para separar as contagens; não é dado de paciente)
+const PL_DISP=(()=>{try{let d=localStorage.getItem("mph_disp_v1");if(!d){d="d"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);localStorage.setItem("mph_disp_v1",d)}return d}catch(e){return "d0"}})();
+// primeira vez: a contagem antiga (de antes da separação por aparelho) vira o registro "antigo"
+function plContPrepara(P){
+  if(P.contDisp&&typeof P.contDisp==="object") return false;
+  P.contDisp={antigo:JSON.parse(JSON.stringify(P.contagem||{}))}; return true;
+}
+const plMaxC=(a,b)=>({n:Math.max((a||{}).n||0,(b||{}).n||0),uti:Math.max((a||{}).uti||0,(b||{}).uti||0)});
+function plContRecalcula(P){
+  const C={}; for(const d of Object.values(P.contDisp||{})) if(d&&typeof d==="object") for(const [k,v] of Object.entries(d)) C[k]=plMaxC(C[k],v);
+  if(JSON.stringify(C)===JSON.stringify(P.contagem||{})) return false;
+  // nunca perde uma chave que só existia na contagem antiga
+  for(const [k,v] of Object.entries(P.contagem||{})) if(!C[k]){(P.contDisp.antigo=P.contDisp.antigo||{})[k]=v;C[k]=v}
+  P.contagem=C; return true;
+}
+// junta os plantões de dois aparelhos (a nuvem traz o modelo inteiro do outro): contagens por aparelho, e plantões
+// iniciados ou com hora real que só existem aqui continuam
+function plJuntaModelo(loc,rem){
+  const L=loc&&loc.plantoes, R=rem&&rem.plantoes; if(!L||!R||typeof L!=="object"||typeof R!=="object") return;
+  const prep=P=>{if(!P.contDisp||typeof P.contDisp!=="object")P.contDisp={antigo:JSON.parse(JSON.stringify(P.contagem||{}))}};
+  prep(L); prep(R);
+  // a deste aparelho vale a daqui; a dos outros aparelhos, o maior número visto de cada plantão
+  const M={};
+  for(const d of new Set([...Object.keys(L.contDisp),...Object.keys(R.contDisp)])){
+    if(d===PL_DISP){M[d]=L.contDisp[d]||{};continue}
+    const a=L.contDisp[d]||{}, b=R.contDisp[d]||{}, o={};
+    for(const k of new Set([...Object.keys(a),...Object.keys(b)])) o[k]=plMaxC(a[k],b[k]);
+    M[d]=o;
+  }
+  for(const P of [L,R]){P.contDisp=JSON.parse(JSON.stringify(M));P.contagem=P.contagem||{};plContRecalcula(P)}
+  // plantões iniciados ou com hora real que só um lado tem continuam nos dois
+  const junta=(A,B)=>{A.escala=Array.isArray(A.escala)?A.escala:[];
+    for(const x of (Array.isArray(B.escala)?B.escala:[])){ if(!x||!x.id) continue;
+      const y=A.escala.find(z=>z.id===x.id);
+      if(!y){ if(+x.iniT||x.manual||x.ini||x.fim) A.escala.push(JSON.parse(JSON.stringify(x))); continue }
+      for(const c of ["iniT","fimT","ini","fim","manual"]) if(x[c]!=null&&y[c]==null) y[c]=x[c];
+    }};
+  junta(R,L); junta(L,R);
 }
 const plChave=x=>x.data+(PL_NOITE.includes(x.turno)?"N":"D");
 // chaves de contagem que o plantão cobre (24 h e 18 h: o dia e a noite)

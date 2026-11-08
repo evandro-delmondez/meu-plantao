@@ -33,6 +33,8 @@ function gsJunta(rem){
   const ro=obj(rem.overrides)?rem.overrides:{};
   for(const id in ro){const r=ro[id], l=overrides[id];if(obj(r)&&(!l||(r.updatedAt||0)>(l.updatedAt||0))){overrides[id]=r;mudou=true}}
   if(mudou) persistLocal();
+  // plantões: junta as contagens e os plantões iniciados dos dois lados antes de escolher o modelo mais novo
+  if(obj(rem.model)&&typeof plJuntaModelo==="function"){const antes=JSON.stringify(model.plantoes||null);try{plJuntaModelo(model,rem.model)}catch(e){}if(JSON.stringify(model.plantoes||null)!==antes){lsSet(LS.model,model);mudou=true}}
   if(obj(rem.model)&&(rem.model.updatedAt||0)>(model.updatedAt||0)){model=migrateModel(rem.model);lsSet(LS.model,model);mudou=true}
   if(obj(rem.uso)&&(rem.uso.updatedAt||0)>(uso.updatedAt||0)){uso=usoValido(rem.uso);lsSet("rxp_uso_v1",uso);mudou=true}
   return mudou;

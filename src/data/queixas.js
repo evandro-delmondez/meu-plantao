@@ -87,6 +87,8 @@ const QUEIXAS = [
     { rot: "FC baixa ou bloqueio AV", conduta: "bradicardia" },
     { rot: "Taquicardia ou palpitação antes da síncope", conduta: "taquicardia" },
     { rot: "Glicemia baixa", conduta: "hipoglicemia" },
+    { rot: "Confusão, náuseas, quedas ou fraqueza com sódio baixo (tiazídico, antidepressivo, muita água)", conduta: "hiponatremia" },
+    { rot: "Fraqueza, câimbras ou palpitação com potássio baixo (diurético, vômitos, diarreia)", conduta: "hipocalemia" },
     { rot: "Perda de consciência com crise convulsiva", conduta: "convulsao" }
   ],
   escores: ["Canadian Syncope Risk Score", "HINTS / HINTS plus"],
@@ -100,7 +102,9 @@ const QUEIXAS = [
     "Newman-Toker DE, Edlow JA. TiTrATE: a novel, evidence-based approach to diagnosing acute dizziness and vertigo (Neurol Clin 2015;33:577).",
     "Chandrasekhar SS et al. AAO-HNS Clinical Practice Guideline: Sudden Hearing Loss (Update) (Otolaryngol Head Neck Surg 2019;161:S1).",
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 20 — Perda transitória da consciência e cap. 59 — Síndromes vertiginosas agudas; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 23 — Syncope e cap. 24 — Dizziness and Vertigo.",
-    "Amin HP et al. Diagnosis, Workup, Risk Reduction of Transient Ischemic Attack in the Emergency Department Setting — AHA Scientific Statement (Stroke 2023;54:e109)."
+    "Amin HP et al. Diagnosis, Workup, Risk Reduction of Transient Ischemic Attack in the Emergency Department Setting — AHA Scientific Statement (Stroke 2023;54:e109).",
+    "Spasovski G et al. Clinical practice guideline on diagnosis and treatment of hyponatraemia (Eur J Endocrinol 2014;170(3):G1-G47; PMID 24569125): sintomas graves — NaCl 3% 150 mL EV em 20 min, Na em 20 min, até 3 bolus ou +5 mEq/L; sintomas moderadamente graves — um bolus de 150 mL; limite de 10 mEq/L nas primeiras 24 h e 8 mEq/L a cada 24 h seguintes; correção excessiva: SG 5% 10 mL/kg em 1 h e desmopressina 2 mcg EV; SIADH: restrição hídrica; critérios diagnósticos. https://doi.org/10.1530/EJE-13-1020",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 83 Hipocalemia e tabela de reposição de eletrólitos (leve 3,0–3,4: VO 10–20 mEq 2 a 4 vezes ao dia; moderada 2,5–2,9: ECG, VO 40 mEq 3–4 vezes ao dia e EV 20–40 mEq; grave < 2,5 ou sintomática: monitor, EV 40–80 mEq, 10–20 mEq/h, até 40 mEq/h com risco de vida; periférica até 80 mEq/L, central até 120 mEq/L; xarope de KCl 6% 15 mL = 12 mEq; cápsula 600 mg = 8 mEq; doença renal: metade da dose; sulfato de magnésio)."
   ] },
 { id: "deficit-neurologico", nome: "Fraqueza ou alteração neurológica súbita", cor: "violet",
   alarme: [
@@ -145,7 +149,7 @@ const QUEIXAS = [
     { t: "Abdome em tábua, defesa involuntária ou descompressão dolorosa", acao: "Peritonite: jejum, exames, imagem (TC) e avaliação cirúrgica; não liberar." },
     { t: "Dor intensa e súbita, desproporcional ao exame, em idoso, com fibrilação atrial ou doença vascular", acao: "Isquemia mesentérica: angiotomografia de abdome o quanto antes e cirurgia com urgência. Lactato normal não exclui." },
     { t: "Dor abdominal ou lombar súbita com massa pulsátil, hipotensão ou síncope", acao: "Aneurisma de aorta roto: acionar cirurgia vascular já; ultrassom à beira do leito, sem atrasar a transferência." },
-    { t: "Mulher em idade fértil com dor pélvica, atraso menstrual, sangramento vaginal ou desmaio", acao: "Beta-hCG em toda mulher em idade fértil. Positivo com dor: ultrassom transvaginal (gravidez ectópica). Instável: ginecologia imediata." },
+    { t: "Mulher em idade fértil com dor pélvica, atraso menstrual, sangramento vaginal ou desmaio", acao: "Beta-hCG em toda mulher em idade fértil. Positivo com dor: ultrassom transvaginal (gravidez ectópica). Instável: ginecologia imediata (ver Sangramento na gestação inicial)." },
     { t: "Gestante a partir de 20 semanas com dor epigástrica ou no hipocôndrio direito, dor uterina forte, útero endurecido ou sangramento vaginal", acao: "Medir PA: pensar em pré-eclâmpsia ou síndrome HELLP (ver pré-eclâmpsia) ou descolamento de placenta; obstetrícia com urgência; não tratar como dispepsia." },
     { t: "Dor súbita no testículo ou em fossa ilíaca com náusea e vômitos, em jovem", acao: "Torção de testículo ou de ovário: urologia ou ginecologia já; ultrassom com Doppler só se não atrasar a cirurgia (suspeita forte = exploração cirúrgica). O tempo salva o órgão." },
     { t: "Vômitos, parada de gases e fezes e distensão; cirurgia abdominal prévia ou hérnia endurecida e dolorosa", acao: "Obstrução ou hérnia encarcerada: jejum, sonda nasogástrica se vômitos, imagem e cirurgião." },
@@ -153,7 +157,8 @@ const QUEIXAS = [
     { t: "Idoso (65 anos ou mais), imunossuprimido ou em uso de corticoide", acao: "Exame e exames iniciais enganam: limiar baixo para TC e reavaliação antes da alta." },
     { t: "Dor epigástrica em idoso, diabético ou com fatores de risco cardiovascular", acao: "ECG em até 10 minutos: síndrome coronariana pode se apresentar como dor abdominal." },
     { t: "Sangue pelo ânus com tontura, desmaio, FC maior que a PA sistólica ou queda da hemoglobina", acao: "Índice de choque > 1: sala de emergência, dois acessos, angiotomografia; pensar em fonte alta (ver Hemorragia digestiva baixa e alta)." },
-    { t: "Dor epigástrica em faixa com falta de ar, hipotensão, confusão ou pouca urina", acao: "Pancreatite com falência orgânica: Ringer lactato, BISAP e UTI (ver Pancreatite aguda)." }
+    { t: "Dor epigástrica em faixa com falta de ar, hipotensão, confusão ou pouca urina", acao: "Pancreatite com falência orgânica: Ringer lactato, BISAP e UTI (ver Pancreatite aguda)." },
+    { t: "Cirrótico com ascite e febre, dor abdominal, confusão ou piora da creatinina", acao: "Suspeita de PBE: paracentese diagnóstica já, ceftriaxona e albumina se PMN ≥ 250/mm³ (ver Cirrose descompensada)." }
   ],
   perguntar: [
     "Onde dói, como começou (súbita ou gradual), se migrou (umbigo para fossa ilíaca direita) e para onde irradia (dorso, ombro, virilha)",
@@ -174,13 +179,16 @@ const QUEIXAS = [
     { rot: "Queimação epigástrica, azia", conduta: "dispepsia" },
     { rot: "Diarreia e vômitos", conduta: "geca" },
     { rot: "Hematêmese ou melena", conduta: "hda" },
+    { rot: "Cirrótico com barriga d'água, febre, dor, confusão ou piora renal (cirrose descompensada, PBE)", conduta: "cirrose-descompensada" },
     { rot: "Sangue vivo ou vinhoso pelo ânus (hematoquezia)", conduta: "hdb" },
     { rot: "Glicemia alta com vômitos, dor abdominal, respiração rápida ou sonolência (cetoacidose ou estado hiperosmolar)", conduta: "cad" },
     { rot: "Dor pélvica com corrimento, febre ou dor à mobilização do colo", conduta: "dip" },
     { rot: "Dor ou inchaço no testículo ou no escroto (torção, epididimite, hérnia)", conduta: "escroto-agudo" },
-    { rot: "Não consegue urinar, com bexiga palpável acima do púbis", conduta: "retencao-urinaria" }
+    { rot: "Não consegue urinar, com bexiga palpável acima do púbis", conduta: "retencao-urinaria" },
+    { rot: "Mulher grávida com sangramento vaginal ou dor no baixo ventre no início da gravidez (ameaça de abortamento, abortamento ou ectópica)", conduta: "sangramento-gestacao-inicial" },
+    { rot: "Gestante com náuseas e vômitos, sem outra causa (hiperêmese)", conduta: "hiperemese" }
   ],
-  escores: ["AIR ou Adult Appendicitis Score (apendicite)", "Critérios de Tóquio 2018 (colangite e colecistite)", "BISAP (pancreatite)", "Oakland (hemorragia digestiva baixa)"],
+  escores: ["AIR ou Adult Appendicitis Score (apendicite)", "Critérios de Tóquio 2018 (colangite e colecistite)", "BISAP (pancreatite)", "Oakland (hemorragia digestiva baixa)", "Child-Pugh (cirrose)"],
   fontes: [
     "Brasil. Ministério da Saúde. Manual de Gestação de Alto Risco, 2022: dor epigástrica ou no hipocôndrio direito como sinal de gravidade da pré-eclâmpsia; descolamento prematuro de placenta.",
     "Podda M et al. Diagnosis and Treatment of Acute Appendicitis: 2025 Edition of the WSES Jerusalem Guidelines (JAMA Surg, publicado em 28/01/2026); Di Saverio S et al. 2020 update (World J Emerg Surg 2020;15:27) — escores AIR e AAS, idosos e imunossuprimidos.",
@@ -199,7 +207,11 @@ const QUEIXAS = [
     "Serlin DC, Heidelbaugh JJ, Stoffel JT. Urinary Retention in Adults: Evaluation and Initial Management (Am Fam Physician 2018;98(8):496-503; PMID 30277739): causas (HPB, estenose, prostatite, fármacos anticolinérgicos, antidepressivos, anti-histamínicos, simpaticomiméticos, opioides; neurológicas; na mulher, prolapso, massa pélvica e pós-parto), drenagem completa, alfabloqueador antes da retirada da sonda e prova de micção após 3 a 7 dias; encaminhar se falha da prova ou resíduo > 300 mL. https://www.aafp.org/pubs/afp/issues/2018/1015/p496.html",
     "IAP/APA/EPC/IPC/JPS Working Group. IAP Revised Guidelines on Acute Pancreatitis 2025 (Pancreatology 2025;25(6):770-814): falência orgânica (Marshall ≥ 2) indica UTI. https://doi.org/10.1016/j.pan.2025.04.020",
     "Oakland K et al. BSG guidelines on acute lower gastrointestinal bleeding (Gut 2019;68:776-789): índice de choque > 1 = instável; angio-TC; endoscopia alta se sem fonte. https://doi.org/10.1136/gutjnl-2018-317807",
-    "Peery AF et al. AGA Clinical Practice Update on Medical Management of Colonic Diverticulitis (Gastroenterology 2021;160:906-911). https://doi.org/10.1053/j.gastro.2020.09.059"
+    "Peery AF et al. AGA Clinical Practice Update on Medical Management of Colonic Diverticulitis (Gastroenterology 2021;160:906-911). https://doi.org/10.1053/j.gastro.2020.09.059",
+    "European Association for the Study of the Liver. EASL Clinical Practice Guidelines for the management of patients with decompensated cirrhosis (J Hepatol 2018;69(2):406-460; PMID 29653741): paracentese diagnóstica em toda internação de cirrótico com ascite, em sangramento, choque, febre, encefalopatia, piora renal ou hepática; PBE = PMN > 250/mm³; inocular 10 mL em frascos de hemocultura à beira do leito; cefalosporina de 3ª geração na comunitária; albumina 1,5 g/kg no diagnóstico e 1 g/kg no 3º dia; nova paracentese em 48 h; paracentese > 5 L: albumina 8 g por litro retirado; restrição de sal moderada; restrição hídrica só com Na < 125; suspender diuréticos com Na < 125, LRA ou encefalopatia; AINE contraindicado com ascite; LRA (ICA-AKI): suspender diuréticos, betabloqueador, nefrotóxicos e vasodilatadores, albumina 1 g/kg por 2 dias; síndrome hepatorrenal: terlipressina (1 mg a cada 4–6 h ou infusão de 2 mg/dia) com albumina 20–40 g/dia; norfloxacino 400 mg/dia como profilaxia secundária. https://doi.org/10.1016/j.jhep.2018.03.024",
+    "Biggins SW et al. Diagnosis, Evaluation, and Management of Ascites, Spontaneous Bacterial Peritonitis and Hepatorenal Syndrome: 2021 Practice Guidance by the American Association for the Study of Liver Diseases (Hepatology 2021;74(2):1014-1048; PMID 33942342): paracentese diagnóstica na internação e na descompensação; coagulopatia não impede; PMN ≥ 250/mm³; GASA ≥ 1,1 g/dL = hipertensão portal; albumina 6–8 g por litro na paracentese > 5 L; albumina na PBE se creatinina > 1 mg/dL, BUN > 30 mg/dL ou bilirrubina > 4 mg/dL; HRS-AKI: vasoconstritor (terlipressina, ou noradrenalina) com albumina. https://doi.org/10.1002/hep.31884",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 112 — Emergências obstétricas (sangramento da 1ª metade: tipagem e anti-D no Rh negativo, 50 mcg no 1º trimestre e 300 mcg depois; tipos de abortamento, tabela 1; aborto séptico: clindamicina 900 mg EV 8/8h + gentamicina 3–5 mg/kg/dia; ectópica: zona discriminatória FEBRASGO > 2.000 mUI/mL, beta-hCG em 48 h com subida < 35% sugerindo ectópica ou gestação inviável, FAST positivo no instável = cirurgia; metotrexato no estável com massa < 3,5 cm e beta-hCG < 5.000, decisão do especialista).",
+    "RCOG Green-top Guideline 69 (2ª ed.). The Management of Nausea and Vomiting of Pregnancy and Hyperemesis Gravidarum (BJOG 2024;131(7):e1-e30; PMID 38311315): PUQE para gravidade; antieméticos de 1ª linha (anti-histamínicos, fenotiazinas, doxilamina + piridoxina) e 2ª linha (metoclopramida até 5 dias, ondansetrona — pequeno aumento absoluto de fenda orofacial no 1º trimestre, não desencorajar se a 1ª linha falhar); não associar metoclopramida a outro antidopaminérgico; SF 0,9% com KCl guiado pelos eletrólitos; tiamina antes de glicose em quem vomita ou come pouco; hidratação ambulatorial (hospital-dia); internar se não tolera antiemético oral, se vômitos com desidratação clínica ou perda de peso apesar do antiemético, ou com comorbidade; cetonúria não indica desidratação nem gravidade e não deve decidir a internação (grau C); tiamina oral 100 mg 3x/dia ou EV (complexo B); heparina profilática na internada; corticoide na refratária. https://doi.org/10.1111/1471-0528.17739"
   ] },
 { id: "dor-toracica", nome: "Dor torácica", cor: "rose",
   alarme: [
@@ -225,6 +237,7 @@ const QUEIXAS = [
   caminhos: [
     { rot: "Síndrome coronariana aguda", conduta: "sca" },
     { rot: "TEP", conduta: "tep" },
+    { rot: "Dor súbita rasgando no tórax ou nas costas, com diferença de pulso ou PA entre os braços (dissecção de aorta)", conduta: "disseccao-aorta" },
     { rot: "Pneumotórax espontâneo: dor pleurítica súbita com dispneia e murmúrio diminuído de um lado", conduta: "pneumotorax" },
     { rot: "Dispneia com congestão (edema agudo de pulmão)", conduta: "eap" },
     { rot: "Palpitação ou taquicardia com a dor", conduta: "taquicardia" },
@@ -246,7 +259,8 @@ const QUEIXAS = [
     "Chirica M et al. Esophageal emergencies: WSES guidelines (World J Emerg Surg 2019;14:26).",
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 19 — Dor torácica; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 15 — Chest Discomfort.",
     "American College of Surgeons. ATLS — Advanced Trauma Life Support, 10ª ed., 2018, cap. 4 (Thoracic trauma): pneumotórax hipertensivo é diagnóstico clínico; descompressão no adulto no 4º ou 5º espaço intercostal.",
-    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 46 — Pneumotórax não traumático."
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 46 — Pneumotórax não traumático.",
+    "Mazzolai L et al. 2024 ESC Guidelines for the management of peripheral arterial and aortic diseases (Eur Heart J 2024;45(36):3538-3700; PMID 39210722): síndrome aórtica aguda — algoritmo com ADD-RS, D-dímero, radiografia e ultrassom (ADD-RS ≥ 2 = alto risco, angio-TC direta; < 2 = D-dímero) (I B); angio-TC sincronizada ao ECG do pescoço à pelve como 1º exame (I C); ecocardiograma transesofágico no instável (I B); tratamento anti-impulso imediato com PAS < 120 mmHg e FC ≤ 60 bpm (I B); betabloqueador EV (labetalol ou esmolol) como 1ª linha, vasodilatador depois se preciso (I B); contraindicação a betabloqueador: diltiazem ou verapamil (IIa B); PA invasiva, ECG contínuo e UTI (I B); analgesia adequada (I C); betabloqueador oral após 24 h se estável; tipo A: cirurgia de emergência; punção pericárdica de emergência só como medida temporária na parada por tamponamento. https://doi.org/10.1093/eurheartj/ehae179"
   ] },
 { id: "febre", nome: "Febre (adulto)", cor: "lime",
   alarme: [
@@ -256,8 +270,8 @@ const QUEIXAS = [
     { t: "Dengue com choque ou gravidade: taquicardia com extremidades frias, pulso fraco, enchimento capilar > 2 s, PA diferencial ≤ 20 mmHg (ex.: 100/80), hipotensão, oligúria, desconforto respiratório (derrame), sangramento grave ou confusão", acao: "Dengue grave (grupo D): expansão volêmica imediata na sala de emergência e vaga de UTI. Ver dengue." },
     { t: "Suspeita de dengue em gestante, idoso, com comorbidade ou risco social, ou com prova do laço positiva ou petéquias", acao: "Dengue grupo B: hemograma obrigatório e observação com hidratação oral até o resultado; não liberar antes." },
     { t: "Febre em quem faz quimioterapia, tem HIV avançado, transplante, asplenia ou usa imunossupressor", acao: "Quimioterapia recente: neutropenia febril até prova em contrário; hemograma e hemoculturas já e antibiótico empírico em até 1 h da triagem, sem esperar o hemograma; alta só se baixo risco pelo MASCC. Asplenia: risco de sepse fulminante; com qualquer sinal sistêmico, antibiótico em até 1 h (ver sepse). Transplante, HIV avançado ou imunossupressor: limiar baixo para exames, hemoculturas e internação; MASCC não se aplica." },
-    { t: "Febre súbita com cefaleia e mialgia após carrapato, capivara, cavalo ou mata (até 15 dias antes), ou manchas que viram petéquias", acao: "Febre maculosa: doxiciclina já na suspeita, sem esperar exame (não ter visto o carrapato não exclui). Gravidade (confusão, convulsão, hipotensão, oligúria, falta de ar, sangramento, icterícia, edema importante, exantema que vira petéquia, púrpura ou equimose) ou vômitos: doxiciclina EV e internar. Notificar." },
-    { t: "Febre com icterícia, sangramento, urina escassa, falta de ar ou escarro com sangue, sobretudo após enchente, lama, esgoto ou ratos (até 30 dias antes) ou em área de febre amarela sem vacina", acao: "Leptospirose (ou febre amarela) com sinal de alerta: internar; hemograma, função renal e hepática, potássio, CPK e radiografia de tórax; na suspeita de leptospirose, antibiótico já; notificar. Exposição de risco sem sinal de alerta: tratar leptospirose em casa e reavaliar em 24 a 72 h." },
+    { t: "Febre súbita com cefaleia e mialgia após carrapato, capivara, cavalo ou mata (até 15 dias antes), ou manchas que viram petéquias", acao: "Febre maculosa: doxiciclina já na suspeita, sem esperar exame (não ter visto o carrapato não exclui). Gravidade (confusão, convulsão, hipotensão, oligúria, falta de ar, sangramento, icterícia, edema importante, exantema que vira petéquia, púrpura ou equimose) ou vômitos: doxiciclina EV e internar. Notificar. Ver Febre maculosa." },
+    { t: "Febre com icterícia, sangramento, urina escassa, falta de ar ou escarro com sangue, sobretudo após enchente, lama, esgoto ou ratos (até 30 dias antes) ou em área de febre amarela sem vacina", acao: "Leptospirose (ou febre amarela) com sinal de alerta: internar; hemograma, função renal e hepática, potássio, CPK e radiografia de tórax; na suspeita de leptospirose, antibiótico já; notificar. Exposição de risco sem sinal de alerta: tratar leptospirose em casa e reavaliar em 24 a 72 h. Ver Leptospirose." },
     { t: "Esteve em área de malária (região amazônica ou exterior) de 8 a 30 dias antes da febre", acao: "Gota espessa ou teste rápido no mesmo dia; confusão, icterícia, sangramento, hipoglicemia ou dispneia = malária grave, internar." },
     { t: "Febre com dispneia, desconforto respiratório ou SpO2 < 95% em ar ambiente", acao: "SRAG: internar; oseltamivir já na suspeita, sem esperar exame (colher swab antes, se não atrasar); radiografia; notificar. Ver pneumonia e síndrome gripal." }
   ],
@@ -272,13 +286,18 @@ const QUEIXAS = [
   ],
   caminhos: [
     { rot: "Dengue: febre de 2 a 7 dias com 2 ou mais de náusea, vômitos, exantema, mialgia, artralgia, cefaleia, dor retro-orbital, petéquias, prova do laço positiva ou leucopenia; classificar de A a D, sem AINE nem AAS", conduta: "dengue" },
-    { rot: "Chikungunya: febre de até 7 dias com dor articular intensa de início súbito; sem AINE nem corticoide na fase aguda; grupo de risco (gestante, mais de 65 anos, comorbidade) em observação e reavaliação diária" },
+    { rot: "Chikungunya: febre de até 7 dias com dor articular intensa de início súbito; sem AINE nem corticoide na fase aguda; grupo de risco (gestante, mais de 65 anos, comorbidade) em observação e reavaliação diária", conduta: "chikungunya" },
+    { rot: "Febre súbita com cefaleia e mialgia após carrapato, capivara, cavalo, cão ou mata nos últimos 15 dias (febre maculosa)", conduta: "febre-maculosa" },
+    { rot: "Febre com mialgia nas panturrilhas, olhos vermelhos ou icterícia após enchente, lama, esgoto ou ratos nos últimos 30 dias (leptospirose)", conduta: "leptospirose" },
+    { rot: "Febre com bolhas pelo corpo em fases diferentes, com coceira (varicela no adulto)", conduta: "varicela" },
     { rot: "Sepse", conduta: "sepse" },
     { rot: "Meningite: febre com rigidez de nuca, ou com 2 de cefaleia intensa, vômitos, confusão, fotofobia, torpor ou convulsão", conduta: "meningite" },
     { rot: "Síndrome gripal", conduta: "gripe" },
+    { rot: "Síndrome gripal com teste positivo para covid-19", conduta: "covid" },
     { rot: "Pneumonia", conduta: "pac" },
     { rot: "Infecção urinária ou pielonefrite", conduta: "itu" },
-    { rot: "Dor de garganta com placas", conduta: "amigdalite" }
+    { rot: "Dor de garganta com placas", conduta: "amigdalite" },
+    { rot: "Mulher amamentando com febre e mama dolorosa, vermelha e endurecida (mastite)", conduta: "mastite" }
   ],
   escores: ["NEWS2 (triagem de sepse; não usar qSOFA isoladamente)", "Classificação de risco da dengue (grupos A, B, C e D)", "MASCC (neutropenia febril)"],
   fontes: [
@@ -297,13 +316,17 @@ const QUEIXAS = [
     "Ministério da Saúde. Leptospirose: diagnóstico e manejo clínico, 2014.",
     "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023 (síndrome respiratória aguda grave: dispneia, desconforto respiratório ou SpO2 < 95%).",
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 16 — Febre e síndromes hipertérmicas e cap. 50 — Dengue; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 20 — Fever e cap. 215 — Arthropod-Borne and Rodent-Borne Virus Infections.",
-    "Ministério da Saúde. Nota Técnica Conjunta nº 154/2024-DPNI/SVSA/MS: definição de caso suspeito de meningite e de contato próximo."
+    "Ministério da Saúde. Nota Técnica Conjunta nº 154/2024-DPNI/SVSA/MS: definição de caso suspeito de meningite e de contato próximo.",
+    "Ministério da Saúde. Chikungunya: manejo clínico, 2ª ed., Brasília, 2024: caso suspeito (febre e artralgia ou artrite, área de transmissão até 2 semanas antes); grupos de risco (gestantes, > 65 anos, < 2 anos, comorbidades); sinais de gravidade e critérios de internação (Fluxograma 1); fase aguda (até 14 dias) com analgésico em dose fixa, nunca 'se necessário', sem AINE (sangramento, rim, dengue); dipirona 1 g 6/6h ou paracetamol 500 mg 4/4h (EVA 1–3); dipirona 1 g 6/6h + paracetamol 15 mg/kg (máx. 1 g) 6/6h intercalados a cada 3 h (EVA 4–6); reavaliar após 7 dias; dipirona + paracetamol intercalados; opioide fraco (tramadol 50–100 mg 6/6h ou codeína 30 mg 6/6h) na dor intensa; fase pós-aguda (15–90 dias): AINE na dor não inflamatória; prednisona 0,5 mg/kg/dia (máx. 40 mg) na artrite ou tenossinovite após 14 dias, no texto por 4 semanas e desmame de 1/4 da dose a cada 7 dias (8 semanas no total); no Fluxograma 2, até a resolução, no máximo 3 semanas, e desmame; RT-PCR até o 5º dia, sorologia a partir do 6º dia. https://bvsms.saude.gov.br/bvs/publicacoes/chikungunya_manejo_clinico_2ed.pdf",
+    "Ministério da Saúde. Manual dos Centros de Referência para Imunobiológicos Especiais, 6ª ed., 2023, cap. 18 (vacina varicela e IGHAVZ): vacina pós-exposição em suscetível imunocompetente a partir de 9 meses até 120 h (5 dias) do contato; IGHAVZ 125 unidades/10 kg (mín. 125, máx. 625 unidades) IM em até 96 h, se suscetível + contato significativo (domiciliar ou hospitalar ≥ 1 h) + risco de varicela grave (imunodeprimido, gestante, recém-nascido nas situações listadas); transmissão de 2 dias antes do exantema até todas as lesões em crosta; vacina contraindicada na gestação e em imunodeprimidos (salvo indicações). https://www.gov.br/saude/pt-br/vacinacao/arquivos/manual-dos-centros-de-referencia-para-imunobiologicos-especiais_6a-edicao_2023.pdf",
+    "Ministério da Saúde. Nota Técnica nº 11/2024-CGZV/DEDT/SVSA/MS (doxiciclina injetável na febre maculosa): adulto 100 mg de 12/12h VO ou EV; criança < 45 kg 2,2 mg/kg de 12/12h; manter até 3 dias após o fim da febre (rotina de 7 dias); iniciar na suspeita, idealmente nos primeiros 5 dias; EV se disfunção orgânica, plaquetopenia, icterícia, hemorragia, vômitos ou diarreia, ou piora com a via oral; tratamento ambulatorial com reavaliação diária. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/f/febre-maculosa/notas-tecnicas/nota-tecnica-no-11-2024-cgzv-dedt-svsa-ms",
+    "Mitchell KB, Johnson HM, Rodríguez JM et al. Academy of Breastfeeding Medicine Clinical Protocol #36: The Mastitis Spectrum, Revised 2022 (Breastfeed Med 2022;17(5):360-376; PMID 35576513): manter a amamentação sob demanda sem extrair a mais; gelo de hora em hora e AINE (ibuprofeno 800 mg 8/8h) e paracetamol (1 g 8/8h); evitar massagem profunda e calor; antibiótico só na mastite bacteriana (celulite que piora, sintomas sistêmicos por mais de 24 h); dicloxacilina ou flucloxacilina 500 mg 4x/dia ou cefalexina 500 mg 4x/dia por 10–14 dias; 2ª linha clindamicina 300 mg 4x/dia ou sulfametoxazol-trimetoprima (evitar com bebê < 30 dias, prematuro, ictérico ou G6PD); sem melhora em 48 h: cultura do leite (MRSA); abscesso: USG, aspiração ou dreno, seguir amamentando; internar só se sepse ou sem tolerar via oral. https://doi.org/10.1089/bfm.2022.29207.kbm"
   ] },
 { id: "tosse-dispneia", nome: "Tosse e dispneia", cor: "sky",
   alarme: [
     { t: "SpO2 < 90%, FR > 30, uso de musculatura acessória, fala só em palavras, cianose, confusão ou sonolência", acao: "Insuficiência respiratória: sala de emergência, oxigênio, monitor e gasometria; preparar ventilação não invasiva ou intubação." },
     { t: "Asma sem conseguir falar, beber ou deitar, FR > 30, uso de musculatura acessória, SpO2 < 92% em ar ambiente, pico de fluxo < 50% ou murmúrio muito diminuído; ou sonolência, confusão, cianose ou tórax silencioso", acao: "Crise grave: tratar já na sala de emergência (ver asma); oxigênio só se SpO2 < 92%, alvo 92–95%. Sonolência, confusão, cianose ou tórax silencioso: ameaça à vida, chamar UTI ou anestesia. Com anafilaxia: adrenalina IM primeiro." },
-    { t: "Pneumonia com confusão, FR ≥ 30, PAS < 90 ou PAD ≤ 60, acometimento multilobar ou hipoxemia", acao: "Sem ureia: CRB-65 0: baixo risco, tratamento em casa; CRB-65 1–2: risco intermediário, observação ou internação por julgamento clínico; CRB-65 3–4: alto risco, internação urgente e avaliar UTI. Com ureia: CURB-65 0–1: baixo risco, tratamento em casa; CURB-65 2: risco intermediário, observação ou internação curta; CURB-65 3–5: alto risco, internar e avaliar UTI. SpO2 < 92% em ar ambiente também pesa para ficar. Choque com vasopressor ou necessidade de ventilação: UTI. Ver pneumonia." },
+    { t: "Pneumonia com confusão, FR ≥ 30, PAS < 90 ou PAD ≤ 60, acometimento multilobar ou hipoxemia", acao: "Sem ureia: CRB-65 0: baixo risco, tratamento em casa; CRB-65 1: risco intermediário, casa com retorno ou observação, por julgamento clínico; CRB-65 2: risco intermediário, encaminhar ao hospital; CRB-65 3–4: alto risco, hospital e avaliar UTI. Com ureia: CURB-65 0–1: baixo risco, tratamento em casa; CURB-65 2: risco intermediário, observação ou internação curta; CURB-65 3–5: alto risco, internar e avaliar UTI. SpO2 < 92% em ar ambiente também pesa para ficar. Choque com vasopressor ou necessidade de ventilação: UTI. Ver pneumonia." },
     { t: "DPOC com piora da falta de ar e SpO2 baixa, sonolência ou confusão", acao: "Exacerbação grave com possível retenção de CO2: oxigênio controlado (alvo 88–92%), gasometria; ventilação não invasiva se acidose respiratória. Ver DPOC." },
     { t: "Ortopneia, estertores, edema de pernas, jugulares ingurgitadas ou PA muito alta", acao: "Insuficiência cardíaca descompensada ou edema agudo de pulmão: sentar, oxigênio, ECG e troponina (procurar SCA ou arritmia como gatilho). Ver edema agudo de pulmão." },
     { t: "Dispneia súbita com dor pleurítica, taquicardia, hemoptise ou fator de risco para trombose", acao: "Suspeita de TEP: Wells ou Genebra, PERC se baixa probabilidade, D-dímero ou angiotomografia. Ver TEP." },
@@ -326,6 +349,7 @@ const QUEIXAS = [
     { rot: "Crise de asma", conduta: "asma" },
     { rot: "DPOC exacerbada", conduta: "dpoc" },
     { rot: "Síndrome gripal sem falta de ar e com SpO2 ≥ 95%: febre súbita com tosse ou dor de garganta e dor de cabeça, no corpo ou nas juntas. Com dispneia, desconforto ou SpO2 ≤ 94%: é SRAG, internar e oseltamivir já (ver febre)", conduta: "gripe" },
+    { rot: "Covid-19 confirmada ou provável: SpO2 ≥ 95% e sem desconforto, tratar em casa (antiviral se 65 anos ou mais ou imunossuprimido); SpO2 ≤ 94% ou dispneia, internar", conduta: "covid" },
     { rot: "Tosse aguda, subaguda ou crônica, coqueluche", conduta: "tosse" },
     { rot: "Insuficiência cardíaca ou edema agudo de pulmão", conduta: "eap" },
     { rot: "TEP", conduta: "tep" },
@@ -352,7 +376,9 @@ const QUEIXAS = [
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 18 — Dispneia, cap. 22 — Hemoptise, cap. 41 — Asma e cap. 43 — PAC; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 39 — Dyspnea e cap. 40 — Cough.",
     "American College of Surgeons. ATLS — Advanced Trauma Life Support, 10ª ed., 2018, cap. 4 (Thoracic trauma): pneumotórax hipertensivo é diagnóstico clínico; descompressão no adulto no 4º ou 5º espaço intercostal.",
     "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 46 — Pneumotórax não traumático.",
-    "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257): respiração de Kussmaul na cetoacidose."
+    "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (Diabetes Care 2024;47:1257): respiração de Kussmaul na cetoacidose.",
+    "Ministério da Saúde. Nota Técnica Conjunta nº 23/2024-SVSA/SECTICS/SAPS/MS: nirmatrelvir/ritonavir no SUS para covid-19 confirmada (RT-PCR ou teste rápido de antígeno), leve a moderada, sem necessidade de oxigênio, até o 5º dia de sintomas, em imunocomprometidos ≥ 18 anos ou pessoas ≥ 65 anos, independentemente da vacinação; receituário comum em 2 vias, sem formulário. Texto primário: https://saude.rs.gov.br/upload/arquivos/202410/18145700-nota-tecnica-conjunta-23-2024-nirmatrelvir-associado-ao-ritonavir.pdf . Reproduzida na Nota Informativa nº 02/2026-SES-RJ (contraindicado na insuficiência renal grave, peso < 40 kg e gestação). https://www.rj.gov.br/saude/sites/default/files/arquivo_pagina_basica/NOTA-INFORMATIVA-02-2026-COOGAF-SUPAFIE-SAS-SES-RJ-Orientacoes-gerais-sobre-o-medicamento-NirmatrelvirRitonavir-NMVr-no-tratamento-da-covid-19.pdf",
+    "Ministério da Saúde. Nota Técnica nº 5/2026-CGCOVID/DEDT/SVSA/MS (20/03/2026): isolamento na síndrome gripal de 5 dias do início dos sintomas, com 24 h sem febre (sem antitérmico) e melhora respiratória; imunocomprometido 10 dias (48 h sem febre); SRAG por SARS-CoV-2 20 dias; máscara e evitar pessoas de risco até o 10º dia; contatos sem quarentena, máscara por 10 dias. Substitui o Guia de Vigilância Integrada 2024 nesse ponto. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/c/covid-19/notas-tecnicas/2026/nota-tecnica-no-5-2026-cgcovid-dedt-svsa-ms"
   ] },
 { id: "lombalgia", nome: "Lombalgia", cor: "orange",
   alarme: [
@@ -379,6 +405,7 @@ const QUEIXAS = [
     { rot: "Dor em cólica no flanco irradiando para a virilha, com ou sem hematúria", conduta: "colica" },
     { rot: "Febre com disúria, dor lombar e Giordano positivo (pielonefrite)", conduta: "itu" },
     { rot: "Dor em queimação, em faixa, unilateral, com ou sem vesículas", conduta: "zoster" },
+    { rot: "Dor lombar ou dorsal súbita e intensa, rasgando, com alteração de pulso, PA ou neurológica (dissecção de aorta)", conduta: "disseccao-aorta" },
     { rot: "Dor inflamatória crônica (4 de 5 critérios ASAS) sem sinal de alarme: analgesia e encaminhamento ambulatorial à reumatologia" },
     { rot: "Sem melhora após 6 semanas de tratamento e candidato a cirurgia ou infiltração: RM eletiva e encaminhamento à coluna" },
     { rot: "Retenção urinária: afastar cauda equina antes de sondar e liberar", conduta: "retencao-urinaria" }
@@ -401,7 +428,8 @@ const QUEIXAS = [
     "Choosing Wisely Canada, Emergency Medicine (atualizado em setembro de 2024): não pedir imagem lombossacral na lombalgia não traumática sem sinais de alarme. https://choosingwiselycanada.org/recommendation/emergency-medicine/",
     "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 28 — Lombalgia; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 18 — Low Back Pain.",
     "GIRFT/NHS England. National Suspected Cauda Equina Syndrome (CES) Pathway, fevereiro de 2023, atualizado até março de 2026: sintomas novos ou em piora há 14 dias ou menos; RM de emergência o mais rápido possível e no máximo em até 4 h do pedido; ultrassom de bexiga só como complemento (resíduo > 200 mL aumenta a chance, < 200 mL não exclui). https://gettingitrightfirsttime.co.uk/wp-content/uploads/2026/04/National-Suspected-Cauda-Equina-Pathway-March-2026.pdf",
-    "Serlin DC, Heidelbaugh JJ, Stoffel JT. Urinary Retention in Adults: Evaluation and Initial Management (Am Fam Physician 2018;98(8):496-503; PMID 30277739): causas (HPB, estenose, prostatite, fármacos anticolinérgicos, antidepressivos, anti-histamínicos, simpaticomiméticos, opioides; neurológicas; na mulher, prolapso, massa pélvica e pós-parto), drenagem completa, alfabloqueador antes da retirada da sonda e prova de micção após 3 a 7 dias; encaminhar se falha da prova ou resíduo > 300 mL. https://www.aafp.org/pubs/afp/issues/2018/1015/p496.html"
+    "Serlin DC, Heidelbaugh JJ, Stoffel JT. Urinary Retention in Adults: Evaluation and Initial Management (Am Fam Physician 2018;98(8):496-503; PMID 30277739): causas (HPB, estenose, prostatite, fármacos anticolinérgicos, antidepressivos, anti-histamínicos, simpaticomiméticos, opioides; neurológicas; na mulher, prolapso, massa pélvica e pós-parto), drenagem completa, alfabloqueador antes da retirada da sonda e prova de micção após 3 a 7 dias; encaminhar se falha da prova ou resíduo > 300 mL. https://www.aafp.org/pubs/afp/issues/2018/1015/p496.html",
+    "Mazzolai L et al. 2024 ESC Guidelines for the management of peripheral arterial and aortic diseases (Eur Heart J 2024;45(36):3538-3700; PMID 39210722): síndrome aórtica aguda — algoritmo com ADD-RS, D-dímero, radiografia e ultrassom (ADD-RS ≥ 2 = alto risco, angio-TC direta; < 2 = D-dímero) (I B); angio-TC sincronizada ao ECG do pescoço à pelve como 1º exame (I C); ecocardiograma transesofágico no instável (I B); tratamento anti-impulso imediato com PAS < 120 mmHg e FC ≤ 60 bpm (I B); betabloqueador EV (labetalol ou esmolol) como 1ª linha, vasodilatador depois se preciso (I B); contraindicação a betabloqueador: diltiazem ou verapamil (IIa B); PA invasiva, ECG contínuo e UTI (I B); analgesia adequada (I C); betabloqueador oral após 24 h se estável; tipo A: cirurgia de emergência; punção pericárdica de emergência só como medida temporária na parada por tamponamento. https://doi.org/10.1093/eurheartj/ehae179"
   ] },
 { id: "dor-musculoesqueletica", nome: "Dor musculoesquelética", cor: "teal",
   alarme: [
@@ -430,15 +458,18 @@ const QUEIXAS = [
   ],
   caminhos: [
     { rot: "Entorse de tornozelo: aplicar as regras de Ottawa antes do RX", conduta: "entorse" },
+    { rot: "Trauma com suspeita de fratura (deformidade, dor óssea à palpação, não consegue usar o membro): RX e imobilização", conduta: "fratura-imobilizacao" },
     { rot: "Crise de gota: monoartrite súbita do hálux, tornozelo ou joelho, crises prévias; na dúvida com infecção, punção", conduta: "gota" },
+    { rot: "Dor em várias articulações, intensa e de início súbito, com febre, em área de arbovirose (chikungunya)", conduta: "chikungunya" },
     { rot: "Pele vermelha, quente e dolorosa (erisipela ou celulite)", conduta: "erisipela" },
     { rot: "Ferimento, corte ou mordedura", conduta: "ferida" },
     { rot: "Ferimento com risco de tétano", conduta: "tetano" },
     { rot: "Trauma com batida na cabeça", conduta: "tce" },
     { rot: "Cervicalgia, torcicolo ou contratura muscular sem trauma importante e sem sinal de alarme (dor mecânica)", conduta: "contratura" },
+    { rot: "Dor em tendão ou bolsa por esforço repetido: ombro, cotovelo, punho (De Quervain), bursite do cotovelo ou do joelho", conduta: "tendinite-bursite" },
     { rot: "Perna com edema e dispneia ou dor torácica", conduta: "tep" },
     { rot: "Perna ou panturrilha inchada e dolorosa de um lado (TVP)", conduta: "tvp" },
-    { rot: "Dor aguda no ombro: RX como exame inicial; sem fratura, tratamento sintomático e reavaliação ambulatorial" }
+    { rot: "Dor aguda no ombro: RX se trauma; sem fratura, ver Tendinite e bursite (manguito rotador)", conduta: "tendinite-bursite" }
   ],
   escores: ["Regras de Ottawa (tornozelo e pé; joelho)", "Regra canadense de coluna cervical (Canadian C-spine) e NEXUS", "Escore de Wells para TVP (2 níveis)"],
   fontes: [
@@ -464,7 +495,41 @@ const QUEIXAS = [
     "Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain (Circulation 2021;144(22):e368-e454; PMID 34709879): dor no ombro, braço, pescoço ou mandíbula como equivalente; ECG em até 10 min. https://doi.org/10.1161/CIR.0000000000001029",
     "Richette P et al. 2018 updated EULAR evidence-based recommendations for the diagnosis of gout (Ann Rheum Dis 2020;79(1):31-38; PMID 31167758). https://doi.org/10.1136/annrheumdis-2019-215315",
     "Choosing Wisely Canada, Emergency Medicine (atualizado em setembro de 2024): sem RX de tornozelo ou pé com Ottawa negativa; sem RX cervical com regra canadense negativa. https://choosingwiselycanada.org/recommendation/emergency-medicine/",
-    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 64 — Trauma cervical, cap. 68 — Fratura exposta e cap. 98 — Monoartrite aguda; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 19 — Neck Pain, cap. 135 — Infectious Arthritis e cap. 382 — Approach to Articular and Musculoskeletal Disorders."
+    "Conferido em: Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 64 — Trauma cervical, cap. 68 — Fratura exposta e cap. 98 — Monoartrite aguda; Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 19 — Neck Pain, cap. 135 — Infectious Arthritis e cap. 382 — Approach to Articular and Musculoskeletal Disorders.",
+    "Ministério da Saúde. Chikungunya: manejo clínico, 2ª ed., Brasília, 2024: caso suspeito (febre e artralgia ou artrite, área de transmissão até 2 semanas antes); grupos de risco (gestantes, > 65 anos, < 2 anos, comorbidades); sinais de gravidade e critérios de internação (Fluxograma 1); fase aguda (até 14 dias) com analgésico em dose fixa, nunca 'se necessário', sem AINE (sangramento, rim, dengue); dipirona 1 g 6/6h ou paracetamol 500 mg 4/4h (EVA 1–3); dipirona 1 g 6/6h + paracetamol 15 mg/kg (máx. 1 g) 6/6h intercalados a cada 3 h (EVA 4–6); reavaliar após 7 dias; dipirona + paracetamol intercalados; opioide fraco (tramadol 50–100 mg 6/6h ou codeína 30 mg 6/6h) na dor intensa; fase pós-aguda (15–90 dias): AINE na dor não inflamatória; prednisona 0,5 mg/kg/dia (máx. 40 mg) na artrite ou tenossinovite após 14 dias, no texto por 4 semanas e desmame de 1/4 da dose a cada 7 dias (8 semanas no total); no Fluxograma 2, até a resolução, no máximo 3 semanas, e desmame; RT-PCR até o 5º dia, sorologia a partir do 6º dia. https://bvsms.saude.gov.br/bvs/publicacoes/chikungunya_manejo_clinico_2ed.pdf",
+    "Stiell IG et al. Prospective validation of a decision rule for the use of radiography in acute knee injuries (JAMA 1996;275(8):611-615; PMID 8594242): regra de Ottawa para joelho. https://doi.org/10.1001/jama.1996.03530320035031",
+    "NICE NG38. Fractures (non-complex): assessment and management, 2016: suspeita de fratura de escafoide com RX normal — imobilizar e fazer RM (TC ou novo RX se RM indisponível); analgesia adequada; encaminhamento ortopédico. https://www.nice.org.uk/guidance/ng38",
+    "Baumbach SF, Lobo CM, Badyine I, Mutschler W, Kanz KG. Prepatellar and olecranon bursitis: literature review and development of a treatment algorithm (Arch Orthop Trauma Surg 2014;134(3):359-370; PMID 24305696): separar séptica de não séptica pela clínica, aspirado e exames; séptica: antibiótico (ambulatorial oral nos casos leves); cirurgia só nos graves, refratários ou recorrentes; não séptica: conservador (repouso, compressão, AINE). https://doi.org/10.1007/s00402-013-1882-7"
+  ] },
+{ id: "saude-mental", nome: "Saúde mental e violência", cor: "pink",
+  alarme: [
+    { t: "Tentativa de suicídio, ideação com plano ou intenção, ou risco alto na triagem", acao: "Não liberar: local visível, acompanhante o tempo todo, retirar objetos perigosos; avaliar o risco e acionar a psiquiatria (ver Ideação ou tentativa de suicídio). Tentativa: notificação imediata." },
+    { t: "Agitação com risco para si ou para outros", acao: "Abordagem verbal e ambiente seguro; descartar hipoglicemia, hipóxia e intoxicação; sedação ou contenção conforme a conduta Agitação psicomotora." },
+    { t: "Violência sexual", acao: "Acolher em sala reservada; profilaxias com prazo (contracepção de emergência, PEP do HIV, IST e hepatite B), notificação e comunicações legais (ver Violência sexual)." },
+    { t: "Crise de ansiedade com dor no peito, falta de ar, palpitação ou síncope", acao: "Antes de atribuir ao pânico: ECG, glicemia e SpO2; pensar em SCA, TEP, arritmia, hipoglicemia e tireotoxicose (ver Crise de ansiedade)." }
+  ],
+  perguntar: [
+    "Pensamentos de morte, plano, tentativa recente e acesso a meios letais (perguntar diretamente)",
+    "Uso de álcool, drogas ou estimulantes; suspensão recente de álcool ou benzodiazepínico",
+    "Violência sofrida: quando aconteceu (prazo das profilaxias), se está em local seguro",
+    "Glicemia capilar, SpO2, sinais vitais e sinais de intoxicação ou trauma"
+  ],
+  caminhos: [
+    { rot: "Ideação ou tentativa de suicídio, autolesão", conduta: "ideacao-suicida" },
+    { rot: "Violência sexual (atendimento na porta)", conduta: "violencia-sexual" },
+    { rot: "Agitação psicomotora", conduta: "agitacao" },
+    { rot: "Crise de ansiedade ou de pânico, após afastar causa orgânica", conduta: "ansiedade" }
+  ],
+  escores: [],
+  fontes: [
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 60 — Emergências neuropsiquiátricas, seção Risco de suicídio (nenhuma escala prevê com confiabilidade; fatores de risco e proteção, tabela 1; critérios de internação, tabela 2: ideação ou planejamento, transtorno grave, baixo suporte, tentativa violenta ou premeditada, homem > 45 anos, impulsividade, causa orgânica; observação com reavaliações; alta com responsável, controle dos remédios e afastamento de meios).",
+    "Ministério da Saúde. Portaria de Consolidação GM/MS nº 4, de 28/9/2017, anexo 1 do anexo V (Lista Nacional de Notificação Compulsória), na redação da Portaria GM/MS nº 5.201, de 15/8/2024: violência sexual e tentativa de suicídio de notificação imediata (até 24 h) à vigilância municipal; demais violências, semanal. https://bvsms.saude.gov.br/bvs/saudelegis/gm/2017/prc0004_03_10_2017.html",
+    "Brasil. Ministério da Saúde. Prevenção e tratamento dos agravos resultantes da violência sexual contra mulheres e adolescentes — Norma Técnica, 3ª ed. atualizada e ampliada, 2012: contracepção de emergência, profilaxias, interrupção da gestação prevista em lei sem exigência de boletim de ocorrência. https://bvsms.saude.gov.br/bvs/publicacoes/prevencao_agravo_violencia_sexual_mulheres_3ed.pdf",
+    "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Profilaxia Pós-Exposição (PEP) de Risco à Infecção pelo HIV, IST e Hepatites Virais, 2024 (Portaria SECTICS/MS nº 14, de 8/4/2024): TDF/3TC + DTG por 28 dias, até 72 h; violência sexual: levonorgestrel 1,5 mg até 5 dias; penicilina benzatina 2,4 milhões de unidades IM + ceftriaxona 500 mg IM + azitromicina 1 g VO; metronidazol 2 g VO (pode ser adiado; não no 1º trimestre); hepatite B: vacina e imunoglobulina; testagem em 30 e 90 dias. https://www.gov.br/aids/pt-br/central-de-conteudo/pcdts/pcdt-pep",
+    "Baldaçara L et al. Brazilian guidelines for the management of psychomotor agitation. Part 1. Non-pharmacological approach — ABP (Braz J Psychiatry 2019;41:153). https://doi.org/10.1590/1516-4446-2018-0163",
+    "Baldaçara L et al. Brazilian guidelines for the management of psychomotor agitation. Part 2. Pharmacological approach — ABP (Braz J Psychiatry 2019;41:324). https://doi.org/10.1590/1516-4446-2018-0177",
+    "NICE CG113. Generalised anxiety disorder and panic disorder in adults: management, 2011 (atualizada em 15/06/2020): 1.3.6 — crise de pânico no pronto-socorro: perguntar se já trata, só os exames mínimos para excluir causa física aguda, em geral sem internação, encaminhar à atenção primária com informação escrita sobre a crise e fontes de apoio; 1.3.20 — benzodiazepínico tem pior desfecho a longo prazo e não deve ser prescrito no transtorno de pânico; 1.2.26 — na ansiedade generalizada, só como medida curta na crise. https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+    "Katon WJ. Clinical practice: panic disorder (N Engl J Med 2006;354:2360-7) — diagnóstico diferencial clínico (doença cardíaca e pulmonar, arritmia, hipertireoidismo, hipoglicemia, feocromocitoma, abstinência e estimulantes). https://doi.org/10.1056/NEJMcp052466"
   ] },
 { id: "dor-de-dente", nome: "Dor de dente / Face inchada", cor: "amber",
   alarme: [

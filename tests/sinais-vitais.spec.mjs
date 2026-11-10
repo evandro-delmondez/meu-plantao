@@ -111,7 +111,7 @@ test("texto único do CRB-65/CURB-65 na conduta, no escore e na queixa", async (
   const erros = await abrir(page);
   await aba(page, "prescricoes"); await conduta(page, "pac");
   const r = { unid: await page.locator("#detail .sec.unidade textarea").inputValue() };
-  for (const f of ["CRB-65 0: baixo risco, tratamento em casa", "CRB-65 1–2: risco intermediário, observação ou internação por julgamento clínico", "CRB-65 3–4: alto risco, internação urgente e avaliar UTI", "CURB-65 0–1: baixo risco, tratamento em casa", "CURB-65 2: risco intermediário, observação ou internação curta", "CURB-65 3–5: alto risco, internar e avaliar UTI"]) {
+  for (const f of ["CRB-65 0: baixo risco, tratamento em casa", "CRB-65 1: risco intermediário, casa com retorno ou observação, por julgamento clínico", "CRB-65 2: risco intermediário, encaminhar ao hospital", "CRB-65 3–4: alto risco, hospital e avaliar UTI", "CURB-65 0–1: baixo risco, tratamento em casa", "CURB-65 2: risco intermediário, observação ou internação curta", "CURB-65 3–5: alto risco, internar e avaliar UTI"]) {
     expect(r.unid, f).toContain(f);
   }
   // escore da aba Cálculos usa as mesmas faixas
@@ -119,7 +119,8 @@ test("texto único do CRB-65/CURB-65 na conduta, no escore e na queixa", async (
   await page.locator('#scList [data-sc="crb"]').click();
   await page.locator('#scForm input[data-b="1"]').check();
   await page.locator('#scForm input[data-b="3"]').check();
-  await expect(page.locator("#scRes")).toContainText("1–2: risco intermediário");
+  await expect(page.locator("#scRes")).toContainText("2: risco intermediário");
+  await expect(page.locator("#scRes")).toContainText("encaminhar ao hospital");
   expect(erros).toEqual([]);
 });
 
@@ -128,7 +129,7 @@ test("queixa tosse e dispneia usa as mesmas faixas", async () => {
   const q = fs.readFileSync(new URL("../src/data/queixas.js", import.meta.url), "utf8");
   const x = fs.readFileSync(new URL("../src/data/extras.js", import.meta.url), "utf8");
   const curtos = [...x.matchAll(/curto:"([^"]+)"/g)].map((m) => m[1]);
-  expect(curtos.length).toBe(6);
+  expect(curtos.length).toBe(7);
   for (const c of curtos) expect(q, c).toContain(c);
 });
 

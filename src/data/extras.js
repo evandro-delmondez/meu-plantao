@@ -65,6 +65,23 @@ const ALTA_ITEM={
  "paralisia-facial":["Paralisia periférica (testa acometida), sem outro déficit nem sinal de Ramsay Hunt; corticoide em até 72 h; proteção do olho explicada."],
  meningite:["Não se aplica ao caso suspeito (internar). Para o contato: quimioprofilaxia entregue e sinais de alarme explicados por 10 dias."],
  pneumotorax:["Primário estável observado 6 h (< 2 cm) ou 12 h (≥ 2 cm), sem aumento no RX de controle; reavaliação em 24 h garantida.","Sem hipoxemia, sem dor importante; orientado sobre avião, mergulho e cigarro."],
+ hiponatremia:["Na ≥ 125 mEq/L crônica e sem sintomas, causa definida e corrigível (fármaco suspenso); novo sódio no retorno combinado."],
+ hipocalemia:["K ≥ 3,0 mEq/L, sem sintomas, ECG normal, sem digitálico; magnésio avaliado; reposição oral e novo K no retorno."],
+ "intoxicacao-alcoolica":["Acordado, orientado, sinais vitais e glicemia normais, andando sem ajuda, sem trauma de crânio pendente e com adulto responsável; sem ideação suicida."],
+ "overdose-opioide":["Observação completa (3–4 h após a última naloxona; 24 h se metadona, liberação prolongada ou adesivo); FR e SpO2 normais em ar ambiente; com adulto responsável."],
+ "cirrose-descompensada":["Paracentese sem PBE, sem lesão renal, encefalopatia grau 0–1 com precipitante resolvido; consulta com hepatologia agendada."],
+ covid:["Covid-19 sem sinais de gravidade; SpO2 ≥ 95% em ar ambiente, sem desconforto respiratório; antiviral avaliado; isolamento e sinais de alarme orientados."],
+ varicela:["Varicela no adulto imunocompetente, sem pneumonia, sem sinais neurológicos ou hemorrágicos e sem infecção bacteriana; antiviral iniciado; afastamento e contactantes orientados."],
+ chikungunya:["Chikungunya sem sinais de gravidade; fora do grupo de risco ou com hemograma avaliado; dengue considerada; analgesia em horário fixo; notificação feita."],
+ "febre-maculosa":["Suspeita de febre maculosa sem sinais de gravidade; tolera via oral; doxiciclina iniciada na unidade; reavaliação diária combinada; notificação imediata feita."],
+ leptospirose:["Suspeita de leptospirose sem sinais de alerta (MS 2014, Quadro 1); antibiótico iniciado na unidade; retorno em 24 a 72 h; notificação feita."],
+ "sangramento-gestacao-inicial":["Estável; gestação intrauterina confirmada, ou localização desconhecida com beta-hCG em 48 h agendado e retorno garantido; tipagem Rh conhecida e anti-D feita se indicada; sinais de alarme explicados."],
+ hiperemese:["Tolera líquidos e antiemético oral após a hidratação; sem desidratação nem distúrbio eletrolítico grave; tiamina feita se vômitos prolongados; pré-natal orientado."],
+ mastite:["Sem sepse; tolera via oral; abscesso afastado (clínica ou USG); amamentação mantida e orientada; retorno se sem melhora em 48 h de antibiótico."],
+ "violencia-sexual":["Profilaxias feitas ou prescritas (contracepção, IST, PEP, hepatite B); notificação SINAN e comunicações legais feitas; serviço de referência e SAE/CTA encaminhados; local seguro para onde ir."],
+ "ideacao-suicida":["Sem critério de internação após avaliação (de preferência com psiquiatria); acompanhante responsável presente; plano de segurança escrito; meios letais afastados; consulta no CAPS ou psiquiatria marcada; notificação feita se tentativa."],
+ "fratura-imobilizacao":["Fratura estável, fechada, sem déficit neurovascular; imobilização conferida (pulso, perfusão e sensibilidade após a tala); dor controlada; ortopedia ambulatorial agendada."],
+ "tendinite-bursite":["Bursite séptica afastada ou leve em imunocompetente com antibiótico oral e retorno em 48 h; sem perda importante de força; orientações e encaminhamento ambulatorial."],
  cad:["CAD não tem alta da UPA: internação."],
  tosse:["Sem sinais de alarme (dispneia, hemoptise, perda de peso, febre persistente)."]
 };
@@ -197,8 +214,7 @@ function news2Resposta(total,tem3){
 
 /* ===== Gravidade da pneumonia: texto único para conduta, escore e queixa ===== */
 const PAC_GRAV_SRC=[
- "NICE NG250. Pneumonia: diagnosis and management, 2025 — box 1 (CRB-65: 0 baixo, < 1%; 1–2 intermediário, 1–10%; 3–4 alto, > 10%), rec. 1.2.3 (julgamento clínico; com 2 ou mais, considerar o hospital), box 2 e rec. 1.2.9 (CURB-65: 0–1 baixo; 2 intermediário; 3–5 alto, internar e avaliar UTI). https://www.nice.org.uk/guidance/ng250",
- "British Thoracic Society. Guidelines for the management of community acquired pneumonia in adults, update 2009 (Lim WS et al. Thorax 2009;64 Suppl 3:iii1) — rec. 44–46: CRB-65 0 em casa; 1–2 considerar avaliação hospitalar, sobretudo 2; 3 ou mais, internação urgente.",
+ "NICE NG250. Pneumonia: diagnosis and management, 2025 — box 1 (CRB-65: 0 baixo, < 1%; 1–2 intermediário, 1–10%; 3–4 alto, > 10%), rec. 1.2.3 (2 ou mais: encaminhar ao hospital; 1: tratamento ambulatorial com orientação de retorno, ou hospital-dia ou observação, por julgamento clínico), box 2 e rec. 1.2.9 (CURB-65: 0–1 baixo; 2 intermediário; 3–5 alto, internar e avaliar UTI). https://www.nice.org.uk/guidance/ng250",
  "Corrêa RA et al. Recomendações para o manejo da pneumonia adquirida na comunidade 2018, SBPT (J Bras Pneumol 2018;44:405) — CURB-65 e CRB-65, ureia > 50 mg/dL; internado não grave: betalactâmico (ceftriaxona) + macrolídeo, ou quinolona respiratória.",
  "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia, ATS/IDSA (Am J Respir Crit Care Med 2019;200:e45) — PAC grave: 1 critério maior (choque com vasopressor ou ventilação mecânica) ou 3 menores (FR ≥ 30, PaO2/FiO2 ≤ 250, multilobar, confusão, ureia elevada, leucócitos < 4.000, plaquetas < 100.000, temperatura < 36 °C, hipotensão que exige volume agressivo); internado não grave: ceftriaxona 1–2 g 1x/dia + azitromicina 500 mg 1x/dia ou claritromicina 500 mg 12/12h, ou levofloxacino 750 mg 1x/dia.",
  "Jones BE et al. Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline (Am J Respir Crit Care Med 2026;212:24–44; publicado em jul/2025) — atualiza pontos específicos; não muda o esquema empírico do internado não grave. https://doi.org/10.1164/rccm.202507-1692ST",
@@ -209,8 +225,9 @@ const PAC_JULGAMENTO="O escore não substitui o julgamento clínico: SpO2 < 92% 
 // "curto" é a frase que aparece igual na conduta "pac" e na queixa "tosse-dispneia" (há teste para isso)
 const CRB65_FX=[
  {max:0,nivel:"baixo",curto:"CRB-65 0: baixo risco, tratamento em casa",txt:"0: baixo risco (mortalidade < 1%) — tratamento em casa, com orientação de retorno."},
- {max:2,nivel:"intermediario",curto:"CRB-65 1–2: risco intermediário, observação ou internação por julgamento clínico",txt:"1–2: risco intermediário (mortalidade 1–10%) — considerar observação ou internação por julgamento clínico; com 2, a tendência é ficar."},
- {max:4,nivel:"alto",curto:"CRB-65 3–4: alto risco, internação urgente e avaliar UTI",txt:"3–4: alto risco (mortalidade > 10%) — internação urgente; avaliar UTI se critério de PAC grave da ATS/IDSA 2019 (1 maior: choque com vasopressor ou ventilação mecânica; ou 3 menores)."}
+ {max:1,nivel:"intermediario",curto:"CRB-65 1: risco intermediário, casa com retorno ou observação, por julgamento clínico",txt:"1: risco intermediário (mortalidade 1–10%) — tratamento em casa com orientação de retorno, ou observação, por julgamento clínico (NICE NG250)."},
+ {max:2,nivel:"intermediario",curto:"CRB-65 2: risco intermediário, encaminhar ao hospital",txt:"2: risco intermediário (mortalidade 1–10%) — encaminhar ao hospital (NICE NG250: 2 ou mais)."},
+ {max:4,nivel:"alto",curto:"CRB-65 3–4: alto risco, hospital e avaliar UTI",txt:"3–4: alto risco (mortalidade > 10%) — encaminhar ao hospital; avaliar UTI se critério de PAC grave da ATS/IDSA 2019 (1 maior: choque com vasopressor ou ventilação mecânica; ou 3 menores)."}
 ];
 const CURB65_FX=[
  {max:1,nivel:"baixo",curto:"CURB-65 0–1: baixo risco, tratamento em casa",txt:"0–1: baixo risco (mortalidade < 3%) — tratamento em casa, com orientação de retorno."},
@@ -238,10 +255,10 @@ const SC=[
 {id:"heart",nome:"HEART (dor torácica)",src:"Six AJ et al. Neth Heart J 2008; Backus BE et al. Int J Cardiol 2013.",
  campos:[["h","História",[["Pouco suspeita",0],["Moderadamente suspeita",1],["Muito suspeita",2]]],["e","ECG",[["Normal",0],["Alteração inespecífica da repolarização",1],["Infradesnível de ST significativo",2]]],["a","Idade",[["< 45",0],["45–64",1],["≥ 65",2]]],["r","Fatores de risco",[["Nenhum",0],["1–2 fatores",1],["≥ 3 fatores ou doença aterosclerótica",2]]],["t","Troponina",[["≤ limite normal",0],["1–3× o limite",1],["> 3× o limite",2]]]],
  interp:s=>s<=3?"Baixo risco (0–3): eventos em 6 semanas ~1–2%; candidato a alta com seguimento.":s<=6?"Risco moderado (4–6): observação e investigação.":"Alto risco (7–10): conduta invasiva precoce."},
-{id:"curb",nome:"CURB-65 (pneumonia)",src:"Lim WS et al. Thorax 2003;58:377; NICE NG250, 2025 (box 2 e rec. 1.2.9); Corrêa RA et al. SBPT 2018 (J Bras Pneumol 2018;44:405) — ureia > 50 mg/dL.",
- bin:[["Confusão mental nova",1],["Ureia > 50 mg/dL",1],["FR ≥ 30 irpm",1],["PAS < 90 ou PAD ≤ 60 mmHg",1],["Idade ≥ 65 anos",1]],
+{id:"curb",nome:"CURB-65 (pneumonia)",src:"Lim WS et al. Thorax 2003;58:377; NICE NG250, 2025 (box 2 e rec. 1.2.9); Corrêa RA et al. SBPT 2018 (J Bras Pneumol 2018;44:405). Original: ureia > 7 mmol/L = ureia > 42 mg/dL (× 6,0) = BUN > 19 mg/dL (× 2,8); a SBPT usa ureia > 50 mg/dL (≈ 8,3 mmol/L).",
+ bin:[["Confusão mental nova",1],["Ureia > 42 mg/dL (7 mmol/L; BUN > 19 mg/dL)",1],["FR ≥ 30 irpm",1],["PAS < 90 ou PAD ≤ 60 mmHg",1],["Idade ≥ 65 anos",1]],
  interp:s=>pacFaixa(CURB65_FX,s).txt+" "+PAC_JULGAMENTO},
-{id:"crb",nome:"CRB-65 (pneumonia, sem ureia)",src:"NICE NG250. Pneumonia: diagnosis and management, 2025 (box 1 e rec. 1.2.3); British Thoracic Society. CAP in adults, 2009 (rec. 44–46); Lim WS et al. Thorax 2003;58:377.",
+{id:"crb",nome:"CRB-65 (pneumonia, sem ureia)",src:"NICE NG250. Pneumonia: diagnosis and management, 2025 (box 1 e rec. 1.2.3); Lim WS et al. Thorax 2003;58:377.",
  bin:[["Confusão mental nova",1],["FR ≥ 30 irpm",1],["PAS < 90 ou PAD ≤ 60 mmHg",1],["Idade ≥ 65 anos",1]],
  interp:s=>pacFaixa(CRB65_FX,s).txt+" "+PAC_JULGAMENTO},
 {id:"wellsTep",nome:"Wells (TEP)",src:"Wells PS et al. Thromb Haemost 2000; ESC 2019.",
@@ -314,6 +331,21 @@ const SC=[
 {id:"ich",nome:"Escore ICH (hemorragia intracerebral)",src:"Hemphill JC 3rd et al. Stroke 2001;32:891 (mortalidade em 30 dias); conduta: Greenberg SM et al. AHA/ASA 2022 (Stroke 2022;53:e282) — usar na avaliação inicial, sem limitar o tratamento só pelo escore. Volume pelo ABC/2 (Kothari RU et al. Stroke 1996;27:1304).",
  campos:[["gcs","Glasgow",[["13–15",0],["5–12",1],["3–4",2]]]],
  bin:[["Volume do hematoma ≥ 30 mL (ABC/2)",1],["Hemorragia intraventricular",1],["Origem infratentorial (cerebelo ou tronco)",1],["Idade ≥ 80 anos",1]],
- interp:s=>["0: mortalidade em 30 dias de cerca de 0%.","1: cerca de 13%.","2: cerca de 26%.","3: cerca de 72%.","4: cerca de 97%.","5 ou 6: cerca de 100%."][Math.min(s,5)]+" Estimativa de grupo: não usar sozinho para limitar o tratamento nas primeiras 24 h (AHA/ASA 2022)."}
+ interp:s=>["0: mortalidade em 30 dias de cerca de 0%.","1: cerca de 13%.","2: cerca de 26%.","3: cerca de 72%.","4: cerca de 97%.","5 ou 6: cerca de 100%."][Math.min(s,5)]+" Estimativa de grupo: não usar sozinho para limitar o tratamento nas primeiras 24 h (AHA/ASA 2022)."},
+{id:"addrs",nome:"ADD-RS (dissecção de aorta)",src:"Rogers AM et al. Circulation 2011;123:2213 (PMID 21555704); Nazerian P et al. ADvISED, Circulation 2018;137:250 (PMID 29030346); ESC 2024 aorta (Eur Heart J 2024;45:3538, figura 30); HC-FMUSP 18ª ed., cap. 36, tabela 3. Um ponto por grupo com pelo menos um item.",
+ bin:[["Antecedente de alto risco: Marfan ou outra doença do tecido conjuntivo, história familiar de doença da aorta, doença da valva aórtica, cirurgia ou manipulação aórtica recente, aneurisma de aorta torácica conhecido",1],["Dor de alto risco: início abrupto, intensidade grave, rasgando ou lancinante, no tórax, dorso ou abdome",1],["Exame de alto risco: déficit de pulso ou diferença de PA sistólica, déficit neurológico com dor, sopro novo de insuficiência aórtica com dor, hipotensão ou choque",1]],
+ interp:s=>(s>=2?"2–3: alto risco; angiotomografia de aorta já, sem D-dímero (ESC 2024).":"0–1: D-dímero; < 500 ng/mL afasta síndrome aórtica aguda (ADvISED); ≥ 500 ng/mL, angiotomografia de aorta.")+" O escore não substitui o julgamento clínico."},
+{id:"childpugh",nome:"Child-Pugh (cirrose)",src:"Pugh RN et al. Br J Surg 1973;60:646 (PMID 4541913); Harrison 22ª ed., cap. 355; EASL 2018 (J Hepatol 2018;69:406).",
+ campos:[["bili","Bilirrubina total",[["< 2 mg/dL",1],["2–3 mg/dL",2],["> 3 mg/dL",3]]],["alb","Albumina",[["> 3,5 g/dL",1],["2,8–3,5 g/dL",2],["< 2,8 g/dL",3]]],["inr","INR",[["< 1,7",1],["1,7–2,3",2],["> 2,3",3]]],["asc","Ascite",[["Ausente",1],["Leve (controlada com diurético)",2],["Moderada a grave (tensa ou refratária)",3]]],["eh","Encefalopatia",[["Ausente",1],["Grau 1–2",2],["Grau 3–4",3]]]],
+ interp:s=>s<=6?"Classe A (5–6): doença compensada.":s<=9?"Classe B (7–9): comprometimento funcional significativo.":"Classe C (10–15): doença descompensada, maior mortalidade; avaliar transplante."},
+{id:"ottawaTornozelo",nome:"Ottawa (tornozelo e pé)",src:"Stiell IG et al. JAMA 1993;269:1127 (PMID 8433468); Bachmann LM et al. BMJ 2003;326:417 (PMID 12595378). Adultos; não vale com intoxicação, lesão que distrai, alteração de sensibilidade ou gestação.",
+ bin:[["Dor à palpação dos 6 cm distais da borda posterior ou da ponta do maléolo lateral",1],["Dor à palpação dos 6 cm distais da borda posterior ou da ponta do maléolo medial",1],["Dor à palpação da base do 5º metatarso",1],["Dor à palpação do navicular",1],["Não consegue dar 4 passos logo após o trauma e no pronto-socorro",1]],
+ interp:s=>s>=1?"Algum critério: RX (tornozelo se maléolo; pé se 5º metatarso ou navicular; os dois se não apoia).":"Nenhum critério: fratura muito improvável; RX dispensável (sensibilidade próxima de 100%)."},
+{id:"ottawaJoelho",nome:"Ottawa (joelho)",src:"Stiell IG et al. JAMA 1996;275:611 (PMID 8594242). Trauma agudo do joelho em adulto.",
+ bin:[["Idade de 55 anos ou mais",1],["Dor isolada à palpação da patela (sem outra dor óssea no joelho)",1],["Dor à palpação da cabeça da fíbula",1],["Não consegue fletir o joelho a 90°",1],["Não consegue dar 4 passos logo após o trauma e no pronto-socorro",1]],
+ interp:s=>s>=1?"Algum critério: RX do joelho.":"Nenhum critério: fratura improvável; RX dispensável."},
+{id:"puqe",nome:"PUQE-24 (náuseas e vômitos na gestação)",src:"Ebrahimi N et al. J Obstet Gynaecol Can 2009;31(9):803 (PMID 19941704); HC-FMUSP 18ª ed., cap. 21, tabela 2; RCOG GTG 69, 2024. Últimas 24 h.",
+ campos:[["nau","Tempo com náusea ou mal-estar no estômago",[["Nenhum",1],["1 h ou menos",2],["2–3 h",3],["4–6 h",4],["Mais de 6 h",5]]],["vom","Vômitos",[["Nenhum",1],["1–2",2],["3–4",3],["5–6",4],["7 ou mais",5]]],["ans","Ânsias (esforço de vomitar sem sair nada)",[["Nenhuma",1],["1–2",2],["3–4",3],["5–6",4],["7 ou mais",5]]]],
+ interp:s=>s<=6?"≤ 6: leve.":s<=11?"7–11: moderada.":"≥ 12: grave; pensar em hidratação EV e internação (RCOG 2024)."}
 ];
 if (typeof module!=="undefined") module.exports={RENAL,cockcroft,ALTA_GERAL,ALTA_ITEM,dengueCalc,pedEmerg,SC,NEWS2_FX,NEWS2_NAO_VALIDADO,news2Calc,news2Resposta,CRB65_FX,CURB65_FX,pacFaixa,PAC_EV,SVAL};

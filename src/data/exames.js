@@ -2,7 +2,7 @@
 // Cada item: {t: texto curto (≤ 200 caracteres), f: [números das fontes, contando de 1]}.
 // Grupos: encaminhar (o que muda o destino), pedir (quando o exame muda a conduta), naoPedir (o que não acrescenta).
 // Divergência entre fontes boas: as duas versões no mesmo item, cada uma com a sua fonte; o médico decide.
-// Gerado de .rascunhos/exames-conferido-*.md (conferência independente, 2026-10-22).
+// Gerado de .rascunhos/exames-conferido-*.md (conferência independente, 2026-10-22); lote 4 (2026-11-07) acrescentado de .rascunhos/lote4*-exames-final.md.
 const EXAMES = {
  "q:cefaleia": {
   "encaminhar": [
@@ -1290,7 +1290,7 @@ const EXAMES = {
   ],
   "div": [],
   "fontes": [
-   "EAU 2025 — Bonkat G et al. EAU Guidelines on Urological Infections, 2025. Arnhem: European Association of Urology. https://uroweb.org/guidelines/urological-infections",
+   "EAU 2026 — Bonkat G et al. EAU Guidelines on Urological Infections, edição 2026. Arnhem: European Association of Urology. https://uroweb.org/guidelines/urological-infections",
    "Trautner BW et al. 2025 IDSA guideline on management and treatment of complicated urinary tract infections. Clin Infect Dis, publicado online em 17/07/2025. https://www.idsociety.org/practice-guideline/complicated-urinary-tract-infections/",
    "Nicolle LE et al. Clinical practice guideline for the management of asymptomatic bacteriuria: 2019 update by the IDSA. Clin Infect Dis 2019;68(10):e83-e110. PMID 30895288. https://doi.org/10.1093/cid/ciy1121",
    "Gupta K et al. International clinical practice guidelines for the treatment of acute uncomplicated cystitis and pyelonephritis in women (IDSA/ESCMID). Clin Infect Dis 2011;52(5):e103-e120. PMID 21292654. https://doi.org/10.1093/cid/ciq257",
@@ -7284,6 +7284,1410 @@ const EXAMES = {
    "ADA 2024 — Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report — ADA/EASD/JBDS/AACE/DTS. Diabetes Care 2024;47(8):1257-1275. PMID 39052901 (também em Diabetologia 2024;67:1455, PMC11343900). https://doi.org/10.2337/dci24-0032",
    "CCJM 2025 — Hyperglycemic crises in adults: a look at the 2024 consensus report. Cleveland Clinic Journal of Medicine 2025;92(3):152 (eletrólitos, fosfato, creatinina, beta-hidroxibutirato e pH venoso a cada 4 h até a resolução). https://www.ccjm.org/content/92/3/152",
    "HC-FMUSP 2024 cap. 89 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 89 Hiperglicemias."
+  ]
+ },
+ "disseccao-aorta": {
+  "encaminhar": [
+   {
+    "t": "Cirurgia cardiovascular de emergência: dissecção ou hematoma intramural tipo A (aorta ascendente); sem serviço, transferência imediata",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "UTI com PA invasiva e ECG contínuo: toda síndrome aórtica aguda durante o controle de FC e PA",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Cirurgia vascular ou endovascular de urgência: tipo B complicada (ruptura, má perfusão, expansão, dor ou hipertensão refratárias)",
+    "f": [
+     1,
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Angiotomografia de aorta (pescoço à pelve, sincronizada ao ECG se houver): ADD-RS ≥ 2, ou ADD-RS 0–1 com D-dímero ≥ 500 ng/mL",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "D-dímero: ADD-RS 0–1, para afastar (< 500 ng/mL)",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Ecocardiograma à beira do leito: na chegada (derrame pericárdico, aorta ascendente, insuficiência aórtica)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Ecocardiograma transesofágico: instável que não pode ir à TC",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Angiorressonância de aorta: TC indisponível",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "ECG, troponina, hemograma, creatinina, TGO, TGP, lactato e gasometria: na chegada",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "D-dímero com ADD-RS ≥ 2: não afasta; ir direto à angiotomografia",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Radiografia de tórax para afastar dissecção: normal não exclui",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ESC 2024 — Mazzolai L et al. 2024 ESC Guidelines for the management of peripheral arterial and aortic diseases. Eur Heart J 2024;45(36):3538-3700. PMID 39210722. https://doi.org/10.1093/eurheartj/ehae179",
+   "ADvISED Nazerian 2018 — Nazerian P et al. Diagnostic accuracy of the aortic dissection detection risk score plus D-dimer for acute aortic syndromes: the ADvISED study. Circulation 2018;137(3):250-258. PMID 29030346. https://doi.org/10.1161/CIRCULATIONAHA.117.029457",
+   "HC-FMUSP 2024 cap. 36 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 36 Síndromes aórticas agudas."
+  ]
+ },
+ "hiponatremia": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência ou UTI: sintomas graves (vômitos, sonolência, convulsão, coma, desconforto respiratório) ou instalação aguda",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Internação: sintomática ou Na < 125 mEq/L",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Ambulatório (clínica ou endocrinologia) com novo sódio: leve ou moderada crônica sem sintomas e causa definida",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Glicemia: em todos, para corrigir o sódio",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Osmolalidade sérica (medida ou calculada): confirmar hiponatremia hipotônica",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Osmolalidade e sódio urinários em amostra isolada: em todos, de preferência antes do soro",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Potássio, ureia, creatinina e ácido úrico: em todos (potássio baixo aumenta o risco de desmielinização)",
+    "f": [
+     3,
+     2
+    ]
+   },
+   {
+    "t": "TSH e cortisol: hiponatremia euvolêmica, antes de diagnosticar SIADH",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Triglicérides e proteínas totais: osmolalidade normal (pseudo-hiponatremia)",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Sódio seriado: a cada 20 min nos bolus de salina 3%, 1, 6 e 12 h após, e a cada 4–6 h na correção",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "TC de crânio: convulsão, coma ou trauma, para afastar outra causa",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Esperar os exames urinários para tratar os sintomas graves",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Dosar ADH (vasopressina) para diagnosticar SIADH",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "UE 2014 — Spasovski G et al. Clinical practice guideline on diagnosis and treatment of hyponatraemia. Eur J Endocrinol 2014;170(3):G1-G47. PMID 24569125. https://doi.org/10.1530/EJE-13-1020",
+   "EUA Verbalis 2013 — Verbalis JG et al. Diagnosis, evaluation, and treatment of hyponatremia: expert panel recommendations. Am J Med 2013;126(10 Suppl 1):S1-S42. PMID 24074529. https://doi.org/10.1016/j.amjmed.2013.07.006",
+   "HC-FMUSP 2024 cap. 81 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 81 Hiponatremia."
+  ]
+ },
+ "hipocalemia": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência com monitor: K < 2,5 mEq/L, sintomas, alteração no ECG ou necessidade de KCl EV",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Ambulatório com novo potássio: K 3,0–3,4 sem sintomas, com reposição oral",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "ECG: K < 3,0 mEq/L, sintomas, cardiopatia ou digitálico",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Magnésio: em todos (hipomagnesemia impede a correção)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Creatinina e ureia: antes de repor (doença renal: metade da dose)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Gasometria e glicemia: grave ou causa incerta (acidose ou alcalose orientam a causa)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Potássio seriado: a cada 2–6 h na grave ou com reposição EV",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Potássio urinário em amostra isolada: causa não esclarecida (perda renal × extrarrenal)",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Repor pelo cálculo do déficit sem dosagens seriadas (estimativa grosseira)",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "HC-FMUSP 2024 cap. 83 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 83 Hipocalemia e tabela de reposição de eletrólitos.",
+   "Harrison 22 cap. 56 — Harrison's Principles of Internal Medicine, 22ª ed., McGraw Hill, 2025, cap. 56 Fluid and Electrolyte Disturbances."
+  ]
+ },
+ "intoxicacao-alcoolica": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência: não protege a via aérea, hipotermia, convulsão ou Glasgow que não melhora",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Internação: suspeita de encefalopatia de Wernicke, metanol, abstinência grave ou lesão no TCE",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "CIATox (0800 722 6001): suspeita de metanol ou etilenoglicol (bebida adulterada)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Psiquiatria: ideação ou tentativa de suicídio",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "CAPS AD: uso nocivo ou dependência, após intervenção breve",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Glicemia capilar: em todos, na chegada",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemograma, sódio, potássio, cálcio, magnésio, gasometria, ureia, creatinina, TGO, TGP e ECG: casos graves, sem melhora ou com dúvida",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Etanol sérico: dúvida diagnóstica, se disponível",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Ânion-gap e gap osmolar: acidose ou suspeita de metanol",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Paracetamol e salicilato: ingestão intencional ou outras drogas",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "TC de crânio: trauma com Glasgow que não melhora, sinal focal ou anticoagulante (ver TCE)",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exames de rotina na intoxicação leve com melhora progressiva",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "HC-FMUSP 2024 cap. 100 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 100 Intoxicações por álcoois e drogas de abuso.",
+   "NICE CG100 — National Institute for Health and Care Excellence. Alcohol-use disorders: diagnosis and clinical management of alcohol-related physical complications (CG100, 2010, atualizada em 2017). https://www.nice.org.uk/guidance/cg100",
+   "Harrison 22 cap. 464 — Harrison's Principles of Internal Medicine, 22ª ed., McGraw Hill, 2025, cap. 464 Alcohol and Alcohol Use Disorders."
+  ]
+ },
+ "overdose-opioide": {
+  "encaminhar": [
+   {
+    "t": "Internação: doses repetidas de naloxona, infusão, dessaturação, rebaixamento persistente ou edema pulmonar",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Observação de pelo menos 24 h: metadona, liberação prolongada ou adesivo de fentanil",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "CIATox (0800 722 6001): opioide de longa duração, mistura de drogas ou dúvida",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Psiquiatria: ideação ou tentativa de suicídio; CAPS AD: uso nocivo ou dependência",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Glicemia capilar: em todos com rebaixamento",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "ECG: metadona (QT longo), tramadol ou mistura de drogas",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Paracetamol sérico: ingestão intencional ou produto combinado (codeína ou tramadol com paracetamol)",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Gasometria e radiografia de tórax: dessaturação, aspiração ou edema pulmonar após a reversão",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "CK e creatinina: muito tempo caído (rabdomiólise)",
+    "f": [
+     4
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exame toxicológico de urina para decidir a naloxona: a decisão é clínica (FR, SpO2, consciência)",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "AHA 2025 — Cao D et al. 2025 American Heart Association Guidelines for CPR and ECC — Part 10: Special Circumstances of Resuscitation. Circulation 2025;152(16 Suppl 2):S578-S672.",
+   "HC-FMUSP 2024 cap. 101 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 101 Abordagem específica das intoxicações por fármacos (opioides).",
+   "Bula Narcan 2026 — Bula Anvisa do Narcan (cloridrato de naloxona 0,4 mg/mL), Cristália, 2026.",
+   "Harrison 22 cap. 467 — Harrison's Principles of Internal Medicine, 22ª ed., McGraw Hill, 2025, cap. 467 Opioid-Related Disorders."
+  ]
+ },
+ "cirrose-descompensada": {
+  "encaminhar": [
+   {
+    "t": "Internação: primeira descompensação, PBE ou outra infecção, encefalopatia grau 2 ou mais, lesão renal, sangramento, Na < 125 mEq/L",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "UTI: encefalopatia grau 3–4, choque, síndrome hepatorrenal em vasoconstritor ou sangramento varicoso instável",
+    "f": [
+     1,
+     4
+    ]
+   },
+   {
+    "t": "Endoscopia em até 12 h: hemorragia digestiva no cirrótico (ver Hemorragia digestiva alta)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hepatologia e avaliação para transplante: descompensação ou MELD ≥ 15",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Paracentese diagnóstica (celularidade com diferencial, albumina, proteína total e cultura em frascos de hemocultura): todo cirrótico com ascite que interna ou descompensa",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Hemograma, INR, albumina, bilirrubinas, TGO, TGP, sódio, potássio, ureia, creatinina e glicemia: na chegada (Child-Pugh e MELD-Na)",
+    "f": [
+     1,
+     5
+    ]
+   },
+   {
+    "t": "Hemoculturas, urina tipo I, urocultura e radiografia de tórax: febre ou suspeita de infecção",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Creatinina seriada: lesão renal, para resposta à albumina e à terlipressina em 48 h",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Urina tipo I e US de rins: lesão renal, para afastar doença renal estrutural",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "TC de crânio: encefalopatia com queda, sinal focal ou primeiro episódio sem precipitante",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "US de abdome com Doppler: primeira ascite ou piora sem causa (trombose de porta, hepatocarcinoma)",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Amônia para diagnosticar ou acompanhar encefalopatia",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Plasma ou plaquetas de rotina antes da paracentese",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "EASL 2018 — European Association for the Study of the Liver. EASL Clinical Practice Guidelines for the management of patients with decompensated cirrhosis. J Hepatol 2018;69(2):406-460. PMID 29653741. https://doi.org/10.1016/j.jhep.2018.03.024",
+   "AASLD 2021 — Biggins SW et al. Diagnosis, Evaluation, and Management of Ascites, Spontaneous Bacterial Peritonitis and Hepatorenal Syndrome: 2021 Practice Guidance by the AASLD. Hepatology 2021;74(2):1014-1048. PMID 33942342. https://doi.org/10.1002/hep.31884",
+   "EASL 2022 — European Association for the Study of the Liver. EASL Clinical Practice Guidelines on the management of hepatic encephalopathy. J Hepatol 2022;77(3):807-824. PMID 35724930. https://doi.org/10.1016/j.jhep.2022.06.001",
+   "HC-FMUSP 2024 cap. 72 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 72 Síndrome hepatorrenal.",
+   "Harrison 22 cap. 355 — Harrison's Principles of Internal Medicine, 22ª ed., McGraw Hill, 2025, cap. 355 Cirrhosis and Its Complications."
+  ]
+ },
+ "covid": {
+  "encaminhar": [
+   {
+    "t": "Internação: SRAG (dispneia, desconforto, SpO2 ≤ 94% em ar ambiente, FR aumentada), hipotensão, confusão ou piora da doença de base",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "UTI: choque, disfunção orgânica ou insuficiência respiratória com necessidade de oxigênio em alto fluxo ou ventilação",
+    "f": [
+     1,
+     4
+    ]
+   },
+   {
+    "t": "Alta com antiviral: 65 anos ou mais ou imunossuprimido ≥ 18 anos, teste positivo, até o 5º dia, sem oxigênio",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Teste rápido de antígeno ou RT-PCR: candidato ao antiviral, SRAG ou internação, gestante; nos demais, se mudar a conduta ou pelo protocolo da unidade",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Creatinina: candidato ao nirmatrelvir/ritonavir com doença renal conhecida ou suspeita (ajuste se ClCr 30–60; não usar se < 30)",
+    "f": [
+     5,
+     6
+    ]
+   },
+   {
+    "t": "Radiografia de tórax, hemograma, PCR, ureia, creatinina e eletrólitos: SRAG ou internação",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Gasometria arterial e lactato: hipoxemia, desconforto respiratório ou hipotensão",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Teste para influenza: SRAG ou grupo de risco na sazonalidade, sem atrasar o oseltamivir",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Teste de rotina em quem tem síndrome gripal leve, fora de grupo de risco, se o resultado não muda a conduta nem o isolamento (o isolamento é o mesmo para qualquer vírus)",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Teste para liberar o fim do isolamento",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Radiografia de tórax no paciente sem dispneia, com SpO2 normal e ausculta normal",
+    "f": [
+     4
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "MS Guia Integrado 2024 — Ministério da Saúde. Guia de Vigilância Integrada da Covid-19, Influenza e Outros Vírus Respiratórios de Importância em Saúde Pública, 2024. https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/guias-e-manuais/2024/guia-de-vigilancia-integrada-da-covid-19-influenza-e-outros-virus-respiratorios-de-importancia-em-saude-publica.pdf",
+   "MS NT 23/2024 — Ministério da Saúde. Nota Técnica Conjunta nº 23/2024-SVSA/SECTICS/SAPS/MS (nirmatrelvir/ritonavir).",
+   "MS NT 5/2026 — Ministério da Saúde. Nota Técnica nº 5/2026-CGCOVID/DEDT/SVSA/MS, isolamento na síndrome gripal e na SRAG (20/03/2026). https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/c/covid-19/notas-tecnicas/2026/nota-tecnica-no-5-2026-cgcovid-dedt-svsa-ms",
+   "OMS 2023 — World Health Organization. Clinical management of COVID-19: living guideline, 2023. https://www.who.int/publications/i/item/WHO-2019-nCoV-clinical-2023.2",
+   "Bula Paxlovid — Bula Paxlovid (nirmatrelvir + ritonavir), Pfizer, Anvisa. https://consultas.anvisa.gov.br/#/bulario/q/?nomeProduto=PAXLOVID",
+   "Harrison 2025 cap. 205 — Harrison's Principles of Internal Medicine, 22ª ed., 2025, cap. 205 SARS-CoV-2 and COVID-19."
+  ]
+ },
+ "varicela": {
+  "encaminhar": [
+   {
+    "t": "Internação com aciclovir EV: pneumonia, encefalite ou ataxia, lesões hemorrágicas, hepatite, imunossupressão",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Obstetrícia no mesmo dia: gestante com varicela (aciclovir VO se ≥ 20 semanas e até 24 h; internar se complicação)",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Cirurgia de urgência: suspeita de fasciíte necrosante (dor desproporcional, bolhas escuras, crepitação)",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "CRIE ou vigilância: contactante suscetível com risco de varicela grave (imunoglobulina em até 96 h) ou imunocompetente (vacina em até 120 h)",
+    "f": [
+     4
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Radiografia de tórax e saturação: tosse, falta de ar, dor torácica ou SpO2 baixa (pneumonia por varicela)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemograma, TGO, TGP e creatinina: internação, imunossuprimido ou antes de aciclovir EV (ajuste renal)",
+    "f": [
+     5,
+     1
+    ]
+   },
+   {
+    "t": "PCR para vírus varicela-zóster da lesão: quadro atípico, imunossuprimido ou dúvida diagnóstica",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Líquor: sinais de encefalite ou meningite",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exames de rotina no adulto imunocompetente com varicela típica sem complicação",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Sorologia para decidir o tratamento na fase aguda (o diagnóstico é clínico)",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "Harrison 2025 cap. 198 — Harrison's Principles of Internal Medicine, 22ª ed., 2025, cap. 198 Varicella-Zoster Virus Infections.",
+   "RCOG GTG 13 — Royal College of Obstetricians and Gynaecologists. Chickenpox in Pregnancy, Green-top Guideline No. 13, 2015.",
+   "NICE CKS Chickenpox — National Institute for Health and Care Excellence. Clinical Knowledge Summaries: Chickenpox. https://cks.nice.org.uk/topics/chickenpox/",
+   "MS CRIE 2023 — Ministério da Saúde. Manual dos Centros de Referência para Imunobiológicos Especiais, 6ª ed., 2023, cap. 18.",
+   "Bula aciclovir — Bula aciclovir comprimidos e aciclovir sódico injetável, Anvisa."
+  ]
+ },
+ "chikungunya": {
+  "encaminhar": [
+   {
+    "t": "Internação: dor torácica, palpitação ou arritmia, hipotensão postural ou desmaio, choque, dispneia, alteração neurológica, oligúria ou creatinina subindo, sangramento, descompensação de doença de base",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Observação na unidade até o resultado dos exames: gestante, mais de 65 anos, comorbidade ou manifestação extra-articular sem gravidade",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Obstetrícia: gestante infectada perto do parto ou com sinal de sofrimento fetal (transmissão vertical de 50% se a infecção ocorre até 1 semana antes do parto)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Reumatologia ambulatorial: dor articular por mais de 90 dias ou sem resposta ao tratamento da fase pós-aguda",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Hemograma: grupo de risco, sinal de gravidade e quando dengue ainda não foi descartada",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Ureia, creatinina, TGO, TGP, eletrólitos e glicemia: sinal de gravidade, internação ou antes de AINE ou corticoide na fase pós-aguda",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "ECG: dor torácica, palpitação ou arritmia (miocardite)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "RT-PCR até o 5º dia ou sorologia IgM a partir do 6º dia: conforme a vigilância local, gestante e casos graves",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exames de rotina no paciente fora do grupo de risco, sem manifestação extra-articular e sem sinal de gravidade",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "MS Chikungunya 2024 — Ministério da Saúde. Chikungunya: manejo clínico, 2ª ed., Brasília, 2024. https://bvsms.saude.gov.br/bvs/publicacoes/chikungunya_manejo_clinico_2ed.pdf",
+   "MS Dengue 2024 — Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024. https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf"
+  ]
+ },
+ "febre-maculosa": {
+  "encaminhar": [
+   {
+    "t": "Internação com doxiciclina EV: consciência alterada, convulsão, hipotensão, oligúria, falta de ar, sangramento, icterícia, petéquia ou púrpura, vômitos ou sem via oral",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "UTI: choque ou disfunção orgânica",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Tratamento em casa com doxiciclina VO e reavaliação diária: sem sinal de gravidade e tolerando via oral",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Hemograma (plaquetopenia), creatinina, ureia, sódio, TGO, TGP, bilirrubinas e CPK: em todo caso suspeito, para gravidade",
+    "f": [
+     2,
+     4
+    ]
+   },
+   {
+    "t": "Sorologia (RIFI) na 1ª consulta e nova amostra 14 a 21 dias depois: confirmação, pela vigilância",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "PCR de sangue ou de biópsia de pele: fase inicial, conforme o laboratório de referência, sem atrasar a doxiciclina",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemoculturas e lactato: suspeita de sepse ou meningococcemia no diferencial",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Exames de dengue (hemograma, NS1 ou sorologia) e de leptospirose: diferencial em área de sobreposição",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Esperar resultado de exame para iniciar a doxiciclina",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Antibiótico ou exames em quem foi picado por carrapato e não tem febre (observar por 14 dias)",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "MS NT 49/2026 — Ministério da Saúde. Nota Técnica nº 49/2026-CGZHA/DEDT/SVSA/MS, febre maculosa. https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/notas-tecnicas/2026/nota-tecnica-no-49-2026.pdf",
+   "MS NT 11/2024 — Ministério da Saúde. Nota Técnica nº 11/2024-CGZV/DEDT/SVSA/MS, doxiciclina injetável na febre maculosa. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/f/febre-maculosa/notas-tecnicas/nota-tecnica-no-11-2024-cgzv-dedt-svsa-ms",
+   "MS GVS 2024 — Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed. revisada, 2024, vol. 3.",
+   "Harrison 2025 cap. 192 — Harrison's Principles of Internal Medicine, 22ª ed., 2025, cap. 192 Rickettsial Diseases."
+  ]
+ },
+ "leptospirose": {
+  "encaminhar": [
+   {
+    "t": "Internação: um ou mais sinais de alerta (dispneia ou taquipneia, oligúria, sangramento ou hemoptise, hipotensão, alteração da consciência, vômitos frequentes, arritmia, icterícia)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "UTI: FR > 28, PaO2 < 60 mmHg, hemoptise, infiltrado na radiografia, insuficiência renal aguda, hipotensão refratária, arritmia, consciência alterada ou hemorragia digestiva",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Nefrologia (diálise): oligúria que persiste após hidratação; diálise precoce, sem atrasar com furosemida",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Tratamento em casa com retorno em 24 a 72 h: sem sinal de alerta",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Hemograma, ureia, creatinina, bilirrubinas, TGO, TGP, sódio e potássio: em todo caso suspeito; no internado, somar gama-GT, fosfatase alcalina, CPK e hemoculturas",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Radiografia de tórax, ECG e gasometria arterial: sinal de alerta, tosse, dispneia ou internação",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Coagulograma e urina tipo I: internação ou sangramento",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Sorologia (ELISA-IgM ou microaglutinação): para a vigilância, sem esperar o resultado para tratar",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemograma seriado: queda da hemoglobina sem sangramento visível pode indicar hemorragia pulmonar",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Esperar sorologia para iniciar o antibiótico",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "MS Leptospirose 2014 — Ministério da Saúde. Leptospirose: diagnóstico e manejo clínico, Brasília, 2014. https://bvsms.saude.gov.br/bvs/publicacoes/leptospirose-diagnostico-manejo-clinico2.pdf",
+   "Harrison 2025 cap. 189 — Harrison's Principles of Internal Medicine, 22ª ed., 2025, cap. 189 Leptospirosis."
+  ]
+ },
+ "sangramento-gestacao-inicial": {
+  "encaminhar": [
+   {
+    "t": "Cirurgia ou ginecologia de emergência: instável, irritação peritoneal ou FAST com líquido livre (ectópica rota)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Ginecologia no plantão: útero vazio com beta-hCG acima da zona discriminatória, massa anexial, abortamento incompleto, retido ou séptico",
+    "f": [
+     1,
+     5
+    ]
+   },
+   {
+    "t": "Retorno em 48 h com novo beta-hCG: gestação de localização desconhecida, estável, abaixo da zona discriminatória",
+    "f": [
+     2,
+     5
+    ]
+   },
+   {
+    "t": "Pré-natal ou obstetra ambulatorial: ameaça de abortamento com gestação intrauterina confirmada",
+    "f": [
+     1,
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Beta-hCG quantitativo: em toda gestante com sangramento ou dor sem gestação intrauterina já confirmada",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "USG transvaginal: em todas, para localizar a gestação e ver batimento, restos e líquido livre",
+    "f": [
+     5,
+     1
+    ]
+   },
+   {
+    "t": "Tipagem ABO e Rh: em toda gestante com sangramento (anti-D se Rh negativo, a partir de 12 semanas)",
+    "f": [
+     1,
+     4
+    ]
+   },
+   {
+    "t": "Hemograma: sangramento importante, instabilidade ou suspeita de ectópica",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "FAST: instável sem outra causa de choque",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemocultura, lactato, função renal: suspeita de aborto séptico",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemograma, função renal e hepática: antes do metotrexato",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Beta-hCG isolado para decidir a localização da gestação sem USG",
+    "f": [
+     5
+    ]
+   },
+   {
+    "t": "Progesterona sérica para localizar a gestação ou prever viabilidade",
+    "f": [
+     5
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "HC-FMUSP 2024 cap. 112 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 112 Emergências obstétricas (sangramento da primeira metade da gestação).",
+   "ACOG 193 — ACOG Practice Bulletin 193: Tubal Ectopic Pregnancy. Obstet Gynecol 2018;131(3):e91-e103. PMID 29470343. https://doi.org/10.1097/AOG.0000000000002464",
+   "ACOG 200 — ACOG Practice Bulletin 200: Early Pregnancy Loss. Obstet Gynecol 2018;132(5):e197-e207. PMID 30157093. https://doi.org/10.1097/AOG.0000000000002899",
+   "ACOG Rh 2024 — ACOG Clinical Practice Update: Rh D Immune Globulin Administration After Abortion or Pregnancy Loss at Less Than 12 Weeks of Gestation. Obstet Gynecol 2024;144(6):e140-e143. PMID 39255498. https://doi.org/10.1097/AOG.0000000000005733",
+   "NICE NG126 — NICE NG126. Ectopic pregnancy and miscarriage: diagnosis and initial management, 2019 (atualizada em 2021, 2025 e 2026). https://www.nice.org.uk/guidance/ng126"
+  ]
+ },
+ "hiperemese": {
+  "encaminhar": [
+   {
+    "t": "Internação (obstetrícia): não tolera antiemético oral, vômitos com desidratação clínica ou perda de peso apesar do antiemético, ou comorbidade",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hidratação EV com alta no mesmo dia: moderada, que melhora com a hidratação",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Pré-natal: todas, para seguimento",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Urina tipo I (infecção urinária): em todas que vomitam muito",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Sódio, potássio, cloro, magnésio, ureia, creatinina e hemograma: desidratação ou vômitos persistentes",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "TGO, TGP, bilirrubinas, albumina, TSH e T4 livre: quadro grave ou que não melhora",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "USG obstétrica: se ainda não feita (gestação múltipla, doença trofoblástica)",
+    "f": [
+     2,
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exames na náusea leve a moderada que tolera via oral",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "TSH e T4 livre de rotina sem quadro grave (a hiperêmese pode baixar o TSH sem doença da tireoide)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Cetonúria para medir desidratação, gravidade ou decidir a internação",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "RCOG 2024 — RCOG Green-top Guideline 69. The Management of Nausea and Vomiting of Pregnancy and Hyperemesis Gravidarum. BJOG 2024;131(7):e1-e30. PMID 38311315. https://doi.org/10.1111/1471-0528.17739",
+   "HC-FMUSP 2024 cap. 21 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 21 Náuseas e vômitos."
+  ]
+ },
+ "mastite": {
+  "encaminhar": [
+   {
+    "t": "Cirurgião ou mastologista: abscesso, para aspiração ou dreno",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Internação: sepse, instabilidade ou sem tolerar via oral; mãe e bebê juntos",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Mastologia ambulatorial: massa que persiste após o tratamento ou mastite fora da lactação que não melhora",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "USG da mama: área flutuante, massa, sem melhora em 48 h de antibiótico ou recorrência",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Cultura do leite: sem melhora em 48 h de antibiótico, recorrência, risco de MRSA ou bebê em UTI",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Cultura do aspirado: em todo abscesso drenado",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exames de sangue na mastite sem sinais de sepse",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Antibiótico na congestão ou na mastite inflamatória sem sinais de infecção",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ABM 2022 — Mitchell KB et al. Academy of Breastfeeding Medicine Clinical Protocol #36: The Mastitis Spectrum, Revised 2022. Breastfeed Med 2022;17(5):360-376. PMID 35576513. https://doi.org/10.1089/bfm.2022.29207.kbm"
+  ]
+ },
+ "violencia-sexual": {
+  "encaminhar": [
+   {
+    "t": "Serviço de referência para violência sexual: coleta de vestígios, seguimento e aborto previsto em lei",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "SAE ou CTA: seguimento da PEP, testes em 30 e 90 dias",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Conselho Tutelar (criança ou adolescente) e autoridade policial em 24 h (mulher)",
+    "f": [
+     1,
+     6
+    ]
+   },
+   {
+    "t": "Sala de vacina: HPV para quem tem 9 a 45 anos e não é vacinado",
+    "f": [
+     8
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Testes rápidos de HIV, sífilis, hepatite B e hepatite C: em todas, antes da profilaxia",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Beta-hCG: mulher em idade fértil",
+    "f": [
+     3,
+     4
+    ]
+   },
+   {
+    "t": "Função renal: antes do tenofovir se doença renal conhecida",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Boletim de ocorrência como condição para atender, medicar ou interromper a gestação prevista em lei",
+    "f": [
+     2,
+     7
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "Norma Técnica 2015 — Ministério da Saúde, Ministério da Justiça e SPM. Atenção humanizada às pessoas em situação de violência sexual com registro de informações e coleta de vestígios — Norma Técnica, 2015. https://portaldeboaspraticas.iff.fiocruz.br/biblioteca/nt-situacao-de-violencia-sexual-com-registro-de/",
+   "Norma Técnica 2012 — Ministério da Saúde. Prevenção e tratamento dos agravos resultantes da violência sexual contra mulheres e adolescentes — Norma Técnica, 3ª ed., 2012.",
+   "PCDT PEP 2024 — Ministério da Saúde. PCDT para Profilaxia Pós-Exposição (PEP) de Risco à Infecção pelo HIV, IST e Hepatites Virais, 2024. https://www.gov.br/aids/pt-br/central-de-conteudo/pcdts/pcdt-pep",
+   "HC-FMUSP 2024 cap. 111 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 111 Emergências ginecológicas (violência sexual).",
+   "ECA — Lei 8.069/1990 (Estatuto da Criança e do Adolescente), art. 13.",
+   "Lei 13.931 — Lei 13.931/2019: comunicação à autoridade policial em 24 h da violência contra a mulher.",
+   "Lei 12.845 — Lei 12.845/2013: atendimento obrigatório e integral às pessoas em situação de violência sexual.",
+   "NT HPV 2023 — Ministério da Saúde. Nota Técnica nº 63/2023-CGICI/DPNI/SVSA/MS (vacina HPV para vítimas de violência sexual de 9 a 45 anos), mantida pela Nota Técnica nº 41/2024. https://familia.sbim.org.br/images/files/notas-tecnicas/nt63-svs-dpnicgici-vacinahpv-vitimas-abusosexual.pdf"
+  ]
+ },
+ "ideacao-suicida": {
+  "encaminhar": [
+   {
+    "t": "Psiquiatria e internação: plano, tentativa violenta ou premeditada, psicose, depressão grave, baixo suporte, impulsividade ou recusa de ajuda",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "CAPS ou psiquiatria ambulatorial com consulta marcada: sem critério de internação, com acompanhante",
+    "f": [
+     1,
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Glicemia capilar, ECG e exames conforme o agente: tentativa por ingestão (ver Intoxicação)",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Nível sérico de paracetamol e de outros dosáveis: ingestão com agente desconhecido ou dosável",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Exames para causa orgânica: alteração do estado mental, primeiro episódio psicótico ou idoso",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Escala de risco para decidir sozinha a alta ou o tratamento",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "HC-FMUSP 2024 cap. 60 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 60 Emergências neuropsiquiátricas (risco de suicídio).",
+   "HC-FMUSP 2024 cap. 99 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 99 Manejo inicial das intoxicações exógenas.",
+   "NICE NG225 — NICE NG225. Self-harm: assessment, management and preventing recurrence, 2022. https://www.nice.org.uk/guidance/ng225"
+  ]
+ },
+ "fratura-imobilizacao": {
+  "encaminhar": [
+   {
+    "t": "Ortopedia no plantão: fratura exposta, luxação, déficit neurovascular, desvio que não alinha, fratura articular ou instável",
+    "f": [
+     7,
+     5
+    ]
+   },
+   {
+    "t": "Ortopedia imediata (fasciotomia): suspeita de síndrome compartimental",
+    "f": [
+     6
+    ]
+   },
+   {
+    "t": "Ortopedia ambulatorial em poucos dias: fratura fechada, estável, imobilizada, e suspeita de escafoide com RX normal",
+    "f": [
+     4
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "RX em duas incidências: dor óssea à palpação, deformidade ou incapacidade funcional",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "RX de tornozelo ou pé: algum critério de Ottawa",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "RX de joelho: algum critério de Ottawa para joelho",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "RM do punho (ou TC, ou RX repetido se não houver): suspeita de escafoide com RX normal",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "RX de controle: após redução ou manipulação",
+    "f": [
+     5
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "RX de tornozelo ou pé sem nenhum critério de Ottawa",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "RX de joelho sem nenhum critério de Ottawa",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Medir pressão do compartimento para atrasar a ortopedia quando a clínica é clara",
+    "f": [
+     6
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "Stiell 1993 — Stiell IG et al. Decision rules for the use of radiography in acute ankle injuries. JAMA 1993;269(9):1127-1132. PMID 8433468.",
+   "Bachmann 2003 — Bachmann LM et al. Accuracy of Ottawa ankle rules: systematic review. BMJ 2003;326(7386):417. PMID 12595378.",
+   "Stiell 1996 — Stiell IG et al. Prospective validation of a decision rule for the use of radiography in acute knee injuries. JAMA 1996;275(8):611-615. PMID 8594242.",
+   "NICE NG38 — NICE NG38. Fractures (non-complex): assessment and management, 2016. https://www.nice.org.uk/guidance/ng38",
+   "AAOS 2020 — American Academy of Orthopaedic Surgeons. Management of Distal Radius Fractures, Evidence-Based Clinical Practice Guideline, 2020. https://www.aaos.org/drfcpg",
+   "BOAST 10 — British Orthopaedic Association. BOAST 10: Diagnosis and management of compartment syndrome of the limbs, 2016.",
+   "HC-FMUSP 2024 cap. 68 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 68 Fratura exposta."
+  ]
+ },
+ "tendinite-bursite": {
+  "encaminhar": [
+   {
+    "t": "Internação e ortopedia: bursite séptica com sepse, celulite extensa, imunossupressão ou falha do antibiótico oral",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Ortopedia ambulatorial: sem melhora em 4–6 semanas, suspeita de rotura de tendão ou bursite recorrente",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Fisioterapia: tendinopatias do ombro, cotovelo e punho",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Aspirado da bursa (Gram, cultura, leucócitos e cristais): bursite do olécrano ou pré-patelar quente e vermelha, febre ou ferida",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "RX: trauma, deformidade, suspeita de fratura ou de corpo estranho",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemograma e PCR: suspeita de bursite séptica",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Aspirar de rotina a bursite claramente não séptica (risco de fístula e de infecção)",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Imagem na tendinite típica sem trauma nem sinal de alarme",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "Harrison cap. 387 — Harrison's Principles of Internal Medicine, 22ª ed., 2025, cap. 387 Periarticular Disorders of the Extremities.",
+   "Baumbach 2014 — Baumbach SF et al. Prepatellar and olecranon bursitis: literature review and development of a treatment algorithm. Arch Orthop Trauma Surg 2014;134(3):359-370. PMID 24305696. https://doi.org/10.1007/s00402-013-1882-7"
   ]
  }
 };

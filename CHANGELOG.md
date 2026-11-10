@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.60.1 — 2026-11-10
+- **Conduta**: sem medicação na unidade e sem exames, a reavaliação não entra (nem o botão).
+- **Síndrome gripal**: CID J06.9 (infecção aguda das vias aéreas superiores não especificada); influenza só com teste confirmado.
+
 ## 1.60.0 — 2026-11-10
 - **18 condutas novas** (conferidas): dissecção de aorta, hiponatremia, hipocalemia, intoxicação alcoólica, overdose de opioide, cirrose descompensada, covid, varicela, chikungunya, febre maculosa, leptospirose, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, fratura e imobilização, tendinite e bursite. Queixa nova "Saúde mental e violência".
 - **5 escores novos**: ADD-RS, Child-Pugh, Ottawa (tornozelo e joelho) e PUQE-24.

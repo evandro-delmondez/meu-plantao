@@ -864,8 +864,9 @@ test("conduta: reavaliação conforme o que foi feito (medicação, exames, os d
   await atender(page, "amigdalite");
   const trat = saida(page, "trat"), alta = saida(page, "alta");
   const chipCond = (k) => page.locator(`#atCorpo [data-atchip="cond"][data-k="${k}"]`);
-  // nada feito na unidade: reavaliação clínica
-  await expect(chipCond("reav")).toContainText("Reavaliação clínica");
+  // nada feito na unidade nem exames: sem reavaliação (nem o botão)
+  await expect(chipCond("reav")).toHaveCount(0);
+  await expect(trat).not.toHaveValue(/Reavaliação/);
   // medicação na unidade: liga a reavaliação após a medicação
   await chipCond("med").click();
   await expect(trat).toHaveValue(/Reavaliação após a medicação na unidade\./);

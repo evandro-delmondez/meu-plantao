@@ -335,13 +335,15 @@ function atNomesUnid(){
 }
 // exames: o item liga sozinho quando há exame pedido na Prescrição (e pode ser desligado)
 const atCondOn=k=>k==="explico"?atd.cond[k]!==false:(k==="lab"||k==="img")?(atd.cond[k]??atItens(k==="lab"?(atd.exLab||atd.exSol||""):atd.exImg).length>0)
-  :k==="reav"?(atd.cond.reav??(atCondOn("med")||atCondOn("lab")||atCondOn("img"))):!!atd.cond[k];
+  :k==="reav"?(atReavPode()&&(atd.cond.reav??true)):!!atd.cond[k];
+// a reavaliação só existe se houve medicação na unidade ou exames (sem os dois, não entra no prontuário: médico, 2026-11-10)
+const atReavPode=()=>atCondOn("med")||atCondOn("lab")||atCondOn("img");
 // "Reavaliação após…" conforme o que foi marcado: medicação na unidade, exames, os dois (médico, 2026-11-10)
 const AT_REAV_PADRAO="Reavaliação após a medicação e o resultado dos exames.";
 function atReavCond(t){
   if(t!==AT_REAV_PADRAO) return t;   // texto próprio do médico (Editar padrões) fica como está
   const med=atCondOn("med"), ex=atCondOn("lab")||atCondOn("img");
-  return med&&ex?"Reavaliação após a medicação na unidade e o resultado dos exames.":med?"Reavaliação após a medicação na unidade.":ex?"Reavaliação após o resultado dos exames.":"Reavaliação clínica antes da decisão.";
+  return med&&ex?"Reavaliação após a medicação na unidade e o resultado dos exames.":med?"Reavaliação após a medicação na unidade.":"Reavaliação após o resultado dos exames.";
 }
 // na alta: o que vai para casa (sintomáticos, antibiótico), marcado sozinho pela receita e ajustável por toque
 const AT_RXALTA=[["sint","Prescrevo sintomáticos para uso domiciliar."],["atb","Prescrevo antibioticoterapia domiciliar."]];
@@ -717,7 +719,7 @@ function renderEv(){
     ${ta("diag","Outras hipóteses ou complemento","ex.: diagnóstico diferencial com…")}
     ${atSaida("diag","Hipótese diagnóstica")}</div></div>
   <div class="sec atsec" data-etapa="4"><div class="sec-h"><h3>${atPos(4)}. Conduta</h3><span class="alsum">itens · receituário</span></div><div class="atbody">
-    <div class="chips atcond">${atL("cond").map(([k,r])=>chip("cond",k,k==="explico"?"Explico o quadro e a conduta":(k==="reav"?atReavCond(r):r).replace(/\.$/,""),atCondOn(k))).join("")}</div>
+    <div class="chips atcond">${atL("cond").filter(([k])=>k!=="reav"||atReavPode()).map(([k,r])=>chip("cond",k,k==="explico"?"Explico o quadro e a conduta":(k==="reav"?atReavCond(r):r).replace(/\.$/,""),atCondOn(k))).join("")}</div>
     ${atCondOn("med")&&atNomesUnid().length?`<span class="lbl">Quais remédios (toque nos que foram feitos)</span><div class="chips atmeds">${atNomesUnid().map(n=>chip("medsel",n,n,atd.medSel[n])).join("")}</div>`:""}
     ${ta("condLivre","Outras condutas","ex.: solicito parecer da Cirurgia Geral")}
     ${atEdit?edLista("cond","Itens da conduta"):""}

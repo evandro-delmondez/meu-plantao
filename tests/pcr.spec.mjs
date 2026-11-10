@@ -31,7 +31,7 @@ test("PCR: cronômetro, ciclos de 2 min, adrenalina, choques, antiarrítmico e r
   expect(txt).toMatch(/10:0\d:\d\d \(00:00\) Início da PCR/);
   expect(txt).toContain("Choque 3");
   expect(txt).toContain("Amiodarona 300 mg");
-  expect(txt).toContain("Total: 3 choque(s), 1 dose(s) de adrenalina.");
+  expect(txt).toContain("Total: 3 choques, 1 dose de adrenalina.");
   expect(txt).not.toMatch(RUIM);
   // nada da PCR fica salvo no aparelho
   expect(await page.evaluate(() => Object.values(localStorage).join(" "))).not.toContain("Choque 3");

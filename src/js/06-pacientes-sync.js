@@ -213,7 +213,7 @@ async function psyncRecupera(){
     pacAplica(acc); pacUtiAtualiza(pacDb); lsSet(PAC_LS,pacDb);
     const novosUti=Object.keys(pacDb.uti).length-ut0;
     if(novos||novosUti>0) await pacSync();
-    psyncEstado=`${lidas} versão(ões) lida(s); ${novos} paciente(s) recuperado(s)${novosUti>0?`; ${novosUti} internado(s) em UTI ou semi de volta ao registro do mês`:""}.`;
+    psyncEstado=`${pl(lidas,"versão lida","versões lidas")}; ${pl(novos,"paciente recuperado","pacientes recuperados")}${novosUti>0?`; ${pl(novosUti,"internado","internados")} em UTI ou semi de volta ao registro do mês`:""}.`;
     renderPacientes(true); psyncMostra();
   }catch(e){psyncEstado=e.message==="chave"?`Chave recusada pelo GitHub (${psyncMotivo}).`:"Sem conexão: tente de novo.";psyncMostra()}
 }

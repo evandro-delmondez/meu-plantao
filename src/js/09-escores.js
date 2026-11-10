@@ -1,7 +1,7 @@
 /* ---------- escores ---------- */
 const scState={}; let evScores=[];
 function scTotal(sc){const st=scState[sc.id]||{};let t=0;(sc.campos||[]).forEach(([k])=>{if(st[k]!=null)t+=sc.campos.find(c=>c[0]===k)[2][st[k]][1]});(sc.bin||[]).forEach(([l,pts],i)=>{if(st["b"+i])t+=pts});return t}
-function scTexto(sc){const t=scTotal(sc);const st=scState[sc.id]||{};const faltam=(sc.campos||[]).filter(([k])=>st[k]==null).length;return `${sc.nome}: ${String(t).replace(".",",")} ponto(s) — ${sc.interp(t)}${faltam?` (atenção: ${faltam} campo(s) sem resposta)`:""}`}
+function scTexto(sc){const t=scTotal(sc);const st=scState[sc.id]||{};const faltam=(sc.campos||[]).filter(([k])=>st[k]==null).length;return `${sc.nome}: ${pl(t,"ponto","pontos")} — ${sc.interp(t)}${faltam?` (atenção: ${pl(faltam,"campo","campos")} sem resposta)`:""}`}
 function renderScores(){
   const selId=ui.score||SC[0].id; const sc=SC.find(x=>x.id===selId)||SC[0]; ui.score=sc.id;
   $("#scList").innerHTML=SC.map(x=>`<button data-sc="${x.id}" aria-current="${x.id===sc.id}">${esc(x.nome)}</button>`).join("");
@@ -14,7 +14,7 @@ function renderScores(){
   $("#scForm").innerHTML=h;
   $$("#scForm input[type=radio]").forEach(r=>r.onchange=()=>{st[r.dataset.k]=+r.value;upd()});
   $$("#scForm input[type=checkbox]").forEach(c=>c.onchange=()=>{st["b"+c.dataset.b]=c.checked;upd()});
-  const upd=()=>{const t=scTotal(sc);$("#scRes").innerHTML=`<b>${String(t).replace(".",",")}</b> ponto(s) — ${esc(sc.interp(t))}`};
+  const upd=()=>{const t=scTotal(sc);$("#scRes").innerHTML=`<b>${String(t).replace(".",",")}</b> ${+t===1?"ponto":"pontos"} — ${esc(sc.interp(t))}`};
   upd();
   $("#scSrc").textContent="Fonte: "+sc.src;
   $("#scCopy").onclick=e=>copy(scTexto(sc),e.currentTarget);
@@ -25,7 +25,7 @@ function renderScores(){
 // o estado é o mesmo da aba Escores (scState): preencher aqui aparece lá e vice-versa
 const SC_COND={pac:["curb"],tep:["wellsTep","perc","spesi"],tvp:["wellsTvp"],sca:["heart"],hda:["gbs"],faringite:["centor"],amigdalite:["centor"],fa:["cha","hasbled"],"dor-abdominal":["alvarado"],avc:["nihss","abcd2"],tce:["glasgow"],sincope:["csrs"],pancreatite:["bisap"],hdb:["oakland"],ait:["abcd2","ich","glasgow","nihss"],meningite:["glasgow","news2"]};
 const scRes=sc=>{const st=scState[sc.id]||{}, n=(sc.campos||[]).filter(([k])=>st[k]!=null).length+(sc.bin||[]).filter((b,i)=>st["b"+i]).length;
-  return n?`<b>${String(scTotal(sc)).replace(".",",")}</b> ponto(s) — ${esc(sc.interp(scTotal(sc)))}`:`<span class="note">preencha para ver o resultado</span>`};
+  return n?`<b>${String(scTotal(sc)).replace(".",",")}</b> ${+scTotal(sc)===1?"ponto":"pontos"} — ${esc(sc.interp(scTotal(sc)))}`:`<span class="note">preencha para ver o resultado</span>`};
 function renderCalcConduta(it){
   const scs=(SC_COND[it.id]||[]).map(id=>SC.find(s=>s.id===id)).filter(Boolean); if(!scs.length) return "";
   const pts=p=>`<span class="note">(${p>0?"+":""}${String(p).replace(".",",")})</span>`;

@@ -162,3 +162,26 @@ test("contagem do plantão: um aparelho com modelo mais novo e sem pacientes nã
   expect([...ea, ...eb]).toEqual([]);
   await a.close(); await b.close();
 });
+
+test("aparência e meta do mês vão para a nuvem e valem no outro aparelho", async ({ browser }) => {
+  const store = {};
+  const a = await browser.newContext(), b = await browser.newContext();
+  await githubFalso(a, store); await githubFalso(b, store);
+  const pa = await a.newPage(), pb = await b.newPage();
+  const ea = await abrir(pa), eb = await abrir(pb);
+  await ligar(pa); await ligar(pb);
+  // A: paleta sálvia e meta de R$ 12.000
+  await aba(pa, "aparencia");
+  await pa.click('[data-ap="pal"][data-v="salvia"]');
+  await aba(pa, "plantoes");
+  await pa.fill("#plMeta", "12000"); await pa.locator("#plMeta").dispatchEvent("change");
+  await expect.poll(() => { try { const m = JSON.parse(arquivo(store)).model; return (m.aparencia || {}).pal + "|" + m.plantoes.meta; } catch (e) { return ""; } }, { timeout: 15000 }).toBe("salvia|12000");
+  // B recebe ao sincronizar
+  await aba(pb, "backup"); await pb.click("#gsAgora");
+  await expect(pb.locator("html")).toHaveAttribute("data-pal", "salvia");
+  await aba(pb, "plantoes");
+  await expect(pb.locator("#plMeta")).toHaveValue("12000");
+  expect(await pb.evaluate(() => JSON.parse(localStorage.getItem("rxp_aparencia_v1")).pal)).toBe("salvia");
+  expect([...ea, ...eb]).toEqual([]);
+  await a.close(); await b.close();
+});

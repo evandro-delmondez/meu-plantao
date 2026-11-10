@@ -1,5 +1,6 @@
 /* ---------- Aparência: paleta, fonte, cartões, cantos e densidade ----------
-   Escolha de cada aparelho (localStorage rxp_aparencia_v1), fora do backup e da nuvem: quem usa a cópia do site
+   Guardada no aparelho (localStorage rxp_aparencia_v1, para abrir sem piscar) e no modelo (model.aparencia), que vai
+   para a nuvem de quem a ligou: muda num aparelho, muda nos outros (médico, 2026-11-08). Quem usa a cópia do site
    escolhe a sua. O padrão foi escolhido pelo médico em 2026-11-05 (petróleo e coral, Plus Jakarta, sombra, retos,
    compacta). A aplicação começa num script do <head> (sem piscar a tela); aqui só a tela de escolha. */
 const AP_OPC={
@@ -20,14 +21,22 @@ function apAplica(a){
   const q=AP_FONTE_CSS[d.fonte]; let l=document.getElementById("apFonteCss");
   if(q){if(!l){l=document.createElement("link");l.rel="stylesheet";l.id="apFonteCss";document.head.append(l)}const h=`https://fonts.googleapis.com/css2?${q}&display=swap`;if(l.href!==h)l.href=h}
 }
-function apGrava(a){const s={};for(const k of ["pal","fonte","cartao","cantos","dens"])s[k]=a[k];try{localStorage.setItem("rxp_aparencia_v1",JSON.stringify(s))}catch(e){}}
+function apGrava(a,nuvem=true){const s={};for(const k of ["pal","fonte","cartao","cantos","dens"])s[k]=a[k];try{localStorage.setItem("rxp_aparencia_v1",JSON.stringify(s))}catch(e){}
+  if(nuvem){model.aparencia=Object.assign({},s,{tema:a.tema||"auto",em:Date.now()});saveModel()}}
+// a aparência que veio da nuvem (outro aparelho) vale aqui
+function apDaNuvem(){
+  const n=model&&model.aparencia; if(!n||typeof n!=="object") return;
+  const a=apAtual(), mudou=["pal","fonte","cartao","cantos","dens","tema"].some(k=>n[k]&&n[k]!==a[k]);
+  if(!mudou) return; apAplica(n); apGrava(n,false); if(ui.tab==="aparencia") renderAparencia();
+}
 function renderAparencia(){
   const el=$("#apCorpo"); if(!el) return; const a=apAtual();
-  el.innerHTML=`<div class="panel card"><h2>Aparência</h2><p class="note">Vale só neste aparelho. Cada pessoa que usa o site escolhe a sua.</p>
+  el.innerHTML=`<div class="panel card"><h2>Aparência</h2><p class="note">Fica na sua nuvem: vale em todos os seus aparelhos com a nuvem ligada (Ajustes → Backup e nuvem). Cada pessoa que usa o site escolhe a sua.</p>
     ${Object.entries(AP_OPC).map(([k,g])=>`<div class="apgrp"><span class="lbl">${g.t}</span><div class="chips">${Object.entries(g.o).map(([v,[n,cor]])=>`<button class="chip apop" data-ap="${k}" data-v="${v}" aria-pressed="${a[k]===v}">${cor?`<span class="apsw" style="background:${cor}"></span>`:""}${esc(n)}</button>`).join("")}</div></div>`).join("")}
     <div class="actions"><button class="btn" id="apPadrao">Voltar ao padrão</button></div></div>`;
   el.querySelectorAll("[data-ap]").forEach(b=>b.onclick=()=>{const n=apAtual();n[b.dataset.ap]=b.dataset.v;apAplica(n);apGrava(n);renderAparencia()});
-  $("#apPadrao").onclick=()=>{try{localStorage.removeItem("rxp_aparencia_v1")}catch(e){}apAplica(Object.assign({},window.AP_PADRAO,{tema:"auto"}));renderAparencia();toast("Aparência padrão")};
+  $("#apPadrao").onclick=()=>{const p=Object.assign({},window.AP_PADRAO,{tema:"auto"});apAplica(p);apGrava(p);renderAparencia();toast("Aparência padrão")};
 }
 // o botão ◐ do topo continua alternando claro/escuro; a tela de Aparência acompanha
-$("#themeBtn").addEventListener("click",()=>{if(ui.tab==="aparencia")setTimeout(renderAparencia,0)});
+$("#themeBtn").addEventListener("click",()=>{setTimeout(()=>{apGrava(apAtual());if(ui.tab==="aparencia")renderAparencia()},0)});
+apDaNuvem();

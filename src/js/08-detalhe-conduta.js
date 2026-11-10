@@ -250,7 +250,7 @@ function renderDetail(){
     <h2>${esc(it.nome)}</h2>
     <div class="meta">${it.cid?`<button class="cid" data-cpcid="${esc(it.cid)}" title="Copiar o CID">CID ${esc(it.cid)} ⧉</button>`:""}
       ${it.custom?`<span class="badge mine">Criada por você</span>`:it.edited?`<span class="badge mine">Editada por você</span>`:""}
-      ${isNew(it)?`<span class="badge new">Novo</span>`:(!it.custom&&it.rev&&it.rev.length?`<span class="badge">${it.rev.length} ajuste(s) na revisão</span>`:"")}
+      ${isNew(it)?`<span class="badge new">Novo</span>`:(!it.custom&&it.rev&&it.rev.length?`<span class="badge">${pl(it.rev.length,"ajuste","ajustes")} na revisão</span>`:"")}
       ${it.evid?`<span class="badge">Evidência limitada</span>`:""}</div>
     <div class="abar">
       <button class="btn primary atenderbtn" id="atdIr">Atender →</button>

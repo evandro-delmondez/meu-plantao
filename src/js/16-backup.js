@@ -14,6 +14,6 @@ $("#bkImport").onclick=()=>{
     let n=0; for(const id in j.overrides){ if(!/^[A-Za-z0-9_.~:@+-]+$/.test(id)) continue; const o=Object.assign({},j.overrides[id]); writeOverride(id,o); n++ }
     if(j.model){model=migrateModel(j.model);applyOrg();renderCats();saveModel();fillSelects();renderModelos()}
     if(j.uso&&typeof j.uso==="object"){uso=Object.assign({counts:{},favs:[],rec:[]},{counts:j.uso.counts||{},favs:Array.isArray(j.uso.favs)?j.uso.favs:[],rec:Array.isArray(j.uso.rec)?j.uso.rec.filter(x=>typeof x==="string"):[]});saveUso()}
-    renderList();fillSelects();renderHidden();$("#bkIn").value="";toast(n+" item(ns) importado(s)");
+    renderList();fillSelects();renderHidden();$("#bkIn").value="";toast(pl(n,"item importado","itens importados"));
   }catch(e){toast("Backup inválido: cole o texto completo copiado do botão acima")}
 };

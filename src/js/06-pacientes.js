@@ -161,11 +161,6 @@ function pacUtiMeses(db){
   return Object.entries(por).sort((a,b)=>b[0].localeCompare(a[0])).map(([m,us])=>({m,rot:`${PAC_MESES[+m.slice(5,7)-1]} de ${m.slice(0,4)}`,
     txt:us.map(u=>`${u.dia.split("-").reverse().join("/")} · ${pacPlantao(u.criado).rot} · ${u.nome} · ${u.onde==="uti"?"UTI":"semi-intensiva"}`).join("\n"),n:us.length}));
 }
-function pacUtiHtml(db){
-  const ms=pacUtiMeses(db), n=ms.reduce((a,x)=>a+x.n,0);
-  return `<details class="panel card pcuti"><summary><h3>Internados em UTI e semi</h3> <span class="note">${n} ${n===1?"paciente":"pacientes"} · por mês, até marcar o mês como recebido em Plantões</span></summary>
-    ${n?ms.map(x=>`<h4>${esc(x.rot)} <span class="note">· ${x.n}</span></h4><textarea class="out-edit" data-utimes="${x.m}" readonly rows="${Math.min(x.n+1,12)}">${esc(x.txt)}</textarea><div class="actions"><button class="btn primary" data-uticp="${x.m}">Copiar ${esc(x.rot)}</button></div>`).join(""):`<p class="note">Nenhuma internação em UTI ou semi marcada neste aparelho.</p>`}</details>`;
-}
 // selo do desfecho: "Paciente finalizado — alta realizada"
 const PAC_FIM={alta:"alta realizada",internacao:"internação",transferencia:"transferência",evasao:"evasão"};
 let pcVer="hoje", pcPass={medico:"",local:"",consMed:""};
@@ -209,7 +204,6 @@ function renderPacientes(manter){
       <textarea class="out-edit" id="pcPassTxt" spellcheck="false" aria-label="Mensagem de passagem" readonly></textarea>
       <div class="actions"><button class="btn primary" id="pcPassCp">Copiar mensagem</button><button class="btn" id="pcPassTodos">Passei todos (tirar da lista)</button></div></details>
     ${porPlantao.size?`<details class="panel card"><summary><h3>Atendidos por plantão</h3></summary><ul class="qlist">${[...porPlantao.entries()].sort((a,b)=>b[0].localeCompare(a[0])).map(([,g])=>`<li>${esc(g.rot)}: <b>${g.n}</b>${g.saiu.length?` <span class="note">(+${g.saiu.length} passado${g.saiu.length>1?"s":""}, não conta${g.saiu.length>1?"m":""})</span>`:""}</li>`).join("")}</ul></details>`:""}
-    ${pacUtiHtml(db)}
     ${typeof renderPacSync==="function"?renderPacSync():""}`;
   $$("#pcCorpo details").forEach(d=>{if(quadros.get(d.className))d.open=true});
   bindPacientes();
@@ -249,13 +243,12 @@ function bindPacientes(){
   $$("#pcCorpo [data-pabre2]").forEach(b=>b.onclick=()=>pacAbrir(b.dataset.pabre2));
   $$("#pcCorpo [data-pvolta]").forEach(b=>b.onclick=()=>{const p=pacDe(b.dataset.pvolta);if(!p)return;p.desf.tipo="";p.desf.t=null;pacToca(p,"desf");pacGrava();renderPacientes(true)});
   $("#pcPassTodos").onclick=()=>{const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");if(!ab.length){toast("Nenhum paciente em aberto");return}
-    if(!confirm(`Tirar da lista os ${ab.length} paciente(s) em aberto, como passados a outro médico?`))return;
+    if(!confirm(`Tirar da lista ${ab.length===1?"o paciente":`os ${ab.length} pacientes`} em aberto, como passados a outro médico?`))return;
     ab.forEach(p=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();pacToca(p,"desf");if(atPac===p.id)atPac=null});pacGrava();renderPacientes(true);toast("Passados a outro médico")};
   $("#pcPassCp").onclick=e=>{const t=$("#pcPassTxt").value;if(!t){toast("Nenhum paciente sem desfecho");return}copy(t,e.currentTarget)};
   $(".pcpass").addEventListener("toggle",()=>{pacPassAtualiza()});
   pacPassAtualiza();
   if(typeof bindPacSync==="function") bindPacSync();
-  $$("[data-uticp]").forEach(b=>b.onclick=e=>copy($(`[data-utimes="${b.dataset.uticp}"]`).value,e.currentTarget));
 }
 function pacPassAtualiza(){const ta=$("#pcPassTxt");if(!ta)return;ta.value=pacPassagem(pcPass.medico.trim(),pcPass.local.trim(),pcPass.consMed.trim());grow(ta)}
 // relógio: o aviso de 2 h e 3 h muda sozinho

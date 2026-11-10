@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.59.5 — 2026-11-08
+- **Plantões, por mês**: "Internados em UTI e semi" (com "Copiar para a contabilidade") e "Pacientes passados" (com a data do atendimento) ficam na aba Plantões, no mês da tela (◀ ▶). Saíram da aba Pacientes.
+- **Início**: "Novo atendimento" fica acima de "Pacientes do plantão".
+- **Aparência e meta do mês na nuvem**: paleta, fonte, cartões, cantos, densidade, tema e a meta do mês mudam em todos os seus aparelhos com a nuvem ligada; vale a mudança mais recente.
+- **Plural certo** em toda a tela: "1 plantão", "6 plantões", "1 ponto", "3 choques" (sem "(s)" nem "(ões)").
+
 ## 1.59.4 — 2026-11-08
 - **Internados em UTI e semi por mês**: o quadro na aba Pacientes separa por mês, com "Copiar" em cada um, e guarda o nome além dos 30 dias da lista até você marcar o mês como recebido em Plantões (no máximo 90 dias). "Recuperar pacientes sumidos" também devolve a esse registro os internados das versões antigas.
 - **Horas do plantão**: "Iniciar plantão" apertado mais de 30 min depois do começo do turno não encurta mais o plantão (vale o 1º paciente); o horário sugerido pela lista junta o que todos os aparelhos viram (o 1º paciente e o último registro).

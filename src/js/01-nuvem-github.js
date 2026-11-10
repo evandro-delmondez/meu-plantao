@@ -33,13 +33,20 @@ function gsJunta(rem){
   const ro=obj(rem.overrides)?rem.overrides:{};
   for(const id in ro){const r=ro[id], l=overrides[id];if(obj(r)&&(!l||(r.updatedAt||0)>(l.updatedAt||0))){overrides[id]=r;mudou=true}}
   if(mudou) persistLocal();
+  // aparência e meta do mês: vale a mudança mais recente, de qualquer aparelho (mesmo se o resto do modelo daqui é mais novo)
+  if(obj(rem.model)){
+    const ra=rem.model.aparencia, la=model.aparencia;
+    if(obj(ra)&&(+ra.em||0)>(obj(la)?+la.em||0:0)){model.aparencia=ra;lsSet(LS.model,model);mudou=true}else if(obj(la)) rem.model.aparencia=la;
+    const rp=rem.model.plantoes, lp=model.plantoes;
+    if(obj(rp)&&obj(lp)){if((+rp.metaEm||0)>(+lp.metaEm||0)){lp.meta=rp.meta;lp.metaEm=rp.metaEm;lsSet(LS.model,model);mudou=true}else if(lp.metaEm){rp.meta=lp.meta;rp.metaEm=lp.metaEm}}
+  }
   // plantões: junta as contagens e os plantões iniciados dos dois lados antes de escolher o modelo mais novo
   if(obj(rem.model)&&typeof plJuntaModelo==="function"){const antes=JSON.stringify(model.plantoes||null);try{plJuntaModelo(model,rem.model)}catch(e){}if(JSON.stringify(model.plantoes||null)!==antes){lsSet(LS.model,model);mudou=true}}
   if(obj(rem.model)&&(rem.model.updatedAt||0)>(model.updatedAt||0)){model=migrateModel(rem.model);lsSet(LS.model,model);mudou=true}
   if(obj(rem.uso)&&(rem.uso.updatedAt||0)>(uso.updatedAt||0)){uso=usoValido(rem.uso);lsSet("rxp_uso_v1",uso);mudou=true}
   return mudou;
 }
-function gsRedesenha(){try{applyOrg();renderCats();renderList();fillSelects();if(!editing)renderDetail();renderEvSeguro();if(ui.tab==="modelos")renderModelos()}catch(e){}}
+function gsRedesenha(){try{if(typeof apDaNuvem==="function")apDaNuvem();applyOrg();renderCats();renderList();fillSelects();if(!editing)renderDetail();renderEvSeguro();if(ui.tab==="modelos")renderModelos()}catch(e){}}
 async function gsSync(){
   if(!gsAtivo()) return;
   if(gsRodando){gsDeNovo=true;return}

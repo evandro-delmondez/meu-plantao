@@ -59,7 +59,7 @@ function hospDivHTML(id){
   const p=hospPac(); if(!p) return "";
   const dv=hospLista(p.divergencias,id); if(!dv.length) return "";
   const lado=(rot,x)=>`<div class="hdlado"><span class="hdrot">${esc(rot)}</span><p>${esc(x&&x.txt)}</p><p class="note">Fonte: ${esc(x&&x.fonte)}</p></div>`;
-  return `<div class="sec hospdiv"><div class="sec-h"><h3>Hospital × app: você decide</h3><span class="alsum">${dv.length} ponto(s)</span></div>
+  return `<div class="sec hospdiv"><div class="sec-h"><h3>Hospital × app: você decide</h3><span class="alsum">${pl(dv.length,"ponto","pontos")}</span></div>
     ${dv.map(d=>`<div class="hditem"><h4>${esc(d.tema)}</h4><div class="hdlados">${lado(p.curto||p.nome,d.hospital)}${lado("Meu Plantão",d.app)}</div>${d.decisao?`<p class="hddec"><b>Sua decisão:</b> ${esc(d.decisao)}</p>`:""}</div>`).join("")}</div>`;
 }
 // regras do hospital para esta conduta (só no modo hospital)

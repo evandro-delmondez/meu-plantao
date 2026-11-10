@@ -193,7 +193,7 @@ function renderPcr(){
   $("#pcrConduta").onclick=()=>abrirConduta("pcr");
   renderPcrLog(); if(pcr.ini) pcrTick();
 }
-function pcrTexto(){const ht=[...pcr.ht].map(i=>PCR_HT[i]);return "PCR — registro:\n"+pcr.log.map(e=>`${e.h} (${e.rel}) ${e.t}`).join("\n")+(ht.length?"\nCausas reversíveis avaliadas: "+ht.join(", ")+".":"")+`\nTotal: ${pcr.nChq} choque(s), ${pcr.nAdr} dose(s) de adrenalina.`}
+function pcrTexto(){const ht=[...pcr.ht].map(i=>PCR_HT[i]);return "PCR — registro:\n"+pcr.log.map(e=>`${e.h} (${e.rel}) ${e.t}`).join("\n")+(ht.length?"\nCausas reversíveis avaliadas: "+ht.join(", ")+".":"")+`\nTotal: ${pl(pcr.nChq,"choque","choques")}, ${pl(pcr.nAdr,"dose","doses")} de adrenalina.`}
 $("#pcrMetro").onclick=()=>metroLiga(!pcr.metro);
 $("#pcrCopiar").onclick=e=>{if(!pcr.log.length){toast("Nada registrado ainda");return}copy(pcrTexto(),e.currentTarget)};
 $("#pcrZerar").onclick=()=>{if(pcr.ini&&!confirm("Zerar o cronômetro e o registro desta PCR?"))return;pcrParar();Object.assign(pcr,{ini:null,cicloIni:null,adr:null,nAdr:0,nChq:0,nAmio:0,nLido:0,ritmo:null,va:false,fim:null,log:[],ht:new Set(),avisou:false});$("#pcrTotal").textContent="00:00";$("#pcrCiclo").textContent="2:00";$("#pcrBarra").style.width="0";$("#pcrAdr").className="";renderPcr()};

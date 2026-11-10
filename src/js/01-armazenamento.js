@@ -121,7 +121,7 @@ function refreshSync(){
   if(dbState!=="ok"&&gsAtivo()) return setSync(gs.erro?"pend":/salvar|Sincronizando/.test(gsEstado)?"pend":"ok",gs.erro?"Nuvem com erro (Backup)":/salvar|Sincronizando/.test(gsEstado)?"Salvando na nuvem…":"Salvo na nuvem");
   if(dbState==="loading") return setSync("local","Conectando…");
   if(dbState==="none") return setSync("local","Salvo só neste aparelho");
-  if(pending.size) return setSync("pend",pending.size+" alteração(ões) sincronizando…");
+  if(pending.size) return setSync("pend",pl(pending.size,"alteração","alterações")+" sincronizando…");
   setSync("ok","Salvo na nuvem");
 }
 function persistLocal(){lsSet(LS.ov,overrides);lsSet(LS.pend,[...pending])}

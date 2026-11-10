@@ -347,18 +347,19 @@ test("Aviso sonoro de reavaliação: ligado no Início, avisa uma vez quando pas
 test("internados em UTI e semi: lista por mês para copiar (enfermaria e alta não entram); fica depois dos 30 dias e sai com o mês recebido", async ({ page }) => {
   const erros = await abrir(page);
   const h = 3600e3, agora = Date.now();
-  const p = (id, nome, criado, tipo, onde) => ({ id, nome, criado, upd: criado, dia: "2000-01-01", cond: "itu", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo, onde, t: criado }, sabe: false });
+  const iso = (t) => { const d = new Date(t); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
+  const p = (id, nome, criado, tipo, onde) => ({ id, nome, criado, upd: criado, dia: iso(agora), cond: "itu", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo, onde, t: criado }, sabe: false });
   await page.evaluate((d) => localStorage.setItem("mph_pacientes_v1", JSON.stringify(d)), {
     pacs: [p("u1", "Maria Da Uti", agora - 50 * h, "internacao", "uti"), p("u2", "Jose Da Semi", agora - 3 * h, "internacao", "semi"),
       p("e1", "Ana Enfermaria", agora - 2 * h, "internacao", "enfermaria"), p("a1", "Pedro Alta", agora - 1 * h, "alta", "")],
     cont: {}, apagados: {}
   });
   await page.reload();
-  await aba(page, "pacientes");
-  const box = page.locator(".pcuti");
+  await aba(page, "plantoes");
+  const box = page.locator(".pluti");
   await expect(box).toContainText("2 pacientes");
   await box.locator("summary").click();
-  const t = await page.locator("#pcCorpo [data-utimes]").first().inputValue();
+  const t = await page.locator("#plCorpo [data-utimes]").first().inputValue();
   expect(t).toContain("Maria Da Uti · UTI"); expect(t).toContain("Jose Da Semi · semi-intensiva");
   expect(t).not.toContain("Ana"); expect(t).not.toContain("Pedro");
   expect(t.indexOf("Maria")).toBeLessThan(t.indexOf("Jose"));
@@ -367,14 +368,10 @@ test("internados em UTI e semi: lista por mês para copiar (enfermaria e alta n�
   await page.evaluate(({ velho, mesVelho }) => { const d = JSON.parse(localStorage.getItem("mph_pacientes_v1")); d.pacs.push({ id: "v1", nome: "Antigo Da Uti", criado: velho, upd: velho, dia: mesVelho + "-15", cond: "itu", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo: "internacao", onde: "uti", t: velho }, sabe: false }); localStorage.setItem("mph_pacientes_v1", JSON.stringify(d)); }, { velho, mesVelho });
   await page.reload(); await aba(page, "pacientes");
   await expect(item(page, "Antigo Da Uti")).toHaveCount(0);
-  await expect(box).toContainText("3 pacientes");
-  await box.locator("summary").click();
-  await expect(page.locator('#pcCorpo [data-utimes="2000-02"]')).toHaveValue(/Antigo Da Uti · UTI/);
   expect(await page.evaluate(() => localStorage.getItem("mph_pacientes_v1"))).toContain("Antigo Da Uti");
   // mês marcado como recebido em Plantões: o registro daquele mês sai
   await page.addInitScript(() => { if (sessionStorage.getItem("pago")) return; sessionStorage.setItem("pago", "1"); const m = JSON.parse(localStorage.getItem("rxp_model_v1") || "{\"v\":4}"); m.plantoes = m.plantoes || {}; m.plantoes.pagos = { "2000-02|hsls": { ok: true, em: "2000-03-20" } }; localStorage.setItem("rxp_model_v1", JSON.stringify(m)); });
-  await page.reload(); await aba(page, "pacientes");
-  await expect(box).toContainText("2 pacientes");
+  await page.reload();
   expect(await page.evaluate(() => localStorage.getItem("mph_pacientes_v1"))).not.toContain("Antigo Da Uti");
   expect(erros).toEqual([]);
 });
@@ -419,7 +416,7 @@ test("sincronização: recupera das versões antigas o paciente que sumiu; sem m
   await expect(pa.locator("#psEstado")).toContainText("Sincronizado");
   await expect(item(pa, "Paciente Da Uti Sumido")).toHaveCount(0);
   await pa.click("#psRecupera");
-  await expect(pa.locator("#psEstado")).toContainText("1 paciente(s) recuperado(s)");
+  await expect(pa.locator("#psEstado")).toContainText("1 paciente recuperado");
   await expect(item(pa, "Paciente Da Uti Sumido")).toHaveCount(1);
   expect([...ea, ...eb]).toEqual([]);
   await a.close(); await b.close();

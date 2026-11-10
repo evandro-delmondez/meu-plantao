@@ -133,7 +133,7 @@ $("#hFinaliza").onclick=()=>{
   if($("#hFimMed")) $("#hFimMed").oninput=e=>{pcPass.medico=e.target.value;txt()};
   if($("#hFimLocal")) $("#hFimLocal").oninput=e=>{pcPass.local=e.target.value;txt()};
   if($("#hFimCp")) $("#hFimCp").onclick=e=>copy($("#hFimTxt").value,e.currentTarget);
-  if($("#hFimPassa")) $("#hFimPassa").onclick=()=>{if(!confirm(`Marcar os ${ab.length} paciente(s) em aberto como passados a outro médico?`))return;
+  if($("#hFimPassa")) $("#hFimPassa").onclick=()=>{if(!confirm(`Marcar ${ab.length===1?"o paciente":`os ${ab.length} pacientes`} em aberto como passados a outro médico?`))return;
     ab.forEach(p=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();pacToca(p,"desf");if(atPac===p.id)atPac=null});pacGrava();plFinaliza();toast("Plantão finalizado");box.hidden=true;renderInicio()};
   if($("#hFimSai")) $("#hFimSai").onclick=()=>{plFinaliza();toast("Plantão finalizado");box.hidden=true;renderInicio()};
 };

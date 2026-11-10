@@ -223,7 +223,7 @@ test("Plantões: horas só dos plantões já dados (futuros em Previstos), sobre
   await expect(mes.locator(".pllista li", { hasText: "04/11" })).toContainText("2 fichas");
   await expect(page.locator("#plCorpo .plhoras")).toContainText("Noturno: ");
   await expect(page.locator("#plCorpo .plhoras")).toContainText("Diurno: 0h00");   // o diurno do dia 20 é futuro
-  await expect(page.locator("#plCorpo .plprev")).toContainText("2 plantão(ões)");
+  await expect(page.locator("#plCorpo .plprev")).toContainText("2 plantões");
   await expect(page.locator("#plCorpo .plprox")).toContainText("Sobreaviso · Noturno (Cinderela) (18:00–00:00)");
   // mudar turno no dia
   await page.click('#plCorpo [data-pldia="2026-11-20"]');
@@ -250,5 +250,48 @@ test("Plantão: Iniciar apertado tarde (no meio do noturno) não encurta as hora
   expect(x.iniT).toBeGreaterThan(0); expect(x.ini).toBeUndefined();
   await aba(page, "plantoes");
   await expect(page.locator("#plCorpo")).toContainText("20:55");
+  expect(erros).toEqual([]);
+});
+
+test("plural certo: 1 plantão, 2 plantões (sem 'plantão(ões)')", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 2, 10, 0));
+  await page.addInitScript(() => {
+    if (localStorage.getItem("teste_pl_plural")) return; localStorage.setItem("teste_pl_plural", "1");
+    localStorage.setItem("rxp_model_v1", JSON.stringify({ v: 4, plantoes: { escala: [{ id: "a", data: "2026-11-20", local: "hsls", turno: "N" }, { id: "b", data: "2026-11-21", local: "hsls", turno: "N" }], contagem: {} } }));
+  });
+  const erros = await abrir(page);
+  await aba(page, "plantoes");
+  await expect(page.locator("#plCorpo .plprev")).toContainText("2 plantões");
+  await expect(page.locator("#plCorpo")).not.toContainText("(ões)");
+  expect(erros).toEqual([]);
+});
+
+test("Plantões: internados em UTI e semi e pacientes passados do mês, com data (fora da aba Pacientes); novo atendimento acima da lista no Início", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 9, 10, 0));
+  await page.addInitScript(() => {
+    if (localStorage.getItem("teste_pl_mes")) return; localStorage.setItem("teste_pl_mes", "1");
+    const p = (id, nome, d, h, tipo, onde) => { const t = new Date(2026, 10, d, h, 0).getTime(); return { id, nome, criado: t, upd: t, dia: `2026-11-0${d}`, cond: "gripe", et: { exame: { on: false, ok: false, txt: "" }, med: { on: false, ok: false }, reav: { t: null }, parecer: { on: false, ok: false, esp: "" } }, desf: { tipo, onde, t: t + 6e5 }, sabe: false, snap: null }; };
+    localStorage.setItem("mph_pacientes_v1", JSON.stringify({ pacs: [p("u", "Maria Uti", 7, 21, "internacao", "uti"), p("s", "Joao Semi", 8, 2, "internacao", "semi"), p("x", "Ana Passada", 6, 15, "passado", ""), p("a", "Pedro Alta", 7, 22, "alta", "")], cont: {}, apagados: {} }));
+  });
+  const erros = await abrir(page);
+  // Início: novo atendimento vem antes da lista de pacientes
+  const ordem = await page.evaluate(() => { const n = document.getElementById("hNovo"), l = document.getElementById("hPacsBox"); return !!(n.compareDocumentPosition(l) & Node.DOCUMENT_POSITION_FOLLOWING); });
+  expect(ordem).toBe(true);
+  await aba(page, "pacientes");
+  await expect(page.locator("#pcCorpo .pcuti")).toHaveCount(0);
+  await aba(page, "plantoes");
+  const ut = page.locator("#plCorpo .pluti");
+  await expect(ut).toContainText("2 pacientes em novembro de 2026");
+  await ut.locator("summary").click();
+  const t = await ut.locator("textarea").inputValue();
+  expect(t).toContain("07/11/2026"); expect(t).toContain("Maria Uti · UTI"); expect(t).toContain("Joao Semi · semi-intensiva"); expect(t).not.toContain("Pedro");
+  const ps = page.locator("#plCorpo .plpass");
+  await expect(ps).toContainText("1 paciente em novembro de 2026");
+  await ps.locator("summary").click();
+  await expect(ps).toContainText("06/11 · Plantão");
+  await expect(ps).toContainText("Ana Passada · passado a outro médico");
+  // outro mês: vazio
+  await page.click('[data-plmes="-1"]');
+  await expect(page.locator("#plCorpo .pluti")).toContainText("0 pacientes em outubro de 2026");
   expect(erros).toEqual([]);
 });

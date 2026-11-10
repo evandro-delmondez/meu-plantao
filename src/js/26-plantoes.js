@@ -83,6 +83,19 @@ function plJuntaModelo(loc,rem){
     }};
   junta(R,L); junta(L,R);
 }
+// pacientes do mês na tela de Plantões (médico, 2026-11-08): internados em UTI ou semi (para a contabilidade) e
+// passados a outro médico ou especialidade, com a data do atendimento. Os internados ficam até o mês ser recebido;
+// os passados, enquanto estão na lista (30 dias).
+function plPacMesHtml(pref,mesTxt){
+  let db; try{db=pacCarrega()}catch(e){return ""}
+  const ut=(pacUtiMeses(db).find(x=>x.m===pref))||{n:0,txt:""};
+  const ps=db.pacs.filter(p=>pacSaiu(p)&&String(p.dia).startsWith(pref)).sort((a,b)=>a.criado-b.criado);
+  const linha=p=>`${p.dia.split("-").reverse().slice(0,2).join("/")} · ${pacPlantao(p.criado).rot} · ${p.nome} · ${p.desf.tipo==="especialidade"?"passado a outra especialidade":"passado a outro médico"}`;
+  return `<details class="panel card pluti"><summary><h3>Internados em UTI e semi</h3> <span class="note">${pl(ut.n,"paciente","pacientes")} em ${esc(mesTxt)}</span></summary>
+      ${ut.n?`<textarea class="out-edit" data-utimes="${pref}" readonly rows="${Math.min(ut.n+1,12)}">${esc(ut.txt)}</textarea><div class="actions"><button class="btn primary" data-uticp="${pref}">Copiar para a contabilidade</button></div><p class="note">Os nomes ficam até você marcar o mês como recebido (no máximo 90 dias).</p>`:`<p class="note">Nenhuma internação em UTI ou semi marcada neste mês.</p>`}</details>
+    <details class="panel card plpass"><summary><h3>Pacientes passados</h3> <span class="note">${pl(ps.length,"paciente","pacientes")} em ${esc(mesTxt)} · não contam</span></summary>
+      ${ps.length?`<ul class="pllista">${ps.map(p=>`<li>${esc(linha(p))}</li>`).join("")}</ul><p class="note">Os nomes ficam 30 dias, como a lista de pacientes.</p>`:`<p class="note">Nenhum paciente passado neste mês.</p>`}</details>`;
+}
 const plChave=x=>x.data+(PL_NOITE.includes(x.turno)?"N":"D");
 // chaves de contagem que o plantão cobre (24 h e 18 h: o dia e a noite)
 const plCobre=x=>PL_LONGO.includes(x.turno)?[x.data+"D",x.data+"N"]:[plChave(x)];
@@ -214,27 +227,29 @@ function plRender(el){
   const hojeIso=plIso(hoje), proxPl=P.escala.filter(x=>x.data>=hojeIso).sort((a,b)=>a.data.localeCompare(b.data)||PL_ORDEM.indexOf(a.turno)-PL_ORDEM.indexOf(b.turno)).slice(0,6);
   el.innerHTML=`<div id="plEscBox"></div>${proxPl.length?`<div class="panel card plprox"><h3>Próximos plantões</h3><ul class="pllista">${proxPl.map(x=>{const L=P.locais[x.local]||{};return `<li style="--c:var(--${L.cor||"slate"})"><b>${x.data.split("-").reverse().slice(0,2).join("/")}</b> ${x.sobre?"Sobreaviso · ":""}${esc(plTurnoDe(x)[0])} (${plTurnoDe(x)[1]}–${plTurnoDe(x)[2]}) · ${esc(L.nome||x.local)} <a class="btn sm" href="${plGoogle(x)}" target="_blank" rel="noopener">📅 Google Agenda</a></li>`}).join("")}</ul></div>`:""}
   <div class="panel card"><div class="plhead"><button class="btn sm" data-plmes="-1" aria-label="Mês anterior">◀</button><h2>${esc(mesTxt)}</h2><button class="btn sm" data-plmes="1" aria-label="Próximo mês">▶</button></div>
-      <div class="plres">${res.map(r=>`<div class="plcard${r.inativo?" plinativo":""}" style="--c:var(--${r.L.cor||"slate"})"><b>${esc(r.L.nome)}</b>${r.inativo?`<span class="note">${esc(r.txt)} — fora do total</span>`:`<span class="note">${r.ps.length} plantão(ões) · ${esc(r.txt)}</span><span class="plv">${plBRL(r.total)}</span>${r.pag?`<span class="note plpag">${esc(r.pag)}</span>`:""}
+      <div class="plres">${res.map(r=>`<div class="plcard${r.inativo?" plinativo":""}" style="--c:var(--${r.L.cor||"slate"})"><b>${esc(r.L.nome)}</b>${r.inativo?`<span class="note">${esc(r.txt)} — fora do total</span>`:`<span class="note">${pl(r.ps.length,"plantão","plantões")} · ${esc(r.txt)}</span><span class="plv">${plBRL(r.total)}</span>${r.pag?`<span class="note plpag">${esc(r.pag)}</span>`:""}
         <label class="check"><input type="checkbox" data-plpago="${pref}|${r.k}" ${(P.pagos[pref+"|"+r.k]||{}).ok?"checked":""}> recebido</label>`}</div>`).join("")}
         <div class="plcard pltotal"><b>Total do mês</b><span class="plv">${plBRL(total)}</span><span class="note">valores brutos</span></div>
         <div class="plcard plhoras"><b>Horas trabalhadas</b><span class="plv">${plDur(tot.min)}</span><span class="note">${plBRL(rh(tot))}/h no geral</span>
           <span class="note">Diurno: ${plDur(di.min)} · ${plBRL(rh(di))}/h</span><span class="note">Noturno: ${plDur(no.min)} · ${plBRL(rh(no))}/h</span><span class="note">só plantões já dados</span></div>
-        ${prevN?`<div class="plcard plprev"><b>Previstos no mês</b><span class="plv">${prevN} plantão(ões)</span><span class="note">${plDur(prevMin)} pela escala · ainda não contam</span></div>`:""}
+        ${prevN?`<div class="plcard plprev"><b>Previstos no mês</b><span class="plv">${pl(prevN,"plantão","plantões")}</span><span class="note">${plDur(prevMin)} pela escala · ainda não contam</span></div>`:""}
         <div class="plcard plmeta"><b>Meta do mês</b><label class="plmetal">R$ <input class="inp" inputmode="decimal" id="plMeta" value="${meta?String(meta).replace(".",","):""}" placeholder="ex.: 10000" aria-label="Meta de valor do mês"></label>
           ${meta?(falta?`<span class="note">Faltam ${plBRL(falta)}${hFalta!=null?` · cerca de <b>${plDur(Math.ceil(hFalta*60))}</b> no seu R$/h médio`:""}</span>`:`<span class="note"><b>Meta batida!</b></span>`):`<span class="note">Defina para ver quantas horas faltam.</span>`}</div></div>
       <div class="plsem">${["D","S","T","Q","Q","S","S"].map(x=>`<span>${x}</span>`).join("")}</div><div class="plgrid">${cel.join("")}</div>
       <p class="note">Toque num dia para marcar ou tirar um plantão. A contagem vem da lista de pacientes (alta, internação, transferência e evasão contam; internação em UTI conta no valor de UTI).</p></div>
     <div class="panel card" id="plDia" hidden></div>
     <div class="panel card"><h3>Plantões do mês</h3>${doMes.length?`<ul class="pllista">${doMes.map(x=>{const L=P.locais[x.local]||{};const r=plValor(x);return `<li style="--c:var(--${L.cor||"slate"})"><b>${x.data.split("-").reverse().slice(0,2).join("/")}</b> ${x.sobre?"Sobreaviso · ":""}${esc(plTurnoDe(x)[0])} · ${esc(L.nome||x.local)}${x.manual?" (à mão)":""}${(()=>{const L2=P.locais[x.local]||{};if(L2.tipo!=="porAlta"||x.data<PL_HORAS_DESDE)return "";const h=plHoras(x),f=r.c?(r.c.n||0)+(r.c.uti||0):0;return ` · <span class="plhr">${h.ini}–${h.fim} (${plDur(h.min)}) · ${f} ficha${f===1?"":"s"} · ${plBRL(r.v)} · ${plBRL(h.min?r.v/(h.min/60):0)}/h</span>`})()}${r.c?` · ${r.c.n||0} atendidos${r.c.uti?` + ${r.c.uti} UTI`:""} · ${plBRL(r.v)}`:L.tipo==="porAlta"?" · sem contagem ainda":""} <a class="btn sm" href="${plGoogle(x)}" target="_blank" rel="noopener">📅 Google Agenda</a></li>`}).join("")}</ul>`:`<p class="note">Nenhum plantão marcado neste mês.</p>`}</div>
+    ${plPacMesHtml(pref,mesTxt)}
     <details class="panel card"><summary><h3>Locais e valores</h3></summary><div class="hospform">${Object.entries(P.locais).map(([k,L])=>`<fieldset class="plloc"><legend>${esc(L.nome)}</legend>
       <label>Nome<input class="inp" data-plcfg="${k}.nome" value="${esc(L.nome)}"></label>
       <label class="check"><input type="checkbox" data-plativo="${k}" ${L.ativo!==false?"checked":""}> Ativo (entra no total)</label>
       ${L.tipo==="porAlta"?`<label>Pagamento: do dia<input class="inp" inputmode="numeric" data-plcfg="${k}.pagDe" value="${esc(String(L.pagDe||""))}"></label><label>até o dia (do mês seguinte)<input class="inp" inputmode="numeric" data-plcfg="${k}.pagAte" value="${esc(String(L.pagAte||""))}"></label>`:""}
       ${L.tipo==="salario"?`<label>Salário mensal (R$)<input class="inp" inputmode="decimal" data-plcfg="${k}.salario" value="${esc(String(L.salario).replace(".",","))}"></label>`:`<label>Por alta (R$)<input class="inp" inputmode="decimal" data-plcfg="${k}.porAlta" value="${esc(String(L.porAlta).replace(".",","))}"></label><label>Por internação em UTI (R$)<input class="inp" inputmode="decimal" data-plcfg="${k}.porUti" value="${esc(String(L.porUti).replace(".",","))}"></label>`}</fieldset>`).join("")}</div></details>`;
+  el.querySelectorAll("[data-uticp]").forEach(b=>b.onclick=e=>copy(el.querySelector(`[data-utimes="${b.dataset.uticp}"]`).value,e.currentTarget));
   el.querySelectorAll("[data-plmes]").forEach(b=>b.onclick=()=>{plMes.m+=+b.dataset.plmes;if(plMes.m<0){plMes.m=11;plMes.a--}if(plMes.m>11){plMes.m=0;plMes.a++}renderPlantoes()});
   el.querySelectorAll("[data-plpago]").forEach(c=>c.onchange=()=>{P.pagos[c.dataset.plpago]={ok:c.checked,em:c.checked?plIso(new Date()):""};saveModel()});
   el.querySelectorAll("[data-plcfg]").forEach(i=>i.onchange=()=>{const [k,f]=i.dataset.plcfg.split(".");P.locais[k][f]=f==="nome"?i.value.trim():+String(i.value).replace(/\./g,"").replace(",",".")||0;saveModel();renderPlantoes()});
-  const mt=el.querySelector("#plMeta"); if(mt) mt.onchange=()=>{P.meta=+String(mt.value).replace(/\./g,"").replace(",",".")||0;saveModel();renderPlantoes()};
+  const mt=el.querySelector("#plMeta"); if(mt) mt.onchange=()=>{P.meta=+String(mt.value).replace(/\./g,"").replace(",",".")||0;P.metaEm=Date.now();saveModel();renderPlantoes()};
   el.querySelectorAll("[data-plativo]").forEach(c=>c.onchange=()=>{P.locais[c.dataset.plativo].ativo=c.checked;saveModel();renderPlantoes()});
   el.querySelectorAll("[data-pldia]").forEach(b=>b.onclick=()=>plAbreDia(b.dataset.pldia));
   renderPlEscala($("#plEscBox"));

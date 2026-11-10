@@ -105,7 +105,7 @@ test("sala vermelha lista as condutas de emergência e os atalhos", async ({ pag
   expect(erros).toEqual([]);
 });
 
-test("Ajustes → Aparência: padrão do médico, troca paleta/fonte/cantos, guarda neste aparelho e volta ao padrão", async ({ page }) => {
+test("Ajustes → Aparência: padrão do médico, troca paleta/fonte/cantos, guarda no aparelho e no modelo (nuvem) e volta ao padrão", async ({ page }) => {
   const erros = await abrir(page);
   const d = () => page.evaluate(() => ({ ...document.documentElement.dataset }));
   expect(await d()).toMatchObject({ pal: "petroleo", fonte: "jakarta", cartao: "sombra", cantos: "retos", dens: "compacta" });
@@ -122,8 +122,8 @@ test("Ajustes → Aparência: padrão do médico, troca paleta/fonte/cantos, gua
   await page.reload();
   expect(await d()).toMatchObject({ pal: "salvia", fonte: "lexend", cantos: "redondos", theme: "dark" });
   expect(await page.evaluate(() => document.getElementById("apFonteCss").href)).toContain("Lexend");
-  // fora do backup e da nuvem
-  expect(await page.evaluate(() => localStorage.getItem("rxp_model_v1") || "")).not.toContain("salvia");
+  // guardada no aparelho e no modelo (vai para a nuvem)
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem("rxp_model_v1")).aparencia.pal)).toBe("salvia");   // vai para a nuvem (médico, 2026-11-08)
   await aba(page, "aparencia");
   await page.click("#apPadrao");
   expect(await d()).toMatchObject({ pal: "petroleo", fonte: "jakarta", cantos: "retos" });

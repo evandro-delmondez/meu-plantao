@@ -76,10 +76,11 @@ window.AP_PADRAO={pal:"petroleo",fonte:"jakarta",cartao:"sombra",cantos:"retos",
     <div id="gres" class="gres" hidden></div>
     <div id="hbody">
       <div class="panel hbox hplbox" id="hPlBox"></div>
+      <!-- novo atendimento acima da lista (médico, 2026-11-08): com muitos pacientes, não se perde -->
+      <div class="panel hnovo" id="hNovo"></div>
       <div class="panel hbox hpacsbox" id="hPacsBox" hidden><div class="hboxh"><h2>Pacientes do plantão</h2><span class="note" id="hPacsConta"></span></div><div id="hPacs"></div>
         <div class="actions hpacsacoes"><button class="btn sm" id="hPacsTodos">Lista completa</button><button class="btn sm" id="hSom" aria-pressed="false">🔕 Aviso sonoro</button><button class="btn sm" id="hPassagem">Passagem de plantão</button><button class="btn sm primary" id="hFinaliza">Finalizar plantão</button></div>
         <div id="hFimBox" hidden></div></div>
-      <div class="panel hnovo" id="hNovo"></div>
       <div class="hcols">
         <div class="panel hbox"><h2>★ Favoritos</h2><div class="hchips" id="hFav"></div></div>
         <div class="panel hbox"><h2>Mais usadas</h2><div class="hchips" id="hTop"></div></div>

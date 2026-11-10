@@ -68,6 +68,6 @@ function renderPlEscala(box){
   if($("#plEscGrava")) $("#plEscGrava").onclick=()=>{
     const novos=plEsc.itens.filter(x=>!ja(x)), loc=plLocalPadrao();
     novos.forEach((x,i)=>{const y={id:"pl"+Date.now().toString(36)+i,data:x.data,local:loc,turno:x.turno,...(x.sobre?{sobre:true}:{})};P.escala.push(y);if(P.recusados)plCobre(y).forEach(k=>delete P.recusados[k])});
-    saveModel(); toast(`${novos.length} plantão(ões) na escala`); plEsc={txt:"",itens:null,erro:"",aberto:false}; renderPlantoes();
+    saveModel(); toast(`${pl(novos.length,"plantão","plantões")} na escala`); plEsc={txt:"",itens:null,erro:"",aberto:false}; renderPlantoes();
   };
 }

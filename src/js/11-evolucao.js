@@ -936,7 +936,7 @@ function bindEv(it){
     try{const r=await iaObjetivos(ctx); if(atPac!==quem){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
       const novos=r.filter(t=>!ja.some(y=>norm(y)===norm(t))).map(t=>({t,on:false}));
       atd.intern.objIa=[...(atd.intern.objIa||[]),...novos]; const y=window.scrollY; renderEv(); window.scrollTo(0,y);
-      const e2=$("#atObjEst"); if(e2) e2.textContent=novos.length?`${novos.length} sugestão(ões) da IA: marque as que quiser.`:"Sem sugestões novas."}
+      const e2=$("#atObjEst"); if(e2) e2.textContent=novos.length?`${pl(novos.length,"sugestão","sugestões")} da IA: marque as que quiser.`:"Sem sugestões novas."}
     catch(e){est.textContent=/^40[13]/.test(e.message)?"Chave da IA recusada.":e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":"Não consegui falar com a IA agora."; b.disabled=false}};
   box.querySelectorAll("[data-atvt]").forEach(b=>b.onclick=()=>{const on=b.dataset.atvt==="1", c=b.dataset.atvc;
     const alvo=c?(atVolteGrupos().find(g=>g.c&&g.c.id===c)||{itens:[]}).itens.map(([,i])=>i):atVolte().map((x,i)=>i);

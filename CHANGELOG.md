@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.60.0 — 2026-11-10
+- **18 condutas novas** (conferidas): dissecção de aorta, hiponatremia, hipocalemia, intoxicação alcoólica, overdose de opioide, cirrose descompensada, covid, varicela, chikungunya, febre maculosa, leptospirose, sangramento na gestação inicial, hiperêmese, mastite, violência sexual, ideação suicida, fratura e imobilização, tendinite e bursite. Queixa nova "Saúde mental e violência".
+- **5 escores novos**: ADD-RS, Child-Pugh, Ottawa (tornozelo e joelho) e PUQE-24.
+- **Pielonefrite em casa**: cefuroxima 500 mg 12/12h por 10 dias após a ceftriaxona (resistência da E. coli ao ciprofloxacino no DF); ciprofloxacino só na alergia a betalactâmico. **Prostatite** pela EAU 2026. **CRB-65** pela NICE; **CURB-65** com ureia > 42 mg/dL; **queimadura** pelo ATLS 11.
+- **Conduta: reavaliação conforme o que foi feito.** "Reavaliação após a medicação na unidade", "após o resultado dos exames" ou os dois, sozinha pelo que você marcar.
+- **Alta: "Para casa"** marca sozinha "sintomáticos" e/ou "antibioticoterapia domiciliar" pelo que está na receita (toque para tirar).
+
 ## 1.59.5 — 2026-11-08
 - **Plantões, por mês**: "Internados em UTI e semi" (com "Copiar para a contabilidade") e "Pacientes passados" (com a data do atendimento) ficam na aba Plantões, no mês da tela (◀ ▶). Saíram da aba Pacientes.
 - **Início**: "Novo atendimento" fica acima de "Pacientes do plantão".

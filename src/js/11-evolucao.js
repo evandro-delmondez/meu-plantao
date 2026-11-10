@@ -334,14 +334,31 @@ function atNomesUnid(){
   return achados.sort((a,b)=>a.i-b.i).map(a=>a.n);
 }
 // exames: o item liga sozinho quando há exame pedido na Prescrição (e pode ser desligado)
-const atCondOn=k=>k==="explico"?atd.cond[k]!==false:(k==="lab"||k==="img")?(atd.cond[k]??atItens(k==="lab"?(atd.exLab||atd.exSol||""):atd.exImg).length>0):!!atd.cond[k];
+const atCondOn=k=>k==="explico"?atd.cond[k]!==false:(k==="lab"||k==="img")?(atd.cond[k]??atItens(k==="lab"?(atd.exLab||atd.exSol||""):atd.exImg).length>0)
+  :k==="reav"?(atd.cond.reav??(atCondOn("med")||atCondOn("lab")||atCondOn("img"))):!!atd.cond[k];
+// "Reavaliação após…" conforme o que foi marcado: medicação na unidade, exames, os dois (médico, 2026-11-10)
+const AT_REAV_PADRAO="Reavaliação após a medicação e o resultado dos exames.";
+function atReavCond(t){
+  if(t!==AT_REAV_PADRAO) return t;   // texto próprio do médico (Editar padrões) fica como está
+  const med=atCondOn("med"), ex=atCondOn("lab")||atCondOn("img");
+  return med&&ex?"Reavaliação após a medicação na unidade e o resultado dos exames.":med?"Reavaliação após a medicação na unidade.":ex?"Reavaliação após o resultado dos exames.":"Reavaliação clínica antes da decisão.";
+}
+// na alta: o que vai para casa (sintomáticos, antibiótico), marcado sozinho pela receita e ajustável por toque
+const AT_RXALTA=[["sint","Prescrevo sintomáticos para uso domiciliar."],["atb","Prescrevo antibioticoterapia domiciliar."]];
+function atRxCasa(){
+  const casa=String(atJunta("casa")||""), itens=[...casa.matchAll(/^\s*\d+\)\s*([^\n]+)/gm)].map(m=>m[1]);
+  const atb=typeof rxTemAtb==="function"&&rxTemAtb(casa);
+  const outros=itens.filter(n=>!(typeof rxTemAtb==="function"&&rxTemAtb("1) "+n)));
+  return {atb,sint:outros.length>0};
+}
+const atAltaRxOn=k=>atd.altaRx&&atd.altaRx[k]!=null?atd.altaRx[k]:!!atRxCasa()[k];
 function atTrat(it){
   const L=[], pos={}, lab=atItens(atd.exLab||atd.exSol||""), img=atItens(atd.exImg);
   for(const [k,t] of atL("cond")){
     if(!atCondOn(k)) continue;
     if(k==="med"){const n=atNomesUnid().filter(x=>atd.medSel[x]);L.push(`- ${t.replace(/\.$/,"")}${n.length?": "+ptLista(n):""}.`)}
     else if(k==="lab"||k==="img"){const l=k==="lab"?lab:img;L.push(`- ${t.replace(/\.$/,"")}${l.length?": "+l.join(", "):""}.`)}
-    else L.push("- "+t);
+    else L.push("- "+(k==="reav"?atReavCond(t):t));
     pos[k]=L.length;
   }
   // lista própria (Editar padrões) sem os itens de exames: entram logo depois da medicação na unidade, como antes
@@ -386,6 +403,10 @@ function atAlta(it){
   if(rv.length||atd.reavTxt.trim()) L.push(`- Paciente reavaliado${rv.length?", "+ptLista(rv):""}${atd.reavTxt.trim()?`: ${atd.reavTxt.trim()}`:"."}`.replace(/\.\.$/,"."));
   L.push(...atResultados());
   const ori=atL("ori").filter(([k])=>atd.altaOri[k]!==false).map(([,t])=>t);
+  if(!(atd.decisao==="internacao"||/intern/.test(atd.destino||""))){const s=atAltaRxOn("sint"), a=atAltaRxOn("atb");
+    if(s&&a) L.push("- Prescrevo sintomáticos e antibioticoterapia para uso domiciliar.");
+    else if(s) L.push("- Prescrevo sintomáticos para uso domiciliar.");
+    else if(a) L.push("- Prescrevo antibioticoterapia domiciliar.");}
   if(ori.length) L.push(`- Paciente orientado sobre ${ptLista(ori)}.`);
   if(atd.altaAtest) L.push("- Forneço atestado médico.");   // logo abaixo do "orientado sobre", acima do destino
   const interna=atd.decisao==="internacao"||/intern/.test(atd.destino||"");
@@ -696,7 +717,7 @@ function renderEv(){
     ${ta("diag","Outras hipóteses ou complemento","ex.: diagnóstico diferencial com…")}
     ${atSaida("diag","Hipótese diagnóstica")}</div></div>
   <div class="sec atsec" data-etapa="4"><div class="sec-h"><h3>${atPos(4)}. Conduta</h3><span class="alsum">itens · receituário</span></div><div class="atbody">
-    <div class="chips atcond">${atL("cond").map(([k,r])=>chip("cond",k,k==="explico"?"Explico o quadro e a conduta":r.replace(/\.$/,""),atCondOn(k))).join("")}</div>
+    <div class="chips atcond">${atL("cond").map(([k,r])=>chip("cond",k,k==="explico"?"Explico o quadro e a conduta":(k==="reav"?atReavCond(r):r).replace(/\.$/,""),atCondOn(k))).join("")}</div>
     ${atCondOn("med")&&atNomesUnid().length?`<span class="lbl">Quais remédios (toque nos que foram feitos)</span><div class="chips atmeds">${atNomesUnid().map(n=>chip("medsel",n,n,atd.medSel[n])).join("")}</div>`:""}
     ${ta("condLivre","Outras condutas","ex.: solicito parecer da Cirurgia Geral")}
     ${atEdit?edLista("cond","Itens da conduta"):""}
@@ -722,6 +743,7 @@ function renderEv(){
     ${atRoteiro()}
     <span class="lbl">Reavaliação</span><div class="chips">${atL("reav").map(([k,r])=>chip("reav",k,r,atd.reav[k])).join("")}</div>
     ${ta("reavTxt","Resultados de exames e resposta ao tratamento","ex.: hemograma sem leucocitose; TC sem coleção")}
+    <span class="lbl">Para casa</span><div class="chips">${AT_RXALTA.map(([k,r])=>chip("altarx",k,r.replace(/\.$/,""),atAltaRxOn(k))).join("")}</div>
     <span class="lbl">Orientado sobre</span><div class="chips">${atL("ori").map(([k,r])=>chip("ori",k,r.split(" (")[0],atd.altaOri[k]!==false)).join("")}</div>
     ${volte.length?`<div class="atvoltecab"><span class="lbl">Sinais de alarme explicados (toque para tirar)</span><button class="btn sm" data-atvt="0">Tirar todos</button><button class="btn sm" data-atvt="1">Pôr todos</button></div>${atVolteGrupos().map(g=>`${g.c?`<div class="atvoltecond"><b>${esc(g.c.nome)}</b><button class="btn sm" data-atvt="0" data-atvc="${esc(g.c.id)}">Tirar</button><button class="btn sm" data-atvt="1" data-atvc="${esc(g.c.id)}">Pôr</button></div>`:""}<div class="chips atvolte">${g.itens.map(([x,i])=>chip("volte",i,semParenteses(x),!atd.alarOff[i])).join("")}</div>`).join("")}`:""}
     ${atEdit?edLista("reav","Reavaliação")+edLista("ori","Orientado sobre")+`<p class="note">Os sinais de alarme da alta são os do checklist (edite na HDA).</p>`:""}
@@ -816,14 +838,15 @@ function bindEv(it){
   box.querySelectorAll("[data-atchip]").forEach(b=>b.onclick=()=>{
     const g=b.dataset.atchip, k=b.dataset.k;
     if(g==="sis"){const s=new Set(atSis(it));s.has(k)?s.delete(k):s.add(k);atd.sis=EX_SIS.map(x=>x[0]).filter(x=>s.has(x));const y=window.scrollY;renderEv();window.scrollTo(0,y);return}
-    if(g==="cond"){atd.cond[k]=!atCondOn(k);if(k==="med"){renderEv();return}}
+    if(g==="cond"){atd.cond[k]=!atCondOn(k);if(["med","lab","img"].includes(k)||k==="reav"){const y=window.scrollY;renderEv();window.scrollTo(0,y);return}}
+    if(g==="altarx"){atd.altaRx=atd.altaRx||{};atd.altaRx[k]=!atAltaRxOn(k)}
     if(g==="medsel") atd.medSel[k]=!atd.medSel[k];
     if(g==="eg"){atd.eg=atd.eg||{};atd.eg[k]=!atd.eg[k]}
     if(g==="reav") atd.reav[k]=!atd.reav[k];
     if(g==="ori") atd.altaOri[k]=atd.altaOri[k]===false;
     if(g==="volte") atd.alarOff[k]=!atd.alarOff[k];
     if(g==="obj") atd.intern.obj[k]=!atd.intern.obj[k];
-    const on=g==="eg"?!!(atd.eg||{})[k]:g==="ori"?atd.altaOri[k]!==false:g==="volte"?!atd.alarOff[k]:g==="sis"?atSis(it).includes(k):g==="obj"?atd.intern.obj[k]:g==="cond"?atCondOn(k):g==="medsel"?!!atd.medSel[k]:atd.reav[k];
+    const on=g==="eg"?!!(atd.eg||{})[k]:g==="ori"?atd.altaOri[k]!==false:g==="volte"?!atd.alarOff[k]:g==="sis"?atSis(it).includes(k):g==="obj"?atd.intern.obj[k]:g==="cond"?atCondOn(k):g==="altarx"?atAltaRxOn(k):g==="medsel"?!!atd.medSel[k]:atd.reav[k];
     b.setAttribute("aria-pressed",!!on); b.textContent=(on?"✓ ":"")+b.textContent.replace(/^✓ /,"");
     atAtualiza();
   });

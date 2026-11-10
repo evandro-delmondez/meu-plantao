@@ -858,3 +858,27 @@ test("Tempo por etapa: o tempo digitando na HDA aparece em minutos na barra de e
   await expect(page.locator('#atEtapas [data-atir="1"] .atmin')).toHaveText(" 5′");
   expect(erros).toEqual([]);
 });
+
+test("conduta: reavaliação conforme o que foi feito (medicação, exames, os dois); alta marca sozinha sintomáticos e antibiótico pela receita", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "amigdalite");
+  const trat = saida(page, "trat"), alta = saida(page, "alta");
+  const chipCond = (k) => page.locator(`#atCorpo [data-atchip="cond"][data-k="${k}"]`);
+  // nada feito na unidade: reavaliação clínica
+  await expect(chipCond("reav")).toContainText("Reavaliação clínica");
+  // medicação na unidade: liga a reavaliação após a medicação
+  await chipCond("med").click();
+  await expect(trat).toHaveValue(/Reavaliação após a medicação na unidade\./);
+  // exames também: os dois
+  await chipCond("lab").click();
+  await expect(trat).toHaveValue(/Reavaliação após a medicação na unidade e o resultado dos exames\./);
+  // só exames
+  await chipCond("med").click();
+  await expect(trat).toHaveValue(/Reavaliação após o resultado dos exames\./);
+  // alta: a receita da amigdalite tem antibiótico e sintomático
+  await expect(alta).toHaveValue(/Prescrevo sintomáticos e antibioticoterapia para uso domiciliar\./);
+  await page.locator('#atCorpo [data-atchip="altarx"][data-k="atb"]').click();
+  await expect(alta).toHaveValue(/Prescrevo sintomáticos para uso domiciliar\./);
+  await expect(alta).not.toHaveValue(/antibioticoterapia/);
+  expect(erros).toEqual([]);
+});

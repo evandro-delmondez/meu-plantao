@@ -883,3 +883,34 @@ test("conduta: reavaliação conforme o que foi feito (medicação, exames, os d
   await expect(alta).not.toHaveValue(/antibioticoterapia/);
   expect(erros).toEqual([]);
 });
+
+test("IA da justificativa: resposta que chega depois do Novo paciente é descartada (não cai no paciente seguinte); pedido sem 'Exame físico' dobrado", async ({ page }) => {
+  await page.route("https://api.anthropic.com/**", async (route) => { await new Promise((r) => setTimeout(r, 1500)); route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ content: [{ type: "text", text: "Justificativa do paciente anterior." }] }) }); });
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await atender(page, "pac");
+  await campo(page, "pa").fill("110x70");
+  await page.click('#atCorpo [data-atdec="internacao"]');
+  const ped = await saida(page, "intern").inputValue();
+  expect((ped.match(/Exame físico:/g) || []).length).toBe(1);
+  await page.click("#atJustIa");
+  await page.click("#novoPac"); await page.click("#novoPac");
+  await atender(page, "amigdalite");
+  await page.waitForTimeout(2000);
+  expect(await page.evaluate(() => document.body.innerText)).not.toContain("Justificativa do paciente anterior");
+  expect(erros).toEqual([]);
+});
+
+test("instruções da IA: salvar duas vezes não duplica as regras de segurança", async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await aba(page, "backup");
+  await page.locator(".iaprompt summary").click();
+  await page.click("#iaPromptSalva"); await page.click("#iaPromptSalva");
+  await page.reload(); await aba(page, "backup"); await page.locator(".iaprompt summary").click();
+  const t = await page.locator("#iaPromptTxt").inputValue();
+  expect((t.match(/REGRAS DE SEGURANÇA/g) || []).length).toBe(0);
+  const m = JSON.parse(await page.evaluate(() => localStorage.getItem("rxp_model_v1") || "{}"));
+  expect((m.prefs || {}).iaPrompt || "").toBe("");
+  expect(erros).toEqual([]);
+});

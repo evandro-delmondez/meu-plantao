@@ -388,7 +388,7 @@ function atRoteiro(){
   const cs=atConds(); if(!cs.length) return "";
   const rem=[...new Set([...atReceita().matchAll(/^\s*\d+\)\s*([^-\n]+?)\s*-{2,}/gm)].map(m=>m[1].replace(/\s+\d.*$/,"").trim()))];
   // para falar com o paciente: a lista leiga da alta (ALTA.volte); sem ela, os sinais de alarme do checklist
-  const volte=[...new Set(cs.flatMap(c=>(ALTA[c.id]&&ALTA[c.id].volte)||(chkDe(c.id)&&chkDe(c.id).alarme)||[]))].map(semParenteses).slice(0,4);
+  const volte=[...new Set(cs.flatMap(c=>(ALTA[c.id]&&ALTA[c.id].volte)||(chkDe(c.id)&&chkDe(c.id).alarme)||[]))].map(x=>semParenteses(x).split(/\.\s/)[0].replace(/[.\s]+$/,"")).slice(0,4);
   return `<div class="atroteiro"><span class="lbl">Roteiro de fala (30 s)</span><ol>
     <li><b>O que você tem:</b> ${esc(ptLista(cs.map(c=>c.nome.split(" / ")[0].toLowerCase())))}.</li>
     ${rem.length?`<li><b>O que tomar:</b> ${esc(ptLista(rem))} — como está na receita.</li>`:""}
@@ -409,7 +409,8 @@ function atAlta(it){
     if(s&&a) L.push("- Prescrevo sintomáticos e antibioticoterapia para uso domiciliar.");
     else if(s) L.push("- Prescrevo sintomáticos para uso domiciliar.");
     else if(a) L.push("- Prescrevo antibioticoterapia domiciliar.");}
-  if(ori.length) L.push(`- Paciente orientado sobre ${ptLista(ori)}.`);
+  if(atd.decisao==="internacao"||/intern/.test(atd.destino||"")) L.push("- Paciente e acompanhante orientados sobre o diagnóstico, a necessidade de internação e o plano inicial.");
+  else if(ori.length) L.push(`- Paciente orientado sobre ${ptLista(ori)}.`);
   if(atd.altaAtest) L.push("- Forneço atestado médico.");   // logo abaixo do "orientado sobre", acima do destino
   const interna=atd.decisao==="internacao"||/intern/.test(atd.destino||"");
   if(interna) L.push("- Oriento quanto aos sinais de alarme e à necessidade de internação.");
@@ -432,7 +433,7 @@ function atIntern(it){
   const I=atd.intern, L=[];
   // começa pela história e pelo exame físico (o local e a hipótese ficam em outros campos do MV)
   const hda=(atd.man.hda!=null?atd.man.hda:atTexto("hda",it)).trim(); if(hda) L.push(`História: ${hda}`);
-  const ex=(atd.man.exame!=null?atd.man.exame:atTexto("exame",it)).trim(); if(ex) L.push(/^Exame físico/i.test(ex)?ex:`Exame físico: ${ex}`);
+  const ex=(atd.man.exame!=null?atd.man.exame:atTexto("exame",it)).trim(); if(ex) L.push(`Exame físico: ${ex.replace(/^Exame físico:\s*/i,"").replace(/\nExame físico:\s*\n?/i,"\n")}`);
   // campos vazios puxam da reavaliação (exames alterados e laudos) e do que foi marcado no PS
   const au=atInternAuto(), lab=I.lab.trim()||au.lab, laudos=I.laudos.trim()||au.laudos, feito=I.feito.trim()||au.feito;
   if(lab) L.push(`Exames laboratoriais relevantes: ${lab}`);
@@ -755,7 +756,7 @@ function renderEv(){
       <label class="f">Destino<select class="inp" data-atd="destino" id="evDestino">${[["","— não incluir —"],...destinos()].map(([v,r])=>`<option value="${esc(v)}" ${destAtual===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label></div>
     ${atSaida("alta","Reavaliação e alta")}
     <div class="hospev" id="atHosp"></div></div></div>
-  <details class="sec atsec atintern" data-etapa="7" ${/intern/.test(destAtual)||atd.intern.local?"open":""}><summary class="sec-h"><h3>${atPos(7)}. Pedido de internação</h3><span class="alsum">${esc(atLocais().slice(1).map(x=>x[1]).join(", "))}</span></summary><div class="atbody">
+  <details class="sec atsec atintern" data-etapa="7" ${/intern/.test(destAtual)||atd.intern.local||atd.internAberto?"open":""}><summary class="sec-h"><h3>${atPos(7)}. Pedido de internação</h3><span class="alsum">${esc(atLocais().slice(1).map(x=>x[1]).join(", "))}</span></summary><div class="atbody">
     <label class="f">Onde<select class="inp" data-atd="intern.local">${atLocais().map(([v,r])=>`<option value="${v}" ${atd.intern.local===v?"selected":""}>${esc(r)}</option>`).join("")}</select></label>
     <div class="atperg"><b>Para escrever a justificativa, responda:</b><ul>${atL("perg").map(([,p])=>`<li>${esc(p)}</li>`).join("")}</ul></div>
     <div class="atjustcab"><button class="btn sm" id="atJustIa" title="Monta a justificativa com os dados preenchidos, sem inventar">✨ Escrever justificativa (IA)</button><span class="note" id="atJustEst"></span></div>
@@ -942,11 +943,11 @@ function bindEv(it){
     persistLocal(); if(typeof gsAgenda==="function") gsAgenda(); atd.oriOff={}; toast(n?`Orientações salvas como padrão (${n} conduta${n>1?"s":""}); para voltar, use "Restaurar" na conduta`:"Nada a mudar"); const y=window.scrollY; renderEv(); window.scrollTo(0,y)};
   box.querySelectorAll("[data-atcl]").forEach(b=>b.onclick=()=>{const k=b.dataset.atcl,c=b.dataset.c;atd.exOff=Object.assign({},atd.exOff);const l=new Set(atd.exOff[k]||[]);l.has(c)?l.delete(c):l.add(c);atd.exOff[k]=[...l];b.setAttribute("aria-pressed",!l.has(c));atAtualiza()});
   if($("#atJustIa")) $("#atJustIa").onclick=async()=>{const est=$("#atJustEst"),b=$("#atJustIa");if(!iaAtiva()){est.textContent="Ligue a IA em Documentos › Backup.";return}
-    const it=atItem(), loc=(atLocais().find(x=>x[0]===atd.intern.local)||[])[1]||"";
-    let ctx=[atTexto("hda",it),atTexto("exame",it),"Exames: "+[atInternAuto().lab,atInternAuto().laudos].filter(Boolean).join(" "),"Hipóteses: "+atConds().map(c=>c.nome).join("; "),loc?"Local pedido: "+loc:"",atd.intern.feito?"Feito no PS: "+atd.intern.feito:""].filter(Boolean).join("\n\n");
+    const it=atItem(), loc=atd.intern.local?((atLocais().find(x=>x[0]===atd.intern.local)||[])[1]||""):"", au=atInternAuto(), exs=[au.lab,au.laudos].filter(x=>String(x||"").trim()).join(" "), feito=(atd.intern.feito||au.feito||"").trim();
+    let ctx=[atTexto("hda",it),atTexto("exame",it),exs?"Exames: "+exs:"","Hipóteses: "+atConds().map(c=>c.nome).join("; "),loc?"Local pedido: "+loc:"",feito?"Feito no PS: "+feito:"",String(atd.intern.parecer||"").trim()?"Parecer: "+atd.intern.parecer.trim():""].filter(Boolean).join("\n\n");
     const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) ctx=iaSemNome(ctx,nome);
-    const quem=atPac; b.disabled=true; est.textContent="Escrevendo…";
-    try{const t=await iaJustifica(ctx); if(atPac!==quem){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
+    const dono=atd; b.disabled=true; est.textContent="Escrevendo…";
+    try{const t=await iaJustifica(ctx); if(atd!==dono){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
       const ta=$('#atCorpo [data-atd="intern.motivo"]'); const antes=atd.intern.motivo; atd.intern.motivo=t; if(ta){ta.value=t;grow(ta)} atAtualiza();
       est.innerHTML=`Escrita pela IA: confira. <button class="btn sm" id="atJustDesfaz">Desfazer</button>`; $("#atJustDesfaz").onclick=()=>{atd.intern.motivo=antes;if(ta){ta.value=antes;grow(ta)}atAtualiza();est.textContent="Voltou ao anterior."}}
     catch(e){est.textContent=e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="numeros"?`A IA pôs um número que não está nos dados (${e.det}): descartei.`:/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}
@@ -955,12 +956,13 @@ function bindEv(it){
   box.querySelectorAll("[data-atobjia]").forEach(c=>c.onchange=()=>{const x=(atd.intern.objIa||[])[+c.dataset.atobjia];if(x){x.on=c.checked;atAtualiza()}});
   if($("#atObjIa")) $("#atObjIa").onclick=async()=>{const est=$("#atObjEst"),b=$("#atObjIa");if(!iaAtiva()){est.textContent="Ligue a IA em Documentos › Backup.";return}
     const it=atItem(), ja=[...atL("obj").filter(([k])=>atd.intern.obj[k]).map(([,t])=>t),...(atd.intern.objIa||[]).map(x=>x.t)];
-    let ctx=[atTexto("hda",it),atTexto("exame",it),"Exames: "+[atInternAuto().lab,atInternAuto().laudos].filter(Boolean).join(" "),"Hipóteses: "+atConds().map(c=>c.nome).join("; "),"Já marcados: "+(ja.join("; ")||"nenhum")].join("\n\n");
+    const au=atInternAuto(), exs=[au.lab,au.laudos].filter(x=>String(x||"").trim()).join(" ");
+    let ctx=[atTexto("hda",it),atTexto("exame",it),exs?"Exames: "+exs:"","Hipóteses: "+atConds().map(c=>c.nome).join("; "),String(atd.intern.motivo||"").trim()?"Justificativa: "+atd.intern.motivo.trim():"","Já marcados: "+(ja.join("; ")||"nenhum")].filter(Boolean).join("\n\n");
     const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) ctx=iaSemNome(ctx,nome);
-    const quem=atPac; b.disabled=true; est.textContent="Pensando…";
-    try{const r=await iaObjetivos(ctx); if(atPac!==quem){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
+    const dono=atd; b.disabled=true; est.textContent="Pensando…";
+    try{const r=await iaObjetivos(ctx); if(atd!==dono){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
       const novos=r.filter(t=>!ja.some(y=>norm(y)===norm(t))).map(t=>({t,on:false}));
-      atd.intern.objIa=[...(atd.intern.objIa||[]),...novos]; const y=window.scrollY; renderEv(); window.scrollTo(0,y);
+      atd.intern.objIa=[...(atd.intern.objIa||[]),...novos]; atd.internAberto=true; const y=window.scrollY; renderEv(); window.scrollTo(0,y);
       const e2=$("#atObjEst"); if(e2) e2.textContent=novos.length?`${pl(novos.length,"sugestão","sugestões")} da IA: marque as que quiser.`:"Sem sugestões novas."}
     catch(e){est.textContent=/^40[13]/.test(e.message)?"Chave da IA recusada.":e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":"Não consegui falar com a IA agora."; b.disabled=false}};
   box.querySelectorAll("[data-atvt]").forEach(b=>b.onclick=()=>{const on=b.dataset.atvt==="1", c=b.dataset.atvc;

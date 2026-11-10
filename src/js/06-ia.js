@@ -113,7 +113,10 @@ function iaTravas(entrada,saida){
   const r=iaRemedioNovo(entrada,saida); if(r.length){const e=new Error("remedio");e.det=r.join(", ");throw e}
   if(iaParenNovo(entrada,saida)){const e=new Error("parenteses");throw e}
 }
-const iaPrompt=()=>{const t=String((model.prefs||{}).iaPrompt||"").trim();return (t||IA_SISTEMA)+IA_SEGURANCA};
+// instruções do médico sem as regras de segurança (que entram sempre no fim, uma vez só); o salvo igual ao padrão vale como padrão
+const iaLimpa=t=>String(t||"").split(IA_SEGURANCA.trim()).join("").trim();
+const iaPromptMeu=()=>{const t=iaLimpa((model.prefs||{}).iaPrompt);return t&&t!==IA_SISTEMA.trim()?t:""};
+const iaPrompt=()=>(iaPromptMeu()||IA_SISTEMA)+IA_SEGURANCA;
 // números por extenso contam como o mesmo número (a IA às vezes escreve "três episódios" no lugar de "3x")
 const IA_EXT={um:1,uma:1,dois:2,duas:2,"três":3,tres:3,quatro:4,cinco:5,seis:6,sete:7,oito:8,nove:9,dez:10,onze:11,doze:12,quinze:15,vinte:20,trinta:30};
 const IA_IDX={"₀":"0","₁":"1","₂":"2","₃":"3","₄":"4","₅":"5","₆":"6","₇":"7","₈":"8","₉":"9","⁰":"0","¹":"1","²":"2","³":"3","⁴":"4","⁵":"5","⁶":"6","⁷":"7","⁸":"8","⁹":"9"};
@@ -232,16 +235,16 @@ function renderIa(){
     <div class="hospform"><label>Chave da API da Anthropic<input id="iaChave" class="segredo" type="text" name="ps-token-ia" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="sk-ant-…"></label>
       <div class="actions"><button class="btn primary" id="iaLiga">Ligar a IA</button></div></div>`}
     <p class="note" id="iaEstado"></p>
-    <details class="iaprompt"${(model.prefs||{}).iaPrompt?" open":""}><summary><b>Instruções para a IA (prompt)</b></summary>
+    <details class="iaprompt"${iaPromptMeu()?" open":""}><summary><b>Instruções para a IA (prompt)</b></summary>
       <p class="note">É o que a IA recebe junto com a HDA. Ajuste como quiser; a trava dos números continua valendo.</p>
-      <textarea class="out-edit" id="iaPromptTxt" spellcheck="false" aria-label="Instruções para a IA">${esc(iaPrompt())}</textarea>
+      <textarea class="out-edit" id="iaPromptTxt" spellcheck="false" aria-label="Instruções para a IA">${esc(iaPromptMeu()||IA_SISTEMA)}</textarea>
       <div class="actions"><button class="btn primary" id="iaPromptSalva">Salvar instruções</button><button class="btn" id="iaPromptPadrao">Restaurar o padrão</button></div></details>`;
   const est=t=>{const e=$("#iaEstado");if(e)e.textContent=t};
   if($("#iaLiga")) $("#iaLiga").onclick=async()=>{const c=$("#iaChave").value.trim();if(!/^sk-ant-/.test(c)){est("A chave da Anthropic começa com sk-ant-.");return}
     ia={chave:c}; est("Testando…");
     try{await iaMelhora("dor de cabeca ha 2 dias");lsSet(IA_LS,ia);est("Ligada. Lembre de atualizar a senha de acesso para levar a chave a outro computador.");renderIa()}
     catch(e){ia={};est(/^40[13]/.test(e.message)?"Chave recusada pela Anthropic.":e.message==="numeros"?"Ligada (o teste mudou um número; a trava protege).":"Sem conexão ou erro: "+e.message);if(e.message==="numeros"){ia={chave:c};lsSet(IA_LS,ia);renderIa()}}};
-  $("#iaPromptSalva").onclick=()=>{const t=$("#iaPromptTxt").value.trim();model.prefs=Object.assign({},model.prefs,{iaPrompt:t===IA_SISTEMA.trim()?"":t});saveModel();toast("Instruções da IA salvas")};
+  $("#iaPromptSalva").onclick=()=>{const t=iaLimpa($("#iaPromptTxt").value);model.prefs=Object.assign({},model.prefs,{iaPrompt:t===IA_SISTEMA.trim()?"":t});saveModel();toast("Instruções da IA salvas")};
   $("#iaPromptPadrao").onclick=()=>{model.prefs=Object.assign({},model.prefs,{iaPrompt:""});saveModel();$("#iaPromptTxt").value=IA_SISTEMA;grow($("#iaPromptTxt"));toast("Instruções padrão restauradas")};
   if($("#iaTroca")) $("#iaTroca").onclick=()=>{const c=(prompt("Cole a chave nova da Anthropic")||"").trim();if(!c)return;ia={chave:c};lsSet(IA_LS,ia);toast("Chave trocada")};
   if($("#iaDesliga")) $("#iaDesliga").onclick=()=>{try{localStorage.removeItem(IA_LS)}catch(e){}ia={};renderIa();toast("IA desligada neste aparelho")};

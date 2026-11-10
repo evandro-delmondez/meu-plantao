@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 1.60.2 — 2026-11-10
+- **Correção grave da IA**: a justificativa e os objetivos da internação que a IA devolvia depois do "Novo paciente" podiam cair no paciente seguinte; agora são descartados.
+- **IA**: "Salvar instruções" não duplica mais as regras de segurança; a justificativa recebe só o que foi preenchido (com o feito no PS e o parecer) e os objetivos recebem a justificativa.
+- **Pedido de internação**: "Exame físico:" uma vez só; a seção não fecha ao sugerir objetivos. Na internação, a alta diz "orientados sobre o diagnóstico, a necessidade de internação e o plano inicial" (sem texto de alta para casa).
+- **NEWS2 e CRB-65 incompletos** não classificam mais o risco no prontuário ("incompleto, sem classificar o risco").
+- **Roteiro de fala** sem ponto dobrado.
+
 ## 1.60.1 — 2026-11-10
 - **Conduta**: sem medicação na unidade e sem exames, a reavaliação não entra (nem o botão).
 - **Síndrome gripal**: CID J06.9 (infecção aguda das vias aéreas superiores não especificada); influenza só com teste confirmado.

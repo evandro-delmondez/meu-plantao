@@ -67,7 +67,7 @@ function atdNews(){
 const newsCurto=n=>n.txt.split(" — ")[0];
 function newsLinha(n){
   const ord=["fr","sat","o2","pas","fc","cons","t"].filter(k=>k in n.pts).map(k=>`${NEWS2_ROT[k]} ${n.pts[k]}`).join(", ");
-  return `NEWS2${n.faltam.length?" parcial":""}: ${n.total} (${ord}${n.faltam.length?`; faltam: ${n.faltam.map(k=>NEWS2_ROT[k]).join(", ")}`:""}) — ${newsCurto(n)}.`;
+  return `NEWS2${n.faltam.length?" parcial":""}: ${n.total} (${ord}${n.faltam.length?`; faltam: ${n.faltam.map(k=>NEWS2_ROT[k]).join(", ")}`:""})${n.faltam.length?"; incompleto, sem classificar o risco":` — ${newsCurto(n)}`}.`;
 }
 // CRB-65 com idade (Dados do paciente), FR e PA (Fechar o atendimento) e confusão (consciência)
 function atdCrb(){
@@ -80,7 +80,7 @@ function atdCrb(){
   const total=it.filter(x=>x.val).length, faltam=it.filter(x=>x.val==null);
   return {it,total,faltam,fx:pacFaixa(CRB65_FX,total)};
 }
-const crbLinha=c=>`CRB-65${c.faltam.length?" parcial":""}: ${c.total}${c.faltam.length?` (faltam: ${c.faltam.map(x=>x.rot).join(", ")})`:""} — ${c.fx.txt.split(" — ")[0]}.`;
+const crbLinha=c=>`CRB-65${c.faltam.length?" parcial":""}: ${c.total}${c.faltam.length?` (faltam: ${c.faltam.map(x=>x.rot).join(", ")}; incompleto, sem classificar o risco)`:` — ${c.fx.txt.split(" — ")[0]}`}.`;
 function svAlertas(it){
   const out=[], n=atdNews(), sat=atdNum("sat"), {pas,pad}=atdPA(), tax=atdNum("tax"), fc=atdNum("fc");
   if(news2Invalido()&&["fr","sat","fc","tax","pa"].some(k=>String(atd[k]||"").trim())) out.push({nv:"info",h:"NEWS2",t:NEWS2_NAO_VALIDADO});

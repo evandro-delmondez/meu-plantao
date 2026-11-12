@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.61.0 — 2026-11-12
+- **Sexo pelo nome**: ao pôr o nome do paciente, o app deduz o sexo pelo primeiro nome ("Sexo: Feminino" colado do prontuário vale mais); nome ambíguo fica "não informado". Seletor no topo do Atendimento. O que é só de mulher ou só de homem sai do checklist, dos exames, da receita, das orientações e da alta.
+- **Duas condutas juntas**: um remédio por classe (anti-inflamatório, antiemético, relaxante, antialérgico, corticoide oral), com aviso para o médico; orientação que contradiz a receita sai (com aviso); orientações quase iguais viram uma; "Volte ao pronto-socorro" junta as frases inteiras, sem picotar.
+
 ## 1.60.2 — 2026-11-10
 - **Correção grave da IA**: a justificativa e os objetivos da internação que a IA devolvia depois do "Novo paciente" podiam cair no paciente seguinte; agora são descartados.
 - **IA**: "Salvar instruções" não duplica mais as regras de segurança; a justificativa recebe só o que foi preenchido (com o feito no PS e o parecer) e os objetivos recebem a justificativa.

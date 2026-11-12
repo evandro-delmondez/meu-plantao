@@ -1,3 +1,4 @@
+const altaDe=id=>ALTA[id]?sxObj(ALTA[id]):null;   // o que é do outro sexo sai da alta
 /* ---------- alta segura: orientação leiga para imprimir ou abrir pelo QR code (sem dado do paciente) ---------- */
 const SITE_URL="https://evandro-delmondez.github.io/meu-plantao/";
 const altaLink=id=>SITE_URL+"alta.html#"+encodeURIComponent(id);
@@ -6,7 +7,7 @@ function altaHTML(a){
   return `<p class="altaoque">${esc(a.oque)}</p><h4>O que fazer em casa</h4>${lista(a.cuidados)}<div class="altavolte"><h4>Volte ao pronto-socorro se</h4>${lista(a.volte)}</div>`;
 }
 function renderAltaPac(it){
-  const a=ALTA[it.id]; if(!a) return "";
+  const a=altaDe(it.id); if(!a) return "";
   return `<details class="sec altapac"><summary class="sec-h"><h3>Alta para o paciente</h3><span class="alsum">linguagem simples · imprimir ou QR code</span></summary>
     <div class="altabody">${altaHTML(a)}
       <div class="actions"><button class="btn primary" id="altaImp">Imprimir</button><button class="btn" id="altaQr">QR code</button></div>
@@ -22,7 +23,7 @@ function altaImprimir(a){
   addEventListener("afterprint",fim); window.print(); setTimeout(fim,1500);
 }
 function altaQr(it){
-  const a=ALTA[it.id], url=altaLink(it.id);
+  const a=altaDe(it.id), url=altaLink(it.id);
   const q=qrcode(0,"M"); q.addData(url); q.make();
   let sh=$("#qrSheet");
   if(!sh){sh=document.createElement("div");sh.id="qrSheet";sh.className="msheet";sh.hidden=true;document.body.append(sh);
@@ -35,6 +36,6 @@ function altaQr(it){
 }
 function bindAltaPac(it){
   if(!ALTA[it.id]||!$("#altaImp")) return;
-  $("#altaImp").onclick=()=>altaImprimir(ALTA[it.id]);
+  $("#altaImp").onclick=()=>altaImprimir(altaDe(it.id));
   $("#altaQr").onclick=()=>altaQr(it);
 }

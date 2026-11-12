@@ -730,6 +730,8 @@ h2 .info>.note{position:absolute;z-index:20;left:0;top:calc(100% + 6px);width:mi
 /* títulos de quadros recolhidos ficam ao lado da setinha */
 .panel>summary h2,.panel>summary h3,details.panel>summary h3,details.panel>summary h2{display:inline;margin:0}
 details.panel>summary{cursor:pointer}
+.atjuntaav{border:1px solid var(--amber,#b45309);background:color-mix(in srgb,var(--amber,#b45309) 10%,transparent);border-radius:calc(8px*var(--rk,1));padding:8px 12px;margin:8px 0}.atjuntaav ul{margin:4px 0 4px 18px}
+.atsexo{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 10px}
 .atsegs{display:flex;flex-wrap:wrap;gap:8px}
 .atsegs .seg button[disabled]{opacity:.45;cursor:default}
 .atunid{display:grid;gap:4px}

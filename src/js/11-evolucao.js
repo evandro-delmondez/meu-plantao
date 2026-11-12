@@ -52,12 +52,17 @@ const atSisPadrao=it=>it?(EX_SIS_COND[it.id]||EX_SIS_CAT[it.cat]||["cv","resp"])
 const atConds=()=>[atItem(),...(atd.extras||[]).map(getItem)].filter(Boolean).filter((c,i,a)=>a.findIndex(x=>x.id===c.id)===i);
 const atSis=it=>atd.sis||[...new Set((atConds().length?atConds():[it]).flatMap(atSisPadrao))];
 // junta os textos das condutas sem repetir o mesmo remédio (pelo nome no início do item) e renumera
+// avisos da junção de condutas (só para o médico, nunca na receita)
+let atJuntaAvisos=[];
 function atJunta(f){
-  const tx=[...atConds().map(c=>cur(c,f)),...(f==="casa"?atRxExtras():[])].filter(t=>t&&t.trim());
+  const cs=atConds(), donos=[...cs.map(c=>c.nome),...(f==="casa"?atRxExtras().map(()=>null):[])];
+  const brutos=[...cs.map(c=>cur(c,f)),...(f==="casa"?atRxExtras():[])];
+  const tx=[], de=[]; brutos.forEach((t,i)=>{if(t&&t.trim()){tx.push(t);de.push(donos[i])}});
+  if(f==="casa") atJuntaAvisos=[];
   if(tx.length<2) return tx[0]||"";
-  if(f==="casa") return atJuntaVias(tx);
-  // orientações: uma lista só, sem repetir
-  if(f==="orient"){const o=[];tx.forEach(t=>t.split("\n").forEach(l=>{if(l.trim()&&!o.includes(l))o.push(l)}));return atJuntaVolte(o).join("\n")}
+  if(f==="casa") return atJuntaVias(tx,de);
+  // orientações: uma lista só, sem repetir nem dizer quase a mesma coisa duas vezes; sem contradizer a receita
+  if(f==="orient"){const o=[];tx.forEach(t=>t.split("\n").forEach(l=>{if(!l.trim()||o.includes(l))return;const j=o.findIndex(x=>atParecida(x,l));if(j>=0){if(l.length>o[j].length)o[j]=l;return}o.push(l)}));return atJuntaVolte(atSemContradicao(o)).join("\n")}
   const vistos=new Set(), out=[]; let n=0, pula=false;
   const chave=l=>norm(l.replace(/^\s*\d+\)\s*/,"")).split(/[\s,(]+/).slice(0,1).join(" ");
   for(const t of tx){ if(out.length) out.push("");
@@ -84,15 +89,20 @@ const atViaDe=(cab,txt)=>{
   if(/pomada|creme|pele|t[óo]pic|les[ãa]o|les[õo]es|aplicar (na|nas|no|nos|fina)/i.test(t)) return "Uso tópico";
   const m=/^uso\s+(.+?):?$/i.exec(cab||""); if(m) return "Uso "+m[1].toLowerCase();
   return null};
-function atJuntaVias(tx){
+// duas condutas com remédio da mesma classe: fica o da primeira (médico, 2026-11-10); antibiótico e analgésico podem somar
+const AT_UM_POR_CLASSE=["Anti-inflamatório","Antiemético","Relaxante muscular","Antialérgico","Corticoide"];
+function atJuntaVias(tx,de){
   const chave=l=>norm(l.replace(/^\s*\d+\)\s*/,"")).split(/[\s,(]+/).slice(0,1).join(" ");
-  const itens=[], vistos=new Set();
-  for(const t of tx){
+  const itens=[], vistos=new Set(), classes={};
+  for(const [ti,t] of tx.entries()){
     let cab="Uso oral", rot=null, item=null, ant="";
     for(const l of t.split("\n")){
       const tr=l.trim();
       if(/^uso\s/i.test(tr)&&tr.length<40){cab=tr.replace(/:$/,"");rot=null;item=null;ant=tr;continue}   // "Uso …" é sempre cabeçalho
-      if(/^\d+\)\s/.test(tr)){item={l:[tr.replace(/^\d+\)\s*/,"")],k:chave(tr),cab,rot};item.pula=vistos.has(item.k);if(!item.pula){vistos.add(item.k);itens.push(item)}ant=tr;continue}
+      if(/^\d+\)\s/.test(tr)){item={l:[tr.replace(/^\d+\)\s*/,"")],k:chave(tr),cab,rot};item.pula=vistos.has(item.k);
+        const cl=de&&de[ti]&&rxClasse(tr), cn=cl&&AT_UM_POR_CLASSE.includes(cl[0])&&(cl[0]!=="Corticoide"||/oral/i.test(cab))?cl[0]:null;
+        if(!item.pula&&cn){const ja=classes[cn];if(ja&&ja.ti!==ti){item.pula=true;atJuntaAvisos.push(`${de[ja.ti]} e ${de[ti]} trazem ${cn.toLowerCase()}: ficou ${ja.nome}, saiu ${item.l[0].split(/\s-{2,}/)[0]}.`)}else if(!ja)classes[cn]={ti,nome:item.l[0].split(/\s-{2,}/)[0]}}
+        if(!item.pula){vistos.add(item.k);itens.push(item)}ant=tr;continue}
       if(!tr){item=null;ant="";continue}
       if(!item||!ant){rot=tr;ant=tr;item=null;continue}   // rótulo (ex.: "Antibiótico") antes dos seus remédios
       item.l.push(tr); ant=tr;
@@ -177,12 +187,22 @@ function atRxMaisHTML(){
       <textarea class="inp" data-atd="rxCola" rows="3" placeholder="cole aqui; cada remédio vira um item da receita">${esc(atd.rxCola||"")}</textarea></details></div>`;
 }
 // várias condutas: os "Volte imediatamente ao pronto-socorro se …" viram uma frase só, sem repetir sinal
+// duas orientações que dizem quase a mesma coisa (mesmas palavras): fica a mais completa
+const atPalavras=l=>new Set(norm(l).replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(w=>w.length>3));
+function atParecida(a,b){const A=atPalavras(a),B=atPalavras(b);if(A.size<4||B.size<4)return false;let n=0;A.forEach(w=>{if(B.has(w))n++});return n/(A.size+B.size-n)>=0.6}
+// orientação que contradiz a receita: sai, e o médico é avisado
+const AT_CONTRA=[[/evite (o uso de )?anti-?inflamat|n[aã]o (tome|use) anti-?inflamat/i,"Anti-inflamatório","evitar anti-inflamatório"]];
+function atSemContradicao(o){
+  const casa=atJunta("casa"), tem=cl=>[...String(casa).matchAll(/^\s*\d+\)\s*([^\n]+)/gm)].some(m=>(rxClasse(m[1])||[])[0]===cl);
+  return o.filter(l=>{const c=AT_CONTRA.find(([re,cl])=>re.test(l)&&tem(cl));if(!c)return true;atJuntaAvisos.push(`Tirei a orientação de ${c[2]}: a receita tem ${c[1].toLowerCase()}. Se o paciente não deve usar, tire o remédio da receita.`);return false});
+}
 function atJuntaVolte(o){
-  const RE=/^(\s*-\s*)?volte imediatamente ao pronto-socorro se (voc[eê] )?(?:(?:tiver|apresentar|notar|sentir)\s*:?\s*)?/i, idx=o.map((l,i)=>RE.test(l)?i:-1).filter(i=>i>=0);
+  const RE=/^(\s*-\s*)?(?:volte (?:imediatamente )?ao pronto-socorro|procure atendimento(?: médico)?(?: imediatamente)?|retorne(?: imediatamente)?(?: ao pronto-socorro)?) se (voc[eê] )?(?:(?:tiver|apresentar|notar|sentir)\s*:?\s*)?/i, idx=o.map((l,i)=>RE.test(l)?i:-1).filter(i=>i>=0);
   if(idx.length<2) return o;
-  const itens=[]; idx.forEach(i=>{o[i].replace(RE,"").replace(/\.\s*$/,"").split(/,\s*|\s+ou\s+|\s+e\s+(?=[a-zà-ú])/i).map(x=>x.trim()).filter(Boolean).forEach(x=>{if(!itens.some(y=>norm(y)===norm(x)))itens.push(x)})});
+  // cada frase entra inteira (sem picotar por vírgula); a que já está contida em outra sai
+  const itens=[]; idx.forEach(i=>{const x=o[i].replace(RE,"").replace(/\.\s*$/,"").trim();if(!x)return;const nx=norm(x);if(itens.some(y=>norm(y).includes(nx)))return;for(let k=itens.length-1;k>=0;k--)if(nx.includes(norm(itens[k])))itens.splice(k,1);itens.push(x)});
   const pre=(o[idx[0]].match(/^\s*-\s*/)||[""])[0];
-  const junta=`${pre}Volte imediatamente ao pronto-socorro se tiver ${itens.slice(0,-1).join(", ")}${itens.length>1?" ou ":""}${itens[itens.length-1]}.`;
+  const junta=`${pre}Volte imediatamente ao pronto-socorro se: ${itens.join("; ")}.`;
   return o.filter((l,i)=>!idx.includes(i)||i===idx[0]).map((l,i,a)=>a.indexOf(l)===a.indexOf(o[idx[0]])&&l===o[idx[0]]?junta:l);
 }
 // lista em português: "a, b e c"
@@ -381,14 +401,14 @@ function atOriHTML(){
   return `<details class="atori"><summary>Orientações (toque para tirar do receituário)</summary><div class="atorilst">${L.map(({l})=>`<button class="chip atoric" data-atori="${esc(norm(l))}" aria-pressed="${!off[norm(l)]}">${esc(l.replace(/^\s*-\s*/,""))}</button>`).join("")}</div>
     <div class="actions"><button class="btn sm" id="atOriPadrao" title="As orientações que você tirou deixam de aparecer nesta conduta (nos seus padrões, pela nuvem)">Salvar como padrão desta conduta</button></div></details>`;
 }
-const atVolte1=c=>(chkDe(c.id)&&chkDe(c.id).alarme)||(ALTA[c.id]&&ALTA[c.id].volte)||[];
+const atVolte1=c=>(chkDe(c.id)&&chkDe(c.id).alarme)||(altaDe(c.id)&&altaDe(c.id).volte)||[];
 const atVolte=()=>[...new Set(atConds().flatMap(atVolte1))];
 // roteiro curto de fala (30 s): o que tem, o que tomar, quando voltar — montado com o que já está na conduta e na receita
 function atRoteiro(){
   const cs=atConds(); if(!cs.length) return "";
   const rem=[...new Set([...atReceita().matchAll(/^\s*\d+\)\s*([^-\n]+?)\s*-{2,}/gm)].map(m=>m[1].replace(/\s+\d.*$/,"").trim()))];
   // para falar com o paciente: a lista leiga da alta (ALTA.volte); sem ela, os sinais de alarme do checklist
-  const volte=[...new Set(cs.flatMap(c=>(ALTA[c.id]&&ALTA[c.id].volte)||(chkDe(c.id)&&chkDe(c.id).alarme)||[]))].map(x=>semParenteses(x).split(/\.\s/)[0].replace(/[.\s]+$/,"")).slice(0,4);
+  const volte=[...new Set(cs.flatMap(c=>(altaDe(c.id)&&altaDe(c.id).volte)||(chkDe(c.id)&&chkDe(c.id).alarme)||[]))].map(x=>semParenteses(x).split(/\.\s/)[0].replace(/[.\s]+$/,"")).slice(0,4);
   return `<div class="atroteiro"><span class="lbl">Roteiro de fala (30 s)</span><ol>
     <li><b>O que você tem:</b> ${esc(ptLista(cs.map(c=>c.nome.split(" / ")[0].toLowerCase())))}.</li>
     ${rem.length?`<li><b>O que tomar:</b> ${esc(ptLista(rem))} — como está na receita.</li>`:""}
@@ -692,6 +712,7 @@ function renderEv(){
     ${outras.length<2?`<div class="atbusca"><input class="inp" id="atAddQ" type="text" name="q-conduta-search" role="searchbox" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-1p-ignore data-lpignore="true" data-form-type="other" placeholder="+ outra conduta (ex.: faringite, J02)" aria-label="Buscar outra conduta"><div class="atsug" id="atAddSug"></div></div>`:""}</div></div>`:""}
   ${cs.length?`<div class="atconds">${cs.map(c=>{const k=CATS[c.cat]||CATS.outros;return `<span class="cat" style="--c:var(--${k.cor})"><span class="dot"></span>${esc(c.nome)}</span>${c.cid?`<button class="cidtop" data-cpcid="${esc(c.cid)}" title="Copiar o CID">CID ${esc(c.cid)} <span>copiar</span></button>`:""}`}).join("")}</div>`:""}
   ${atQueixaHTML(!!it)}
+  <div class="atsexo"><span class="lbl">Sexo</span><div class="seg" role="group" aria-label="Sexo do paciente">${[["M","Masculino"],["F","Feminino"]].map(([v,r])=>`<button data-atsx="${v}" aria-pressed="${sxAtual()===v}">${r}</button>`).join("")}</div><span class="note">${!sxAtual()?"não informado: escolha para tirar o que é só do outro sexo":atd.sexoOrigem==="nome"?"pelo nome · toque para trocar":""}</span></div>
   <div class="sec atsec" data-etapa="1" id="atHdaSec"><div class="sec-h"><h3>${atPos(1)}. HDA e antecedentes</h3></div><div class="atbody">
     ${ta("hma","Queixa e HDA (notas soltas: o texto sai corrido)","ex.: dor lombar 3d, piora ao levantar, irradia p/ MID, tomou dipirona s/ melhora, nega febre")}
     <div class="atdgrid atlistas">${ta("ap","HPP (doenças, cirurgias, internações)","ex.: hipertensão arterial\ncolecistectomia em 2019")}${ta("muc","Medicamentos em uso","ex.: losartana 50 mg 1x ao dia")}${ta("alergia","Alergias","ex.: dipirona; ou nega")}</div>
@@ -730,6 +751,7 @@ function renderEv(){
     ${atRxMaisHTML()}
     ${(h=>h?`<details class="atavisos"><summary>ⓘ Avisos para você (${(h.match(/<li/g)||[]).length||1})</summary>${h}</details>`:"")(cs.map(rxAvisoHTML).join(""))}
     ${atJunta("casa")||atJunta("orient")?atSaida("rx","Receituário"):""}
+    ${(()=>{atJunta("orient");const av=atJuntaAvisos.slice();return av.length?`<div class="atjuntaav" role="note"><b>Ao juntar as condutas</b><ul>${av.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><span class="note">Só para você: não vai na receita. Para trocar, edite o receituário ou use "+ remédio".</span></div>`:""})()}
     ${atOriHTML()}
     </div></div></div>
   <div class="sec atsec" data-etapa="5"><div class="sec-h"><h3>${atPos(5)}. Prescrição</h3><span class="alsum">na unidade · exames</span></div><div class="atbody">
@@ -902,7 +924,8 @@ function bindEv(it){
     atd.exLivre=exl.value; grow(exl); atAtualiza();
   });
   // sexo e perfil do exame: refazem o texto do exame (se foi editado à mão, fica e aparece o aviso para refazer)
-  box.querySelectorAll("[data-atseg]").forEach(b=>b.onclick=()=>{atd[b.dataset.atseg]=b.dataset.v;renderEv()});
+  box.querySelectorAll("[data-atseg]").forEach(b=>b.onclick=()=>{if(b.dataset.atseg==="exSexo")sxDefine(b.dataset.v,"medico");else atd[b.dataset.atseg]=b.dataset.v;renderEv()});
+  box.querySelectorAll("[data-atsx]").forEach(b=>b.onclick=()=>{sxDefine(b.dataset.atsx,"medico");const y=window.scrollY;renderEv();window.scrollTo(0,y)});
   box.querySelectorAll("[data-atout]").forEach(ta=>ta.addEventListener("input",()=>{const k=ta.dataset.atout;if(atd.man[k]==null){atd.manBase=atd.manBase||{};atd.manBase[k]=atTexto(k,atItem())}atd.man[k]=ta.value;grow(ta);$(`#atCorpo [data-atman="${k}"]`).hidden=false;atdSessaoLogo();pacSnapLogo()}));
   // IA na HDA: troca o texto pelo melhorado (fica como edição sua, com Desfazer); a trava de números está em iaMelhora
   box.querySelectorAll("[data-atia]").forEach(b=>b.onclick=async()=>{

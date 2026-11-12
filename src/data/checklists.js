@@ -36,7 +36,7 @@ oma:{
 },
 itu:{
  hist:["disúria","polaciúria ou urgência","hematúria","dor suprapúbica","corrimento ou irritação vaginal (reduz a chance de ITU)","febre ou calafrios","dor lombar"],
- ant:["gestação (ou possibilidade)","sexo masculino","ITU de repetição","uso de antibiótico nos últimos 3 meses","diabetes ou imunossupressão","sonda vesical ou alteração do trato urinário"],
+ ant:["[F] gestação (ou possibilidade)","[M] sexo masculino","ITU de repetição","uso de antibiótico nos últimos 3 meses","diabetes ou imunossupressão","sonda vesical ou alteração do trato urinário"],
  ex:["febre","punho-percussão lombar dolorosa (Giordano)","dor à palpação suprapúbica"],
  alarme:["febre com dor lombar (pielonefrite)","vômitos que impedem medicação oral","hipotensão, taquicardia ou confusão (sepse)","gestante com sintomas urinários"],
  fontes:["Gupta K et al. IDSA/ESCMID Guidelines: Acute Uncomplicated Cystitis and Pyelonephritis in Women (Clin Infect Dis 2011;52:e103).","Bent S et al. Does this woman have an acute uncomplicated urinary tract infection? (JAMA 2002;287:2701)."]

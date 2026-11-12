@@ -42,7 +42,9 @@ let atPac=null;        // id do paciente da lista que está no Atendimento
 let pacDb=null;        // {pacs:[…], cont:{"AAAA-MM-DD":n}, apagados:{id:quando}}
 
 // checklist da conduta com as edições do médico (Atendimento → Editar padrões), salvas no modelo
-function chkDe(id){const b=CHECK[id], m=model.chk&&model.chk[id]; if(!b&&!m) return null; return Object.assign({fontes:[]},b||{},m||{})}
+function chkDe(id){const b=CHECK[id], m=model.chk&&model.chk[id]; if(!b&&!m) return null; const c=Object.assign({fontes:[]},b||{},m||{});
+  for(const g of ["hist","ant","ex","alarme"]) if(Array.isArray(c[g])) c[g]=sxArr(c[g]);   // o que é do outro sexo sai
+  return c}
 // sinais de alarme do checklist, em destaque antes da receita
 function renderAlarme(it){
   const c=chkDe(it.id); if(!c||!(c.alarme||[]).length) return "";

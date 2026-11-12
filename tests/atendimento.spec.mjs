@@ -914,3 +914,33 @@ test("instruções da IA: salvar duas vezes não duplica as regras de segurança
   expect((m.prefs || {}).iaPrompt || "").toBe("");
   expect(erros).toEqual([]);
 });
+
+test("sexo pelo nome: Maria é feminino, José masculino, nome ambíguo fica sem sexo; o que é só do outro sexo some do checklist", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "itu");
+  const sx = (v) => page.locator(`#atCorpo [data-atsx="${v}"]`);
+  await expect(sx("M")).toHaveAttribute("aria-pressed", "false"); await expect(sx("F")).toHaveAttribute("aria-pressed", "false");
+  await expect(page.locator("#atCorpo")).toContainText("gestação (ou possibilidade)");
+  await expect(page.locator("#atCorpo")).not.toContainText("[F]");
+  await page.fill("#atNome", "José Carlos da Silva"); await page.locator("#atNome").dispatchEvent("change");
+  await expect(sx("M")).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#atCorpo")).toContainText("pelo nome");
+  await expect(page.locator("#atCorpo")).not.toContainText("gestação (ou possibilidade)");
+  // o médico troca: volta o item de mulher e some o de homem
+  await sx("F").click();
+  await expect(page.locator("#atCorpo")).toContainText("gestação (ou possibilidade)");
+  await expect(page.locator("#atCorpo .ck", { hasText: "sexo masculino" })).toHaveCount(0);
+  expect(erros).toEqual([]);
+});
+
+test("sexo pelo nome: regras", async ({ page }) => {
+  await abrir(page);
+  // a função é interna: testa pelo efeito, nome a nome
+  for (const [nome, esp] of [["Maria das Graças", "F"], ["Beatriz Lima", "F"], ["Raquel", "F"], ["Socorro Alves", "F"], ["Kelly", "F"], ["João Pedro", "M"], ["Felipe", "M"], ["Gabriel", "M"], ["Luca", "M"], ["Darci", ""]]) {
+    await page.click("#novoPac"); await page.click("#novoPac");
+    await atender(page, "itu");
+    await page.fill("#atNome", nome); await page.locator("#atNome").dispatchEvent("change");
+    const m = await page.locator('#atCorpo [data-atsx="M"]').getAttribute("aria-pressed"), f = await page.locator('#atCorpo [data-atsx="F"]').getAttribute("aria-pressed");
+    expect(m === "true" ? "M" : f === "true" ? "F" : "", nome).toBe(esp);
+  }
+});

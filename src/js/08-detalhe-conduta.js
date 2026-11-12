@@ -39,7 +39,7 @@ function rxPorVia(t){
     if(String(t).split("\n").filter(l=>l.trim()).every(l=>tem.has(sem(l))||/^uso\s/i.test(l.trim())))return g}catch(e){}
   return t;
 }
-const cur=(it,f)=>{const v=cur0(it,f);return f==="casa"?rxPorVia(v):f==="orient"&&v?oriAntibio(v,rxTemAtb(cur(it,"casa"))):v};
+const cur=(it,f)=>{const v=sxTxt(cur0(it,f));return f==="casa"?rxPorVia(v):f==="orient"&&v?oriAntibio(v,rxTemAtb(cur(it,"casa"))):v};
 // orientação de antibiótico pela receita (médico, 2026-11-07): com antibiótico na receita, a frase condicional
 // ("Se recebeu antibiótico, …", "Se estiver tomando antibiótico …, retorne em 2 dias") vira afirmação; sem antibiótico,
 // sai. "Se o médico optou por observar sem antibiótico, …" faz o contrário.
@@ -101,7 +101,7 @@ window.addEventListener("resize",growAll);
 try{document.fonts&&document.fonts.ready.then(growAll)}catch(e){}
 
 /* dados do paciente (só na memória desta aba; não são salvos) */
-const pac={idade:"",sexo:"M",peso:"",cr:"",gest:false,pnc:false,dip:false,aine:false,sulfa:false};
+const pac={idade:"",sexo:"",peso:"",cr:"",gest:false,pnc:false,dip:false,aine:false,sulfa:false};
 function clcr(){const i=parseFloat(pac.idade),p=parseFloat(String(pac.peso).replace(",",".")),c=parseFloat(String(pac.cr).replace(",","."));if(!(i>0&&p>0&&c>0))return null;return cockcroft(i,p,c,pac.sexo==="F")}
 function perfisAtivos(){const s=new Set(ui.perfil||[]);if(parseFloat(pac.idade)>=65)s.add("idoso");const c=clcr();if(c!=null&&c<60)s.add("renal");if(pac.gest)s.add("gest");if(pac.pnc)s.add("pnc");if(pac.dip||(typeof atd!=="undefined"&&/dipirona|metamizol|novalgina/i.test(atd.alergia||"")))s.add("dip");const al=typeof atd!=="undefined"?String(atd.alergia||""):"";if(pac.aine||/\bAINE\b|anti-?inflamat|ibuprofeno|diclofenaco|cetoprofeno|naproxeno|nimesulida|cetorolaco|tenoxicam|piroxicam|meloxicam|\bAAS\b|aspirina|ácido acetilsalicílico/i.test(al))s.add("aine");if(pac.sulfa||/sulfa|bactrim|sulfametoxazol/i.test(al))s.add("sulfa");return s}
 function renalAjustes(it){const c=clcr();if(c==null)return null;const txt=cur(it,"casa")+"\n"+cur(it,"unidade");const out=[];for(const r of RENAL){if(!r.re.test(txt))continue;const f=r.f.find(([mx])=>c<mx);out.push({nome:r.nome,msg:f?f[1]:"Sem ajuste nesta faixa de ClCr.",src:r.src})}return {c,out}}
@@ -110,7 +110,7 @@ function renderPac(it){
   return `<details class="sec pac" ${pac.idade||pac.cr||pac.gest||pac.pnc||pac.dip||pac.aine||pac.sulfa?"open":""}><summary class="sec-h" style="cursor:pointer"><h3>Dados do paciente</h3><span class="alsum">idade, peso e creatinina para ajuste de dose</span></summary>
   <div class="pacgrid">
     <label class="f">Idade<input class="inp" id="pcIdade" inputmode="numeric" value="${esc(pac.idade)}"></label>
-    <label class="f">Sexo<select class="inp" id="pcSexo"><option value="M" ${pac.sexo==="M"?"selected":""}>Masculino</option><option value="F" ${pac.sexo==="F"?"selected":""}>Feminino</option></select></label>
+    <label class="f">Sexo<select class="inp" id="pcSexo"><option value="" ${!pac.sexo?"selected":""}>não informado</option><option value="M" ${pac.sexo==="M"?"selected":""}>Masculino</option><option value="F" ${pac.sexo==="F"?"selected":""}>Feminino</option></select></label>
     <label class="f">Peso (kg)<input class="inp" id="pcPeso" inputmode="decimal" value="${esc(pac.peso)}"></label>
     <label class="f">Creatinina (mg/dL)<input class="inp" id="pcCr" inputmode="decimal" value="${esc(pac.cr)}"></label>
   </div>
@@ -293,7 +293,7 @@ function renderDetail(){
   el.querySelectorAll("[data-perfil]").forEach(b=>b.onclick=()=>{const g=b.dataset.perfil;const p=new Set(ui.perfil||[]);const liga=!perfisAtivos().has(g);liga?p.add(g):p.delete(g);ui.perfil=[...p];if(g==="pnc")pac.pnc=liga;if(g==="aine"||g==="sulfa")pac[g]=liga;if(g==="gest")pac.gest=liga&&pac.gest;saveUI();renderDetail()});
   $("#cpAll").onclick=e=>{copy(fullText(it),e.currentTarget)};
   $("#favBtn").onclick=()=>toggleFav(it.id);
-  const pcUp=()=>{pac.idade=$("#pcIdade").value;pac.sexo=$("#pcSexo").value;pac.peso=$("#pcPeso").value;pac.cr=$("#pcCr").value;pac.gest=$("#pcGest").checked;pac.pnc=$("#pcPnc").checked;pac.dip=$("#pcDip").checked;pac.aine=$("#pcAine").checked;pac.sulfa=$("#pcSulfa").checked;const a=document.activeElement&&document.activeElement.id;renderDetail();if(a&&$("#"+a)){const e=$("#"+a);e.focus();if(e.setSelectionRange&&e.type!=="checkbox"&&e.tagName==="INPUT")try{e.setSelectionRange(e.value.length,e.value.length)}catch(x){}}};
+  const pcUp=()=>{pac.idade=$("#pcIdade").value;sxDefine($("#pcSexo").value,"medico");pac.peso=$("#pcPeso").value;pac.cr=$("#pcCr").value;pac.gest=$("#pcGest").checked;pac.pnc=$("#pcPnc").checked;pac.dip=$("#pcDip").checked;pac.aine=$("#pcAine").checked;pac.sulfa=$("#pcSulfa").checked;const a=document.activeElement&&document.activeElement.id;renderDetail();if(a&&$("#"+a)){const e=$("#"+a);e.focus();if(e.setSelectionRange&&e.type!=="checkbox"&&e.tagName==="INPUT")try{e.setSelectionRange(e.value.length,e.value.length)}catch(x){}}};
   ["pcIdade","pcPeso","pcCr"].forEach(id=>$("#"+id).addEventListener("change",pcUp));
   ["pcSexo","pcGest","pcPnc","pcDip","pcAine","pcSulfa"].forEach(id=>$("#"+id).addEventListener("change",pcUp));
   if(it.id==="dengue") bindDengueCalc(it);

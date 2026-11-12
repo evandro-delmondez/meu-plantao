@@ -1,6 +1,7 @@
 /* ---------- exames e encaminhamento na porta: encaminhar · pedir quando · não pedir (dados em src/data/exames.js) ---------- */
 const EX_GRUPOS=[["encaminhar","Encaminhar"],["pedir","Pedir quando"],["naoPedir","Não pedir"],["div","Divergências entre fontes (você decide)"]];
-const exDe=chave=>(typeof EXAMES!=="undefined"&&EXAMES[chave])||null;
+const sxObj=o=>Array.isArray(o)?sxArr(o).map(sxObj):o&&typeof o==="object"?Object.fromEntries(Object.entries(o).map(([k,v])=>[k,sxObj(v)])):typeof o==="string"?(sxLinha(o)??""):o;
+const exDe=chave=>{const e=(typeof EXAMES!=="undefined"&&EXAMES[chave])||null;return e?sxObj(e):null};
 // nome do exame no início do item ("TC de crânio sem contraste: …"): é o que vai para o pedido
 const exNome=t=>{const m=String(t).match(/^([^:]{3,90}):\s/);return m?m[1].trim():""};
 // imagem × laboratório, para cair no campo certo do pedido

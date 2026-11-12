@@ -96,6 +96,7 @@ function pacAbrir(id){
   atPac=id;
   const s=p.snap;
   if(s){atd=Object.assign(ATD_VAZIO(),s.atd);if(s.chkV===2)Object.assign(chk,clone(s.chk||{}));else if(s.cond&&s.chk)chk[s.cond]=clone(s.chk);if(s.sexo)pac.sexo=s.sexo;if(s.idade)pac.idade=s.idade}
+  if(!sxAtual()) sxPeloNome(p.nome);   // sem sexo guardado: pelo nome
   atd.t0=Date.now();   // reabrir (reavaliação) conta como um novo tempo de atendimento
   // volta do paciente (já tinha prescrição, exame ou medicação): abre em "Fechar o atendimento", na reavaliação
   const voltou=!!(s&&s.atd&&(String(s.atd.exLab||"").trim()||String(s.atd.exImg||"").trim()||(s.atd.cond||{}).med||s.atd.decisao));
@@ -258,6 +259,8 @@ setInterval(()=>{if(ui.tab==="pacientes"&&!document.activeElement?.closest?.("#p
 function pacNomeAtualiza(){const i=$("#atNome");if(!i)return;const p=atPac&&pacDe(atPac);if(document.activeElement!==i)i.value=p?p.nome:"";$("#atNaLista").textContent=p?`Na lista desde ${pacHora(p.criado)}`:""}
 $("#atNome").addEventListener("change",()=>{
   const n=$("#atNome").value.trim(); if(!n) return;
+  const sx0=sxAtual(); sxPeloNome(n);
+  if(sxAtual()!==sx0&&typeof renderEv==="function"){const y=window.scrollY;renderEv();window.scrollTo(0,y)}
   if(atPac&&pacDe(atPac)){pacDe(atPac).nome=n;pacToca(pacDe(atPac),"nome");pacGrava()} else {const p=pacNovo(n);atPac=p.id}
   if(!atd.t0){atd.t0=Date.now();if(typeof atRelogio==="function")atRelogio()}   // o relógio começa ao pôr o nome
   pacSnap(); pacNomeAtualiza();

@@ -18,14 +18,19 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
-Atualizado em 2026-10-30 (versão 1.53.1). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
+Atualizado em 2026-11-12 (versão 1.61.0). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
 
-**Em andamento (2026-11-07)**
-- No ar (1.59.0): 7 condutas do 1º lote + CAD/EHH, escores BISAP/Oakland/ICH, queixa "Fraqueza ou alteração neurológica súbita", segurança (alergia a AINE/sulfa, gestante, tetos, 5 fichas).
-- Esperam o médico: `.rascunhos/decisoes-2.html` (35 perguntas: item 5, lote 4A emergências, 4B infecções, 4C GO/psiq/orto, fontes); item 4 ("ver antes": `.rascunhos/item4-o-que-muda.html`, cetorolaco 3 dias e 60 mg/dia já decididos).
-- Conferidos e prontos para integrar após as respostas: `.rascunhos/lote4a-final.json`, `lote4b-final.json`, `lote4c-final.json`, `fontes-2026-11-final.json`, `item5-2026-11-final.json`, `item4-2026-11-final.json`.
-- Fichas da segurança com `_conferir` (9) e bromoprida renal: em docs/REVISAO.md.
-- Sugestões do conferente (não bloqueiam): AHA/ASA 2026 no lugar da Powers 2019; AAO-HNS 2013 para a testa poupada; descrição da AHA 2022 como "alvo 140 (130–150)".
+**Em andamento (2026-11-12, versão 1.61.0)**
+- No ar: lote 4 (18 condutas, 5 escores, fontes, item 5), pielonefrite com cefuroxima, plantões por aparelho, UTI e passados por mês em Plantões, sexo pelo nome com filtro [F]/[M], um remédio por classe nas condutas juntas, reavaliação conforme o que foi feito, "Para casa" na alta.
+- Revisão geral (2026-11-10), relatórios em `.rascunhos/auditoria-2026-11/`: condutas-1/2/3.md (≈60 erros e 100 melhorias), fluxos.md (erros E1–E10, prompts P1–P5), condutas-faltantes.md (50, 12 prioritárias).
+  - Corrigidos no código: E1–E7 e E9 (1.60.2), sexo e condutas combinadas (1.61.0).
+  - Em redação: patches-2026-11.json (correções clínicas + marcação [F]/[M]), depois conferência independente.
+  - Conferida, espera 5 decisões do médico: dor abdominal nova com diferenciais (dor-abdominal-final.json).
+  - A fazer: prompts da IA (P1–P5: justificativa sucinta, objetivos pelo diagnóstico, HDA), E8 (exame normal × checklist), E10 (checklist da dor abdominal), intuitividade (fluxos.md).
+  - Depois da dor abdominal: as 12 condutas prioritárias, depois as outras 38 em lotes.
+- MPOX: conduta pública em redação (`.rascunhos/mpox/`); o fluxo do HSLS vai só para o pacote privado plantao-hsls.
+- Item 4 ("ver antes"): `.rascunhos/item4-o-que-muda.html` (cetorolaco 3 dias, máx. 60 mg/dia; creatinina na HPB; ECG no hipertireoidismo).
+- Fichas da segurança com `_conferir` (9), teto renal da bromoprida, perfil de hepatopatia para o paracetamol: em docs/REVISAO.md.
 
 **Conteúdo clínico (redação + conferência independente)**
 1. Atualizar fontes antigas: crise hipertensiva (ACC/AHA 2025), ARIA 2010, BTS 2009, ACCP 2012/2016, ATLS 11ª, EAU 2025, GINA na ficha da prednisona, WAO 2020 (lista em revisao-conteudo.md).

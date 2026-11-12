@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.61.1 — 2026-11-12
+- **IA da internação**: justificativa em 1 a 3 frases, começando pelo critério de gravidade, sem recontar a HDA (que já vai no pedido); objetivos no formato "problema: ação", ligados ao diagnóstico e aos motivos da internação, recebendo a justificativa.
+- **IA da HDA**: regras novas para não perder negativa, não transformar dúvida em afirmação e não inventar sintoma; sem conseguir, devolve o seu texto só com a ortografia corrigida.
+- **IA de exames**: recebe sexo e idade (não sugere beta-hCG para homem).
+
 ## 1.61.0 — 2026-11-12
 - **Sexo pelo nome**: ao pôr o nome do paciente, o app deduz o sexo pelo primeiro nome ("Sexo: Feminino" colado do prontuário vale mais); nome ambíguo fica "não informado". Seletor no topo do Atendimento. O que é só de mulher ou só de homem sai do checklist, dos exames, da receita, das orientações e da alta.
 - **Duas condutas juntas**: um remédio por classe (anti-inflamatório, antiemético, relaxante, antialérgico, corticoide oral), com aviso para o médico; orientação que contradiz a receita sai (com aviso); orientações quase iguais viram uma; "Volte ao pronto-socorro" junta as frases inteiras, sem picotar.

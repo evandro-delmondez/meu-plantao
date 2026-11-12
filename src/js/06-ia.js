@@ -36,6 +36,13 @@ ITENS DO CHECKLIST
 O texto pode trazer frases geradas por um checklist: "Presença de …", "Nega …", "Antecedentes: …", "Nega antecedente de …", "Sinais de alarme presentes: …" e "Nega sinais de alarme: …". Integre essas frases ao parágrafo, no lugar certo da ordem semiológica, sem repetir: se um sintoma aparece nas notas e no checklist, cite uma vez só, com o detalhe mais completo (ex.: febre aferida de 38,2 °C, e não também "presença de febre"). Junte todas as negativas numa frase só no final ("Nega …"), incluindo as dos sinais de alarme. "Antecedentes: …" vira parte da história, sem mudar o sentido.
 Se o mesmo item aparecer como presente e como negado, não escolha nem apague nenhum dos dois: mantenha ambos como estão.
 
+NEGATIVAS E INCERTEZAS
+- Toda negativa da entrada continua negativa na saída, com o mesmo alcance: "nega febre e vômitos" não vira "nega febre"; "sem melhora" não vira "com melhora parcial".
+- Termos de dúvida continuam como dúvida: "acha que", "talvez", "não sabe informar", "relata possível" não viram afirmação.
+- Intensidade só com o que foi dito: "dor forte" é "dor de forte intensidade"; não escreva nota de 0 a 10 que não esteja no texto.
+- "Presença de X" do checklist é queixa do paciente: escreva "Associa X" ou "Refere X", nunca "Ao exame".
+- Itens de antecedentes que vierem do checklist ficam como estão, na frase de antecedentes; não os transforme em história.
+
 REGRAS OBRIGATÓRIAS
 - Não acrescente nenhuma informação, sintoma, sinal, número, unidade, diagnóstico, hipótese ou interpretação que não esteja no texto. Não escreva sinais de exame físico, irradiações não citadas nem unidades de dose ausentes. A única exceção é °C após valores de temperatura.
 - Não retire nenhuma informação, número, negativa, medicamento ou tempo.
@@ -46,7 +53,11 @@ REGRAS OBRIGATÓRIAS
 - Sem markdown, sem aspas, sem comentários e sem as tags. Devolva só o texto final.
 
 CONFERÊNCIA (faça mentalmente, não escreva)
-Antes de responder, confira se cada número, medicamento, tempo e negativa da entrada aparece na saída, e se a saída não contém nada que não esteja na entrada.
+1. Cada número, medicamento, tempo e negativa da entrada aparece na saída.
+2. Cada sintoma da saída estava na entrada (com outras palavras é aceitável; sintoma novo, não).
+3. Nenhuma negativa virou afirmação e nenhuma afirmação virou negativa.
+4. O sentido de cada frase é o mesmo (local, lado, tempo, resposta ao remédio).
+Se não conseguir cumprir tudo, devolva o texto original apenas com ortografia corrigida.
 
 EXEMPLO 1
 Entrada: Paciente refere dor abdominal há 2 dias começou no umbigo depois foi para direita embaixo, com piora quando anda, náusea 3x vomitou 1x, febre 38,2 ontem a noite e inapetência. Tomou buscopan sem melhora. Nega diarreia e disúria.
@@ -183,6 +194,7 @@ async function iaLab(texto,siglas){
   return res;
 }
 const IA_SUG=`Você é médico emergencista num pronto-socorro no Brasil. Entre <entrada> e </entrada> há a HDA, o exame físico e as hipóteses de um paciente, e uma LISTA numerada de exames (cada um com o critério de quando pedir, tirado de diretrizes).
+A primeira linha traz sexo e idade. Critério que depende de sexo ou idade (ex.: "mulher em idade fértil", "idoso") só se cumpre se a primeira linha confirmar.
 Escolha, SÓ dessa lista, os exames cujo critério o paciente cumpre pelos dados do texto. Não sugira nada fora da lista. Se nenhum se aplica, devolva lista vazia. Prefira pedir menos.
 Responda SÓ com JSON, sem comentários: [{"n":<número do item>,"por":"motivo curto, com o dado do texto que justifica"}].`;
 // sugestão de exames: só itens da lista enviada (conferida); devolve [{nome, por}]
@@ -192,9 +204,18 @@ async function iaSugereExames(contexto,lista){
   let a; try{a=JSON.parse(out.replace(/^[^\[]*/,"").replace(/[^\]]*$/,""))}catch(e){throw new Error("formato")}
   return (Array.isArray(a)?a:[]).map(o=>({i:(+o.n)-1,por:String(o.por||"").slice(0,200)})).filter(o=>lista[o.i]).map(o=>({nome:lista[o.i].nome,t:lista[o.i].t,por:o.por}));
 }
-const IA_JUST=`Você é médico emergencista no Brasil e escreve a JUSTIFITIVA DE INTERNAÇÃO de um paciente do pronto-socorro, a partir dos dados entre <entrada> e </entrada> (HDA, exame físico, sinais vitais, exames, hipóteses, local pedido).
-Escreva 2 a 4 frases objetivas, em português formal, com terminologia médica: o critério de gravidade ou de risco presente (sinal vital, exame, escore), por que não é seguro tratar em casa ou na observação, e o que a internação vai oferecer (ex.: antibiótico EV, monitorização, suporte, investigação, avaliação da especialidade).
-Regras: use SÓ dados que estão no texto; não invente número, exame, escore, diagnóstico ou critério; números em algarismos, exatamente como estão. Sem markdown, sem comentários, sem as tags: devolva só a justificativa.`.replace("JUSTIFITIVA","JUSTIFICATIVA");
+const IA_JUST=`Você é médico emergencista no Brasil e escreve só a JUSTIFICATIVA de um pedido de internação. A história clínica e o exame físico já vão escritos no mesmo pedido: NÃO os repita nem os resuma.
+
+Entre <entrada> e </entrada> vêm: sexo e idade, hipóteses diagnósticas, sinais vitais e escores, exames alterados e laudos, o que já foi feito no PS, parecer, local pedido e, por último, a HDA (só para consulta).
+
+Escreva de 1 a 3 frases curtas, em português formal, que respondam apenas:
+1. Qual dado objetivo exige o leito: o critério de gravidade ou de risco presente (sinal vital alterado, exame, escore, falha do tratamento no PS, impossibilidade de via oral, risco social documentado). Cite o valor exatamente como está.
+2. O que a internação oferece que o PS ou a casa não oferecem, ligado a esse critério (ex.: antibiótico EV, oxigênio com monitorização, vigilância neurológica, avaliação cirúrgica, controle da dor que não foi obtido no PS).
+Se o local pedido for UTI ou semi-intensiva, diga em poucas palavras por que esse nível de cuidado.
+
+Estilo: frases diretas, sem introdução ("Paciente de X anos, com quadro de…"), sem recontar sintomas, sem lista de exames normais, sem "devido ao quadro clínico". Comece pelo critério. Exemplo de tom: "SatO2 89% em ar ambiente e FR 26 irpm, com consolidação em lobo inferior direito: necessita de oxigenoterapia e antibiótico EV com monitorização."
+
+Regras: use só dados da entrada; não invente número, exame, escore, diagnóstico, critério nem tratamento; números em algarismos, exatamente como estão; escore marcado como "parcial" ou "incompleto" não é citado como baixo risco. Se a entrada não tiver nenhum critério objetivo de gravidade, escreva só: "___ (sem critério objetivo nos dados: complete)". Sem markdown, sem comentários, sem as tags: devolva só a justificativa.`;
 // justificativa: todo número da resposta tem de existir nos dados enviados
 async function iaJustifica(ctx){
   const out=await iaChama(IA_JUST,ctx,false);
@@ -203,13 +224,19 @@ async function iaJustifica(ctx){
   if(novos.length){const e=new Error("numeros");e.det=`apareceu: ${novos.join(", ")}`;throw e}
   return out;
 }
-const IA_OBJ=`Você é médico emergencista no Brasil. Entre <entrada> e </entrada> há os dados de um paciente que vai ser internado (HDA, exame, exames, hipóteses, local) e os objetivos já marcados.
-Sugira de 2 a 5 OUTROS objetivos da internação, específicos para este caso, cada um em poucas palavras (ex.: "parecer da cirurgia geral", "anticoagulação plena", "controle glicêmico", "investigação de foco infeccioso", "reposição volêmica guiada"). Não repita os já marcados, não invente dado, não ponha dose nem número.
-Responda SÓ com JSON, sem comentários: ["objetivo 1","objetivo 2"].`;
+const IA_OBJ=`Você é médico emergencista no Brasil e escreve os OBJETIVOS DA INTERNAÇÃO (plano terapêutico inicial) de um paciente do pronto-socorro. Entre <entrada> e </entrada> vêm sexo e idade, as hipóteses diagnósticas, a justificativa da internação, sinais vitais, exames alterados, laudos, o que já foi feito no PS, o local pedido e os objetivos já marcados.
+
+Escreva de 3 a 6 objetivos, cada um ligado a um problema DESTE paciente que está na entrada (o diagnóstico principal, cada critério de gravidade da justificativa, cada exame alterado relevante e cada pendência de investigação). Formato de cada item: "problema: ação", em até 12 palavras.
+Exemplos de forma (não copie o conteúdo): "PAC com hipoxemia: oxigenoterapia com alvo de saturação e antibiótico EV"; "Lesão renal aguda: hidratação guiada e controle de diurese e creatinina"; "Dor abdominal sem diagnóstico: TC de abdome e avaliação da cirurgia geral".
+- Comece pelo diagnóstico principal; depois as complicações; por último a investigação e os pareceres.
+- Pode citar classe de tratamento (antibiótico EV, anticoagulação, analgesia) e o nome de um remédio só se ele já estiver na entrada. Não ponha dose, via de remédio novo, nem metas numéricas que não estejam na entrada.
+- Não repita os objetivos já marcados nem diga a mesma coisa com outras palavras. Não inclua objetivos genéricos que sirvam para qualquer paciente ("monitorização", "suporte clínico") a menos que estejam ligados a um problema da entrada.
+- Use só dados da entrada; não invente diagnóstico, exame alterado ou complicação.
+Responda SÓ com JSON, sem comentários: ["problema: ação", "problema: ação"].`;
 async function iaObjetivos(ctx){
   const out=await iaChama(IA_OBJ,ctx,false);
   let a; try{a=JSON.parse(out.replace(/^[^\[]*/,"").replace(/[^\]]*$/,""))}catch(e){throw new Error("formato")}
-  return (Array.isArray(a)?a:[]).map(x=>String(x).trim().replace(/\.$/,"")).filter(x=>x&&x.length<=80&&!/\d/.test(x)&&!iaRemedioNovo(ctx,x).length).slice(0,5);
+  return (Array.isArray(a)?a:[]).map(x=>String(x).trim().replace(/\.$/,"")).filter(x=>{if(!x||x.length>110||iaRemedioNovo(ctx,x).length)return false;const a=new Set(iaNums(ctx));return iaNums(x).every(n=>a.has(n))}).slice(0,6);
 }
 // antecedentes (HPP, medicamentos em uso, alergias) nunca passam pela IA: voltam exatamente como estavam
 function iaSeparaAnt(t){const k=String(t).search(/\n\s*(HPP|Medicamentos em uso|Alergias)\s*:/);return k<0?[String(t),""]:[String(t).slice(0,k),String(t).slice(k)]}

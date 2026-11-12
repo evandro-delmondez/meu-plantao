@@ -222,6 +222,9 @@ const atL=nome=>{const m=model.atl&&model.atl[nome];return Array.isArray(m)&&m.l
 const AT_PERGUNTAS=["Por que não dá para tratar em casa ou na observação?","Qual critério de gravidade ou de risco o paciente tem (sinal vital, exame, escore)?","O que será feito na internação que exige leito?","Qual o risco se ele receber alta agora?","O que o médico que recebe precisa saber: o plano inicial, o que falta investigar, o parecer pedido?"];
 
 function atItem(){return getItem($("#evCond").value)}
+// para a IA: sexo e idade na 1ª linha; sinais vitais e escores sem o exame físico normal
+const atSxIdade=()=>{const sx=sxAtual(), id=String(pac.idade||"").trim();return `Sexo: ${sx==="F"?"feminino":sx==="M"?"masculino":"não informado"}; idade: ${id?id+" anos":"não informada"}`};
+const atSvEscores=it=>String(atTexto("exame",it)||"").split("\n").filter(l=>/^(SSVV|NEWS2|CRB-65|qSOFA|Glasgow)/i.test(l.trim())).join("\n");
 function atSv(){
   const sv=[["PA",atd.pa,"mmHg"],["FC",atd.fc,"bpm"],["FR",atd.fr,"irpm"],["SatO2",atd.sat,"%"],["Tax",atd.tax,"°C"],["HGT",atd.hgt,"mg/dL"]].filter(x=>String(x[1]||"").trim());
   return sv.length?"SSVV: "+sv.map(x=>`${x[0]} ${String(x[1]).trim()}${x[2]==="%"?"%":" "+x[2]}`).join(" | "):"";
@@ -900,7 +903,7 @@ function bindEv(it){
     const lista=[];const ks2=[...(atd.queixa?["q:"+atd.queixa]:[]),...atConds().map(c=>c.id)].filter(k=>exDe(k));
     ks2.forEach(k=>(exDe(k).pedir||[]).forEach(x=>{const nome=exNome(x.t);if(nome&&!lista.some(y=>norm(y.nome)===norm(nome)))lista.push({nome,t:x.t})}));
     if(!lista.length){dz(`<p class="note">Esta conduta não tem lista de exames para pedir.</p>`);return}
-    let ctx=[atTexto("hda",atItem()),atTexto("exame",atItem()),"Hipóteses: "+atConds().map(c=>c.nome).join("; ")].join("\n\n");
+    let ctx=[atSxIdade(),atTexto("hda",atItem()),atTexto("exame",atItem()),"Hipóteses: "+atConds().map(c=>c.nome).join("; ")].join("\n\n");
     const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) ctx=iaSemNome(ctx,nome);
     // a resposta só vale para o atendimento que a pediu (trocar de paciente durante a espera descarta)
     const dono=atd;
@@ -967,7 +970,7 @@ function bindEv(it){
   box.querySelectorAll("[data-atcl]").forEach(b=>b.onclick=()=>{const k=b.dataset.atcl,c=b.dataset.c;atd.exOff=Object.assign({},atd.exOff);const l=new Set(atd.exOff[k]||[]);l.has(c)?l.delete(c):l.add(c);atd.exOff[k]=[...l];b.setAttribute("aria-pressed",!l.has(c));atAtualiza()});
   if($("#atJustIa")) $("#atJustIa").onclick=async()=>{const est=$("#atJustEst"),b=$("#atJustIa");if(!iaAtiva()){est.textContent="Ligue a IA em Documentos › Backup.";return}
     const it=atItem(), loc=atd.intern.local?((atLocais().find(x=>x[0]===atd.intern.local)||[])[1]||""):"", au=atInternAuto(), exs=[au.lab,au.laudos].filter(x=>String(x||"").trim()).join(" "), feito=(atd.intern.feito||au.feito||"").trim();
-    let ctx=[atTexto("hda",it),atTexto("exame",it),exs?"Exames: "+exs:"","Hipóteses: "+atConds().map(c=>c.nome).join("; "),loc?"Local pedido: "+loc:"",feito?"Feito no PS: "+feito:"",String(atd.intern.parecer||"").trim()?"Parecer: "+atd.intern.parecer.trim():""].filter(Boolean).join("\n\n");
+    let ctx=[atSxIdade(),"Hipóteses: "+atConds().map(c=>c.nome).join("; "),atSvEscores(it),exs?"Exames alterados e laudos: "+exs:"",feito?"Feito no PS: "+feito:"",String(atd.intern.parecer||"").trim()?"Parecer: "+atd.intern.parecer.trim():"",loc?"Local pedido: "+loc:"","HDA (só para consulta):\n"+atTexto("hda",it)].filter(Boolean).join("\n\n");
     const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) ctx=iaSemNome(ctx,nome);
     const dono=atd; b.disabled=true; est.textContent="Escrevendo…";
     try{const t=await iaJustifica(ctx); if(atd!==dono){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
@@ -980,7 +983,8 @@ function bindEv(it){
   if($("#atObjIa")) $("#atObjIa").onclick=async()=>{const est=$("#atObjEst"),b=$("#atObjIa");if(!iaAtiva()){est.textContent="Ligue a IA em Documentos › Backup.";return}
     const it=atItem(), ja=[...atL("obj").filter(([k])=>atd.intern.obj[k]).map(([,t])=>t),...(atd.intern.objIa||[]).map(x=>x.t)];
     const au=atInternAuto(), exs=[au.lab,au.laudos].filter(x=>String(x||"").trim()).join(" ");
-    let ctx=[atTexto("hda",it),atTexto("exame",it),exs?"Exames: "+exs:"","Hipóteses: "+atConds().map(c=>c.nome).join("; "),String(atd.intern.motivo||"").trim()?"Justificativa: "+atd.intern.motivo.trim():"","Já marcados: "+(ja.join("; ")||"nenhum")].filter(Boolean).join("\n\n");
+    const loc2=atd.intern.local?((atLocais().find(x=>x[0]===atd.intern.local)||[])[1]||""):"";
+    let ctx=[atSxIdade(),"Hipóteses: "+atConds().map(c=>c.nome).join("; "),String(atd.intern.motivo||"").trim()?"Justificativa: "+atd.intern.motivo.trim():"",atSvEscores(it),exs?"Exames alterados e laudos: "+exs:"",(atd.intern.feito||au.feito||"").trim()?"Feito no PS: "+(atd.intern.feito||au.feito).trim():"",loc2?"Local pedido: "+loc2:"","Já marcados: "+(ja.join("; ")||"nenhum"),"HDA (só para consulta):\n"+atTexto("hda",it)].filter(Boolean).join("\n\n");
     const nome=atPac&&pacDe(atPac)&&pacDe(atPac).nome; if(nome) ctx=iaSemNome(ctx,nome);
     const dono=atd; b.disabled=true; est.textContent="Pensando…";
     try{const r=await iaObjetivos(ctx); if(atd!==dono){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}

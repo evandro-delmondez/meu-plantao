@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.62.0 — 2026-11-12
+- **Escores dentro do Atendimento** (em Hipótese diagnóstica): os escores das condutas escolhidas (Wells e PERC no TEP, Wells na TVP, CURB-65 na pneumonia, Alvarado na dor abdominal, HEART na dor torácica, Ottawa na entorse e na fratura, Glasgow, NEWS2 e os demais), já marcados pelos sinais vitais, idade e sexo quando o critério é objetivo (✱). O que você toca vale mais que o automático. O resultado vai sozinho para a Conduta ("Estratificação pelo Wells…").
+
 ## 1.61.1 — 2026-11-12
 - **IA da internação**: justificativa em 1 a 3 frases, começando pelo critério de gravidade, sem recontar a HDA (que já vai no pedido); objetivos no formato "problema: ação", ligados ao diagnóstico e aos motivos da internação, recebendo a justificativa.
 - **IA da HDA**: regras novas para não perder negativa, não transformar dúvida em afirmação e não inventar sintoma; sem conseguir, devolve o seu texto só com a ortografia corrigida.

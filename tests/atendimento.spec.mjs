@@ -944,3 +944,22 @@ test("sexo pelo nome: regras", async ({ page }) => {
     expect(m === "true" ? "M" : f === "true" ? "F" : "", nome).toBe(esp);
   }
 });
+
+test("escores no Atendimento: os da conduta aparecem, sinais vitais marcam sozinhos e o resultado vai para a Conduta", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "tep");
+  const box = page.locator('#atCorpo [data-scin="wellsTep"]');
+  await expect(box).toBeVisible();
+  await expect(page.locator('#atCorpo [data-scin="perc"]')).toBeVisible();
+  await campo(page, "fc").fill("112");
+  await expect(box.locator('input[data-b="2"]')).toBeChecked();        // FC > 100 bpm
+  await expect(saida(page, "trat")).not.toHaveValue(/Estratificação/);   // só o automático: não vai ao prontuário
+  // o médico marca hemoptise: soma e o automático continua
+  await box.locator("label", { hasText: "Hemoptise" }).locator("input").check();
+  await expect(saida(page, "trat")).toHaveValue(/Wells[^\n]*2,5|Wells[^\n]*2\.5/);
+  // tirar o automático vale mais que o sinal vital
+  await box.locator('input[data-b="2"]').uncheck();
+  await campo(page, "fc").fill("120");
+  await expect(box.locator('input[data-b="2"]')).not.toBeChecked();
+  expect(erros).toEqual([]);
+});

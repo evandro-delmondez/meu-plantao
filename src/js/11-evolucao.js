@@ -391,6 +391,7 @@ function atTrat(it){
   if(!ks.has("lab")&&lab.length) ex.push(`- Solicito exames laboratoriais: ${lab.join(", ")}.`);
   if(!ks.has("img")&&img.length) ex.push(`- Solicito exames de imagem: ${img.join(", ")}.`);
   if(ex.length) L.splice(pos.med??pos.explico??0,0,...ex);
+  const esc0=atEscoresLinhas(); if(esc0.length) L.splice(pos.explico??0,0,...esc0);   // logo depois do "Explico…"
   atItens(atd.condLivre).forEach(x=>L.push("- "+x));
   return L.join("\n");
 }
@@ -741,6 +742,7 @@ function renderEv(){
     ${atSaida("exame","Exame físico")}</div></div>
   <div class="sec atsec" data-etapa="3"><div class="sec-h"><h3>${atPos(3)}. Hipótese diagnóstica</h3></div><div class="atbody">
     <div class="atcids">${cs.filter(c=>c.cid).map(c=>`<button class="cidbig" data-cpcid="${esc(c.cid)}" title="Copiar o CID de ${esc(c.nome)}">CID ${esc(c.cid)} <span>copiar</span></button>`).join("")}</div>
+    ${atEscoresHTML()}
     ${ta("diag","Outras hipóteses ou complemento","ex.: diagnóstico diferencial com…")}
     ${atSaida("diag","Hipótese diagnóstica")}</div></div>
   <div class="sec atsec" data-etapa="4"><div class="sec-h"><h3>${atPos(4)}. Conduta</h3><span class="alsum">itens · receituário</span></div><div class="atbody">

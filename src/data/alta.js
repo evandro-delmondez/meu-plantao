@@ -10,6 +10,28 @@
 const ALTA = {
 /* Rascunho ALTA, lote 1 (2026-10-09). Entradas para colar dentro de const ALTA = { ... } em src/data/alta.js.
    Não conferido. Relatório: .rascunhos/alta-1-relatorio.md */
+dengue: {
+  titulo: "Dengue",
+  oque: "A dengue é uma infecção por vírus transmitida pelo mosquito. A febre dura de 2 a 7 dias. O período mais perigoso é quando a febre vai embora: é aí que podem aparecer os sinais de alarme.",
+  cuidados: [
+    "Beba bastante líquido, como na receita: soro de reidratação oral, água, sucos, chás ou água de coco.",
+    "Faça repouso.",
+    "Para dor ou febre, use só os remédios da receita. Não tome anti-inflamatório (ibuprofeno, diclofenaco, nimesulida) nem AAS (aspirina).",
+    "Volte para reavaliação no primeiro dia sem febre, mesmo que esteja bem.",
+    "Leve o cartão da dengue em todos os retornos."
+  ],
+  volte: [
+    "Dor forte e contínua na barriga.",
+    "Vômitos que não param.",
+    "Sangramento de gengiva, nariz, urina ou fezes, ou manchas roxas.",
+    "Tontura ou desmaio ao levantar.",
+    "Muita sonolência ou irritação.",
+    "Urinar pouco."
+  ],
+  fontes: [
+    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024 (sinais de alarme, hidratação, retorno no 1º dia sem febre; sem anti-inflamatório)."
+  ]
+},
 amigdalite: {
   titulo: "Dor de garganta com infecção por bactéria (amigdalite)",
   oque: "É uma infecção das amígdalas, as duas bolinhas no fundo da garganta. Com o tratamento, a dor costuma melhorar em poucos dias e passar em até 1 semana.",
@@ -35,6 +57,26 @@ amigdalite: {
     "NICE NG84. Sore throat (acute): antimicrobial prescribing, 2018, rec. 1.1.1, 1.1.4 e 1.1.5: duração de cerca de 1 semana; reavaliar se piora rápida ou importante. https://www.nice.org.uk/guidance/ng84",
     "NHS. Tonsillitis (revisado em 08/03/2024) e Sore throat: autocuidado, gargarejo com sal, sinais de abscesso (trismo, não engolir, falta de ar, babar). https://www.nhs.uk/conditions/tonsillitis/",
     "CDC. Clinical Guidance for Group A Streptococcal Pharyngitis: retorno à escola/trabalho sem febre e 12 a 24 h após iniciar o antibiótico. https://www.cdc.gov/group-a-strep/hcp/clinical-guidance/strep-throat.html"
+  ]
+},
+erisipela: {
+  titulo: "Erisipela ou celulite (infecção da pele)",
+  oque: "É uma infecção da pele e da camada logo abaixo dela, quase sempre por bactéria que entra por uma ferida ou frieira. Com o antibiótico, a febre costuma melhorar em 1 a 2 dias, e a vermelhidão, em alguns dias.",
+  cuidados: [
+    "Tome o antibiótico nos horários certos até o último dia.",
+    "Deixe a perna ou o braço elevado quando estiver sentado ou deitado.",
+    "Trate a porta de entrada: frieira, rachadura ou ferida na pele.",
+    "Volte em 48 a 72 horas para reavaliação."
+  ],
+  volte: [
+    "Febre que não melhora em 2 dias de antibiótico.",
+    "Vermelhidão que passa da marca feita na pele.",
+    "Bolhas escuras, pele roxa ou preta, ou dor muito forte.",
+    "Tontura, confusão ou muito mal-estar."
+  ],
+  fontes: [
+    "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10).",
+    "NICE NG141. Cellulitis and erysipelas: antimicrobial prescribing, 2019."
   ]
 },
 faringite: {
@@ -70,7 +112,7 @@ sinusite: {
   cuidados: [
     "Tome e use os remédios como está na sua receita.",
     "Se você recebeu antibiótico, tome até o último dia, mesmo que melhore antes. Se não recebeu, não tome por conta própria: na maioria das vezes ele não é necessário.",
-    "Se você não recebeu antibiótico, procure atendimento se piorar depois de ter começado a melhorar, ou se não tiver melhorado nada 10 dias depois do começo dos sintomas.",
+    "Se você não recebeu antibiótico, procure atendimento se piorar depois de ter começado a melhorar, ou se não tiver melhorado 7 dias depois desta consulta.",
     "Lave o nariz com soro fisiológico várias vezes ao dia, como foi ensinado.",
     "Descanse e beba bastante água.",
     "Não use por conta própria aqueles sprays que desentopem o nariz na hora. Usados por muitos dias, eles deixam o nariz ainda mais entupido.",
@@ -94,6 +136,24 @@ sinusite: {
     "NICE NG79. Sinusitis (acute): antimicrobial prescribing, 2017, rec. 1.1.2: duração de 2 a 3 semanas, antibiótico geralmente desnecessário, procurar ajuda se piora rápida ou importante. https://www.nice.org.uk/guidance/ng79",
     "Sakano E et al. IV Consenso Brasileiro sobre Rinites (Braz J Otorhinolaryngol 2018;84:3): uso prolongado de descongestionante tópico causa rinite medicamentosa.",
     "NHS. Sinusitis (sinus infection): autocuidado (repouso, líquidos, lavagem nasal, não fumar). https://www.nhs.uk/conditions/sinusitis-sinus-infection/"
+  ]
+},
+abscesso: {
+  titulo: "Abscesso ou furúnculo",
+  oque: "É uma bolsa de pus na pele. O mais importante é drenar o pus; o antibiótico só é usado em alguns casos.",
+  cuidados: [
+    "Faça compressas mornas no local 3 a 4 vezes ao dia.",
+    "Mantenha o curativo limpo e troque como foi ensinado.",
+    "Se recebeu antibiótico, tome até o fim.",
+    "Volte em 48 horas para reavaliação e troca do curativo."
+  ],
+  volte: [
+    "Febre.",
+    "Vermelhidão que se espalha.",
+    "Dor que piora ou volta a juntar pus."
+  ],
+  fontes: [
+    "Stevens DL et al. IDSA Practice Guidelines for Skin and Soft Tissue Infections (Clin Infect Dis 2014;59:e10)."
   ]
 },
 oma: {
@@ -122,6 +182,27 @@ oma: {
     "NHS. Ear infections: não colocar nada no ouvido, limpar a secreção por fora, não molhar nem nadar; urgência se inchaço em volta da orelha, saída de líquido, perda de audição ou tontura. https://www.nhs.uk/conditions/ear-infections/"
   ]
 },
+has: {
+  titulo: "Pressão alta",
+  oque: "A pressão estava alta. Hoje não havia sinal de dano no coração, no cérebro ou nos rins. A pressão deve baixar aos poucos, em 1 a 2 dias, com os remédios de uso contínuo.",
+  cuidados: [
+    "Tome os remédios de pressão todos os dias, nas doses e horários certos.",
+    "Não tome dose extra por conta própria.",
+    "Reduza o sal na comida.",
+    "Evite anti-inflamatórios e descongestionantes de nariz sem orientação: eles aumentam a pressão.",
+    "Meça a pressão no posto e vá à consulta com o clínico em até 1 semana."
+  ],
+  volte: [
+    "Dor no peito ou falta de ar.",
+    "Fraqueza ou dormência num lado do corpo.",
+    "Fala enrolada ou alteração da visão.",
+    "Dor de cabeça muito forte, confusão ou desmaio."
+  ],
+  fontes: [
+    "SBC. Diretriz Brasileira de Hipertensão Arterial 2025 (Arq Bras Cardiol): urgência hipertensiva, retorno em até 7 dias.",
+    "Jones DW et al. 2025 AHA/ACC Guideline for High Blood Pressure in Adults."
+  ]
+},
 "otite-externa": {
   titulo: "Infecção no canal do ouvido (otite externa)",
   oque: "É uma infecção da pele do canal do ouvido, muitas vezes depois de entrar água ou de usar cotonete. Com as gotas, a maioria melhora em 2 a 3 dias e fica quase sem sintomas em 1 semana.",
@@ -144,6 +225,26 @@ oma: {
     "Rosenfeld RM et al. AAO-HNS Clinical Practice Guideline: Acute Otitis Externa (Otolaryngol Head Neck Surg 2014;150:S1): como pingar, manter o ouvido seco, reavaliar se sem melhora em 48–72 h, fatores de risco (diabetes, imunossupressão).",
     "AAO-HNSF. Instructions for patients e Patient FAQ: Acute Otitis Externa, 2014 (melhora em 48–72 h, mínimos sintomas em 7 dias; usar as gotas por pelo menos 7 dias; não limpar o ouvido sozinho). https://www.entnet.org/sites/default/files/AOEGuidelinePatientInstructionsFinal.pdf",
     "NHS. Ear infections: não colocar nada no ouvido, não molhar nem nadar. https://www.nhs.uk/conditions/ear-infections/"
+  ]
+},
+dpoc: {
+  titulo: "Crise de DPOC (enfisema ou bronquite crônica)",
+  oque: "A falta de ar piorou por uma crise da doença do pulmão, muitas vezes por infecção. Com o tratamento, a melhora vem em alguns dias.",
+  cuidados: [
+    "Use as bombinhas de uso contínuo todos os dias.",
+    "Use a bombinha de alívio com espaçador quando tiver falta de ar.",
+    "Tome o corticoide até o último dia. Se recebeu antibiótico, tome até o fim.",
+    "Marque consulta no posto em 1 a 4 semanas.",
+    "Se fuma, peça ajuda no posto para parar."
+  ],
+  volte: [
+    "Falta de ar que piora ou não melhora com a bombinha.",
+    "Lábios ou unhas arroxeados.",
+    "Muita sonolência ou confusão.",
+    "Febre alta ou dor no peito."
+  ],
+  fontes: [
+    "Global Initiative for Chronic Obstructive Lung Disease (GOLD) 2026, cap. 4."
   ]
 },
 rinite: {
@@ -172,6 +273,26 @@ rinite: {
     "NHS. Nosebleed: apertar o nariz por 10 a 15 minutos; ir à emergência se o sangramento passar disso. https://www.nhs.uk/conditions/nosebleed/"
   ]
 },
+anafilaxia: {
+  titulo: "Reação alérgica grave (anafilaxia)",
+  oque: "Você teve uma reação alérgica grave, tratada com adrenalina. A reação pode voltar nas horas seguintes, mesmo depois de melhorar.",
+  cuidados: [
+    "Não use de novo o que causou a reação. Anote o nome e mostre em todo atendimento.",
+    "Tome os remédios da receita.",
+    "Marque consulta com um alergista.",
+    "Se tem adrenalina autoinjetável, ande sempre com ela."
+  ],
+  volte: [
+    "Qualquer sintoma da reação de volta: coceira com manchas, inchaço na boca ou na garganta.",
+    "Falta de ar, chiado ou rouquidão.",
+    "Tontura ou desmaio.",
+    "Vômitos ou dor forte na barriga."
+  ],
+  fontes: [
+    "Resuscitation Council UK. Emergency treatment of anaphylaxis, 2021 (reação bifásica; informação na alta).",
+    "Golden DBK et al. Anaphylaxis: a 2023 practice parameter update (Ann Allergy Asthma Immunol 2024;132:124)."
+  ]
+},
 conjuntivite: {
   titulo: "Conjuntivite (olho vermelho)",
   oque: "É uma inflamação da parte branca do olho e do lado de dentro da pálpebra, quase sempre por vírus, bactéria ou alergia. Costuma melhorar em 1 a 2 semanas, e a causada por vírus ou bactéria passa de uma pessoa para outra.",
@@ -197,6 +318,23 @@ conjuntivite: {
     "Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023 (Ophthalmology 2024;131:P134): contágio por 10 a 14 dias; lavar as mãos, toalha e travesseiro separados, evitar contato próximo; encaminhar se perda visual, dor moderada ou intensa, secreção purulenta intensa, acometimento da córnea, falta de resposta ao tratamento.",
     "Azari AA, Barney NP. Conjunctivitis: a systematic review of diagnosis and treatment (JAMA 2013;310:1721): curso autolimitado em 1 a 2 semanas; lente de contato com olho vermelho (risco de ceratite). https://doi.org/10.1001/jama.2013.280318",
     "NHS. Conjunctivitis: limpar com algodão (um para cada olho), compressa fria, não usar lente, não dividir toalha e travesseiro; urgência se dor, sensibilidade à luz, alteração da visão ou olho muito vermelho. https://www.nhs.uk/conditions/conjunctivitis/"
+  ]
+},
+"alergia-grave": {
+  titulo: "Reação alérgica (sem gravidade)",
+  oque: "Você teve uma reação alérgica moderada, sem sinal de gravidade. Os remédios aliviam a coceira e o inchaço em algumas horas a poucos dias.",
+  cuidados: [
+    "Não use de novo o remédio ou alimento que causou a reação. Anote o nome e mostre em todo atendimento.",
+    "Tome o antialérgico como está na receita. Ele pode dar sono: cuidado ao dirigir."
+  ],
+  volte: [
+    "Falta de ar, chiado ou rouquidão.",
+    "Inchaço nos lábios ou na língua.",
+    "Tontura, desmaio ou vômitos repetidos."
+  ],
+  fontes: [
+    "Zuberbier T et al. EAACI/GA²LEN/EuroGuiDerm/APAAACI guideline for urticaria (Allergy 2022).",
+    "Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020."
   ]
 },
 gripe: {
@@ -231,6 +369,26 @@ gripe: {
     "NHS. Flu: antibiótico não funciona para gripe; não somar antigripais ao paracetamol (risco de dose a mais); urgência se dor no peito, falta de ar intensa ou sangue na tosse. https://www.nhs.uk/conditions/flu/"
   ]
 },
+dermatite: {
+  titulo: "Alergia ou irritação de pele (dermatite)",
+  oque: "A pele inflamou por contato com alguma substância ou por alergia. Afastando a causa e com o tratamento, melhora em 1 a 3 semanas.",
+  cuidados: [
+    "Evite o que causou a reação. Use sabonete neutro e hidratante.",
+    "Passe o creme em camada fina só nas áreas da receita; o creme forte não vai no rosto, nas dobras nem nos genitais.",
+    "Não coce; mantenha as unhas curtas.",
+    "Se recebeu prednisona, siga a redução da receita: não pare antes nem de repente."
+  ],
+  volte: [
+    "Bolhas ou pele descascando.",
+    "Feridas na boca, nos olhos ou nos genitais.",
+    "Febre.",
+    "Inchaço nos lábios ou falta de ar."
+  ],
+  fontes: [
+    "Fonacier L et al. Contact dermatitis: a practice parameter update 2015 (J Allergy Clin Immunol Pract 2015;3:S1).",
+    "Harrison 22ª ed., cap. 63 (reações cutâneas graves a medicamentos)."
+  ]
+},
 tosse: {
   titulo: "Tosse",
   oque: "A tosse que começa com um resfriado quase sempre é causada por vírus e antibiótico não ajuda. Ela pode durar até 3 a 4 semanas, melhorando aos poucos.",
@@ -262,6 +420,26 @@ tosse: {
     "EMA 2015: codeína contraindicada para tosse em menores de 12 anos; Morice AH et al. ERS guidelines on chronic cough (Eur Respir J 2020;55:1901136): perda de peso, rouquidão e hemoptise como sinais de alarme."
   ]
 },
+enxaqueca: {
+  titulo: "Enxaqueca",
+  oque: "A enxaqueca é uma dor de cabeça que vem em crises, muitas vezes com enjoo e incômodo com luz e barulho. Não é perigosa, mas pode voltar.",
+  cuidados: [
+    "Tome o remédio logo no início da crise.",
+    "Anote as crises num diário: dia, duração e o que pode ter causado.",
+    "Não tome remédio para dor em mais de 10 dias por mês: o excesso piora a dor de cabeça.",
+    "Se tiver febre com dor no corpo ou atrás dos olhos, não tome anti-inflamatório até ser examinado (pode ser dengue)."
+  ],
+  volte: [
+    "Dor diferente das crises de sempre, ou que começa de repente e muito forte.",
+    "Febre com pescoço duro.",
+    "Fraqueza, dormência ou fala enrolada.",
+    "Alteração da visão que não passa em 1 hora."
+  ],
+  fontes: [
+    "Do TP et al. SNNOOP10 (Neurology 2019;92:134).",
+    "Ministério da Saúde. Dengue, 6ª ed., 2024, item 6.1.2."
+  ]
+},
 pac: {
   titulo: "Pneumonia",
   oque: "É uma infecção no pulmão. Com o tratamento, a febre costuma passar em até 1 semana, mas a tosse, o catarro e o cansaço melhoram aos poucos e podem durar algumas semanas.",
@@ -289,6 +467,25 @@ pac: {
     "NHS. Pneumonia: emergência se falta de ar intensa, pele ou lábios azulados, sangue na tosse ou confusão de início súbito; repouso, líquidos, não fumar. https://www.nhs.uk/conditions/pneumonia/"
   ]
 },
+hipoglicemia: {
+  titulo: "Açúcar baixo no sangue (hipoglicemia)",
+  oque: "O açúcar do sangue ficou baixo, em geral por remédio do diabetes, pouca comida ou exercício. Foi corrigido aqui.",
+  cuidados: [
+    "Ande sempre com bala ou açúcar.",
+    "Não pule refeições.",
+    "Não dirija até se alimentar e estar bem.",
+    "Procure o posto em até 1 semana para rever a dose da insulina ou do remédio do diabetes.",
+    "Ensine as pessoas da casa a reconhecer os sinais."
+  ],
+  volte: [
+    "Suor frio, tremor, fome forte ou confusão que não melhoram com açúcar.",
+    "Desmaio ou convulsão.",
+    "Muita sonolência."
+  ],
+  fontes: [
+    "American Diabetes Association. Standards of Care in Diabetes 2026, seção 6."
+  ]
+},
 asma: {
   titulo: "Crise de asma",
   oque: "A asma é uma inflamação dos brônquios, os canos que levam o ar ao pulmão: na crise eles se fecham e dão chiado, tosse e falta de ar. Não tem cura, mas o tratamento de todos os dias evita novas crises.",
@@ -313,6 +510,26 @@ asma: {
     "Ministério da Saúde. Asma, Saúde de A a Z: não tem cura, mas o tratamento controla; acompanhamento na Unidade Básica de Saúde. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/asma",
     "NHS. Asthma attack: emergência se piora ou se não melhora com a bombinha de alívio; consulta em até 2 dias após a crise. https://www.nhs.uk/conditions/asthma/asthma-attack/",
     "Ministério da Saúde. Guia de Manejo e Tratamento de Influenza 2023: asma como condição de risco para complicações da gripe. https://bvsms.saude.gov.br/bvs/publicacoes/guia_manejo_tratamento_influenza_2023.pdf"
+  ]
+},
+hiperglicemia: {
+  titulo: "Açúcar alto no sangue",
+  oque: "O açúcar do sangue estava alto, sem sinal de complicação grave. Foi corrigido aqui, e o tratamento de uso contínuo precisa ser ajustado.",
+  cuidados: [
+    "Tome os remédios do diabetes todos os dias, como foi orientado.",
+    "Beba água ao longo do dia.",
+    "Meça e anote as glicemias, se tiver aparelho.",
+    "Marque consulta com o clínico em até 1 semana e leve as anotações."
+  ],
+  volte: [
+    "Muita sede e urina em grande quantidade.",
+    "Vômitos ou dor na barriga.",
+    "Falta de ar ou respiração rápida.",
+    "Sonolência ou confusão."
+  ],
+  fontes: [
+    "American Diabetes Association. Standards of Care in Diabetes 2026, seção 16.",
+    "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes (Diabetes Care 2024;47:1257)."
   ]
 },
 geca: {
@@ -343,6 +560,26 @@ geca: {
     "NHS. Diarrhoea and vomiting: duração (vômito 1 a 2 dias, diarreia 5 a 7 dias); goles pequenos; evitar comida gordurosa; ficar em casa até 2 dias sem sintomas; não preparar comida para outros. https://www.nhs.uk/conditions/diarrhoea-and-vomiting/"
   ]
 },
+convulsao: {
+  titulo: "Convulsão (crise convulsiva)",
+  oque: "Você teve uma crise convulsiva e voltou ao normal. A causa precisa ser acompanhada pelo neurologista.",
+  cuidados: [
+    "Não dirija até ser liberado pelo neurologista.",
+    "Não nade nem tome banho de banheira sozinho; evite altura e máquinas perigosas.",
+    "Se usa remédio para convulsão, tome todos os dias, sem parar por conta própria.",
+    "Durma bem e evite bebida alcoólica."
+  ],
+  volte: [
+    "Nova crise, ou crise de mais de 5 minutos.",
+    "Confusão que não passa.",
+    "Febre com dor de cabeça forte.",
+    "Fraqueza num lado do corpo."
+  ],
+  fontes: [
+    "NICE NG217. Epilepsies in children, young people and adults, 2022.",
+    "ACEP Clinical Policy: Seizures (Ann Emerg Med 2024)."
+  ]
+},
 nauseas: {
   titulo: "Enjoo e vômitos",
   oque: "Enjoo e vômito têm muitas causas e, na maioria das vezes, são passageiros, como numa virose ou depois de algo que você comeu. Costumam melhorar em 1 a 2 dias, e o mais importante é não ficar desidratado.",
@@ -367,6 +604,25 @@ nauseas: {
     "NHS. Diarrhoea and vomiting: goles pequenos, evitar comida gordurosa ou apimentada, evitar refrigerante e suco; urgência se vômito com sangue ou borra de café, vômito verde, dor de barriga forte e súbita, pescoço duro, dor de cabeça súbita e intensa, confusão; procurar atendimento se vômito por mais de 2 dias. https://www.nhs.uk/conditions/diarrhoea-and-vomiting/",
     "Ministério da Saúde. Manejo do paciente com diarreia (cartaz), 2023: líquidos em pequenas quantidades e maior frequência após cada vômito. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dda",
     "Bula do dimenidrinato + piridoxina (Anvisa): sonolência; evitar dirigir ou operar máquinas."
+  ]
+},
+gota: {
+  titulo: "Crise de gota",
+  oque: "A gota é uma inflamação na junta causada por cristais de ácido úrico. Com o tratamento, a crise melhora em alguns dias.",
+  cuidados: [
+    "Tome os remédios como está na receita. Se tiver diarreia com a colchicina, pare a colchicina.",
+    "Faça compressa de gelo por 20 minutos, 3 a 4 vezes ao dia, e deixe a junta em repouso e elevada.",
+    "Se já usa alopurinol, não pare.",
+    "Evite bebida alcoólica (principalmente cerveja), carne vermelha, frutos do mar e refrigerante."
+  ],
+  volte: [
+    "Febre com a junta quente e vermelha.",
+    "Dor que não melhora em 2 a 3 dias.",
+    "Diarreia forte ou vômitos."
+  ],
+  fontes: [
+    "FitzGerald JD et al. 2020 ACR Guideline for the Management of Gout (Arthritis Care Res 2020;72:744).",
+    "Bula Anvisa da colchicina (diarreia: suspender)."
   ]
 },
 dispepsia: {
@@ -400,6 +656,24 @@ dispepsia: {
     "NHS. Indigestion e Heartburn and acid reflux: refeições menores, não comer 3 a 4 h antes de dormir, elevar a cabeceira 10 a 20 cm (não com travesseiros), não tomar ibuprofeno ou aspirina sem receita, não parar remédio receitado sem falar com o médico; procurar o médico se vômito ou fezes com sangue, dificuldade para engolir, perda de peso. https://www.nhs.uk/conditions/indigestion/"
   ]
 },
+epistaxe: {
+  titulo: "Sangramento pelo nariz",
+  oque: "O sangramento do nariz parou. Ele costuma vir da parte da frente do nariz e pode voltar nos próximos dias.",
+  cuidados: [
+    "Se voltar a sangrar: sente, incline a cabeça para a frente e aperte a parte mole do nariz por 15 minutos sem soltar. Não deite e não incline a cabeça para trás.",
+    "Não assoe o nariz nem faça esforço nas próximas 24 a 48 horas.",
+    "Mantenha o ar do ambiente úmido.",
+    "Não tome anti-inflamatório nem AAS por conta própria."
+  ],
+  volte: [
+    "Sangramento que dura mais de 20 minutos apertando o nariz.",
+    "Sangue escorrendo pela garganta em grande quantidade.",
+    "Tontura, desmaio ou falta de ar."
+  ],
+  fontes: [
+    "Tunkel DE et al. AAO-HNS Clinical Practice Guideline: Nosebleed (Epistaxis) (Otolaryngol Head Neck Surg 2020), KAS 13 (educação do paciente)."
+  ]
+},
 constipacao: {
   titulo: "Intestino preso (constipação)",
   oque: "É quando você evacua menos vezes que o normal, com fezes duras e esforço. Na maioria das vezes melhora em alguns dias com mais água, mais fibras, mais movimento e o remédio da receita.",
@@ -429,6 +703,25 @@ constipacao: {
 },
 /* Rascunho ALTA, lote 2 (2026-10-17): cefaleia, lombalgia, TCE leve, vertigem, infecção urinária, cólica, dor abdominal, entorse.
    Não conferido. Relatório: .rascunhos/altas-2.md */
+zoster: {
+  titulo: "Herpes-zóster (cobreiro)",
+  oque: "É a volta do vírus da catapora, que causa bolhas com dor numa faixa de um lado do corpo. As bolhas secam em 2 a 4 semanas.",
+  cuidados: [
+    "Comece o remédio o quanto antes e tome até o fim.",
+    "Mantenha as feridas limpas, secas e cobertas. Não coce.",
+    "Evite contato com gestantes, recém-nascidos e pessoas com imunidade baixa até as bolhas virarem casquinhas.",
+    "Se a dor continuar mais de 1 mês depois das feridas secarem, procure o posto."
+  ],
+  volte: [
+    "Bolhas na ponta do nariz, olho vermelho ou visão piorando.",
+    "Fraqueza num lado do rosto ou dor de ouvido com bolhas na orelha.",
+    "Febre alta, confusão ou bolhas espalhadas pelo corpo."
+  ],
+  fontes: [
+    "NICE CKS Shingles (revisado em 2024).",
+    "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 198."
+  ]
+},
 cefaleia: {
   titulo: "Dor de cabeça",
   oque: "A maioria das dores de cabeça não é grave: vem de tensão, cansaço, fome, falta de sono ou enxaqueca. Costuma melhorar em algumas horas ou poucos dias.",
@@ -459,6 +752,25 @@ cefaleia: {
     "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."
   ]
 },
+hemorroida: {
+  titulo: "Hemorroida",
+  oque: "São veias inchadas no ânus que podem doer e sangrar. Melhoram com cuidados em casa em alguns dias.",
+  cuidados: [
+    "Faça banho de assento com água morna 3 vezes ao dia, por 10 minutos.",
+    "Coma alimentos ricos em fibra e beba bastante água.",
+    "Não fique muito tempo sentado no vaso e não faça força para evacuar.",
+    "Prefira lavar a região com água em vez de papel."
+  ],
+  volte: [
+    "Sangramento em grande quantidade ou que não para.",
+    "Dor muito forte com caroço duro no ânus.",
+    "Febre.",
+    "Tontura ou desmaio."
+  ],
+  fontes: [
+    "Davis BR et al. ASCRS Clinical Practice Guidelines for the Management of Hemorrhoids (Dis Colon Rectum 2018)."
+  ]
+},
 lombalgia: {
   titulo: "Dor nas costas ou dor muscular",
   oque: "Na maioria das vezes a dor vem de músculos e ligamentos, sem lesão grave na coluna. Costuma melhorar bastante em poucas semanas.",
@@ -484,6 +796,24 @@ lombalgia: {
     "Qaseem A et al. ACP Guideline: Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (Ann Intern Med 2017;166:514): calor superficial; a maioria melhora com o tempo.",
     "NHS. Back pain (revisado em 05/03/2026): manter-se ativo, não ficar muito tempo na cama, calor ou gelo enrolado em toalha, alongamentos; pronto-socorro se fraqueza ou dormência nas pernas, dormência em volta dos genitais ou do ânus, alteração para urinar ou evacuar, dor no peito, após acidente; febre ou dor súbita e forte. https://www.nhs.uk/conditions/back-pain/",
     "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."
+  ]
+},
+impetigo: {
+  titulo: "Impetigo (infecção de pele)",
+  oque: "É uma infecção da pele por bactéria, com feridas que formam casquinhas amareladas. Passa para outras pessoas pelo contato.",
+  cuidados: [
+    "Lave as feridas com água e sabão e retire as casquinhas antes de passar a pomada.",
+    "Mantenha as unhas curtas, lave bem as mãos e não divida toalhas.",
+    "Fique afastado do trabalho, da escola ou da creche até 24 horas após começar o antibiótico, ou até as feridas secarem."
+  ],
+  volte: [
+    "Febre ou vermelhidão que se espalha.",
+    "Inchaço no rosto.",
+    "Nas próximas semanas: urina escura, com sangue ou em pouca quantidade."
+  ],
+  fontes: [
+    "American Academy of Pediatrics. Red Book 2024 (impetigo).",
+    "NICE CKS Impetigo."
   ]
 },
 contratura: {
@@ -514,6 +844,25 @@ contratura: {
     "Ministério da Saúde. Dengue: diagnóstico e manejo clínico — adulto e criança, 6ª ed., 2024 (AINE contraindicado na suspeita de dengue)."
   ]
 },
+urticaria: {
+  titulo: "Urticária (alergia com placas na pele)",
+  oque: "São placas vermelhas que coçam e mudam de lugar. Cada placa some em menos de 1 dia, e a crise costuma passar em alguns dias.",
+  cuidados: [
+    "Tome o antialérgico como está na receita.",
+    "Evite o que pode ter causado: remédio, alimento ou produto novo.",
+    "Não tome anti-inflamatório (ibuprofeno, diclofenaco) sem orientação.",
+    "Se as placas durarem mais de 6 semanas, marque consulta."
+  ],
+  volte: [
+    "Inchaço na língua ou nos lábios.",
+    "Rouquidão ou dificuldade para engolir ou respirar.",
+    "Tontura ou desmaio."
+  ],
+  fontes: [
+    "Zuberbier T et al. EAACI/GA²LEN/EuroGuiDerm/APAAACI guideline for urticaria (Allergy 2022).",
+    "Cardona V et al. World Allergy Organization Anaphylaxis Guidance 2020."
+  ]
+},
 tce: {
   titulo: "Batida na cabeça (traumatismo leve)",
   oque: "Você bateu a cabeça, mas o exame não mostrou sinal de lesão grave. Dor de cabeça leve, tontura e cansaço podem durar até 2 semanas e costumam passar sozinhos.",
@@ -541,6 +890,24 @@ tce: {
     "NHS. Head injury and concussion (revisado em 29/05/2025): gelo enrolado em pano, descanso, dormir normalmente, adulto junto por pelo menos 24 h; evitar álcool, drogas e remédio para dormir, não dirigir até recuperar, esporte de contato só após 3 semanas; sintomas até 2 semanas; sinais de emergência. https://www.nhs.uk/conditions/head-injury-and-concussion/",
     "Valente JH et al. ACEP Clinical Policy: Mild Traumatic Brain Injury (Ann Emerg Med 2023;81:e63): orientação de alta e retorno. https://pubmed.ncbi.nlm.nih.gov/37085214/",
     "Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024, cap. 63, Traumatismo cranioencefálico: sinais de alerta na alta."
+  ]
+},
+prostatite: {
+  titulo: "Infecção da próstata (prostatite)",
+  oque: "É uma infecção da próstata, quase sempre por bactéria da urina. O tratamento é longo, de 2 a 4 semanas, para não voltar.",
+  cuidados: [
+    "Tome o antibiótico todos os dias até o fim, mesmo que melhore antes.",
+    "Volte em 2 a 3 dias para ver o resultado da cultura da urina.",
+    "Beba bastante água.",
+    "Se a infecção for de transmissão sexual, a parceria também precisa ser avaliada; use preservativo."
+  ],
+  volte: [
+    "Febre alta, calafrios ou piora do estado geral.",
+    "Não conseguir urinar.",
+    "Vômitos que impedem tomar o remédio."
+  ],
+  fontes: [
+    "Bonkat G et al. EAU Guidelines on Urological Infections, 2026, seção 3.11."
   ]
 },
 vertigem: {
@@ -581,7 +948,7 @@ itu: {
     "Não segure a urina: vá ao banheiro sempre que tiver vontade.",
     "Evite café e bebida alcoólica enquanto estiver com ardência.",
     "Se a receita tem remédio para a ardência, a urina pode ficar laranja. Isso é esperado.",
-    "Se aparecer febre, não tome anti-inflamatório, nem o que está na receita, até ser examinado de novo: se for dengue, aumenta o risco de sangramento."
+    "Se aparecer febre, pare o anti-inflamatório da receita (ibuprofeno, cetoprofeno, naproxeno ou diclofenaco) e procure atendimento: se for dengue, ele aumenta o risco de sangramento. Continue tomando o antibiótico."
   ],
   volte: [
     "Febre, calafrios ou tremedeira. Se você já saiu daqui com febre, volte se ela não melhorar em 2 dias de antibiótico.",
@@ -590,7 +957,7 @@ itu: {
     "Confusão, muita sonolência, tontura forte ou desmaio.",
     "A ardência não melhorou depois de 2 dias de antibiótico, ou piorou.",
     "Sangue na urina.",
-    "Se você está grávida: febre, dor nas costas, dor ou endurecimento da barriga, ou sangramento pela vagina."
+    "[F] Se você está grávida: febre, dor nas costas, dor ou endurecimento da barriga, ou sangramento pela vagina."
   ],
   fontes: [
     "Gupta K et al. IDSA/ESCMID International Clinical Practice Guidelines for Acute Uncomplicated Cystitis and Pyelonephritis in Women (Clin Infect Dis 2011;52:e103): tratamento completo; reavaliar se não melhora.",
@@ -600,6 +967,25 @@ itu: {
     "NHS. Urinary tract infections (revisado em 11/07/2025): beber o suficiente para a urina ficar clara, evitar café e álcool; procurar atendimento se febre ou tremedeira, dor nas costas abaixo das costelas, sangue na urina, sem melhora em 48 h; emergência se confusão ou sonolência. https://www.nhs.uk/conditions/urinary-tract-infections-utis/",
     "Bula Pyridium (fenazopiridina, Anvisa): urina alaranjada.",
     "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: anti-inflamatório contraindicado na suspeita de dengue."
+  ]
+},
+sua: {
+  titulo: "Sangramento menstrual intenso",
+  oque: "O sangramento pelo útero estava mais forte do que o normal. Os remédios ajudam a diminuir o sangramento; a causa deve ser investigada pelo ginecologista.",
+  cuidados: [
+    "Tome os remédios como está na receita.",
+    "Marque consulta com o ginecologista e faça o ultrassom pedido.",
+    "Coma alimentos ricos em ferro (feijão, carne, folhas verde-escuras)."
+  ],
+  volte: [
+    "Sangramento que encharca mais de 1 absorvente por hora por 2 horas seguidas.",
+    "Tontura, desmaio ou falta de ar.",
+    "Dor forte na barriga ou febre.",
+    "Dor ou inchaço numa perna (o ácido tranexâmico pode raramente causar trombose)."
+  ],
+  fontes: [
+    "American College of Obstetricians and Gynecologists. Committee Opinion 557: Management of acute abnormal uterine bleeding in nonpregnant reproductive-aged women, 2013.",
+    "Bula Lysteda (ácido tranexâmico): trombose como contraindicação."
   ]
 },
 colica: {
@@ -626,6 +1012,23 @@ colica: {
     "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 87 — Cólica nefrética: sem eliminação em 4 semanas, em geral indicação de intervenção.",
     "Bula Anvisa do Secotex (cloridrato de tansulosina 0,4 mg, comprimido revestido de liberação prolongada, Boehringer Ingelheim): 1 comprimido ao dia, com ou sem alimento, inteiro, sem partir nem mastigar; tontura e hipotensão; síndrome da íris flácida (avisar antes de cirurgia de catarata ou glaucoma; não iniciar se cirurgia programada); contraindicado na insuficiência hepática grave. Genéricos em cápsula: 1 cápsula após o café da manhã. https://consultaremedios.com.br/secotex/bula",
     "Bula Tramal (tramadol, Anvisa): máximo 400 mg/dia; sonolência, evitar dirigir."
+  ]
+},
+tetano: {
+  titulo: "Ferida e vacina contra o tétano",
+  oque: "A ferida foi limpa e a vacina foi conferida. O tétano é evitado com a vacina em dia.",
+  cuidados: [
+    "Complete o esquema de vacinas no posto nas datas marcadas.",
+    "Mantenha a ferida limpa e seca e troque o curativo como foi ensinado.",
+    "Se recebeu antibiótico, tome até o fim.",
+    "Se começou a vacina contra a raiva, tome todas as doses nas datas marcadas."
+  ],
+  volte: [
+    "Vermelhidão, calor, pus ou febre.",
+    "Dificuldade para abrir a boca ou rigidez no pescoço ou no corpo."
+  ],
+  fontes: [
+    "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed. revisada, 2024 — tétano acidental."
   ]
 },
 biliar: {
@@ -681,6 +1084,23 @@ biliar: {
     "NHS. Stomach ache (revisado em 26/05/2023): a maioria passa em poucos dias; procurar atendimento se piora, persiste ou volta; emergência se dor súbita ou forte, dor ao tocar a barriga, vômito com sangue ou borra de café, fezes pretas ou com sangue, não consegue evacuar nem soltar gases, desmaio. https://www.nhs.uk/symptoms/stomach-ache/"
   ]
 },
+sca: {
+  titulo: "Dor no peito de baixo risco",
+  oque: "Os exames de hoje (eletrocardiograma e exames de sangue) não mostraram infarto. A causa da dor ainda deve ser acompanhada pelo clínico ou cardiologista.",
+  cuidados: [
+    "Vá à consulta marcada e leve os resultados.",
+    "Tome os remédios de uso contínuo.",
+    "Se fuma, peça ajuda no posto para parar."
+  ],
+  volte: [
+    "Dor no peito que volta, dura mais de 15 minutos ou vem com falta de ar, suor frio, enjoo ou desmaio: ligue 192.",
+    "Falta de ar ao se deitar ou inchaço nas pernas."
+  ],
+  fontes: [
+    "Gulati M et al. 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain (Circulation 2021;144:e368): alta do baixo risco com seguimento.",
+    "SBC. Diretriz Brasileira de Avaliação e Diagnóstico da Dor Torácica na Emergência, 2025."
+  ]
+},
 entorse: {
   titulo: "Torção do tornozelo (entorse)",
   oque: "É uma lesão dos ligamentos, que seguram os ossos do tornozelo. Pelo exame, não há sinal de osso quebrado, e a maioria melhora em cerca de 2 semanas, mas pode levar algumas semanas para voltar ao normal.",
@@ -717,7 +1137,7 @@ tep: {
     "Avise qualquer médico ou dentista que você está tomando anticoagulante, principalmente antes de uma cirurgia, extração de dente ou injeção.",
     "Pode fazer as atividades do dia a dia, dentro do que o cansaço permitir.",
     "Faça a consulta de retorno com o médico em até 1 semana. Leve a receita e os exames.",
-    "Se estiver grávida, amamentando ou engravidar durante o tratamento, avise o médico: o remédio precisa ser trocado."
+    "[F] Se estiver grávida, amamentando ou engravidar durante o tratamento, avise o médico: o remédio precisa ser trocado."
   ],
   volte: [
     "Falta de ar que piora ou que aparece em repouso.",
@@ -744,7 +1164,7 @@ tvp: {
     "Avise qualquer médico ou dentista que você está tomando anticoagulante.",
     "Se você saiu sem anticoagulante, faça o ultrassom da perna de novo nas datas marcadas, mesmo que esteja melhor.",
     "Faça a consulta de retorno marcada com o médico.",
-    "Se estiver grávida, amamentando ou engravidar durante o tratamento, avise o médico: o remédio precisa ser trocado."
+    "[F] Se estiver grávida, amamentando ou engravidar durante o tratamento, avise o médico: o remédio precisa ser trocado."
   ],
   volte: [
     "Falta de ar, dor no peito, tosse com sangue ou desmaio: pode ser coágulo no pulmão.",
@@ -758,6 +1178,23 @@ tvp: {
     "Kearon C et al. ACCP 9ª ed. (Chest 2012;141:e419S): caminhar cedo em vez de repouso.",
     "Bulas do Xarelto (rivaroxabana) e do Eliquis (apixabana) registradas na Anvisa: adesão, fase de ataque, interação com anti-inflamatório e ácido acetilsalicílico, sinais de sangramento.",
     "NHS. Deep vein thrombosis (DVT): perna elevada, caminhar, sinais de embolia pulmonar para procurar atendimento. https://www.nhs.uk/conditions/deep-vein-thrombosis-dvt/"
+  ]
+},
+hda: {
+  titulo: "Sangramento do estômago de baixo risco",
+  oque: "Houve um sangramento pequeno do estômago ou do esôfago, sem sinal de gravidade nos exames. A endoscopia será feita no ambulatório.",
+  cuidados: [
+    "Faça a endoscopia marcada.",
+    "Não tome anti-inflamatório nem AAS por conta própria.",
+    "Evite bebida alcoólica."
+  ],
+  volte: [
+    "Vômito com sangue ou com borra de café.",
+    "Fezes pretas como piche ou com sangue.",
+    "Tontura, desmaio, palidez ou falta de ar."
+  ],
+  fontes: [
+    "Laine L et al. ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding (Am J Gastroenterol 2021;116:899): Glasgow-Blatchford 0–1 pode ter alta com endoscopia ambulatorial."
   ]
 },
 odontalgia: {
@@ -784,6 +1221,25 @@ odontalgia: {
     "Ministério da Saúde. Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed., 2024: não usar salicilatos nem anti-inflamatórios na suspeita (item 6.1.2); só dipirona e paracetamol (apêndice H). https://bvsms.saude.gov.br/bvs/publicacoes/dengue_diagnostico_manejo_clinico_6ed.pdf"
   ]
 },
+escorpiao: {
+  titulo: "Picada de escorpião (forma leve)",
+  oque: "A picada causou só dor no local, sem sinal de gravidade. A dor costuma melhorar em algumas horas.",
+  cuidados: [
+    "Tome o remédio para dor como está na receita.",
+    "Faça compressa morna no local.",
+    "Mantenha a casa e o quintal limpos, sacuda roupas e sapatos antes de usar."
+  ],
+  volte: [
+    "Vômitos.",
+    "Suor intenso, salivação, agitação ou sonolência.",
+    "Falta de ar ou palpitação.",
+    "Na criança: qualquer vômito ou mudança no comportamento."
+  ],
+  fontes: [
+    "Ministério da Saúde. PCDT Acidentes Escorpiônicos, 2025 (vômitos como sinal de gravidade; tratamento sintomático).",
+    "Ministério da Saúde. Guia de Vigilância em Saúde, 6ª ed., 2024 — Escorpionismo."
+  ]
+},
 "olho-vermelho": {
   titulo: "Olho vermelho, cisco no olho ou arranhão na córnea",
   oque: "O olho ficou vermelho por irritação, por um cisco ou por um pequeno arranhão na parte da frente do olho (córnea). O arranhão pequeno costuma fechar em 1 a 2 dias. A mancha de sangue na parte branca do olho, sem dor, some sozinha em 1 a 3 semanas.",
@@ -806,6 +1262,24 @@ odontalgia: {
     "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed. (2024), cap. 108 — Emergências oftalmológicas: síndrome do olho vermelho (sinais de alarme e diferencial por secreção, visão, dor, hiperemia, córnea e pupila); queimadura química (irrigação por 30–60 min, no mínimo 2 L, até pH 7,3–7,7); trauma penetrante (proteção sem curativo compressivo, TC de órbitas); glaucoma agudo (acetazolamida 500 mg VO, timolol 0,5% 1 gota, oftalmologia com urgência); celulite pré-septal (cefalexina 500 mg 6/6h ou amoxicilina-clavulanato 250–500 mg 8/8h VO por 10 dias; grave: internar e antibiótico EV); hiposfagma benigno, resolução em 1–3 semanas; na recidiva, avaliar distúrbio da coagulação; pH da irrigação até 7,3–7,7; timolol evitado na asma e no bloqueio cardíaco.",
     "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 34 — Disorders of the Eye: abrasão vista com fluoresceína e luz azul; everter a pálpebra superior; corpo estranho retirado com cotonete umedecido após colírio anestésico ou por irrigação com soro; reexaminar no dia seguinte; glaucoma agudo (dor, edema de córnea, náusea e vômitos) tratado com acetazolamida e colírios hipotensores.",
     "Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023 (Ophthalmology 2024;131:P134): encaminhar se baixa visual, dor moderada ou intensa, secreção purulenta intensa, córnea acometida, herpes ou sem resposta; usuário de lente de contato com olho vermelho tem risco de ceratite."
+  ]
+},
+queimadura: {
+  titulo: "Queimadura pequena",
+  oque: "A queimadura foi limpa e coberta. As queimaduras superficiais cicatrizam em 1 a 3 semanas.",
+  cuidados: [
+    "Não fure as bolhas.",
+    "Mantenha o curativo limpo e seco e troque como foi ensinado.",
+    "Proteja do sol a pele queimada por 1 ano.",
+    "Volte na data combinada para a reavaliação."
+  ],
+  volte: [
+    "Febre.",
+    "Vermelhidão que se espalha, pus ou mau cheiro.",
+    "Dor que piora."
+  ],
+  fontes: [
+    "Ministério da Saúde. Cartilha para tratamento de emergência das queimaduras, 2012."
   ]
 },
 sincope: {
@@ -844,7 +1318,7 @@ pericardite: {
     "Não tome outros anti-inflamatórios junto. Antes de começar um antibiótico ou remédio para fungo, avise o médico que usa colchicina.",
     "Evite exercício físico e esforço, como academia, corrida, futebol ou carregar peso, por pelo menos 1 mês e até o médico liberar. As atividades leves do dia a dia estão liberadas.",
     "Volte para reavaliação em 1 a 2 semanas, com exame de sangue, para ajustar a dose do anti-inflamatório.",
-    "Se estiver grávida ou puder estar, avise o médico: alguns destes remédios precisam ser trocados."
+    "[F] Se estiver grávida ou puder estar, avise o médico: alguns destes remédios precisam ser trocados."
   ],
   volte: [
     "Falta de ar, ou não consegue ficar deitado por causa da falta de ar.",
@@ -859,6 +1333,26 @@ pericardite: {
     "Schulz-Menger J, Collini V et al. 2025 ESC Guidelines for the management of myocarditis and pericarditis (Eur Heart J 2025;46(40):3952): diagnóstico (quadro clínico + mais de 1 critério adicional), avaliação inicial com ECG, eco, radiografia, PCR e troponina (classe I), estratificação (tabela 7), AAS 750-1.000 mg ou ibuprofeno 600-800 mg de 8/8h por 1-2 semanas com redução, colchicina 0,5 mg 1x/dia (< 70 kg ou insuficiência renal grave) ou 12/12h por 3-6 meses (tabela 13), IBP sempre com AAS/AINE, corticoide não como 1ª opção (classe III), sem sorologia viral de rotina, restrição de exercício até a remissão e por no mínimo 1 mês (classe I). https://doi.org/10.1093/eurheartj/ehaf192",
     "Bula Anvisa do Colchis (colchicina 0,5 mg e 1 mg, Apsen): indicação em gota (uso na pericardite fora da bula); contraindicada na gestação e na doença renal, hepática ou gastrointestinal grave; TFG 30–59: 0,5 mg/dia; 15–29: a cada 2–3 dias; < 15: contraindicada; toxicidade com inibidores do CYP3A4 e da glicoproteína P (claritromicina, eritromicina, cetoconazol, fluconazol, diltiazem, verapamil, ciclosporina); miopatia com estatina; diarreia em mais de 10%. https://consultaremedios.com.br/colchis/bula",
     "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática, 18ª ed. (2024), cap. 37 — Pericardite aguda, derrame pericárdico e tamponamento cardíaco: exames iniciais, preditores de gravidade, ibuprofeno 600-800 mg 3x/dia, colchicina pelo peso por 3 meses (conferência)."
+  ]
+},
+"desidratacao-crianca": {
+  titulo: "Diarreia na criança",
+  oque: "A diarreia costuma passar em poucos dias. O principal é evitar que a criança fique desidratada.",
+  cuidados: [
+    "Dê mais líquido que o habitual e o soro de reidratação após cada evacuação.",
+    "Continue a amamentação e a alimentação de sempre.",
+    "Dê os remédios como está na receita."
+  ],
+  volte: [
+    "Sangue nas fezes.",
+    "Vômitos que impedem beber o soro.",
+    "Muita sede, boca seca ou urina pouca.",
+    "Criança muito sonolenta ou mole.",
+    "Não melhora em 2 dias."
+  ],
+  fontes: [
+    "Ministério da Saúde. Manejo do paciente com diarreia (cartaz, Plano A).",
+    "Sociedade Brasileira de Pediatria. Guia Prático: Diarreia Aguda Infecciosa, 2023."
   ]
 },
 ansiedade: {
@@ -892,13 +1386,13 @@ ansiedade: {
 },
 "retencao-urinaria": {
   titulo: "Retenção de urina e cuidados com a sonda",
-  oque: "A bexiga encheu e a urina não conseguia sair, na maioria das vezes por aumento da próstata ou pelo efeito de algum remédio. A bexiga foi esvaziada com uma sonda. Se você foi para casa com ela, a sonda deve ficar até a consulta para retirada, em alguns dias.",
+  oque: "A bexiga encheu e a urina não conseguia sair, muitas vezes pelo efeito de algum remédio ou, nos homens, pelo aumento da próstata. A bexiga foi esvaziada com uma sonda. Se você foi para casa com ela, a sonda deve ficar até a consulta para retirada, em alguns dias.",
   cuidados: [
     "Mantenha a bolsa sempre abaixo do nível da bexiga e sem dobras no tubo. Esvazie quando estiver entre a metade e três quartos cheia.",
     "Lave as mãos com água e sabão antes e depois de mexer na sonda ou na bolsa. Lave todos os dias, com água e sabão neutro, a região onde a sonda entra.",
     "Beba água ao longo do dia, para a urina ficar clara, e evite o intestino preso.",
     "Não puxe a sonda e não tente retirá-la em casa.",
-    "Tome a tansulosina todos os dias. Ela pode causar tontura: levante-se devagar.",
+    "Se a receita tiver tansulosina, tome todos os dias. Ela pode causar tontura: levante-se devagar.",
     "Não use remédio para gripe, alergia, enjoo ou para dormir sem orientação médica: alguns prendem a urina.",
     "Vá à consulta marcada com o urologista para a retirada da sonda e leve os exames."
   ],
@@ -926,7 +1420,7 @@ ansiedade: {
     "Tome o antibiótico até o fim, mesmo que melhore antes.",
     "Use cueca firme ou suspensório escrotal. Compressa fria, enrolada num pano, por 15 a 20 minutos alivia a dor.",
     "Fique em repouso nos primeiros dias e, deitado, mantenha o escroto apoiado e elevado com uma toalha dobrada.",
-    "Não tenha relações sexuais até terminar o tratamento e não ter mais sintomas. Sua parceria sexual também precisa ser examinada e tratada.",
+    "Não tenha relações sexuais até terminar o tratamento e não ter mais sintomas. Se a infecção for de transmissão sexual, sua parceria também precisa ser examinada e tratada.",
     "Faça os exames de HIV, sífilis e hepatites que foram pedidos.",
     "Se a febre ou a dor não melhorarem em 3 dias, volte para nova avaliação."
   ],
@@ -944,6 +1438,26 @@ ansiedade: {
     "EAU Guidelines on Urological Infections, 2026 (Bonkat G et al.), cap. 3.12 Acute epididymitis e 3.13 Fournier's gangrene: urocultura de jato médio e NAAT no primeiro jato; baixo risco de gonococo: levofloxacino 500 mg 1x/dia por 10 a 14 dias; gonococo provável: ceftriaxona 1 g IM/EV + doxiciclina 200 mg e depois 100 mg 2x/dia por 10 a 14 dias; sem atividade sexual: quinolona ou SMX-TMP; quinolona não trata gonococo; ECR: ciprofloxacino superior à pivampicilina > 40 anos; AINE, frio local e elevação do escroto; Fournier: antibiótico de largo espectro na chegada (tabela 11: piperacilina-tazobactam 4,5 g EV 6/6h ou 8/8h + vancomicina 15 mg/kg 12/12h; meropenem 1 g EV 8/8h) e desbridamento em até 24 h. https://uroweb.org/guidelines/urological-infections/chapter/the-guideline",
     "EAU Guidelines on Paediatric Urology, 2026 — Acute scrotum: torção exige tratamento imediato (forte); salvamento melhor nas primeiras 4 a 6 h; diagnóstico clínico, o Doppler não deve atrasar a cirurgia e fluxo presente não exclui torção; TWIST ajuda, mas não substitui o exame; distorção manual pode ser tentada enquanto se aguarda a cirurgia, sem atrasá-la; torção de apêndice: conservador com AINE. https://uroweb.org/guidelines/paediatric-urology/chapter/acute-scrotum",
     "Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022 (versão vigente), cap. 8 (uretrites; quadro 37, p. 127): ceftriaxona 500 mg IM dose única nas infecções gonocócicas; resistência alta do gonococo ao ciprofloxacino no Brasil; orquiepididimite como complicação; testagem de HIV, sífilis e hepatites e tratamento das parcerias. Não traz esquema próprio para epididimite. https://www.saude.sp.gov.br/resources/crt/assistencia/pcdt/pcdtists2022.pdf"
+  ]
+},
+bronquiolite: {
+  titulo: "Bronquiolite",
+  oque: "É uma infecção por vírus que deixa o bebê com chiado e um pouco de esforço para respirar. Costuma piorar entre o 3º e o 5º dia; a tosse pode durar até 3 a 4 semanas.",
+  cuidados: [
+    "Ofereça o peito ou a mamadeira em volumes menores, mais vezes.",
+    "Lave o nariz com soro antes das mamadas.",
+    "Não dê xarope para tosse nem antibiótico sem orientação.",
+    "Não fume perto do bebê."
+  ],
+  volte: [
+    "Esforço para respirar ou pausas na respiração.",
+    "Lábios ou pele arroxeados.",
+    "Recusa das mamadas ou menos fraldas molhadas.",
+    "Bebê muito mole ou sonolento."
+  ],
+  fontes: [
+    "NICE NG9. Bronchiolitis in children: diagnosis and management, 2015 (atualizada 2021).",
+    "Ralston SL et al. AAP Clinical Practice Guideline: Bronchiolitis (Pediatrics 2014;134:e1474)."
   ]
 },
 pancreatite: {
@@ -969,6 +1483,25 @@ pancreatite: {
     "IAP/APA/EPC/IPC/JPS Working Group. International Association of Pancreatology Revised Guidelines on Acute Pancreatitis 2025 (Pancreatology 2025;25(6):770-814; PMID 40651900): 18 domínios e 96 perguntas (diagnóstico, gravidade, hidratação, analgesia, antibiótico, nutrição, CPRE, colecistectomia, alta). Texto integral não aberto pelo conferente; os números da conduta foram conferidos nas outras fontes. https://doi.org/10.1016/j.pan.2025.04.020",
     "Tenner S et al. American College of Gastroenterology Guidelines: Management of Acute Pancreatitis (Am J Gastroenterol 2024;119(3):419-437; PMID 38857482): USG em todos para causa biliar; TC na admissão não, só se dúvida ou sem melhora em 48–72 h; triglicérides se sem cálculo nem álcool (causa se > 1.000 mg/dL); hidratação moderada com Ringer lactato, reavaliar em 6 h e nas 24–48 h seguintes; não repetir amilase ou lipase (não se relacionam com gravidade, dieta ou alta); sem antibiótico profilático; dieta oral em 24–48 h; CPRE em até 24 h só com colangite; colecistectomia antes da alta na biliar leve; SIRS ou falência orgânica em leito monitorizado. https://doi.org/10.14309/ajg.0000000000002645",
     "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 76 — Pancreatite aguda (WATERFALL: 1,5 mL/kg/h com bolus de 10 mL/kg na hipovolemia; diurese de 0,5–1 mL/kg/h; analgesia escalonada com dipirona, paracetamol, AINE e opioide, sem contraindicação à morfina; sem antibiótico profilático; CPRE em 24 h só com colangite; colecistectomia na mesma internação na biliar leve; hipertrigliceridemia com glicose e insulina em bomba ou plasmaférese; BISAP com mortalidade de 0,1% sem critério, > 3,5% com 3 ou mais e cerca de 10% com 5)."
+  ]
+},
+crupe: {
+  titulo: "Crupe (laringite)",
+  oque: "É uma infecção por vírus que incha a garganta e deixa a tosse rouca, parecida com latido. Costuma piorar à noite e melhorar em 2 a 3 dias.",
+  cuidados: [
+    "Mantenha a criança calma; o choro piora o ronco.",
+    "Não é preciso vapor nem inalação em casa.",
+    "Dê o remédio para febre como está na receita."
+  ],
+  volte: [
+    "Ronco alto ao respirar mesmo em repouso.",
+    "Esforço para respirar ou afundamento entre as costelas.",
+    "Dificuldade para engolir ou baba.",
+    "Lábios arroxeados ou criança muito sonolenta."
+  ],
+  fontes: [
+    "Bjornson C, Johnson DW. Canadian Paediatric Society. Croup in children (2017).",
+    "Smith DK et al. Croup: Diagnosis and Management (Am Fam Physician 2018;97:575)."
   ]
 },
 diverticulite: {
@@ -1027,8 +1560,8 @@ meningite: {
   cuidados: [
     "Tome o remédio de prevenção exatamente como está na receita, até a última dose.",
     "A rifampicina deixa a urina, o suor e a lágrima cor de laranja. Isso é esperado e passa. Pode manchar lente de contato gelatinosa: prefira óculos nesses dias.",
-    "Se você usa pílula, injeção ou adesivo anticoncepcional, use também camisinha: a rifampicina diminui o efeito do anticoncepcional. Pergunte ao médico ou ao posto por quanto tempo.",
-    "Se está grávida ou pode estar, avise antes de tomar: na gravidez o remédio é outro, uma injeção.",
+    "[F] Se você usa pílula, injeção ou adesivo anticoncepcional, use também camisinha: a rifampicina diminui o efeito do anticoncepcional. Pergunte ao médico ou ao posto por quanto tempo.",
+    "[F] Se está grávida ou pode estar, avise antes de tomar: na gravidez o remédio é outro, uma injeção.",
     "Lave as mãos com frequência e não divida copos, talheres ou garrafas.",
     "A equipe de vigilância da sua cidade pode entrar em contato para conferir se todos os contatos tomaram a prevenção."
   ],
@@ -1277,6 +1810,13 @@ varicela: {
     "Ministério da Saúde. Manual dos Centros de Referência para Imunobiológicos Especiais, 6ª ed., 2023, cap. 18 (vacina varicela e IGHAVZ): vacina pós-exposição em suscetível imunocompetente a partir de 9 meses até 120 h (5 dias) do contato; IGHAVZ 125 unidades/10 kg (mín. 125, máx. 625 unidades) IM em até 96 h, se suscetível + contato significativo (domiciliar ou hospitalar ≥ 1 h) + risco de varicela grave (imunodeprimido, gestante, recém-nascido nas situações listadas); transmissão de 2 dias antes do exantema até todas as lesões em crosta; vacina contraindicada na gestação e em imunodeprimidos (salvo indicações). https://www.gov.br/saude/pt-br/vacinacao/arquivos/manual-dos-centros-de-referencia-para-imunobiologicos-especiais_6a-edicao_2023.pdf"
   ]
 },
+mpox: {
+  titulo: "Mpox (varíola dos macacos)",
+  oque: "A mpox é uma infecção por vírus que causa feridas na pele, na boca ou nos genitais, febre e ínguas. Na maioria das pessoas melhora sozinha em 2 a 4 semanas. Pega pelo contato com as feridas, com objetos da pessoa doente e na relação sexual.",
+  cuidados: ["Tome os remédios como está na sua receita.", "Fique em casa até todas as feridas virarem casquinhas, as casquinhas caírem e a pele nova se formar. Se precisar estar perto de outras pessoas, use máscara e deixe as feridas cobertas.", "Não fure as bolhas, não coce, não raspe os pelos sobre as feridas e não use lente de contato. Lave as mãos com frequência.", "Não divida toalha, roupa de cama, talheres e copos. Fique longe de animais de estimação.", "Sem relação sexual até a pele sarar por completo; depois, use camisinha por 12 semanas.", "Quem teve contato próximo com você deve observar por 21 dias se aparece febre, íngua ou ferida e, se aparecer, procurar atendimento."],
+  volte: ["Dor ou vermelhidão no olho, ou visão embaçada.", "Dificuldade para engolir ou para beber líquidos.", "Falta de ar, dor no peito ou coração disparado.", "Confusão, sonolência, convulsão ou dor de cabeça muito forte.", "Feridas muito vermelhas, quentes, inchadas ou com pus.", "Dor forte no ânus, dificuldade para urinar ou vômitos que não param."],
+  fontes: ["Ministério da Saúde. Nota Técnica nº 202/2025-CGHA/DATHI/SVSA/MS (11/09/2025), recomendações sobre mpox para profissionais de saúde: incubação em média 12 dias (até 21); transmissão do início dos sintomas até a cicatrização completa com pele íntegra; pródromo de 1 a 5 dias (febre, adenomegalia, mialgia, cefaleia, astenia); lesões dolorosas, profundas, circunscritas, com umbilicação central, de mácula a crosta, em fases diferentes; faringite, dor anal, proctite, uretrite, edema peniano, retenção urinária, conjuntivite e uveíte; complicações mais frequentes em PVHA com CD4 < 200, gestantes, transplantados/oncológicos, crianças e idosos; diferenciais (herpes simples, varicela, sífilis, linfogranuloma venéreo, cancro mole, proctite por clamídia e gonorreia, molusco contagioso); testar HIV e outras IST; HIV novo: TARV em até 7 dias; não suspender TARV nem PrEP; sintomáticos, isolamento e vigilância de sinais de gravidade; tecovirimat não reduziu o tempo de cicatrização nem a dor (sem antiviral com eficácia comprovada); máscara cirúrgica ao paciente suspeito; EPI do profissional: óculos ou protetor facial, avental, máscara cirúrgica e luvas; caso confirmado isolado até o desaparecimento das crostas e cicatrização da pele; leve em casa pode dispensar o isolamento se mantiver as lesões cobertas e máscara bem ajustada; não romper vesículas, não compartilhar objetos, não usar lâmina de barbear nas lesões nem lente de contato; sem antibiótico profilático; contatos monitorados por 21 dias, sem isolamento se assintomáticos; definição de caso suspeito, provável e confirmado; qPCR nos 27 LACEN; notificação imediata de todo caso suspeito, provável ou confirmado no Sinan. https://www.gov.br/aids/pt-br/central-de-conteudo/notas-tecnicas/2025/nota-tecnica-202.pdf", "World Health Organization. Clinical management and infection prevention and control for mpox: living guideline, May 2025: suspeito recebe máscara cirúrgica e quarto individual ventilado (sem quarto: separação de pelo menos 1 m; não juntar suspeito com confirmado); precaução de contato (luvas, avental) e gotícula (máscara cirúrgica; óculos conforme o risco); respirador se ventilação ruim, imunossupressão ou lesão de mucosa; precaução aérea se varicela ou sarampo não excluídos e em procedimento gerador de aerossol; leve: cuidado em casa; grave ou complicado: internação; risco: criança, gestante, imunossuprimido, HIV com CD4 baixo (HIV e CD4 < 350 associados a internação); sinais de complicação: náusea e vômito, linfonodo cervical doloroso com disfagia, baixa ingestão, dor ocular ou alteração visual, hepatomegalia, sepse, desidratação, desconforto respiratório ou pneumonia, confusão; TGO/TGP altas, ureia alterada, albumina baixa, leucocitose, plaquetopenia; gravidade por número de lesões (< 25, 25–99, 100–250, > 250); linfonodo cervical grande com lesões de orofaringe: risco de via aérea e abscesso retrofaríngeo; olho: oftalmologia, sem pomada de corticoide; sem antibiótico profilático (tratar infecção secundária com cobertura de S. pyogenes e S. aureus); boca: água e sal 4x/dia, clorexidina ou lidocaína viscosa; lesão genital ou anal: banho de assento morno e lidocaína tópica; anexo 2: paracetamol, tramadol, loratadina 10 mg 1x/dia, ondansetrona; sem AAS em menores de 18 anos; TARV rápida no HIV; abstinência sexual até a cicatrização e preservativo por 12 semanas depois; gestante leve pode ficar em casa, mas o acompanhamento em serviço pode ser preferível; criança pequena não fica isolada sozinha (um cuidador saudável, fora de grupo de risco); antivirais em revisão; cura: crostas caídas e pele nova (em geral 2 a 4 semanas); PCR no sangue e sorologia não são testes de 1ª linha. https://doi.org/10.2471/B09434", "Centers for Disease Control and Prevention. Caring for patients with mpox (15/01/2026) e Pain management and supportive care (09/02/2026): suporte e analgesia bastam na maioria; tecovirimat seguro, mas sem encurtar a doença (STOMP, PALM007); papel no imunossuprimido grave indefinido; alto risco: HIV com CD4 < 200, transplante, dermatite atópica e outras doenças de pele, crianças, gestantes e lactantes; doença grave: lesões hemorrágicas, confluentes ou necróticas, linfadenopatia com obstrução de via aérea, pneumonia, sepse, encefalite, miocardite, infecção ocular ou periorbitária; proctite: amolecedor de fezes, banho de assento (esvaziar e desinfetar depois), anestésico tópico; prurido: anti-histamínico oral; anestésico tópico com cautela em pele lesada ou ferida aberta; evitar corticoide tópico em lesão ativa; gabapentina ou opioide por pouco tempo na dor forte. https://www.cdc.gov/monkeypox/hcp/clinical-care/index.html ; https://www.cdc.gov/monkeypox/hcp/clinical-care/pain-management.html"]
+},
 chikungunya: {
   titulo: "Chikungunya",
   oque: "A chikungunya é uma infecção por vírus transmitida pelo mosquito Aedes. Causa febre e dor forte nas juntas. A febre passa em poucos dias, mas a dor pode durar semanas.",
@@ -1407,13 +1947,14 @@ mastite: {
 },
 "violencia-sexual": {
   titulo: "Atendimento após violência sexual",
-  oque: "O que aconteceu não é culpa sua. Hoje você recebeu remédios para prevenir gravidez, HIV e outras infecções. O acompanhamento continua nos próximos meses, com sigilo e sem custo.",
+  oque: "O que aconteceu não é culpa sua. Hoje você recebeu remédios para prevenir HIV e outras infecções e, se for o caso, gravidez. O acompanhamento continua nos próximos meses, com sigilo e sem custo.",
   cuidados: [
     "Tome os remédios contra o HIV todos os dias, no mesmo horário, por 28 dias, sem parar.",
     "Vá ao serviço indicado para repetir os exames em 30 e 90 dias.",
     "Use preservativo em todas as relações até terminar o acompanhamento.",
-    "Se a menstruação atrasar, faça um teste de gravidez. Se engravidou por causa da violência, você tem direito à interrupção pelo SUS.",
-    "Procure apoio psicológico. A Central de Atendimento à Mulher atende 24 horas pelo telefone 180."
+    "[F] Se a menstruação atrasar, faça um teste de gravidez. Se engravidou por causa da violência, você tem direito à interrupção pelo SUS.",
+    "[F] Procure apoio psicológico. A Central de Atendimento à Mulher atende 24 horas pelo telefone 180.",
+    "[M] Procure apoio psicológico no serviço de referência. O CVV atende de graça, 24 horas, pelo telefone 188."
   ],
   volte: [
     "Enjoo ou vômitos que não deixam tomar os remédios.",

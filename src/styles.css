@@ -966,3 +966,6 @@ details.panel>summary{cursor:pointer}
 .atetapas .atmin{font-style:normal;font-size:11px;color:var(--muted);font-weight:600}
 .pltroca summary{cursor:pointer;color:var(--muted);font-size:13px}
 .pltroca .chips{margin-top:6px}
+.difs .difg{border:1px solid var(--line,#ddd);border-radius:calc(8px*var(--rk,1));padding:6px 10px;margin:6px 0}
+.difs .difalarme{border-color:var(--red,#c0392b)}
+.difs .difl{margin:6px 0 4px 16px;padding:0}.difs .difl li{margin:6px 0}.difs .difl .lbl{margin-right:4px}

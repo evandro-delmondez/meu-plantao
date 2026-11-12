@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.63.0 — 2026-11-12
+- **Revisão geral das condutas** (com conferência independente): 221 correções em 88 condutas — doses e textos sem fonte corrigidos ou retirados, "volte se" e altas leigas que faltavam (28 novas), a unidade com o paciente instável primeiro em 25 condutas, itens só de mulher ou só de homem marcados (o app tira o do outro sexo). Destaques: aciclovir da paralisia facial, meta de PA do AVC hemorrágico igual em todas as abas, epididimite pela lógica da resistência do DF, glucagon IM na hipoglicemia, queimadura com via aérea primeiro.
+- **Dor abdominal nova**: roteiro para a dor sem diagnóstico definido (o que mata primeiro, analgesia precoce, exames e imagem pela suspeita, alta por exclusão) e **diagnósticos diferenciais** por local e por grupo de risco, com o exame que confirma ou afasta e o atalho para a conduta. Hioscina EV, receita opcional, piperacilina-tazobactam no choque séptico.
+- **Escore AIR** (apendicite), também dentro do Atendimento.
+- **Mpox**: conduta nova (MS, OMS e CDC), com notificação imediata, coleta, isolamento e orientação aos contactantes.
+
 ## 1.62.0 — 2026-11-12
 - **Escores dentro do Atendimento** (em Hipótese diagnóstica): os escores das condutas escolhidas (Wells e PERC no TEP, Wells na TVP, CURB-65 na pneumonia, Alvarado na dor abdominal, HEART na dor torácica, Ottawa na entorse e na fratura, Glasgow, NEWS2 e os demais), já marcados pelos sinais vitais, idade e sexo quando o critério é objetivo (✱). O que você toca vale mais que o automático. O resultado vai sozinho para a Conduta ("Estratificação pelo Wells…").
 

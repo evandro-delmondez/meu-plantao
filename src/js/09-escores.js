@@ -23,7 +23,7 @@ function renderScores(){
 }
 /* ---------- cálculos dentro da conduta: os escores (já conferidos) ligados a ela, para preencher ali mesmo ---------- */
 // o estado é o mesmo da aba Escores (scState): preencher aqui aparece lá e vice-versa
-const SC_COND={entorse:["ottawaTornozelo","ottawaJoelho"],sepse:["news2"],convulsao:["glasgow"],"overdose-opioide":["glasgow"],intoxicacao:["glasgow"],"intoxicacao-alcoolica":["glasgow"],pac:["curb"],tep:["wellsTep","perc","spesi"],tvp:["wellsTvp"],sca:["heart"],hda:["gbs"],faringite:["centor"],amigdalite:["centor"],fa:["cha","hasbled"],"dor-abdominal":["alvarado"],avc:["nihss","abcd2"],tce:["glasgow"],sincope:["csrs"],pancreatite:["bisap"],hdb:["oakland"],ait:["abcd2","ich","glasgow","nihss"],meningite:["glasgow","news2"],"disseccao-aorta":["addrs"],"cirrose-descompensada":["childpugh"],hiperemese:["puqe"],"fratura-imobilizacao":["ottawaTornozelo","ottawaJoelho"]};
+const SC_COND={entorse:["ottawaTornozelo","ottawaJoelho"],sepse:["news2"],convulsao:["glasgow"],"overdose-opioide":["glasgow"],intoxicacao:["glasgow"],"intoxicacao-alcoolica":["glasgow"],pac:["curb"],tep:["wellsTep","perc","spesi"],tvp:["wellsTvp"],sca:["heart"],hda:["gbs"],faringite:["centor"],amigdalite:["centor"],fa:["cha","hasbled"],"dor-abdominal":["air","alvarado"],avc:["nihss","abcd2"],tce:["glasgow"],sincope:["csrs"],pancreatite:["bisap"],hdb:["oakland"],ait:["abcd2","ich","glasgow","nihss"],meningite:["glasgow","news2"],"disseccao-aorta":["addrs"],"cirrose-descompensada":["childpugh"],hiperemese:["puqe"],"fratura-imobilizacao":["ottawaTornozelo","ottawaJoelho"]};
 const scRes=sc=>{const st=scState[sc.id]||{}, n=(sc.campos||[]).filter(([k])=>st[k]!=null).length+(sc.bin||[]).filter((b,i)=>st["b"+i]).length;
   return n?`<b>${String(scTotal(sc)).replace(".",",")}</b> ${+scTotal(sc)===1?"ponto":"pontos"} — ${esc(sc.interp(scTotal(sc)))}`:`<span class="note">preencha para ver o resultado</span>`};
 function renderCalcConduta(it){
@@ -94,3 +94,18 @@ document.addEventListener("click",e=>{
   if(b.hasAttribute("data-scev")){evScores=evScores.filter(x=>!x.startsWith(sc.nome+":"));evScores.push(scTexto(sc));toast("Escore no exame físico do Atendimento")}
   if(b.hasAttribute("data-sclimpa")){scState[sc.id]={};(sc.bin||[]).forEach((x,i)=>scState[sc.id]["m"+i]=true);box.querySelectorAll("input").forEach(i=>i.checked=false);box.querySelector("[data-scres]").innerHTML=scRes(sc)}
 });
+/* ---------- diagnósticos diferenciais da conduta (dor abdominal, 2026-11-12) ----------
+   it.diferenciais: [{grupo, titulo, itens:[{dx, pistas, confirma, conduta (id), f:[índices das fontes], sexo?}]}].
+   Item com sexo "F" ou "M" só aparece para esse sexo (sem sexo marcado, aparecem os dois). */
+function renderDiferenciais(it,aberto){
+  const gs=(it&&it.diferenciais)||[]; if(!gs.length) return "";
+  const sx=sxAtual(), vale=i=>!i.sexo||!sx||i.sexo===sx;
+  const grupos=gs.filter(vale).map(g=>({g,itens:(g.itens||[]).filter(vale)})).filter(x=>x.itens.length);
+  return `<details class="sec difs" ${aberto?"open":""}><summary class="sec-h"><h3>Diagnósticos diferenciais</h3><span class="alsum">${grupos.length} grupos · toque para abrir</span></summary>
+    ${grupos.map(({g,itens})=>`<details class="difg${g.grupo==="nao-pode-passar"?" difalarme":""}" ${g.grupo==="nao-pode-passar"?"open":""}><summary><b>${esc(g.titulo)}</b> <span class="note">${itens.length}</span></summary>
+      <ul class="difl">${itens.map(i=>`<li><b>${esc(i.dx)}</b>${i.pistas?`<div><span class="lbl">Pistas</span> ${esc(i.pistas)}</div>`:""}${i.confirma?`<div><span class="lbl">Confirma ou afasta</span> ${esc(i.confirma)}</div>`:""}${i.conduta&&getItem(i.conduta)?`<button class="btn sm" data-difc="${esc(i.conduta)}">Abrir: ${esc(getItem(i.conduta).nome)}</button>`:""}${(i.f||[]).length?`<span class="note"> Fontes: ${i.f.join(", ")}</span>`:""}</li>`).join("")}</ul></details>`).join("")}
+    <p class="note">Os números são as fontes da conduta.</p></details>`;
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-difc]");if(!b)return;
+  if(b.closest("#atCorpo")&&typeof atd!=="undefined"){if(!atConds().some(c=>c.id===b.dataset.difc)){atd.extras=[...(atd.extras||[]),b.dataset.difc].slice(0,2);atd.sis=null;atd.alarOff={};const y=window.scrollY;renderEv();window.scrollTo(0,y)}return}
+  if(typeof select==="function"){select(b.dataset.difc);window.scrollTo(0,0)}});

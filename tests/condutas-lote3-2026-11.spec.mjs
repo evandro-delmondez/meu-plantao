@@ -39,8 +39,8 @@ test("condutas novas existem, com fontes, rev de 2026-11, checklist, alta, item 
 test("patch da CAD: consenso 2024, bicarbonato com a divergência, rev no início e checklist do EHH", () => {
   const c = cond("cad");
   expect(c.nome).toBe("Cetoacidose diabética / Estado hiperosmolar");
-  expect(c.rev[0]).toMatch(/^Decisão do médico \(2026-11-07\)/);
-  expect(c.rev[1]).toMatch(/^Atualizado \(2026-11-05\)/);
+  expect(c.rev.some((r) => /^Decisão do médico \(2026-11-07\)/.test(r))).toBe(true);
+  expect(c.rev.some((r) => /^Atualizado \(2026-11-05\)/.test(r))).toBe(true);
   expect(c.avisoRx.join(" ")).toMatch(/pH < 6,9/);
   expect(c.unidade).toMatch(/Bicarbonato só se pH < 6,9 \(HC-FMUSP/);
   expect(c.unidade).toMatch(/0,05 unidade\/kg\/h/);
@@ -69,7 +69,7 @@ test("decisões do médico (2026-11-07) aplicadas", () => {
   expect(cond("pneumotorax").orient).toMatch(/6 semanas/);
   const cadEx = JSON.stringify(dados.EXAMES.cad);
   expect(cadEx).toMatch(/EHH sem rebaixamento/);
-  for (const id of ["pancreatite", "diverticulite", "hdb", "ait", "meningite", "pneumotorax", "cad"]) expect(cond(id).rev[0], id).toMatch(/^Decisão do médico \(2026-11-07\)/);
+  for (const id of ["pancreatite", "diverticulite", "hdb", "ait", "meningite", "pneumotorax", "cad"]) expect(cond(id).rev.some((r) => /^Decisão do médico \(2026-11-07\)/.test(r)), id).toBe(true);
   const prot = readFileSync(join(root, "src/data/protocolos.js"), "utf8");
   expect(prot).not.toMatch(/EHH 200–250/);
   expect(prot).toMatch(/pH venoso ≥ 7,3 ou bicarbonato ≥ 18/);

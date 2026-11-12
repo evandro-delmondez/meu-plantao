@@ -118,3 +118,9 @@ A cada 3 meses (ou quando sair diretriz nova relevante):
 ### Pendente
 - Ajuste renal da cefuroxima: a bula brasileira do Zinnat não traz tabela por ClCr (só "reduzir conforme o clearance"); a tabela do SmPC europeu não foi conferida. Não entrou em `extras.js`.
 - Bula do profissional do Zinnat no Bulário da Anvisa (acesso bloqueado); marcas na CMED; Harrison 22ª cap. 140 e HC-FMUSP cap. 112 (citações não reconferidas); texto literal das recomendações 1.5.2/1.5.3 do NICE NG126.
+
+## Revisão geral 2026-11-12 (1.63.0)
+- 221 correções em 88 condutas (patches-2026-11-final.json), conferência independente dos 56 de risco alto e amostra de 1 em 5 dos demais (conferencia-patches.md): 5 corrigidas pelo conferente, nenhuma retirada.
+- Dor abdominal reescrita com diferenciais e escore AIR; mpox nova. Conferências em .rascunhos/auditoria-2026-11/ e .rascunhos/mpox/.
+- Divergências só informadas: PAS do AVC hemorrágico 140–160 (decisão do médico) × AHA 2022 130–150; Amidalin máx. 5/dia × cópia de bula com 10; prednisona 40 mg na gota × EULAR 30–35 mg; O2 8–10 L/min na eclâmpsia × 5 L/min; metronidazol 8/8h (WSES 2021) × 6/6h (bula FDA); AIR baixo risco 0–3 (autores, Suécia 2025) × 0–4 (WSES 2020); ataque de piperacilina-tazobactam (WSES 2021).
+- Esperam o médico: ceftriaxona 1 g na epididimite entérica (extensão da decisão do DF); Fleet em casa; benzodiazepínico na agitação por álcool; Cerumin 5 dias; metilprednisolona 32 ou 40 mg; lidocaína no escorpião; KCl na solução de bicarbonato da CAD; curativo da queimadura em casa; duração do ácido mefenâmico; CVV para vítima homem; zinco na criança; mpox: dias de atestado, grupo de risco (internar sempre × caso a caso), tecovirimat.

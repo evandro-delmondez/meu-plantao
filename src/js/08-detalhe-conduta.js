@@ -9,7 +9,7 @@ const DIP_PARA={nome:"Paracetamol 750mg",tomar:"Tomar 1 cp VO",max:"no máximo 4
 function rxSemDipirona(t){
   if(!/dipirona/i.test(t)) return t;
   if(/^\s*\d+\)\s*Paracetamol/im.test(t)){
-    t=t.replace(/^[ \t]*\d+\)\s*Dipirona[^\n]*(?:\n(?![ \t]*\d+\)|[ \t]*$|[ \t]*Ou\b)[^\n]*)*\n?/gim,"").replace(/se febre persistir/gi,"se dor ou febre").replace(/\s*\(?intercalar com a dipirona;?\s*/gi," (").replace(/\(\s*\)/g,"").replace(/ \(([^)]*)\)/g," ($1)");
+    t=t.replace(/^[ \t]*\d+\)\s*Dipirona[^\n]*(?:\n(?![ \t]*\d+\)|[ \t]*$|[ \t]*Ou\b)[^\n]*)*\n?/gim,"").replace(/se febre persistir/gi,"se dor ou febre").replace(/se a febre voltar antes da próxima dose de dipirona,\s*com pelo menos 6 horas entre as doses de paracetamol/gi,"de 6/6h se dor ou febre").replace(/\s*\(?intercalar com a dipirona;?\s*/gi," (").replace(/\(\s*\)/g,"").replace(/ \(([^)]*)\)/g," ($1)");
     let n=0; return t.replace(/^(\s*)\d+\)/gm,(m,e)=>`${e}${++n})`).replace(/\(\s+/g,"(").replace(/ +\./g,".");
   }
   return t.replace(/Dipirona (?:500 ?mg|1 ?g)( *-+ *)(\d+) cp(\n\s*)Tomar (?:1 a )?(\d) cp VO([^\n]*)/gi,(m,d,n,sp,cps,resto)=>{
@@ -35,7 +35,7 @@ function prednisonaDia(t){let mx=0;String(t||"").replace(/prednisona\s*(\d+)\s*m
 // receita de casa sempre agrupada por via (todo o uso oral junto, depois nasal…); se alguma linha se perderia, fica como está
 function rxPorVia(t){
   if(typeof atJuntaVias!=="function"||!/^\s*\d+\)/m.test(t||"")) return t;
-  try{const g=atJuntaVias([t]);const sem=x=>norm(x.replace(/^\s*\d+\)\s*/,"").trim());const tem=new Set(g.split("\n").map(sem));
+  try{const g=atJuntaVias([t],null,true);const sem=x=>norm(x.replace(/^\s*\d+\)\s*/,"").trim());const tem=new Set(g.split("\n").map(sem));
     if(String(t).split("\n").filter(l=>l.trim()).every(l=>tem.has(sem(l))||/^uso\s/i.test(l.trim())))return g}catch(e){}
   return t;
 }
@@ -62,7 +62,7 @@ const cur0=(it,f)=>{const s=sess[it.id];if(s&&s[f]!=null)return s[f];if(f==="uni
 // avisos para o médico sobre a receita (ex.: "Ibuprofeno só depois de descartar dengue"): na tela, nunca no texto copiado
 function rxAvisoHTML(c){
   if(!c) return "";
-  const l=[...(Array.isArray(c.avisoRx)?c.avisoRx:[])];
+  const l=[...(Array.isArray(c.avisoRx)?sxArr(c.avisoRx):[])];
   // alergia a dipirona: diz o que foi trocado e avisa se ainda sobrou dipirona (ex.: associação)
   const orig=rxLimpa(rxTxt(c.casa||"")), agora=cur(c,"casa");
   if(perfisAtivos().has("aine")&&(/dipirona/i.test(orig)||orig.match(AINE_RX))){
@@ -272,6 +272,7 @@ function renderDetail(){
   ${exHTML(it.id)}
   ${renderCrb(it)}
   ${renderCalcConduta(it)}
+  ${renderDiferenciais(it,false)}
   ${renderPac(it)}
   ${renderAlertas(it)}
   ${it.id==="dengue"?renderDengueCalc():""}

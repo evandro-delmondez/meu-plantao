@@ -963,3 +963,18 @@ test("escores no Atendimento: os da conduta aparecem, sinais vitais marcam sozin
   await expect(box.locator('input[data-b="2"]')).not.toBeChecked();
   expect(erros).toEqual([]);
 });
+
+test("dor abdominal: diagnósticos diferenciais na conduta e no Atendimento; homem não vê os itens de mulher", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "dor-abdominal");
+  const d = page.locator("#atCorpo .difs");
+  await expect(d).toBeVisible();
+  await d.locator("summary").first().click();
+  await expect(d).toContainText("Não pode passar");
+  await expect(d).toContainText("Aneurisma de aorta abdominal roto");
+  await page.fill("#atNome", "Carlos Souza"); await page.locator("#atNome").dispatchEvent("change");
+  await page.locator("#atCorpo .difs summary").first().click();
+  await expect(page.locator("#atCorpo .difs")).not.toContainText(/ectópica/i);
+  await expect(page.locator("#atCorpo .difs")).not.toContainText("Mulher em idade fértil");
+  expect(erros).toEqual([]);
+});

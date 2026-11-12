@@ -149,7 +149,7 @@ const PROTOCOLOS=[
    decisao:{pergunta:"Transferência acionada.",opcoes:[{rot:"Ver cuidados gerais",ir:"afim"}]}},
   {id:"ahem",t:"Hemorragia intracraniana",itens:[
    "Não trombolisar. Acionar a neurocirurgia/regulação.",
-   "PAS entre 150 e 220 mmHg: baixar para cerca de 140 mmHg (faixa 130–150) nas primeiras horas, de forma suave; evitar PAS < 130 mmHg.",
+   "PAS entre 150 e 220 mmHg: alvo de PAS 140–160 mmHg nas primeiras horas, de forma suave (decisão do médico; a AHA/ASA 2022 sugere cerca de 140, faixa 130–150); evitar PAS < 130 mmHg.",
    "Reverter anticoagulação conforme o fármaco em uso.",
    "Cabeceira a 30°, glicemia e temperatura controladas."],
    decisao:{pergunta:"Plano definido.",opcoes:[{rot:"Ver cuidados gerais",ir:"afim"}]}},
@@ -434,7 +434,7 @@ const PROTOCOLOS=[
    "Seguir o protocolo de AVC isquêmico."],
    decisao:{pergunta:"Tratamento iniciado.",opcoes:[{rot:"Ver doses dos fármacos EV",ir:"xdrog"},{rot:"Ver cuidados depois da fase aguda",ir:"xfim"}]}},
   {id:"xavch",t:"AVC hemorrágico",itens:[
-   "PAS entre 150 e 220 mmHg (gravidade leve a moderada): baixar para cerca de 140 mmHg (faixa 130–150) de forma suave, com infusão EV; evitar PAS < 130 mmHg (AHA 2022).",
+   "PAS entre 150 e 220 mmHg (gravidade leve a moderada): alvo de PAS 140–160 mmHg, de forma suave, com infusão EV (decisão do médico; a AHA 2022 sugere cerca de 140, faixa 130–150); evitar PAS < 130 mmHg.",
    "PAS > 220 mmHg: redução com infusão EV contínua e monitoração frequente, meta inicial PAS < 180 mmHg (DBHA 2025).",
    "Hemorragia subaracnóidea com PAS > 180 mmHg: redução gradual em 24–72 h (DBHA 2025).",
    "Fármacos: esmolol ou nitroprussiato EV (nicardipina e clevidipina têm pouca disponibilidade no Brasil). Reverter anticoagulação e acionar a neurocirurgia."],

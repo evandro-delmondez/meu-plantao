@@ -1213,7 +1213,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Obstetrícia: pielonefrite na gestante (internação)",
+    "t": "[F] Obstetrícia: pielonefrite na gestante (internação)",
     "f": [
      7
     ]
@@ -1221,7 +1221,7 @@ const EXAMES = {
   ],
   "pedir": [
    {
-    "t": "Cistite não complicada da mulher (disúria, polaciúria, sem corrimento): diagnóstico clínico, sem exame",
+    "t": "[F] Cistite não complicada da mulher (disúria, polaciúria, sem corrimento): diagnóstico clínico, sem exame",
     "f": [
      1,
      4
@@ -1262,7 +1262,7 @@ const EXAMES = {
   ],
   "naoPedir": [
    {
-    "t": "Urocultura de rotina na cistite não complicada da mulher não gestante",
+    "t": "[F] Urocultura de rotina na cistite não complicada da mulher não gestante",
     "f": [
      1,
      4
@@ -1322,7 +1322,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Ginecologia/obstetrícia: beta-hCG positivo (ectópica no diferencial; gestante com cálculo)",
+    "t": "[F] Ginecologia/obstetrícia: beta-hCG positivo (ectópica no diferencial; gestante com cálculo)",
     "f": [
      6,
      2
@@ -1355,7 +1355,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Beta-hCG: mulher em idade fértil antes de imagem com radiação",
+    "t": "[F] Beta-hCG: mulher em idade fértil antes de imagem com radiação",
     "f": [
      6,
      2
@@ -1855,7 +1855,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Obstetrícia: gestante com dengue e sinal de alarme ou gravidade",
+    "t": "[F] Obstetrícia: gestante com dengue e sinal de alarme ou gravidade",
     "f": [
      1
     ]
@@ -2269,7 +2269,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Obstetrícia: gestante ≥ 20 semanas ou puérpera com PA ≥ 140/90 mmHg",
+    "t": "[F] Obstetrícia: gestante ≥ 20 semanas ou puérpera com PA ≥ 140/90 mmHg",
     "f": [
      7
     ]
@@ -2317,7 +2317,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Hemograma com plaquetas, creatinina, transaminases, DHL e proteinúria: gestante com suspeita de pré-eclâmpsia",
+    "t": "[F] Hemograma com plaquetas, creatinina, transaminases, DHL e proteinúria: gestante com suspeita de pré-eclâmpsia",
     "f": [
      7
     ]
@@ -3211,7 +3211,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Gestante ou puérpera com SpO2 < 94% ou sinais de agravamento: oxigênio, monitorização contínua e internação",
+    "t": "[F] Gestante ou puérpera com SpO2 < 94% ou sinais de agravamento: oxigênio, monitorização contínua e internação",
     "f": [
      1
     ]
@@ -3908,13 +3908,13 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Endoscopia (ambulatório): dispepsia em pessoa com 60 anos ou mais",
+    "t": "Endoscopia (ambulatório): dispepsia com 40 anos ou mais (V Consenso Brasileiro de H. pylori 2026)",
     "f": [
-     1
+     6
     ]
    },
    {
-    "t": "Endoscopia mais cedo (ambulatório): alto risco de câncer gástrico abaixo de 60 anos (história familiar, infância em região de alto risco)",
+    "t": "Endoscopia mais cedo (ambulatório): alto risco de câncer gástrico abaixo de 40 anos (história familiar, infância em região de alto risco)",
     "f": [
      1
     ]
@@ -3940,9 +3940,9 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Teste não invasivo para H. pylori (respiratório da ureia ou antígeno fecal), no ambulatório: dispepsia abaixo de 60 anos, tratar se positivo",
+    "t": "Teste não invasivo para H. pylori (respiratório da ureia ou antígeno fecal), no ambulatório: dispepsia abaixo de 40 anos sem sinal de alarme, tratar se positivo",
     "f": [
-     1
+     6
     ]
    },
    {
@@ -3954,9 +3954,9 @@ const EXAMES = {
   ],
   "naoPedir": [
    {
-    "t": "Endoscopia de rotina abaixo de 60 anos sem sinais de alarme",
+    "t": "Endoscopia de rotina abaixo de 40 anos sem sinais de alarme",
     "f": [
-     1
+     6
     ]
    },
    {
@@ -3986,7 +3986,7 @@ const EXAMES = {
   ],
   "div": [
    {
-    "t": "Sinal de alarme abaixo de 60 anos: não indica endoscopia automaticamente, decidir caso a caso (ACG/CAG 2017) × endoscopia como primeiro exame se disfagia, perda de peso ou sangramento",
+    "t": "ACG/CAG 2017 (corte de 60 anos): abaixo dele, alarme não indica endoscopia por si; o painel usa 40 anos (V Consenso 2026) × endoscopia como primeiro exame se disfagia, perda de peso ou sangramento",
     "f": [
      1,
      2
@@ -3998,7 +3998,8 @@ const EXAMES = {
    "ACG 2022 — Katz PO et al. ACG clinical guideline for the diagnosis and management of gastroesophageal reflux disease. Am J Gastroenterol 2022;117(1):27-56. PMID 34807007. https://doi.org/10.14309/ajg.0000000000001538",
    "ACG 2024 H. pylori — Chey WD et al. ACG clinical guideline: treatment of Helicobacter pylori infection. Am J Gastroenterol 2024;119(9):1730-1753. PMID 39626064. https://doi.org/10.14309/ajg.0000000000002968",
    "ACG 2024 pancreatite — Tenner S et al. American College of Gastroenterology guidelines: management of acute pancreatitis. Am J Gastroenterol 2024;119(3):419-437. PMID 38857482. https://doi.org/10.14309/ajg.0000000000002645",
-   "AHA/ACC 2021 — Gulati M et al. 2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR guideline for the evaluation and diagnosis of chest pain. Circulation 2021;144(22):e368-e454. PMID 34709879. https://doi.org/10.1161/CIR.0000000000001029"
+   "AHA/ACC 2021 — Gulati M et al. 2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR guideline for the evaluation and diagnosis of chest pain. Circulation 2021;144(22):e368-e454. PMID 34709879. https://doi.org/10.1161/CIR.0000000000001029",
+   "V Consenso 2026 — Coelho LGV et al. V Consenso Brasileiro sobre Helicobacter pylori (Arq Gastroenterol 2026;63:e26043; doi 10.1590/S0004-2803.24612026-043): endoscopia a partir de 40 anos com dispepsia (enunciado 18); testar e tratar sem alarme (enunciado 6)."
   ]
  },
  "nauseas": {
@@ -4024,7 +4025,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "β-hCG: mulher com possibilidade de gestação",
+    "t": "[F] β-hCG: mulher com possibilidade de gestação",
     "f": [
      1
     ]
@@ -4624,14 +4625,14 @@ const EXAMES = {
  "cervicite": {
   "encaminhar": [
    {
-    "t": "Dor pélvica, dor à mobilização do colo ou febre: conduzir como DIP (ver conduta)",
+    "t": "[F] Dor pélvica, dor à mobilização do colo ou febre: conduzir como DIP (ver conduta)",
     "f": [
      1,
      2
     ]
    },
    {
-    "t": "Homem com dor testicular de início súbito: urologia de urgência (torção é emergência cirúrgica)",
+    "t": "[M] Homem com dor testicular de início súbito: urologia de urgência (torção é emergência cirúrgica)",
     "f": [
      1
     ]
@@ -4639,20 +4640,20 @@ const EXAMES = {
   ],
   "pedir": [
    {
-    "t": "Mulher: gonococo e clamídia por biologia molecular (swab vaginal ou endocervical, ou urina de 1º jato)",
+    "t": "[F] Mulher: gonococo e clamídia por biologia molecular (swab vaginal ou endocervical, ou urina de 1º jato)",
     "f": [
      1,
      2
     ]
    },
    {
-    "t": "Mulher: avaliar vaginose e tricomoníase (pH, aminas, exame a fresco); se a fresco negativo e sintomas, teste para tricomonas",
+    "t": "[F] Mulher: avaliar vaginose e tricomoníase (pH, aminas, exame a fresco); se a fresco negativo e sintomas, teste para tricomonas",
     "f": [
      1
     ]
    },
    {
-    "t": "Homem com uretrite: Gram do corrimento (diplococos Gram-negativos intracelulares) e gonococo e clamídia por biologia molecular",
+    "t": "[M] Homem com uretrite: Gram do corrimento (diplococos Gram-negativos intracelulares) e gonococo e clamídia por biologia molecular",
     "f": [
      1,
      2
@@ -4699,7 +4700,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "O item acima não vale para gestante com clamídia (controle em 4 semanas) nem para gonorreia de orofaringe (controle em 7–14 dias)",
+    "t": "[F] O item acima não vale para gestante com clamídia (controle em 4 semanas) nem para gonorreia de orofaringe (controle em 7–14 dias)",
     "f": [
      1
     ]
@@ -5447,7 +5448,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Beta-hCG: mulher em idade fértil, antes do anticoagulante oral direto",
+    "t": "[F] Beta-hCG: mulher em idade fértil, antes do anticoagulante oral direto",
     "f": [
      7
     ]
@@ -5572,7 +5573,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Beta-hCG: mulher em idade fértil, antes do anticoagulante oral direto",
+    "t": "[F] Beta-hCG: mulher em idade fértil, antes do anticoagulante oral direto",
     "f": [
      5
     ]
@@ -5936,7 +5937,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Beta-hCG: mulher em idade fértil",
+    "t": "[F] Beta-hCG: mulher em idade fértil",
     "f": [
      2
     ]
@@ -6048,7 +6049,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "FAN: mulher jovem com pericardite",
+    "t": "[F] FAN: mulher jovem com pericardite",
     "f": [
      3
     ]
@@ -6326,7 +6327,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Pancreatite (lipase > 3 vezes o limite com dor típica): seguir a conduta Dor abdominal",
+    "t": "Pancreatite (lipase > 3 vezes o limite com dor típica): seguir a conduta Pancreatite aguda",
     "f": [
      11
     ]
@@ -7895,7 +7896,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Obstetrícia no mesmo dia: gestante com varicela (aciclovir VO se ≥ 20 semanas e até 24 h; internar se complicação)",
+    "t": "[F] Obstetrícia no mesmo dia: gestante com varicela (aciclovir VO se ≥ 20 semanas e até 24 h; internar se complicação)",
     "f": [
      2
     ]
@@ -7963,6 +7964,108 @@ const EXAMES = {
    "Bula aciclovir — Bula aciclovir comprimidos e aciclovir sódico injetável, Anvisa."
   ]
  },
+ "mpox": {
+  "encaminhar": [
+   {
+    "t": "Internação: lesão ocular, disfagia, linfonodo cervical com lesões na orofaringe, encefalite, pneumonia, miopericardite, lesões necróticas ou hemorrágicas, sepse, proctite obstrutiva, desidratação",
+    "f": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "t": "Oftalmologia no mesmo dia: dor ocular, conjuntivite, alteração visual ou lesão na pálpebra",
+    "f": [
+     2,
+     3
+    ]
+   },
+   {
+    "t": "[F] Obstetrícia: gestante com mpox (grupo de risco; avaliar internação ou acompanhamento em serviço)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Infectologia: HIV com CD4 < 200 ou sem tratamento, outra imunossupressão grave ou doença grave (antiviral só em protocolo)",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Vigilância epidemiológica: notificação imediata no e-SUS Sinan; contactantes de 18 a 49 anos com exposição de médio ou alto risco para vacina pós-exposição em até 14 dias",
+    "f": [
+     1,
+     4,
+     5
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "PCR para mpox (qPCR) no LACEN: 2 ou mais swabs secos da base das lesões no mesmo tubo seco, ou 4 crostas; sem lesão, swab de orofaringe e anal",
+    "f": [
+     6,
+     1
+    ]
+   },
+   {
+    "t": "Testes rápidos de HIV, sífilis e hepatites B e C em todo caso suspeito",
+    "f": [
+     1,
+     7
+    ]
+   },
+   {
+    "t": "Pesquisa de gonorreia e clamídia: proctite ou uretrite",
+    "f": [
+     6,
+     8
+    ]
+   },
+   {
+    "t": "Hemograma, TGO, TGP, ureia, creatinina, albumina e eletrólitos: caso grave, internação ou grupo de risco",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "CD4 e carga viral: pessoa vivendo com HIV",
+    "f": [
+     2,
+     3
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Sorologia ou PCR no sangue como teste diagnóstico (PCR no sangue negativo não descarta)",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Exames de sangue de rotina no caso leve fora do grupo de risco",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "MS NT 202/2025 — Ministério da Saúde. Nota Técnica nº 202/2025-CGHA/DATHI/SVSA/MS (11/09/2025), recomendações sobre mpox para profissionais de saúde: incubação em média 12 dias (até 21); transmissão do início dos sintomas até a cicatrização completa com pele íntegra; pródromo de 1 a 5 dias (febre, adenomegalia, mialgia, cefaleia, astenia); lesões dolorosas, profundas, circunscritas, com umbilicação central, de mácula a crosta, em fases diferentes; faringite, dor anal, proctite, uretrite, edema peniano, retenção urinária, conjuntivite e uveíte; complicações mais frequentes em PVHA com CD4 < 200, gestantes, transplantados/oncológicos, crianças e idosos; diferenciais (herpes simples, varicela, sífilis, linfogranuloma venéreo, cancro mole, proctite por clamídia e gonorreia, molusco contagioso); testar HIV e outras IST; HIV novo: TARV em até 7 dias; não suspender TARV nem PrEP; sintomáticos, isolamento e vigilância de sinais de gravidade; tecovirimat não reduziu o tempo de cicatrização nem a dor (sem antiviral com eficácia comprovada); máscara cirúrgica ao paciente suspeito; EPI do profissional: óculos ou protetor facial, avental, máscara cirúrgica e luvas; caso confirmado isolado até o desaparecimento das crostas e cicatrização da pele; leve em casa pode dispensar o isolamento se mantiver as lesões cobertas e máscara bem ajustada; não romper vesículas, não compartilhar objetos, não usar lâmina de barbear nas lesões nem lente de contato; sem antibiótico profilático; contatos monitorados por 21 dias, sem isolamento se assintomáticos; definição de caso suspeito, provável e confirmado; qPCR nos 27 LACEN; notificação imediata de todo caso suspeito, provável ou confirmado no Sinan. https://www.gov.br/aids/pt-br/central-de-conteudo/notas-tecnicas/2025/nota-tecnica-202.pdf",
+   "OMS 2025 — World Health Organization. Clinical management and infection prevention and control for mpox: living guideline, May 2025: suspeito recebe máscara cirúrgica e quarto individual ventilado (sem quarto: separação de pelo menos 1 m; não juntar suspeito com confirmado); precaução de contato (luvas, avental) e gotícula (máscara cirúrgica; óculos conforme o risco); respirador se ventilação ruim, imunossupressão ou lesão de mucosa; precaução aérea se varicela ou sarampo não excluídos e em procedimento gerador de aerossol; leve: cuidado em casa; grave ou complicado: internação; risco: criança, gestante, imunossuprimido, HIV com CD4 baixo (HIV e CD4 < 350 associados a internação); sinais de complicação: náusea e vômito, linfonodo cervical doloroso com disfagia, baixa ingestão, dor ocular ou alteração visual, hepatomegalia, sepse, desidratação, desconforto respiratório ou pneumonia, confusão; TGO/TGP altas, ureia alterada, albumina baixa, leucocitose, plaquetopenia; gravidade por número de lesões (< 25, 25–99, 100–250, > 250); linfonodo cervical grande com lesões de orofaringe: risco de via aérea e abscesso retrofaríngeo; olho: oftalmologia, sem pomada de corticoide; sem antibiótico profilático (tratar infecção secundária com cobertura de S. pyogenes e S. aureus); boca: água e sal 4x/dia, clorexidina ou lidocaína viscosa; lesão genital ou anal: banho de assento morno e lidocaína tópica; anexo 2: paracetamol, tramadol, loratadina 10 mg 1x/dia, ondansetrona; sem AAS em menores de 18 anos; TARV rápida no HIV; abstinência sexual até a cicatrização e preservativo por 12 semanas depois; gestante leve pode ficar em casa, mas o acompanhamento em serviço pode ser preferível; criança pequena não fica isolada sozinha (um cuidador saudável, fora de grupo de risco); antivirais em revisão; cura: crostas caídas e pele nova (em geral 2 a 4 semanas); PCR no sangue e sorologia não são testes de 1ª linha. https://doi.org/10.2471/B09434",
+   "CDC 2026 — Centers for Disease Control and Prevention. Caring for patients with mpox (15/01/2026) e Pain management and supportive care (09/02/2026): suporte e analgesia bastam na maioria; tecovirimat seguro, mas sem encurtar a doença (STOMP, PALM007); papel no imunossuprimido grave indefinido; alto risco: HIV com CD4 < 200, transplante, dermatite atópica e outras doenças de pele, crianças, gestantes e lactantes; doença grave: lesões hemorrágicas, confluentes ou necróticas, linfadenopatia com obstrução de via aérea, pneumonia, sepse, encefalite, miocardite, infecção ocular ou periorbitária; proctite: amolecedor de fezes, banho de assento (esvaziar e desinfetar depois), anestésico tópico; prurido: anti-histamínico oral; anestésico tópico com cautela em pele lesada ou ferida aberta; evitar corticoide tópico em lesão ativa; gabapentina ou opioide por pouco tempo na dor forte. https://www.cdc.gov/monkeypox/hcp/clinical-care/index.html ; https://www.cdc.gov/monkeypox/hcp/clinical-care/pain-management.html",
+   "Portaria GM/MS 11.211/2026 — Ministério da Saúde. Portaria GM/MS nº 11.211, de 13 de maio de 2026 (DOU 14/05/2026), que republica o Anexo 1 do Anexo V da Portaria de Consolidação GM/MS nº 4/2017 (Lista Nacional de Notificação Compulsória): item 46, \"Monkeypox (varíola dos macacos)\", notificação imediata (até 24 h) ao MS, à SES e à SMS. https://www.in.gov.br/web/dou/-/portaria-gm/ms-n-11.211-de-13-de-maio-de-2026-705371404",
+   "MS NT 403/2026 — Ministério da Saúde. Nota Técnica Conjunta nº 403/2026-DPNI/SVSA/MS (05/11/2026): vacina MVA-BN (Jynneos); aumento de casos no CE, DF, RJ e SP nas SE 41 a 45 de 2026; vacinação pós-exposição de 18 a 49 anos com exposição de médio ou alto risco a caso suspeito, provável ou confirmado, de preferência nos primeiros 4 dias e até 14 dias, sem sinais ou sintomas, conforme o Informe Técnico Operacional. https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/notas-tecnicas/2026/nota-tecnica-conjunta-no-4032026-dpni-svsa-ms.pdf",
+   "MS protocolo laboratorial — Ministério da Saúde. Protocolo laboratorial de orientações de coleta, armazenamento, conservação e transporte de amostras para o diagnóstico de monkeypox (atualizado em 13/08/2024): EPI na coleta de lesão (avental, máscara cirúrgica, óculos ou protetor facial, luvas) e N95/PFF2 no swab de orofaringe ou nasofaringe; swab estéril de nylon, poliéster, Dacron ou rayon; limpar a lesão com álcool 70% e deixar secar; esfregar com força a base de 1 ou mais lesões, de preferência vesícula ou pústula, no mínimo 2 swabs, no mesmo tubo seco, sem meio de transporte; fase de crosta: no mínimo 4 crostas em frasco seco; só lesão de mucosa: swab da lesão; sem lesão (contato com febre e adenomegalia): swab de orofaringe e anal/genital; refrigerar (2 a 8 °C) ou congelar (−20 °C) em até 1 h; geladeira até 7 dias; não romper lesões com material cortante. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/m/mpox/protocolos/protocolo-laboratorial-de-orientacoes-de-coleta-armazenamento-conservacao-e-transporte-de-amostras-para-o-diagnostico-de-mpox/view",
+   "PCDT IST 2022 — Ministério da Saúde. Protocolo Clínico e Diretrizes Terapêuticas para Atenção Integral às Pessoas com IST, 2022: oferecer testagem de HIV, sífilis e hepatites B e C a quem tem IST; tratar e testar as parcerias. https://www.gov.br/aids/pt-br/central-de-conteudo/pcdts/2022/ist/pcdt-ist-2022_isbn-1.pdf",
+   "Harrison 2025 cap. 201 — Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 201 — Monkeypox, Molluscum Contagiosum, and Other Poxvirus Infections: incubação até 17 dias; adenomegalia; lesões umbilicadas, dolorosas e depois pruriginosas; no clado IIb, lesões anogenitais, poucas e em fases diferentes; formas graves (ocular, encefalite, miopericardite, lesões mucosas obstrutivas, doença disseminada no HIV avançado); até 10% com IST associada; diferenciais (varicela, herpes simples, sífilis, gonorreia, clamídia, papilomavírus); diagnóstico por PCR; tratamento de suporte; TARV é parte central do manejo; antivirais reservados para doença grave."
+  ]
+ },
  "chikungunya": {
   "encaminhar": [
    {
@@ -7978,7 +8081,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Obstetrícia: gestante infectada perto do parto ou com sinal de sofrimento fetal (transmissão vertical de 50% se a infecção ocorre até 1 semana antes do parto)",
+    "t": "[F] Obstetrícia: gestante infectada perto do parto ou com sinal de sofrimento fetal (transmissão vertical de 50% se a infecção ocorre até 1 semana antes do parto)",
     "f": [
      1
     ]
@@ -8456,7 +8559,7 @@ const EXAMES = {
     ]
    },
    {
-    "t": "Beta-hCG: mulher em idade fértil",
+    "t": "[F] Beta-hCG: mulher em idade fértil",
     "f": [
      3,
      4

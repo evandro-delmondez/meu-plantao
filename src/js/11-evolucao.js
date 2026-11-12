@@ -91,7 +91,7 @@ const atViaDe=(cab,txt)=>{
   return null};
 // duas condutas com remédio da mesma classe: fica o da primeira (médico, 2026-11-10); antibiótico e analgésico podem somar
 const AT_UM_POR_CLASSE=["Anti-inflamatório","Antiemético","Relaxante muscular","Antialérgico","Corticoide"];
-function atJuntaVias(tx,de){
+function atJuntaVias(tx,de,todos){
   const chave=l=>norm(l.replace(/^\s*\d+\)\s*/,"")).split(/[\s,(]+/).slice(0,1).join(" ");
   const itens=[], vistos=new Set(), classes={};
   for(const [ti,t] of tx.entries()){
@@ -99,7 +99,7 @@ function atJuntaVias(tx,de){
     for(const l of t.split("\n")){
       const tr=l.trim();
       if(/^uso\s/i.test(tr)&&tr.length<40){cab=tr.replace(/:$/,"");rot=null;item=null;ant=tr;continue}   // "Uso …" é sempre cabeçalho
-      if(/^\d+\)\s/.test(tr)){item={l:[tr.replace(/^\d+\)\s*/,"")],k:chave(tr),cab,rot};item.pula=vistos.has(item.k);
+      if(/^\d+\)\s/.test(tr)){item={l:[tr.replace(/^\d+\)\s*/,"")],k:chave(tr),cab,rot};item.pula=!todos&&vistos.has(item.k);
         const cl=de&&de[ti]&&rxClasse(tr), cn=cl&&AT_UM_POR_CLASSE.includes(cl[0])&&(cl[0]!=="Corticoide"||/oral/i.test(cab))?cl[0]:null;
         if(!item.pula&&cn){const ja=classes[cn];if(ja&&ja.ti!==ti){item.pula=true;atJuntaAvisos.push(`${de[ja.ti]} e ${de[ti]} trazem ${cn.toLowerCase()}: ficou ${ja.nome}, saiu ${item.l[0].split(/\s-{2,}/)[0]}.`)}else if(!ja)classes[cn]={ti,nome:item.l[0].split(/\s-{2,}/)[0]}}
         if(!item.pula){vistos.add(item.k);itens.push(item)}ant=tr;continue}
@@ -743,6 +743,7 @@ function renderEv(){
   <div class="sec atsec" data-etapa="3"><div class="sec-h"><h3>${atPos(3)}. Hipótese diagnóstica</h3></div><div class="atbody">
     <div class="atcids">${cs.filter(c=>c.cid).map(c=>`<button class="cidbig" data-cpcid="${esc(c.cid)}" title="Copiar o CID de ${esc(c.nome)}">CID ${esc(c.cid)} <span>copiar</span></button>`).join("")}</div>
     ${atEscoresHTML()}
+    ${atConds().map(c=>renderDiferenciais(c,false)).join("")}
     ${ta("diag","Outras hipóteses ou complemento","ex.: diagnóstico diferencial com…")}
     ${atSaida("diag","Hipótese diagnóstica")}</div></div>
   <div class="sec atsec" data-etapa="4"><div class="sec-h"><h3>${atPos(4)}. Conduta</h3><span class="alsum">itens · receituário</span></div><div class="atbody">

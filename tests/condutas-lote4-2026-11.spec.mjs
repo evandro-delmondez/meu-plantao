@@ -221,3 +221,15 @@ test("decisões do médico (2026-11-07) aplicadas", () => {
   // nada do hospital local
   expect(JSON.stringify(dados)).not.toMatch(/Santa Lúcia|HSLS/);
 });
+
+test("mpox: conduta nova abre pela busca, com notificação e isolamento; escore AIR na dor abdominal", async ({ page }) => {
+  const erros = await abrir(page);
+  await aba(page, "prescricoes");
+  await page.evaluate(() => document.querySelector('#list .item[data-id="mpox"]').click());
+  await expect(page.locator("#detail")).toContainText("Mpox");
+  await expect(page.locator("#detail")).toContainText(/notifica/i);
+  await expect(page.locator("#detail")).toContainText(/isolamento/i);
+  await page.evaluate(() => document.querySelector('#list .item[data-id="dor-abdominal"]').click());
+  await expect(page.locator('#detail [data-scin="air"]')).toHaveCount(1);
+  expect(erros).toEqual([]);
+});

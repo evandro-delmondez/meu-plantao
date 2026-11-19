@@ -978,3 +978,28 @@ test("dor abdominal: diagnósticos diferenciais na conduta e no Atendimento; hom
   await expect(page.locator("#atCorpo .difs")).not.toContainText("Mulher em idade fértil");
   expect(erros).toEqual([]);
 });
+
+test("exame acompanha o checklist e a FC: achado de abdome tira a linha normal do abdome; FC 120 sai taquicárdico; abreviação fid expande", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "dor-abdominal");
+  await campo(page, "fc").fill("120");
+  await expect(saida(page, "exame")).toHaveValue(/taquicárdico, ritmo cardíaco regular/);
+  const linha = page.locator('#atCorpo .ck', { hasText: "defesa ou descompressão dolorosa" });
+  await linha.locator('[data-val="+"]').click();
+  await expect(saida(page, "exame")).not.toHaveValue(/descompressão brusca negativa/);
+  await campo(page, "hma").fill("dor abdominal há 1 dia em fid");
+  await expect(saida(page, "hda")).toHaveValue(/fossa ilíaca direita/);
+  expect(erros).toEqual([]);
+});
+
+test("IA da HDA: resposta que tira uma negativa é recusada e o texto do médico fica", async ({ page }) => {
+  await page.route("https://api.anthropic.com/**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ content: [{ type: "text", text: "Paciente refere dor abdominal há 2 dias." }] }) }));
+  await page.addInitScript(() => localStorage.setItem("mph_ia_v1", JSON.stringify({ chave: "sk-ant-teste" })));
+  const erros = await abrir(page);
+  await atender(page, "itu");
+  await campo(page, "hma").fill("dor abdominal há 2 dias, nega febre e disúria");
+  await page.click(`#atCorpo [data-atia="hda"]`);
+  await expect(page.locator("#atCorpo")).toContainText("tirou uma negativa");
+  await expect(saida(page, "hda")).toHaveValue(/febre/);
+  expect(erros).toEqual([]);
+});

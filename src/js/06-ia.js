@@ -240,6 +240,13 @@ async function iaObjetivos(ctx){
 }
 // antecedentes (HPP, medicamentos em uso, alergias) nunca passam pela IA: voltam exatamente como estavam
 function iaSeparaAnt(t){const k=String(t).search(/\n\s*(HPP|Medicamentos em uso|Alergias)\s*:/);return k<0?[String(t),""]:[String(t).slice(0,k),String(t).slice(k)]}
+// trava de negativa: o que foi negado ("nega febre", "sem vômitos", "não tem dispneia") continua na saída
+function iaNegativas(ent,sai){
+  const N=norm(sai), falta=[];
+  for(const m of String(ent).matchAll(/\b(?:nega|negou|sem|n[ãa]o (?:tem|teve|apresenta|apresentou|refere))\s+([^.;:\n]+)/gi))
+    m[1].split(/,|\s+e\s+|\s+ou\s+|\s+nem\s+/i).map(x=>norm(x).replace(/[^a-z0-9 ]/g," ").trim().split(/\s+/).find(w=>w.length>=4)).filter(Boolean).forEach(w=>{if(!N.includes(w.slice(0,Math.max(4,w.length-2)))&&!falta.includes(w))falta.push(w)});
+  if(falta.length){const e=new Error("negativa");e.det=falta.slice(0,3).join(", ");throw e}
+}
 async function iaMelhora(texto){
   const ant="";   // antecedentes passam pela IA (correção de grafia), sob as mesmas travas
   const r=await iaFetch({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt()+"\n- Se tiver dúvida sobre a grafia de um remédio ou termo, pode consultar a web; nunca troque o remédio.",messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}],tools:IA_WEB});
@@ -248,7 +255,7 @@ async function iaMelhora(texto){
   const out=ult.map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
   if(!out) throw new Error("vazio");
   // travas: nenhum remédio novo, nenhum parêntese novo; todo número do original continua e nenhum número novo aparece
-  const outP=out.trim(); iaTravas(texto,outP);
+  const outP=out.trim(); iaTravas(texto,outP); iaNegativas(texto,outP);
   const a=iaNums(texto), b=iaNums(outP);
   if(a.join("|")!==b.join("|")){const sobra=[...b];const falta=a.filter(n=>{const k=sobra.indexOf(n);if(k<0)return true;sobra.splice(k,1);return false});
     const e=new Error("numeros");e.det=[falta.length?`sumiu: ${falta.join(", ")}`:"",sobra.length?`apareceu: ${sobra.join(", ")}`:""].filter(Boolean).join("; ");throw e}

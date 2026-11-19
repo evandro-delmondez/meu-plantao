@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.63.1 — 2026-11-19
+- **Exame físico coerente**: achado positivo marcado no exame dirigido do checklist tira a linha normal daquele sistema (não sai mais "descompressão negativa" com "defesa" marcada); FC > 100 sai "taquicárdico", FC < 50 "bradicárdico".
+- **IA da HDA**: trava nova — resposta que tira uma negativa ("nega febre") é recusada e o seu texto fica.
+- **Abreviações**: fid, fie, hcd, hce, epig, msd, mse por extenso na HDA.
+- **"Novo paciente"** guarda o atendimento sem nome na lista ("Sem nome HH:MM"), como o Início já fazia.
+
 ## 1.63.0 — 2026-11-12
 - **Revisão geral das condutas** (com conferência independente): 221 correções em 88 condutas — doses e textos sem fonte corrigidos ou retirados, "volte se" e altas leigas que faltavam (28 novas), a unidade com o paciente instável primeiro em 25 condutas, itens só de mulher ou só de homem marcados (o app tira o do outro sexo). Destaques: aciclovir da paralisia facial, meta de PA do AVC hemorrágico igual em todas as abas, epididimite pela lógica da resistência do DF, glucagon IM na hipoglicemia, queimadura com via aérea primeiro.
 - **Dor abdominal nova**: roteiro para a dor sem diagnóstico definido (o que mata primeiro, analgesia precoce, exames e imagem pela suspeita, alta por exclusão) e **diagnósticos diferenciais** por local e por grupo de risco, com o exame que confirma ou afasta e o atalho para a conduta. Hioscina EV, receita opcional, piperacilina-tazobactam no choque séptico.

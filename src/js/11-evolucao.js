@@ -235,7 +235,7 @@ const atItens=t=>String(t||"").split("\n").map(x=>x.replace(/^\s*[-•#*]\s*/,""
 const atLista=(rot,itens)=>itens.length?`${rot}:\n${itens.map(x=>"- "+x).join("\n")}`:`${rot}: não informado`;
 // HDA em texto corrido: as notas soltas ("dor lombar 3d, piora ao levantar, nega febre") viram frases, e os negativos
 // das notas se juntam aos do checklist. Se as notas já estão redigidas (frases com ponto), ficam como estão.
-const AT_ABREV=[[/\bc\//gi,"com "],[/\bs\//gi,"sem "],[/\bp\//gi,"para "],[/\bpct\b/gi,"paciente"],[/\btb\b/gi,"também"],[/\bq\b/gi,"que"],[/\bmmii\b/gi,"membros inferiores"],[/\bmmss\b/gi,"membros superiores"],[/\bmid\b/gi,"membro inferior direito"],[/\bmie\b/gi,"membro inferior esquerdo"],[/\birradia\b/gi,"irradiação"],
+const AT_ABREV=[[/\bfid\b/gi,"fossa ilíaca direita"],[/\bfie\b/gi,"fossa ilíaca esquerda"],[/\bhcd\b/gi,"hipocôndrio direito"],[/\bhce\b/gi,"hipocôndrio esquerdo"],[/\bepig\b/gi,"epigástrio"],[/\bmsd\b/gi,"membro superior direito"],[/\bmse\b/gi,"membro superior esquerdo"],[/\bc\//gi,"com "],[/\bs\//gi,"sem "],[/\bp\//gi,"para "],[/\bpct\b/gi,"paciente"],[/\btb\b/gi,"também"],[/\bq\b/gi,"que"],[/\bmmii\b/gi,"membros inferiores"],[/\bmmss\b/gi,"membros superiores"],[/\bmid\b/gi,"membro inferior direito"],[/\bmie\b/gi,"membro inferior esquerdo"],[/\birradia\b/gi,"irradiação"],
   [/\babd\b/gi,"abdominal"],[/\bdps\b/gi,"depois"],[/\bqd\b/gi,"quando"],[/\bqdo\b/gi,"quando"],[/\bpra\b/gi,"para"],[/\bpro\b/gi,"para o"],[/\bhj\b/gi,"hoje"],[/\bpq\b/gi,"porque"],
   [/\bha\b(?=\s*\d)/gi,"há"],[/\bnausea(s?)\b/gi,"náusea$1"],[/\bvomito(s?)\b/gi,"vômito$1"],[/\bdisuria\b/gi,"disúria"],[/\bdiarreia\b/gi,"diarreia"],[/\bcomecou\b/gi,"começou"],
   [/\bsem (apetite|fome)\b/gi,"inapetência"],[/\bfalta de ar\b/gi,"dispneia"]];
@@ -318,6 +318,8 @@ function atExame(it){
   const tax=atdNum("tax"), fr=atdNum("fr");
   if(tax!=null&&tax>=37.8) exm=exm.replace(/\bafebril\b/g,"febril");
   if(fr!=null&&fr>20) exm=exm.replace(/\beupneic([oa])\b/g,"taquipneic$1");
+  const fc=atdNum("fc");
+  if(fc!=null&&fc>100) exm=exm.replace(/ritmo cardíaco regular/,"taquicárdico, ritmo cardíaco regular"); else if(fc!=null&&fc<50) exm=exm.replace(/ritmo cardíaco regular/,"bradicárdico, ritmo cardíaco regular");
   // consciência alterada e O2 suplementar não podem sair como "lúcido e orientado" e "em ar ambiente"
   const CONF="com alteração aguda da consciência (descrever orientação e Glasgow)";
   if(atd.cons==="C") exm=exm.replace(/lúcid([oa]) e orientad[oa] no tempo e no espaço/g,(m,g)=>`confus${g}, ${CONF}`).replace(/\bLOTE\b/g,`confuso(a), ${CONF}`).replace(/Glasgow 15,?\s*/g,"");
@@ -330,11 +332,21 @@ function atExame(it){
   if(eg.ict) exm=exm.replace(/\banictéric([oa])\b/,"ictéric$1");
   if(eg.feb) exm=exm.replace(/\bafebril\b/,"febril");
   if(eg.disp) exm=exm.replace(/\b(eupneic|taquipneic)([oa])\b/,"dispneic$2"); else if(eg.taqui) exm=exm.replace(/\beupneic([oa])\b/,"taquipneic$1");
+  const sisAlt=atSisAlterados();
+  if(sisAlt.size) exm=exm.split("\n").filter(l=>{const m=l.match(/^(Abdome|Respiratório|Cardiovascular|Neurológico|Membros inferiores|Pele|Oroscopia|Orofaringe|Otoscopia)\b/);return !m||!sisAlt.has(m[1])}).join("\n");
   L.push((L.length?"Exame físico:\n":"")+exm.replace(/^Exame físico:\n/,""));
   const resto=atAchados().resto; if(resto.length) L.push(resto.map(l=>atMai(l).replace(/([^.])$/,"$1.")).join("\n"));
   atConds().forEach(c=>chkLinhas(c).ex.forEach(x=>L.push(x)));
   if(evScores.length){L.push("Escores:");evScores.forEach(x=>L.push("- "+x))}
   return L.join("\n");
+}
+// sistemas com achado positivo marcado no exame dirigido do checklist
+const AT_SIS_RE=[["Abdome",/abdom|defesa|descompress|distens|massa|murphy|giordano|carnett|hérnia|peritonit|blumberg|rovsing|psoas/i],["Respiratório",/estertor|sibil|crepit|murmúrio|roncos|tiragem|esforço respiratório/i],["Cardiovascular",/sopro|atrito|bulha|turgência|estase jugular/i],["Neurológico",/déficit|rigidez de nuca|kernig|brudzinski|pupil|paresia|plegia|afasia|ataxia|nistagmo/i],["Membros inferiores",/panturrilha|empastamento|edema de membro|edema unilateral|cacifo/i],["Orofaringe",/amígdala|amigdal|exsudato|orofaringe/i],["Otoscopia",/membrana timpânica|otoscop/i]];
+function atSisAlterados(){
+  const s=new Set();
+  for(const c of atConds()){const d=chkDe(c.id), st=chk[c.id]||{};if(!d)continue;(d.ex||[]).forEach((t,i)=>{if(st["ex"+i]!=="+")return;for(const [n,re] of AT_SIS_RE)if(re.test(t))s.add(n)})}
+  if(s.has("Orofaringe")) s.add("Oroscopia");
+  return s;
 }
 const atHip=c=>`${c.nome}${c.cid?` (CID ${c.cid})`:""}`;
 // hipótese diagnóstica: só os nomes (o CID é escolhido em outra parte do prontuário)
@@ -561,7 +573,7 @@ function atResBind(box){
     try{const r=await iaLab(tx,atSiglas());if(atd!==dono){lb.disabled=false;return}const n=Object.keys(r).length;atd.res=Object.assign({},atd.res,r);
       const rb=$("#atResBox");if(rb){rb.innerHTML=atResHTML();atResBind(rb)};atAtualiza();
       const e2=$("#atLabEst");if(e2){e2.hidden=false;e2.textContent=n?`Preenchido: ${Object.entries(r).map(([k,v])=>`${k} ${v}`).join("; ")}. Confira.`:"Nenhum valor alterado encontrado."}}
-    catch(e){if(atd!==dono){lb.disabled=false;return}dz(e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="tempo"?"A IA demorou demais para responder. Tente de novo.":e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora.")}
+    catch(e){if(atd!==dono){lb.disabled=false;return}dz(e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="negativa"?`A IA tirou uma negativa (${esc(e.det||"")}): mantive o seu texto.`:e.message==="tempo"?"A IA demorou demais para responder. Tente de novo.":e.message==="formato"?"A IA respondeu fora do formato. Tente de novo.":/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora.")}
     lb.disabled=false};
   box.querySelectorAll("[data-atres]").forEach(i=>i.oninput=()=>{atd.res=Object.assign({},atd.res,{[i.dataset.atres]:i.value});atAtualiza()});
   box.querySelectorAll("[data-atimg]").forEach(i=>i.oninput=()=>{atd.img=Object.assign({},atd.img,{[i.dataset.atimg]:i.value});atAtualiza()});
@@ -951,7 +963,7 @@ function bindEv(it){
       const antes=ta.value; atd.man[k]=out; ta.value=out; grow(ta); atAtualiza();
       dz(`Texto melhorado pela IA: confira antes de copiar. <button class="btn sm" data-iadesfaz>Desfazer</button>`);
       est.querySelector("[data-iadesfaz]").onclick=()=>{atd.man[k]=antes;ta.value=antes;grow(ta);atAtualiza();dz("Voltou ao texto anterior.")}}
-    catch(e){if(atd!==dono){b.disabled=false;return}dz(e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="tempo"?"A IA demorou demais para responder. O texto ficou como estava; tente de novo.":e.message==="numeros"?`A IA mudou ou tirou um número do texto${e.det?` (${esc(e.det)})`:""}: mantive o original. Tente de novo.`:/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
+    catch(e){if(atd!==dono){b.disabled=false;return}dz(e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="negativa"?`A IA tirou uma negativa (${esc(e.det||"")}): mantive o seu texto.`:e.message==="tempo"?"A IA demorou demais para responder. O texto ficou como estava; tente de novo.":e.message==="numeros"?`A IA mudou ou tirou um número do texto${e.det?` (${esc(e.det)})`:""}: mantive o original. Tente de novo.`:/^40[13]/.test(e.message)?"Chave da IA recusada: troque em Documentos › Backup.":"Não consegui falar com a IA agora (sem conexão?). O texto ficou como estava.")}
     b.disabled=false;
   });
   box.querySelectorAll("[data-atre]").forEach(b=>b.onclick=()=>{delete atd.man[b.dataset.atre];if(atd.manBase)delete atd.manBase[b.dataset.atre];atAtualiza()});
@@ -979,7 +991,7 @@ function bindEv(it){
     try{const t=await iaJustifica(ctx); if(atd!==dono){est.textContent="Paciente mudou: descartado.";b.disabled=false;return}
       const ta=$('#atCorpo [data-atd="intern.motivo"]'); const antes=atd.intern.motivo; atd.intern.motivo=t; if(ta){ta.value=t;grow(ta)} atAtualiza();
       est.innerHTML=`Escrita pela IA: confira. <button class="btn sm" id="atJustDesfaz">Desfazer</button>`; $("#atJustDesfaz").onclick=()=>{atd.intern.motivo=antes;if(ta){ta.value=antes;grow(ta)}atAtualiza();est.textContent="Voltou ao anterior."}}
-    catch(e){est.textContent=e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="numeros"?`A IA pôs um número que não está nos dados (${e.det}): descartei.`:/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}
+    catch(e){est.textContent=e.message==="remedio"?`A IA trocou ou acrescentou remédio (${esc(e.det||"")}): mantive o seu texto.`:e.message==="parenteses"?"A IA acrescentou parênteses: mantive o seu texto.":e.message==="negativa"?`A IA tirou uma negativa (${esc(e.det||"")}): mantive o seu texto.`:e.message==="numeros"?`A IA pôs um número que não está nos dados (${e.det}): descartei.`:/^40[13]/.test(e.message)?"Chave da IA recusada.":"Não consegui falar com a IA agora."}
     b.disabled=false};
   box.querySelectorAll("[data-atobj]").forEach(c=>c.onchange=()=>{atd.intern.obj[c.dataset.atobj]=c.checked;atAtualiza()});
   box.querySelectorAll("[data-atobjia]").forEach(c=>c.onchange=()=>{const x=(atd.intern.objIa||[])[+c.dataset.atobjia];if(x){x.on=c.checked;atAtualiza()}});

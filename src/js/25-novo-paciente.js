@@ -28,7 +28,9 @@ function bindNovoPaciente(b){
   let t=null; const rot=b.textContent;
   b.onclick=()=>{
     if(!b.classList.contains("confirma")){b.classList.add("confirma");b.textContent="Tocar de novo para limpar";t=setTimeout(()=>{b.classList.remove("confirma");b.textContent=rot},3000);return}
-    clearTimeout(t); b.classList.remove("confirma"); b.textContent=rot; novoPaciente();
+    clearTimeout(t); b.classList.remove("confirma"); b.textContent=rot;
+    const g=typeof atdGuardaSemNome==="function"?atdGuardaSemNome():null; novoPaciente();
+    if(g) toast(`O atendimento sem nome ficou na lista como "${g.nome}"`);
   };
 }
 bindNovoPaciente($("#novoPac"));

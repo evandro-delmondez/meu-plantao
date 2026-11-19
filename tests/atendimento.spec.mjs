@@ -638,9 +638,10 @@ test("IA no exame físico, no pedido de internação e no laboratório colado (s
   // internação: IA reescreve mantendo os números
   await page.click('#atCorpo [data-atdec="internacao"]');
   const it = await saida(page, "intern").inputValue();
-  resp = it.replace("Justificativa: ___", "Justificativa: ___");
+  resp = it.slice(it.indexOf("Justificativa:"));                    // a IA recebe e devolve só a justificativa e os objetivos
   await page.click('#atCorpo [data-atia="intern"]');
   await expect(page.locator('#atCorpo [data-atiaest="intern"]')).toContainText("Texto melhorado pela IA");
+  expect(await saida(page, "intern").inputValue()).toBe(it);          // a história e o exame ficam como estavam
   expect(erros).toEqual([]);
 });
 

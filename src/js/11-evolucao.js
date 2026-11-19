@@ -954,7 +954,10 @@ function bindEv(it){
     // guarda de quem é o pedido e o texto mandado: a resposta não pode cair em outro paciente nem apagar o que foi digitado
     const dono=atd, txOrig=ta.value, tela=()=>({ta:$(`#atCorpo [data-atout="${k}"]`),est:$(`#atCorpo [data-atiaest="${k}"]`)});
     b.disabled=true; dz("Melhorando o texto…");
-    try{const out=k==="hda"?await iaMelhora(tx):await iaChama(k==="exame"?IA_EXAME:IA_INTERN,tx);
+    // pedido de internação: a IA revisa só a justificativa e os objetivos; a história e o exame (já conferidos) ficam como estão
+    const iaIntern=async()=>{const i0=txOrig.indexOf("Justificativa:"), i1=tx.indexOf("Justificativa:");if(i0<0||i1<0)return iaChama(IA_INTERN,tx);
+      const r=(await iaChama(IA_INTERN,tx.slice(i1))).trim();if(!/^Justificativa:/.test(r))throw new Error("formato");iaTravas(tx.slice(i1),r);return txOrig.slice(0,i0)+r};
+    try{const out=k==="hda"?await iaMelhora(tx):k==="intern"?await iaIntern():await iaChama(IA_EXAME,tx);
       const T=tela(), dz2=t=>{if(T.est){T.est.hidden=false;T.est.innerHTML=t}};
       if(atd!==dono){toast("Você trocou de paciente: a resposta da IA foi descartada");b.disabled=false;return}
       if(!T.ta||T.ta.value!==txOrig){dz2("O texto mudou enquanto a IA respondia: mantive o seu. Toque de novo para melhorar.");b.disabled=false;return}

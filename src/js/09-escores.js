@@ -51,16 +51,33 @@ function scAutoValor(t){
   if(/^Sexo masculino/.test(t)) return sx?sx==="M":null;
   return null;
 }
+// o checklist marcado nas condutas do atendimento marca o critério equivalente (SC_CHK)
+function scDoChecklist(sc){
+  const bins={}, campos={};
+  if(typeof SC_CHK==="undefined"||typeof atConds!=="function") return {bins,campos};
+  const ids=new Set(atConds().map(c=>c.id));
+  for(const [cd,es,tp,i,op,g,item,q] of SC_CHK){
+    if(es!==sc.id||!ids.has(cd)) continue;
+    const d=chkDe(cd), st=chk[cd]||{}; if(!d) continue;
+    const k=(d[g]||[]).indexOf(item); if(k<0) continue;
+    const v=st[g+k]; if(!v) continue;
+    const sim=v===q;
+    if(tp==="bin") bins[i]=bins[i]||sim; else if(sim) campos[i]=op;
+  }
+  return {bins,campos};
+}
 function scAutoAplica(sc){
-  const st=scState[sc.id]=scState[sc.id]||{};
-  (sc.bin||[]).forEach(([t],i)=>{if(st["m"+i])return;const v=scAutoValor(t);if(v!=null){st["b"+i]=v;st["a"+i]=true}});
+  const st=scState[sc.id]=scState[sc.id]||{}, ck=scDoChecklist(sc);
+  (sc.bin||[]).forEach(([t],i)=>{if(st["m"+i])return;const sv=scAutoValor(t), c=ck.bins[i];
+    if(sv==null&&c==null) return; st["b"+i]=!!(sv||c); st["a"+i]=true; st["c"+i]=!!c});
+  for(const [k,op] of Object.entries(ck.campos)) if(st[k]==null||st["ac"+k]){st[k]=op;st["ac"+k]=true}
 }
 const scPreenchido=sc=>{const st=scState[sc.id]||{};return (sc.campos||[]).some(([k])=>st[k]!=null)||(sc.bin||[]).some((b,i)=>st["b"+i]!=null)};
 const atEscoresIds=()=>[...new Set(atConds().flatMap(c=>SC_COND[c.id]||[]))];
 function atEscoresHTML(){
   const scs=atEscoresIds().map(id=>SC.find(s=>s.id===id)).filter(Boolean); if(!scs.length) return "";
   scs.forEach(scAutoAplica);
-  return `<details class="atescores" open><summary><span class="lbl">Escores desta conduta</span> <span class="note">vão para a Conduta; os sinais vitais e a idade já marcam o que dá (✱)</span></summary>${scCaixas(scs,true)}</details>`;
+  return `<details class="atescores" open><summary><span class="lbl">Escores desta conduta</span> <span class="note">vão para a Conduta; os sinais vitais, a idade e o checklist já marcam o que dá (✱)</span></summary>${scCaixas(scs,true)}</details>`;
 }
 // linhas da Conduta: só os escores com algo preenchido
 function atEscoresLinhas(){
@@ -69,7 +86,7 @@ function atEscoresLinhas(){
   scs.forEach(sc=>{scAutoAplica(sc);const box=document.querySelector(`#atCorpo [data-scin="${sc.id}"]`);if(!box)return;const st=scState[sc.id];
     (sc.bin||[]).forEach((b,i)=>{const c=box.querySelector(`input[data-b="${i}"]`);if(c&&!st["m"+i])c.checked=!!st["b"+i]});const r=box.querySelector("[data-scres]");if(r)r.innerHTML=scRes(sc)});
   // vai para o prontuário só o escore em que o médico mexeu; incompleto sai sem classificar
-  return scs.filter(sc=>{const st=scState[sc.id]||{};return (sc.campos||[]).some(([k])=>st[k]!=null)||(sc.bin||[]).some((b,i)=>st["m"+i])}).map(sc=>{
+  return scs.filter(sc=>{const st=scState[sc.id]||{};return (sc.campos||[]).some(([k])=>st[k]!=null)||(sc.bin||[]).some((b,i)=>st["m"+i]||st["c"+i])}).map(sc=>{
     const st=scState[sc.id]||{}, falt=(sc.campos||[]).filter(([k])=>st[k]==null).length, t=scTotal(sc);
     return falt?`- Estratificação pelo ${sc.nome}: ${pl(t,"ponto","pontos")} até aqui (incompleto: ${pl(falt,"campo","campos")} sem resposta; sem classificar).`:"- "+scTexto(sc).replace(/^([^:]+):/,"Estratificação pelo $1:")});
 }
@@ -77,14 +94,14 @@ function scCaixas(scs,at){
   const pts=p=>`<span class="note">(${p>0?"+":""}${String(p).replace(".",",")})</span>`;
   return `${scs.map(sc=>{const st=scState[sc.id]||{};return `<div class="scbox" data-scin="${sc.id}"><div class="scbox-h"><b>${esc(sc.nome)}</b><span class="scres" data-scres>${scRes(sc)}</span></div>
       ${(sc.campos||[]).map(([k,lab,opts])=>`<div class="scq"><span class="lbl">${esc(lab)}</span><div class="chips">${opts.map(([t,p],i)=>`<label class="chip scop"><input type="radio" name="sci_${sc.id}_${k}" data-k="${k}" value="${i}" ${st[k]===i?"checked":""}> ${esc(t)} ${pts(p)}</label>`).join("")}</div></div>`).join("")}
-      ${sc.bin?`<div class="chips">${sc.bin.map(([t,p],i)=>`<label class="chip scop"><input type="checkbox" data-b="${i}" ${st["b"+i]?"checked":""}> ${esc(t)} ${pts(p)}${st["a"+i]&&!st["m"+i]?' <span class="note" title="marcado pelos sinais vitais, idade ou sexo">✱</span>':""}</label>`).join("")}</div>`:""}
+      ${sc.bin?`<div class="chips">${sc.bin.map(([t,p],i)=>`<label class="chip scop"><input type="checkbox" data-b="${i}" ${st["b"+i]?"checked":""}> ${esc(t)} ${pts(p)}${st["a"+i]&&!st["m"+i]?' <span class="note" title="marcado pelos sinais vitais, idade, sexo ou checklist">✱</span>':""}</label>`).join("")}</div>`:""}
       <div class="actions"><button class="btn sm" data-sccp>Copiar</button>${at?"":`<button class="btn sm" data-scev>Pôr no Atendimento</button>`}<button class="btn sm" data-sclimpa>Limpar</button></div>
       <p class="note">Fonte: ${esc(sc.src)}</p></div>`}).join("")}`;
 }
 document.addEventListener("change",e=>{
   const box=e.target.closest("[data-scin]"); if(!box) return; const sc=SC.find(s=>s.id===box.dataset.scin); if(!sc) return;
   const st=scState[sc.id]=scState[sc.id]||{};
-  if(e.target.type==="radio") st[e.target.dataset.k]=+e.target.value; else if(e.target.dataset.b!=null){st["b"+e.target.dataset.b]=e.target.checked;st["m"+e.target.dataset.b]=true}
+  if(e.target.type==="radio"){st[e.target.dataset.k]=+e.target.value;delete st["ac"+e.target.dataset.k]} else if(e.target.dataset.b!=null){st["b"+e.target.dataset.b]=e.target.checked;st["m"+e.target.dataset.b]=true}
   box.querySelector("[data-scres]").innerHTML=scRes(sc);
   if(box.closest("#atCorpo")&&typeof atAtualiza==="function") atAtualiza();
 });

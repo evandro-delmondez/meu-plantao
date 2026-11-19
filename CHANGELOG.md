@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## 1.64.0 — 2026-11-19
+- **O checklist marca o escore**: marcar no checklist do Atendimento um item que é exatamente um critério do escore (ex.: "câncer ativo" no Wells da TVP, "tosse" ausente no Centor, sinais de Ottawa na entorse) marca o critério (✱) e o resultado vai para a Conduta. São 66 equivalências (Wells TVP e TEP, PERC, ADD-RS, Glasgow-Blatchford, Centor, Ottawa, CSRS e outros), só onde o conceito e o limiar são os mesmos. O que você toca no escore vale mais.
+
 ## 1.63.1 — 2026-11-19
 - **Exame físico coerente**: achado positivo marcado no exame dirigido do checklist tira a linha normal daquele sistema (não sai mais "descompressão negativa" com "defesa" marcada); FC > 100 sai "taquicárdico", FC < 50 "bradicárdico".
 - **IA da HDA**: trava nova — resposta que tira uma negativa ("nega febre") é recusada e o seu texto fica.

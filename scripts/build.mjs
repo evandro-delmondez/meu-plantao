@@ -25,6 +25,7 @@ const data = [
   stripModule(r("src/data/pediatria.js")),
   stripModule(r("src/data/extras.js")),
   stripModule(r("src/data/checklists.js")),
+  stripModule(r("src/data/escores-checklist.js")),
   stripModule(r("src/data/calculadora.js")),
   stripModule(r("src/data/infusao.js")),
   stripModule(r("src/data/protocolos.js")),

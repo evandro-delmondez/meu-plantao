@@ -1003,3 +1003,16 @@ test("IA da HDA: resposta que tira uma negativa é recusada e o texto do médico
   await expect(saida(page, "hda")).toHaveValue(/febre/);
   expect(erros).toEqual([]);
 });
+
+test("checklist marca o escore: 'câncer ativo' no checklist da TVP marca o Wells e vai para a Conduta; tirar no checklist desmarca", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "tvp");
+  const box = page.locator('#atCorpo [data-scin="wellsTvp"]');
+  const item = page.locator("#atCorpo .ck", { hasText: "câncer ativo" }).first();
+  await item.locator('[data-val="+"]').click();
+  await expect(box.locator('input[data-b="0"]')).toBeChecked();
+  await expect(saida(page, "trat")).toHaveValue(/Estratificação pelo Wells/);
+  await item.locator('[data-val="-"]').click();
+  await expect(box.locator('input[data-b="0"]')).not.toBeChecked();
+  expect(erros).toEqual([]);
+});

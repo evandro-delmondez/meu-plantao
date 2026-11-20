@@ -17,7 +17,7 @@ const infoEntra=n=>n.nodeType===1&&(n.matches("h2,p.note")||!!n.querySelector("h
 new MutationObserver(ms=>{if(!ms.some(m=>[...m.addedNodes].some(infoEntra)))return;clearTimeout(infoNotas._t);infoNotas._t=setTimeout(infoNotas,30)}).observe(document.body,{childList:true,subtree:true});
 function setTab(t){
   if(!TABS.includes(t)) t="inicio";
-  ui.tab=t; const sec=secDe(t); ultimaAba[sec]=t;
+  ui.tab=t; const sec=secDe(t); ultimaAba[sec]=t; if(typeof usoAba==="function") usoAba(t);
   // seção com uma página só: somem os botões de aba, mas a linha fica no Atendimento (é onde mora a barra de etapas)
   const uma=SECOES[sec].length<2;
   $$(".tabs button[role=tab]").forEach(b=>{b.setAttribute("aria-selected",b.dataset.tab===t);b.hidden=b.dataset.sec!==sec||uma});

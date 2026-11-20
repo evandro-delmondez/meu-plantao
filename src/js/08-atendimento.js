@@ -30,6 +30,7 @@ const TEMPO_LS="mph_tempos_v1";
 const atMeta=()=>{const m=+((model.prefs||{}).meta);return m>=5&&m<=180?m:25};
 function atTempoFecha(){
   if(!atd.t0) return; const min=Math.round((Date.now()-atd.t0)/60000); atd.t0=null;
+  try{const c=$("#evCond").value;usoAtend([c,...(atd.extras||[])].filter(id=>id&&getItem(id)),min>=1&&min<=240?min:0)}catch(e){}
   if(min<1||min>240) return;
   const t=lsGet(TEMPO_LS,{})||{}, d=new Date().toISOString().slice(0,10); (t[d]=t[d]||[]).push(min);
   for(const k of Object.keys(t).sort().slice(0,-14)) delete t[k];

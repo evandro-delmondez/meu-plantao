@@ -969,3 +969,8 @@ details.panel>summary{cursor:pointer}
 .difs .difg{border:1px solid var(--line,#ddd);border-radius:calc(8px*var(--rk,1));padding:6px 10px;margin:6px 0}
 .difs .difalarme{border-color:var(--red,#c0392b)}
 .difs .difl{margin:6px 0 4px 16px;padding:0}.difs .difl li{margin:6px 0}.difs .difl .lbl{margin-right:4px}
+.pclembra{border-color:var(--amber);color:var(--amber)}
+/* celular: o "Próximo" (copiar para o MV) flutua acima da barra de baixo, sempre à mão */
+@media (max-width:860px){body[data-sec="atender"] #atProx{position:fixed;right:12px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:31;font-size:14px;padding:10px 16px;box-shadow:0 6px 18px rgba(20,30,60,.25);max-width:calc(100vw - 24px);overflow:hidden;text-overflow:ellipsis}
+  body[data-sec="atender"] #atProx:disabled{opacity:.85}}
+.pcvaga{color:var(--amber)}

@@ -80,7 +80,7 @@ function pacDoAtendimento(p){
   if(ex&&(!p.et.exame.on||p.et.exame.txt!==ex)){if(!p.et.exame.on){p.et.exame.on=true;p.et.exame.ok=false}p.et.exame.txt=ex;pacToca(p,"et.exame")}
   if(atd.visto.ex&&p.et.exame.on&&!p.et.exame.ok){p.et.exame.ok=true;pacToca(p,"et.exame")}
   const med=atCondOn("med");
-  if(med&&!p.et.med.on){p.et.med.on=true;p.et.med.ok=false;pacToca(p,"et.med")}
+  if(med&&!p.et.med.on){p.et.med.on=true;p.et.med.ok=false;pacToca(p,"et.med");if(!p.lembra)pacLembraPoe(p)}
   if(atd.visto.med&&p.et.med.on&&!p.et.med.ok){p.et.med.ok=true;pacToca(p,"et.med")}
   if(atd.decisao){
     const tipo=atd.decisao, onde=tipo==="internacao"?(atd.intern.local||""):"";
@@ -106,9 +106,15 @@ function pacAbrir(id){
   if(atd.fechar) setTimeout(()=>{const x=$('#atCorpo [data-etapa="6"]');if(x)x.scrollIntoView({block:"start"})},60);
 }
 function pacApagar(id){const db=pacCarrega();db.pacs=db.pacs.filter(p=>p.id!==id);db.apagados[id]=Date.now();if(atPac===id)atPac=null;pacGrava()}
-// aviso de tempo: 2 h sem reavaliar (amarelo); 3 h sem desfecho (vermelho)
+// lembrete de reavaliação depois da medicação na unidade (padrão 30 min; toque no lembrete: 30 → 60 → 120 → desligado)
+const PAC_LEMBRA=[30,60,120];
+const pacLembraMin=()=>{const m=+((model.prefs||{}).reavMin);return PAC_LEMBRA.includes(m)?m:30};
+function pacLembraPoe(p,min=pacLembraMin(),t0=Date.now()){p.lembra=min?{em:t0+min*6e4,min,t0}:null;pacToca(p,"lembra")}
+const pacLembraAtivo=p=>!!(p.lembra&&p.lembra.em&&(!p.desf.tipo||p.desf.tipo==="obs")&&!(p.et.reav.t&&p.et.reav.t>=(p.lembra.t0||0)));
+// aviso de tempo: lembrete vencido (vermelho); 2 h sem reavaliar (amarelo); 3 h sem desfecho (vermelho)
 function pacAviso(p,agora=Date.now()){
   if(p.desf.tipo&&p.desf.tipo!=="obs") return null;
+  if(pacLembraAtivo(p)&&agora>=p.lembra.em) return {nv:"vermelho",txt:`hora de reavaliar (medicação há ${pacDur(agora-(p.lembra.t0||p.lembra.em-p.lembra.min*6e4))})`,lembra:true};
   if(agora-p.criado>=PAC_H3&&!p.desf.tipo) return {nv:"vermelho",txt:`${pacDur(agora-p.criado)} sem desfecho`};
   const ult=p.et.reav.t||p.criado;
   if(agora-ult>=PAC_H2) return {nv:"amarelo",txt:`${pacDur(agora-ult)} sem reavaliar`};
@@ -118,7 +124,7 @@ const pacHip=p=>{const it=p.cond&&getItem(p.cond);return it?it.nome:""};
 function pacPendencias(p){
   const o=[];
   if(p.et.exame.on&&!p.et.exame.ok) o.push("ver exames"+(p.et.exame.txt?` (${p.et.exame.txt})`:""));
-  if(p.et.med.on&&!p.et.med.ok) o.push("ver como ficou depois da medicação");
+  if(p.et.med.on&&!p.et.med.ok) o.push("ver como ficou depois da medicação"+(pacLembraAtivo(p)&&Date.now()<p.lembra.em?` (reavaliar às ${pacHora(p.lembra.em)})`:""));
   if(p.et.parecer.on&&!p.et.parecer.ok) o.push("parecer"+(p.et.parecer.esp?` da ${p.et.parecer.esp}`:"")+" pendente");
   if(!p.et.reav.t) o.push("aguardando reavaliação");
   return o;
@@ -134,13 +140,14 @@ function pacCiencia(ps){
   return F.join("; ");
 }
 function pacPassagem(medico,local,consMed){
-  const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs").slice().reverse();
+  const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs"||pacVaga(p)).slice().reverse();
   const meu=pacConsult(local), deixo=`Deixo ${meu?"o "+meu:"o plantão"}`;
   if(!ab.length) return `${deixo} sem pendências.`;
   // mesmo médico e consultório numa linha só: "Caroline e João, cientes da troca, com Dra. Ana no consultório 5."
   const L=[`${deixo} com retornos:`], g=new Map();
   for(const p of ab){const m=(p.assume||"").trim()||medico||"", c=pacConsult((p.consMed||"").trim()||consMed||""), k=m+"|"+c;if(!g.has(k))g.set(k,{m,c,ps:[]});g.get(k).ps.push(p)}
   for(const {m,c,ps} of g.values()) L.push(`- ${pacCiencia(ps)}${m?`, com ${m}`:""}${c?` no ${c}`:""}.`);
+  const vg=ab.filter(pacVaga).map(p=>p.nome); if(vg.length) L.push(`- Aguardando vaga de internação: ${ptLista(vg)}.`);
   return L.join("\n");
 }
 // plantão: o da escala em que cai o horário (iniciado com o botão ou turno + 2 h de folga, em 26-plantoes);
@@ -164,6 +171,8 @@ function pacUtiMeses(db){
 }
 // selo do desfecho: "Paciente finalizado — alta realizada"
 const PAC_FIM={alta:"alta realizada",internacao:"internação",transferencia:"transferência",evasao:"evasão"};
+// internação pedida, ainda sem leito: conta como atendido, mas continua à vista (Início, passagem de plantão)
+const pacVaga=p=>!!(p&&p.vaga&&p.desf.tipo==="internacao");
 let pcVer="hoje", pcPass={medico:"",local:"",consMed:""};
 function renderPacientes(manter){
   const el=$("#pcCorpo"); if(!el) return;
@@ -187,12 +196,12 @@ function renderPacientes(manter){
       <div class="pcnovo"><input class="inp" id="pcNome" type="text" name="q-paciente-search" placeholder="Buscar ou novo paciente (nome)" autocomplete="off" spellcheck="false" data-1p-ignore data-lpignore="true" aria-label="Buscar ou cadastrar paciente" value="${esc(pcBusca)}"><button class="btn primary" id="pcAdd">Novo paciente</button></div>
       <div class="seg pcver" role="group" aria-label="Mostrar"><button data-pcver="hoje" aria-pressed="${pcVer==="hoje"}">Este plantão e em aberto</button><button data-pcver="todos" aria-pressed="${pcVer==="todos"}">Últimos ${PAC_DIAS} dias</button></div></div>
     <div class="pclista">${lista.length?[...grupos.entries()].sort((a,b)=>b[0].localeCompare(a[0])).map(([k,g])=>{const pp=porPlantao.get(k)||{n:0,saiu:[]};return `<h3 class="pcplant">${esc(g.rot)} <span class="note">· ${pp.n} ${pp.n===1?"atendido":"atendidos"}${pp.saiu.length?` · passados (não contam): ${esc(pp.saiu.join(", "))}`:""}</span></h3>`+g.ps.map(p=>{const av=pacAviso(p,agora);return `<div class="pcitem" data-pid="${p.id}" data-av="${av?av.nv:""}" ${atPac===p.id?'data-atual="1"':""}>
-      <div class="pclinha"><button class="pcnome" data-pabrir>${esc(p.nome)}</button>${PAC_FIM[p.desf.tipo]?`<span class="pcfim">✓ Paciente finalizado — ${PAC_FIM[p.desf.tipo]}</span>`:pacSaiu(p)?`<span class="pcfim pcsaiu">passado</span>`:""}<span class="note">${p.dia!==hoje?esc(p.dia.split("-").reverse().slice(0,2).join("/"))+" ":""}${pacHora(p.criado)} · há ${pacDur(agora-p.criado)}</span>${av?`<span class="pcav">${esc(av.txt)}</span>`:""}</div>
+      <div class="pclinha"><button class="pcnome" data-pabrir>${esc(p.nome)}</button>${pacVaga(p)?`<span class="pcfim pcvaga">⏳ Internação — aguardando vaga</span>`:PAC_FIM[p.desf.tipo]?`<span class="pcfim">✓ Paciente finalizado — ${PAC_FIM[p.desf.tipo]}</span>`:pacSaiu(p)?`<span class="pcfim pcsaiu">passado</span>`:""}<span class="note">${p.dia!==hoje?esc(p.dia.split("-").reverse().slice(0,2).join("/"))+" ":""}${pacHora(p.criado)} · há ${pacDur(agora-p.criado)}</span>${av?`<span class="pcav">${esc(av.txt)}</span>`:""}</div>
       <div class="note pchip">${esc(pacHip(p)||"sem hipótese ainda")}</div>
       ${(!p.desf.tipo||p.desf.tipo==="obs")&&pacPendencias(p).length?`<div class="pcafazer"><b>A fazer:</b> ${esc(pacPendencias(p).join(" · "))}${p.et.reav.t&&!p.desf.tipo?" · decidir: alta ou internação":""}</div>`:""}
-      <div class="chips pcets">${PAC_ETAPAS.map(([k,r])=>et(p,k,r)).join("")}</div>
+      <div class="chips pcets">${PAC_ETAPAS.map(([k,r])=>et(p,k,r)).join("")}${pacLembraAtivo(p)?`<button class="chip pclembra" data-plembra title="Toque: 30 → 60 → 120 min → desligar">⏰ reavaliar ${agora>=p.lembra.em?"agora":"às "+pacHora(p.lembra.em)} (${p.lembra.min} min)</button>`:""}</div>
       <div class="pcdesf"><select class="inp" data-pd="tipo" aria-label="Desfecho">${PAC_DESF.map(([v,r])=>`<option value="${v}" ${p.desf.tipo===v?"selected":""}>${r}</option>`).join("")}</select>
-        ${p.desf.tipo==="internacao"?`<select class="inp" data-pd="onde" aria-label="Onde">${(typeof atLocais==="function"?[["","onde?"],...atLocais().slice(1)]:PAC_ONDE).map(([v,r])=>`<option value="${v}" ${p.desf.onde===v?"selected":""}>${r}</option>`).join("")}</select>`:""}
+        ${p.desf.tipo==="internacao"?`<select class="inp" data-pd="onde" aria-label="Onde">${(typeof atLocais==="function"?[["","onde?"],...atLocais().slice(1)]:PAC_ONDE).map(([v,r])=>`<option value="${v}" ${p.desf.onde===v?"selected":""}>${r}</option>`).join("")}</select><label class="check"><input type="checkbox" data-pvaga ${p.vaga?"checked":""}> aguardando vaga</label>`:""}
         ${!p.desf.tipo||p.desf.tipo==="obs"?`<input class="inp pcassume" data-passume list="pcMedicos" value="${esc(p.assume||"")}" placeholder="quem assume" aria-label="Médico que assume ${esc(p.nome)}" autocomplete="off"><input class="inp pcassume pccons" data-pconsmed value="${esc(p.consMed||"")}" placeholder="consultório dele" aria-label="Consultório do médico que assume ${esc(p.nome)}" autocomplete="off">`:""}
         <label class="check"><input type="checkbox" data-psabe ${p.sabe?"checked":""}> ciente da troca</label>
         <button class="btn sm" data-pabrir>Abrir atendimento</button>${!p.desf.tipo||p.desf.tipo==="obs"?`<button class="btn sm" data-ppassa>Passei para outro médico</button>`:""}<button class="btn sm danger" data-papagar>Apagar</button></div></div>`}).join("")}).join(""):`<div class="panel card"><p class="note">Nenhum paciente ainda. Digite o nome acima ou no topo do Atendimento.</p></div>`}</div>
@@ -225,14 +234,16 @@ function bindPacientes(){
       const k=b.dataset.pe, e=p.et[k];
       if(k==="reav"){e.t=e.t&&Date.now()-e.t<6e4?null:Date.now();return mexe(p,"et.reav")}
       // + → ⏳ pendente → ✓ pronto → desliga
-      if(!e.on){e.on=true;e.ok=false}
-      else if(!e.ok) e.ok=true; else {e.on=false;e.ok=false}
+      if(!e.on){e.on=true;e.ok=false;if(k==="med")pacLembraPoe(p)}
+      else if(!e.ok) e.ok=true; else {e.on=false;e.ok=false;if(k==="med"&&p.lembra)pacLembraPoe(p,0)}
       mexe(p,"et."+k);
     }));
+    const lb=row.querySelector("[data-plembra]"); if(lb) lb.onclick=com(p=>{const i=PAC_LEMBRA.indexOf(p.lembra.min), prox=PAC_LEMBRA[i+1]||0;pacLembraPoe(p,prox,p.lembra.t0||Date.now());mexe(p,"lembra");toast(prox?`Reavaliar ${p.nome} às ${pacHora(p.lembra.em)}`:"Lembrete desligado")});
     row.querySelectorAll("[data-ptxt]").forEach(i=>i.oninput=com(p=>{const k=i.dataset.ptxt;p.et[k][k==="exame"?"txt":"esp"]=i.value.trim();pacToca(p,"et."+k);pacGrava();pacPassAtualiza()}));
     row.querySelectorAll("[data-pd]").forEach(s=>s.onchange=com(p=>{p.desf[s.dataset.pd]=s.value;if(s.dataset.pd==="tipo"){p.desf.t=s.value?Date.now():null;if(s.value!=="internacao")p.desf.onde=""}mexe(p,"desf")}));
     const pa=row.querySelector("[data-passume]"); if(pa) pa.oninput=com(p=>{p.assume=pa.value;pacToca(p,"assume");pacGrava();pacPassAtualiza()});
     const pc=row.querySelector("[data-pconsmed]"); if(pc) pc.oninput=com(p=>{p.consMed=pc.value;pacToca(p,"consMed");pacGrava();pacPassAtualiza()});
+    const pv=row.querySelector("[data-pvaga]"); if(pv) pv.onchange=com(p=>{p.vaga=pv.checked;mexe(p,"vaga")});
     row.querySelector("[data-psabe]").onchange=com((p,e)=>{p.sabe=e.target.checked;pacToca(p,"sabe");pacGrava();pacPassAtualiza()});
     const pp=row.querySelector("[data-ppassa]"); if(pp) pp.onclick=com(p=>{p.desf.tipo="passado";p.desf.onde="";p.desf.t=Date.now();if(atPac===p.id)atPac=null;mexe(p,"desf");toast(`${p.nome}: passado a outro médico (fica em "Passados")`)});
     const ap=row.querySelector("[data-papagar]"); let t=null;

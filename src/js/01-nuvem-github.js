@@ -43,7 +43,8 @@ function gsJunta(rem){
   // plantões: junta as contagens e os plantões iniciados dos dois lados antes de escolher o modelo mais novo
   if(obj(rem.model)&&typeof plJuntaModelo==="function"){const antes=JSON.stringify(model.plantoes||null);try{plJuntaModelo(model,rem.model)}catch(e){}if(JSON.stringify(model.plantoes||null)!==antes){lsSet(LS.model,model);mudou=true}}
   if(obj(rem.model)&&(rem.model.updatedAt||0)>(model.updatedAt||0)){model=migrateModel(rem.model);lsSet(LS.model,model);mudou=true}
-  if(obj(rem.uso)&&(rem.uso.updatedAt||0)>(uso.updatedAt||0)){uso=usoValido(rem.uso);lsSet("rxp_uso_v1",uso);mudou=true}
+  if(obj(rem.uso)&&(rem.uso.updatedAt||0)>(uso.updatedAt||0)){const r=usoValido(rem.uso);r.mes=usoMesJunta(uso.mes,r.mes);uso=r;lsSet("rxp_uso_v1",uso);mudou=true}
+  else if(obj(rem.uso)){const m=usoMesJunta(uso.mes,usoValido(rem.uso).mes);if(JSON.stringify(m)!==JSON.stringify(uso.mes||{})){uso.mes=m;lsSet("rxp_uso_v1",uso);mudou=true}}
   return mudou;
 }
 function gsRedesenha(){try{if(typeof apDaNuvem==="function")apDaNuvem();applyOrg();renderCats();renderList();fillSelects();if(!editing)renderDetail();renderEvSeguro();if(ui.tab==="modelos")renderModelos()}catch(e){}}

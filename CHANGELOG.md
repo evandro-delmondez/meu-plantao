@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.65.0 — 2026-11-20
+- **Lembrete de reavaliação**: medicação na unidade põe "reavaliar às HH:MM (30 min)" no paciente da lista; toque troca para 60, 120 min ou desliga. Na hora, o paciente fica vermelho na lista e no Início, com aviso (bipe e vibração se o som estiver ligado).
+- **Aguardando vaga**: caixa na internação; o paciente conta como atendido, continua no Início e entra na passagem de plantão.
+- **Celular**: o botão "Próximo" (copiar para o MV) flutua acima da barra de baixo.
+- **Meu uso no mês** (Plantões): só contagens, sem dado de paciente — condutas usadas no Atendimento, tempo médio, abas abertas e textos da IA aceitos ou recusados. As condutas do Atendimento passam a contar nas "mais usadas" do Início.
+
 ## 1.64.2 — 2026-11-19
 - **Pedido de internação**: sem as linhas "HPP: não informado" e "Medicamentos em uso: não informado" (Alergias continua).
 - **Alta**: o destino diz "Alta com orientações." (sem repetir os sinais de retorno, que já estão na linha acima).

@@ -240,6 +240,7 @@ function plRender(el){
     <div class="panel card" id="plDia" hidden></div>
     <div class="panel card"><h3>Plantões do mês</h3>${doMes.length?`<ul class="pllista">${doMes.map(x=>{const L=P.locais[x.local]||{};const r=plValor(x);return `<li style="--c:var(--${L.cor||"slate"})"><b>${x.data.split("-").reverse().slice(0,2).join("/")}</b> ${x.sobre?"Sobreaviso · ":""}${esc(plTurnoDe(x)[0])} · ${esc(L.nome||x.local)}${x.manual?" (à mão)":""}${(()=>{const L2=P.locais[x.local]||{};if(L2.tipo!=="porAlta"||x.data<PL_HORAS_DESDE)return "";const h=plHoras(x),f=r.c?(r.c.n||0)+(r.c.uti||0):0;return ` · <span class="plhr">${h.ini}–${h.fim} (${plDur(h.min)}) · ${f} ficha${f===1?"":"s"} · ${plBRL(r.v)} · ${plBRL(h.min?r.v/(h.min/60):0)}/h</span>`})()}${r.c?` · ${r.c.n||0} atendidos${r.c.uti?` + ${r.c.uti} UTI`:""} · ${plBRL(r.v)}`:L.tipo==="porAlta"?" · sem contagem ainda":""} <a class="btn sm" href="${plGoogle(x)}" target="_blank" rel="noopener">📅 Google Agenda</a></li>`}).join("")}</ul>`:`<p class="note">Nenhum plantão marcado neste mês.</p>`}</div>
     ${plPacMesHtml(pref,mesTxt)}
+    ${typeof usoMesHtml==="function"?usoMesHtml(pref,mesTxt):""}
     <details class="panel card"><summary><h3>Locais e valores</h3></summary><div class="hospform">${Object.entries(P.locais).map(([k,L])=>`<fieldset class="plloc"><legend>${esc(L.nome)}</legend>
       <label>Nome<input class="inp" data-plcfg="${k}.nome" value="${esc(L.nome)}"></label>
       <label class="check"><input type="checkbox" data-plativo="${k}" ${L.ativo!==false?"checked":""}> Ativo (entra no total)</label>

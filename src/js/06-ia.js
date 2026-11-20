@@ -255,10 +255,13 @@ async function iaMelhora(texto){
   const out=ult.map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
   if(!out) throw new Error("vazio");
   // travas: nenhum remédio novo, nenhum parêntese novo; todo número do original continua e nenhum número novo aparece
-  const outP=out.trim(); iaTravas(texto,outP); iaNegativas(texto,outP);
+  const outP=out.trim();
+  try{iaTravas(texto,outP); iaNegativas(texto,outP);
   const a=iaNums(texto), b=iaNums(outP);
   if(a.join("|")!==b.join("|")){const sobra=[...b];const falta=a.filter(n=>{const k=sobra.indexOf(n);if(k<0)return true;sobra.splice(k,1);return false});
     const e=new Error("numeros");e.det=[falta.length?`sumiu: ${falta.join(", ")}`:"",sobra.length?`apareceu: ${sobra.join(", ")}`:""].filter(Boolean).join("; ");throw e}
+  }catch(e){if(typeof usoIa==="function")usoIa("rec");throw e}
+  if(typeof usoIa==="function") usoIa("ok");
   return ant?outP+"\n"+ant.replace(/^\n?/,"\n"):outP;
 }
 function renderIa(){

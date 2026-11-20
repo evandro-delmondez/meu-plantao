@@ -100,11 +100,11 @@ function renderInicio(){
   chipsHome($("#hTop"),top,"As condutas que você mais abrir aparecem aqui.");
   chipsHome($("#hRec"),(uso.rec||[]).slice(0,10).map(itemRecente),"As condutas, fichas e escores que você abrir aparecem aqui.");
   // pacientes sem desfecho, com os avisos de 2 h e 3 h
-  const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");
+  const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs"||pacVaga(p));
   $("#hPacsBox").hidden=!pacCarrega().pacs.length;
   const agora=Date.now(), pl=pacPlantao(agora).k, at=pacCarrega().pacs.filter(p=>pacPlantao(p.criado).k===pl&&pacConta(p)).length;
   $("#hPacsConta").textContent=`${at} ${at===1?"atendido":"atendidos"} neste plantão`;
-  $("#hPacs").innerHTML=ab.map(p=>{const av=pacAviso(p,agora), pe=pacPendencias(p);return `<button class="hpac" data-hp="${p.id}" data-av="${av?av.nv:""}"><span class="hpac-l"><b>${esc(p.nome)}</b><em>há ${pacDur(agora-p.criado)}</em></span><span>${esc(pacHip(p)||"sem hipótese")}</span>${pe.length?`<span class="hpac-f">A fazer: ${esc(pe.join(" · "))}</span>`:""}${av?`<span class="hpac-av">${esc(av.txt)}</span>`:""}</button>`}).join("");
+  $("#hPacs").innerHTML=ab.map(p=>{const av=pacAviso(p,agora), pe=pacPendencias(p);return `<button class="hpac" data-hp="${p.id}" data-av="${av?av.nv:""}"><span class="hpac-l"><b>${esc(p.nome)}</b><em>há ${pacDur(agora-p.criado)}</em></span><span>${esc(pacHip(p)||"sem hipótese")}${pacVaga(p)?" · aguardando vaga":""}</span>${pe.length?`<span class="hpac-f">A fazer: ${esc(pe.join(" · "))}</span>`:""}${av?`<span class="hpac-av">${esc(av.txt)}</span>`:""}</button>`}).join("");
   $$("#hPacs [data-hp]").forEach(b=>b.onclick=()=>pacAbrir(b.dataset.hp));
   renderPlInicio();
   somBotao();

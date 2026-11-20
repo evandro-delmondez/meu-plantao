@@ -76,8 +76,23 @@ gravar(p, s)
 
 # queixas: só os caminhos (alarmes e escores sugeridos ficam no relatório para revisão)
 p = "src/data/queixas.js"; s = ler(p)
-for cid, lst in (L.get("queixas") or {}).items():
-    for q in lst:
+def caminhos(qs):
+    # dois formatos: {conduta:[{queixa,tipo,rot,conduta}]} ou {queixa:{caminhos_acrescentar:[{rot,conduta}], fontes_acrescentar:[..]}}
+    for k, v in qs.items():
+        if isinstance(v, dict):
+            for c in v.get("caminhos_acrescentar", []): yield {"queixa": k, "tipo": "caminho", **c}
+            for f in v.get("fontes_acrescentar", []): yield {"queixa": k, "tipo": "fonte", "f": f}
+            for a in v.get("alarme_acrescentar", []): yield {"queixa": k, "tipo": "alarme", "sugestao": json.dumps(a, ensure_ascii=False)}
+        else:
+            for q in v: yield q
+for q in [list(caminhos(L.get("queixas") or {}))][0]:
+    if True:
+        if q.get("tipo") == "fonte":
+            m = re.search(r'\{ id: "%s",' % re.escape(q["queixa"]), s)
+            if m:
+                i = s.index("fontes: [", m.start()) + len("fontes: [")
+                s = s[:i] + "\n    " + J(q["f"]) + "," + s[i:]
+            continue
         if q.get("tipo") != "caminho": nao.append(f'queixa {q.get("queixa")} ({q.get("tipo")}): {q.get("sugestao","")[:120]}'); continue
         m = re.search(r'\{ id: "%s",' % re.escape(q["queixa"]), s)
         if not m: nao.append("queixa não achada: " + q["queixa"]); continue

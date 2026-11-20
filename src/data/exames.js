@@ -8792,6 +8792,1016 @@ const EXAMES = {
    "Harrison cap. 387 — Harrison's Principles of Internal Medicine, 22ª ed., 2025, cap. 387 Periarticular Disorders of the Extremities.",
    "Baumbach 2014 — Baumbach SF et al. Prepatellar and olecranon bursitis: literature review and development of a treatment algorithm. Arch Orthop Trauma Surg 2014;134(3):359-370. PMID 24305696. https://doi.org/10.1007/s00402-013-1882-7"
   ]
+ },
+ "hsa": {
+  "encaminhar": [
+   {
+    "t": "Neurocirurgia e UTI: HSA na TC, punção positiva ou aneurisma na angio-TC; sem serviço, transferência para centro que trate o aneurisma",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Sala vermelha: Glasgow ≤ 8, queda do Glasgow, convulsão, anisocoria ou déficit focal",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "TC de crânio sem contraste já: cefaleia súbita com algum critério da regra de Ottawa",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Punção lombar a partir de 12 h do início (4 tubos, hemácias e xantocromia): TC normal feita após 6 h",
+    "f": [
+     4,
+     3
+    ]
+   },
+   {
+    "t": "Angio-TC de crânio: HSA confirmada (achar o aneurisma) ou como alternativa à punção após TC normal tardia",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Hemograma, TP/INR, TTPa, sódio, potássio, ureia, creatinina, glicemia, ECG e tipagem: na HSA confirmada",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Punção lombar com TC normal feita em até 6 h do início, laudada, e exame neurológico normal",
+    "f": [
+     4,
+     5
+    ]
+   },
+   {
+    "t": "Investigação de HSA em quem não tem nenhum critério da regra de Ottawa (alerta, sem déficit, ≥ 15 anos)",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "div": [
+   {
+    "t": "TC normal após 6 h: punção lombar (NICE NG228) ou angio-TC (AHA/ASA 2023) — escolher conforme o serviço",
+    "f": [
+     4,
+     1
+    ]
+   },
+   {
+    "t": "PA antes de tratar o aneurisma: PAS < 160 mmHg (HC-FMUSP; AHA/ASA 2023) × tratar só PAS > 180, de forma gradual (DBHA 2025)",
+    "f": [
+     3,
+     6
+    ]
+   }
+  ],
+  "fontes": [
+   "AHA/ASA 2023 — Hoh BL et al. 2023 Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage. Stroke 2023;54(7):e314-e370. PMID 37212182. https://doi.org/10.1161/STR.0000000000000436",
+   "Perry 2013 — Perry JJ et al. Clinical decision rules to rule out subarachnoid hemorrhage for acute headache. JAMA 2013;310(12):1248-1255. PMID 24065011. https://doi.org/10.1001/jama.2013.278018",
+   "HC-FMUSP 2024 cap. 54 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 54 Hemorragia subaracnóidea.",
+   "NICE NG228 — Subarachnoid haemorrhage caused by a ruptured aneurysm: diagnosis and management, 2022. https://www.nice.org.uk/guidance/ng228",
+   "Perry 2011 — Perry JJ et al. Sensitivity of computed tomography performed within six hours of onset of headache for diagnosis of subarachnoid haemorrhage. BMJ 2011;343:d4277. PMID 21768192. https://doi.org/10.1136/bmj.d4277",
+   "DBHA 2025 — SBC. Diretriz Brasileira de Hipertensão Arterial 2025 (Arq Bras Cardiol 2025). https://www.scielo.br/j/abc/a/BXT7Vk4B9VKQnJFsJhgJ4Hn/?lang=pt"
+  ]
+ },
+ "rebaixamento-delirium": {
+  "encaminhar": [
+   {
+    "t": "Sala vermelha: Glasgow ≤ 8, hipóxia, choque, convulsão, anisocoria ou sinais de herniação",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Neurocirurgia: hematoma, hidrocefalia ou efeito de massa na TC",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Internação: causa grave ou não esclarecida, sem volta ao basal, sem acompanhante ou sem segurança em casa",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Glicemia capilar: em todos, na chegada",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Sódio, potássio, cálcio, ureia, creatinina, TGO, TGP, bilirrubinas, TP/INR, hemograma, gasometria, urina tipo 1, ECG e radiografia de tórax",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Etanol, paracetamol e outras dosagens toxicológicas: suspeita de intoxicação; amônia no hepatopata; hemoculturas com febre",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "TC de crânio sem contraste: déficit focal, trauma, anticoagulante, cefaleia súbita, convulsão nova ou causa não esclarecida",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Punção lombar: febre ou suspeita de meningite ou encefalite (após TC, se indicada)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "EEG: suspeita de estado de mal não convulsivo ou rebaixamento sem causa",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "TC de crânio de rotina no delirium com causa clara (ex.: infecção urinária) e sem sinal focal, trauma ou anticoagulante",
+    "f": [
+     2,
+     3
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "HC-FMUSP 2024 cap. 10 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 10 Coma e alteração do nível de consciência.",
+   "HC-FMUSP 2024 cap. 12 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 12 Delirium.",
+   "NICE CG103 — Delirium: prevention, diagnosis and management in hospital and long-term care, 2010, atualizada em 2023. https://www.nice.org.uk/guidance/cg103"
+  ]
+ },
+ "trauma-cervical": {
+  "encaminhar": [
+   {
+    "t": "Coluna (ortopedia ou neurocirurgia) de urgência: fratura ou luxação na TC, déficit neurológico ou lesão medular",
+    "f": [
+     4,
+     5
+    ]
+   },
+   {
+    "t": "Sala vermelha: Glasgow < 15 com instabilidade, choque neurogênico, insuficiência respiratória ou politrauma",
+    "f": [
+     5
+    ]
+   },
+   {
+    "t": "Cirurgião de urgência: trauma penetrante com sangramento ativo, hematoma em expansão, estridor ou ar saindo pela ferida",
+    "f": [
+     5
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "TC de coluna cervical sem contraste: regra canadense positiva (≥ 65 anos, mecanismo perigoso, parestesia, sem fator de baixo risco ou não roda 45°)",
+    "f": [
+     1,
+     4
+    ]
+   },
+   {
+    "t": "TC de coluna cervical: Glasgow < 15, intoxicação ou lesão que distrai (regra não se aplica) ou NEXUS positivo",
+    "f": [
+     2,
+     5
+    ]
+   },
+   {
+    "t": "RM de coluna cervical: déficit neurológico (após a TC) ou dor que impede o movimento com TC normal",
+    "f": [
+     4,
+     5
+    ]
+   },
+   {
+    "t": "Angio-TC de pescoço: Horner, sopro, hematoma em expansão, déficit isquêmico, fratura de C1 a C3 ou do forame transverso",
+    "f": [
+     5,
+     6
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Qualquer imagem: alerta e estável, sem alto risco, com fator de baixo risco e rodando 45° para os dois lados",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Radiografia simples quando há TC disponível: perde fraturas",
+    "f": [
+     4,
+     5
+    ]
+   }
+  ],
+  "div": [
+   {
+    "t": "Regra canadense (mais sensível; NICE NG41) × NEXUS (mais simples): as duas válidas; o painel prefere a canadense",
+    "f": [
+     3,
+     2
+    ]
+   }
+  ],
+  "fontes": [
+   "Stiell 2001 — Stiell IG et al. The Canadian C-spine rule for radiography in alert and stable trauma patients. JAMA 2001;286(15):1841-1848. PMID 11597285. https://doi.org/10.1001/jama.286.15.1841",
+   "Hoffman 2000 — Hoffman JR et al. Validity of a set of clinical criteria to rule out injury to the cervical spine in patients with blunt trauma (NEXUS). N Engl J Med 2000;343(2):94-99. PMID 10891516. https://doi.org/10.1056/NEJM200007133430203",
+   "Stiell 2003 — Stiell IG et al. The Canadian C-spine rule versus the NEXUS low-risk criteria in patients with trauma. N Engl J Med 2003;349(26):2510-2518. PMID 14695411. https://doi.org/10.1056/NEJMoa031375",
+   "ACR 2024/NICE NG41 — Hassankhani A et al. ACR Appropriateness Criteria Acute Spinal Trauma: 2024 Update (J Am Coll Radiol 2025;22(5S):S48-S66); NICE NG41 Spinal injury: assessment and initial management, 2016. https://www.nice.org.uk/guidance/ng41",
+   "HC-FMUSP 2024 cap. 64 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 64 Trauma cervical.",
+   "EAST 2020 — Kim DY et al. Blunt cerebrovascular injury: EAST practice management guideline. J Trauma Acute Care Surg 2020;88(6):875-887. PMID 32176167."
+  ]
+ },
+ "politrauma": {
+  "encaminhar": [
+   {
+    "t": "Centro de trauma ou cirurgia de urgência: choque que não responde, sangramento que não para, eFAST positivo instável, pelve instável",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Neurocirurgia: TCE com Glasgow ≤ 12, lesão na TC ou déficit; coluna: lesão medular ou fratura instável",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Transferência sem atrasar por exames quando a lesão exceder os recursos da unidade",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Tipagem, prova cruzada, hemograma, coagulograma, gasometria com lactato e déficit de bases: na chegada",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "[F] Beta-hCG: mulher em idade fértil, na chegada",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "eFAST e radiografia de tórax e de bacia: na sala, durante a avaliação primária",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "TC de corpo (crânio, coluna, tórax, abdome e pelve, conforme o mecanismo): só no estável",
+    "f": [
+     3,
+     2
+    ]
+   },
+   {
+    "t": "Cálcio ionizado: durante a transfusão",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "TC no paciente instável: decide-se pela clínica e pelo eFAST, sem sair da sala",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Hemoglobina isolada para medir a perda aguda: cai tarde",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ATLS 11ª ed. — American College of Surgeons. Advanced Trauma Life Support, 11ª ed., 2025.",
+   "Rossaint 2023 — Rossaint R et al. The European guideline on management of major bleeding and coagulopathy following trauma: sixth edition. Crit Care 2023;27(1):80. PMID 36859355. https://doi.org/10.1186/s13054-023-04327-7",
+   "HC-FMUSP 2024 caps. 62 e 67 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 62 Atendimento inicial ao politraumatizado e cap. 67 Choque hemorrágico associado ao trauma."
+  ]
+ },
+ "cocaina": {
+  "encaminhar": [
+   {
+    "t": "Sala vermelha: convulsão, temperatura ≥ 40 °C com agitação, QRS largo, arritmia, hipotensão ou dor torácica com ECG alterado",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Hemodinâmica: infarto com supra de ST (angioplastia primária; sem fibrinolítico de rotina)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Internação: SCA, arritmia, convulsão, hipertermia, rabdomiólise, lesão renal ou déficit neurológico",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Cirurgia e CIATox (0800 722 6001): pacotes de droga no intestino (body packer); com sintomas, cirurgia imediata",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Psiquiatria: tentativa de suicídio; CAPS AD: uso nocivo ou dependência",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "ECG: em todos (isquemia, QRS largo, QT longo, arritmia)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Troponina seriada: dor torácica (observar 8–12 h)",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Hemograma, função renal, eletrólitos, CPK e gasometria com lactato: intoxicação moderada ou grave",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Sódio: ecstasy com confusão, vômitos ou convulsão (hiponatremia)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "TC de crânio: cefaleia súbita, déficit ou confusão que não passa",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Angio-TC de aorta: dor rasgando, diferença de pulso ou de PA entre os braços",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Radiografia de abdome: suspeita de pacotes no intestino",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Beta-hCG: mulher em idade fértil",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exame toxicológico de urina para decidir o tratamento: a conduta é clínica e o teste só indica uso recente",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "HC-FMUSP 2024 cap. 100 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 100 Intoxicações por álcoois e drogas de abuso (cocaína, anfetaminas e ecstasy).",
+   "AHA 2023 — Lavonas EJ et al. 2023 AHA Focused Update on the Management of Patients With Cardiac Arrest or Life-Threatening Toxicity Due to Poisoning. Circulation 2023;148:e149-e184.",
+   "AHA 2008 — McCord J et al. Management of cocaine-associated chest pain and myocardial infarction. Circulation 2008;117:1897-1907."
+  ]
+ },
+ "organofosforado": {
+  "encaminhar": [
+   {
+    "t": "Sala vermelha: broncorreia, bradicardia, hipotensão, Glasgow ≤ 13, convulsão ou insuficiência respiratória",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "UTI: todo caso moderado ou grave, após estabilizar",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "CIATox (0800 722 6001): todos; pralidoxima, produto desconhecido ou mistura",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Psiquiatria (RAPS): tentativa de suicídio, com notificação imediata",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Glicemia capilar, ECG (bradicardia, bloqueio, QT longo) e gasometria: em todos com sintomas",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Hemograma, eletrólitos, função renal e hepática, CPK, amilase e coagulograma: moderado ou grave",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Radiografia de tórax: broncorreia, aspiração ou hipoxemia",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Colinesterase eritrocitária ou plasmática: ajuda no diagnóstico e na evolução, se disponível; não esperar para tratar",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Esperar a colinesterase para dar atropina: o diagnóstico é clínico",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "div": [
+   {
+    "t": "Pralidoxima: AHA 2023 (2a, A) e HC-FMUSP indicam no organofosforado moderado ou grave; o MS 2018 não recomenda oxima de rotina",
+    "f": [
+     3,
+     2,
+     1
+    ]
+   }
+  ],
+  "fontes": [
+   "MS 2018 — Ministério da Saúde. Diretrizes Brasileiras para Diagnóstico e Tratamento de Intoxicações por Agrotóxicos, cap. 2 — Inibidores de colinesterase (Portaria Conjunta nº 79, de 14/12/2018).",
+   "HC-FMUSP 2024 cap. 102 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 102 Intoxicações ambientais (organofosforados e carbamatos).",
+   "AHA 2023 — Lavonas EJ et al. 2023 AHA Focused Update on the Management of Patients With Cardiac Arrest or Life-Threatening Toxicity Due to Poisoning. Circulation 2023;148:e149-e184."
+  ]
+ },
+ "febre-lactente": {
+  "encaminhar": [
+   {
+    "t": "Pediatria com leito: todo lactente menor de 3 meses com temperatura ≥ 38 °C",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Sala vermelha: convulsão de 5 min ou mais, toxemia, choque, petéquias ou púrpura",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Pediatria ou neurologia: convulsão febril complexa (focal, ≥ 15 min ou repetida em 24 h) ou sem volta ao normal",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Menor de 3 meses: hemograma, PCR, hemocultura e exame de urina com urocultura (sonda ou punção)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Punção lombar: todo menor de 1 mês; 1 a 3 meses com aspecto doente ou leucócitos < 5 mil ou > 15 mil",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Punção lombar na convulsão febril: sinais de meningite; considerar de 6 a 12 meses com vacina incompleta e em uso de antibiótico",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Radiografia de tórax: só com sinal respiratório",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Glicemia capilar: durante ou logo após a convulsão",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "EEG, TC de crânio e exames de sangue de rotina na convulsão febril simples",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "div": [
+   {
+    "t": "Punção lombar de 8 a 21 dias: AAP 2021 em todos; NICE em todo menor de 1 mês",
+    "f": [
+     4,
+     1
+    ]
+   }
+  ],
+  "fontes": [
+   "NICE NG143 — National Institute for Health and Care Excellence. Fever in under 5s: assessment and initial management (NG143, 2019, atualizada em 2021).",
+   "AAP 2011 — Subcommittee on Febrile Seizures. Febrile Seizures: Guideline for the Neurodiagnostic Evaluation of the Child With a Simple Febrile Seizure. Pediatrics 2011;127:389-394.",
+   "AES 2016 — Glauser T et al. Treatment of Convulsive Status Epilepticus in Children and Adults. Epilepsy Curr 2016;16:48-61.",
+   "AAP 2021 — Pantell RH et al. Evaluation and Management of Well-Appearing Febrile Infants 8 to 60 Days Old. Pediatrics 2021;148(2):e2021052228."
+  ]
+ },
+ "farmacodermia": {
+  "encaminhar": [
+   {
+    "t": "Internação e dermatologia: SSJ, NET ou DRESS",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "UTI ou centro de queimados: descolamento > 10% (BAD) ou > 30% ou SCORTEN ≥ 2 (HC-FMUSP)",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Oftalmologia em até 24 h: SSJ/NET ou qualquer lesão ocular",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Hemograma com eosinófilos e linfócitos atípicos, TGO, TGP, bilirrubinas, ureia, creatinina e urina: toda suspeita de SSJ/NET ou DRESS",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Glicemia e bicarbonato (gasometria venosa): para o SCORTEN nas primeiras 24 h",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "ECG: toda suspeita de DRESS; troponina se suspeita de acometimento cardíaco (dor torácica, dispneia, taquicardia, ECG alterado)",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Radiografia de tórax: sintoma respiratório",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Exames no exantema simples sem nenhum sinal de gravidade",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "HC-FMUSP 2024 cap. 107 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 107 Farmacodermias.",
+   "BAD 2016 — Creamer D et al. U.K. guidelines for the management of Stevens-Johnson syndrome/toxic epidermal necrolysis in adults 2016. Br J Dermatol 2016;174:1194-1227.",
+   "Brüggen 2024 — Brüggen MC et al. Management of Adult Patients With DRESS: A Delphi-Based International Consensus. JAMA Dermatol 2024;160:37-44.",
+   "Bastuji-Garin 2000 — SCORTEN: a severity-of-illness score for toxic epidermal necrolysis. J Invest Dermatol 2000;115:149-153."
+  ]
+ },
+ "anticoagulado": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência: sangramento com instabilidade, intracraniano ou em órgão crítico",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Internação: sangramento maior, reversão feita ou queda de hemoglobina",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Neurocirurgia: sangramento intracraniano na TC",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Cardiologia: prótese valvar mecânica com sangramento ou INR muito alto (reversão e reinício)",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Hemograma, TP/INR, TTPa, creatinina, TGO e TGP: todo anticoagulado com sangramento ou INR alto",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Tipagem e prova cruzada: sangramento maior",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "TC de crânio sem contraste: trauma de crânio em anticoagulado, mesmo sem outro critério",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "INR de controle após a reversão e 24–48 h após vitamina K VO",
+    "f": [
+     1,
+     4
+    ]
+   },
+   {
+    "t": "Tempo de trombina: dabigatrana (normal afasta efeito relevante)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Anti-Xa, se houver: rivaroxabana, apixabana ou edoxabana (normal afasta efeito relevante)",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "TP/INR ou TTPa normais para afastar efeito de rivaroxabana, apixabana ou edoxabana",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [
+   {
+    "t": "Sangramento leve com INR 2–9: HC-FMUSP dá vitamina K 10 mg EV × ACC 2020 não reverte o sangramento menor",
+    "f": [
+     2,
+     1
+    ]
+   },
+   {
+    "t": "Complexo protrombínico nos anti-Xa: HC-FMUSP 25–50 unidades/kg × conduta AVC hemorrágico do painel 50 unidades/kg (NCS 2016); fora da bula Anvisa",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "INR > 9–10 sem sangramento: HC-FMUSP vitamina K EV × CHEST 2008/2012 vitamina K VO",
+    "f": [
+     2,
+     4
+    ]
+   }
+  ],
+  "fontes": [
+   "ACC 2020 — Tomaselli GF et al. 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants (J Am Coll Cardiol 2020;76(5):594-622; PMID 32680646): sangramento maior = local crítico, instabilidade hemodinâmica, queda de Hb ≥ 2 g/dL ou 2 ou mais concentrados de hemácias; suspender anticoagulante e antiplaquetário e controlar o local; reversão só no sangramento com risco de vida ou maior que não responde às medidas iniciais; sangramento menor sem reversão; varfarina: complexo protrombínico de 4 fatores com vitamina K, plasma se não houver complexo; dabigatrana: idarucizumabe 5 g EV, complexo protrombínico (ativado ou não) se não houver; inibidores do fator Xa: andexanet ou, sem ele, complexo protrombínico; tempo de trombina normal afasta nível relevante de dabigatrana, anti-Xa normal afasta o dos inibidores do Xa; reinício: baixo risco trombótico pode suspender de vez, local crítico ou fonte não achada reinicia mais tarde, os demais assim que for seguro. https://doi.org/10.1016/j.jacc.2020.04.053",
+   "HC-FMUSP 2024 cap. 92 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 92 Avaliação dos distúrbios de hemostasia no departamento de emergência (tabela 9: INR 2–5 sem sangramento, reduzir ou omitir 1 dose; 5–9 sem sangramento, omitir 1–2 doses; > 9 sem sangramento, suspender e vitamina K1; sangramento grave, vitamina K1 10 mg EV e complexo protrombínico 25–50 unidades/kg ou plasma; tabela 10: protamina; dabigatrana: idarucizumabe 5 g, sem ele complexo protrombínico ativado 50 unidades/kg, máx. 4.000 unidades; carvão ativado 50 g 2–4 h após a ingestão; diálise remove a dabigatrana; inibidores do Xa: complexo protrombínico 25–50 unidades/kg só no sangramento maior com risco de morte).",
+   "NICE NG232 2023 — NICE NG232. Head injury: assessment and early management, 2023: TC de crânio no adulto com trauma de crânio em uso de anticoagulante, mesmo sem outro critério. https://www.nice.org.uk/guidance/ng232",
+   "CHEST 2008 — Ansell J et al. Pharmacology and management of the vitamin K antagonists — ACCP 8th ed (Chest 2008;133(6 Suppl):160S-198S; PMID 18574265): INR ≥ 9 sem sangramento: suspender a varfarina e dar vitamina K1 2,5–5 mg VO; o INR cai em 24–48 h; monitorar com mais frequência e reiniciar em dose ajustada quando na faixa. https://doi.org/10.1378/chest.08-0670"
+  ]
+ },
+ "neutropenia-febril": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência e protocolo de sepse: hipotensão, confusão, SpO2 baixa ou lactato alto",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Internação: alto risco (MASCC < 21, neutropenia prevista > 7 dias, disfunção orgânica, pneumonia, dor abdominal nova)",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Oncologia avisada no mesmo dia em todos; alta só no baixo risco com retorno em 24 h",
+    "f": [
+     1,
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Dois pares de hemoculturas (um do cateter central, se houver) antes do antibiótico, sem atrasá-lo",
+    "f": [
+     2,
+     3
+    ]
+   },
+   {
+    "t": "Hemograma com contagem de neutrófilos: na chegada, sem esperar o resultado para o antibiótico",
+    "f": [
+     1,
+     3
+    ]
+   },
+   {
+    "t": "Ureia, creatinina, eletrólitos, TGO, TGP, bilirrubinas e lactato",
+    "f": [
+     2,
+     3
+    ]
+   },
+   {
+    "t": "Urina tipo I e urocultura",
+    "f": [
+     2,
+     3
+    ]
+   },
+   {
+    "t": "Radiografia de tórax, mesmo sem sintomas respiratórios",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "Cultura de outro foco suspeito (secreção do cateter, fezes com diarreia, lesão de pele)",
+    "f": [
+     2,
+     3
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Esperar o hemograma para dar o antibiótico",
+    "f": [
+     1,
+     3
+    ]
+   }
+  ],
+  "div": [
+   {
+    "t": "Piperacilina-tazobactam: HC-FMUSP 4,5 g de 8/8h × IDSA 2010 4,5 g de 6/6h (bula: dose completa no neutropênico, até 18 g/dia); a bula pede aminoglicosídeo junto, a IDSA usa monoterapia",
+    "f": [
+     3,
+     2,
+     4
+    ]
+   }
+  ],
+  "fontes": [
+   "IDSA/ASCO 2018 — Taplitz RA et al. Outpatient Management of Fever and Neutropenia in Adults Treated for Malignancy: ASCO/IDSA Clinical Practice Guideline Update (J Clin Oncol 2018;36(14):1443-1453; PMID 29461916; página da ASCO com atualização de 2023): 1ª dose de antibiótico em até 1 h da triagem; julgamento clínico com MASCC e, no tumor sólido, CISNE para escolher o baixo risco; esquema oral com fluoroquinolona + amoxicilina-clavulanato (clindamicina na alergia à penicilina), sem quinolona se já em profilaxia com ela; observação antes da alta e acesso rápido ao hospital; reavaliar e considerar internação sem defervescência em 2–3 dias. https://doi.org/10.1200/JCO.2017.77.6211",
+   "IDSA 2010 — Freifeld AG et al. Clinical practice guideline for the use of antimicrobial agents in neutropenic patients with cancer: 2010 update by the Infectious Diseases Society of America (Clin Infect Dis 2011;52(4):e56-e93; PMID 21258094): febre oral ≥ 38,3 °C ou ≥ 38 °C por 1 h; neutrófilos < 500/mm³ ou queda prevista abaixo de 500 em 48 h; 2 pares de hemoculturas (um do cateter central); monoterapia com betalactâmico antipseudomonas (cefepima, piperacilina-tazobactam, carbapenêmico); vancomicina não é rotina, só com instabilidade, suspeita de infecção do cateter, pele e partes moles ou pneumonia; antifúngico empírico após 4–7 dias de febre com neutropenia prevista > 7 dias. https://doi.org/10.1093/cid/cir073",
+   "HC-FMUSP 2024 cap. 94 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 94 Neutropenia febril (febre oral > 38,3 °C, axilar > 37,8 °C ou > 38 °C por 1 h; neutrófilos < 500/µL ou 500–1.000 em queda; até 6 semanas após quimioterapia na triagem; exames e hemoculturas antes do antibiótico; radiografia de tórax mesmo sem sintomas; antibiótico em até 1 h; alto e baixo risco; MASCC (tabela 5) e CISNE (tabela 6); cefepima 2 g 8/8 h, piperacilina-tazobactam 4,5 g 8/8 h, meropeném 1 g 8/8 h; vancomicina só com instabilidade, cateter, pele e partes moles ou pneumonia; oral: ciprofloxacino 750 mg 12/12 h + amoxicilina-clavulanato 500/125 mg 8/8 h; critérios de alta: acesso ao hospital em 1 h, acompanhante 24 h, 4 h de observação, 1ª dose na unidade, reavaliação em 48–72 h se a febre persistir; ESBL: carbapenêmico).",
+   "Bula Tazocin — Bula Anvisa do Tazocin (piperacilina 4 g + tazobactam 0,5 g, Pfizer), TZCPOI_40 (09/10/2026): adultos, 12 g/1,5 g por dia de 6/6h ou 8/8h, até 18 g/2,25 g por dia na infecção grave (4,5 g de 6/6h = 16 g/2 g); no neutropênico, doses terapêuticas completas, em associação com aminoglicosídeo; infusão de 20 a 30 min; ClCr 20–40: 4 g/0,5 g de 8/8h; < 20: 4 g/0,5 g de 12/12h; hemodiálise: no máximo 8 g/1 g por dia e mais 2 g/0,25 g após cada sessão. https://www.pfizer.com.br/files/Tazocin_Profissional_de_Saude_TZCPOI_40.pdf"
+  ]
+ },
+ "lra": {
+  "encaminhar": [
+   {
+    "t": "Sala de emergência e nefrologia: potássio > 6 mEq/L ou alteração no ECG, pH < 7,1, edema pulmonar, pericardite ou encefalopatia urêmica",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Internação: estágio 2 ou 3, oligúria, obstrução, sem causa clara ou sem como repetir a creatinina",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Urologia: hidronefrose ou obstrução que não se resolve com sonda vesical; pionefrose",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Ureia, creatinina, sódio, potássio, gasometria venosa, cálcio, fósforo, hemograma e glicemia",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "ECG: potássio alto",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Urina tipo I; sódio e creatinina urinários (FENa) antes do diurético",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "US de rins e vias urinárias: em até 24 h sem causa clara ou com risco de obstrução; em até 6 h se suspeita de pionefrose",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "CPK: trauma, convulsão, imobilização prolongada ou esforço intenso",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Creatinina anterior (prontuário, exames antigos): para saber se é aguda",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Prova de diurético (furosemida) para tratar a LRA sem congestão",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "KDIGO 2012 — Kidney Disease: Improving Global Outcomes (KDIGO) Acute Kidney Injury Work Group. KDIGO Clinical Practice Guideline for Acute Kidney Injury (Kidney Int Suppl 2012;2(1):1-138): definição (creatinina +0,3 mg/dL em 48 h, ≥ 1,5 vez a basal em 7 dias ou diurese < 0,5 mL/kg/h por 6 h) e estágios 1–3; cristaloide isotônico em vez de coloide; evitar nefrotóxicos; diurético não trata a LRA, só a sobrecarga de volume; ajuste de doses; diálise de urgência por complicações com risco de vida. https://kdigo.org/guidelines/acute-kidney-injury/",
+   "HC-FMUSP 2024 cap. 78 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 78 Lesão renal aguda (KDIGO; FENa < 1% pré-renal, > 2% necrose tubular; ureia/creatinina > 40 sugere pré-renal; US renal; cristaloide isotônico; evitar contraste, AINE, aminoglicosídeo, anfotericina, vancomicina; na pré-renal, evitar diurético, IECA e BRA; furosemida 80 mg EV na hipervolemia, dobro da dose prévia em quem já usava, dobrar em 2 h sem resposta, máximo 200 mg por dose; hipercalemia tratada se K > 6; bicarbonato com pH ≤ 7,2 pode beneficiar a LRA (BICAR-ICU); proteína 0,8–1 g/kg; tabela 7: indicações de diálise — hipervolemia sem resposta, acidose refratária (pH < 7,1), hipercalemia refratária, uremia (pericardite urgente), intoxicação dialisável (lítio, etilenoglicol, salicilato, valproato, paracetamol, metanol, etanol, teofilina), azotemia progressiva ou oligúria; diálise precoce não reduz mortalidade).",
+   "NICE NG148 2019 — NICE NG148. Acute kidney injury: prevention, detection and management, 2019: US de vias urinárias em até 24 h se a causa não for identificada ou houver risco de obstrução, e em até 6 h se houver suspeita de pionefrose; desobstrução urinária; suspender temporariamente fármacos nefrotóxicos. https://www.nice.org.uk/guidance/ng148"
+  ]
+ },
+ "oclusao-arterial": {
+  "encaminhar": [
+   {
+    "t": "Cirurgia vascular imediata em todos; sem cirurgião vascular na unidade, transferir",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Centro cirúrgico direto (angiografia): membro imediatamente ameaçado, Rutherford IIb",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "UTI no pós-operatório",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Hemograma, TP/INR, TTPa, CPK, ureia, creatinina, eletrólitos, TGO, TGP, gasometria venosa e lactato",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "ECG: fibrilação atrial ou infarto como fonte embólica",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "US com Doppler arterial e venoso",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Angio-TC: membro viável ou marginalmente ameaçado, a critério da cirurgia vascular, sem atrasar o tratamento",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Ecocardiograma: depois, à procura de trombo, valvopatia ou endocardite",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "TTPa seriado: ajuste da heparina",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Imagem antes de chamar o cirurgião vascular no membro imediatamente ameaçado",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ESVS 2020 — Björck M et al. Editor's Choice — European Society for Vascular Surgery (ESVS) 2020 Clinical Practice Guidelines on the Management of Acute Limb Ischaemia (Eur J Vasc Endovasc Surg 2020;59(2):173-218; PMID 31899099): diagnóstico clínico e classificação de Rutherford; heparina imediata ao diagnóstico; angio-TC antes da revascularização quando não atrasa o tratamento; revascularização urgente (cirurgia aberta ou endovascular) — imediata no membro imediatamente ameaçado (IIb); amputação primária no membro inviável (III); vigiar síndrome compartimental e fasciotomia; procurar a fonte embólica (ECG, ecocardiograma) e anticoagular a longo prazo após embolia cardíaca. https://doi.org/10.1016/j.ejvs.2019.09.006",
+   "HC-FMUSP 2024 cap. 40 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 40 Oclusão arterial aguda (6 P; trombose × embolia; Rutherford, tabela 2; cirurgião vascular antes da imagem; exames: hemograma, coagulograma, CPK, ureia, creatinina, eletrólitos, TGO, TGP, gasometria venosa, lactato, ECG; Doppler; analgesia — dipirona 1–2 g EV, morfina 0,1 mg/kg EV e 0,05 mg/kg a cada 15 min; evitar AINE; aquecimento passivo com algodão, nunca calor direto; tabela 3: HNF 80 unidades/kg EV em bolus + 18 unidades/kg/h pelo TTPa, ou enoxaparina 1 mg/kg SC 12/12h (cuidado com ClCr < 30); AAS 300 mg + 100 mg/dia na DAOP; síndrome compartimental e fasciotomia; pós-operatório em UTI)."
+  ]
  }
 };
 if (typeof module!=="undefined") module.exports={EXAMES};

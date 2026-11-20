@@ -4,9 +4,13 @@
    { id: "cefaleia", nome: "Cefaleia", cor: "amber",
      alarme: [ { t: "sinal de alarme (curto)", acao: "o que fazer se presente (exame, conduta, não liberar)" } ],
      perguntar: ["item curto do que perguntar/examinar"],
-     caminhos: [ { rot: "Enxaqueca: dor pulsátil, unilateral, náusea, fotofobia", conduta: "enxaqueca" } ],   // conduta = id existente; sem conduta = só texto
+     caminhos: [
+    { rot: "Cefaleia, queda ou trauma de crânio em quem usa anticoagulante (sangramento e reversão)", conduta: "anticoagulado" },
+    { rot: "Cefaleia súbita, máxima em até 1 hora, com algum critério da regra de Ottawa: investigar hemorragia subaracnóidea", conduta: "hsa" }, { rot: "Enxaqueca: dor pulsátil, unilateral, náusea, fotofobia", conduta: "enxaqueca" } ],   // conduta = id existente; sem conduta = só texto
      escores: ["nome de escore validado, se houver (ex.: CURB-65)"],
      fontes: [
+    "Tomaselli GF et al. 2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants (J Am Coll Cardiol 2020;76(5):594-622; PMID 32680646): sangramento maior = local crítico, instabilidade hemodinâmica, queda de Hb ≥ 2 g/dL ou 2 ou mais concentrados de hemácias; suspender anticoagulante e antiplaquetário e controlar o local; reversão só no sangramento com risco de vida ou maior que não responde às medidas iniciais; sangramento menor sem reversão; varfarina: complexo protrombínico de 4 fatores com vitamina K, plasma se não houver complexo; dabigatrana: idarucizumabe 5 g EV, complexo protrombínico (ativado ou não) se não houver; inibidores do fator Xa: andexanet ou, sem ele, complexo protrombínico; tempo de trombina normal afasta nível relevante de dabigatrana, anti-Xa normal afasta o dos inibidores do Xa; reinício: baixo risco trombótico pode suspender de vez, local crítico ou fonte não achada reinicia mais tarde, os demais assim que for seguro. https://doi.org/10.1016/j.jacc.2020.04.053",
+    "NICE NG232. Head injury: assessment and early management, 2023: TC de crânio no adulto com trauma de crânio em uso de anticoagulante, mesmo sem outro critério. https://www.nice.org.uk/guidance/ng232",
     "Prabhakaran S et al. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke — AHA/ASA (Stroke 2026): último momento visto bem; trombólise e trombectomia com janela. https://doi.org/10.1161/STR.0000000000000513","..."] } */
 const QUEIXAS = [
 /* Rascunho: 6 queixas da porta (lote 1). Colar os objetos dentro de const QUEIXAS = [ ... ] em src/data/queixas.js. */
@@ -80,6 +84,8 @@ const QUEIXAS = [
     "Exame: ausculta cardíaca (sopro), nistagmo, HINTS, Dix-Hallpike, marcha sem apoio, pares cranianos, força e coordenação"
   ],
   caminhos: [
+    { rot: "Consciência que não volta ao normal depois do desmaio: rebaixamento, não síncope", conduta: "rebaixamento-delirium" },
+    { rot: "Desmaio com cefaleia súbita e intensa: hemorragia subaracnóidea", conduta: "hsa" },
     { rot: "Vertigem periférica: VPPB (Dix-Hallpike positivo) ou neurite com HINTS periférico", conduta: "vertigem" },
     { rot: "Síncope reflexa (vasovagal, situacional) ou ortostática, sem sinal de alto risco e com ECG normal: alta com orientação", conduta: "sincope" },
     { rot: "Sinais neurológicos ou HINTS central", conduta: "avc" },
@@ -125,6 +131,8 @@ const QUEIXAS = [
     "Exame: NIHSS, testa paralisada ou poupada, fala, campo visual, força, sensibilidade, coordenação e marcha; PA e ritmo (FA)"
   ],
   caminhos: [
+    { rot: "Confusão, sonolência ou rebaixamento sem déficit focal claro: glicemia, causas tóxicas, metabólicas e infecciosas", conduta: "rebaixamento-delirium" },
+    { rot: "Cefaleia em trovoada com rigidez de nuca, paralisia do III nervo ou sangue nas cisternas: hemorragia subaracnóidea", conduta: "hsa" },
     { rot: "Déficit presente: AVC até a TC dizer o contrário (trombólise e trombectomia têm janela)", conduta: "avc" },
     { rot: "Sangue na TC: AVC hemorrágico", conduta: "ait" },
     { rot: "Déficit que regrediu por completo (AIT): ABCD², investigar e antiagregar", conduta: "ait" },
@@ -170,6 +178,7 @@ const QUEIXAS = [
     "Toque retal se houver suspeita de sangramento digestivo"
   ],
   caminhos: [
+    { rot: "Dor abdominal após trauma: ABCDE, eFAST e TC se estável (politraumatizado)", conduta: "politrauma" },
     { rot: "Dor abdominal aguda indiferenciada: abordagem inicial e analgesia (não atrasa o diagnóstico)", conduta: "dor-abdominal" },
     { rot: "Dor em cólica no flanco irradiando para a virilha, com ou sem hematúria (cólica renal)", conduta: "colica" },
     { rot: "Dor no hipocôndrio direito ou no epigástrio após refeição, com ou sem febre ou icterícia (vesícula e vias biliares)", conduta: "biliar" },
@@ -235,6 +244,8 @@ const QUEIXAS = [
     "Troponina pelo algoritmo do serviço (0/1 h ou 0/2 h) e HEART para decidir a alta"
   ],
   caminhos: [
+    { rot: "Dor no peito, palpitação ou PA alta após cocaína, crack ou outro estimulante (sem betabloqueador isolado)", conduta: "cocaina" },
+    { rot: "Dor no tórax após trauma: ABCDE, eFAST e radiografia (politraumatizado)", conduta: "politrauma" },
     { rot: "Síndrome coronariana aguda", conduta: "sca" },
     { rot: "TEP", conduta: "tep" },
     { rot: "Dor súbita rasgando no tórax ou nas costas, com diferença de pulso ou PA entre os braços (dissecção de aorta)", conduta: "disseccao-aorta" },
@@ -247,6 +258,8 @@ const QUEIXAS = [
   ],
   escores: ["HEART (dor torácica)", "ADD-RS (dissecção de aorta)", "Wells ou Genebra e PERC (TEP)"],
   fontes: [
+    "Lavonas EJ et al. 2023 American Heart Association Focused Update on the Management of Patients With Cardiac Arrest or Life-Threatening Toxicity Due to Poisoning (Circulation 2023;148:e149-e184). Cocaína: resfriamento externo rápido na hipertermia (1, C-LD); bicarbonato na taquicardia de QRS largo ou PCR (2a); lidocaína na taquicardia de QRS largo (2a); vasodilatadores (nitratos, fentolamina, bloqueador de canal de cálcio) no vasoespasmo coronário e na emergência hipertensiva (2a); benzodiazepínico como base do controle da PA e da agitação; segurança do betabloqueador controversa. Organofosforado e carbamato: atropina imediata no grave (1, A), 1–2 mg dobrando a cada 5 min até pulmão limpo, FC > 80 e PAS > 80, manutenção de 10–20% da dose de ataque por hora até 2 mg/h; criança 0,02 mg/kg dobrando a cada 5 min; intubação precoce (1, B-NR); benzodiazepínico na convulsão e na agitação (1); EPI e descontaminação da pele (1); pralidoxima razoável no organofosforado (2a, A): 1–2 g, depois 400–600 mg/h (criança 20–50 mg/kg, depois 10–20 mg/kg/h); succinilcolina e mivacúrio não recomendados (3). https://doi.org/10.1161/CIR.0000000000001161",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 100 Intoxicações por álcoois e drogas de abuso — cocaína e crack: síndrome adrenérgica; exames (hemograma, função renal, eletrólitos, CPK, ECG, gasometria com lactato; troponina se dor torácica; TC de crânio se sintoma neurológico persistente; angio-TC se suspeita de dissecção); intubação sem succinilcolina e evitando cetamina; diazepam 5–10 mg EV a cada 5–10 min até controlar (criança 0,25–0,4 mg/kg, máx. 10 mg), midazolam IM sem acesso; evitar haloperidol e clorpromazina; SCA: tratamento habitual + diazepam, angioplastia primária no supra; emergência hipertensiva: tratamento habitual + diazepam, nitroprussiato ou nitroglicerina; betabloqueador contraindicado; taquiarritmia precoce: bicarbonato 1–2 mEq/kg; carvão 1 g/kg (máx. 50 g) se ingestão oral < 1 h; observação de 6–8 h (8–12 h com dor torácica; mais com sintoma neurológico ou hipertermia); notificação (F14.0; acidental T40.5). Anfetaminas: manejo semelhante, evitar betabloqueador; ecstasy com hiponatremia (CID F15.0; acidental T43.6).",
     "Leigh-Smith S, Harris T. Tension pneumothorax — time for a re-think? (Emerg Med J 2005;22:8): desvio de traqueia é sinal tardio e pouco frequente.",
     "Mazzolai L et al. 2024 ESC Guidelines for the management of peripheral arterial and aortic diseases (Eur Heart J 2024;45:3538): dissecção de aorta e ADD-RS.",
     "Silva PGMB et al. Diretriz Brasileira de Avaliação e Diagnóstico da Dor Torácica na Emergência — 2025 (Arq Bras Cardiol 2025;122(9):e20250620). https://abccardiol.org/en/article/brazilian-guideline-for-the-evaluation-and-diagnosis-of-chest-pain-in-the-emergency-department-2025/",
@@ -285,6 +298,9 @@ const QUEIXAS = [
     "Exame: FR, SpO2, PA deitado e em pé, enchimento capilar, consciência, rigidez de nuca, pele (petéquias, exantema), prova do laço na suspeita de dengue, abdome (hepatomegalia) e busca do foco"
   ],
   caminhos: [
+    { rot: "Febre até 6 semanas após quimioterapia ou com neutrófilos baixos (neutropenia febril)", conduta: "neutropenia-febril" },
+    { rot: "Febre com bolhas, pele soltando, feridas na boca ou nos olhos, ou edema da face, após remédio novo (Stevens-Johnson, NET ou DRESS)", conduta: "farmacodermia" },
+    { rot: "Idoso com febre e confusão nova (delirium): procurar o foco e sinais de sepse", conduta: "rebaixamento-delirium" },
     { rot: "Dengue: febre de 2 a 7 dias com 2 ou mais de náusea, vômitos, exantema, mialgia, artralgia, cefaleia, dor retro-orbital, petéquias, prova do laço positiva ou leucopenia; classificar de A a D, sem AINE nem AAS", conduta: "dengue" },
     { rot: "Chikungunya: febre de até 7 dias com dor articular intensa de início súbito; sem AINE nem corticoide na fase aguda; grupo de risco (gestante, mais de 65 anos, comorbidade) em observação e reavaliação diária", conduta: "chikungunya" },
     { rot: "Febre súbita com cefaleia e mialgia após carrapato, capivara, cavalo, cão ou mata nos últimos 15 dias (febre maculosa)", conduta: "febre-maculosa" },
@@ -301,6 +317,10 @@ const QUEIXAS = [
   ],
   escores: ["NEWS2 (triagem de sepse; não usar qSOFA isoladamente)", "Classificação de risco da dengue (grupos A, B, C e D)", "MASCC (neutropenia febril)"],
   fontes: [
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 94 Neutropenia febril (febre oral > 38,3 °C, axilar > 37,8 °C ou > 38 °C por 1 h; neutrófilos < 500/µL ou 500–1.000 em queda; até 6 semanas após quimioterapia na triagem; exames e hemoculturas antes do antibiótico; radiografia de tórax mesmo sem sintomas; antibiótico em até 1 h; alto e baixo risco; MASCC (tabela 5) e CISNE (tabela 6); cefepima 2 g 8/8 h, piperacilina-tazobactam 4,5 g 8/8 h, meropeném 1 g 8/8 h; vancomicina só com instabilidade, cateter, pele e partes moles ou pneumonia; oral: ciprofloxacino 750 mg 12/12 h + amoxicilina-clavulanato 500/125 mg 8/8 h; critérios de alta: acesso ao hospital em 1 h, acompanhante 24 h, 4 h de observação, 1ª dose na unidade, reavaliação em 48–72 h se a febre persistir; ESBL: carbapenêmico).",
+    "Freifeld AG et al. Clinical practice guideline for the use of antimicrobial agents in neutropenic patients with cancer: 2010 update by the Infectious Diseases Society of America (Clin Infect Dis 2011;52(4):e56-e93; PMID 21258094): febre oral ≥ 38,3 °C ou ≥ 38 °C por 1 h; neutrófilos < 500/mm³ ou queda prevista abaixo de 500 em 48 h; 2 pares de hemoculturas (um do cateter central); monoterapia com betalactâmico antipseudomonas (cefepima, piperacilina-tazobactam, carbapenêmico); vancomicina não é rotina, só com instabilidade, suspeita de infecção do cateter, pele e partes moles ou pneumonia; antifúngico empírico após 4–7 dias de febre com neutropenia prevista > 7 dias. https://doi.org/10.1093/cid/cir073",
+    "Creamer D et al. U.K. guidelines for the management of Stevens-Johnson syndrome/toxic epidermal necrolysis in adults 2016 — British Association of Dermatologists (Br J Dermatol 2016;174(6):1194-1227): suspender o fármaco causador; SCORTEN nas primeiras 24 h; descolamento > 10% da superfície: centro de queimados ou UTI com experiência; equipe multiprofissional; avaliação oftalmológica em até 24 h; cuidados de pele (sem desbridar, curativos não aderentes), mucosas, dor, líquidos, nutrição, temperatura ambiente, prevenção de infecção sem antibiótico profilático; sem recomendação firme para imunomodulação. Diretriz pediátrica da BAD 2018 à parte. https://doi.org/10.1111/bjd.14530",
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 107 Farmacodermias: suspender a droga suspeita é a conduta mais importante; exantema simples (90%, 5–14 dias após o fármaco) sem exames nem internação, mas atenção a sinais de gravidade (febre alta, edema facial, lesão de mucosa, bolhas, Nikolsky, queimação na pele ou mucosa); DRESS: latência de 2–8 semanas, febre, linfonodos, eosinofilia, linfócitos atípicos, enzimas hepáticas altas, edema facial, mortalidade de 10–20%, exames (hemograma, enzimas hepáticas, ureia, creatinina, urina; radiografia ou TC de tórax se sintomas respiratórios), escore RegiSCAR (tabela 1), prednisona 1 mg/kg/dia até normalizar e retirada em 6–8 semanas, dermatologia; SSJ/NET: latência de 3–7 semanas (média), pródromo, lesões em alvo atípico, bolhas, Nikolsky, mucosas; SSJ < 10%, sobreposição 10–30%, NET > 30% da superfície; fármacos (anticonvulsivantes aromáticos, AINE, alopurinol, sulfonamidas, nevirapina); ALDEN; internação imediata e dermatologia; UTI se descolamento > 30% ou 2 critérios do SCORTEN; imunossupressão sem consenso na literatura, mas o capítulo propõe prednisona 1–2 mg/kg/dia por 3–5 dias nas primeiras 48–72 h, associada a ciclosporina 3–5 mg/kg/dia (decisão do especialista); oftalmologia, otorrino e gineco ou urologia pelas mucosas; dor, curativos não aderentes e limpeza local.",
     "NICE NG240. Meningitis (bacterial) and meningococcal disease: recognition, diagnosis and management, 2024 (rec. 1.1.4, 1.1.9 e 1.1.10): púrpura > 2 mm, exantema que progride, sinais de meningite.",
     "Ministério da Saúde. Leptospirose: diagnóstico e manejo clínico, 2014: caso suspeito (exposição nos 30 dias anteriores), sinais de alerta (quadro 1), antibiótico na suspeita e indicações de internação.",
     "Nota Técnica nº 49/2026-CGZHA/DEDT/SVSA/MS (febre maculosa): doxiciclina para todo caso suspeito; sinais de gravidade; doxiciclina EV e internação nos graves.",
@@ -457,6 +477,9 @@ const QUEIXAS = [
     "Exame: comparar com o lado oposto; deformidade, edema, ferida; palpação de pontos ósseos (borda posterior e ponta dos maléolos, base do 5º metatarso, navicular, cabeça da fíbula, patela, tabaqueira anatômica); capacidade de dar 4 passos; flexão do joelho a 90°; calor e derrame articular; pulsos, enchimento capilar, sensibilidade e força abaixo da lesão; no pescoço, dor na linha média e rotação ativa de 45° para cada lado"
   ],
   caminhos: [
+    { rot: "Membro frio, pálido e sem pulso, com dor súbita (oclusão arterial aguda)", conduta: "oclusao-arterial" },
+    { rot: "Trauma de alta energia (moto, atropelamento, queda de altura) ou com mais de uma região atingida: atendimento do politraumatizado", conduta: "politrauma" },
+    { rot: "Dor no pescoço após trauma (queda, colisão, mergulho): regra canadense ou NEXUS antes de pedir imagem", conduta: "trauma-cervical" },
     { rot: "Entorse de tornozelo: aplicar as regras de Ottawa antes do RX", conduta: "entorse" },
     { rot: "Trauma com suspeita de fratura (deformidade, dor óssea à palpação, não consegue usar o membro): RX e imobilização", conduta: "fratura-imobilizacao" },
     { rot: "Crise de gota: monoartrite súbita do hálux, tornozelo ou joelho, crises prévias; na dúvida com infecção, punção", conduta: "gota" },
@@ -473,6 +496,8 @@ const QUEIXAS = [
   ],
   escores: ["Regras de Ottawa (tornozelo e pé; joelho)", "Regra canadense de coluna cervical (Canadian C-spine) e NEXUS", "Escore de Wells para TVP (2 níveis)"],
   fontes: [
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 40 Oclusão arterial aguda (6 P; trombose × embolia; Rutherford, tabela 2; cirurgião vascular antes da imagem; exames: hemograma, coagulograma, CPK, ureia, creatinina, eletrólitos, TGO, TGP, gasometria venosa, lactato, ECG; Doppler; analgesia — dipirona 1–2 g EV, morfina 0,1 mg/kg EV e 0,05 mg/kg a cada 15 min; evitar AINE; aquecimento passivo com algodão, nunca calor direto; tabela 3: HNF 80 unidades/kg EV em bolus + 18 unidades/kg/h pelo TTPa, ou enoxaparina 1 mg/kg SC 12/12h (cuidado com ClCr < 30); AAS 300 mg + 100 mg/dia na DAOP; síndrome compartimental e fasciotomia; pós-operatório em UTI).",
+    "Björck M et al. Editor's Choice — European Society for Vascular Surgery (ESVS) 2020 Clinical Practice Guidelines on the Management of Acute Limb Ischaemia (Eur J Vasc Endovasc Surg 2020;59(2):173-218; PMID 31899099): diagnóstico clínico e classificação de Rutherford; heparina imediata ao diagnóstico; angio-TC antes da revascularização quando não atrasa o tratamento; revascularização urgente (cirurgia aberta ou endovascular) — imediata no membro imediatamente ameaçado (IIb); amputação primária no membro inviável (III); vigiar síndrome compartimental e fasciotomia; procurar a fonte embólica (ECG, ecocardiograma) e anticoagular a longo prazo após embolia cardíaca. https://doi.org/10.1016/j.ejvs.2019.09.006",
     "Benito N et al. Executive summary: Guidelines for the diagnosis and treatment of septic arthritis in adults and children, developed by the GEIO (SEIMC), SEIP and SECOT (Enferm Infecc Microbiol Clin (Engl Ed) 2024;42(4):208-214; PMID 37919201): articulação nativa; toda artrite aguda é infecciosa até prova em contrário; hemoculturas e líquido sinovial antes do antibiótico; cristais não excluem infecção; internar; drenagem precoce; na sepse, culturas se não atrasarem o antibiótico além de 45 min. https://doi.org/10.1016/j.eimce.2023.07.007",
     "Osmon DR et al. Diagnosis and management of prosthetic joint infection: clinical practice guidelines by the IDSA (Clin Infect Dis 2013;56(1):e1-e25; PMID 23223583). https://doi.org/10.1093/cid/cis803",
     "Coakley G et al. BSR & BHPR, BOA, RCGP and BSAC guidelines for management of the hot swollen joint in adults (Rheumatology (Oxford) 2006;45(8):1039-1041; PMID 16829534). https://doi.org/10.1093/rheumatology/kel163a",
@@ -515,6 +540,9 @@ const QUEIXAS = [
     "Glicemia capilar, SpO2, sinais vitais e sinais de intoxicação ou trauma"
   ],
   caminhos: [
+    { rot: "Ingestão de chumbinho ou inseticida (muita saliva, suor, vômitos, pupilas pequenas, falta de ar)", conduta: "organofosforado" },
+    { rot: "Agitação com taquicardia, pupilas dilatadas, suor ou febre após cocaína, crack, anfetamina ou ecstasy", conduta: "cocaina" },
+    { rot: "Idoso agitado ou confuso, de início recente e flutuante: delirium antes de transtorno psiquiátrico", conduta: "rebaixamento-delirium" },
     { rot: "Ideação ou tentativa de suicídio, autolesão", conduta: "ideacao-suicida" },
     { rot: "Violência sexual (atendimento na porta)", conduta: "violencia-sexual" },
     { rot: "Agitação psicomotora", conduta: "agitacao" },
@@ -522,6 +550,8 @@ const QUEIXAS = [
   ],
   escores: [],
   fontes: [
+    "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 100 Intoxicações por álcoois e drogas de abuso — cocaína e crack: síndrome adrenérgica; exames (hemograma, função renal, eletrólitos, CPK, ECG, gasometria com lactato; troponina se dor torácica; TC de crânio se sintoma neurológico persistente; angio-TC se suspeita de dissecção); intubação sem succinilcolina e evitando cetamina; diazepam 5–10 mg EV a cada 5–10 min até controlar (criança 0,25–0,4 mg/kg, máx. 10 mg), midazolam IM sem acesso; evitar haloperidol e clorpromazina; SCA: tratamento habitual + diazepam, angioplastia primária no supra; emergência hipertensiva: tratamento habitual + diazepam, nitroprussiato ou nitroglicerina; betabloqueador contraindicado; taquiarritmia precoce: bicarbonato 1–2 mEq/kg; carvão 1 g/kg (máx. 50 g) se ingestão oral < 1 h; observação de 6–8 h (8–12 h com dor torácica; mais com sintoma neurológico ou hipertermia); notificação (F14.0; acidental T40.5). Anfetaminas: manejo semelhante, evitar betabloqueador; ecstasy com hiponatremia (CID F15.0; acidental T43.6).",
+    "Ministério da Saúde. Diretrizes Brasileiras para Diagnóstico e Tratamento de Intoxicações por Agrotóxicos, cap. 2 — Inibidores de colinesterase (Portaria Conjunta SAS/SCTIE nº 79, de 14/12/2018; versão resumida Conitec, 2022): diagnóstico clínico; moderada ou grave se Glasgow ≤ 13, alteração respiratória, fasciculações ou fraqueza, FC < 60 ou > 100, hipotensão ou exposição intencional, e esses vão para UTI após estabilização; síndrome intermediária 24–96 h após a fase colinérgica; neuropatia tardia em 6–21 dias; dois acessos venosos (um só para atropina); atropina 0,6–3 mg EV rápido, dobrando a cada 5 min até atropinização (FC > 80, PAS > 80, ausculta limpa), depois infusão de 10–20% da dose total por hora em SF 0,9%; criança 0,01–0,06 mg/kg a cada 5–15 min; toxicidade (taquicardia, íleo, hipertermia, delírio, retenção urinária): parar 30 min e voltar com 20% a menos; taquicardia isolada não suspende; monitorar a cada 5 min; não recomendados: indução de vômito, lavagem e carvão de rotina, catárticos e oximas; carvão dose única só em ingestão grande até 1 h (0,1–1 g/kg, máx. 50 g); observar 6–12 h; exames (hemograma, eletrólitos, gasometria, glicemia, função hepática e cardíaca, amilase, coagulação, ECG, radiografia de tórax; colinesterase eritrocitária e plasmática); notificar todo caso no Sinan (intoxicação exógena; violência se tentativa de suicídio; CAT se ocupacional); EPI; CIATox 0800 722 6001; tentativa de suicídio → RAPS. https://www.gov.br/conitec/pt-br/midias/protocolos/resumidos/ddt_resumido_intoxicacoes_por_agrotoxicos_cap2.pdf",
     "Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 60 — Emergências neuropsiquiátricas, seção Risco de suicídio (nenhuma escala prevê com confiabilidade; fatores de risco e proteção, tabela 1; critérios de internação, tabela 2: ideação ou planejamento, transtorno grave, baixo suporte, tentativa violenta ou premeditada, homem > 45 anos, impulsividade, causa orgânica; observação com reavaliações; alta com responsável, controle dos remédios e afastamento de meios).",
     "Ministério da Saúde. Portaria de Consolidação GM/MS nº 4, de 28/9/2017, anexo 1 do anexo V (Lista Nacional de Notificação Compulsória), na redação da Portaria GM/MS nº 5.201, de 15/8/2024: violência sexual e tentativa de suicídio de notificação imediata (até 24 h) à vigilância municipal; demais violências, semanal. https://bvsms.saude.gov.br/bvs/saudelegis/gm/2017/prc0004_03_10_2017.html",
     "Brasil. Ministério da Saúde. Prevenção e tratamento dos agravos resultantes da violência sexual contra mulheres e adolescentes — Norma Técnica, 3ª ed. atualizada e ampliada, 2012: contracepção de emergência, profilaxias, interrupção da gestação prevista em lei sem exigência de boletim de ocorrência. https://bvsms.saude.gov.br/bvs/publicacoes/prevencao_agravo_violencia_sexual_mulheres_3ed.pdf",
@@ -583,6 +613,7 @@ const QUEIXAS = [
     "Exame: acuidade, pupilas, hiperemia difusa ou ao redor da córnea, córnea, fluoresceína, pálpebra superior evertida"
   ],
   caminhos: [
+    { rot: "Olho vermelho com feridas na boca, bolhas ou manchas na pele após remédio novo (Stevens-Johnson)", conduta: "farmacodermia" },
     { rot: "Secreção, coceira ou sensação de areia, córnea limpa e visão normal (conjuntivite)", conduta: "conjuntivite" },
     { rot: "Cisco ou corpo estranho superficial, ou arranhão que cora com fluoresceína", conduta: "olho-vermelho" },
     { rot: "Mancha de sangue na parte branca do olho, sem dor e sem baixa visual (hemorragia subconjuntival)", conduta: "olho-vermelho" },
@@ -591,6 +622,7 @@ const QUEIXAS = [
   ],
   escores: [],
   fontes: [
+    "Creamer D et al. U.K. guidelines for the management of Stevens-Johnson syndrome/toxic epidermal necrolysis in adults 2016 — British Association of Dermatologists (Br J Dermatol 2016;174(6):1194-1227): suspender o fármaco causador; SCORTEN nas primeiras 24 h; descolamento > 10% da superfície: centro de queimados ou UTI com experiência; equipe multiprofissional; avaliação oftalmológica em até 24 h; cuidados de pele (sem desbridar, curativos não aderentes), mucosas, dor, líquidos, nutrição, temperatura ambiente, prevenção de infecção sem antibiótico profilático; sem recomendação firme para imunomodulação. Diretriz pediátrica da BAD 2018 à parte. https://doi.org/10.1111/bjd.14530",
     "Hajjar LA et al. (eds.) Medicina de Emergência: Abordagem Prática (HC-FMUSP), 18ª ed. (2024), cap. 108 — Emergências oftalmológicas: síndrome do olho vermelho (sinais de alarme e diferencial por secreção, visão, dor, hiperemia, córnea e pupila); queimadura química (irrigação por 30–60 min, no mínimo 2 L, até pH 7,3–7,7); trauma penetrante (proteção sem curativo compressivo, TC de órbitas); glaucoma agudo (acetazolamida 500 mg VO, timolol 0,5% 1 gota, oftalmologia com urgência); celulite pré-septal (cefalexina 500 mg 6/6h ou amoxicilina-clavulanato 250–500 mg 8/8h VO por 10 dias; grave: internar e antibiótico EV); hiposfagma benigno, resolução em 1–3 semanas; na recidiva, avaliar distúrbio da coagulação; pH da irrigação até 7,3–7,7; timolol evitado na asma e no bloqueio cardíaco.",
     "Harrison's Principles of Internal Medicine, 22ª ed. (2025), cap. 34 — Disorders of the Eye: abrasão vista com fluoresceína e luz azul; everter a pálpebra superior; corpo estranho retirado com cotonete umedecido após colírio anestésico ou por irrigação com soro; reexaminar no dia seguinte; glaucoma agudo (dor, edema de córnea, náusea e vômitos) tratado com acetazolamida e colírios hipotensores.",
     "Cheung AY et al. American Academy of Ophthalmology. Conjunctivitis Preferred Practice Pattern 2023 (Ophthalmology 2024;131:P134): encaminhar se baixa visual, dor moderada ou intensa, secreção purulenta intensa, córnea acometida, herpes ou sem resposta; usuário de lente de contato com olho vermelho tem risco de ceratite.",

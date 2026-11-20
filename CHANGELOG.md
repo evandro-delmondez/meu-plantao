@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 1.64.2 — 2026-11-19
+- **Pedido de internação**: sem as linhas "HPP: não informado" e "Medicamentos em uso: não informado" (Alergias continua).
+- **Alta**: o destino diz "Alta com orientações." (sem repetir os sinais de retorno, que já estão na linha acima).
+
 ## 1.64.1 — 2026-11-19
 - **IA do pedido de internação**: "Melhorar texto" revisa só a justificativa e os objetivos; a história, o exame e os exames (já conferidos) ficam como estão.
 

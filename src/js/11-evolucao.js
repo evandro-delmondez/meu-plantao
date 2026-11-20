@@ -468,7 +468,8 @@ function atInternAuto(){
 function atIntern(it){
   const I=atd.intern, L=[];
   // começa pela história e pelo exame físico (o local e a hipótese ficam em outros campos do MV)
-  const hda=(atd.man.hda!=null?atd.man.hda:atTexto("hda",it)).trim(); if(hda) L.push(`História: ${hda}`);
+  // no pedido, antecedente vazio não ocupa linha (só Alergias continua, mesmo "não informado")
+  const hda=(atd.man.hda!=null?atd.man.hda:atTexto("hda",it)).split("\n").filter(l=>!/^(HPP|Medicamentos em uso):\s*não informado\s*$/i.test(l.trim())).join("\n").trim(); if(hda) L.push(`História: ${hda}`);
   const ex=(atd.man.exame!=null?atd.man.exame:atTexto("exame",it)).trim(); if(ex) L.push(`Exame físico: ${ex.replace(/^Exame físico:\s*/i,"").replace(/\nExame físico:\s*\n?/i,"\n")}`);
   // campos vazios puxam da reavaliação (exames alterados e laudos) e do que foi marcado no PS
   const au=atInternAuto(), lab=I.lab.trim()||au.lab, laudos=I.laudos.trim()||au.laudos, feito=I.feito.trim()||au.feito;

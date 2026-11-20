@@ -1017,3 +1017,12 @@ test("checklist marca o escore: 'câncer ativo' no checklist da TVP marca o Well
   await expect(box.locator('input[data-b="0"]')).not.toBeChecked();
   expect(erros).toEqual([]);
 });
+
+test("pedido de internação sem 'HPP: não informado'", async ({ page }) => {
+  const erros = await abrir(page);
+  await atender(page, "pac");
+  await page.click('#atCorpo [data-atdec="internacao"]');
+  const t = await saida(page, "intern").inputValue();
+  expect(t).not.toMatch(/HPP: não informado/);
+  expect(erros).toEqual([]);
+});

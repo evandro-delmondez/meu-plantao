@@ -47,7 +47,7 @@ function hospApagar(){
 const hospCond=id=>hospAtivo()&&(hospPac().condutas||{})[id]||null;
 const hospUnid=id=>{const c=hospCond(id);return c&&typeof c.unidade==="string"?c.unidade:null};
 const hospLista=(lista,id)=>(Array.isArray(lista)?lista:[]).filter(x=>x&&Array.isArray(x.condutas)&&(x.condutas.includes(id)||x.condutas.includes("*")));
-const DESTINOS_APP=[["alta","Alta com orientações","- Alta com orientações e sinais de retorno."],["observacao","Observação","- Mantido em observação para reavaliação."],["internacao","Internação","- Indicada internação."],["transferencia","Transferência","- Solicitada transferência pela regulação."]];
+const DESTINOS_APP=[["alta","Alta com orientações","- Alta com orientações."],["observacao","Observação","- Mantido em observação para reavaliação."],["internacao","Internação","- Indicada internação."],["transferencia","Transferência","- Solicitada transferência pela regulação."]];
 function destinos(){const d=hospAtivo()&&hospPac().desfechos;return Array.isArray(d)&&d.length?d.filter(x=>x&&x.id&&x.rot).map(x=>[x.id,x.rot,x.txt||"- "+x.rot+"."]):DESTINOS_APP}
 function fillDestino(){
   const s=$("#evDestino"); if(!s) return; const v=s.value;

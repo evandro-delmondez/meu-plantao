@@ -18,15 +18,14 @@ Perfil de uso (entrevista de 2026-09-25): computador e celular por igual; UPA/PS
 Depois: perfil por unidade (remédios disponíveis, diluições locais, telefones de regulação e CIATox); intoxicações e antídotos; equivalência de opioides e de corticoides.
 
 ## Pendências combinadas
-Atualizado em 2026-11-12 (versão 1.63.0). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
+Atualizado em 2026-11-20 (versão 1.64.2). Decisões: `docs/DECISOES.md`. Divergências: `docs/REVISAO.md`. Relatórios da revisão geral: `.rascunhos/revisao-codigo.md`, `.rascunhos/revisao-conteudo.md`.
 
-**Em andamento (2026-11-12, versão 1.63.0)**
-- No ar: revisão geral (221 correções conferidas), dor abdominal com diferenciais, escore AIR, mpox (fluxo do HSLS no pacote privado), escores dentro do Atendimento, prompts novos da IA, sexo pelo nome, um remédio por classe.
-- Esperam o médico (docs/REVISAO.md, "Revisão geral 2026-11-12"): 12 decisões das correções, 3 do mpox, ceftriaxona na epididimite entérica.
-- A fazer (código): ligar itens do checklist aos critérios dos escores; E8 (exame normal × checklist); P4 (IA só revisa justificativa e objetivos no pedido); trava de negativa perdida na IA da HDA; intuitividade (fluxos.md).
-- Condutas novas: 12 prioritárias (condutas-faltantes.md), depois as outras 38.
-- Item 4 ("ver antes"): `.rascunhos/item4-o-que-muda.html`.
-- Fichas com `_conferir` (9), bromoprida renal, hepatopatia × paracetamol: docs/REVISAO.md.
+**Em andamento (2026-11-20, versão 1.64.2)**
+- No ar: checklist marca os escores (1.64.0); IA do pedido de internação só na justificativa e objetivos; exame coerente com o checklist e a FC; trava de negativa; sexo pelo nome; revisão geral (221 correções), dor abdominal com diferenciais, AIR, mpox.
+- Pronto no ramo `lote5` (testado, 394 testes): 12 condutas novas conferidas. Entra na main depois das decisões.
+- Esperam o médico: `.rascunhos/decisoes-3.md` (31 itens: revisão geral, mpox, lote 5, item 4).
+- A fazer: "Próximo" fixo na barra de etapas do celular (tentativa com sticky não funcionou); "aguardando vaga" na lista; sugestões de itens novos de checklist para os escores (.rascunhos/escores-checklist/mapa.md); 38 condutas restantes (condutas-faltantes.md, P2/P3).
+- Fichas com `_conferir` (9), bromoprida renal, hepatopatia × paracetamol; ficha da atropina (dose pediátrica no organofosforado) e Intoxicação exógena/cartão Agora com a Portaria 11.211/2026.
 
 **Conteúdo clínico (redação + conferência independente)**
 1. Atualizar fontes antigas: crise hipertensiva (ACC/AHA 2025), ARIA 2010, BTS 2009, ACCP 2012/2016, ATLS 11ª, EAU 2025, GINA na ficha da prednisona, WAO 2020 (lista em revisao-conteudo.md).

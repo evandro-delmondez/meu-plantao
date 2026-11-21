@@ -24,7 +24,8 @@ Atualizado em 2026-11-20 (versão 1.64.2). Decisões: `docs/DECISOES.md`. Diverg
 - No ar: checklist marca os escores (1.64.0); IA do pedido de internação só na justificativa e objetivos; exame coerente com o checklist e a FC; trava de negativa; sexo pelo nome; revisão geral (221 correções), dor abdominal com diferenciais, AIR, mpox.
 - Pronto no ramo `lote5` (testado, 394 testes): 12 condutas novas conferidas. Entra na main depois das decisões.
 - Esperam o médico: `.rascunhos/decisoes-3.md` (31 itens: revisão geral, mpox, lote 5, item 4).
-- A fazer: "Próximo" fixo na barra de etapas do celular (tentativa com sticky não funcionou); "aguardando vaga" na lista; sugestões de itens novos de checklist para os escores (.rascunhos/escores-checklist/mapa.md); 38 condutas restantes (condutas-faltantes.md, P2/P3).
+- (2026-11-21, 1.66.0) Feitos: IA da HDA revista (Haiku 5.5, marcadores de número, refaz 1 vez, banco de casos em tests/ia-conferencia.spec.mjs); paciente de plantão encerrado sai do Início; apagar o aberto não recria "Sem nome"; ganhos por dia no calendário e do plantão atual no Início. Medir com "Meu uso no mês" quantas HDAs a IA ainda recusa (r_numeros, r_remedio, r_negativa).
+- (2026-11-20, 1.65.0) Feitos: Próximo flutuante no celular, aguardando vaga, lembrete de reavaliação, uso do mês. A fazer: decisões-3 e lote 5; lote 6 (itens 1–8, redação em .rascunhos/lote6); protótipo do pacote B (barra Início/Atender/Condutas/Plantões/Mais, expresso, atalhos) aguardando aprovação; etapas recolhíveis no Atendimento do celular (14,6 telas); sugestões de itens novos de checklist para os escores (.rascunhos/escores-checklist/mapa.md); 38 condutas restantes (condutas-faltantes.md, P2/P3).
 - Fichas com `_conferir` (9), bromoprida renal, hepatopatia × paracetamol; ficha da atropina (dose pediátrica no organofosforado) e Intoxicação exógena/cartão Agora com a Portaria 11.211/2026.
 
 **Conteúdo clínico (redação + conferência independente)**

@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.66.0 — 2026-11-21
+- **IA da HDA revista**: modelo atual (Claude Haiku 5.5, ~10× mais barato; Sonnet 5.5 opcional em Backup › IA), sem busca na web. Os números vão como marcadores e voltam no lugar, então a IA não consegue trocar número. Parêntese inventado sai sozinho. Se a conferência recusar (remédio novo, negativa apagada, número inventado), a IA refaz uma vez com o motivo antes de desistir. Negativas aceitam o termo médico ("nega falta de ar" → "nega dispneia"). Banco de 16 casos nos testes.
+- **Plantão encerrado**: paciente sem desfecho sai do Início, dos avisos e do "em aberto" 30 min depois do fim do turno (ou ao finalizar o plantão); continua em "Últimos 30 dias".
+- **Apagar o paciente aberto** limpa o Atendimento: ele não volta mais como "Sem nome".
+- **Plantões**: o calendário mostra, em cada dia, pacientes e reais; o Início mostra quanto o plantão em andamento já vale.
+
 ## 1.65.0 — 2026-11-20
 - **Lembrete de reavaliação**: medicação na unidade põe "reavaliar às HH:MM (30 min)" no paciente da lista; toque troca para 60, 120 min ou desliga. Na hora, o paciente fica vermelho na lista e no Início, com aviso (bipe e vibração se o som estiver ligado).
 - **Aguardando vaga**: caixa na internação; o paciente conta como atendido, continua no Início e entra na passagem de plantão.

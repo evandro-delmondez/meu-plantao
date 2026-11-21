@@ -411,7 +411,7 @@ test("sincronização: recupera das versões antigas o paciente que sumiu; sem m
   expect(store.hist.length).toBe(n0);
   // a cópia atual volta a uma versão sem o paciente e este aparelho perde a lista
   store.content = vazio.content; store.sha = "sha" + (++store.n); store.hist.push({ sha: store.sha, content: vazio.content });
-  await pa.evaluate(() => localStorage.removeItem("mph_pacientes_v1")); await pa.reload();
+  await pa.evaluate(() => { localStorage.removeItem("mph_pacientes_v1"); location.reload(); }); await pa.waitForLoadState("load"); await pa.waitForTimeout(300);
   await aba(pa, "pacientes");
   await expect(pa.locator("#psEstado")).toContainText("Sincronizado");
   await expect(item(pa, "Paciente Da Uti Sumido")).toHaveCount(0);

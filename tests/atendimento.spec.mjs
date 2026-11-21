@@ -386,7 +386,9 @@ test("IA na HDA: sem chave orienta; com chave troca o texto (sem o nome), trava 
   resposta = antes.replace(/^[^\n]*/, "Paciente refere dor de cabeça há 2 dias, sem melhora com dipirona.");
   await page.click("#atCorpo [data-atia]");
   await expect(page.locator("#atIaEst")).toContainText("Texto melhorado pela IA");
-  expect(corpo.model).toBe("claude-haiku-4-5-20251001");
+  expect(corpo.model).toBe("claude-haiku-5-5");
+  expect(corpo.temperature).toBeUndefined();
+  expect(corpo.tools).toBeUndefined();
   expect(JSON.stringify(corpo.messages)).not.toContain("Carla");                 // o nome não sai do aparelho
   await expect(page.locator('#atCorpo [data-atout="hda"]')).toHaveValue(/^Paciente refere dor de cabeça há 2 dias, sem melhora com dipirona\./);
   await page.click("#atIaEst [data-iadesfaz]");
@@ -394,7 +396,7 @@ test("IA na HDA: sem chave orienta; com chave troca o texto (sem o nome), trava 
   // trava: número mudou → mantém o original
   resposta = antes.replace(/2/g, "3");
   await page.click("#atCorpo [data-atia]");
-  await expect(page.locator("#atIaEst")).toContainText("mudou ou tirou um número");
+  await expect(page.locator("#atIaEst")).toContainText("errou um número");
   await expect(page.locator('#atCorpo [data-atout="hda"]')).toHaveValue(antes);
   expect(erros).toEqual([]);
 });
@@ -812,10 +814,10 @@ test("IA nunca troca nem acrescenta remédio: Frontal com venlafaxina é recusad
   await campo(page, "hma").fill("crise de ansiedade 2d, tomou frontal");
   await campo(page, "muc").fill("frontal 0,5 mg");
   const antes = await saida(page, "hda").inputValue();
-  // 1) a IA "traduz" o Frontal: recusado, o texto fica como estava
-  resp = "Paciente refere crise de ansiedade há 2 dias. Fez uso de Frontal (venlafaxina).";
+  // 1) troca o remédio sem parêntese: recusado (duas vezes), o texto fica como estava
+  resp = antes.replace(/frontal/gi, "venlafaxina");
   await page.click('#atCorpo [data-atia="hda"]');
-  await expect(page.locator("#atIaEst")).toContainText(/remédio|parêntese/i);
+  await expect(page.locator("#atIaEst")).toContainText(/remédio/i);
   await expect(saida(page, "hda")).toHaveValue(antes);
   // 2) correção de grafia é aceita (losartan → losartana), também nos antecedentes
   await campo(page, "muc").fill("losartan 50 mg");
@@ -828,6 +830,12 @@ test("IA nunca troca nem acrescenta remédio: Frontal com venlafaxina é recusad
   resp = base.replace("losartan 50 mg", "Enalapril 50 mg");
   await page.click('#atCorpo [data-atia="hda"]');
   await expect(page.locator("#atIaEst")).toContainText(/remédio/);
+  // 4) a IA "traduz" o remédio entre parênteses: o parêntese novo sai sozinho, o remédio fica
+  resp = base.replace("losartan 50 mg", "Losartana (losartana potássica) 50 mg").replace(/frontal/i, "Frontal (venlafaxina)");
+  await page.click('#atCorpo [data-atia="hda"]');
+  await expect(page.locator("#atIaEst")).toContainText("Texto melhorado pela IA");
+  expect(await saida(page, "hda").inputValue()).not.toMatch(/venlafaxina|potássica/i);
+  await expect(saida(page, "hda")).toHaveValue(/Losartana 50 mg/);
   expect(erros).toEqual([]);
 });
 

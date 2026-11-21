@@ -295,3 +295,22 @@ test("Plantões: internados em UTI e semi e pacientes passados do mês, com data
   await expect(page.locator("#plCorpo .pluti")).toContainText("0 pacientes em outubro de 2026");
   expect(erros).toEqual([]);
 });
+
+test("Plantão em andamento mostra quanto já vale; o calendário mostra pacientes e reais do dia", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 10, 8, 0));
+  const erros = await abrir(page);
+  await page.click("#hPlIni");
+  await page.click('#hPlBox [data-plt="D"]');
+  await expect(page.locator("#hPlBox")).toContainText("Plantão em andamento");
+  await aba(page, "pacientes");
+  for (const n of ["Ganho Um", "Ganho Dois"]) { await page.fill("#pcNome", n); await page.click("#pcAdd"); await aba(page, "pacientes"); }
+  await page.locator("#pcCorpo .pcitem", { hasText: "Ganho Um" }).locator('[data-pd="tipo"]').selectOption("alta");
+  await page.locator("#pcCorpo .pcitem", { hasText: "Ganho Dois" }).locator('[data-pd="tipo"]').selectOption("internacao");
+  await page.locator("#pcCorpo .pcitem", { hasText: "Ganho Dois" }).locator('[data-pd="onde"]').selectOption("uti");
+  await aba(page, "inicio");
+  await expect(page.locator("#hPlBox .hplganho")).toContainText("até agora · 2 atendidos (1 em UTI/semi)");
+  await expect(page.locator("#hPlBox .hplganho")).toContainText("R$");
+  await page.click('#secnav [data-sec="plantoes"]');
+  await expect(page.locator('[data-pldia="2026-11-10"] .pldv')).toContainText("2p · R$");
+  expect(erros).toEqual([]);
+});

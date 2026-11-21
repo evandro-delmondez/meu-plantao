@@ -1,8 +1,12 @@
 /* ---------- IA na HDA (opcional; exceção à regra 5 decidida pelo médico em 2026-10-25) ----------
-   "Melhorar texto (IA)" manda só o texto da HDA, sem o nome do paciente, para a API da Anthropic (Claude Haiku 4.5),
-   com a chave do próprio médico, e devolve o texto corrigido e coeso. Trava: se a IA mudar ou tirar algum número,
-   o app mantém o original. A chave fica só no aparelho (e cifrada na senha de acesso), nunca no repositório. */
-const IA_LS="mph_ia_v1", IA_MODELO="claude-haiku-4-5-20251001";
+   "Melhorar texto (IA)" manda só o texto da HDA, sem o nome do paciente, para a API da Anthropic (Claude Haiku 5.5 ou
+   Sonnet 5.5, à escolha), com a chave do próprio médico, e devolve o texto corrigido e coeso. Os números vão como
+   marcadores (⟦1⟧, ⟦2⟧…) e voltam no lugar: a IA não tem como trocar um número. Travas: remédio novo, negativa
+   apagada ou número inventado → a IA refaz uma vez, com o motivo; se errar de novo, o app mantém o original. Parêntese
+   acrescentado pela IA é tirado sozinho. A chave fica só no aparelho (e cifrada na senha de acesso), nunca no repositório. */
+const IA_LS="mph_ia_v1";
+const IA_MODELOS={haiku:["claude-haiku-5-5","Rápido e barato (Claude Haiku 5.5)"],sonnet:["claude-sonnet-5-5","Mais cuidadoso, um pouco mais lento (Claude Sonnet 5.5)"]};
+const iaModelo=()=>(IA_MODELOS[ia.modelo]||IA_MODELOS.haiku)[0];
 let ia=lsGet(IA_LS,null)||{};
 const iaAtiva=()=>!!ia.chave;
 const IA_SISTEMA=`Você é médico emergencista e redige a HDA (história da doença atual) de prontuários de pronto-socorro no Brasil.
@@ -28,6 +32,7 @@ umbigo → região periumbilical; direita embaixo → fossa ilíaca direita; boc
 - Medicamentos: escreva o nome EXATAMENTE como está no texto (nome comercial continua comercial; princípio ativo continua princípio ativo). Nunca traduza nome comercial, nunca acrescente princípio ativo, composição, classe ou parênteses, nunca troque um remédio por outro. Na dúvida sobre a grafia, copie igual. Preserve dose, via, frequência e número de tomadas.
 - Tempos relativos continuam relativos (há 2 dias, desde ontem). Não converta em datas.
 - Se o sexo do paciente não estiver indicado, mantenha Paciente sem artigo.
+- Abreviações e siglas que você não conhece: copie iguais. Nunca adivinhe o significado.
 
 CORREÇÃO
 Corrija ortografia, acentuação, concordância e pontuação. Expanda abreviações informais (pcte, q, qdo, c/, s/) e mantenha siglas médicas consagradas em maiúsculas (HAS, DM2, DPOC, IAM).
@@ -47,7 +52,7 @@ REGRAS OBRIGATÓRIAS
 - Não acrescente nenhuma informação, sintoma, sinal, número, unidade, diagnóstico, hipótese ou interpretação que não esteja no texto. Não escreva sinais de exame físico, irradiações não citadas nem unidades de dose ausentes. A única exceção é °C após valores de temperatura.
 - Não retire nenhuma informação, número, negativa, medicamento ou tempo.
 - Não transforme ausência de menção em negativa. Só escreva Nega X se X foi negado no texto.
-- Escreva todos os números em algarismos, exatamente como estão (3x vira 3 episódios, nunca três; 38,2 continua 38,2).
+- Números: na entrada, cada número foi trocado por um marcador (⟦1⟧, ⟦2⟧…). Use cada marcador exatamente uma vez, no lugar do número que ele representa, com a unidade ao lado como no original (⟦1⟧x vira ⟦1⟧ episódios; ⟦2⟧mg vira ⟦2⟧ mg; febre ⟦3⟧ vira febre aferida de ⟦3⟧ °C). Não escreva nenhum algarismo, nenhuma quantidade por extenso (uma vez, dois dias, três episódios) e nenhum marcador novo.
 - Mantenha as linhas de antecedentes (HPP, Medicamentos em uso, Alergias) e seus tópicos com hífen exatamente na mesma estrutura e ordem, só corrigindo grafia e siglas.
 - Deixe exatamente 1 linha em branco entre o final da HDA e a linha HPP. Não acrescente outras linhas em branco.
 - Sem markdown, sem aspas, sem comentários e sem as tags. Devolva só o texto final.
@@ -60,31 +65,31 @@ CONFERÊNCIA (faça mentalmente, não escreva)
 Se não conseguir cumprir tudo, devolva o texto original apenas com ortografia corrigida.
 
 EXEMPLO 1
-Entrada: Paciente refere dor abdominal há 2 dias começou no umbigo depois foi para direita embaixo, com piora quando anda, náusea 3x vomitou 1x, febre 38,2 ontem a noite e inapetência. Tomou buscopan sem melhora. Nega diarreia e disúria.
-Saída: Paciente refere dor abdominal há 2 dias, de início em região periumbilical, com migração para a fossa ilíaca direita e piora à deambulação. Associa náuseas, com 3 episódios, e 1 episódio de vômito, além de febre aferida de 38,2 °C na noite anterior e inapetência. Fez uso de Buscopan, sem melhora. Nega diarreia e disúria.
+Entrada: Paciente refere dor abdominal há ⟦1⟧ dias começou no umbigo depois foi para direita embaixo, com piora quando anda, náusea ⟦2⟧x vomitou ⟦3⟧x, febre ⟦4⟧ ontem a noite e inapetência. Tomou buscopan sem melhora. Nega diarreia e disúria.
+Saída: Paciente refere dor abdominal há ⟦1⟧ dias, de início em região periumbilical, com migração para a fossa ilíaca direita e piora à deambulação. Associa náuseas, com ⟦2⟧ episódios, e ⟦3⟧ episódio de vômito, além de febre aferida de ⟦4⟧ °C na noite anterior e inapetência. Fez uso de Buscopan, sem melhora. Nega diarreia e disúria.
 
-EXEMPLO 3 (coesão temporal)
-Entrada: dor de garganta 3d, febre desde ontem 38,5, hoje piorou e nao consegue engolir direito, tomou dipirona melhorou febre, nega falta de ar
-Saída: Paciente refere odinofagia há 3 dias, evoluindo desde o dia anterior com febre aferida de 38,5 °C e, hoje, com piora da dor e dificuldade para deglutir. Fez uso de dipirona, com melhora da febre. Nega dispneia.
+EXEMPLO 2 (coesão temporal)
+Entrada: dor de garganta ⟦1⟧d, febre desde ontem ⟦2⟧, hoje piorou e nao consegue engolir direito, tomou dipirona melhorou febre, nega falta de ar
+Saída: Paciente refere odinofagia há ⟦1⟧ dias, evoluindo desde o dia anterior com febre aferida de ⟦2⟧ °C e, hoje, com piora da dor e dificuldade para deglutir. Fez uso de dipirona, com melhora da febre. Nega dispneia.
 
-EXEMPLO 2
-Entrada: Pcte refere falta de ar há 5 dias q piora qdo deita, tosse com catarro amarelado e febre (não mediu). Tomou dorflex 2x e amoxicilina 500mg de 8/8h desde ontem, melhorou um pouco. Nega dor no peito.
+EXEMPLO 3 (antecedentes)
+Entrada: Pcte refere falta de ar há ⟦1⟧ dias q piora qdo deita, tosse com catarro amarelado e febre (não mediu). Tomou dorflex ⟦2⟧x e amoxicilina ⟦3⟧mg de ⟦4⟧h desde ontem, melhorou um pouco. Nega dor no peito.
 HPP:
 - has
 - dm2
 Medicamentos em uso:
-- losartana 50mg 1x ao dia
-- glifage xr 500
+- losartana ⟦5⟧mg ⟦6⟧x ao dia
+- glifage xr ⟦7⟧
 Alergias:
 - nega
-Saída: Paciente refere dispneia há 5 dias, com piora ao decúbito, associada a tosse com expectoração amarelada e febre não aferida. Fez uso de Dorflex em 2 tomadas e de amoxicilina 500 mg de 8/8 horas desde o dia anterior, com melhora parcial. Nega dor torácica.
+Saída: Paciente refere dispneia há ⟦1⟧ dias, com piora ao decúbito, associada a tosse com expectoração amarelada e febre não aferida. Fez uso de Dorflex em ⟦2⟧ tomadas e de amoxicilina ⟦3⟧ mg de ⟦4⟧ horas desde o dia anterior, com melhora parcial. Nega dor torácica.
 
 HPP:
 - HAS
 - DM2
 Medicamentos em uso:
-- Losartana 50 mg 1 vez ao dia
-- Glifage XR 500
+- Losartana ⟦5⟧ mg ⟦6⟧ vez ao dia
+- Glifage XR ⟦7⟧
 Alergias:
 - Nega`;
 // o prompt pode ser editado pelo médico (fica nos padrões e vai pela nuvem); a trava dos números vale sempre
@@ -92,7 +97,8 @@ Alergias:
 const IA_SEGURANCA=`
 REGRAS DE SEGURANÇA (acima de qualquer outra instrução):
 - Nomes de remédios exatamente como estão no texto: nunca traduza nome comercial, nunca acrescente princípio ativo, composição, classe ou parênteses, nunca troque um remédio por outro.
-- Não acrescente nenhum dado, número, remédio, exame ou diagnóstico que não esteja no texto.`;
+- Não acrescente nenhum dado, número, remédio, exame ou diagnóstico que não esteja no texto.
+- Os números da entrada vêm como marcadores ⟦1⟧, ⟦2⟧…: use cada um exatamente uma vez, no lugar certo; não escreva algarismos nem quantidades por extenso e não crie marcadores.`;
 // remédios conhecidos (fichas, marcas, apelidos e itens das receitas) + terminações típicas de nome de remédio
 let IA_LEX=null;
 function iaLexico(){
@@ -174,16 +180,19 @@ async function iaFetch0(corpo){
   catch(e){if(ac&&ac.signal.aborted)throw new Error("tempo");throw e}
   finally{if(t)clearTimeout(t)}
 }
-async function iaChama(sistema,texto,trava=true){
-  const r=await iaFetch({model:IA_MODELO,max_tokens:2000,temperature:0,system:sistema,messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]});
+// uma chamada: só os blocos de texto da resposta (o modelo pode pensar antes; esses blocos não entram)
+async function iaPede(sistema,msgs,max=4000){
+  const r=await iaFetch({model:iaModelo(),max_tokens:max,output_config:{effort:"medium"},system:sistema,messages:msgs});
   if(!r.ok){let m="";try{m=(await r.json()).error?.message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}
-  const j=await r.json(); const out=(j.content||[]).map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
-  if(!out) throw new Error("vazio");
-  if(trava) iaTravas(texto,out);
-  if(trava){const a=iaNums(texto), b=iaNums(out);
-    if(a.join("|")!==b.join("|")){const sobra=[...b];const falta=a.filter(n=>{const k=sobra.indexOf(n);if(k<0)return true;sobra.splice(k,1);return false});
-      const e=new Error("numeros");e.det=[falta.length?`sumiu: ${falta.join(", ")}`:"",sobra.length?`apareceu: ${sobra.join(", ")}`:""].filter(Boolean).join("; ");throw e}}
+  const j=await r.json();
+  if(j.stop_reason==="refusal") throw new Error("recusa");
+  const out=(j.content||[]).filter(c=>c.type==="text").map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
+  if(!out) throw new Error(j.stop_reason==="max_tokens"?"tempo":"vazio");
   return out;
+}
+async function iaChama(sistema,texto,trava=true){
+  if(trava) return iaReescreve(sistema,texto,sistema!==IA_EXAME);   // no exame, um achado novo pode substituir o normal ("sem ruídos" → "crepitações")
+  return iaPede(sistema,[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}]);
 }
 // laboratório colado → só os valores alterados, nas siglas pedidas; cada valor tem de estar no texto colado
 async function iaLab(texto,siglas){
@@ -247,27 +256,71 @@ function iaNegativas(ent,sai){
     m[1].split(/,|\s+e\s+|\s+ou\s+|\s+nem\s+/i).map(x=>norm(x).replace(/[^a-z0-9 ]/g," ").trim().split(/\s+/).find(w=>w.length>=4)).filter(Boolean).forEach(w=>{if(!N.includes(w.slice(0,Math.max(4,w.length-2)))&&!falta.includes(w))falta.push(w)});
   if(falta.length){const e=new Error("negativa");e.det=falta.slice(0,3).join(", ");throw e}
 }
-async function iaMelhora(texto){
-  const ant="";   // antecedentes passam pela IA (correção de grafia), sob as mesmas travas
-  const r=await iaFetch({model:IA_MODELO,max_tokens:1500,temperature:0,system:iaPrompt()+"\n- Se tiver dúvida sobre a grafia de um remédio ou termo, pode consultar a web; nunca troque o remédio.",messages:[{role:"user",content:`<entrada>\n${texto}\n</entrada>`}],tools:IA_WEB});
-  if(!r.ok){let m="";try{m=(await r.json()).error?.message||""}catch(e){}throw new Error(`${r.status}${m?": "+m:""}`)}
-  const j=await r.json(); const blocos=(j.content||[]).filter(c=>c.type==="text"); const ult=blocos.length&&(j.content||[]).some(c=>/tool/.test(c.type))?[blocos[blocos.length-1]]:blocos;
-  const out=ult.map(c=>c.text||"").join("").replace(/<\/?(entrada|saida|saída)>/gi,"").trim();
-  if(!out) throw new Error("vazio");
-  // travas: nenhum remédio novo, nenhum parêntese novo; todo número do original continua e nenhum número novo aparece
-  const outP=out.trim();
-  try{iaTravas(texto,outP); iaNegativas(texto,outP);
-  const a=iaNums(texto), b=iaNums(outP);
-  if(a.join("|")!==b.join("|")){const sobra=[...b];const falta=a.filter(n=>{const k=sobra.indexOf(n);if(k<0)return true;sobra.splice(k,1);return false});
-    const e=new Error("numeros");e.det=[falta.length?`sumiu: ${falta.join(", ")}`:"",sobra.length?`apareceu: ${sobra.join(", ")}`:""].filter(Boolean).join("; ");throw e}
-  }catch(e){if(typeof usoIa==="function")usoIa("rec");throw e}
-  if(typeof usoIa==="function") usoIa("ok");
-  return ant?outP+"\n"+ant.replace(/^\n?/,"\n"):outP;
+// ---- reescrita protegida ----
+// números (fora de siglas como DM2 e SpO2) viram marcadores antes de ir para a IA e voltam no lugar depois
+const IA_NUM_RE=/(?<![A-Za-zÀ-ú0-9⟦])\d+(?:[.,:\/]\d+)*/g;
+function iaProtege(t){const v=[];const s=String(t).replace(IA_NUM_RE,m=>{v.push(m);return `⟦${v.length}⟧`});return {s,v}}
+function iaRestaura(out,v){
+  const n=new Map();
+  const r=String(out).replace(/⟦\s*(\d+)\s*⟧/g,(m,k)=>{k=+k;n.set(k,(n.get(k)||0)+1);return v[k-1]!=null?v[k-1]:"⟦?⟧"});
+  const falta=v.filter((x,i)=>!n.get(i+1)), repete=v.filter((x,i)=>n.get(i+1)>1), novo=[...n.keys()].some(k=>!v[k-1]);
+  const solto=(String(out).replace(/⟦\s*\d+\s*⟧/g," ").match(/(?<![A-Za-zÀ-ú0-9])\d+(?:[.,]\d+)?/g)||[]);
+  return {r,falta,repete,novo,solto};
 }
+// parêntese que a IA acrescentou (ex.: princípio ativo, explicação) sai sozinho; o que já estava no texto fica
+function iaTiraParen(ent,sai){
+  const E=norm(ent);
+  return String(sai).replace(/\s*\(([^()]*)\)/g,(m,dentro)=>E.includes(norm(dentro).trim())&&norm(dentro).trim()?m:"");
+}
+// negativas: cada item negado continua na saída, pela palavra ou pelo termo médico equivalente
+const IA_SIN=[["falta de ar","dispne"],["cansac","dispne|cansac|fadiga|astenia"],["peito","torac|peito"],["catarro","expector|catarr"],["ardenc","disuri|ardenc"],["ardor","disuri|ardor"],["queimac","disuri|queimac|pirose"],["apetite","inapet|apetite|anorex|hiporex"],["barriga","abdom|barrig"],["vomit","vomit|emes|emet"],["enjo","nause|enjo"],["desmai","sincop|desmai|lipotim"],["dor de cabec","cefal"],["cabec","cefal|cabec"],["garganta","odinofag|faring|garganta"],["engol","deglut|disfag|odinofag"],["incha","edema|incha"],["cocei","prurid|cocei"],["coriza","coriza|rinorr"],["nariz","coriza|rinorr|nasal|nariz"],["chiado","sibil|chiad"],["formigam","parest|formig"],["dormenc","parest|hipoest|dormen"],["fezes","fezes|evacu|hematoquez|enterorr|melen"],["urina","urin|mic|hematur|disur|polaci"],["xixi","urin|mic"],["evacu","evacu|fezes|intestin|constip|diarr"],["tontur","tontur|vertig"],["febre","febr|febril"],["corpo","mialg|corpo"],["moleza","astenia|adinamia|molez"],["palpit","palpit"],["pressao","pressao|hipertens|hipotens"],["sangr","sangr|hemorr"],["tosse","tosse|tossi"],["diarr","diarr|evacu|fezes"],["muscul","mialg|muscul"],["olho","ocular|olho|visual"],["visao","visual|visao|turva"],["ouvido","otalg|ouvido|auricul"],["forca","forca|deficit|paresi|plegi|fraquez"],["perda de forca","deficit|paresi|plegi|fraquez|forca"],["sangue","sangue|sangr|hemat|melen|hemorr|enterorr"],["urinar","urin|mic|disur"],["respirar","dispne|respir"]];
+const IA_NEG_VAZIO=new Set("nada nenhum nenhuma nenhuns outros outras outro outra sintomas sintoma sinais sinal queixas queixa alteracao alteracoes demais quadro dias horas hoje ontem semana semanas meses vezes antes depois durante tambem".split(" "));
+function iaNegativas(ent,sai){
+  const N=norm(sai), falta=[];
+  for(const m of String(ent).matchAll(/\b(?:nega|negou|negando|sem|n[ãa]o (?:tem|teve|apresenta|apresentou|refere|sente|sentiu))\s+([^.;:\n]+)/gi))
+    for(const it0 of m[1].split(/,|\s+e\s+|\s+ou\s+|\s+nem\s+/i)){
+      const it=norm(it0).replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim(); if(!it) continue;
+      const ws=it.split(" ").filter(w=>w.length>=4&&!IA_NEG_VAZIO.has(w)); if(!ws.length) continue;
+      const ok=ws.some(w=>N.includes(w.slice(0,Math.max(4,w.length-2))))||IA_SIN.some(([k,re])=>it.includes(k)&&new RegExp(re).test(N));
+      if(!ok&&!falta.includes(ws[0])) falta.push(ws[0]);
+    }
+  if(falta.length){const e=new Error("negativa");e.det=falta.slice(0,3).join(", ");throw e}
+}
+// confere a saída da IA contra a entrada original; devolve o texto final ou lança o motivo
+function iaConfere(texto,out,v,neg=true){
+  const R=iaRestaura(out,v);
+  // marcador inventado é erro; o resto (marcador esquecido, número escrito direto) decide a conferência final dos números
+  if(R.novo||/⟦/.test(R.r)){const e=new Error("numeros");e.det="marcador novo";throw e}
+  let t=iaTiraParen(texto,R.r).replace(/[ \t]+([.,;])/g,"$1").replace(/[ \t]{2,}/g," ").trim();
+  const rem=iaRemedioNovo(texto,t); if(rem.length){const e=new Error("remedio");e.det=rem.join(", ");throw e}
+  if(neg) iaNegativas(texto,t);
+  const a=iaNums(texto), b=iaNums(t);   // última conferência: quantidade por extenso nova ("três episódios") também conta
+  if(a.join("|")!==b.join("|")){const sobra=[...b];const f=a.filter(n=>{const k=sobra.indexOf(n);if(k<0)return true;sobra.splice(k,1);return false});
+    const e=new Error("numeros");e.det=[f.length?`sumiu: ${f.join(", ")}`:"",sobra.length?`apareceu: ${sobra.join(", ")}`:""].filter(Boolean).join("; ");throw e}
+  return t;
+}
+const iaMotivo=e=>e.message==="numeros"?`problema nos números (${e.det}). Use cada marcador ⟦n⟧ exatamente uma vez e não escreva algarismos nem quantidades por extenso`:e.message==="remedio"?`você acrescentou ou trocou remédio (${e.det}). Escreva só os remédios da entrada, com o nome igual`:e.message==="negativa"?`a negativa de "${e.det}" sumiu ou mudou. Mantenha todas as negativas da entrada`:e.message;
+// reescreve com a IA; se a conferência recusar, pede de novo uma vez, dizendo o motivo
+const IA_MARCAS=`
+NÚMEROS: cada número da entrada foi trocado por um marcador (⟦1⟧, ⟦2⟧…). Use cada marcador exatamente uma vez, no lugar do número que ele representa, com a unidade ao lado como no original. Não escreva algarismos, quantidades por extenso nem marcadores novos.`;
+async function iaReescreve(sistema,texto,neg=true){
+  const {s,v}=iaProtege(texto); if(!sistema.includes("⟦1⟧")) sistema+=IA_MARCAS;
+  let msgs=[{role:"user",content:`<entrada>\n${s}\n</entrada>`}], erro=null;
+  for(let tent=0;tent<2;tent++){
+    const out=await iaPede(sistema,msgs);
+    try{const t=iaConfere(texto,out,v,neg);if(typeof usoIa==="function")usoIa(tent?"ok2":"ok");return t}
+    catch(e){if(!["numeros","remedio","negativa"].includes(e.message))throw e;erro=e;if(typeof usoIa==="function")usoIa("r_"+e.message);
+      msgs=[...msgs,{role:"assistant",content:out},{role:"user",content:`A conferência automática recusou a sua saída: ${iaMotivo(e)}. Refaça a partir da mesma entrada, corrigindo isso e seguindo todas as regras. Devolva só o texto final.`}]}
+  }
+  if(typeof usoIa==="function") usoIa("rec");
+  throw erro;
+}
+async function iaMelhora(texto){return iaReescreve(iaPrompt(),texto)}
 function renderIa(){
   const el=$("#iaCaixa"); if(!el) return;
   el.innerHTML=`<h2>IA na HDA</h2>
-    <p class="note">Botão "Melhorar texto (IA)" na HDA do Atendimento: corrige e dá coesão, sem inventar nem tirar dados. Envia só o texto da HDA, sem o nome do paciente, para a Anthropic (Claude Haiku 4.5), com a sua chave; paga por uso (centavos).</p>
+    <p class="note">Botão "Melhorar texto (IA)" na HDA do Atendimento: corrige e dá coesão, sem inventar nem tirar dados. Envia só o texto da HDA, sem o nome do paciente, para a Anthropic, com a sua chave; paga por uso (frações de centavo com o Haiku).</p>
+    <label class="f">Modelo<select class="inp" id="iaModelo">${Object.entries(IA_MODELOS).map(([k,[,r]])=>`<option value="${k}" ${(ia.modelo||"haiku")===k?"selected":""}>${r}</option>`).join("")}</select></label>
     ${iaAtiva()?`<p><b>Ligada</b> neste aparelho.</p><div class="actions"><button class="btn" id="iaTroca">Trocar a chave</button><button class="btn danger" id="iaDesliga">Desligar</button></div>`:`
     <div class="hospform"><label>Chave da API da Anthropic<input id="iaChave" class="segredo" type="text" name="ps-token-ia" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="sk-ant-…"></label>
       <div class="actions"><button class="btn primary" id="iaLiga">Ligar a IA</button></div></div>`}
@@ -278,11 +331,12 @@ function renderIa(){
       <div class="actions"><button class="btn primary" id="iaPromptSalva">Salvar instruções</button><button class="btn" id="iaPromptPadrao">Restaurar o padrão</button></div></details>`;
   const est=t=>{const e=$("#iaEstado");if(e)e.textContent=t};
   if($("#iaLiga")) $("#iaLiga").onclick=async()=>{const c=$("#iaChave").value.trim();if(!/^sk-ant-/.test(c)){est("A chave da Anthropic começa com sk-ant-.");return}
-    ia={chave:c}; est("Testando…");
+    ia={chave:c,modelo:($("#iaModelo")||{}).value||"haiku"}; est("Testando…");
     try{await iaMelhora("dor de cabeca ha 2 dias");lsSet(IA_LS,ia);est("Ligada. Lembre de atualizar a senha de acesso para levar a chave a outro computador.");renderIa()}
     catch(e){ia={};est(/^40[13]/.test(e.message)?"Chave recusada pela Anthropic.":e.message==="numeros"?"Ligada (o teste mudou um número; a trava protege).":"Sem conexão ou erro: "+e.message);if(e.message==="numeros"){ia={chave:c};lsSet(IA_LS,ia);renderIa()}}};
   $("#iaPromptSalva").onclick=()=>{const t=iaLimpa($("#iaPromptTxt").value);model.prefs=Object.assign({},model.prefs,{iaPrompt:t===IA_SISTEMA.trim()?"":t});saveModel();toast("Instruções da IA salvas")};
   $("#iaPromptPadrao").onclick=()=>{model.prefs=Object.assign({},model.prefs,{iaPrompt:""});saveModel();$("#iaPromptTxt").value=IA_SISTEMA;grow($("#iaPromptTxt"));toast("Instruções padrão restauradas")};
-  if($("#iaTroca")) $("#iaTroca").onclick=()=>{const c=(prompt("Cole a chave nova da Anthropic")||"").trim();if(!c)return;ia={chave:c};lsSet(IA_LS,ia);toast("Chave trocada")};
+  if($("#iaTroca")) $("#iaTroca").onclick=()=>{const c=(prompt("Cole a chave nova da Anthropic")||"").trim();if(!c)return;ia={chave:c,modelo:ia.modelo};lsSet(IA_LS,ia);toast("Chave trocada")};
+  if($("#iaModelo")) $("#iaModelo").onchange=e=>{ia.modelo=e.target.value;if(ia.chave)lsSet(IA_LS,ia);toast("Modelo da IA trocado")};
   if($("#iaDesliga")) $("#iaDesliga").onclick=()=>{try{localStorage.removeItem(IA_LS)}catch(e){}ia={};renderIa();toast("IA desligada neste aparelho")};
 }

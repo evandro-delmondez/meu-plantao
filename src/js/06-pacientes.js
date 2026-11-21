@@ -105,7 +105,23 @@ function pacAbrir(id){
   setTab("evolucao"); window.scrollTo({top:0});
   if(atd.fechar) setTimeout(()=>{const x=$('#atCorpo [data-etapa="6"]');if(x)x.scrollIntoView({block:"start"})},60);
 }
-function pacApagar(id){const db=pacCarrega();db.pacs=db.pacs.filter(p=>p.id!==id);db.apagados[id]=Date.now();if(atPac===id)atPac=null;pacGrava()}
+function pacApagar(id){
+  const db=pacCarrega();db.pacs=db.pacs.filter(p=>p.id!==id);db.apagados[id]=Date.now();
+  // era o paciente aberto no Atendimento: limpa a tela também (senão o "Novo paciente" o guardaria de volta como "Sem nome")
+  if(atPac===id){atPac=null;const t=toast;toast=()=>{};try{novoPaciente()}catch(e){}finally{toast=t}}
+  pacGrava();
+}
+// fim do plantão do paciente: "Finalizar plantão" (se apertado) ou o fim do turno + 30 min; sem escala, pelo relógio
+// (diurno 19h30, noturno 7h30 do dia seguinte). Passou disso sem desfecho: sai do Início, dos avisos e do "em aberto"
+// (fica em "Últimos 30 dias", nada é apagado nem muda de desfecho)
+function pacFimPl(p){
+  const pl=pacPlantao(p.criado);
+  if(pl.pl){try{const j=plJanelaDe(pl.pl);if(j)return +pl.pl.fimT?+pl.pl.fimT:j.fim0+30*6e4}catch(e){}}
+  const base=new Date(String(pl.k).slice(0,10)+"T00:00:00").getTime();
+  return String(pl.k).endsWith("N")?base+(31*60+30)*6e4:base+(19*60+30)*6e4;
+}
+const pacEncerrado=(p,agora=Date.now())=>agora>=pacFimPl(p);
+const pacEmAberto=(p,agora=Date.now())=>(!p.desf.tipo||p.desf.tipo==="obs"||pacVaga(p))&&!pacEncerrado(p,agora);
 // lembrete de reavaliação depois da medicação na unidade (padrão 30 min; toque no lembrete: 30 → 60 → 120 → desligado)
 const PAC_LEMBRA=[30,60,120];
 const pacLembraMin=()=>{const m=+((model.prefs||{}).reavMin);return PAC_LEMBRA.includes(m)?m:30};
@@ -114,6 +130,7 @@ const pacLembraAtivo=p=>!!(p.lembra&&p.lembra.em&&(!p.desf.tipo||p.desf.tipo==="
 // aviso de tempo: lembrete vencido (vermelho); 2 h sem reavaliar (amarelo); 3 h sem desfecho (vermelho)
 function pacAviso(p,agora=Date.now()){
   if(p.desf.tipo&&p.desf.tipo!=="obs") return null;
+  if(pacEncerrado(p,agora)) return null;
   if(pacLembraAtivo(p)&&agora>=p.lembra.em) return {nv:"vermelho",txt:`hora de reavaliar (medicação há ${pacDur(agora-(p.lembra.t0||p.lembra.em-p.lembra.min*6e4))})`,lembra:true};
   if(agora-p.criado>=PAC_H3&&!p.desf.tipo) return {nv:"vermelho",txt:`${pacDur(agora-p.criado)} sem desfecho`};
   const ult=p.et.reav.t||p.criado;
@@ -140,7 +157,7 @@ function pacCiencia(ps){
   return F.join("; ");
 }
 function pacPassagem(medico,local,consMed){
-  const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs"||pacVaga(p)).slice().reverse();
+  const ab=pacCarrega().pacs.filter(p=>pacEmAberto(p)).slice().reverse();
   const meu=pacConsult(local), deixo=`Deixo ${meu?"o "+meu:"o plantão"}`;
   if(!ab.length) return `${deixo} sem pendências.`;
   // mesmo médico e consultório numa linha só: "Caroline e João, cientes da troca, com Dra. Ana no consultório 5."
@@ -182,8 +199,8 @@ function renderPacientes(manter){
   // passados (a outro médico ou a outra especialidade) saem do "em aberto" e não contam; ficam com o nome no plantão
   const passados=db.pacs.filter(pacSaiu), agoraPl=pacPlantao(agora).k;
   const qb=norm(pcBusca.trim());
-  const lista=db.pacs.filter(p=>qb?norm(p.nome).includes(qb):!pacSaiu(p)&&(pcVer==="todos"||pacPlantao(p.criado).k===agoraPl||(!p.desf.tipo||p.desf.tipo==="obs")));
-  const abertos=db.pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs").length;
+  const lista=db.pacs.filter(p=>qb?norm(p.nome).includes(qb):!pacSaiu(p)&&(pcVer==="todos"||pacPlantao(p.criado).k===agoraPl||pacEmAberto(p,agora)));
+  const abertos=db.pacs.filter(p=>pacEmAberto(p,agora)).length;
   const atendidos=db.pacs.filter(p=>pacPlantao(p.criado).k===agoraPl&&pacConta(p)).length;
   const grupos=new Map(); for(const p of lista){const pl=pacPlantao(p.criado);if(!grupos.has(pl.k))grupos.set(pl.k,{rot:pl.rot,ps:[]});grupos.get(pl.k).ps.push(p)}
   const porPlantao=new Map(); for(const p of db.pacs){const pl=pacPlantao(p.criado);const g=porPlantao.get(pl.k)||{rot:pl.rot,n:0,saiu:[]};if(pacConta(p))g.n++;if(pacSaiu(p))g.saiu.push(p.nome);porPlantao.set(pl.k,g)}

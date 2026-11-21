@@ -19,8 +19,8 @@ test("lembrete de reavaliação: medicação liga 30 min, troca 60/120/desliga, 
   // de novo em 30 min, e já vencido (simula a hora passando)
   await it.locator('[data-pe="med"]').click(); await it.locator('[data-pe="med"]').click(); await it.locator('[data-pe="med"]').click();
   await expect(it.locator("[data-plembra]")).toContainText("(30 min)");
-  await page.evaluate(() => { const d = JSON.parse(localStorage.getItem("mph_pacientes_v1")); d.pacs[0].lembra.em = Date.now() - 1000; d.pacs[0].lembra.t0 = Date.now() - 31 * 60e3; localStorage.setItem("mph_pacientes_v1", JSON.stringify(d)); });
-  await page.reload(); await aba(page, "pacientes");
+  await page.evaluate(() => { const d = JSON.parse(localStorage.getItem("mph_pacientes_v1")); d.pacs[0].lembra.em = Date.now() - 1000; d.pacs[0].lembra.t0 = Date.now() - 31 * 60e3; localStorage.setItem("mph_pacientes_v1", JSON.stringify(d)); location.reload(); });
+  await page.waitForLoadState("load"); await page.waitForTimeout(300); await aba(page, "pacientes");
   await expect(item(page, "Paciente Lembrete").locator("[data-plembra]")).toContainText("reavaliar agora");
   await expect(item(page, "Paciente Lembrete")).toHaveAttribute("data-av", "vermelho");
   await aba(page, "inicio");
@@ -91,5 +91,42 @@ test("celular: o Próximo (copiar para o MV) fica visível acima da barra de bai
   await bp.click();
   await expect(bp).not.toContainText("Próximo: HDA");
   expect(await semRolagemLateral(page)).toBe(true);
+  expect(erros).toEqual([]);
+});
+
+test("plantão encerrado: paciente sem desfecho sai do Início e do 'em aberto', mas continua nos últimos 30 dias", async ({ page }) => {
+  const erros = await abrir(page);
+  await novo(page, "Paciente Antigo");
+  await novo(page, "Paciente Atual");
+  // o primeiro é do plantão de 2 dias atrás (sem escala: diurno, acabou às 19h30)
+  await page.evaluate(() => { const d = JSON.parse(localStorage.getItem("mph_pacientes_v1")); const p = d.pacs.find(x => x.nome === "Paciente Antigo"); const t = Date.now() - 2 * 864e5; const x = new Date(t); x.setHours(10, 0, 0, 0); p.criado = x.getTime(); p.dia = `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, "0")}-${String(x.getDate()).padStart(2, "0")}`; localStorage.setItem("mph_pacientes_v1", JSON.stringify(d)); location.reload(); });
+  await page.waitForLoadState("load"); await page.waitForTimeout(300); await aba(page, "inicio");
+  await expect(page.locator("#hPacs")).toContainText("Paciente Atual");
+  await expect(page.locator("#hPacs")).not.toContainText("Paciente Antigo");
+  await aba(page, "pacientes");
+  await expect(page.locator(".pcconta")).toContainText("1 em aberto");
+  await expect(page.locator("#pcCorpo .pclista")).not.toContainText("Paciente Antigo");
+  await page.click('[data-pcver="todos"]');
+  await expect(page.locator("#pcCorpo .pclista")).toContainText("Paciente Antigo");
+  expect(erros).toEqual([]);
+});
+
+test("apagar o paciente aberto no Atendimento: não volta como 'Sem nome' nem aparece no Início", async ({ page }) => {
+  const erros = await abrir(page);
+  await novo(page, "Paciente Apagado");
+  await novo(page, "Outro Paciente");
+  await aba(page, "pacientes");
+  await item(page, "Paciente Apagado").locator("[data-pabrir]").first().click();
+  await page.locator('#atCorpo [data-atd="hma"]').fill("dor lombar há 2 dias");
+  await page.waitForTimeout(800);
+  await aba(page, "pacientes");
+  const ap = item(page, "Paciente Apagado").locator("[data-papagar]");
+  await ap.click(); await ap.click();
+  await item(page, "Outro Paciente").locator("[data-pabrir]").first().click();
+  await aba(page, "inicio");
+  await expect(page.locator("#hPacs")).not.toContainText("Sem nome");
+  await expect(page.locator("#hPacs")).not.toContainText("Paciente Apagado");
+  const nomes = await page.evaluate(() => JSON.parse(localStorage.getItem("mph_pacientes_v1")).pacs.map(p => p.nome));
+  expect(nomes).toEqual(["Outro Paciente"]);
   expect(erros).toEqual([]);
 });

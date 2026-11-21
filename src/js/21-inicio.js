@@ -100,7 +100,7 @@ function renderInicio(){
   chipsHome($("#hTop"),top,"As condutas que você mais abrir aparecem aqui.");
   chipsHome($("#hRec"),(uso.rec||[]).slice(0,10).map(itemRecente),"As condutas, fichas e escores que você abrir aparecem aqui.");
   // pacientes sem desfecho, com os avisos de 2 h e 3 h
-  const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs"||pacVaga(p));
+  const ab=pacCarrega().pacs.filter(p=>pacEmAberto(p));
   $("#hPacsBox").hidden=!pacCarrega().pacs.length;
   const agora=Date.now(), pl=pacPlantao(agora).k, at=pacCarrega().pacs.filter(p=>pacPlantao(p.criado).k===pl&&pacConta(p)).length;
   $("#hPacsConta").textContent=`${at} ${at===1?"atendido":"atendidos"} neste plantão`;
@@ -143,7 +143,9 @@ let plEscolhe=false;   // mostrando os turnos para escolher (só nesta sessão)
 function renderPlInicio(){
   const box=$("#hPlBox"); if(!box) return; const x=plAtivo();
   if(x){
-    box.innerHTML=`<div class="hplrow"><span class="hplon"><b>Plantão em andamento</b><span class="note" id="hPlTxt">${esc(PL_TURNOS[x.turno][0])} · desde ${esc(x.ini||plHHMM(x.iniT))}</span></span><button class="btn sm primary" id="hPlFim">Finalizar plantão</button></div>`;
+    // quanto este plantão já vale: atendidos (alta, internação, transferência, evasão) e UTI/semi pelos valores do local
+    let ganho=""; try{plAtualizaContagem();const L=plDados().locais[x.local]||{};if(L.tipo==="porAlta"){const r=plValor(x),n=r.c?r.c.n||0:0,u=r.c?r.c.uti||0:0;ganho=`<span class="hplganho"><b>${plBRL(r.v)}</b> até agora · ${pl(n+u,"atendido","atendidos")}${u?` (${u} em UTI/semi)`:""}</span>`}}catch(e){}
+    box.innerHTML=`<div class="hplrow"><span class="hplon"><b>Plantão em andamento</b><span class="note" id="hPlTxt">${esc(PL_TURNOS[x.turno][0])} · desde ${esc(x.ini||plHHMM(x.iniT))}</span>${ganho}</span><button class="btn sm primary" id="hPlFim">Finalizar plantão</button></div>`;
     $("#hPlFim").onclick=()=>{const ab=pacCarrega().pacs.filter(p=>!p.desf.tipo||p.desf.tipo==="obs");
       if(ab.length){$("#hPacsBox").hidden=false;const fb=$("#hFimBox");if(fb.hidden)$("#hFinaliza").click();fb.scrollIntoView({behavior:"smooth",block:"nearest"});return}
       if(!confirm("Finalizar o plantão agora? A hora de saída vai para Plantões."))return;plFinaliza();toast("Plantão finalizado");renderInicio()};

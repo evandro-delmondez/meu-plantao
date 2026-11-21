@@ -93,9 +93,9 @@ gen(p,m){
  const ond=m<6?null:(m<24?2:(p<=30?4:8));
  let t=`Plano A\n1) Sais de reidratação oral ------------------- 10 envelopes\nOferecer ${sro} após cada evacuação.`;
  if(m<60) t+=`\n2) Zinco -------------------------------------\n${zn} mg VO 1x ao dia por 10 a 14 dias.`;
- t+=`\n3) Saccharomyces boulardii (opcional) 250–750 mg/dia por 5 a 7 dias.`;
  return {casa:t,unidade:`Plano B: SRO ${fm(50*p)} a ${fm(100*p)} mL em 4–6h, em pequenos volumes.\nPlano C: SF 0,9% ou Ringer ${fm(30*p)} mL em ${m<12?"1h, depois "+fm(70*p)+" mL em 5h":"30 min, depois "+fm(70*p)+" mL em 2h30"}.${ond?`\nVômitos persistentes: ondansetrona ${ond} mg VO dose única.`:""}`,
- orient:`- Manter aleitamento e alimentação habitual.\n- Retorno se sangue nas fezes, vômitos incoercíveis, sonolência ou pouca urina.`};
+ orient:`- Manter aleitamento e alimentação habitual.\n- Retorno se sangue nas fezes, vômitos incoercíveis, sonolência ou pouca urina.`,
+ aviso:"Probiótico opcional (reduz cerca de 1 dia de diarreia): Saccharomyces boulardii 250–750 mg/dia por 5 a 7 dias, se quiser acrescentar à receita."};
 }},
 {id:"bronquiolite",nome:"Bronquiolite",cid:"J21.9",fontes:["aapBronq"],
 gen(p,m){return {casa:`Uso nasal\n1) Soro fisiológico 0,9% --------------------- 1 fr\nPingar e aspirar as narinas antes das mamadas.`,

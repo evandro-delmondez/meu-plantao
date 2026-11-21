@@ -9802,6 +9802,230 @@ const EXAMES = {
    "ESVS 2020 — Björck M et al. Editor's Choice — European Society for Vascular Surgery (ESVS) 2020 Clinical Practice Guidelines on the Management of Acute Limb Ischaemia (Eur J Vasc Endovasc Surg 2020;59(2):173-218; PMID 31899099): diagnóstico clínico e classificação de Rutherford; heparina imediata ao diagnóstico; angio-TC antes da revascularização quando não atrasa o tratamento; revascularização urgente (cirurgia aberta ou endovascular) — imediata no membro imediatamente ameaçado (IIb); amputação primária no membro inviável (III); vigiar síndrome compartimental e fasciotomia; procurar a fonte embólica (ECG, ecocardiograma) e anticoagular a longo prazo após embolia cardíaca. https://doi.org/10.1016/j.ejvs.2019.09.006",
    "HC-FMUSP 2024 cap. 40 — Medicina de Emergência: Abordagem Prática, HC-FMUSP, 18ª ed., Manole, 2024, cap. 40 Oclusão arterial aguda (6 P; trombose × embolia; Rutherford, tabela 2; cirurgião vascular antes da imagem; exames: hemograma, coagulograma, CPK, ureia, creatinina, eletrólitos, TGO, TGP, gasometria venosa, lactato, ECG; Doppler; analgesia — dipirona 1–2 g EV, morfina 0,1 mg/kg EV e 0,05 mg/kg a cada 15 min; evitar AINE; aquecimento passivo com algodão, nunca calor direto; tabela 3: HNF 80 unidades/kg EV em bolus + 18 unidades/kg/h pelo TTPa, ou enoxaparina 1 mg/kg SC 12/12h (cuidado com ClCr < 30); AAS 300 mg + 100 mg/dia na DAOP; síndrome compartimental e fasciotomia; pós-operatório em UTI)."
   ]
+ },
+ "hpb": {
+  "encaminhar": [
+   {
+    "t": "Urologia (prioritário): retenção urinária, hidronefrose ou piora da função renal, infecção urinária de repetição, hematúria de repetição ou cálculo na bexiga — complicações com indicação de cirurgia",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Urologia: toque retal com nódulo ou endurecimento, ou PSA alterado para a idade",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Urologia: hematúria sem infecção — investigar, não atribuir à próstata sem avaliação",
+    "f": [
+     2
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "Urina tipo I (fita ou sedimento): todo homem com sintomas urinários — infecção e hematúria",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Resíduo pós-miccional (US de bexiga ou POCUS): avaliação inicial e suspeita de retenção",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Creatinina: suspeita de lesão renal, retenção ou hidronefrose, ou antes de cirurgia",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "US de rins, vias urinárias e próstata: resíduo alto, hematúria ou litíase; volume da próstata se ajudar a escolher o remédio (finasterida: > 30 mL pela AUA, > 40 mL pela EAU)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "PSA (ambulatorial, após conversar com o paciente): se o diagnóstico de câncer mudar a conduta ou se o valor ajudar a escolher o tratamento",
+    "f": [
+     1,
+     2
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Estudo urodinâmico de rotina; só em casos selecionados, antes de cirurgia",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Cistoscopia de rotina; só se puder mudar o diagnóstico ou o tratamento",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "EAU 2026 — EAU Guidelines on the Management of Non-neurogenic Male LUTS, 2026, capítulo Diagnostic evaluation (urina tipo I, resíduo pós-miccional, PSA se mudar a conduta e função renal se suspeita de lesão: recomendação forte; US do trato superior, imagem da próstata para escolher o remédio, cistoscopia e urodinâmica em casos selecionados: fraca). https://uroweb.org/guidelines/management-of-non-neurogenic-male-luts/chapter/diagnostic-evaluation",
+   "AUA 2021 — Lerner LB et al. Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline Part I e Part II (J Urol 2021;206:806 e 818; emenda 2023). https://www.auanet.org/guidelines-and-quality/guidelines/benign-prostatic-hyperplasia-(bph)-guideline"
+  ]
+ },
+ "hipertireoidismo": {
+  "encaminhar": [
+   {
+    "t": "Sala vermelha / UTI: suspeita de crise tireotóxica — febre, agitação ou confusão, taquicardia intensa ou FA, insuficiência cardíaca, vômitos ou icterícia (Burch-Wartofsky ≥ 45)",
+    "f": [
+     4,
+     1
+    ]
+   },
+   {
+    "t": "Endocrinologista: tireotoxicose confirmada, para definir a causa e o tratamento (antitireoidiano, iodo radioativo ou cirurgia)",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Gestante: endocrinologista e pré-natal de alto risco",
+    "f": [
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "TSH e T4 livre: suspeita clínica; T3 se TSH baixo com T4 livre normal",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemograma com diferencial e TGO, TGP e bilirrubinas: antes de iniciar antitireoidiano",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Hemograma com diferencial no mesmo dia: febre ou dor de garganta em quem usa metimazol ou propiltiouracil (agranulocitose)",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Beta-hCG: mulher em idade fértil, porque muda o antitireoidiano (propiltiouracil no 1º trimestre)",
+    "f": [
+     3
+    ]
+   },
+   {
+    "t": "ECG: palpitação, taquicardia ou idoso — fibrilação atrial",
+    "f": [
+     4
+    ]
+   },
+   {
+    "t": "Suspeita de crise: hemograma, glicemia, eletrólitos, cálcio, função hepática, culturas se febre e ECG",
+    "f": [
+     4
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "Cintilografia ou captação de iodo radioativo na gestação ou na amamentação",
+    "f": [
+     1
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ATA 2016 — Ross DS et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis. Thyroid 2016;26(10):1343-1421. https://doi.org/10.1089/thy.2016.0229",
+   "SBEM 2013 — Maia AL et al. Consenso brasileiro para o diagnóstico e tratamento do hipertireoidismo: recomendações do Departamento de Tireoide da SBEM. Arq Bras Endocrinol Metab 2013;57(3):205-232. https://doi.org/10.1590/S0004-27302013000300006",
+   "ATA 2017 — Alexander EK et al. 2017 Guidelines of the American Thyroid Association for the Diagnosis and Management of Thyroid Disease During Pregnancy and the Postpartum. Thyroid 2017;27(3):315-389. https://doi.org/10.1089/thy.2016.0457",
+   "HC-FMUSP 2024 cap. 90 — Medicina de Emergência: Abordagem Prática, 18ª ed. HC-FMUSP. Manole, 2024, cap. 90, Crise tireotóxica (tabela 6: exames complementares)."
+  ]
+ },
+ "hipotireoidismo": {
+  "encaminhar": [
+   {
+    "t": "Sala vermelha / UTI: suspeita de coma mixedematoso — rebaixamento ou confusão, hipotermia, bradicardia, hipotensão, hipoventilação, hiponatremia ou hipoglicemia",
+    "f": [
+     1,
+     4
+    ]
+   },
+   {
+    "t": "Clínico da UBS: TSH em 6 a 8 semanas depois de iniciar ou mudar a dose",
+    "f": [
+     1
+    ]
+   },
+   {
+    "t": "Endocrinologista: suspeita de hipotireoidismo central (T4 livre baixo com TSH normal ou baixo) ou gestante",
+    "f": [
+     1,
+     3
+    ]
+   }
+  ],
+  "pedir": [
+   {
+    "t": "TSH e T4 livre: suspeita clínica; confirmar o TSH alterado antes de iniciar levotiroxina",
+    "f": [
+     1,
+     2
+    ]
+   },
+   {
+    "t": "Anti-TPO (ambulatorial): TSH alto com T4 livre normal, para estimar a chance de progressão",
+    "f": [
+     2
+    ]
+   },
+   {
+    "t": "Suspeita de coma mixedematoso: sódio, glicemia, gasometria, cortisol antes da hidrocortisona e ECG",
+    "f": [
+     4,
+     1
+    ]
+   }
+  ],
+  "naoPedir": [
+   {
+    "t": "T3 (total ou livre) para ajustar a dose de levotiroxina; o TSH basta",
+    "f": [
+     5
+    ]
+   },
+   {
+    "t": "US de tireoide só porque a função está alterada, sem nódulo palpável",
+    "f": [
+     5
+    ]
+   }
+  ],
+  "div": [],
+  "fontes": [
+   "ATA 2014 — Jonklaas J et al. Guidelines for the Treatment of Hypothyroidism: prepared by the American Thyroid Association Task Force on Thyroid Hormone Replacement. Thyroid 2014;24(12):1670-1751. https://doi.org/10.1089/thy.2014.0028",
+   "SBEM 2013 — Brenta G et al. Diretrizes clínicas práticas para o manejo do hipotireoidismo. Arq Bras Endocrinol Metab 2013;57(4):265-291. https://doi.org/10.1590/S0004-27302013000400003",
+   "ATA 2017 — Alexander EK et al. 2017 Guidelines of the American Thyroid Association for the Diagnosis and Management of Thyroid Disease During Pregnancy and the Postpartum. Thyroid 2017;27(3):315-389. https://doi.org/10.1089/thy.2016.0457",
+   "Harrison 22 cap. 395 — Harrison's Principles of Internal Medicine, 22ª ed. McGraw Hill, 2025, cap. 395, Hypothyroidism (coma mixedematoso).",
+   "Choosing Wisely Endocrine Society 2013 — Endocrine Society e AACE. Choosing Wisely (ABIM Foundation), 2013: não dosar T3 total ou livre para avaliar a dose de levotiroxina; não pedir US de tireoide de rotina por função alterada sem alteração palpável. https://blogs.the-hospitalist.org/content/endocrine-societies-release-choosing-wisely-recommendations"
+  ]
  }
 };
 if (typeof module!=="undefined") module.exports={EXAMES};

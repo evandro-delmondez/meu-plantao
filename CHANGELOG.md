@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.67.0 — 2026-11-21
+- **Lote 5 no ar**: 12 condutas novas conferidas — hemorragia subaracnóidea, delirium no idoso (4AT), trauma cervical, politrauma, sangramento em anticoagulado, neutropenia febril, lesão renal aguda, oclusão arterial aguda, intoxicação por cocaína, organofosforado, febre no lactente e farmacodermia (DRESS). Queixa nova "Trauma".
+- **Decisões 3 aplicadas**: epididimite sem vida sexual ativa com causa urinária → levofloxacino 500 mg 1x/dia por 10 dias após urocultura (EAU 2026); sangramento menor com INR ≥ 2 → vitamina K 10 mg EV (HC-FMUSP); mpox com atestado inicial de 7 dias até o PCR e tecovirimat por uso compassivo (NT 337/2023).
+- **Cetorolaco sublingual** por até 3 dias (9 cp) em cólica renal, cólica biliar, lombalgia e contratura; ficha com idoso, insuficiência renal e desidratação pela bula.
+- **HPB**: creatinina não é de rotina (EAU 2026). **Exames**: HPB, hipertireoidismo e hipotireoidismo na aba Exames. **Diarreia na criança**: probiótico opcional, desligado.
+
 ## 1.66.0 — 2026-11-21
 - **IA da HDA revista**: modelo atual (Claude Haiku 5.5, ~10× mais barato; Sonnet 5.5 opcional em Backup › IA), sem busca na web. Os números vão como marcadores e voltam no lugar, então a IA não consegue trocar número. Parêntese inventado sai sozinho. Se a conferência recusar (remédio novo, negativa apagada, número inventado), a IA refaz uma vez com o motivo antes de desistir. Negativas aceitam o termo médico ("nega falta de ar" → "nega dispneia"). Banco de 16 casos nos testes.
 - **Plantão encerrado**: paciente sem desfecho sai do Início, dos avisos e do "em aberto" 30 min depois do fim do turno (ou ao finalizar o plantão); continua em "Últimos 30 dias".

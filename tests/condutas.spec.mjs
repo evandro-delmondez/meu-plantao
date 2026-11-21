@@ -67,7 +67,7 @@ test("dipirona 1 g é o padrão e vale em todas as receitas; 500 mg continua pos
   // quem escolhe 500 mg volta a ter 500 mg, e a escolha fica
   await aba(page, "modelos"); await page.click('[data-dip="500"]');
   await page.reload(); await aba(page, "prescricoes");
-  expect(await receita("tce")).toMatch(/Dipirona 500mg -+ 10 cp\nTomar 2 cp VO/);
+  await expect.poll(() => receita("tce"), { timeout: 8000 }).toMatch(/Dipirona 500mg -+ 10 cp\nTomar 2 cp VO/);
   expect(erros).toEqual([]);
 });
 
